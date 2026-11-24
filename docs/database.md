@@ -24,6 +24,7 @@ Postgres 18 on Neon (Singapore). Local tests use the same version (Postgres 18.7
 | V1 | First schema: subject, chapter, topic, source, question, users, attempts, revision state |
 | V2 | Seed: 11 subjects, 373 topics, 24 papers, 1,740 tagged questions (APSC 2023 + GATE EE 2007-2026), 288 GATE-state links |
 | V3 | Schema v2: many sources per question, options, figures, concept notes, syllabus, tests, reviews, to-dos, user approval, notification outbox, import log |
+| V4 | Roles USER / ADMIN (was STUDENT / ADMIN), Google profile picture, index on user status |
 
 ## Tables
 
@@ -49,7 +50,7 @@ Postgres 18 on Neon (Singapore). Local tests use the same version (Postgres 18.7
 ### Users and learning
 | Table | Purpose |
 |---|---|
-| `app_user` | account; `status` PENDING until approved by the admin; `auth_provider` EMAIL or GOOGLE |
+| `app_user` | account (Google sign-in); `role` USER or ADMIN; `status` PENDING until approved in the admin section |
 | `attempt` | every answer given: mode (STUDY/PRACTICE/TEST/REVISION), chosen option(s) or NAT value, time, own working |
 | `attempt_review` | the review of an attempt: verdict and explanation |
 | `user_question_state` | revision state per user and question (Leitner box, next review, bookmark, counts) |
@@ -60,7 +61,7 @@ Postgres 18 on Neon (Singapore). Local tests use the same version (Postgres 18.7
 ### Operations
 | Table | Purpose |
 |---|---|
-| `notification_outbox` | emails to send (e.g. signup alerts), sent and retried by a background job |
+| `notification_outbox` | emails to send (e.g. signup alerts). Not used yet: login is Google-only with approval in the admin section |
 | `content_import` | log of content files imported (name + sha256) |
 
 ## Diagram

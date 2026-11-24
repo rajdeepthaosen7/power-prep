@@ -28,5 +28,8 @@ If anything is missing (a source file, an answer key, a syllabus item), ask the 
 - Health check must not touch the DB (keeps Neon able to sleep).
 
 ## Users
-- Signup with Google or email. New accounts are PENDING until the owner approves; owner is notified on each signup.
+- Sign-in with Google only. The ADMIN_EMAIL account is ADMIN + APPROVED automatically.
+- Everyone else starts as USER + PENDING; the owner approves, rejects or disables them in the admin section. No email notifications.
+- The API issues its own 30-day token; roles and status are read from the DB on every request.
+- Render env: DATABASE_URL, DB_USER, DB_PASSWORD, GOOGLE_CLIENT_ID, ADMIN_EMAIL, JWT_SECRET, CONTENT_REQUIRES_APPROVAL (true once the new UI has login).
 - Progress is tracked per account.
