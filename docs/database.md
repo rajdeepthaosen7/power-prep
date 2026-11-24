@@ -1,6 +1,6 @@
 # Database guide
 
-Postgres 16 on Neon (Singapore). Schema is managed **only** by Flyway migrations in
+Postgres 18 on Neon (Singapore). Local tests use the same version (Postgres 18.7 binaries from Maven: io.zonky.test.postgres:embedded-postgres-binaries-linux-amd64). Schema is managed **only** by Flyway migrations in
 `src/main/resources/db/migration`. Migrations run at app startup (see `StartupConfig`).
 
 ## Rules

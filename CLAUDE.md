@@ -23,7 +23,7 @@ If anything is missing (a source file, an answer key, a syllabus item), ask the 
   Keep a list of what is dumped and what is still to be processed.
 
 ## Infra
-- Backend: Spring Boot (Java 21) on Render (free, Docker), Postgres on Neon (Singapore), API at https://power-api.rajdeepthaosen.com
+- Backend: Spring Boot 4.2 (Java 21, Flyway 12) on Render (free, Docker), Postgres on Neon (Singapore), API at https://power-api.rajdeepthaosen.com
 - Frontend: repo power-prep-web on Cloudflare, site at https://power.rajdeepthaosen.com
 - Health check must not touch the DB (keeps Neon able to sleep).
 
