@@ -2,7 +2,7 @@ package com.rajdeep.powerprep;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.boot.LazyInitializationExcludeFilter;
-import org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer;
+import org.springframework.boot.flyway.autoconfigure.FlywayMigrationInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
