@@ -67,6 +67,7 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration c = new CorsConfiguration();
         c.setAllowedOrigins(List.of("https://power.rajdeepthaosen.com",
+                "https://preview-power-prep-web.rajdeepthaosen7.workers.dev",
                 "http://localhost:5173", "http://localhost:3000", "http://localhost:5500", "http://127.0.0.1:5500"));
         c.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         c.setAllowedHeaders(List.of("Authorization", "Content-Type"));
