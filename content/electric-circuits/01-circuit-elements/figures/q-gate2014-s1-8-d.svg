@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" viewBox="0 0 220 130">
+<line x1="40.0" y1="71.8" x2="205.5" y2="71.8" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="207.5,71.8 201.5,68.8 201.5,74.8" fill="currentColor"/>
+<line x1="40.0" y1="108.0" x2="40.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="40.0,6.0 37.0,12.0 43.0,12.0" fill="currentColor"/>
+<text x="213.5" y="71.8" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t</text>
+<text x="46.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">vs</text>
+<line x1="37.0" y1="93.2" x2="43.0" y2="93.2" stroke="currentColor" stroke-width="1.2"/>
+<text x="34.0" y="93.2" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">−2</text>
+<polyline points="40.0,71.8 42.4,68.5 44.8,65.5 47.1,62.7 49.5,60.0 51.9,57.6 54.3,55.3 56.6,53.1 59.0,51.2 61.4,49.3 63.8,47.6 66.1,45.9 68.5,44.4 70.9,43.0 73.3,41.7 75.6,40.5 78.0,39.3 80.4,38.3 82.8,37.3 85.2,36.3 87.5,35.5 89.9,34.7 92.3,33.9 94.7,33.2 97.0,32.5 99.4,31.9 101.8,31.4 104.2,30.8 106.5,30.3 108.9,29.9 111.3,29.4 113.7,29.0 116.0,28.6 118.4,28.3 120.8,28.0 123.2,27.6 125.6,27.4 127.9,27.1 130.3,26.8 132.7,26.6 135.1,26.4 137.4,26.2 139.8,26.0 142.2,25.8 144.6,25.7 146.9,25.5 149.3,25.4 151.7,25.2 154.1,25.1 156.4,25.0 158.8,24.9 161.2,24.8 163.6,24.7 166.0,24.6 168.3,24.5 170.7,24.4 173.1,24.4 175.5,24.3 177.8,24.2 180.2,24.2 182.6,24.1" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+</svg>

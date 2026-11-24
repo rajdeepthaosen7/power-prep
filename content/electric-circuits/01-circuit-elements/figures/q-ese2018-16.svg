@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" viewBox="0 0 520 170">
+<line x1="40.0" y1="124.0" x2="225.5" y2="124.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="227.5,124.0 221.5,121.0 221.5,127.0" fill="currentColor"/>
+<line x1="40.0" y1="128.0" x2="40.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="40.0,6.0 37.0,12.0 43.0,12.0" fill="currentColor"/>
+<text x="233.5" y="124.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t</text>
+<text x="46.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">v(t)</text>
+<text x="33.0" y="135.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="154.3" y1="121.0" x2="154.3" y2="127.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="154.3" y="137.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2 s</text>
+<line x1="37.0" y1="53.3" x2="43.0" y2="53.3" stroke="currentColor" stroke-width="1.2"/>
+<text x="34.0" y="53.3" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">20 V</text>
+<line x1="40.0" y1="53.3" x2="154.3" y2="53.3" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="154.3" y1="124.0" x2="154.3" y2="53.3" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<polyline points="40.0,124.0 188.6,32.1" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+<line x1="310.0" y1="124.0" x2="495.5" y2="124.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="497.5,124.0 491.5,121.0 491.5,127.0" fill="currentColor"/>
+<line x1="310.0" y1="128.0" x2="310.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="310.0,6.0 307.0,12.0 313.0,12.0" fill="currentColor"/>
+<text x="503.5" y="124.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t</text>
+<text x="316.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">i(t)</text>
+<text x="303.0" y="135.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="376.0" y1="121.0" x2="376.0" y2="127.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="376.0" y="137.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">1 s</text>
+<line x1="441.9" y1="121.0" x2="441.9" y2="127.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="441.9" y="137.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2 s</text>
+<line x1="307.0" y1="101.7" x2="313.0" y2="101.7" stroke="currentColor" stroke-width="1.2"/>
+<text x="304.0" y="101.7" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">2 A</text>
+<line x1="307.0" y1="34.7" x2="313.0" y2="34.7" stroke="currentColor" stroke-width="1.2"/>
+<text x="304.0" y="34.7" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">8 A</text>
+<line x1="310.0" y1="101.7" x2="376.0" y2="101.7" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="376.0" y1="124.0" x2="376.0" y2="101.7" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="310.0" y1="34.7" x2="441.9" y2="34.7" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="441.9" y1="124.0" x2="441.9" y2="34.7" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<polyline points="310.0,124.0 312.2,124.0 314.4,123.9 316.6,123.8 318.8,123.6 321.0,123.4 323.2,123.1 325.4,122.8 327.6,122.4 329.8,122.0 332.0,121.5 334.2,121.0 336.4,120.4 338.6,119.8 340.8,119.1 343.0,118.4 345.2,117.7 347.4,116.8 349.6,116.0 351.8,115.0 354.0,114.1 356.2,113.1 358.4,112.0 360.6,110.9 362.8,109.7 365.0,108.5 367.2,107.2 369.4,105.9 371.6,104.6 373.8,103.1 376.0,101.7 378.2,100.2 380.4,98.6 382.6,97.0 384.8,95.3 387.0,93.6 389.2,91.9 391.4,90.1 393.6,88.2 395.8,86.3 397.9,84.3 400.1,82.3 402.3,80.3 404.5,78.2 406.7,76.0 408.9,73.8 411.1,71.5 413.3,69.2 415.5,66.9 417.7,64.5 419.9,62.0 422.1,59.5 424.3,57.0 426.5,54.3 428.7,51.7 430.9,49.0 433.1,46.2 435.3,43.4 437.5,40.6 439.7,37.7 441.9,34.7" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+</svg>

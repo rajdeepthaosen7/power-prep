@@ -1,0 +1,659 @@
+# Chapter 1 questions, part 2: capacitor and inductor.
+
+- key: ese-2020-35
+  topic: ec1-capacitor
+  sources: [{code: ESE-2020, q: "35", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    An uncharged capacitor of 0.01 F is charged first by a current of 2 mA for 30 s and then by a current of 4 mA for 30 s. The final voltage in it will be
+  options:
+    - {label: A, md: "12 V"}
+    - {label: B, md: "18 V", correct: true}
+    - {label: C, md: "24 V"}
+    - {label: D, md: "30 V"}
+  solution: |
+    **Idea used:** $q = \int i\,dt$ (area under the current graph) and $v = q/C$ (see *The capacitor → Voltage from current*).
+
+    1. Charge in the first 30 s: $2\times10^{-3}\times30 = 0.06$ C.
+    2. Charge in the next 30 s: $4\times10^{-3}\times30 = 0.12$ C.
+    3. Total charge $= 0.18$ C (it started uncharged).
+    4. $v = \dfrac{q}{C} = \dfrac{0.18}{0.01} = 18$ V.
+
+    **Answer: (B) 18 V.**
+
+- key: ese-2024-60
+  topic: ec1-capacitor
+  sources: [{code: ESE-2024, q: "60", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    An initially uncharged 1 mF capacitor has the current shown in the figure. What is the voltage across it at t = 2 ms?
+
+    ![Figure](fig:q-ese2024-60)
+  options:
+    - {label: A, md: "50 mV"}
+    - {label: B, md: "100 mV", correct: true}
+    - {label: C, md: "200 mV"}
+    - {label: D, md: "250 mV"}
+  solution: |
+    **Idea used:** change in capacitor voltage = (area under the current graph) / C (see *The capacitor → Voltage from current*).
+
+    1. From 0 to 2 ms the current rises in a straight line from 0 to 100 mA. The area is a triangle:
+       $q = \tfrac12\times(2\times10^{-3})\times(100\times10^{-3}) = 1\times10^{-4}$ C.
+    2. $v(2\ \text{ms}) = 0 + \dfrac{q}{C} = \dfrac{10^{-4}}{1\times10^{-3}} = 0.1$ V $= 100$ mV.
+
+    Trap: using the rectangle $100\ \text{mA}\times2\ \text{ms}$ gives 200 mV, which is wrong; the current was not 100 mA all the time.
+
+    **Answer: (B) 100 mV.**
+
+- key: gate-2008-76
+  topic: ec1-capacitor
+  sources: [{code: GATE-2008, q: "76", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    **Statement for Linked Answer Questions 76 and 77:** The current $i(t)$ sketched in the figure flows through an initially uncharged 0.3 nF capacitor.
+
+    ![Figure](fig:q-gate2008-76)
+
+    **Q.76** The charge stored in the capacitor at t = 5 µs, will be
+  options:
+    - {label: A, md: "8 nC"}
+    - {label: B, md: "10 nC"}
+    - {label: C, md: "13 nC", correct: true}
+    - {label: D, md: "16 nC"}
+  solution: |
+    **Idea used:** charge = area under the current–time graph (see *Charge, current and voltage* and *The capacitor*).
+
+    Read the graph: the current rises from 0 to 4 mA in 0–2 µs, then falls in a straight line to 0 at 8 µs.
+
+    1. **0 to 2 µs** (triangle): $\tfrac12\times2\ \mu\text{s}\times4\ \text{mA} = 4$ nC.
+    2. **2 to 5 µs:** the falling line drops 4 mA in 6 µs, i.e. $\tfrac23$ mA per µs. At 5 µs (3 µs after the peak) the current is $4 - 3\times\tfrac23 = 2$ mA. The area is a trapezium: $\dfrac{4 + 2}{2}\times3 = 9$ nC.
+    3. Total charge at 5 µs $= 4 + 9 = 13$ nC.
+
+    (The capacitor value 0.3 nF is not needed for the charge; it is used in the linked Q.77, where the capacitor voltage $13/0.3 = 43.3$ V is the starting point of an LC transient, Chapter 5.)
+
+    **Answer: (C) 13 nC.**
+
+- key: ese-2018-24
+  topic: ec1-capacitor
+  sources: [{code: ESE-2018, q: "24", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    ![Figure](fig:q-ese2018-24)
+
+    A triangular wave voltage, as shown in figure, is applied across the terminals of a 0.5 F pure capacitor at time t = 0. The corresponding current-wave is
+  options:
+    - {label: A, md: "![Option A](fig:q-ese2018-24-a)"}
+    - {label: B, md: "![Option B](fig:q-ese2018-24-b)", correct: true}
+    - {label: C, md: "![Option C](fig:q-ese2018-24-c)"}
+    - {label: D, md: "![Option D](fig:q-ese2018-24-d)"}
+  solution: |
+    **Idea used:** $i = C\,dv/dt$: the current graph is the slope graph of the voltage graph; a triangle wave gives a square wave (see *The capacitor → Standard waveform pairs*).
+
+    Read the voltage: it starts at +10 V at $t = 0$, falls to –10 V at 2 s, rises to +10 V at 4 s, falls to –10 V at 6 s, and so on.
+
+    1. **0 to 2 s:** slope $= \dfrac{-10 - 10}{2} = -10$ V/s ⇒ $i = 0.5\times(-10) = -5$ A.
+    2. **2 to 4 s:** slope $= +10$ V/s ⇒ $i = +5$ A.
+    3. **4 to 6 s:** $-5$ A; **after 6 s:** $+5$ A.
+
+    So the current is a square wave of ±5 A that **starts at –5 A** (because the voltage starts by falling). Options (C) and (D) are triangles (wrong shape). Option (A) starts at +5 A (wrong sign). Option (B) starts at –5 A and switches every 2 s.
+
+    **Answer: (B).**
+
+- key: ese-2025-36
+  topic: ec1-capacitor
+  sources: [{code: ESE-2025, q: "36", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Three capacitors of capacitances 10 µF, 20 µF and 40 µF are connected in series across 280 V. The charge of each capacitor will be
+  options:
+    - {label: A, md: "0.6 × 10⁻³ C"}
+    - {label: B, md: "1.6 × 10⁻³ C", correct: true}
+    - {label: C, md: "2.6 × 10⁻³ C"}
+    - {label: D, md: "3.6 × 10⁻³ C"}
+  solution: |
+    **Idea used:** capacitors in series carry the same charge, $Q = C_{eq}V$ with $\dfrac{1}{C_{eq}} = \sum\dfrac1C$ (see *The capacitor → Capacitors in parallel and in series*).
+
+    1. $\dfrac{1}{C_{eq}} = \dfrac{1}{10} + \dfrac{1}{20} + \dfrac{1}{40} = \dfrac{4 + 2 + 1}{40} = \dfrac{7}{40}$ ⇒ $C_{eq} = \dfrac{40}{7} = 5.714$ µF.
+    2. $Q = C_{eq}V = \dfrac{40}{7}\times10^{-6}\times280 = 1600\times10^{-6} = 1.6\times10^{-3}$ C.
+    3. This same charge sits on each capacitor.
+
+    Check: voltages $1600/10 + 1600/20 + 1600/40 = 160 + 80 + 40 = 280$ V ✔.
+
+    **Answer: (B) 1.6 × 10⁻³ C.**
+
+- key: gate-2013-30
+  topic: ec1-capacitor
+  sources: [{code: GATE-2013, q: "30", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 3
+  status: UNVERIFIED
+  stem: |
+    Three capacitors C₁, C₂ and C₃, whose values are 10 µF, 5 µF, and 2 µF respectively, have breakdown voltages of 10 V, 5 V, and 2 V respectively. For the interconnection shown, the maximum safe voltage in Volts that can be applied across the combination and the corresponding total charge in µC stored in the effective capacitance across the terminals are respectively
+
+    ![Figure](fig:q-gate2013-30)
+  options:
+    - {label: A, md: "2.8 and 36"}
+    - {label: B, md: "7 and 119"}
+    - {label: C, md: "2.8 and 32", correct: true}
+    - {label: D, md: "7 and 80"}
+  solution: |
+    **Idea used:** in a series string the common charge is limited by the smallest $Q_{max} = CV_{rated}$; voltages then divide as $Q/C$ (see *The capacitor → Maximum safe voltage of a capacitor group*).
+
+    The circuit: C₂ and C₃ are in series; this string is in parallel with C₁.
+
+    **Step 1: the series string C₂–C₃.**
+    - $Q_{max}$ of C₂ $= 5\times5 = 25$ µC; of C₃ $= 2\times2 = 4$ µC.
+    - The common charge can be at most **4 µC**.
+    - Then $V_{C2} = 4/5 = 0.8$ V and $V_{C3} = 4/2 = 2$ V. String voltage $= 2.8$ V.
+
+    **Step 2: the parallel branch C₁.** It sees the same 2.8 V, well below its 10 V rating ✔. So the maximum safe voltage of the whole combination is **2.8 V**.
+
+    **Step 3: total charge** at 2.8 V.
+    - $C_{eq} = C_1 + \dfrac{C_2C_3}{C_2 + C_3} = 10 + \dfrac{10}{7} = 11.43$ µF.
+    - $Q = 11.43\times2.8 = 32$ µC. (Or: C₁ holds $10\times2.8 = 28$ µC, the string holds 4 µC, total 32 µC.)
+
+    Trap: option (A) uses 2.8 V but a wrong charge; options with 7 V add the voltage ratings, which is never allowed.
+
+    **Answer: (C) 2.8 and 32.**
+
+- key: gate-1999-capacitance-by
+  topic: ec1-capacitor
+  sources: [{code: GATE-1999, q: "~capacitance-BY", marks: 1, url: "https://questions.examside.com/past-years/gate/question/for-the-circuit-shown-in-figure-the-capacitance-measured-be-1999-marks-1-fqjpegblus47f1rp.htm"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: TWO_SOURCES
+  stem: |
+    For the circuit shown in Figure, the capacitance measured between terminals B and Y will be
+
+    ![Figure](fig:q-gate1999-cap-by)
+  options:
+    - {label: A, md: "$C_C + (C_S/2)$"}
+    - {label: B, md: "$C_S + (C_C/2)$"}
+    - {label: C, md: "$(C_S + 3C_C)/2$", correct: true}
+    - {label: D, md: "$3C_C + 2C_S$"}
+  solution: |
+    **Idea used:** capacitors in parallel add; in series combine like resistors in parallel (see *The capacitor → Capacitors in parallel and in series*).
+
+    **Read the figure carefully.** Point R is joined by a wire to the bottom line, which is earthed. So R and ground are the **same node** (call it G). The capacitors are:
+    - B–G: $C_C$ (B to R) and $C_S$ (B to ground) ⇒ in parallel: $C_C + C_S$
+    - Y–G: $C_C$ (Y to R) and $C_S$ (Y to ground) ⇒ in parallel: $C_C + C_S$
+    - B–Y directly: $C_C$
+
+    **Between B and Y** there are two paths:
+    1. Direct: $C_C$.
+    2. Through G: $(C_C + C_S)$ in series with $(C_C + C_S)$ $= \dfrac{C_C + C_S}{2}$.
+
+    These two paths are in parallel: $C_{BY} = C_C + \dfrac{C_C + C_S}{2} = \dfrac{3C_C + C_S}{2}$.
+
+    (This is the classic three-core cable: $C_C$ = core-to-core, $C_S$ = core-to-sheath capacitance. You will see it again in Power Systems.)
+
+    **Answer: (C) $(C_S + 3C_C)/2$.**
+
+- key: gate-2012-17
+  topic: ec1-capacitor
+  sources: [{code: GATE-2012, q: "17", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    In the following figure, C₁ and C₂ are ideal capacitors. C₁ has been charged to 12 V before the ideal switch S is closed at t = 0. The current i(t) for all t is
+
+    ![Figure](fig:q-gate2012-17)
+  options:
+    - {label: A, md: "zero"}
+    - {label: B, md: "a step function"}
+    - {label: C, md: "an exponentially decaying function"}
+    - {label: D, md: "an impulse function", correct: true}
+  solution: |
+    **Idea used:** a capacitor voltage cannot jump with finite current; in an ideal circuit with no resistance the jump happens with an **impulse** of current (see *The capacitor → The capacitor voltage cannot jump*).
+
+    1. Before $t = 0$: C₁ is at 12 V. C₂'s voltage is not given; it is taken as uncharged, and in any case it is different from 12 V (otherwise nothing would happen).
+    2. After the switch closes, C₁ and C₂ are in parallel, so by KVL they must have the **same voltage at once**, at $t = 0^+$.
+    3. So both voltages jump at $t = 0$. A jump of capacitor voltage needs $i = C\,dv/dt$ with $dv/dt$ infinite: an **impulse** of current, carrying a finite charge $q$ in zero time.
+    4. There is no resistance, so there is no time constant and no exponential decay; after the jump both voltages are equal and constant, so $i = 0$ afterwards.
+
+    So $i(t) = q\,\delta(t)$: an impulse. (Option C would be correct only if there were a resistance in the loop.)
+
+    **Answer: (D) an impulse function.**
+
+- key: apgcl-2023-2
+  topic: ec1-capacitor
+  sources: [{code: APGCL-2023, q: "2", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    An ideal voltage source will charge an ideal capacitor
+  options:
+    - {label: A, md: "in infinite time"}
+    - {label: B, md: "exponentially"}
+    - {label: C, md: "immediately", correct: true}
+    - {label: D, md: "instantaneously", correct: true}
+  solution: |
+    **Idea used:** an ideal voltage source has zero internal resistance, and an ideal capacitor has no resistance either, so the charging time constant $RC$ is zero (see *The capacitor → The capacitor voltage cannot jump* and *Independent sources → The ideal voltage source*).
+
+    1. Charging through a resistance $R$ is exponential with time constant $\tau = RC$ (Chapter 5).
+    2. Here nothing in the loop has resistance: $R = 0$ ⇒ $\tau = 0$.
+    3. KVL forces the capacitor voltage to equal the source voltage at the very instant of connection. The capacitor is charged at once, by an impulse of current.
+
+    So the capacitor charges **at once**. Options (A) and (B) need resistance in the loop.
+
+    **Defect in this question:** options (C) "immediately" and (D) "instantaneously" mean the same thing. Both are marked correct here. (APSC gave no answer key for this paper.)
+
+    **Answer: (C) / (D) charged at once.**
+
+- key: gate-2009-22
+  topic: ec1-capacitor
+  sources: [{code: GATE-2009, q: "22", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    In the figure shown, all elements used are ideal. For time t < 0, S₁ remained closed and S₂ open. At t = 0, S₁ is opened and S₂ is closed. If the voltage $V_{c2}$ across the capacitor C₂ at t = 0 is zero, the voltage across the capacitor combination at t = 0⁺ will be
+
+    ![Figure](fig:q-gate2009-22)
+  options:
+    - {label: A, md: "1 V", correct: true}
+    - {label: B, md: "2 V"}
+    - {label: C, md: "1.5 V"}
+    - {label: D, md: "3 V"}
+  solution: |
+    **Idea used:** charge sharing: total charge is conserved, $V = \dfrac{C_1V_1 + C_2V_2}{C_1 + C_2}$ (see *The capacitor → Charge sharing between two capacitors*).
+
+    1. For $t < 0$, S₁ is closed: C₁ (1 F) sits across the 3 V source, so $V_{C1} = 3$ V and $Q_1 = 1\times3 = 3$ C. C₂ (2 F) is uncharged.
+    2. At $t = 0$, S₁ opens (the source is cut off) and S₂ closes: C₁ and C₂ are now in parallel, isolated from the source.
+    3. No charge can leave this pair, so total charge stays 3 C. Total capacitance $= 1 + 2 = 3$ F.
+    4. $V = \dfrac{3}{3} = 1$ V, reached instantly (ideal elements, impulse current).
+
+    (Energy check: before $\tfrac12\times1\times9 = 4.5$ J, after $\tfrac12\times3\times1 = 1.5$ J. 3 J is lost in the switching. Charge is conserved, energy is not.)
+
+    **Answer: (A) 1 V.**
+
+- key: gate-2017-s2-22
+  topic: ec1-capacitor
+  sources: [{code: GATE-2017_2, q: "22", marks: 1}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The initial charge in the 1 F capacitor present in the circuit shown is zero. The energy in joules transferred from the DC source until steady state condition is reached equals ______. (Give the answer up to one decimal place.)
+
+    ![Figure](fig:q-gate2017s2-22)
+  nat: {min: 99.9, max: 100.1}
+  solution: |
+    **Idea used:** in DC steady state a capacitor is an open circuit; while charging, the source gives $Q\times V$ (see *The capacitor → Charging a capacitor from a DC source*).
+
+    1. The 1 F capacitor is in series between the 10 V source and the resistor network. In steady state the capacitor carries no current, so **no current flows anywhere** in the resistors.
+    2. With no current, every resistor has zero voltage, so the node at the right of the capacitor is at ground potential (0 V). Hence the capacitor ends up with the full **10 V** across it.
+    3. Charge that flowed through the source: $Q = CV = 1\times10 = 10$ C.
+    4. The source voltage is constant, so energy given by the source $= Q\times V = 10\times10 = 100$ J.
+
+    Of this, $\tfrac12CV^2 = 50$ J is stored in the capacitor and 50 J is lost as heat in the resistors, whatever their values. The resistor network is only there to distract you.
+
+    **Answer: 100.0 J.**
+
+- key: gate-1997-cap-energy-cycle
+  topic: ec1-capacitor
+  sources: [{code: GATE-1997, q: "~cap-energy-cycle", marks: 1, url: "https://questions.examside.com/past-years/gate/question/a-voltage-wafeform-vleft-t-right-12t2-is-appl-2000-marks-1-ifz1lwwwhp6tbdzq.htm"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: TWO_SOURCES
+  stem: |
+    Energy stored in a capacitor over a cycle, when excited by an a.c. source is
+  options:
+    - {label: A, md: "the same as that due to a d.c. source of equivalent magnitude"}
+    - {label: B, md: "half of that due to a d.c. source of equivalent magnitude"}
+    - {label: C, md: "zero", correct: true}
+    - {label: D, md: "none of the above"}
+  solution: |
+    **Idea used:** an ideal capacitor only stores and returns energy; it never dissipates (see *Kinds of circuit elements → Active and passive elements* and *The capacitor → Energy stored*).
+
+    1. Stored energy is $\tfrac12Cv^2$; it depends only on the present voltage.
+    2. Over one full AC cycle the voltage comes back to the same value, so the stored energy comes back to the same value. The **net** energy taken in over the cycle is zero.
+    3. During the cycle the capacitor takes energy in one quarter-cycle (while $|v|$ rises) and gives exactly the same back in the next quarter-cycle (while $|v|$ falls). So the average power is zero.
+
+    **Answer: (C) zero.**
+
+- key: gate-1999-rc-triangular
+  topic: ec1-capacitor
+  sources: [{code: GATE-1999, q: "~rc-triangular", marks: 2, url: "https://questions.examside.com/past-years/gate/question/when-a-periodic-triangular-voltage-peak-amplitude-1-v-1999-marks-2-5z1r5ndc7u2yzcqc.htm"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 3
+  status: TWO_SOURCES
+  stem: |
+    When a periodic triangular voltage of peak amplitude 1 V and frequency 0.5 Hz is applied to a parallel combination of 1 Ω resistance and 1 F capacitance, the current through the voltage source has wave-form
+  options:
+    - {label: A, md: "![Option A](fig:q-gate1999-rc-a)"}
+    - {label: B, md: "![Option B](fig:q-gate1999-rc-b)"}
+    - {label: C, md: "![Option C](fig:q-gate1999-rc-c)"}
+    - {label: D, md: "![Option D](fig:q-gate1999-rc-d)", correct: true}
+  solution: |
+    **Idea used:** in parallel, the source current is the sum of the branch currents: $i = \dfrac{v}{R} + C\dfrac{dv}{dt}$ (see *The capacitor → Two useful circuit cases*).
+
+    1. Frequency 0.5 Hz ⇒ period 2 s. The voltage goes from –1 V to +1 V in 1 s and back in 1 s, so its slope is ±2 V/s.
+    2. **Resistor current** $v/R = v$: a triangle of ±1 A, the same shape as $v$.
+    3. **Capacitor current** $C\,dv/dt = \pm2$ A: a square wave, +2 A while $v$ rises, –2 A while $v$ falls.
+    4. **Total:** while $v$ is rising, $i = +2\ \text{A} + (\text{a rising line})$: a **high level with a top that slopes upward**. While $v$ is falling, $i = -2\ \text{A} + (\text{a falling line})$: a **low level whose segment slopes downward**. At every turning point of $v$ the square part jumps.
+
+    So the waveform is a square wave with sloping segments: the upper segments slope **up** and the lower segments slope **down**.
+    - (A) is a pure square wave: it forgets the resistor current.
+    - (B) is a sawtooth: wrong shape.
+    - (C) has the slopes the wrong way (upper parts falling).
+    - (D) matches.
+
+    **Answer: (D).**
+
+- key: ese-2017-38
+  topic: ec1-inductor
+  sources:
+    - {code: ESE-2017, q: "38", marks: 2, primary: true}
+    - {code: GATE-1997, q: "~element-waveforms", marks: 2, url: "https://questions.examside.com/past-years/gate/question/a-10-v-battery-with-an-internal-resistance-of-1-1997-marks-5-7irufwqmec68qwpj.htm"}
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: TWO_SOURCES
+  stem: |
+    The voltage and current waveforms for an element are shown in the figure.
+
+    ![Figure](fig:q-ese2017-38)
+
+    The circuit element and its value are
+  options:
+    - {label: A, md: "Capacitor, 2 F"}
+    - {label: B, md: "Inductor, 2 H", correct: true}
+    - {label: C, md: "Capacitor, 0.5 F"}
+    - {label: D, md: "Inductor, 0.5 H"}
+  solution: |
+    **Idea used:** identify the element by testing the three rules (see *The inductor → Identifying an element from its waveforms*).
+
+    Read the graphs: $i$ rises linearly from 0 to 2 A in 2 s, then stays at 2 A. $v$ is 2 V from 0 to 2 s, then 0.
+
+    1. **Resistor?** $v/i$ is not constant (at $t = 3$ s, $i = 2$ A but $v = 0$). No.
+    2. **Capacitor?** Needs $i = C\,dv/dt$. During 0–2 s, $v$ is constant so $dv/dt = 0$, but $i \ne 0$. No.
+    3. **Inductor?** $v = L\,di/dt$. During 0–2 s, $di/dt = 2/2 = 1$ A/s and $v = 2$ V ⇒ $L = 2/1 = 2$ H. After 2 s, $di/dt = 0$ and $v = 0$ ✔ consistent.
+
+    This question first appeared as a fill-in-the-blank in **GATE EE 1997**; ESE 2017 used the same figure.
+
+    **Answer: (B) Inductor, 2 H.**
+
+- key: ese-2018-16
+  topic: ec1-inductor
+  sources: [{code: ESE-2018, q: "16", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    ![Figure](fig:q-ese2018-16)
+
+    The voltage and current characteristic of an element is as shown in figure. The nature and value of the element are
+  options:
+    - {label: A, md: "Capacitor of 3.3 µF"}
+    - {label: B, md: "Inductor of 2.5 H", correct: true}
+    - {label: C, md: "Capacitor of 6.7 µF"}
+    - {label: D, md: "Inductor of 5.0 H"}
+  solution: |
+    **Idea used:** write both waveforms as formulas, then test $i = C\,dv/dt$ and $v = L\,di/dt$ (see *The inductor → Identifying an element*).
+
+    1. **Voltage:** a straight line through the origin reaching 20 V at 2 s ⇒ $v = 10t$ V.
+    2. **Current:** a curve through the origin with 2 A at 1 s and 8 A at 2 s. $8/2 = 4 = (2/1)^2$, so $i \propto t^2$ ⇒ $i = 2t^2$ A.
+    3. **Capacitor test:** $dv/dt = 10$ (constant), so a capacitor would carry a constant current. But $i = 2t^2$ is not constant ⇒ not a capacitor.
+    4. **Inductor test:** $di/dt = 4t$ ⇒ $\dfrac{v}{di/dt} = \dfrac{10t}{4t} = 2.5$, a constant ⇒ inductor, $L = 2.5$ H.
+
+    **Answer: (B) Inductor of 2.5 H.**
+
+- key: ese-2018-37
+  topic: ec1-inductor
+  sources: [{code: ESE-2018, q: "37", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A pulse of +10 V in magnitude and 2 s in duration is applied to the terminals of a lossless inductor of 1.0 H. The current through the inductor would
+  options:
+    - {label: A, md: "be a pulse of +20 A for the duration of 2 s"}
+    - {label: B, md: "be a pulse of −20 A for the duration of 2 s"}
+    - {label: C, md: "increase linearly from zero to 20 A in 2 s, and in the positive direction, and, from thereon, it remains constant at +20 A", correct: true}
+    - {label: D, md: "increase linearly from zero to −20 A in 2 s, and in the negative direction, and, from thereon, it remains constant at −20 A"}
+  solution: |
+    **Idea used:** $i(t) = i(0) + \dfrac1L\int v\,dt$, and a lossless inductor keeps its current when the voltage is removed (see *The inductor → Current from voltage*).
+
+    1. Initial current 0 (nothing is said otherwise).
+    2. During the pulse: $\dfrac{di}{dt} = \dfrac{v}{L} = \dfrac{10}{1} = 10$ A/s ⇒ the current rises linearly, reaching $10\times2 = 20$ A at 2 s.
+    3. After the pulse $v = 0$ ⇒ $di/dt = 0$ ⇒ the current stays at **+20 A** (there is no resistance to make it decay).
+
+    Trap: (A) treats the inductor like a resistor. The inductor current is the **integral** of the voltage, not a copy of it.
+
+    **Answer: (C).**
+
+- key: gate-2000-inductor-current
+  topic: ec1-inductor
+  sources: [{code: GATE-2000, q: "~inductor-12t2", marks: 1, url: "https://questions.examside.com/past-years/gate/question/a-voltage-wafeform-vleft-t-right-12t2-is-appl-2000-marks-1-ifz1lwwwhp6tbdzq.htm"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: TWO_SOURCES
+  stem: |
+    A voltage waveform $v(t) = 12t^2$ is applied across a 1 H inductor for $t \ge 0$, with initial current through it being zero. The current through the inductor for $t \ge 0$ is given by
+  options:
+    - {label: A, md: "$12t$"}
+    - {label: B, md: "$24t$"}
+    - {label: C, md: "$12t^3$"}
+    - {label: D, md: "$4t^3$", correct: true}
+  solution: |
+    **Idea used:** $i(t) = i(0) + \dfrac1L\int_0^t v\,dt$ (see *The inductor → Current from voltage*).
+
+    $i(t) = 0 + \dfrac11\int_0^t 12t^2\,dt = 12\cdot\dfrac{t^3}{3} = 4t^3$ A.
+
+    Trap: (B) $24t$ is the **derivative** of $12t^2$. For an inductor, current is the **integral** of voltage.
+
+    **Answer: (D) $4t^3$.**
+
+- key: gate-1998-impulse
+  topic: ec1-inductor
+  sources: [{code: GATE-1998, q: "~constant-current", marks: 1, url: "https://questions.examside.com/past-years/gate/question/a-voltage-wafeform-vleft-t-right-12t2-is-appl-2000-marks-1-ifz1lwwwhp6tbdzq.htm"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: TWO_SOURCES
+  stem: |
+    In the circuit shown in Figure, it is desired to have a constant direct current $i(t)$ through the ideal inductor $L$. The nature of the voltage source $v(t)$ must be
+
+    ![Figure](fig:q-gate1998-impulse)
+  options:
+    - {label: A, md: "constant voltage"}
+    - {label: B, md: "linearly increasing voltage"}
+    - {label: C, md: "an ideal impulse", correct: true}
+    - {label: D, md: "exponential increasing voltage"}
+  solution: |
+    **Idea used:** $v = L\,di/dt$, and the inductor current cannot jump unless the voltage is an impulse (see *The inductor → The inductor current cannot jump*).
+
+    1. We want $i(t) = I$, a constant DC current, starting from $t = 0$ (before that, no current).
+    2. So $i(t) = I\,u(t)$: a step from 0 to $I$.
+    3. $v = L\,\dfrac{di}{dt} = L\,I\,\delta(t)$: an **impulse** at $t = 0$, and zero voltage after that.
+
+    Why not (A)? A constant voltage $V$ across an ideal inductor gives $di/dt = V/L$, a current that keeps **rising** linearly, not a constant current. Option (B) gives a current that rises as $t^2$.
+
+    **Answer: (C) an ideal impulse.**
+
+- key: gate-2003-inductor-energy
+  topic: ec1-inductor
+  sources: [{code: GATE-2003, q: "~coil-energy", marks: 1, url: "https://questions.examside.com/past-years/gate/question/fig-shows-the-waveform-of-the-current-passing-through-an-in-2003-marks-1-jyr4g28nmanmyryu.htm"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: TWO_SOURCES
+  stem: |
+    Fig. shows the waveform of the current passing through an inductor of resistance 1 Ω and inductance 2 H. The energy absorbed by the inductor in the first four seconds is
+
+    ![Figure](fig:q-gate2003-ind-energy)
+  options:
+    - {label: A, md: "144 J"}
+    - {label: B, md: "98 J"}
+    - {label: C, md: "132 J", correct: true}
+    - {label: D, md: "168 J"}
+  solution: |
+    **Idea used:** a real coil = R in series with L. Energy absorbed = heat in R + energy stored in L (see *The inductor → Energy taken by a real coil*).
+
+    The current rises linearly from 0 to 6 A in 2 s ($i = 3t$), then stays at 6 A up to 4 s.
+
+    1. **Stored in L at 4 s:** $\tfrac12Li^2 = \tfrac12\times2\times6^2 = 36$ J.
+    2. **Heat in R, 0–2 s:** $\int_0^2 (3t)^2\times1\,dt = 9\cdot\dfrac{t^3}{3}\Big|_0^2 = 3\times8 = 24$ J.
+    3. **Heat in R, 2–4 s:** $6^2\times1\times2 = 72$ J.
+    4. **Total absorbed** $= 36 + 24 + 72 = 132$ J.
+
+    Traps: 144 J is $36\times4$ (heat at 6 A for the full 4 s, forgetting the ramp and the stored energy). 168 J adds the stored energy to that wrong heat.
+
+    **Answer: (C) 132 J.**
+
+- key: apdcl-2023-46
+  topic: ec1-inductor
+  sources: [{code: APDCL-2023, q: "46", marks: 1.5}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A coil has a resistance of 10 Ω and an inductance of 15 H. The voltage across the terminals of the coil at the instant when the current is 10 A and increasing at a rate 5 A/sec is
+  options:
+    - {label: A, md: "100 V"}
+    - {label: B, md: "150 V"}
+    - {label: C, md: "175 V", correct: true}
+    - {label: D, md: "200 V"}
+  solution: |
+    **Idea used:** a real coil: $v = Ri + L\,\dfrac{di}{dt}$ (see *The inductor → A real coil*).
+
+    - Resistive part: $Ri = 10\times10 = 100$ V.
+    - Inductive part: $L\,\dfrac{di}{dt} = 15\times5 = 75$ V.
+    - Total: $v = 100 + 75 = 175$ V.
+
+    Traps: 100 V forgets the inductance; 75 V forgets the resistance. Both parts act together at the same instant.
+
+    **Answer: (C) 175 V.**
+
+- key: aegcl-2023-83
+  topic: ec1-inductor
+  sources: [{code: AEGCL-2023, q: "83", marks: 1}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    A current shown in Fig. 4 passes through a pure inductance of 3 mH. The instantaneous power in watt during 0 < t < 2 ms is
+
+    ![Fig. 4](fig:q-aegcl2023-83)
+  options:
+    - {label: A, md: "25000 t"}
+    - {label: B, md: "75000 t", correct: true}
+    - {label: C, md: "5000 t"}
+    - {label: D, md: "10000 t"}
+  solution: |
+    **Idea used:** $v = L\,di/dt$ and $p = vi$ (see *The inductor → Power and energy in an inductor*).
+
+    1. From 0 to 2 ms the current rises linearly from 0 to 10 A: $i = \dfrac{10}{2\times10^{-3}}\,t = 5000\,t$ A.
+    2. $v = L\,\dfrac{di}{dt} = 3\times10^{-3}\times5000 = 15$ V (constant during this interval).
+    3. $p = vi = 15\times5000\,t = 75\,000\,t$ W.
+
+    The power grows with time because the current grows while the voltage stays constant: the inductor is storing energy. (Check: energy at 2 ms $= \tfrac12\times3\times10^{-3}\times10^2 = 0.15$ J, and $\int_0^{0.002}75000\,t\,dt = 37500\times4\times10^{-6} = 0.15$ J ✔.)
+
+    **Answer: (B) 75000 t.**
+
+- key: ese-2022-44
+  topic: ec1-inductor
+  sources: [{code: ESE-2022, q: "44", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    If L is self-inductance, I is current, λ is flux linkage of a magnetic field, then the energy stored in the magnetic field is
+  options:
+    - {label: A, md: "$0.5\\lambda^2/L$", correct: true}
+    - {label: B, md: "$2\\lambda^2/L$"}
+    - {label: C, md: "$0.5\\lambda/L^2$"}
+    - {label: D, md: "$2\\lambda/L^2$"}
+  solution: |
+    **Idea used:** $w = \tfrac12LI^2$ and $\lambda = LI$ (see *The inductor → Power and energy*).
+
+    Put $I = \lambda/L$ into $w = \tfrac12LI^2$:
+
+    $$w = \tfrac12L\left(\frac{\lambda}{L}\right)^2 = \frac{\lambda^2}{2L} = 0.5\,\frac{\lambda^2}{L}$$
+
+    Quick unit check: $\lambda^2/L$ has units $(\text{H·A})^2/\text{H} = \text{H·A}^2$, which is energy (like $LI^2$). Options (C) and (D) have the wrong units.
+
+    **Answer: (A) $0.5\lambda^2/L$.**
+
+- key: ese-2022-41
+  topic: ec1-inductor
+  sources: [{code: ESE-2022, q: "41", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    When angular frequency for d.c. sources is zero, capacitor and inductor will act like respectively
+  options:
+    - {label: A, md: "short circuited, open circuited"}
+    - {label: B, md: "open circuited, short circuited", correct: true}
+    - {label: C, md: "open circuited, open circuited"}
+    - {label: D, md: "short circuited, short circuited"}
+  solution: |
+    **Idea used:** in DC steady state nothing changes with time (see *The capacitor* and *The inductor*, DC steady state).
+
+    - **Capacitor:** $i = C\,dv/dt$. Constant $v$ ⇒ $i = 0$ ⇒ **open circuit**. (In AC language: $X_C = \dfrac{1}{\omega C} \to \infty$ as $\omega \to 0$.)
+    - **Inductor:** $v = L\,di/dt$. Constant $i$ ⇒ $v = 0$ ⇒ **short circuit**. ($X_L = \omega L \to 0$.)
+
+    **Answer: (B) open circuited, short circuited.**
+
+- key: ese-2019-36
+  topic: ec1-inductor
+  sources: [{code: ESE-2019, q: "36", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Consider the following statements:
+
+    1. The rules for series and parallel combinations of capacitors are opposite to those for resistors.
+    2. The rules for series and parallel combinations of inductors are same as those for resistors.
+    3. An inductor is a short circuit to dc currents.
+
+    Which of the above statements are correct?
+  options:
+    - {label: A, md: "1 and 2 only"}
+    - {label: B, md: "1 and 3 only"}
+    - {label: C, md: "2 and 3 only"}
+    - {label: D, md: "1, 2 and 3", correct: true}
+  solution: |
+    **Idea used:** combination rules and DC behaviour of L and C (see *The capacitor → Capacitors in parallel and in series*, *The inductor → Inductors in series and in parallel*).
+
+    1. Capacitors: parallel ⇒ add ($C_1 + C_2$); series ⇒ reciprocal rule. Resistors are the other way round. **True.**
+    2. Inductors (without mutual coupling): series ⇒ add; parallel ⇒ reciprocal rule. Exactly like resistors. **True.**
+    3. With DC (constant current), $v = L\,di/dt = 0$: the inductor is a short circuit. **True.**
+
+    **Answer: (D) 1, 2 and 3.**

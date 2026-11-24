@@ -1,0 +1,99 @@
+# Electric Circuits (subject slug: electric-circuits) - chapter plan.
+# Order follows Section 1 of the APGCL AM syllabus (Advt. 09/2026), taught from basics upward.
+# `topics` are new topics written for this portal (notes + questions).
+# `legacy_topics` are the earlier tagging topics (slugs in the DB) that belong to the chapter until it is rewritten.
+
+subject: electric-circuits
+chapters:
+  - slug: circuit-elements
+    name: Circuit elements and sources
+    sort: 1
+    description: Charge, current, voltage, power and energy; R, L, C and M; ideal, practical and dependent sources; a first look at KCL and KVL.
+    dir: 01-circuit-elements
+    topics:
+      - {slug: ec1-charge-current-voltage, name: "Charge, current and voltage", note: 01-charge-current-voltage.md}
+      - {slug: ec1-power-energy, name: "Power and energy", note: 02-power-energy.md}
+      - {slug: ec1-kinds-of-elements, name: "Kinds of circuit elements", note: 03-kinds-of-elements.md}
+      - {slug: ec1-resistor, name: "The resistor", note: 04-resistor.md}
+      - {slug: ec1-capacitor, name: "The capacitor", note: 05-capacitor.md}
+      - {slug: ec1-inductor, name: "The inductor", note: 06-inductor.md}
+      - {slug: ec1-mutual-inductance, name: "Mutual inductance: a first look", note: 07-mutual-inductance.md}
+      - {slug: ec1-independent-sources, name: "Independent sources: ideal and practical", note: 08-independent-sources.md}
+      - {slug: ec1-dependent-sources, name: "Dependent (controlled) sources", note: 09-dependent-sources.md}
+      - {slug: ec1-kcl-kvl-first-look, name: "KCL and KVL: a first look", note: 10-kcl-kvl-first-look.md}
+      - {slug: ec1-chapter-summary, name: "Chapter 1 at a glance", note: 11-chapter-summary.md}
+    # these earlier topics are fully replaced by the topics above; their questions are re-tagged by the content files
+    retire_legacy_topics: [ideal-sources-90, r-l-c-element-relations-v-ri-l-di-dt-42, power-in-resistive-loads-lamps-165,
+                           circuit-elements-nullator-linearity-363, nonlinear-resistance-195, nonlinear-resistor-circuits-251]
+
+  - slug: basic-laws
+    name: KCL, KVL and network reduction
+    sort: 2
+    description: Kirchhoff's laws, series and parallel, voltage and current division, star-delta, bridges.
+    legacy_topics: [equivalent-resistance-network-reduction-33, series-circuits-voltage-division-163]
+
+  - slug: node-mesh
+    name: Node and mesh analysis
+    sort: 3
+    description: Nodal and mesh methods, supernode and supermesh, network graph theory.
+    legacy_topics: [nodal-mesh-kcl-kvl-38, network-graph-theory-91]
+
+  - slug: theorems
+    name: Network theorems
+    sort: 4
+    description: Superposition, Thevenin, Norton, maximum power transfer; circuits with dependent sources.
+    legacy_topics: [superposition-164, thevenin-norton-36, maximum-power-transfer-40, dependent-sources-impedance-237]
+
+  - slug: transients
+    name: Transient response
+    sort: 5
+    description: Switching in RC, RL and RLC circuits, DC and AC sources, initial conditions, state equations.
+    legacy_topics: [transients-rc-ideal-elements-88, transients-rl-switching-dc-offset-315, state-equations-of-networks-190]
+
+  - slug: sinusoidal-steady-state
+    name: Sinusoidal steady state
+    sort: 6
+    description: Phasors, impedance and admittance, network functions, non-sinusoidal inputs.
+    legacy_topics: [ac-phasor-circuits-impedance-35, network-functions-driving-point-impedance-258,
+                    transfer-function-of-rlc-network-239, constant-resistance-network-297,
+                    series-rlc-response-to-square-wave-harmonics-283]
+
+  - slug: resonance
+    name: Resonance
+    sort: 7
+    description: Series and parallel resonance, Q-factor, bandwidth.
+    legacy_topics: [resonance-q-factor-337, q-factor-of-coils-246, ac-circuits-resonance-203, series-rlc-resonance-261,
+                    resonance-parallel-lc-impedance-vs-frequency-269]
+
+  - slug: ac-power
+    name: AC power, RMS and power factor
+    sort: 8
+    description: Average and RMS values of any periodic wave, active, reactive and complex power, power factor.
+    legacy_topics: [ac-power-p-q-pf-complex-power-34]
+
+  - slug: coupled-circuits
+    name: Magnetically coupled circuits
+    sort: 9
+    description: Mutual inductance, dot convention, coupled coils in series and parallel, ideal transformer.
+    legacy_topics: [inductors-in-series-parallel-coupled-coils-39, ideal-transformer-impedance-matching-279]
+
+  - slug: two-port
+    name: Two-port networks
+    sort: 10
+    description: z, y, h and ABCD parameters, conversions and interconnections.
+    legacy_topics: [two-port-parameters-37]
+
+  - slug: three-phase
+    name: Three-phase circuits
+    sort: 11
+    description: Balanced star and delta, line and phase values, power, unbalanced loads.
+    legacy_topics: [balanced-3-phase-circuits-41, three-phase-circuits-unbalanced-87, balanced-polyphase-currents-89]
+
+# one-off fixes of earlier tagging (question re-homing), applied with the chapter plan
+fixes:
+  - {source: GATE-2012, q: "5", topic: thevenin-norton-36}
+  - {source: GATE-2009, q: "3", subject: power-electronics, topic: power-devices-diode-reverse-recovery-326,
+     summary: "Source voltage and current waveforms of an element between a and b: diode with reverse recovery"}
+  - {source: GATE-2026, q: "61", subject: power-electronics, topic: diode-rectifiers-battery-charging-187,
+     summary: "Diode with R = 10 ohm and 50 V battery fed from 100 sin(100 pi t): average diode current"}
+delete_empty_topics: ["-373"]

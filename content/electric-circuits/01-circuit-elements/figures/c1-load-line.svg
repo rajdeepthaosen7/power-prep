@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" viewBox="0 0 360 220">
+<line x1="70.0" y1="194.0" x2="345.5" y2="194.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="347.5,194.0 341.5,191.0 341.5,197.0" fill="currentColor"/>
+<line x1="70.0" y1="198.0" x2="70.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="70.0,6.0 67.0,12.0 73.0,12.0" fill="currentColor"/>
+<text x="353.5" y="194.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">I</text>
+<text x="76.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">V</text>
+<text x="63.0" y="205.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="303.5" y1="191.0" x2="303.5" y2="197.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="303.5" y="207.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">Isc = E/r</text>
+<line x1="67.0" y1="53.2" x2="73.0" y2="53.2" stroke="currentColor" stroke-width="1.2"/>
+<text x="64.0" y="53.2" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">Voc = E</text>
+<line x1="70.0" y1="109.5" x2="163.4" y2="109.5" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="163.4" y1="194.0" x2="163.4" y2="109.5" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<polyline points="70.0,53.2 303.5,194.0" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+<polyline points="70.0,194.0 266.1,16.6" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+<text x="228.8" y="147.5" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">source: V = E − I·r</text>
+<text x="212.4" y="36.3" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">load: V = I·RL</text>
+<text x="169.0" y="96.8" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">operating point</text>
+<circle cx="163.4" cy="109.5" r="4" fill="currentColor"/>
+</svg>

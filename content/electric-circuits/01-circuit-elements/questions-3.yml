@@ -1,0 +1,577 @@
+# Chapter 1 questions, part 3: independent sources, dependent sources, KCL/KVL first look.
+
+- key: ese-2025-27
+  topic: ec1-independent-sources
+  sources: [{code: ESE-2025, q: "27", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    An ideal voltage source is defined as energy source whose terminal voltage (V) is
+  options:
+    - {label: A, md: "proportional to load with infinite internal resistance"}
+    - {label: B, md: "dependent on the output current"}
+    - {label: C, md: "independent of the output current", correct: true}
+    - {label: D, md: "proportional to load with finite internal resistance"}
+  solution: |
+    **Idea used:** definition of the ideal voltage source (see *Independent sources → The ideal voltage source*).
+
+    An ideal voltage source keeps its terminal voltage fixed whatever current it supplies. Its internal resistance is zero, so there is no internal drop and the terminal voltage does not depend on the load or the output current.
+
+    (A) and (D) describe voltage that changes with load, which happens only in a practical source. (B) is the opposite of the definition.
+
+    **Answer: (C) independent of the output current.**
+
+- key: ese-2025-29
+  topic: ec1-independent-sources
+  sources: [{code: ESE-2025, q: "29", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    An ideal voltage source is a two-terminal element in which the
+  options:
+    - {label: A, md: "current $i_s$ is completely independent of the voltage"}
+    - {label: B, md: "voltage $v_s$ is completely independent of the current $i_s$ through its terminals", correct: true}
+    - {label: C, md: "current $i_s$ is completely independent through its terminals"}
+    - {label: D, md: "voltage $v_s$ is completely dependent on current $i_s$ through its terminals"}
+  solution: |
+    **Idea used:** the ideal voltage source fixes its **voltage**; its **current** is decided by the external circuit (see *Independent sources*).
+
+    - (A) describes an ideal **current** source (current independent of voltage).
+    - (B) is exactly the definition of an ideal voltage source.
+    - (C) is not a meaningful statement.
+    - (D) describes a practical source or a resistor, not an ideal voltage source.
+
+    **Answer: (B).**
+
+- key: ese-2020-28
+  topic: ec1-independent-sources
+  sources: [{code: ESE-2020, q: "28", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Which of the following statements are correct for an ideal constant voltage source?
+
+    1. Its output voltage remains absolutely constant whatever the change in load current.
+    2. It possesses zero internal resistance so that internal voltage drop in the source is zero.
+    3. Output voltage provided by the source would remain constant irrespective of the amount of current drawn from it.
+    4. Output voltage provided by the source varies with the amount of current drawn from it.
+  options:
+    - {label: A, md: "1, 2 and 4 only"}
+    - {label: B, md: "1, 3 and 4 only"}
+    - {label: C, md: "2, 3 and 4 only"}
+    - {label: D, md: "1, 2 and 3 only", correct: true}
+  solution: |
+    **Idea used:** ideal voltage source: fixed voltage, zero internal resistance (see *Independent sources → The ideal voltage source*).
+
+    1. Constant voltage whatever the load current: **true**.
+    2. Zero internal resistance ⇒ zero internal drop: **true** (this is *why* 1 and 3 hold).
+    3. Constant voltage whatever current is drawn: **true** (same idea as 1).
+    4. Voltage varies with current drawn: **false**; that is a practical source with internal resistance.
+
+    Every option except (D) contains statement 4.
+
+    **Answer: (D) 1, 2 and 3 only.**
+
+- key: ese-2018-126
+  topic: ec1-independent-sources
+  sources: [{code: ESE-2018, q: "126", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    **Statement (I):** Two ideal current sources with currents $I_1$ and $I_2$ cannot be connected in series.
+
+    **Statement (II):** Superposition Theorem cannot be applied to current sources when one terminal of each of these sources is connected to a common node.
+  options:
+    - {label: A, md: "Both Statement (I) and Statement (II) are individually true and Statement (II) is the correct explanation of Statement (I)"}
+    - {label: B, md: "Both Statement (I) and Statement (II) are individually true but Statement (II) is NOT the correct explanation of Statement (I)"}
+    - {label: C, md: "Statement (I) is true but Statement (II) is false", correct: true}
+    - {label: D, md: "Statement (I) is false but Statement (II) is true"}
+  solution: |
+    **Idea used:** which source connections are allowed; superposition works for any linear circuit (see *Independent sources → Which connections are allowed*).
+
+    **Statement (I):** elements in series carry the same current (KCL). Two ideal current sources with different values $I_1 \ne I_2$ would each force their own current through the same branch, which is impossible. So they cannot be connected in series. **True** (for unequal currents, which is what the statement means by $I_1$ and $I_2$).
+
+    **Statement (II):** superposition depends only on the circuit being **linear**. It does not care how the sources are connected. Two current sources sharing a common node (a very common arrangement) are handled by superposition without any problem: switch one off (make it an open circuit), find the response, repeat for the other, add. **False.**
+
+    **Answer: (C).**
+
+- key: ese-2020-25
+  topic: ec1-independent-sources
+  sources: [{code: ESE-2020, q: "25", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    A voltage source-series resistance combination is equivalent to a current source-parallel resistance combination if and only if their
+
+    1. Respective open-circuit voltages are equal.
+    2. Respective short-circuit currents are equal.
+    3. Resistance remains same in both cases.
+
+    Which of the above statements are correct?
+  options:
+    - {label: A, md: "1 and 2 only"}
+    - {label: B, md: "1 and 3 only"}
+    - {label: C, md: "2 and 3 only"}
+    - {label: D, md: "1, 2 and 3", correct: true}
+  solution: |
+    **Idea used:** source transformation: $E$ with series $r$ ⇔ $I_s$ with parallel $r$, when $E = I_s r$ (see *Independent sources → Converting one into the other*).
+
+    For a voltage source $E$ with series $r_1$: $V_{oc} = E$, $I_{sc} = E/r_1$, terminal law $V = E - Ir_1$.
+    For a current source $I_s$ with parallel $r_2$: $V_{oc} = I_s r_2$, $I_{sc} = I_s$, terminal law $V = I_s r_2 - Ir_2$.
+
+    The two terminal laws are the same straight line only if they have the same intercepts and the same slope:
+    1. same open-circuit voltage ($E = I_s r_2$) ✔
+    2. same short-circuit current ($E/r_1 = I_s$) ✔
+    3. same resistance ($r_1 = r_2$) ✔
+
+    All three statements describe true conditions of the equivalence (any two of them imply the third).
+
+    **Answer: (D) 1, 2 and 3.** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2024-87
+  topic: ec1-independent-sources
+  sources: [{code: ESE-2024, q: "87", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    If a transducer has an output impedance of 1 Ω and a load resistance of 1 kΩ, it behaves as
+  options:
+    - {label: A, md: "a constant current source"}
+    - {label: B, md: "a constant voltage source", correct: true}
+    - {label: C, md: "a constant power source"}
+    - {label: D, md: "a constant energy source"}
+  solution: |
+    **Idea used:** compare the source's internal (output) resistance with the load (see *Independent sources → When does a source behave as constant voltage or constant current?*).
+
+    The transducer is a source $E$ with internal resistance $r = 1$ Ω, feeding $R_L = 1000$ Ω.
+
+    $V_{load} = E\,\dfrac{R_L}{r + R_L} = E\,\dfrac{1000}{1001} \approx 0.999\,E$
+
+    Almost the whole source voltage appears across the load, and even a large change of $R_L$ hardly changes it. Since $r \ll R_L$, the transducer behaves as a **constant-voltage source**.
+
+    **Answer: (B) a constant voltage source.**
+
+- key: gate-2010-7
+  topic: ec1-independent-sources
+  sources: [{code: GATE-2010, q: "7", marks: 1}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    As shown in the figure, a 1 Ω resistance is connected across a source that has a load line $v + i = 100$. The current through the resistance is
+
+    ![Figure](fig:q-gate2010-7)
+  options:
+    - {label: A, md: "25 A"}
+    - {label: B, md: "50 A", correct: true}
+    - {label: C, md: "100 A"}
+    - {label: D, md: "200 A"}
+  solution: |
+    **Idea used:** the operating point is where the source's load line meets the load's own line (see *Independent sources → Practical voltage source*).
+
+    1. Source: $v + i = 100$ (this is a 100 V source with 1 Ω internal resistance: $V_{oc} = 100$ V, $I_{sc} = 100$ A).
+    2. Load: $v = 1\times i$.
+    3. Together: $i + i = 100$ ⇒ $i = 50$ A (and $v = 50$ V).
+
+    **Answer: (B) 50 A.**
+
+- key: gate-2020-32
+  topic: ec1-independent-sources
+  sources: [{code: GATE-2020, q: "32", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    A benchtop dc power supply acts as an ideal 4 A current source as long as its terminal voltage is below 10 V. Beyond this point, it begins to behave as an ideal 10 V voltage source for all load currents going down to 0 A. When connected to an ideal rheostat, find the load resistance value at which maximum power is transferred, and the corresponding load voltage and current.
+  options:
+    - {label: A, md: "Short, ∞ A, 10 V"}
+    - {label: B, md: "Open, 4 A, 0 V"}
+    - {label: C, md: "2.5 Ω, 4 A, 10 V", correct: true}
+    - {label: D, md: "2.5 Ω, 4 A, 5 V"}
+  solution: |
+    **Idea used:** for a source that is not a simple $E$ and $r$, find where $V\times I$ is largest on its real v–i graph (see *Independent sources → A first word on maximum power*).
+
+    Draw the supply's v–i graph:
+    - For $0 \le V < 10$ V: $I = 4$ A (current-source part). Power $P = 4V$ rises with $V$.
+    - At $V = 10$ V: for any current from 4 A down to 0 A (voltage-source part). Power $P = 10I$ rises with $I$.
+
+    Both parts give their largest power at the **corner** $V = 10$ V, $I = 4$ A: $P_{max} = 40$ W.
+    Load resistance at the corner: $R = V/I = 10/4 = 2.5$ Ω.
+
+    Check the other options: a short gives $V = 0$ ⇒ $P = 0$; an open gives $I = 0$ ⇒ $P = 0$; (D) says 5 V, but at 2.5 Ω and 4 A the voltage is 10 V.
+
+    **Answer: (C) 2.5 Ω, 4 A, 10 V.**
+
+- key: gate-1999-r-sources
+  topic: ec1-independent-sources
+  sources: [{code: GATE-1999, q: "~r-current-voltage-source", marks: 2, url: "https://questions.examside.com/past-years/gate/question/when-a-resistor-r-is-connected-to-a-current-source-it-c-1999-marks-2-uqzcpgtrmycupnfm.htm"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: TWO_SOURCES
+  stem: |
+    When a resistor R is connected to a current source, it consumes a power of 18 W. When the same R is connected to a voltage source having the same magnitude as the current source, the power absorbed by R is 4.5 W. The magnitude of the current source and the value of R are
+  options:
+    - {label: A, md: "√18 A and 1 Ω"}
+    - {label: B, md: "3 A and 2 Ω", correct: true}
+    - {label: C, md: "1 A and 18 Ω"}
+    - {label: D, md: "6 A and 0.5 Ω"}
+  solution: |
+    **Idea used:** an ideal current source forces its current ⇒ $P = I^2R$; an ideal voltage source forces its voltage ⇒ $P = V^2/R$ (see *Independent sources* and *The resistor → Power in a resistor*).
+
+    Let the magnitude be $x$ (so the current source is $x$ A and the voltage source is $x$ V).
+
+    1. With the current source: $x^2R = 18$.
+    2. With the voltage source: $\dfrac{x^2}{R} = 4.5$.
+    3. Divide (1) by (2): $R^2 = \dfrac{18}{4.5} = 4$ ⇒ $R = 2$ Ω.
+    4. Then $x^2 = 18/2 = 9$ ⇒ $x = 3$.
+
+    Check: $3^2\times2 = 18$ W ✔, $3^2/2 = 4.5$ W ✔.
+
+    **Answer: (B) 3 A and 2 Ω.**
+
+- key: gate-2025-18
+  topic: ec1-independent-sources
+  sources: [{code: GATE-2025, q: "18", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The I–V characteristics of the element between the nodes X and Y is best depicted by
+
+    ![Figure](fig:q-gate2025-18)
+  options:
+    - {label: A, md: "![Option A](fig:q-gate2025-18-a)"}
+    - {label: B, md: "![Option B](fig:q-gate2025-18-b)", correct: true}
+    - {label: C, md: "![Option C](fig:q-gate2025-18-c)"}
+    - {label: D, md: "![Option D](fig:q-gate2025-18-d)"}
+  solution: |
+    **Idea used:** write the v–i rule of the combination with KCL, then sketch it (see *Independent sources → The v–i graph of a source with a resistor*).
+
+    1. $I_{XY}$ enters at X and leaves at Y. Inside, it splits into two parallel branches between X and Y.
+    2. The current source carries exactly 1 A from X to Y (its arrow points down, from X towards Y).
+    3. The 1 kΩ resistor carries $\dfrac{V_{XY}}{1000}$ from X to Y.
+    4. KCL at X: $I_{XY} = 1 + \dfrac{V_{XY}}{1000}$ (A).
+
+    This is a straight line that cuts the $I$-axis at **1 A** when $V_{XY} = 0$ and **rises** with slope $1/1000$ A/V.
+
+    - (A) is flat: that would be the current source alone (no resistor).
+    - (C) passes through the origin: that would be the resistor alone.
+    - (D) falls: wrong slope sign.
+    - (B) starts at 1 A and rises ✔.
+
+    **Answer: (B).**
+
+- key: gate-2026-25
+  topic: ec1-dependent-sources
+  sources: [{code: GATE-2026, q: "25", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 3
+  status: UNVERIFIED
+  stem: |
+    Refer to the four circuits shown.
+
+    ![Figure](fig:q-gate2026-25)
+
+    Which one of the following options for k₁, k₂, k₃, and k₄ makes all of them realizable?
+  options:
+    - {label: A, md: "k₁ = 1, k₄ = –1/3, for all values of k₂ and k₃", correct: true}
+    - {label: B, md: "k₂ = –2, k₃ = +1/3, for all values of k₁ and k₄"}
+    - {label: C, md: "k₁ = 2, k₂ = 0.5, k₃ = –2/3, k₄ = –3"}
+    - {label: D, md: "k₁ = 2, k₂ = –0.5, k₃ = –2/3, k₄ = +3"}
+  solution: |
+    **Idea used:** dependent sources obey the same connection rules as ideal sources: parallel voltage sources must have equal voltages; current sources in series must carry the same current around the loop (see *Dependent sources → Rules that still apply*).
+
+    Each circuit is just two elements joined at both ends.
+
+    **Circuit 1: $V_D$ in parallel with a VCVS $V_X = k_1V_D$** (both with + at the top). Parallel ⇒ same voltage ⇒ $k_1V_D = V_D$ ⇒ $k_1 = 1$.
+
+    **Circuit 2: $V_D$ in parallel with a VCCS $I_X = 0.5k_2V_D$.** A voltage source in parallel with a current source is always allowed; the voltage source just absorbs the current. So **any $k_2$** works.
+
+    **Circuit 3: $I_D$ in parallel with a CCVS $V_X = k_3I_D$.** A current source with a voltage source is always allowed; the voltage is fixed by the CCVS and the current by $I_D$. So **any $k_3$** works.
+
+    **Circuit 4: $I_D$ and a CCCS $I_X = 3k_4I_D$**, both arrows pointing **up**. Two elements joined at both ends form one loop, so they carry the same loop current. Going round the loop, current goes **up** through one element and **down** through the other. Both arrows point up, so the CCCS must carry minus the independent current: $3k_4I_D = -I_D$ ⇒ $k_4 = -\tfrac13$.
+
+    So: $k_1 = 1$, $k_4 = -\tfrac13$, and $k_2$, $k_3$ can be anything.
+
+    **Answer: (A).**
+
+- key: gate-2016-s2-23
+  topic: ec1-kcl-kvl-first-look
+  sources:
+    - {code: GATE-2016, q: "S2-Q23", marks: 1, primary: true}
+    - {code: APGCL-2023, q: "8", marks: 1}
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    In the circuit shown below, the voltage and current sources are ideal. The voltage ($V_{out}$) across the current source, in volts, is
+
+    ![Figure](fig:q-gate2016-s2-23)
+  options:
+    - {label: A, md: "0"}
+    - {label: B, md: "5"}
+    - {label: C, md: "10"}
+    - {label: D, md: "20", correct: true}
+  solution: |
+    **Idea used:** the current source fixes the loop current; the voltage across a current source is found by KVL (see *KCL and KVL: a first look → Using the laws with ideal sources*).
+
+    1. All three elements are in one loop, so the loop current is the current source's 5 A. It flows **up** through the current source, **left** along the top through the 2 Ω resistor, and **down** through the 10 V source.
+    2. Voltage across 2 Ω $= 5\times2 = 10$ V. Current flows right to left through it, so its **right end is 10 V higher** than its left end.
+    3. Take the bottom wire as 0 V. The left top node is at +10 V (the voltage source).
+    4. The right top node is at $10 + 10 = 20$ V. This node is the + terminal of $V_{out}$.
+
+    So $V_{out} = 20$ V. (Power check: the current source delivers $20\times5 = 100$ W; the resistor takes $5^2\times2 = 50$ W; the 10 V source, with current entering its + terminal, takes $10\times5 = 50$ W. $100 = 50 + 50$ ✔.)
+
+    This question was repeated word for word in **APGCL 2023 (Q8)**.
+
+    **Answer: (D) 20.**
+
+- key: gate-2008-23
+  topic: ec1-kcl-kvl-first-look
+  sources: [{code: GATE-2008, q: "23", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Assuming ideal elements in the circuit shown below, the voltage $v_{ab}$ will be
+
+    ![Figure](fig:q-gate2008-23)
+  options:
+    - {label: A, md: "−3 V", correct: true}
+    - {label: B, md: "0 V"}
+    - {label: C, md: "3 V"}
+    - {label: D, md: "5 V"}
+  solution: |
+    **Idea used:** the current source fixes the loop current; then walk from a to b with KVL (see *KCL and KVL: a first look*).
+
+    1. Single loop ⇒ loop current $= 1$ A (set by the current source). It flows up through the current source (from b to a), right through the 2 Ω resistor, down through the 5 V source, and back along the bottom to b.
+    2. Walk from **a** to **b** along the right-hand path:
+       - Through the 2 Ω resistor in the direction of the current: a drop of $1\times2 = 2$ V. So $v_a - v_{\text{right top}} = 2$ V.
+       - Through the 5 V source from its top (–) to its bottom (+): the bottom is 5 V higher, so $v_{\text{right top}} - v_b = -5$ V.
+    3. Add: $v_{ab} = v_a - v_b = 2 + (-5) = -3$ V.
+
+    **Answer: (A) −3 V.**
+
+- key: gate-2015-s1-28
+  topic: ec1-kcl-kvl-first-look
+  sources: [{code: GATE-2015, q: "S1-Q28", marks: 1}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: OFFICIAL_KEY
+  stem: |
+    The voltages developed across the 3 Ω and 2 Ω resistors shown in the figure are 6 V and 2 V respectively, with the polarity as marked. What is the power (in Watt) delivered by the 5 V voltage source?
+
+    ![Figure](fig:q-gate2015-s1-28)
+  options:
+    - {label: A, md: "5", correct: true}
+    - {label: B, md: "7"}
+    - {label: C, md: "10"}
+    - {label: D, md: "14"}
+  solution: |
+    **Idea used:** KCL on a closed surface; then the passive sign convention (see *KCL and KVL → KCL* and *Power and energy*).
+
+    We know nothing about the inside of N1 and N2, so draw a closed surface around **N2**. Only three wires cross it, so the three branch currents must add to zero.
+
+    1. **3 Ω branch:** 6 V with + on the N2 side. Current in a resistor flows from + to –, so $6/3 = 2$ A flows **from N2 to N1**.
+    2. **2 Ω branch:** 2 V with + on the N1 side, so $2/2 = 1$ A flows **from N1 to N2**.
+    3. **KCL for N2:** current into N2 $= 0$ ⇒ $1 - 2 + I_s = 0$ ⇒ $I_s = 1$ A flows **from N1 to N2 through the source**.
+    4. The source has – on the N1 side and + on the N2 side. The 1 A goes in at its – terminal and out at its + terminal, so the source **delivers** power: $5\times1 = 5$ W.
+
+    **Answer: (A) 5.** *(Matches the official GATE answer.)*
+
+- key: gate-2017-s1-18
+  topic: ec1-kcl-kvl-first-look
+  sources: [{code: GATE-2017_1, q: "18", marks: 1}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The power supplied by the 25 V source in the figure shown below is ______ W.
+
+    ![Figure](fig:q-gate2017s1-18)
+  nat: {min: 250, max: 250}
+  solution: |
+    **Idea used:** KCL at one node with a dependent source, then $p = vi$ for the source (see *KCL and KVL → Example 3* and *Dependent sources*).
+
+    1. The current $I$ leaves the + terminal of the 25 V source and flows through $R_1$ to the right-hand node.
+    2. At that node: $I$ comes in through $R_1$, the dependent source pushes $0.4I$ **up** into the node, and 14 A goes **down** through $R_2$.
+    3. KCL: $I + 0.4I = 14$ ⇒ $1.4I = 14$ ⇒ $I = 10$ A.
+    4. The 25 V source carries 10 A out of its + terminal, so it supplies $P = 25\times10 = 250$ W.
+
+    Extra check: KVL gives the voltage of the right node $= 25 - 17 = 8$ V, which is the voltage across $R_2$ (shown with + at the top) ✔. You do not need $R_1$ or $R_2$ themselves.
+
+    **Answer: 250 W.**
+
+- key: gate-2024-13
+  topic: ec1-kcl-kvl-first-look
+  sources: [{code: GATE-2024, q: "13", marks: 1}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    All the elements in the circuit are ideal. The power delivered by the 10 V source in watts is
+
+    ![Figure](fig:q-gate2024-13)
+  options:
+    - {label: A, md: "0", correct: true}
+    - {label: B, md: "50"}
+    - {label: C, md: "100"}
+    - {label: D, md: "dependent on the value of α"}
+  solution: |
+    **Idea used:** KCL at the middle node; anything in series with an ideal current source does not change its current (see *KCL and KVL → Example 4* and *Independent sources → Which connections are allowed*).
+
+    1. Call the top middle node X and the bottom wire 0 V.
+    2. The 2 Ω resistor is in series with the 10 A current source, so it does not matter: exactly 10 A is pushed into X.
+    3. KCL at X (currents leaving): $\dfrac{V_X - 10}{\alpha} + \dfrac{V_X}{1} - 10 = 0$.
+    4. Try $V_X = 10$ V: the first term is 0 and $10/1 = 10$ ✔. So $V_X = 10$ V **for every value of α**.
+    5. The current through the α resistor is $\dfrac{V_X - 10}{\alpha} = 0$, so the 10 V source carries **no current** and delivers **0 W**.
+
+    All 10 A of the current source go through the 1 Ω resistor ($10^2\times1 = 100$ W, supplied by the current source).
+
+    **Answer: (A) 0.**
+
+- key: gate-2003-segment
+  topic: ec1-kcl-kvl-first-look
+  sources: [{code: GATE-2003, q: "~segment-vl", marks: 1, url: "https://questions.examside.com/past-years/gate/question/a-segment-of-a-circuit-is-shown-in-figure-vr-5v-2003-marks-1-qpuqiphfwklvmyzn.htm"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: TWO_SOURCES
+  stem: |
+    A segment of a circuit is shown in figure. $v_R = 5\ \text{V}$, $v_C = 4\sin2t$. The voltage $v_L$ is given by
+
+    ![Figure](fig:q-gate2003-segment)
+  options:
+    - {label: A, md: "$3 - 8\\cos2t$"}
+    - {label: B, md: "$32\\sin2t$", correct: true}
+    - {label: C, md: "$16\\sin2t$"}
+    - {label: D, md: "$16\\cos2t$"}
+  solution: |
+    **Idea used:** element laws for each branch, then KCL at the centre node (see *KCL and KVL → Example 5*).
+
+    All four branches meet at the centre node N.
+
+    1. **Current source:** 2 A from P **into** N.
+    2. **5 Ω resistor:** $v_R = 5$ V with + at Q, so current flows from Q **into** N: $5/5 = 1$ A.
+    3. **1 F capacitor:** $v_C$ has + at N, so the current from N through the capacitor towards R is $i_C = C\,\dfrac{dv_C}{dt} = 1\times8\cos2t = 8\cos2t$ A, **out of** N.
+    4. **2 H inductor:** current $i_L$ from N down to S, **out of** N.
+    5. KCL at N: $2 + 1 = 8\cos2t + i_L$ ⇒ $i_L = 3 - 8\cos2t$ A.
+    6. $v_L$ (+ at N) $= L\,\dfrac{di_L}{dt} = 2\times(16\sin2t) = 32\sin2t$ V.
+
+    Trap: option (A) is $i_L$, the inductor **current**, not its voltage.
+
+    **Answer: (B) $32\sin2t$.**
+
+- key: ese-2018-19
+  topic: ec1-kcl-kvl-first-look
+  sources: [{code: ESE-2018, q: "19", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The v–i relationship for a circuit containing R and C and a battery of voltage E, all in series is
+
+    1. $\dfrac{1}{C}\displaystyle\int i\,dt + iR = E$
+    2. $\dfrac{1}{RC}\,i + \dfrac{di}{dt} = 0$
+    3. $\dfrac{1}{C}\,i + R\displaystyle\int i\,dt = E$
+
+    Which of the above relationships are correct?
+  options:
+    - {label: A, md: "1 and 2 only", correct: true}
+    - {label: B, md: "1 and 3 only"}
+    - {label: C, md: "2 and 3 only"}
+    - {label: D, md: "1, 2 and 3"}
+  solution: |
+    **Idea used:** KVL round the loop with the element laws $v_R = iR$ and $v_C = \frac1C\int i\,dt$ (see *KCL and KVL → Example 6*).
+
+    1. KVL: $v_C + v_R = E$ ⇒ $\dfrac1C\int i\,dt + iR = E$. **Relation 1 is correct.**
+    2. Differentiate relation 1 ($E$ is constant, so its derivative is 0): $\dfrac{i}{C} + R\dfrac{di}{dt} = 0$. Divide by $R$: $\dfrac{1}{RC}\,i + \dfrac{di}{dt} = 0$. **Relation 2 is correct.**
+    3. Relation 3 swaps the roles: it multiplies $R$ by the integral and divides $i$ by $C$. Units do not even match ($i/C$ is not a voltage). **Wrong.**
+
+    **Answer: (A) 1 and 2 only.**
+
+- key: gate-2014-s1-8
+  topic: ec1-kcl-kvl-first-look
+  sources: [{code: GATE-2014, q: "S1-Q8", marks: 1}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    A combination of 1 µF capacitor with an initial voltage $v_c(0) = -2$ V in series with a 100 Ω resistor is connected to a 20 mA ideal dc current source by operating both switches at t = 0 s as shown. Which of the following graphs shown in the options approximates the voltage $v_s$ across the current source over the next few seconds?
+
+    ![Figure](fig:q-gate2014-s1-8)
+  options:
+    - {label: A, md: "![Option A](fig:q-gate2014-s1-8-a)"}
+    - {label: B, md: "![Option B](fig:q-gate2014-s1-8-b)"}
+    - {label: C, md: "![Option C](fig:q-gate2014-s1-8-c)", correct: true}
+    - {label: D, md: "![Option D](fig:q-gate2014-s1-8-d)"}
+  solution: |
+    **Idea used:** a capacitor fed by an ideal current source charges linearly, $v = v(0) + \dfrac{I}{C}t$; the voltage across a current source comes from KVL (see *The capacitor → Two useful circuit cases* and *KCL and KVL*).
+
+    After $t = 0$ the current source, the capacitor and the 100 Ω resistor form one loop carrying exactly 20 mA, going in at the + side of $v_c$.
+
+    1. Resistor voltage: $0.02\times100 = 2$ V, constant.
+    2. Capacitor voltage: $v_c(t) = -2 + \dfrac{0.02}{1\times10^{-6}}\,t = -2 + 20\,000\,t$ V.
+    3. KVL: $v_s = v_c + v_R = (-2 + 20\,000\,t) + 2 = 20\,000\,t$ V.
+
+    So $v_s$ **starts at 0** at $t = 0^+$ and rises in a **straight line**. (A real exponential would need a resistor in parallel; with an ideal current source the charging is linear.) Options (B) and (D) are exponential; option (A) starts at –2 V (it forgets the resistor's 2 V).
+
+    **Answer: (C).**
+
+- key: ese-2026-101
+  topic: ec1-kcl-kvl-first-look
+  sources: [{code: ESE-2026, q: "101", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    What is the power supplied by each element in the circuit shown below?
+
+    ![Figure](fig:q-ese2026-101)
+  options:
+    - {label: A, md: "$P_1 = -100$ W; $P_2 = 60$ W; $P_3 = -48$ W; $P_4 = -8$ W"}
+    - {label: B, md: "$P_1 = 100$ W; $P_2 = -60$ W; $P_3 = -48$ W; $P_4 = 8$ W", correct: true}
+    - {label: C, md: "$P_1 = -100$ W; $P_2 = -60$ W; $P_3 = 48$ W; $P_4 = -8$ W"}
+    - {label: D, md: "$P_1 = -100$ W; $P_2 = 60$ W; $P_3 = 48$ W; $P_4 = -8$ W", correct: true}
+  solution: |
+    **Idea used:** passive sign convention for each element, and power balance as a check (see *Power and energy*).
+
+    Read the circuit: $I = 5$ A leaves the + terminal of the 20 V source ($P_1$) and flows through element $P_2$ (12 V, + on the left), then 6 A flows down through element $P_3$ (8 V, + at the top). The dependent source $P_4$ carries $0.2I = 1$ A **upward** and has the same 8 V across it (+ at the top). KCL check: $5 + 1 = 6$ ✔. KVL check: $20 = 12 + 8$ ✔.
+
+    **Absorbed power of each element:**
+    - $P_1$: 5 A leaves its + terminal ⇒ $-20\times5 = -100$ W
+    - $P_2$: 5 A enters its + terminal ⇒ $+12\times5 = +60$ W
+    - $P_3$: 6 A enters its + terminal ⇒ $+8\times6 = +48$ W
+    - $P_4$: 1 A leaves its + terminal (it flows up) ⇒ $-8\times1 = -8$ W
+    - Sum $= -100 + 60 + 48 - 8 = 0$ ✔ (power balance)
+
+    **Supplied power** is the same with the opposite sign: $P_1 = +100$, $P_2 = -60$, $P_3 = -48$, $P_4 = +8$ W.
+
+    **Defect in this question:** the circuit and the numbers come from Sadiku's textbook (Example 1.7), which lists *absorbed* powers: that set is option (D). But the question asks for the power **supplied**, and that set is exactly option (B). Both options are marked correct here until the UPSC key is checked. In the exam, the words "power supplied" point to (B); the setter's source points to (D).
+
+    **Answer: (B) by the wording (supplied power); (D) if the setter meant absorbed power.**

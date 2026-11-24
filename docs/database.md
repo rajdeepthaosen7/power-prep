@@ -25,6 +25,17 @@ Postgres 18 on Neon (Singapore). Local tests use the same version (Postgres 18.7
 | V2 | Seed: 11 subjects, 373 topics, 24 papers, 1,740 tagged questions (APSC 2023 + GATE EE 2007-2026), 288 GATE-state links |
 | V3 | Schema v2: many sources per question, options, figures, concept notes, syllabus, tests, reviews, to-dos, user approval, notification outbox, import log |
 | V4 | Roles USER / ADMIN (was STUDENT / ADMIN), Google profile picture, index on user status |
+| V5 | `question.content_key`, `concept_section.slug` (natural keys for content imports), `figure.svg` (inline drawings) |
+| R__content_electric_circuits | **Repeatable**, generated. Chapters, topics, notes, figures and full questions of Electric Circuits. |
+
+### Content migrations (repeatable)
+
+Notes and questions are written as files under `content/<subject>/` (Markdown notes, `questions-*.yml`, SVG figures).
+`python3 content/tools/build_sql.py <subject>` turns them into `R__content_<subject>.sql`.
+Flyway re-runs a repeatable migration whenever its checksum changes, after all versioned migrations.
+The script only upserts by natural keys (subject/chapter/topic slugs, `question.content_key`, `(source, q_no)`,
+`figure.storage_key`), so re-running is safe and user attempts are never touched.
+Never edit the generated SQL by hand: change the content files and run the script again.
 
 ## Tables
 

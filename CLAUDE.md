@@ -17,7 +17,10 @@ If anything is missing (a source file, an answer key, a syllabus item), ask the 
 
 ## Content and data
 - All questions, solutions, notes and tags live in Postgres, served by the Java API. The frontend only displays.
-- Content is added through versioned import files in the repo, loaded by migrations / admin import.
+- Content is added through versioned files in the repo: `content/<subject>/chapters.yml`, chapter folders with
+  `notes/*.md`, `questions-*.yml` and `figures/*.svg` (drawn with `content/tools/svgkit.py` + schemdraw).
+  `python3 content/tools/build_sql.py <subject>` generates the repeatable migration `R__content_<subject>.sql`.
+- Study flow: the API sends a question's correct answer and analysis only after the signed-in user has attempted it.
 - Hierarchy: subject -> chapter -> topic, linked to the official syllabus. One question can have many sources (e.g. APGCL 2023 Q36 and GATE 2005).
 - Source material ("dump"): Google Drive folder `dump` (always) and a gitignored `dump/` folder in this repo (when on PC).
   Keep a list of what is dumped and what is still to be processed.

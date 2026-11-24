@@ -1,0 +1,445 @@
+# Chapter 1 questions, part 1: power and energy, kinds of elements, resistor.
+# Exam questions keep their original wording. "status": OFFICIAL_KEY | TWO_SOURCES | UNVERIFIED (solved by us).
+
+- key: ese-2021-10
+  topic: ec1-power-energy
+  sources: [{code: ESE-2021, q: "10", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    An energy source forces a constant current of 2 A for 10 s to flow through a light bulb. If 2.3 kJ is given off in the form of light and heat energy, what is the voltage drop across the bulb?
+  options:
+    - {label: A, md: "120 V"}
+    - {label: B, md: "115 V", correct: true}
+    - {label: C, md: "110 V"}
+    - {label: D, md: "105 V"}
+  solution: |
+    **Idea used:** energy $w = p\,t$ and power $p = v\,i$ (see *Power and energy*).
+
+    1. All the energy given to the bulb comes out as light and heat, so the energy absorbed by the bulb is $w = 2.3\ \text{kJ} = 2300$ J.
+    2. The current is constant, so the power is constant: $p = \dfrac{w}{t} = \dfrac{2300}{10} = 230$ W.
+    3. $p = v\,i$ ⇒ $v = \dfrac{p}{i} = \dfrac{230}{2} = 115$ V.
+
+    Shortcut: $w = v\,i\,t$ ⇒ $v = \dfrac{w}{it} = \dfrac{2300}{2\times10} = 115$ V.
+
+    **Answer: (B) 115 V.**
+
+- key: gate-2014-s1-6
+  topic: ec1-power-energy
+  sources: [{code: GATE-2014, q: "S1-Q6", marks: 1}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The three circuit elements shown in the figure are part of an electric circuit. The total power absorbed by the three circuit elements in watts is ______.
+
+    ![Figure](fig:q-gate2014-s1-6)
+  nat: {min: 330, max: 330}
+  solution: |
+    **Idea used:** passive sign convention: current entering the **+** terminal ⇒ absorbed power $= +vi$; current entering the **–** terminal ⇒ absorbed power $= -vi$ (see *Power and energy*).
+
+    **Step 1: find the third current (KCL at the junction).** 10 A comes in from the left, 8 A goes out to the right, so $10 - 8 = 2$ A must go **down** through the 15 V battery.
+
+    **Step 2: read each battery's polarity.** In a battery symbol the **long thin plate is +** and the **short thick plate is –**.
+    - 100 V battery: + on the left. The 10 A flows left to right, so it **enters +**.
+    - 80 V battery: – on the left, + on the right. The 8 A flows left to right, so it **enters –**.
+    - 15 V battery: – at the top, + at the bottom. The 2 A flows downward, so it **enters –**.
+
+    **Step 3: absorbed power of each.**
+    - 100 V: $+100\times10 = +1000$ W (absorbs, like a battery being charged)
+    - 80 V: $-80\times8 = -640$ W (delivers 640 W)
+    - 15 V: $-15\times2 = -30$ W (delivers 30 W)
+
+    **Step 4: total** $= 1000 - 640 - 30 = 330$ W.
+
+    The total is not zero because these three elements are only *part* of the circuit; the rest of the circuit supplies the 330 W.
+
+    **Answer: 330 W.**
+
+- key: ese-2017-56
+  topic: ec1-kinds-of-elements
+  sources: [{code: ESE-2017, q: "56", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Which of the following are satisfied in a non-linear network?
+
+    1. Associative
+    2. Superposition
+    3. Homogeneity
+    4. Bilaterality
+
+    Select the correct answer using the code given below:
+  options:
+    - {label: A, md: "1 and 3 only"}
+    - {label: B, md: "1 and 4 only", correct: true}
+    - {label: C, md: "2 and 3 only"}
+    - {label: D, md: "2 and 4 only"}
+  solution: |
+    **Idea used:** the definition of linearity (see *Kinds of circuit elements → Linear and non-linear elements*).
+
+    1. A network is **linear** exactly when it obeys **superposition**, and superposition is made of two parts: **additivity** and **homogeneity** (scaling).
+    2. So a **non-linear** network, by definition, does **not** satisfy superposition (2) and does **not** satisfy homogeneity (3). Any option containing 2 or 3 is wrong. That removes (A), (C) and (D).
+    3. **Bilaterality** is a separate property: same behaviour for both directions of current. A non-linear element can still be bilateral (for example $v = i^3$, or a lamp filament). So 4 can be satisfied.
+    4. The associative property (the order in which series/parallel parts are grouped does not change the result) also has nothing to do with linearity.
+
+    **Answer: (B) 1 and 4 only.**
+
+- key: ese-2019-25
+  topic: ec1-kinds-of-elements
+  sources: [{code: ESE-2019, q: "25", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    If the voltage across an element in a circuit is linearly proportional to the current through it, then it is a
+  options:
+    - {label: A, md: "Capacitor"}
+    - {label: B, md: "Transformer"}
+    - {label: C, md: "Resistor", correct: true}
+    - {label: D, md: "Inductor"}
+  solution: |
+    **Idea used:** each element is one v–i rule (see *Kinds of circuit elements*).
+
+    - Resistor: $v = R\,i$ ⇒ $v$ is directly proportional to $i$.
+    - Capacitor: $i = C\,dv/dt$ ⇒ current is proportional to the **rate of change** of voltage, not to the voltage.
+    - Inductor: $v = L\,di/dt$ ⇒ voltage is proportional to the **rate of change** of current.
+    - Transformer: relates the voltages (and currents) of two different windings.
+
+    Only the resistor has $v \propto i$. This is Ohm's law.
+
+    **Answer: (C) Resistor.**
+
+- key: ese-2025-26
+  topic: ec1-kinds-of-elements
+  sources: [{code: ESE-2025, q: "26", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Which one of the following never dissipates energy but only stores it?
+  options:
+    - {label: A, md: "Pure capacitor", correct: true}
+    - {label: B, md: "Pure resistor"}
+    - {label: C, md: "Conductor"}
+    - {label: D, md: "Ideal diode"}
+  solution: |
+    **Idea used:** what each passive element does with energy (see *Kinds of circuit elements → Active and passive elements*).
+
+    - A **resistor** (and any real **conductor**) turns electrical energy into heat: it dissipates, $p = i^2R \ge 0$.
+    - An **ideal diode** is a switch: when ON its voltage is 0, when OFF its current is 0, so $p = vi = 0$. It neither stores nor dissipates; it stores nothing.
+    - A **pure capacitor** stores energy $\tfrac12Cv^2$ in its electric field and gives it back; it has no resistance, so it never dissipates.
+
+    **Answer: (A) Pure capacitor.**
+
+- key: gate-2026-23
+  topic: ec1-kinds-of-elements
+  sources: [{code: GATE-2026, q: "23", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A circuit with ideal elements is shown.
+
+    ![Figure](fig:q-gate2026-23)
+
+    Which one of the following options correctly identifies all the linear elements in the circuit?
+  options:
+    - {label: A, md: "R only"}
+    - {label: B, md: "R, L, and C only", correct: true}
+    - {label: C, md: "D only"}
+    - {label: D, md: "L, C, and D only"}
+  solution: |
+    **Idea used:** linear ⇔ obeys superposition (additivity + homogeneity) (see *Kinds of circuit elements*).
+
+    - **R:** $v = Ri$, a straight line through the origin ⇒ linear.
+    - **L:** $v = L\,di/dt$. Differentiation is a linear operation (the derivative of a sum is the sum of derivatives, and of $k\,i$ is $k\,di/dt$) ⇒ linear.
+    - **C:** $i = C\,dv/dt$ ⇒ linear for the same reason.
+    - **D (diode):** conducts one way only; its v–i curve is not a straight line ⇒ **non-linear**.
+    - **$V_{DC}$:** an independent source is the input (excitation) of the circuit, not one of its linear elements; its v–i graph $v = V_{DC}$ does not pass through the origin.
+
+    So the linear elements are R, L and C.
+
+    **Answer: (B) R, L, and C only.**
+
+- key: gate-2025-19
+  topic: ec1-kinds-of-elements
+  sources: [{code: GATE-2025, q: "19", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    A nullator is defined as a circuit element where the voltage across the device and the current through the device are both zero. A series combination of a nullator and a resistor of value, R, will behave as a
+  options:
+    - {label: A, md: "resistor of value R."}
+    - {label: B, md: "nullator.", correct: true}
+    - {label: C, md: "open circuit."}
+    - {label: D, md: "short circuit."}
+  solution: |
+    **Idea used:** an element is one v–i rule, and series elements carry the same current (see *Kinds of circuit elements → An element is a rule*).
+
+    1. The nullator's rule: $v_N = 0$ **and** $i_N = 0$.
+    2. In series, the resistor carries the same current: $i = i_N = 0$.
+    3. The resistor's voltage: $v_R = R\times0 = 0$.
+    4. Total voltage across the combination: $v = v_N + v_R = 0 + 0 = 0$. Total current: $i = 0$.
+
+    The combination has $v = 0$ and $i = 0$ at the same time, which is exactly the definition of a nullator.
+
+    Why not the others? An **open circuit** has $i = 0$ but allows any voltage; here the voltage is also forced to 0. A **short circuit** has $v = 0$ but allows any current; here the current is also forced to 0.
+
+    **Answer: (B) nullator.**
+
+- key: gate-2009-10
+  topic: ec1-resistor
+  sources:
+    - {code: GATE-2009, q: "10", marks: 1, primary: true}
+    - {code: AEGCL-2023, q: "81", marks: 1}
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    How many 200W/220V incandescent lamps connected in series would consume the same total power as a single 100W/220V incandescent lamp?
+  options:
+    - {label: A, md: "not possible"}
+    - {label: B, md: "4"}
+    - {label: C, md: "3"}
+    - {label: D, md: "2", correct: true}
+  solution: |
+    **Idea used:** a rated device has $R = V_r^2/P_r$; from the same supply, equal power needs equal resistance (see *The resistor → Ratings of lamps and heaters*).
+
+    1. One 100 W, 220 V lamp: $R = \dfrac{220^2}{100} = 484$ Ω.
+    2. One 200 W, 220 V lamp: $R = \dfrac{220^2}{200} = 242$ Ω.
+    3. All are on the same 220 V supply, and $P = V^2/R_{total}$. Same power ⇒ same total resistance.
+    4. $n$ lamps in series: $n\times242 = 484$ ⇒ $n = 2$.
+
+    Check: two 242 Ω lamps in series on 220 V: $P = 220^2/484 = 100$ W ✔ (each lamp takes only 50 W, a quarter of its rating, because each gets only half its rated voltage).
+
+    The same question was asked word for word in **AEGCL 2023 (Q81)**.
+
+    **Answer: (D) 2.**
+
+- key: gate-2001-bulbs
+  topic: ec1-resistor
+  sources: [{code: GATE-2001, q: "~bulbs-series", marks: 1, url: "https://questions.examside.com/past-years/gate/question/two-incandescent-light-bulbs-of-40-w-and-60-w-2001-marks-1-hoknj9dsqwdefaxh.htm"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: TWO_SOURCES
+  stem: |
+    Two incandescent light bulbs of 40 W and 60 W rating are connected in series across the mains. Then
+  options:
+    - {label: A, md: "the bulbs together consume 100 W"}
+    - {label: B, md: "the bulbs together consume 50 W"}
+    - {label: C, md: "the 60 W bulb glows brighter"}
+    - {label: D, md: "the 40 W bulb glows brighter", correct: true}
+  solution: |
+    **Idea used:** series ⇒ same current ⇒ power $= i^2R$ ⇒ larger $R$ gets more power (see *The resistor → Lamps in series*).
+
+    1. Both bulbs are rated for the same mains voltage $V$. $R = V^2/P$, so the **40 W bulb has the larger resistance** ($R_{40} = 1.5\,R_{60}$).
+    2. In series they carry the same current, so $P = i^2R$: the 40 W bulb (larger $R$) takes more power and **glows brighter**. In fact $P_{40} = 1.5\,P_{60}$ here.
+    3. Total power: $\dfrac{V^2}{R_{40} + R_{60}}$. With $R_{40} = V^2/40$ and $R_{60} = V^2/60$: $R_{40} + R_{60} = V^2\left(\dfrac{1}{40} + \dfrac{1}{60}\right) = \dfrac{V^2}{24}$. So the bulbs together take **24 W**, not 100 W and not 50 W.
+
+    **Answer: (D) the 40 W bulb glows brighter.**
+
+- key: ese-2021-8
+  topic: ec1-resistor
+  sources: [{code: ESE-2021, q: "8", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    Three light bulbs are connected to a 9 V battery as shown in the figure. What are the values of the resistance of 20 W, 15 W, 10 W bulbs respectively?
+
+    ![Figure](fig:q-ese2021-8)
+  options:
+    - {label: A, md: "4.05 Ω, 1.945 Ω, 1.297 Ω", correct: true}
+    - {label: B, md: "6.02 Ω, 3.762 Ω, 3.162 Ω"}
+    - {label: C, md: "7.672 Ω, 4.887 Ω, 4.223 Ω"}
+    - {label: D, md: "8.345 Ω, 6.893 Ω, 5.634 Ω"}
+  solution: |
+    **Idea used:** the wattages here are the powers the bulbs actually take **in this circuit**. Use $P = V^2/R$ for an element with known voltage and $P = I^2R$ for elements with known current (see *The resistor → Power in a resistor*).
+
+    **The 20 W bulb** is directly across the 9 V battery:
+    $R_{20} = \dfrac{V^2}{P} = \dfrac{81}{20} = 4.05$ Ω.
+
+    **The 15 W and 10 W bulbs** are in series, and this pair is also across 9 V.
+    - Total power of the pair $= 15 + 10 = 25$ W.
+    - Their common current: $I = \dfrac{P}{V} = \dfrac{25}{9} = 2.778$ A, so $I^2 = 7.716$.
+    - $R_{15} = \dfrac{15}{7.716} = 1.944$ Ω, $R_{10} = \dfrac{10}{7.716} = 1.296$ Ω.
+
+    Check: $1.944 + 1.296 = 3.24$ Ω and $9/3.24 = 2.778$ A ✔.
+
+    **Answer: (A) 4.05 Ω, 1.945 Ω, 1.297 Ω.**
+
+- key: gate-2014-s1-29
+  topic: ec1-resistor
+  sources: [{code: GATE-2014, q: "S1-Q29", marks: 2}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    An incandescent lamp is marked 40 W, 240 V. If resistance at room temperature (26°C) is 120 Ω, and temperature coefficient of resistance is 4.5×10⁻³/°C, then its 'ON' state filament temperature in °C is approximately ______
+  nat: {min: 2465, max: 2475}
+  solution: |
+    **Idea used:** the rating gives the **hot** resistance; $R_T = R_0[1 + \alpha_0(T - T_0)]$ links hot and cold resistance (see *The resistor → Hot and cold resistance of a lamp*).
+
+    1. ON-state (hot) resistance from the rating: $R_{hot} = \dfrac{V^2}{P} = \dfrac{240^2}{40} = 1440$ Ω.
+    2. Cold resistance $R_0 = 120$ Ω at $T_0 = 26$ °C, $\alpha_0 = 4.5\times10^{-3}$ /°C.
+    3. $1440 = 120\,[1 + 4.5\times10^{-3}(T - 26)]$
+    4. $\dfrac{1440}{120} = 12 = 1 + 4.5\times10^{-3}(T - 26)$ ⇒ $T - 26 = \dfrac{11}{4.5\times10^{-3}} = 2444.4$
+    5. $T \approx 2470$ °C.
+
+    **Answer: about 2470 °C** (accepted range 2465–2475).
+
+- key: gate-2021-15
+  topic: ec1-resistor
+  sources: [{code: GATE-2021, q: "15", marks: 1}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    Two single-core power cables have total conductor resistances of 0.7 Ω and 0.5 Ω, respectively, and their insulation resistances (between core and sheath) are 600 MΩ and 900 MΩ, respectively. When the two cables are joined in series, the ratio of insulation resistance to conductor resistance is ______ ×10⁶.
+  nat: {min: 300, max: 300}
+  solution: |
+    **Idea used:** conductor resistance is along the length (adds in series); insulation resistance is the leakage across the insulation (each length is a parallel path, so they combine in parallel) (see *The resistor → Conductor resistance and insulation resistance of a cable*).
+
+    1. Conductor resistance of the joined cable: $0.7 + 0.5 = 1.2$ Ω.
+    2. Insulation resistance of the joined cable: $\dfrac{600\times900}{600 + 900} = \dfrac{540\,000}{1500} = 360$ MΩ.
+    3. Ratio $= \dfrac{360\times10^6}{1.2} = 300\times10^6$.
+
+    **Answer: 300.**
+
+- key: ese-2026-105
+  topic: ec1-resistor
+  sources: [{code: ESE-2026, q: "105", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A 10-ohm resistor has a current of i = 2.5 sin ωt (A). What are the values of voltage and power respectively over one cycle of ω = 500 rad/s?
+  options:
+    - {label: A, md: "25 sin ωt (V); 62.5 sin² ωt (W)", correct: true}
+    - {label: B, md: "250 sin ωt (V); 625 sin² ωt (W)"}
+    - {label: C, md: "2.5 sin ωt (V); 62.5 sin² ωt (W)"}
+    - {label: D, md: "25 sin ωt (V); 625 sin² ωt (W)"}
+  solution: |
+    **Idea used:** Ohm's law and $p = i^2R$ hold at every instant (see *The resistor → Power when the current changes with time*).
+
+    1. $v = Ri = 10\times2.5\sin\omega t = 25\sin\omega t$ V.
+    2. $p = vi = (25\sin\omega t)(2.5\sin\omega t) = 62.5\sin^2\omega t$ W. (Same as $i^2R = 6.25\sin^2\omega t\times10$.)
+
+    The value $\omega = 500$ rad/s does not change the answer. (The average of this power is $62.5/2 = 31.25$ W, which you will meet again in the AC power chapter.)
+
+    **Answer: (A) 25 sin ωt (V); 62.5 sin² ωt (W).**
+
+- key: gate-2007-64
+  topic: ec1-resistor
+  sources: [{code: GATE-2007, q: "64", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    A 3 V dc supply with an internal resistance of 2 Ω supplies a passive non-linear resistance characterized by the relation $V_{NL} = I_{NL}^2$. The power dissipated in the non-linear resistance is
+  options:
+    - {label: A, md: "1.0 W", correct: true}
+    - {label: B, md: "1.5 W"}
+    - {label: C, md: "2.5 W"}
+    - {label: D, md: "3.0 W"}
+  solution: |
+    **Idea used:** solve the load line of the source together with the element's own rule; reject the impossible root (see *The resistor → Non-linear resistors: how to solve*).
+
+    1. Load line of the supply: $V = 3 - 2I$.
+    2. Element rule: $V = I^2$.
+    3. Same $V$ and $I$: $I^2 = 3 - 2I$ ⇒ $I^2 + 2I - 3 = 0$ ⇒ $(I + 3)(I - 1) = 0$.
+    4. $I = 1$ A or $I = -3$ A. With $I = -3$ A the element would have $V = 9$ V and current flowing the "wrong" way, i.e. a passive element delivering power: impossible. So $I = 1$ A.
+    5. $V = 1^2 = 1$ V, power $= VI = 1\times1 = 1$ W.
+
+    **Answer: (A) 1.0 W.**
+
+- key: gate-2014-s1-30
+  topic: ec1-resistor
+  sources: [{code: GATE-2014, q: "S1-Q30", marks: 2}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    In the figure, the value of resistor R is (25 + I/2) ohms, where I is the current in amperes. The current I is ______
+
+    ![Figure](fig:q-gate2014-s1-30)
+  nat: {min: 10, max: 10}
+  solution: |
+    **Idea used:** a resistance that depends on its own current is a non-linear resistor; write $V = IR$ with the given rule and solve (see *The resistor → Non-linear resistors*).
+
+    1. The 300 V source is directly across R: $300 = I\,R = I\left(25 + \dfrac{I}{2}\right)$.
+    2. $\dfrac{I^2}{2} + 25I - 300 = 0$ ⇒ $I^2 + 50I - 600 = 0$.
+    3. $I = \dfrac{-50 \pm \sqrt{2500 + 2400}}{2} = \dfrac{-50 \pm 70}{2}$ ⇒ $I = 10$ A or $-60$ A.
+    4. A negative current would make $R = 25 - 30 = -5$ Ω, not a real resistor. So $I = 10$ A.
+
+    Check: $R = 25 + 5 = 30$ Ω and $10\times30 = 300$ V ✔.
+
+    **Answer: 10 A.**
+
+- key: gate-1997-nonlinear-battery
+  topic: ec1-resistor
+  sources: [{code: GATE-1997, q: "~nonlinear-load", marks: 2, url: "https://questions.examside.com/past-years/gate/question/a-10-v-battery-with-an-internal-resistance-of-1-1997-marks-5-7irufwqmec68qwpj.htm"}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: TWO_SOURCES
+  stem: |
+    A 10 V battery with an internal resistance of 1 Ω is connected across a nonlinear load whose V–I characteristic is given by $7I = V^2 + 2V$. The current delivered by the battery is ______ A.
+  nat: {min: 5, max: 5}
+  solution: |
+    **Idea used:** load line + element rule; reject the root that is not physical (see *The resistor → Non-linear resistors*).
+
+    1. Battery terminal voltage (load line): $V = 10 - I$.
+    2. Put it in the load's rule: $7I = (10 - I)^2 + 2(10 - I) = 100 - 20I + I^2 + 20 - 2I$.
+    3. $7I = I^2 - 22I + 120$ ⇒ $I^2 - 29I + 120 = 0$.
+    4. $I = \dfrac{29 \pm \sqrt{841 - 480}}{2} = \dfrac{29 \pm 19}{2}$ ⇒ $I = 5$ A or $I = 24$ A.
+    5. For $I = 24$ A, $V = 10 - 24 = -14$ V: the load would have current in one direction and voltage in the other, so it would be **delivering** power. A load cannot do that. Reject.
+    6. $I = 5$ A ($V = 5$ V; check $7\times5 = 35 = 25 + 10$ ✔).
+
+    **Answer: 5 A.**
+
+- key: ese-2019-149
+  topic: ec1-resistor
+  sources: [{code: ESE-2019, q: "149", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    **Statement (I):** When a non-linear resistor, in series with a linear resistor, both being non-inductive, is connected to a voltage source, the current in the circuit cannot be determined by using Ohm's law.
+
+    **Statement (II):** If the current-voltage characteristic of the non-linear resistor is known, the current-voltage characteristic of the series circuit can be obtained by graphical solution.
+  options:
+    - {label: A, md: "Both Statement (I) and Statement (II) are individually true and Statement (II) is the correct explanation of Statement (I)"}
+    - {label: B, md: "Both Statement (I) and Statement (II) are individually true but Statement (II) is not the correct explanation of Statement (I)", correct: true}
+    - {label: C, md: "Statement (I) is true but Statement (II) is false"}
+    - {label: D, md: "Statement (I) is false but Statement (II) is true"}
+  solution: |
+    **Idea used:** Ohm's law needs a fixed resistance; non-linear circuits are solved with the element's characteristic, by algebra or by graph (see *Kinds of circuit elements → Why linearity matters* and *The resistor → Non-linear resistors*).
+
+    **Statement (I):** a non-linear resistor has no single fixed value of $R$; its "resistance" changes with the current. So we cannot just write $I = V/(R_1 + R_2)$. Statement (I) is **true**.
+
+    **Statement (II):** if we know the non-linear resistor's V–I curve, we can add the linear resistor's voltage $IR$ to it point by point (same current in series) to get the V–I curve of the whole series circuit, and read off the current for the given source voltage. Statement (II) is **true**.
+
+    **Is (II) the reason for (I)?** No. (I) is true because the element is non-linear (no fixed $R$). (II) only describes a way to solve such a circuit. It does not explain why Ohm's law fails.
+
+    **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
