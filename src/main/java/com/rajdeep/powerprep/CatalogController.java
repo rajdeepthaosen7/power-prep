@@ -24,21 +24,33 @@ public class CatalogController {
     @GetMapping("/subjects/{slug}/topics")
     public List<Map<String, Object>> topics(@PathVariable String slug) {
         return jdbc.queryForList("""
-            SELECT t.id, t.name, count(q.id) AS questions,
-                   count(DISTINCT so.exam) FILTER (WHERE so.kind='STATE') AS "stateExams",
-                   count(q.id) FILTER (WHERE so.kind='GATE') AS "gateQuestions"
-            FROM topic t JOIN subject s ON s.id = t.subject_id
-            LEFT JOIN question q ON q.topic_id = t.id
-            LEFT JOIN source so ON so.id = q.source_id
-            WHERE s.slug = ? GROUP BY t.id ORDER BY count(q.id) DESC, t.name""", slug);
+            SELECT t.id, t.name,
+                   count(DISTINCT q.id) AS questions,
+                   count(DISTINCT so.exam) FILTER (WHERE so.kind = 'STATE') AS "stateExams",
+                   count(DISTINCT q.id)    FILTER (WHERE so.kind = 'GATE')  AS "gateQuestions"
+            FROM topic t
+            JOIN subject s ON s.id = t.subject_id
+            LEFT JOIN question q         ON q.topic_id = t.id AND q.status <> 'RETIRED'
+            LEFT JOIN question_source qs ON qs.question_id = q.id
+            LEFT JOIN source so          ON so.id = qs.source_id
+            WHERE s.slug = ?
+            GROUP BY t.id
+            ORDER BY count(DISTINCT q.id) DESC, t.name""", slug);
     }
 
     @GetMapping("/topics/{id}/questions")
     public List<Map<String, Object>> questions(@PathVariable int id) {
         return jdbc.queryForList("""
-            SELECT q.id, so.code AS source, q.q_no AS "qNo", q.q_type AS type, q.marks,
-                   q.summary, q.body, q.options, q.status
-            FROM question q JOIN source so ON so.id = q.source_id
-            WHERE q.topic_id = ? ORDER BY so.kind DESC, so.year, q.id""", id);
+            SELECT q.id, ps.code AS source, pqs.q_no AS "qNo", pqs.marks,
+                   q.nature AS type, q.summary, q.stem_md AS body, q.status,
+                   (SELECT string_agg(so.code || ' Q' || qs.q_no, ', ' ORDER BY so.year, so.code)
+                      FROM question_source qs JOIN source so ON so.id = qs.source_id
+                     WHERE qs.question_id = q.id) AS sources
+            FROM question q
+            JOIN LATERAL (SELECT qs.source_id, qs.q_no, qs.marks FROM question_source qs
+                          WHERE qs.question_id = q.id ORDER BY qs.is_primary DESC, qs.source_id LIMIT 1) pqs ON TRUE
+            JOIN source ps ON ps.id = pqs.source_id
+            WHERE q.topic_id = ? AND q.status <> 'RETIRED'
+            ORDER BY ps.kind DESC, ps.year, q.id""", id);
     }
 }
