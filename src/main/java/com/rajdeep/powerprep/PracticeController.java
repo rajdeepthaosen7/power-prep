@@ -40,7 +40,7 @@ public class PracticeController {
 
     record Filter(String where, List<Object> args) {}
 
-    private static Filter filter(String subject, Integer topic, String exam, Integer year, String kind) {
+    private static Filter filter(String subject, Integer topic, String exam, Integer year, String kind, String paper) {
         StringBuilder w = new StringBuilder();
         List<Object> a = new ArrayList<>();
         if (subject != null) { w.append(" AND s.slug = ?");   a.add(subject); }
@@ -48,6 +48,7 @@ public class PracticeController {
         if (exam != null)    { w.append(" AND so.exam = ?");  a.add(exam); }
         if (year != null)    { w.append(" AND so.year = ?");  a.add(year); }
         if (kind != null)    { w.append(" AND so.kind = ?");  a.add(kind); }
+        if (paper != null)   { w.append(" AND so.code = ?");  a.add(paper); }
         return new Filter(w.toString(), a);
     }
 
@@ -64,10 +65,11 @@ public class PracticeController {
                                      @RequestParam(required = false) Integer topic,
                                      @RequestParam(required = false) String exam,
                                      @RequestParam(required = false) Integer year,
-                                     @RequestParam(required = false) String kind) {
+                                     @RequestParam(required = false) String kind,
+                                     @RequestParam(required = false) String paper) {
         if (rows.equals(cols)) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "rows and cols must differ");
         String[] r = dim(rows), c = dim(cols);
-        Filter f = filter(subject, topic, exam, year, kind);
+        Filter f = filter(subject, topic, exam, year, kind, paper);
 
         List<Map<String, Object>> rowHeads = jdbc.queryForList(
                 "SELECT " + r[0] + " AS key, " + r[1] + " AS label, count(DISTINCT q.id) AS total " + FROM + f.where()
@@ -94,8 +96,9 @@ public class PracticeController {
                                                @RequestParam(required = false) String exam,
                                                @RequestParam(required = false) Integer year,
                                                @RequestParam(required = false) String kind,
+                                               @RequestParam(required = false) String paper,
                                                @RequestParam(defaultValue = "500") int limit) {
-        Filter f = filter(subject, topic, exam, year, kind);
+        Filter f = filter(subject, topic, exam, year, kind, paper);
         List<Object> args = new ArrayList<>(f.args());
         args.add(Math.min(Math.max(limit, 1), 500));
         return jdbc.queryForList("""
