@@ -1,0 +1,684 @@
+# Our own APSC-style questions for the Chapter 1 MIX mock (Mock 3). Different from practice-1.yml.
+# Same rules: 4-option MCQ, one correct, hand-workable numbers; shown only inside mock tests.
+
+# ---------- charge, current and voltage ----------
+- key: ec1-q-001
+  topic: ec1-charge-current-voltage
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A 400 km long transmission line at 50 Hz is modelled with distributed (not lumped) parameters because
+  options:
+    - {label: A, md: "its conductors are non-linear"}
+    - {label: B, md: "its length is a noticeable fraction of the wavelength at 50 Hz", correct: true}
+    - {label: C, md: "it carries AC and not DC"}
+    - {label: D, md: "it has no capacitance"}
+  solution: |
+    **Idea used:** the lumped model needs the circuit to be much smaller than the wavelength (see *Charge, current and voltage → Lumped elements*).
+
+    At 50 Hz, $\lambda = \dfrac{3\times10^8}{50} = 6000$ km. A 400 km line is $\tfrac{1}{15}$ of that, which is not "very small", so its R, L and C are spread along the length (distributed). AC by itself does not need distributed parameters; a 50 Hz room circuit is lumped. A line certainly has capacitance.
+
+    **Answer: (B).**
+
+- key: ec1-q-002
+  topic: ec1-charge-current-voltage
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    The current into a capacitor rises in a straight line from 0 to 4 mA in the first 2 s, and then stays at 4 mA for the next 3 s. The total charge delivered in these 5 s is
+  options:
+    - {label: A, md: "12 mC"}
+    - {label: B, md: "20 mC"}
+    - {label: C, md: "16 mC", correct: true}
+    - {label: D, md: "8 mC"}
+  solution: |
+    **Idea used:** charge is the area under the current–time graph, $q = \displaystyle\int i\,dt$ (see *Charge, current and voltage → Current*).
+
+    - Ramp (triangle): $\tfrac12\times2\times4 = 4$ mC.
+    - Flat part (rectangle): $3\times4 = 12$ mC.
+    - Total $= 16$ mC.
+
+    Trap: 20 mC treats the whole 5 s as 4 mA.
+
+    **Without a calculator:** triangle + rectangle: $4 + 12$.
+
+    **Answer: (C) 16 mC.**
+
+- key: ec1-q-003
+  topic: ec1-charge-current-voltage
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    The total charge carried by $5\times10^{18}$ electrons is about (electron charge $= 1.6\times10^{-19}$ C)
+  options:
+    - {label: A, md: "0.8 C", correct: true}
+    - {label: B, md: "3.2 C"}
+    - {label: C, md: "8 C"}
+    - {label: D, md: "0.32 C"}
+  solution: |
+    **Idea used:** $q = n\,e$ (see *Charge, current and voltage → Charge*).
+
+    $q = 5\times10^{18}\times1.6\times10^{-19} = 8\times10^{-1} = 0.8$ C.
+
+    **Without a calculator:** $5\times1.6 = 8$, and $10^{18}\times10^{-19} = 10^{-1}$.
+
+    **Answer: (A) 0.8 C.**
+
+- key: ec1-q-004
+  topic: ec1-charge-current-voltage
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    The charge flowing into an element is $q(t) = 2\sin 100t$ mC. The current at $t = 0$ is
+  options:
+    - {label: A, md: "0"}
+    - {label: B, md: "2 mA"}
+    - {label: C, md: "20 mA"}
+    - {label: D, md: "200 mA", correct: true}
+  solution: |
+    **Idea used:** $i = \dfrac{dq}{dt}$ (see *Charge, current and voltage → Current*).
+
+    $i(t) = 2\times100\cos100t = 200\cos100t$ mA. At $t = 0$, $\cos0 = 1$, so $i = 200$ mA.
+
+    Trap: 0 is the **charge** at $t = 0$ ($\sin0 = 0$), not the current. The current is largest where the charge is changing fastest.
+
+    **Without a calculator:** the derivative of $\sin at$ is $a\cos at$; $2\times100 = 200$.
+
+    **Answer: (D) 200 mA.**
+
+- key: ec1-q-005
+  topic: ec1-charge-current-voltage
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    The energy needed to move a charge of 0.5 C through a potential difference of 220 V is
+  options:
+    - {label: A, md: "440 J"}
+    - {label: B, md: "110 J", correct: true}
+    - {label: C, md: "220 J"}
+    - {label: D, md: "2.27 mJ"}
+  solution: |
+    **Idea used:** $W = qV$ (see *Charge, current and voltage → Voltage*).
+
+    $W = 0.5\times220 = 110$ J.
+
+    **Without a calculator:** half of 220.
+
+    **Answer: (B) 110 J.**
+
+# ---------- power and energy ----------
+- key: ec1-q-006
+  topic: ec1-power-energy
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A 2 kW heater is switched on for 15 minutes. The energy it uses, in megajoules, is
+  options:
+    - {label: A, md: "0.5 MJ"}
+    - {label: B, md: "30 MJ"}
+    - {label: C, md: "1.8 MJ", correct: true}
+    - {label: D, md: "7.2 MJ"}
+  solution: |
+    **Idea used:** $W = Pt$ and $1$ kWh $= 3.6$ MJ (see *Power and energy → Energy*).
+
+    $W = 2\ \text{kW}\times0.25\ \text{h} = 0.5$ kWh $= 0.5\times3.6 = 1.8$ MJ. (Directly: $2000\times900 = 1.8\times10^6$ J.)
+
+    Trap: 0.5 is the value in kWh, not MJ.
+
+    **Without a calculator:** half of 3.6 is 1.8.
+
+    **Answer: (C) 1.8 MJ.**
+
+# ---------- kinds of elements ----------
+- key: ec1-q-007
+  topic: ec1-kinds-of-elements
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A network made only of fixed resistors, inductors and capacitors is
+  options:
+    - {label: A, md: "linear, bilateral and passive", correct: true}
+    - {label: B, md: "linear, unilateral and passive"}
+    - {label: C, md: "non-linear, bilateral and active"}
+    - {label: D, md: "linear, bilateral and active"}
+  solution: |
+    **Idea used:** classification of R, L and C (see *Kinds of circuit elements*).
+
+    Fixed R, L and C are linear (their laws scale), bilateral (they behave the same both ways) and passive (they never give out more energy than they take). A network made only of such elements has the same three properties.
+
+    **Answer: (A).**
+
+- key: ec1-q-008
+  topic: ec1-kinds-of-elements
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A semiconductor diode is
+  options:
+    - {label: A, md: "linear, bilateral and passive"}
+    - {label: B, md: "non-linear, bilateral and active"}
+    - {label: C, md: "linear, unilateral and active"}
+    - {label: D, md: "non-linear, unilateral and passive", correct: true}
+  solution: |
+    **Idea used:** classification of elements (see *Kinds of circuit elements*).
+
+    Its v–i graph is a curve (non-linear); it conducts one way only (unilateral); it only absorbs energy and cannot supply power on its own (passive).
+
+    **Answer: (D).**
+
+# ---------- the resistor ----------
+- key: ec1-q-009
+  topic: ec1-resistor
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    The conductance of a 25 Ω resistor is
+  options:
+    - {label: A, md: "0.4 S"}
+    - {label: B, md: "0.04 S", correct: true}
+    - {label: C, md: "25 S"}
+    - {label: D, md: "4 S"}
+  solution: |
+    **Idea used:** $G = \dfrac1R$, unit siemens (see *The resistor → Ohm's law*).
+
+    $G = \dfrac{1}{25} = 0.04$ S.
+
+    **Without a calculator:** $\tfrac1{25} = \tfrac{4}{100}$.
+
+    **Answer: (B) 0.04 S.**
+
+- key: ec1-q-010
+  topic: ec1-resistor
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    Wire A and wire B are made of the same material. Wire A is twice as long as B and has half the diameter of B. The ratio $R_A : R_B$ is
+  options:
+    - {label: A, md: "1 : 1"}
+    - {label: B, md: "4 : 1"}
+    - {label: C, md: "8 : 1", correct: true}
+    - {label: D, md: "2 : 1"}
+  solution: |
+    **Idea used:** $R = \rho\dfrac{l}{A}$ and $A = \dfrac{\pi d^2}{4}$, so $R \propto \dfrac{l}{d^2}$ (see *The resistor → What decides the resistance*).
+
+    Length ratio 2; diameter ratio $\tfrac12$ gives area ratio $\tfrac14$. $\dfrac{R_A}{R_B} = \dfrac{2}{1/4} = 8$.
+
+    Trap: 4 : 1 takes area proportional to diameter.
+
+    **Without a calculator:** $2\times2^2 = 8$.
+
+    **Answer: (C) 8 : 1.**
+
+- key: ec1-q-011
+  topic: ec1-resistor
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Resistors of 2 Ω, 3 Ω and 6 Ω are connected in parallel. The equivalent resistance is
+  options:
+    - {label: A, md: "11 Ω"}
+    - {label: B, md: "3.67 Ω"}
+    - {label: C, md: "0.5 Ω"}
+    - {label: D, md: "1 Ω", correct: true}
+  solution: |
+    **Idea used:** in parallel, conductances add (see *The resistor → Resistors in series and in parallel*).
+
+    $\dfrac1R = \dfrac12 + \dfrac13 + \dfrac16 = \dfrac{3 + 2 + 1}{6} = 1$ ⇒ $R = 1$ Ω.
+
+    Check: the result must be smaller than the smallest resistor (2 Ω); only 1 Ω and 0.5 Ω pass, and 0.5 Ω fails the sum.
+
+    **Without a calculator:** use sixths: $3 + 2 + 1 = 6$ sixths $= 1$.
+
+    **Answer: (D) 1 Ω.**
+
+- key: ec1-q-012
+  topic: ec1-resistor
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    The coil of a 1000 W, 230 V heater is cut to half its length, and the remaining half is used on the same 230 V supply. Its power now is (ignore the change of resistance with temperature)
+  options:
+    - {label: A, md: "2000 W", correct: true}
+    - {label: B, md: "500 W"}
+    - {label: C, md: "1000 W"}
+    - {label: D, md: "4000 W"}
+  solution: |
+    **Idea used:** at fixed voltage, $P = \dfrac{V^2}{R} \propto \dfrac1R$; and $R \propto l$ (see *The resistor → Ratings of lamps and heaters*).
+
+    Half the length ⇒ half the resistance ⇒ double the power: 2000 W. (It will also run much hotter, which is why this is unsafe in practice.)
+
+    Trap: 500 W assumes power falls with length.
+
+    **Without a calculator:** $R$ halves, so $P$ doubles.
+
+    **Answer: (A) 2000 W.**
+
+# ---------- the capacitor ----------
+- key: ec1-q-013
+  topic: ec1-capacitor
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A capacitor charged to 100 V stores 0.5 J. Its capacitance is
+  options:
+    - {label: A, md: "10 µF"}
+    - {label: B, md: "50 µF"}
+    - {label: C, md: "100 µF", correct: true}
+    - {label: D, md: "1000 µF"}
+  solution: |
+    **Idea used:** $W = \tfrac12CV^2$ ⇒ $C = \dfrac{2W}{V^2}$ (see *The capacitor → Energy stored in a capacitor*).
+
+    $C = \dfrac{2\times0.5}{100^2} = \dfrac{1}{10^4} = 10^{-4}$ F $= 100$ µF.
+
+    Trap: 50 µF forgets the factor 2.
+
+    **Without a calculator:** $10^{-4}$ F $= 100\times10^{-6}$ F.
+
+    **Answer: (C) 100 µF.**
+
+- key: ec1-q-014
+  topic: ec1-capacitor
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A capacitor charged to voltage $V$ is connected across an identical uncharged capacitor. The fraction of the original stored energy that remains after charge sharing is
+  options:
+    - {label: A, md: "one quarter"}
+    - {label: B, md: "one half", correct: true}
+    - {label: C, md: "all of it"}
+    - {label: D, md: "three quarters"}
+  solution: |
+    **Idea used:** in charge sharing, charge is conserved but energy is not (see *The capacitor → Charge sharing between two capacitors*).
+
+    Before: $\tfrac12CV^2$. Charge $CV$ spreads over $2C$, so each capacitor ends at $V/2$. After: $2\times\tfrac12C\left(\tfrac V2\right)^2 = \tfrac14CV^2$. Remaining fraction $= \dfrac{1/4}{1/2} = \tfrac12$. The other half is lost in the wires (as heat and radiation).
+
+    Trap: one quarter is the energy left in **each** capacitor as a fraction of the original.
+
+    **Without a calculator:** each capacitor ends at half the voltage, so it holds $\left(\tfrac12\right)^2 = \tfrac14$ of the original energy; two of them hold $\tfrac12$.
+
+    **Answer: (B) one half.**
+
+- key: ec1-q-015
+  topic: ec1-capacitor
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Both the plate area and the plate separation of a parallel-plate capacitor are doubled. The capacitance
+  options:
+    - {label: A, md: "becomes 4 times"}
+    - {label: B, md: "becomes double"}
+    - {label: C, md: "becomes half"}
+    - {label: D, md: "stays the same", correct: true}
+  solution: |
+    **Idea used:** $C = \dfrac{\varepsilon A}{d}$ (see *The capacitor → What a capacitor is*).
+
+    $\dfrac{\varepsilon(2A)}{2d} = \dfrac{\varepsilon A}{d}$: no change.
+
+    **Answer: (D) stays the same.**
+
+- key: ec1-q-016
+  topic: ec1-capacitor
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A voltage $v = 100\sin100t$ V is applied across a 10 µF capacitor. The peak value of the current is
+  options:
+    - {label: A, md: "1 mA"}
+    - {label: B, md: "0.1 A", correct: true}
+    - {label: C, md: "10 A"}
+    - {label: D, md: "1 A"}
+  solution: |
+    **Idea used:** $i = C\dfrac{dv}{dt}$ (see *The capacitor → The current–voltage rule*).
+
+    $\dfrac{dv}{dt} = 100\times100\cos100t = 10^4\cos100t$ V/s. $i = 10\times10^{-6}\times10^4\cos100t = 0.1\cos100t$ A. Peak $= 0.1$ A.
+
+    **Without a calculator:** peak current $= C\,\omega\,V_m = 10^{-5}\times10^2\times10^2 = 10^{-1}$ A.
+
+    **Answer: (B) 0.1 A.**
+
+# ---------- the inductor ----------
+- key: ec1-q-017
+  topic: ec1-inductor
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Three uncoupled inductors of 6 mH each are connected so that two are in series and this pair is in parallel with the third. The equivalent inductance is
+  options:
+    - {label: A, md: "4 mH", correct: true}
+    - {label: B, md: "9 mH"}
+    - {label: C, md: "2 mH"}
+    - {label: D, md: "18 mH"}
+  solution: |
+    **Idea used:** uncoupled inductors combine like resistors (see *The inductor → Inductors in series and in parallel*).
+
+    Series pair: $6 + 6 = 12$ mH. In parallel with 6 mH: $\dfrac{12\times6}{12 + 6} = \dfrac{72}{18} = 4$ mH.
+
+    **Without a calculator:** $2L \parallel L = \tfrac23L = \tfrac23\times6 = 4$.
+
+    **Answer: (A) 4 mH.**
+
+- key: ec1-q-018
+  topic: ec1-inductor
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    The current in a 2 H inductor is increased from 2 A to 4 A. The extra energy stored in the inductor is
+  options:
+    - {label: A, md: "4 J"}
+    - {label: B, md: "16 J"}
+    - {label: C, md: "8 J"}
+    - {label: D, md: "12 J", correct: true}
+  solution: |
+    **Idea used:** $W = \tfrac12LI^2$; the extra energy is the difference of the two values (see *The inductor → Power and energy in an inductor*).
+
+    At 4 A: $\tfrac12\times2\times16 = 16$ J. At 2 A: $\tfrac12\times2\times4 = 4$ J. Extra $= 16 - 4 = 12$ J.
+
+    Trap: 4 J uses $\tfrac12L(\Delta I)^2 = \tfrac12\times2\times2^2$; energy goes with $I^2$, not with $(\Delta I)^2$.
+
+    **Without a calculator:** with $L = 2$, $W = I^2$: $16 - 4 = 12$.
+
+    **Answer: (D) 12 J.**
+
+# ---------- mutual inductance ----------
+- key: ec1-q-019
+  topic: ec1-mutual-inductance
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Two coils of 16 mH and 25 mH are perfectly coupled ($k = 1$). Their mutual inductance is
+  options:
+    - {label: A, md: "41 mH"}
+    - {label: B, md: "20 mH", correct: true}
+    - {label: C, md: "9 mH"}
+    - {label: D, md: "400 mH"}
+  solution: |
+    **Idea used:** $M = k\sqrt{L_1L_2}$; $k = 1$ gives the largest possible $M$ (see *Mutual inductance → How strong is the coupling?*).
+
+    $M = \sqrt{16\times25} = \sqrt{400} = 20$ mH.
+
+    **Without a calculator:** $\sqrt{16} = 4$, $\sqrt{25} = 5$, product 20.
+
+    **Answer: (B) 20 mH.**
+
+- key: ec1-q-020
+  topic: ec1-mutual-inductance
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Two coils have $L_1 = 0.2$ H, $L_2 = 0.8$ H and mutual inductance $M = 0.2$ H. The coefficient of coupling is
+  options:
+    - {label: A, md: "0.25"}
+    - {label: B, md: "1"}
+    - {label: C, md: "0.5", correct: true}
+    - {label: D, md: "0.2"}
+  solution: |
+    **Idea used:** $k = \dfrac{M}{\sqrt{L_1L_2}}$ (see *Mutual inductance → How strong is the coupling?*).
+
+    $\sqrt{0.2\times0.8} = \sqrt{0.16} = 0.4$. $k = \dfrac{0.2}{0.4} = 0.5$.
+
+    **Without a calculator:** $0.2\times0.8 = 0.16$, whose root is 0.4.
+
+    **Answer: (C) 0.5.**
+
+- key: ec1-q-021
+  topic: ec1-mutual-inductance
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Coils of 3 mH and 5 mH with a mutual inductance of 1 mH are connected in series **aiding**. The total inductance is
+  options:
+    - {label: A, md: "10 mH", correct: true}
+    - {label: B, md: "9 mH"}
+    - {label: C, md: "6 mH"}
+    - {label: D, md: "8 mH"}
+  solution: |
+    **Idea used:** series aiding: $L = L_1 + L_2 + 2M$ (see *Mutual inductance → Two coupled coils in series*).
+
+    $L = 3 + 5 + 2\times1 = 10$ mH.
+
+    Traps: 9 mH adds $M$ once; 6 mH is the opposing connection; 8 mH ignores coupling.
+
+    **Answer: (A) 10 mH.**
+
+- key: ec1-q-022
+  topic: ec1-mutual-inductance
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    Two coupled coils are joined in series so that the same current enters the dotted terminal of each coil. This connection is
+  options:
+    - {label: A, md: "series opposing, $L = L_1 + L_2 - 2M$"}
+    - {label: B, md: "series aiding, $L = L_1 + L_2 - M$"}
+    - {label: C, md: "series opposing, $L = L_1 + L_2 - M$"}
+    - {label: D, md: "series aiding, $L = L_1 + L_2 + 2M$", correct: true}
+  solution: |
+    **Idea used:** dot convention in a series connection (see *Mutual inductance → The dot convention* and *Two coupled coils in series*).
+
+    When the current enters both dotted ends (or leaves both), the fluxes add: series **aiding**, and each coil gets an extra $M\,di/dt$, so $L = L_1 + L_2 + 2M$. If it entered one dotted end and left the other, the fluxes would oppose and $L = L_1 + L_2 - 2M$.
+
+    **Answer: (D).**
+
+# ---------- independent sources ----------
+- key: ec1-q-023
+  topic: ec1-independent-sources
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    When a practical voltage source delivers maximum power to a resistive load, the efficiency of power transfer is
+  options:
+    - {label: A, md: "100 %"}
+    - {label: B, md: "75 %"}
+    - {label: C, md: "50 %", correct: true}
+    - {label: D, md: "25 %"}
+  solution: |
+    **Idea used:** maximum power transfer needs $R_L = r$ (see *Independent sources → A first word on maximum power*).
+
+    With $R_L = r$, the same current flows through both, so the power lost in $r$ equals the power in $R_L$. Half of the source power reaches the load: 50 %.
+
+    **Answer: (C) 50 %.**
+
+- key: ec1-q-024
+  topic: ec1-independent-sources
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A practical source has an internal resistance of 10 kΩ and feeds a 10 Ω load. With this load it behaves nearly as
+  options:
+    - {label: A, md: "a constant-voltage source"}
+    - {label: B, md: "a constant-current source", correct: true}
+    - {label: C, md: "an open circuit"}
+    - {label: D, md: "a short circuit"}
+  solution: |
+    **Idea used:** when $r \gg R_L$, the current $\dfrac{E}{r + R_L} \approx \dfrac{E}{r}$ hardly depends on the load (see *Independent sources → When does a source behave as "constant current"*).
+
+    10 kΩ is 1000 times 10 Ω, so the load current stays almost the same if the load changes a little: constant current.
+
+    **Answer: (B).**
+
+# ---------- dependent sources ----------
+- key: ec1-q-025
+  topic: ec1-dependent-sources
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    For a current-controlled current source $i = \beta\,i_x$, the gain $\beta$ is measured in
+  options:
+    - {label: A, md: "ohm"}
+    - {label: B, md: "siemens"}
+    - {label: C, md: "ampere"}
+    - {label: D, md: "no unit (it is a pure ratio)", correct: true}
+  solution: |
+    **Idea used:** units of the four dependent-source gains (see *Dependent sources*).
+
+    $\beta = \dfrac{i}{i_x}$ is a current divided by a current: a pure number (current gain). VCVS gain is also unitless; CCVS gain is in ohms; VCCS gain is in siemens.
+
+    **Answer: (D).**
+
+- key: ec1-q-026
+  topic: ec1-dependent-sources
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A voltage-controlled current source gives $i = 0.5\,v_x$ A, where $v_x = 4$ V. The voltage across the source is 10 V and its current **leaves** its + terminal. The source
+  options:
+    - {label: A, md: "delivers 20 W", correct: true}
+    - {label: B, md: "absorbs 20 W"}
+    - {label: C, md: "delivers 5 W"}
+    - {label: D, md: "delivers 2 W"}
+  solution: |
+    **Idea used:** power of a dependent source with the passive sign convention (see *Dependent sources → Power of a dependent source*).
+
+    Source current $= 0.5\times4 = 2$ A. Current leaving the + terminal means the source delivers $P = 10\times2 = 20$ W.
+
+    Traps: 5 W uses $0.5\times10$; 2 W uses only the current.
+
+    **Without a calculator:** $0.5\times4 = 2$, $2\times10 = 20$.
+
+    **Answer: (A) delivers 20 W.**
+
+# ---------- KCL and KVL ----------
+- key: ec1-q-027
+  topic: ec1-kcl-kvl-first-look
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    Four branch currents at a node are marked with arrows: $i_1 = 2$ A (arrow into the node), $i_3 = -4$ A (arrow into the node), $i_2 = 3$ A (arrow out of the node) and $i_4$ (arrow out of the node). The value of $i_4$ is
+  options:
+    - {label: A, md: "9 A"}
+    - {label: B, md: "1 A"}
+    - {label: C, md: "−5 A", correct: true}
+    - {label: D, md: "−1 A"}
+  solution: |
+    **Idea used:** KCL with reference arrows: sum of currents with arrows in = sum with arrows out; a negative value just means the real current flows against its arrow (see *KCL and KVL → Kirchhoff's Current Law*).
+
+    In: $2 + (-4) = -2$. Out: $3 + i_4$. So $3 + i_4 = -2$ ⇒ $i_4 = -5$ A. (5 A actually flows **into** the node in branch 4.)
+
+    Trap: 9 A ignores the sign of $i_3$.
+
+    **Without a calculator:** $-2 - 3 = -5$.
+
+    **Answer: (C) −5 A.**
+
+- key: ec1-q-028
+  topic: ec1-kcl-kvl-first-look
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Measured from ground, node a is at 12 V and node c is at −3 V. The voltage $V_{ac}$ (a with respect to c) is
+  options:
+    - {label: A, md: "9 V"}
+    - {label: B, md: "15 V", correct: true}
+    - {label: C, md: "−15 V"}
+    - {label: D, md: "−9 V"}
+  solution: |
+    **Idea used:** a voltage between two nodes is the difference of their node voltages, $V_{ac} = V_a - V_c$ (see *Charge, current and voltage → Ground* and *KCL and KVL*).
+
+    $V_{ac} = 12 - (-3) = 15$ V.
+
+    Trap: 9 V treats −3 as +3.
+
+    **Answer: (B) 15 V.**
+
+- key: ec1-q-029
+  topic: ec1-kcl-kvl-first-look
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A single loop has a 20 V source, a 5 V source and a 5 Ω resistor in series. The two sources are connected so that they push current in opposite directions round the loop. The current in the resistor is
+  options:
+    - {label: A, md: "5 A"}
+    - {label: B, md: "4 A"}
+    - {label: C, md: "1 A"}
+    - {label: D, md: "3 A", correct: true}
+  solution: |
+    **Idea used:** KVL in one loop: net EMF = drop in the resistor (see *KCL and KVL → Kirchhoff's Voltage Law*).
+
+    The sources oppose, so the net push is $20 - 5 = 15$ V, in the direction of the 20 V source. $I = \dfrac{15}{5} = 3$ A.
+
+    Trap: 5 A adds the sources ($25/5$).
+
+    **Without a calculator:** $15 \div 5 = 3$.
+
+    **Answer: (D) 3 A.**
+
+- key: ec1-q-030
+  topic: ec1-kcl-kvl-first-look
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A 12 V source charges a 4 V battery through a 4 Ω resistor (one loop; the battery's + terminal is joined towards the source's + terminal through the resistor). The power absorbed by the 4 V battery is
+  options:
+    - {label: A, md: "8 W", correct: true}
+    - {label: B, md: "16 W"}
+    - {label: C, md: "24 W"}
+    - {label: D, md: "4 W"}
+  solution: |
+    **Idea used:** KVL for the current, then the passive sign convention and power balance (see *KCL and KVL → Power balance in a part of a circuit*).
+
+    The sources oppose: $I = \dfrac{12 - 4}{4} = 2$ A, entering the battery's + terminal. Battery absorbs $4\times2 = 8$ W. Check: source gives $12\times2 = 24$ W; resistor takes $2^2\times4 = 16$ W; $16 + 8 = 24$ ✔.
+
+    Traps: 16 W is the resistor's share; 24 W is the source's total.
+
+    **Without a calculator:** $8 \div 4 = 2$ A, $4\times2 = 8$ W.
+
+    **Answer: (A) 8 W.**

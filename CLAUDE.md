@@ -10,6 +10,16 @@ If anything is missing (a source file, an answer key, a syllabus item), ask the 
   approximation, ratios, option elimination, unit/limit checks. Notes should teach these mental-math shortcuts.
 - Practice questions written by us must be MCQ with numbers that can be worked by hand.
 
+## Mock tests (Tests tab, owner's rules)
+- **Always study the APSC papers first** (`sources/03_apsc_papers`, OCR in the workspace) before setting a mock: copy their
+  style (4 options, short stems, easy hand numbers, some "None of the above", textbook theory one-liners, GATE questions turned into MCQ).
+- APSC format: 100 Q in 2 h (72 s per question), +1 / −0.25 (Paper I: 1.5 marks, same 25 % negative). Mocks use +1 / −0.25 and 1.2 min per question.
+- **Three mocks per chapter**: PYQ only, fresh only (our questions), mixed (about half each). Defined in `<chapter>/mocks.yml`.
+- **Question count follows coverage**, never a fixed number: every concept of the chapter at least once.
+- Our questions live in `<chapter>/practice-*.yml` (no sources, origin PRACTICE). They are shown only inside tests, never in Study or PYQ.
+  NAT PYQs get 4 `options` so tests can ask them as MCQ (Study still asks them as NAT).
+- Subject-wise mock: only after **all** chapters of that subject are ready.
+
 ## Writing concept notes (Study tab)
 - Write like the best teacher. Style: Lakhmir Singh (S. Chand) - very clear, detailed, conceptual, simple English.
 - Teaching must be **integral, gradual and complete**:

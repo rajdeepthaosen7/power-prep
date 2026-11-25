@@ -5166,11 +5166,4062 @@ Read the circuit: $I = 5$ A leaves the + terminal of the 20 V source ($P_1$) and
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
 END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-charge-current-voltage';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-001';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A circuit can be analysed with lumped elements (KCL and KVL) only when', 'A circuit can be analysed with lumped elements (KCL and KVL) only when
+', '**Idea used:** the lumped element model (see *Charge, current and voltage → Lumped elements*).
+
+The lumped model treats each element as sitting at one point and the wires as perfect. This holds when the circuit is electrically small, that is, much smaller than the wavelength $\lambda = c/f$. At 50 Hz, $\lambda = 6000$ km, so almost every circuit is "small". Linearity, DC or the absence of L and C have nothing to do with it: KCL and KVL work for non-linear, AC and RLC circuits too.
+
+**Answer: (C).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-001', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A circuit can be analysed with lumped elements (KCL and KVL) only when'), stem_md = 'A circuit can be analysed with lumped elements (KCL and KVL) only when
+', solution_md = '**Idea used:** the lumped element model (see *Charge, current and voltage → Lumped elements*).
+
+The lumped model treats each element as sitting at one point and the wires as perfect. This holds when the circuit is electrically small, that is, much smaller than the wavelength $\lambda = c/f$. At 50 Hz, $\lambda = 6000$ km, so almost every circuit is "small". Linearity, DC or the absence of L and C have nothing to do with it: KCL and KVL work for non-linear, AC and RLC circuits too.
+
+**Answer: (C).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-001', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'all its elements are linear', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'the supply is DC', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'its physical size is very small compared with the wavelength of the signals', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'it has no energy-storing elements', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-charge-current-voltage');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-charge-current-voltage';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-002';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A steady current of 4 mA flows through a wire for 5 minutes. The charge that passes any cross-section of the wire is', 'A steady current of 4 mA flows through a wire for 5 minutes. The charge that passes any cross-section of the wire is
+', '**Idea used:** for a constant current, $q = I\,t$ (see *Charge, current and voltage → Current*).
+
+$t = 5$ min $= 300$ s. $q = 4\times10^{-3}\times300 = 1.2$ C.
+
+Trap: using $t = 5$ (minutes, not seconds) gives 0.02 C.
+
+**Without a calculator:** $4 \times 300 = 1200$ mC $= 1.2$ C.
+
+**Answer: (B) 1.2 C.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-002', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A steady current of 4 mA flows through a wire for 5 minutes. The charge that passes any cross-section of the wire is'), stem_md = 'A steady current of 4 mA flows through a wire for 5 minutes. The charge that passes any cross-section of the wire is
+', solution_md = '**Idea used:** for a constant current, $q = I\,t$ (see *Charge, current and voltage → Current*).
+
+$t = 5$ min $= 300$ s. $q = 4\times10^{-3}\times300 = 1.2$ C.
+
+Trap: using $t = 5$ (minutes, not seconds) gives 0.02 C.
+
+**Without a calculator:** $4 \times 300 = 1200$ mC $= 1.2$ C.
+
+**Answer: (B) 1.2 C.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-002', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.02 C', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.2 C', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '20 C', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1200 C', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-charge-current-voltage');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-charge-current-voltage';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-003';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A current of 1.6 mA flows in a conductor. Taking the electron charge as $1.6\times10^{-19}$ C, the number of electrons passing a point every second is about', 'A current of 1.6 mA flows in a conductor. Taking the electron charge as $1.6\times10^{-19}$ C, the number of electrons passing a point every second is about
+', '**Idea used:** current is charge per second; $n = \dfrac{I}{e}$ electrons per second.
+
+$n = \dfrac{1.6\times10^{-3}}{1.6\times10^{-19}} = 10^{-3+19} = 10^{16}$ per second.
+
+**Without a calculator:** the 1.6 cancels; only the powers of ten remain: $-3 - (-19) = 16$.
+
+**Answer: (A) $10^{16}$.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-003', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A current of 1.6 mA flows in a conductor. Taking the electron charge as $1.6\times10^{-19}$ C, the number of electrons passing a point every second is about'), stem_md = 'A current of 1.6 mA flows in a conductor. Taking the electron charge as $1.6\times10^{-19}$ C, the number of electrons passing a point every second is about
+', solution_md = '**Idea used:** current is charge per second; $n = \dfrac{I}{e}$ electrons per second.
+
+$n = \dfrac{1.6\times10^{-3}}{1.6\times10^{-19}} = 10^{-3+19} = 10^{16}$ per second.
+
+**Without a calculator:** the 1.6 cancels; only the powers of ten remain: $-3 - (-19) = 16$.
+
+**Answer: (A) $10^{16}$.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-003', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$10^{16}$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$10^{19}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$10^{22}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$10^{13}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-charge-current-voltage');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-charge-current-voltage';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-004';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'In a metal wire, the conventional current flows', 'In a metal wire, the conventional current flows
+', '**Idea used:** direction of current (see *Charge, current and voltage → Direction of current*).
+
+By agreement, current is the direction in which **positive** charge would move. In a metal the moving charges are electrons (negative), so they move opposite to the conventional current. This is true for DC and AC alike.
+
+**Answer: (B).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-004', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'In a metal wire, the conventional current flows'), stem_md = 'In a metal wire, the conventional current flows
+', solution_md = '**Idea used:** direction of current (see *Charge, current and voltage → Direction of current*).
+
+By agreement, current is the direction in which **positive** charge would move. In a metal the moving charges are electrons (negative), so they move opposite to the conventional current. This is true for DC and AC alike.
+
+**Answer: (B).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-004', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'in the same direction as the electrons move', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'opposite to the direction in which the electrons move', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'at right angles to the motion of the electrons', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'in the direction of electron motion for AC only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-charge-current-voltage');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-charge-current-voltage';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-005';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', '60 J of work is done in moving a charge of 5 C from point A to point B. The potential difference between A and B is', '60 J of work is done in moving a charge of 5 C from point A to point B. The potential difference between A and B is
+', '**Idea used:** voltage is energy per unit charge, $V = \dfrac{W}{q}$ (see *Charge, current and voltage → Voltage*).
+
+$V = \dfrac{60}{5} = 12$ V.
+
+Traps: $q/W = 0.083$ (upside down) and $W\times q = 300$.
+
+**Without a calculator:** $60 \div 5 = 12$. Unit check: J/C = V.
+
+**Answer: (C) 12 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-005', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), '60 J of work is done in moving a charge of 5 C from point A to point B. The potential difference between A and B is'), stem_md = '60 J of work is done in moving a charge of 5 C from point A to point B. The potential difference between A and B is
+', solution_md = '**Idea used:** voltage is energy per unit charge, $V = \dfrac{W}{q}$ (see *Charge, current and voltage → Voltage*).
+
+$V = \dfrac{60}{5} = 12$ V.
+
+Traps: $q/W = 0.083$ (upside down) and $W\times q = 300$.
+
+**Without a calculator:** $60 \div 5 = 12$. Unit check: J/C = V.
+
+**Answer: (C) 12 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-005', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.083 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '5 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '12 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '300 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-charge-current-voltage');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-charge-current-voltage';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-006';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The charge entering a terminal of an element is $q(t) = 5t^2 - 2t$ mC, with $t$ in seconds. The current into the terminal at $t = 1$ s is', 'The charge entering a terminal of an element is $q(t) = 5t^2 - 2t$ mC, with $t$ in seconds. The current into the terminal at $t = 1$ s is
+', '**Idea used:** $i = \dfrac{dq}{dt}$ (see *Charge, current and voltage → Current*).
+
+$i(t) = \dfrac{d}{dt}(5t^2 - 2t) = 10t - 2$ mA. At $t = 1$ s: $i = 10 - 2 = 8$ mA.
+
+Trap: putting $t = 1$ into $q(t)$ itself gives 3, which is the charge (3 mC), not the current.
+
+**Without a calculator:** differentiate term by term: $5t^2 \to 10t$, $2t \to 2$.
+
+**Answer: (A) 8 mA.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-006', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The charge entering a terminal of an element is $q(t) = 5t^2 - 2t$ mC, with $t$ in seconds. The current into the terminal at $t = 1$ s is'), stem_md = 'The charge entering a terminal of an element is $q(t) = 5t^2 - 2t$ mC, with $t$ in seconds. The current into the terminal at $t = 1$ s is
+', solution_md = '**Idea used:** $i = \dfrac{dq}{dt}$ (see *Charge, current and voltage → Current*).
+
+$i(t) = \dfrac{d}{dt}(5t^2 - 2t) = 10t - 2$ mA. At $t = 1$ s: $i = 10 - 2 = 8$ mA.
+
+Trap: putting $t = 1$ into $q(t)$ itself gives 3, which is the charge (3 mC), not the current.
+
+**Without a calculator:** differentiate term by term: $5t^2 \to 10t$, $2t \to 2$.
+
+**Answer: (A) 8 mA.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-006', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '8 mA', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3 mA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '10 mA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '13 mA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-charge-current-voltage');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-power-energy';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-007';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 230 V room heater draws 4 A. The energy it uses in 2 hours is', 'A 230 V room heater draws 4 A. The energy it uses in 2 hours is
+', '**Idea used:** $P = VI$ and $W = P\,t$ (see *Power and energy*).
+
+$P = 230\times4 = 920$ W $= 0.92$ kW. $W = 0.92\times2 = 1.84$ kWh.
+
+Trap: 0.92 kWh is the energy in one hour only.
+
+**Without a calculator:** $230\times4 = 920$; doubling gives 1840 Wh $= 1.84$ kWh.
+
+**Answer: (C) 1.84 kWh.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-007', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 230 V room heater draws 4 A. The energy it uses in 2 hours is'), stem_md = 'A 230 V room heater draws 4 A. The energy it uses in 2 hours is
+', solution_md = '**Idea used:** $P = VI$ and $W = P\,t$ (see *Power and energy*).
+
+$P = 230\times4 = 920$ W $= 0.92$ kW. $W = 0.92\times2 = 1.84$ kWh.
+
+Trap: 0.92 kWh is the energy in one hour only.
+
+**Without a calculator:** $230\times4 = 920$; doubling gives 1840 Wh $= 1.84$ kWh.
+
+**Answer: (C) 1.84 kWh.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-007', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.46 kWh', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.92 kWh', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1.84 kWh', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '3.68 kWh', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-power-energy');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-power-energy';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-008';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The voltage across an element is 10 V, with terminal P at the higher potential. A current of 3 A enters the element at its other terminal Q (the...', 'The voltage across an element is 10 V, with terminal P at the higher potential. A current of 3 A **enters** the element at its other terminal Q (the lower-potential terminal). The element
+', '**Idea used:** passive sign convention: if the current enters the **+** terminal, absorbed power $= +vi$; if it enters the **−** terminal, absorbed power $= -vi$ (see *Power and energy → The passive sign convention*).
+
+P is +, Q is −. The current enters at Q, the − terminal. So absorbed power $= -(10)(3) = -30$ W, which means the element **delivers** 30 W. (It acts like a source: current leaves its + terminal.)
+
+Trap: 13 W comes from adding 10 and 3; power is a product.
+
+**Without a calculator:** $10\times3 = 30$; only the sign needs thought.
+
+**Answer: (D) delivers 30 W.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-008', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The voltage across an element is 10 V, with terminal P at the higher potential. A current of 3 A enters the element at its other terminal Q (the...'), stem_md = 'The voltage across an element is 10 V, with terminal P at the higher potential. A current of 3 A **enters** the element at its other terminal Q (the lower-potential terminal). The element
+', solution_md = '**Idea used:** passive sign convention: if the current enters the **+** terminal, absorbed power $= +vi$; if it enters the **−** terminal, absorbed power $= -vi$ (see *Power and energy → The passive sign convention*).
+
+P is +, Q is −. The current enters at Q, the − terminal. So absorbed power $= -(10)(3) = -30$ W, which means the element **delivers** 30 W. (It acts like a source: current leaves its + terminal.)
+
+Trap: 13 W comes from adding 10 and 3; power is a product.
+
+**Without a calculator:** $10\times3 = 30$; only the sign needs thought.
+
+**Answer: (D) delivers 30 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-008', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'absorbs 30 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'absorbs 13 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'delivers 13 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'delivers 30 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-power-energy');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-power-energy';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-009';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A circuit has exactly four elements. Element 1 delivers 50 W, element 2 absorbs 30 W and element 3 absorbs 12 W. Element 4', 'A circuit has exactly four elements. Element 1 delivers 50 W, element 2 absorbs 30 W and element 3 absorbs 12 W. Element 4
+', '**Idea used:** power balance: in any circuit, total power delivered = total power absorbed (see *Power and energy → Power balance*).
+
+Delivered: 50 W. Absorbed so far: $30 + 12 = 42$ W. The remaining $50 - 42 = 8$ W must be absorbed by element 4.
+
+**Without a calculator:** $50 - 42 = 8$.
+
+**Answer: (B) absorbs 8 W.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-009', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A circuit has exactly four elements. Element 1 delivers 50 W, element 2 absorbs 30 W and element 3 absorbs 12 W. Element 4'), stem_md = 'A circuit has exactly four elements. Element 1 delivers 50 W, element 2 absorbs 30 W and element 3 absorbs 12 W. Element 4
+', solution_md = '**Idea used:** power balance: in any circuit, total power delivered = total power absorbed (see *Power and energy → Power balance*).
+
+Delivered: 50 W. Absorbed so far: $30 + 12 = 42$ W. The remaining $50 - 42 = 8$ W must be absorbed by element 4.
+
+**Without a calculator:** $50 - 42 = 8$.
+
+**Answer: (B) absorbs 8 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-009', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'delivers 8 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'absorbs 8 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'absorbs 92 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'delivers 92 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-power-energy');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-power-energy';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-010';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A house uses five 20 W LED lamps for 6 hours a day. At ₹6 per unit (kWh), the cost of running them for 30 days is', 'A house uses five 20 W LED lamps for 6 hours a day. At ₹6 per unit (kWh), the cost of running them for 30 days is
+', '**Idea used:** energy $= P\times t$; one unit = 1 kWh (see *Power and energy → Energy*).
+
+Power $= 5\times20 = 100$ W. Energy $= 100\times6\times30 = 18\,000$ Wh $= 18$ kWh. Cost $= 18\times6 = ₹108$.
+
+Trap: ₹18 is the number of units, not the cost.
+
+**Without a calculator:** 100 W for 180 h is 18 000 Wh = 18 units; $18\times6 = 108$.
+
+**Answer: (C) ₹108.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-010', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A house uses five 20 W LED lamps for 6 hours a day. At ₹6 per unit (kWh), the cost of running them for 30 days is'), stem_md = 'A house uses five 20 W LED lamps for 6 hours a day. At ₹6 per unit (kWh), the cost of running them for 30 days is
+', solution_md = '**Idea used:** energy $= P\times t$; one unit = 1 kWh (see *Power and energy → Energy*).
+
+Power $= 5\times20 = 100$ W. Energy $= 100\times6\times30 = 18\,000$ Wh $= 18$ kWh. Cost $= 18\times6 = ₹108$.
+
+Trap: ₹18 is the number of units, not the cost.
+
+**Without a calculator:** 100 W for 180 h is 18 000 Wh = 18 units; $18\times6 = 108$.
+
+**Answer: (C) ₹108.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-010', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '₹18', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '₹54', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '₹108', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '₹180', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-power-energy');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kinds-of-elements';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-011';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'An element (or network) is called linear when it obeys', 'An element (or network) is called linear when it obeys
+', '**Idea used:** linearity (see *Kinds of circuit elements → Linear and non-linear elements*).
+
+Linear means superposition holds, and superposition is the two properties together: scaling the input scales the output (homogeneity), and the response to a sum is the sum of the responses (additivity). One property alone is not enough. A resistor that obeys Ohm''s law is one linear element, but linearity is the wider idea.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-011', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'An element (or network) is called linear when it obeys'), stem_md = 'An element (or network) is called linear when it obeys
+', solution_md = '**Idea used:** linearity (see *Kinds of circuit elements → Linear and non-linear elements*).
+
+Linear means superposition holds, and superposition is the two properties together: scaling the input scales the output (homogeneity), and the response to a sum is the sum of the responses (additivity). One property alone is not enough. A resistor that obeys Ohm''s law is one linear element, but linearity is the wider idea.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-011', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'both homogeneity (scaling) and additivity, that is, superposition', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'homogeneity only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'additivity only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Ohm''s law at one fixed temperature only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kinds-of-elements');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kinds-of-elements';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-012';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Which one of the following voltage–current relations describes a linear element?', 'Which one of the following voltage–current relations describes a **linear** element?
+', '**Idea used:** test homogeneity: double $i$ and see whether $v$ doubles (see *Kinds of circuit elements*).
+
+- $v = 2i + 1$: $i \to 2i$ gives $4i + 1 \ne 2(2i + 1)$. Not linear (a straight line that does not pass through the origin).
+- $v = 3i^2$: doubling $i$ makes $v$ four times. Not linear.
+- $v = 4\,di/dt$: doubling $i$ doubles $di/dt$ and so doubles $v$; the derivative of a sum is the sum of derivatives. **Linear.** This is a 4 H inductor.
+- $v = i|i|$: doubling $i$ makes $v$ four times. Not linear.
+
+**Answer: (C).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-012', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Which one of the following voltage–current relations describes a linear element?'), stem_md = 'Which one of the following voltage–current relations describes a **linear** element?
+', solution_md = '**Idea used:** test homogeneity: double $i$ and see whether $v$ doubles (see *Kinds of circuit elements*).
+
+- $v = 2i + 1$: $i \to 2i$ gives $4i + 1 \ne 2(2i + 1)$. Not linear (a straight line that does not pass through the origin).
+- $v = 3i^2$: doubling $i$ makes $v$ four times. Not linear.
+- $v = 4\,di/dt$: doubling $i$ doubles $di/dt$ and so doubles $v$; the derivative of a sum is the sum of derivatives. **Linear.** This is a 4 H inductor.
+- $v = i|i|$: doubling $i$ makes $v$ four times. Not linear.
+
+**Answer: (C).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-012', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$v = 2i + 1$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$v = 3i^2$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$v = 4\,\dfrac{di}{dt}$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$v = i\,|i|$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kinds-of-elements');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kinds-of-elements';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-013';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Which one of the following is a unilateral element?', 'Which one of the following is a unilateral element?
+', '**Idea used:** bilateral and unilateral elements (see *Kinds of circuit elements*).
+
+A bilateral element behaves the same for current in either direction; R, L and C are bilateral. A diode conducts easily one way and blocks the other way, so it is unilateral.
+
+**Answer: (D) Diode.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-013', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Which one of the following is a unilateral element?'), stem_md = 'Which one of the following is a unilateral element?
+', solution_md = '**Idea used:** bilateral and unilateral elements (see *Kinds of circuit elements*).
+
+A bilateral element behaves the same for current in either direction; R, L and C are bilateral. A diode conducts easily one way and blocks the other way, so it is unilateral.
+
+**Answer: (D) Diode.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-013', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'Resistor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Capacitor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Inductor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Diode', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kinds-of-elements');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kinds-of-elements';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-014';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Which one of the following is an active element?', 'Which one of the following is an active element?
+', '**Idea used:** active and passive elements (see *Kinds of circuit elements → Active and passive elements*).
+
+An active element can deliver net energy to the circuit for an unlimited time; sources (independent and dependent) are active. R only absorbs energy; L and C store energy and give back only what they took. So R, L and C are passive.
+
+**Answer: (B) Ideal current source.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-014', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Which one of the following is an active element?'), stem_md = 'Which one of the following is an active element?
+', solution_md = '**Idea used:** active and passive elements (see *Kinds of circuit elements → Active and passive elements*).
+
+An active element can deliver net energy to the circuit for an unlimited time; sources (independent and dependent) are active. R only absorbs energy; L and C store energy and give back only what they took. So R, L and C are passive.
+
+**Answer: (B) Ideal current source.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-014', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'Inductor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Ideal current source', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Capacitor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Resistor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kinds-of-elements');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kinds-of-elements';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-015';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'An element is called passive if', 'An element is called **passive** if
+', '**Idea used:** the energy definition of a passive element (see *Kinds of circuit elements*).
+
+A passive element can never give out more energy than it has received, so the total energy put into it is $\ge 0$ at every instant. A capacitor stores energy and returns it, but never more than it got, so it is passive; (B) is wrong. Linearity (C) is a different property: a diode is passive but non-linear. (D) is wrong because L and C with no resistance are still passive.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-015', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'An element is called passive if'), stem_md = 'An element is called **passive** if
+', solution_md = '**Idea used:** the energy definition of a passive element (see *Kinds of circuit elements*).
+
+A passive element can never give out more energy than it has received, so the total energy put into it is $\ge 0$ at every instant. A capacitor stores energy and returns it, but never more than it got, so it is passive; (B) is wrong. Linearity (C) is a different property: a diode is passive but non-linear. (D) is wrong because L and C with no resistance are still passive.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-015', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'the total energy delivered **to** it, up to any time, is never negative', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'it never stores energy', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'its v–i graph is a straight line', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'it has no resistance', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kinds-of-elements');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kinds-of-elements';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-016';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A resistor whose value changes as $R(t) = 5 + 2\sin t$ Ω (its value does not depend on the current) is', 'A resistor whose value changes as $R(t) = 5 + 2\sin t$ Ω (its value does not depend on the current) is
+', '**Idea used:** linear vs non-linear and time-invariant vs time-varying are two separate questions (see *Kinds of circuit elements → Other ways to classify elements*).
+
+- At any instant, $v = R(t)\,i$: doubling $i$ doubles $v$, so it is **linear**.
+- Its value changes with time, so it is **time-varying**.
+
+**Answer: (B).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-016', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A resistor whose value changes as $R(t) = 5 + 2\sin t$ Ω (its value does not depend on the current) is'), stem_md = 'A resistor whose value changes as $R(t) = 5 + 2\sin t$ Ω (its value does not depend on the current) is
+', solution_md = '**Idea used:** linear vs non-linear and time-invariant vs time-varying are two separate questions (see *Kinds of circuit elements → Other ways to classify elements*).
+
+- At any instant, $v = R(t)\,i$: doubling $i$ doubles $v$, so it is **linear**.
+- Its value changes with time, so it is **time-varying**.
+
+**Answer: (B).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-016', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'linear and time-invariant', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'linear and time-varying', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'non-linear and time-invariant', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'non-linear and time-varying', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kinds-of-elements');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-017';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A current of 5 mA flows through a 2.2 kΩ resistor. The voltage across it is', 'A current of 5 mA flows through a 2.2 kΩ resistor. The voltage across it is
+', '**Idea used:** Ohm''s law $V = IR$ (see *The resistor*).
+
+$V = 5\times10^{-3}\times2.2\times10^{3} = 11$ V.
+
+**Without a calculator:** mA × kΩ = V, so $5\times2.2 = 11$ V directly.
+
+**Answer: (D) 11 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-017', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A current of 5 mA flows through a 2.2 kΩ resistor. The voltage across it is'), stem_md = 'A current of 5 mA flows through a 2.2 kΩ resistor. The voltage across it is
+', solution_md = '**Idea used:** Ohm''s law $V = IR$ (see *The resistor*).
+
+$V = 5\times10^{-3}\times2.2\times10^{3} = 11$ V.
+
+**Without a calculator:** mA × kΩ = V, so $5\times2.2 = 11$ V directly.
+
+**Answer: (D) 11 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-017', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '110 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.1 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.44 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '11 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-018';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A wire of resistance 4 Ω is drawn out uniformly so that its length becomes twice the original. Its volume does not change. The new resistance is', 'A wire of resistance 4 Ω is drawn out uniformly so that its length becomes twice the original. Its volume does not change. The new resistance is
+', '**Idea used:** $R = \rho\dfrac{l}{A}$ (see *The resistor → What decides the resistance*).
+
+Volume $= lA$ is fixed. If $l$ doubles, $A$ halves. Then $R \propto \dfrac{l}{A}$ becomes $\dfrac{2l}{A/2} = 4\dfrac{l}{A}$, so $R$ becomes 4 times: $4\times4 = 16$ Ω.
+
+Trap: 8 Ω forgets that the area also falls.
+
+**Without a calculator:** stretching $n$ times at constant volume multiplies $R$ by $n^2$; here $2^2 = 4$.
+
+**Answer: (D) 16 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-018', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A wire of resistance 4 Ω is drawn out uniformly so that its length becomes twice the original. Its volume does not change. The new resistance is'), stem_md = 'A wire of resistance 4 Ω is drawn out uniformly so that its length becomes twice the original. Its volume does not change. The new resistance is
+', solution_md = '**Idea used:** $R = \rho\dfrac{l}{A}$ (see *The resistor → What decides the resistance*).
+
+Volume $= lA$ is fixed. If $l$ doubles, $A$ halves. Then $R \propto \dfrac{l}{A}$ becomes $\dfrac{2l}{A/2} = 4\dfrac{l}{A}$, so $R$ becomes 4 times: $4\times4 = 16$ Ω.
+
+Trap: 8 Ω forgets that the area also falls.
+
+**Without a calculator:** stretching $n$ times at constant volume multiplies $R$ by $n^2$; here $2^2 = 4$.
+
+**Answer: (D) 16 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-018', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '4 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '8 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '12 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '16 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-019';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A copper coil has a resistance of 20 Ω at 20 °C. Its temperature coefficient of resistance at 20 °C is 0.004 per °C. Its resistance at 70 °C is', 'A copper coil has a resistance of 20 Ω at 20 °C. Its temperature coefficient of resistance at 20 °C is 0.004 per °C. Its resistance at 70 °C is
+', '**Idea used:** $R_2 = R_1\,[1 + \alpha_1(T_2 - T_1)]$ (see *The resistor → Resistance changes with temperature*).
+
+$R_{70} = 20\,[1 + 0.004\times(70 - 20)] = 20\,(1 + 0.2) = 24$ Ω.
+
+**Without a calculator:** $0.004\times50 = 0.2$, so the resistance rises by 20 %: $20 + 4 = 24$.
+
+**Answer: (B) 24 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-019', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A copper coil has a resistance of 20 Ω at 20 °C. Its temperature coefficient of resistance at 20 °C is 0.004 per °C. Its resistance at 70 °C is'), stem_md = 'A copper coil has a resistance of 20 Ω at 20 °C. Its temperature coefficient of resistance at 20 °C is 0.004 per °C. Its resistance at 70 °C is
+', solution_md = '**Idea used:** $R_2 = R_1\,[1 + \alpha_1(T_2 - T_1)]$ (see *The resistor → Resistance changes with temperature*).
+
+$R_{70} = 20\,[1 + 0.004\times(70 - 20)] = 20\,(1 + 0.2) = 24$ Ω.
+
+**Without a calculator:** $0.004\times50 = 0.2$, so the resistance rises by 20 %: $20 + 4 = 24$.
+
+**Answer: (B) 24 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-019', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '22 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '24 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '25.6 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '28 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-020';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A lamp is rated 100 W, 200 V. If it is used on a 100 V supply (take its resistance as unchanged), the power it takes is', 'A lamp is rated 100 W, 200 V. If it is used on a 100 V supply (take its resistance as unchanged), the power it takes is
+', '**Idea used:** ratings give the resistance, $R = \dfrac{V^2}{P}$; with $R$ fixed, $P \propto V^2$ (see *The resistor → Ratings of lamps and heaters*).
+
+$R = \dfrac{200^2}{100} = 400$ Ω. At 100 V: $P = \dfrac{100^2}{400} = 25$ W.
+
+Trap: 50 W assumes power is proportional to voltage.
+
+**Without a calculator:** half the voltage ⇒ $(1/2)^2 = 1/4$ of the power: $100/4 = 25$ W.
+
+**Answer: (A) 25 W.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-020', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A lamp is rated 100 W, 200 V. If it is used on a 100 V supply (take its resistance as unchanged), the power it takes is'), stem_md = 'A lamp is rated 100 W, 200 V. If it is used on a 100 V supply (take its resistance as unchanged), the power it takes is
+', solution_md = '**Idea used:** ratings give the resistance, $R = \dfrac{V^2}{P}$; with $R$ fixed, $P \propto V^2$ (see *The resistor → Ratings of lamps and heaters*).
+
+$R = \dfrac{200^2}{100} = 400$ Ω. At 100 V: $P = \dfrac{100^2}{400} = 25$ W.
+
+Trap: 50 W assumes power is proportional to voltage.
+
+**Without a calculator:** half the voltage ⇒ $(1/2)^2 = 1/4$ of the power: $100/4 = 25$ W.
+
+**Answer: (A) 25 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-020', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '25 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '50 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '75 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '100 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-021';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A 60 W lamp and a 100 W lamp, both rated 220 V, are connected in series across a 220 V supply. Then', 'A 60 W lamp and a 100 W lamp, both rated 220 V, are connected in series across a 220 V supply. Then
+', '**Idea used:** same current in series, so $P = I^2R \propto R$; and $R = V^2/P$, so the lower-rated lamp has the higher resistance (see *The resistor → Ratings of lamps and heaters*).
+
+$R_{60} = \dfrac{220^2}{60}$ is larger than $R_{100} = \dfrac{220^2}{100}$. In series both carry the same current, so the 60 W lamp takes more power and glows brighter. (Both glow dimmer than normal, but they do glow.)
+
+**Answer: (C).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-021', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A 60 W lamp and a 100 W lamp, both rated 220 V, are connected in series across a 220 V supply. Then'), stem_md = 'A 60 W lamp and a 100 W lamp, both rated 220 V, are connected in series across a 220 V supply. Then
+', solution_md = '**Idea used:** same current in series, so $P = I^2R \propto R$; and $R = V^2/P$, so the lower-rated lamp has the higher resistance (see *The resistor → Ratings of lamps and heaters*).
+
+$R_{60} = \dfrac{220^2}{60}$ is larger than $R_{100} = \dfrac{220^2}{100}$. In series both carry the same current, so the 60 W lamp takes more power and glows brighter. (Both glow dimmer than normal, but they do glow.)
+
+**Answer: (C).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-021', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'both glow equally', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'the 100 W lamp glows brighter', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'the 60 W lamp glows brighter', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'neither lamp glows', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-022';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A current $i = 4\sin\omega t$ A flows through a 5 Ω resistor. The average power taken by the resistor is', 'A current $i = 4\sin\omega t$ A flows through a 5 Ω resistor. The average power taken by the resistor is
+', '**Idea used:** for a sinusoidal current of peak $I_m$, the average power in $R$ is $\dfrac{I_m^2R}{2}$ (see *The resistor → Power when the current changes with time*).
+
+$P = \dfrac{4^2\times5}{2} = \dfrac{80}{2} = 40$ W.
+
+Trap: 80 W uses the peak value as if it were DC; the average of $\sin^2$ is $\tfrac12$.
+
+**Without a calculator:** $16\times5 = 80$, half is 40.
+
+**Answer: (D) 40 W.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-022', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A current $i = 4\sin\omega t$ A flows through a 5 Ω resistor. The average power taken by the resistor is'), stem_md = 'A current $i = 4\sin\omega t$ A flows through a 5 Ω resistor. The average power taken by the resistor is
+', solution_md = '**Idea used:** for a sinusoidal current of peak $I_m$, the average power in $R$ is $\dfrac{I_m^2R}{2}$ (see *The resistor → Power when the current changes with time*).
+
+$P = \dfrac{4^2\times5}{2} = \dfrac{80}{2} = 40$ W.
+
+Trap: 80 W uses the peak value as if it were DC; the average of $\sin^2$ is $\tfrac12$.
+
+**Without a calculator:** $16\times5 = 80$, half is 40.
+
+**Answer: (D) 40 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-022', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '80 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '56.6 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '20 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '40 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-023';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 1 km length of a single-core cable has an insulation resistance (core to sheath) of 600 MΩ. The insulation resistance of 3 km of the same cable is', 'A 1 km length of a single-core cable has an insulation resistance (core to sheath) of 600 MΩ. The insulation resistance of 3 km of the same cable is
+', '**Idea used:** conductor resistance adds along the length (series), but the insulation paths of each metre are side by side (parallel), so insulation resistance is **inversely** proportional to length (see *The resistor → Conductor resistance and insulation resistance of a cable*).
+
+Three 1 km lengths give three 600 MΩ paths in parallel: $\dfrac{600}{3} = 200$ MΩ.
+
+Trap: 1800 MΩ treats insulation like the conductor (series).
+
+**Without a calculator:** $600 \div 3 = 200$.
+
+**Answer: (A) 200 MΩ.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-023', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 1 km length of a single-core cable has an insulation resistance (core to sheath) of 600 MΩ. The insulation resistance of 3 km of the same cable is'), stem_md = 'A 1 km length of a single-core cable has an insulation resistance (core to sheath) of 600 MΩ. The insulation resistance of 3 km of the same cable is
+', solution_md = '**Idea used:** conductor resistance adds along the length (series), but the insulation paths of each metre are side by side (parallel), so insulation resistance is **inversely** proportional to length (see *The resistor → Conductor resistance and insulation resistance of a cable*).
+
+Three 1 km lengths give three 600 MΩ paths in parallel: $\dfrac{600}{3} = 200$ MΩ.
+
+Trap: 1800 MΩ treats insulation like the conductor (series).
+
+**Without a calculator:** $600 \div 3 = 200$.
+
+**Answer: (A) 200 MΩ.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-023', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '200 MΩ', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '600 MΩ', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1800 MΩ', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '67 MΩ', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-024';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A non-linear resistor with $V = 2I^2$ (V in volts, I in amperes) is connected in series with a 1 Ω resistor across a 6 V DC supply. The current is', 'A non-linear resistor with $V = 2I^2$ (V in volts, I in amperes) is connected in series with a 1 Ω resistor across a 6 V DC supply. The current is
+', '**Idea used:** write KVL with the element law and solve, or test the options (see *The resistor → Non-linear resistors: how to solve*).
+
+KVL: $6 = 2I^2 + 1\cdot I$ ⇒ $2I^2 + I - 6 = 0$ ⇒ $(2I - 3)(I + 2) = 0$ ⇒ $I = 1.5$ A (the root $-2$ A is rejected: a positive source in a passive loop drives positive current).
+
+**Without a calculator:** test the options in $2I^2 + I$: $I = 1$: 3; $I = 1.5$: $4.5 + 1.5 = 6$ ✔.
+
+**Answer: (B) 1.5 A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-024', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A non-linear resistor with $V = 2I^2$ (V in volts, I in amperes) is connected in series with a 1 Ω resistor across a 6 V DC supply. The current is'), stem_md = 'A non-linear resistor with $V = 2I^2$ (V in volts, I in amperes) is connected in series with a 1 Ω resistor across a 6 V DC supply. The current is
+', solution_md = '**Idea used:** write KVL with the element law and solve, or test the options (see *The resistor → Non-linear resistors: how to solve*).
+
+KVL: $6 = 2I^2 + 1\cdot I$ ⇒ $2I^2 + I - 6 = 0$ ⇒ $(2I - 3)(I + 2) = 0$ ⇒ $I = 1.5$ A (the root $-2$ A is rejected: a positive source in a passive loop drives positive current).
+
+**Without a calculator:** test the options in $2I^2 + I$: $I = 1$: 3; $I = 1.5$: $4.5 + 1.5 = 6$ ✔.
+
+**Answer: (B) 1.5 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-024', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.5 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '3 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-025';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Three 6 Ω resistors are connected so that two of them are in parallel and this pair is in series with the third. The total resistance is', 'Three 6 Ω resistors are connected so that two of them are in parallel and this pair is in series with the third. The total resistance is
+', '**Idea used:** series resistances add; $n$ equal resistors in parallel give $R/n$ (see *The resistor → Resistors in series and in parallel*).
+
+$6 \parallel 6 = 3$ Ω; in series with 6 Ω: $3 + 6 = 9$ Ω.
+
+**Without a calculator:** two equal in parallel is half: 3, then add 6.
+
+**Answer: (A) 9 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-025', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Three 6 Ω resistors are connected so that two of them are in parallel and this pair is in series with the third. The total resistance is'), stem_md = 'Three 6 Ω resistors are connected so that two of them are in parallel and this pair is in series with the third. The total resistance is
+', solution_md = '**Idea used:** series resistances add; $n$ equal resistors in parallel give $R/n$ (see *The resistor → Resistors in series and in parallel*).
+
+$6 \parallel 6 = 3$ Ω; in series with 6 Ω: $3 + 6 = 9$ Ω.
+
+**Without a calculator:** two equal in parallel is half: 3, then add 6.
+
+**Answer: (A) 9 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-025', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '9 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '12 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '18 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-026';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The voltage across a 5 µF capacitor rises at a steady rate from 0 to 20 V in 4 ms. The current through the capacitor during this time is', 'The voltage across a 5 µF capacitor rises at a steady rate from 0 to 20 V in 4 ms. The current through the capacitor during this time is
+', '**Idea used:** $i = C\dfrac{dv}{dt}$ (see *The capacitor → The current–voltage rule*).
+
+$\dfrac{dv}{dt} = \dfrac{20}{4\ \text{ms}} = 5$ V/ms $= 5000$ V/s. $i = 5\times10^{-6}\times5000 = 0.025$ A $= 25$ mA.
+
+**Without a calculator:** µF × (V/ms) = mA, so $5\times5 = 25$ mA.
+
+**Answer: (C) 25 mA.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-026', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The voltage across a 5 µF capacitor rises at a steady rate from 0 to 20 V in 4 ms. The current through the capacitor during this time is'), stem_md = 'The voltage across a 5 µF capacitor rises at a steady rate from 0 to 20 V in 4 ms. The current through the capacitor during this time is
+', solution_md = '**Idea used:** $i = C\dfrac{dv}{dt}$ (see *The capacitor → The current–voltage rule*).
+
+$\dfrac{dv}{dt} = \dfrac{20}{4\ \text{ms}} = 5$ V/ms $= 5000$ V/s. $i = 5\times10^{-6}\times5000 = 0.025$ A $= 25$ mA.
+
+**Without a calculator:** µF × (V/ms) = mA, so $5\times5 = 25$ mA.
+
+**Answer: (C) 25 mA.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-026', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.4 mA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2.5 mA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '25 mA', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '100 mA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-027';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'An uncharged 6 µF capacitor is charged by a constant current of 3 mA for 4 ms. The voltage across it at the end is', 'An uncharged 6 µF capacitor is charged by a constant current of 3 mA for 4 ms. The voltage across it at the end is
+', '**Idea used:** $Q = I\,t$ for a constant current, and $V = Q/C$ (see *The capacitor → Voltage from current*).
+
+$Q = 3\ \text{mA}\times4\ \text{ms} = 12$ µC. $V = \dfrac{12\ \text{µC}}{6\ \text{µF}} = 2$ V.
+
+**Without a calculator:** mA × ms = µC and µC ÷ µF = V: $12 \div 6 = 2$.
+
+**Answer: (D) 2 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-027', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An uncharged 6 µF capacitor is charged by a constant current of 3 mA for 4 ms. The voltage across it at the end is'), stem_md = 'An uncharged 6 µF capacitor is charged by a constant current of 3 mA for 4 ms. The voltage across it at the end is
+', solution_md = '**Idea used:** $Q = I\,t$ for a constant current, and $V = Q/C$ (see *The capacitor → Voltage from current*).
+
+$Q = 3\ \text{mA}\times4\ \text{ms} = 12$ µC. $V = \dfrac{12\ \text{µC}}{6\ \text{µF}} = 2$ V.
+
+**Without a calculator:** mA × ms = µC and µC ÷ µF = V: $12 \div 6 = 2$.
+
+**Answer: (D) 2 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-027', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '8 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4.5 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.5 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-028';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'In a DC circuit that has reached steady state, an ideal capacitor behaves as', 'In a DC circuit that has reached steady state, an ideal capacitor behaves as
+', '**Idea used:** $i = C\,dv/dt$ (see *The capacitor*).
+
+In DC steady state nothing changes, so $dv/dt = 0$ and $i = 0$. A branch with a voltage but no current is an open circuit.
+
+**Answer: (B) an open circuit.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-028', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'In a DC circuit that has reached steady state, an ideal capacitor behaves as'), stem_md = 'In a DC circuit that has reached steady state, an ideal capacitor behaves as
+', solution_md = '**Idea used:** $i = C\,dv/dt$ (see *The capacitor*).
+
+In DC steady state nothing changes, so $dv/dt = 0$ and $i = 0$. A branch with a voltage but no current is an open circuit.
+
+**Answer: (B) an open circuit.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-028', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'a short circuit', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'an open circuit', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'a resistor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'a current source', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-029';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 20 µF capacitor is charged to 100 V. The energy stored in it is', 'A 20 µF capacitor is charged to 100 V. The energy stored in it is
+', '**Idea used:** $W = \tfrac12CV^2$ (see *The capacitor → Energy stored in a capacitor*).
+
+$W = \tfrac12\times20\times10^{-6}\times100^2 = 10\times10^{-6}\times10^4 = 0.1$ J.
+
+Trap: 0.2 J forgets the $\tfrac12$.
+
+**Without a calculator:** $\tfrac12\times20 = 10$ µ; $10\ \text{µ}\times10^4 = 10^{-1}$.
+
+**Answer: (A) 0.1 J.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-029', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 20 µF capacitor is charged to 100 V. The energy stored in it is'), stem_md = 'A 20 µF capacitor is charged to 100 V. The energy stored in it is
+', solution_md = '**Idea used:** $W = \tfrac12CV^2$ (see *The capacitor → Energy stored in a capacitor*).
+
+$W = \tfrac12\times20\times10^{-6}\times100^2 = 10\times10^{-6}\times10^4 = 0.1$ J.
+
+Trap: 0.2 J forgets the $\tfrac12$.
+
+**Without a calculator:** $\tfrac12\times20 = 10$ µ; $10\ \text{µ}\times10^4 = 10^{-1}$.
+
+**Answer: (A) 0.1 J.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-029', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.1 J', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.2 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2 mJ', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-030';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'An uncharged capacitor is charged from a 50 V DC source through a 10 Ω resistor until charging is complete. The source supplies 25 J in all. The energy...', 'An uncharged capacitor is charged from a 50 V DC source through a 10 Ω resistor until charging is complete. The source supplies 25 J in all. The energy finally stored in the capacitor is
+', '**Idea used:** charging a capacitor from a DC source: the source gives $QV = CV^2$, the capacitor keeps $\tfrac12CV^2$, and the other half is lost as heat in the resistance, whatever its value (see *The capacitor → Charging a capacitor from a DC source*).
+
+Stored $= \tfrac12\times25 = 12.5$ J. The other 12.5 J heats the 10 Ω resistor. The value of $R$ only changes how fast this happens.
+
+**Without a calculator:** half of 25.
+
+**Answer: (C) 12.5 J.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-030', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An uncharged capacitor is charged from a 50 V DC source through a 10 Ω resistor until charging is complete. The source supplies 25 J in all. The energy...'), stem_md = 'An uncharged capacitor is charged from a 50 V DC source through a 10 Ω resistor until charging is complete. The source supplies 25 J in all. The energy finally stored in the capacitor is
+', solution_md = '**Idea used:** charging a capacitor from a DC source: the source gives $QV = CV^2$, the capacitor keeps $\tfrac12CV^2$, and the other half is lost as heat in the resistance, whatever its value (see *The capacitor → Charging a capacitor from a DC source*).
+
+Stored $= \tfrac12\times25 = 12.5$ J. The other 12.5 J heats the 10 Ω resistor. The value of $R$ only changes how fast this happens.
+
+**Without a calculator:** half of 25.
+
+**Answer: (C) 12.5 J.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-030', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '25 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'it depends on the 10 Ω resistor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '12.5 J', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '6.25 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-031';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 4 µF capacitor charged to 60 V is connected across an uncharged 2 µF capacitor. The common voltage after charge sharing is', 'A 4 µF capacitor charged to 60 V is connected across an uncharged 2 µF capacitor. The common voltage after charge sharing is
+', '**Idea used:** in charge sharing, the total charge stays the same (see *The capacitor → Charge sharing between two capacitors*).
+
+Charge $= 4\times60 = 240$ µC. Total capacitance $= 4 + 2 = 6$ µF. Common voltage $= \dfrac{240}{6} = 40$ V.
+
+**Without a calculator:** $V = 60\times\dfrac{4}{4 + 2} = 60\times\dfrac23 = 40$.
+
+**Answer: (D) 40 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-031', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 4 µF capacitor charged to 60 V is connected across an uncharged 2 µF capacitor. The common voltage after charge sharing is'), stem_md = 'A 4 µF capacitor charged to 60 V is connected across an uncharged 2 µF capacitor. The common voltage after charge sharing is
+', solution_md = '**Idea used:** in charge sharing, the total charge stays the same (see *The capacitor → Charge sharing between two capacitors*).
+
+Charge $= 4\times60 = 240$ µC. Total capacitance $= 4 + 2 = 6$ µF. Common voltage $= \dfrac{240}{6} = 40$ V.
+
+**Without a calculator:** $V = 60\times\dfrac{4}{4 + 2} = 60\times\dfrac23 = 40$.
+
+**Answer: (D) 40 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-031', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '60 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '30 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '20 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '40 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-032';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Capacitors of 3 µF and 6 µF are connected in series across a 90 V DC supply. The voltage across the 3 µF capacitor is', 'Capacitors of 3 µF and 6 µF are connected in series across a 90 V DC supply. The voltage across the 3 µF capacitor is
+', '**Idea used:** in series, every capacitor has the same charge, so $V \propto \dfrac1C$; the smaller capacitor takes the larger voltage (see *The capacitor → Capacitors in parallel and in series*).
+
+$C_{eq} = \dfrac{3\times6}{3 + 6} = 2$ µF. $Q = 2\times90 = 180$ µC. $V_3 = \dfrac{180}{3} = 60$ V (and $V_6 = 30$ V).
+
+**Without a calculator:** split 90 V in the ratio $6:3$ (inverse of C): $90\times\dfrac{6}{9} = 60$.
+
+**Answer: (C) 60 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-032', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Capacitors of 3 µF and 6 µF are connected in series across a 90 V DC supply. The voltage across the 3 µF capacitor is'), stem_md = 'Capacitors of 3 µF and 6 µF are connected in series across a 90 V DC supply. The voltage across the 3 µF capacitor is
+', solution_md = '**Idea used:** in series, every capacitor has the same charge, so $V \propto \dfrac1C$; the smaller capacitor takes the larger voltage (see *The capacitor → Capacitors in parallel and in series*).
+
+$C_{eq} = \dfrac{3\times6}{3 + 6} = 2$ µF. $Q = 2\times90 = 180$ µC. $V_3 = \dfrac{180}{3} = 60$ V (and $V_6 = 30$ V).
+
+**Without a calculator:** split 90 V in the ratio $6:3$ (inverse of C): $90\times\dfrac{6}{9} = 60$.
+
+**Answer: (C) 60 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-032', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '30 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '45 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '60 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '90 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-033';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 2 µF capacitor and a 4 µF capacitor, each rated 100 V, are connected in series. The largest DC voltage that can safely be applied across the combination is', 'A 2 µF capacitor and a 4 µF capacitor, each rated 100 V, are connected in series. The largest DC voltage that can safely be applied across the combination is
+', '**Idea used:** maximum safe voltage of a series group: the voltages split in the ratio $1/C$, so the first capacitor to reach its rating sets the limit (see *The capacitor → Maximum safe voltage of a capacitor group*).
+
+The 2 µF capacitor takes $\dfrac{4}{2 + 4} = \dfrac23$ of the total. Limit: $\dfrac23V = 100$ ⇒ $V = 150$ V. At 150 V, the 4 µF one has only 50 V, which is safe.
+
+Trap: 200 V assumes equal sharing.
+
+**Without a calculator:** 2 µF : 4 µF ⇒ voltages $2:1$; the 2 µF part is 100 V, the 4 µF part 50 V, total 150 V.
+
+**Answer: (A) 150 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-033', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 2 µF capacitor and a 4 µF capacitor, each rated 100 V, are connected in series. The largest DC voltage that can safely be applied across the combination is'), stem_md = 'A 2 µF capacitor and a 4 µF capacitor, each rated 100 V, are connected in series. The largest DC voltage that can safely be applied across the combination is
+', solution_md = '**Idea used:** maximum safe voltage of a series group: the voltages split in the ratio $1/C$, so the first capacitor to reach its rating sets the limit (see *The capacitor → Maximum safe voltage of a capacitor group*).
+
+The 2 µF capacitor takes $\dfrac{4}{2 + 4} = \dfrac23$ of the total. Limit: $\dfrac23V = 100$ ⇒ $V = 150$ V. At 150 V, the 4 µF one has only 50 V, which is safe.
+
+Trap: 200 V assumes equal sharing.
+
+**Without a calculator:** 2 µF : 4 µF ⇒ voltages $2:1$; the 2 µF part is 100 V, the 4 µF part 50 V, total 150 V.
+
+**Answer: (A) 150 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-033', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '150 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '200 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '100 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '300 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-034';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The gap between the plates of an air-filled parallel-plate capacitor is halved, and the gap is then completely filled with a dielectric of relative...', 'The gap between the plates of an air-filled parallel-plate capacitor is halved, and the gap is then completely filled with a dielectric of relative permittivity 3. The capacitance becomes
+', '**Idea used:** $C = \dfrac{\varepsilon_0\varepsilon_rA}{d}$ (see *The capacitor → What a capacitor is*).
+
+Halving $d$ doubles $C$; $\varepsilon_r = 3$ triples it. Together: $2\times3 = 6$ times.
+
+**Answer: (D) 6 times.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-034', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The gap between the plates of an air-filled parallel-plate capacitor is halved, and the gap is then completely filled with a dielectric of relative...'), stem_md = 'The gap between the plates of an air-filled parallel-plate capacitor is halved, and the gap is then completely filled with a dielectric of relative permittivity 3. The capacitance becomes
+', solution_md = '**Idea used:** $C = \dfrac{\varepsilon_0\varepsilon_rA}{d}$ (see *The capacitor → What a capacitor is*).
+
+Halving $d$ doubles $C$; $\varepsilon_r = 3$ triples it. Together: $2\times3 = 6$ times.
+
+**Answer: (D) 6 times.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-034', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1.5 times', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3 times', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '12 times', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '6 times', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-035';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A capacitor has 10 V across it just before a switch is operated at $t = 0$. If no impulse (infinite) current can flow, the voltage across the capacitor just...', 'A capacitor has 10 V across it just before a switch is operated at $t = 0$. If no impulse (infinite) current can flow, the voltage across the capacitor just after switching is
+', '**Idea used:** the capacitor voltage cannot jump (see *The capacitor → The capacitor voltage cannot jump*).
+
+A sudden jump in $v$ would need $i = C\,dv/dt = \infty$. With no impulse current, $v(0^+) = v(0^-) = 10$ V. The rest of the circuit decides how $v$ changes **after** $t = 0^+$, not its value at that instant.
+
+**Answer: (A) 10 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-035', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A capacitor has 10 V across it just before a switch is operated at $t = 0$. If no impulse (infinite) current can flow, the voltage across the capacitor just...'), stem_md = 'A capacitor has 10 V across it just before a switch is operated at $t = 0$. If no impulse (infinite) current can flow, the voltage across the capacitor just after switching is
+', solution_md = '**Idea used:** the capacitor voltage cannot jump (see *The capacitor → The capacitor voltage cannot jump*).
+
+A sudden jump in $v$ would need $i = C\,dv/dt = \infty$. With no impulse current, $v(0^+) = v(0^-) = 10$ V. The rest of the circuit decides how $v$ changes **after** $t = 0^+$, not its value at that instant.
+
+**Answer: (A) 10 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-035', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '5 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'it cannot be found without the rest of the circuit', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-inductor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-036';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The current in a 50 mH inductor falls at a steady rate from 4 A to zero in 20 ms. The magnitude of the voltage across the inductor is', 'The current in a 50 mH inductor falls at a steady rate from 4 A to zero in 20 ms. The magnitude of the voltage across the inductor is
+', '**Idea used:** $v = L\dfrac{di}{dt}$ (see *The inductor → The voltage–current rule*).
+
+$\dfrac{di}{dt} = \dfrac{4}{20\ \text{ms}} = 200$ A/s. $|v| = 0.05\times200 = 10$ V. (The sign is negative: the inductor opposes the fall.)
+
+**Without a calculator:** mH × (A/ms) = V: $50\times\dfrac{4}{20} = 50\times0.2 = 10$ V.
+
+**Answer: (B) 10 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-036', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The current in a 50 mH inductor falls at a steady rate from 4 A to zero in 20 ms. The magnitude of the voltage across the inductor is'), stem_md = 'The current in a 50 mH inductor falls at a steady rate from 4 A to zero in 20 ms. The magnitude of the voltage across the inductor is
+', solution_md = '**Idea used:** $v = L\dfrac{di}{dt}$ (see *The inductor → The voltage–current rule*).
+
+$\dfrac{di}{dt} = \dfrac{4}{20\ \text{ms}} = 200$ A/s. $|v| = 0.05\times200 = 10$ V. (The sign is negative: the inductor opposes the fall.)
+
+**Without a calculator:** mH × (A/ms) = V: $50\times\dfrac{4}{20} = 50\times0.2 = 10$ V.
+
+**Answer: (B) 10 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-036', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '200 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '10 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '4 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-inductor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-inductor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-037';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A constant voltage of 6 V is applied to a 2 H inductor that has no initial current. The current after 3 s is', 'A constant voltage of 6 V is applied to a 2 H inductor that has no initial current. The current after 3 s is
+', '**Idea used:** $i(t) = i(0) + \dfrac1L\displaystyle\int_0^t v\,dt$ (see *The inductor → Current from voltage*).
+
+With constant $v$: $i = \dfrac{vt}{L} = \dfrac{6\times3}{2} = 9$ A. The current rises as a straight line.
+
+**Without a calculator:** volt-seconds $= 18$; divide by 2 H.
+
+**Answer: (C) 9 A.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-037', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A constant voltage of 6 V is applied to a 2 H inductor that has no initial current. The current after 3 s is'), stem_md = 'A constant voltage of 6 V is applied to a 2 H inductor that has no initial current. The current after 3 s is
+', solution_md = '**Idea used:** $i(t) = i(0) + \dfrac1L\displaystyle\int_0^t v\,dt$ (see *The inductor → Current from voltage*).
+
+With constant $v$: $i = \dfrac{vt}{L} = \dfrac{6\times3}{2} = 9$ A. The current rises as a straight line.
+
+**Without a calculator:** volt-seconds $= 18$; divide by 2 H.
+
+**Answer: (C) 9 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-037', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '9 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '36 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-inductor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-inductor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-038';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A coil has a resistance of 4 Ω and an inductance of 0.5 H. At an instant when its current is 5 A and increasing at 20 A/s, the voltage across its terminals is', 'A coil has a resistance of 4 Ω and an inductance of 0.5 H. At an instant when its current is 5 A and increasing at 20 A/s, the voltage across its terminals is
+', '**Idea used:** a real coil is $R$ in series with $L$: $v = Ri + L\dfrac{di}{dt}$ (see *The inductor → A real coil*).
+
+$v = 4\times5 + 0.5\times20 = 20 + 10 = 30$ V.
+
+Traps: 20 V (resistive part only), 10 V (inductive part only).
+
+**Without a calculator:** two small products, then add.
+
+**Answer: (D) 30 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-038', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A coil has a resistance of 4 Ω and an inductance of 0.5 H. At an instant when its current is 5 A and increasing at 20 A/s, the voltage across its terminals is'), stem_md = 'A coil has a resistance of 4 Ω and an inductance of 0.5 H. At an instant when its current is 5 A and increasing at 20 A/s, the voltage across its terminals is
+', solution_md = '**Idea used:** a real coil is $R$ in series with $L$: $v = Ri + L\dfrac{di}{dt}$ (see *The inductor → A real coil*).
+
+$v = 4\times5 + 0.5\times20 = 20 + 10 = 30$ V.
+
+Traps: 20 V (resistive part only), 10 V (inductive part only).
+
+**Without a calculator:** two small products, then add.
+
+**Answer: (D) 30 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-038', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '20 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '50 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '30 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-inductor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-inductor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-039';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'An inductor of 0.4 H carries a current of 5 A. The energy stored in its magnetic field is', 'An inductor of 0.4 H carries a current of 5 A. The energy stored in its magnetic field is
+', '**Idea used:** $W = \tfrac12LI^2$ (see *The inductor → Power and energy in an inductor*).
+
+$W = \tfrac12\times0.4\times25 = 0.2\times25 = 5$ J.
+
+Trap: 10 J forgets the $\tfrac12$.
+
+**Without a calculator:** $0.2\times25 = 5$.
+
+**Answer: (A) 5 J.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-039', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An inductor of 0.4 H carries a current of 5 A. The energy stored in its magnetic field is'), stem_md = 'An inductor of 0.4 H carries a current of 5 A. The energy stored in its magnetic field is
+', solution_md = '**Idea used:** $W = \tfrac12LI^2$ (see *The inductor → Power and energy in an inductor*).
+
+$W = \tfrac12\times0.4\times25 = 0.2\times25 = 5$ J.
+
+Trap: 10 J forgets the $\tfrac12$.
+
+**Without a calculator:** $0.2\times25 = 5$.
+
+**Answer: (A) 5 J.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-039', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '5 J', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '10 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-inductor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-inductor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-040';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'For a two-terminal element, the voltage stays constant at 10 V while the current rises in a straight line from 0 to 5 A in 2 s. The element is', 'For a two-terminal element, the voltage stays constant at 10 V while the current rises in a straight line from 0 to 5 A in 2 s. The element is
+', '**Idea used:** identifying an element from its waveforms (see *The inductor → Identifying an element from its waveforms*).
+
+Constant voltage with a ramping current means $v \propto di/dt$: an inductor. $\dfrac{di}{dt} = \dfrac52 = 2.5$ A/s, so $L = \dfrac{v}{di/dt} = \dfrac{10}{2.5} = 4$ H.
+
+It cannot be a resistor ($v/i$ is not constant) or a capacitor (a capacitor with constant $v$ carries no current).
+
+**Without a calculator:** $10 \div 2.5 = 4$.
+
+**Answer: (B) an inductor of 4 H.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-040', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'For a two-terminal element, the voltage stays constant at 10 V while the current rises in a straight line from 0 to 5 A in 2 s. The element is'), stem_md = 'For a two-terminal element, the voltage stays constant at 10 V while the current rises in a straight line from 0 to 5 A in 2 s. The element is
+', solution_md = '**Idea used:** identifying an element from its waveforms (see *The inductor → Identifying an element from its waveforms*).
+
+Constant voltage with a ramping current means $v \propto di/dt$: an inductor. $\dfrac{di}{dt} = \dfrac52 = 2.5$ A/s, so $L = \dfrac{v}{di/dt} = \dfrac{10}{2.5} = 4$ H.
+
+It cannot be a resistor ($v/i$ is not constant) or a capacitor (a capacitor with constant $v$ carries no current).
+
+**Without a calculator:** $10 \div 2.5 = 4$.
+
+**Answer: (B) an inductor of 4 H.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-040', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'a capacitor of 4 F', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'an inductor of 4 H', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'an inductor of 0.25 H', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'a resistor of 2 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-inductor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-inductor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-041';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Two inductors of 6 mH and 3 mH, with no magnetic coupling between them, are connected in parallel. The equivalent inductance is', 'Two inductors of 6 mH and 3 mH, with no magnetic coupling between them, are connected in parallel. The equivalent inductance is
+', '**Idea used:** uncoupled inductors combine like resistors (see *The inductor → Inductors in series and in parallel*).
+
+$L = \dfrac{6\times3}{6 + 3} = \dfrac{18}{9} = 2$ mH.
+
+**Without a calculator:** $L$ and $2L$ in parallel give $\tfrac23L$: $\tfrac23\times3 = 2$.
+
+**Answer: (A) 2 mH.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-041', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Two inductors of 6 mH and 3 mH, with no magnetic coupling between them, are connected in parallel. The equivalent inductance is'), stem_md = 'Two inductors of 6 mH and 3 mH, with no magnetic coupling between them, are connected in parallel. The equivalent inductance is
+', solution_md = '**Idea used:** uncoupled inductors combine like resistors (see *The inductor → Inductors in series and in parallel*).
+
+$L = \dfrac{6\times3}{6 + 3} = \dfrac{18}{9} = 2$ mH.
+
+**Without a calculator:** $L$ and $2L$ in parallel give $\tfrac23L$: $\tfrac23\times3 = 2$.
+
+**Answer: (A) 2 mH.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-041', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2 mH', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4.5 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '9 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '18 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-inductor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-inductor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-042';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A coil with resistance 2 Ω and inductance 1 H has its current already built up to a steady 3 A. The energy taken by the coil from the supply during the next...', 'A coil with resistance 2 Ω and inductance 1 H has its current already built up to a steady 3 A. The energy taken by the coil from the supply during the next 10 s (current still 3 A) is
+', '**Idea used:** energy taken by a real coil = heat in $R$ + change in stored energy $\tfrac12LI^2$ (see *The inductor → Energy taken by a real coil*).
+
+The current is steady, so the stored energy does not change (it stays $\tfrac12\times1\times9 = 4.5$ J). All the energy taken is heat: $I^2Rt = 9\times2\times10 = 180$ J.
+
+Trap: 184.5 J adds the stored energy, which was put in **before** these 10 s.
+
+**Without a calculator:** $9\times2\times10 = 180$.
+
+**Answer: (B) 180 J.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-042', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A coil with resistance 2 Ω and inductance 1 H has its current already built up to a steady 3 A. The energy taken by the coil from the supply during the next...'), stem_md = 'A coil with resistance 2 Ω and inductance 1 H has its current already built up to a steady 3 A. The energy taken by the coil from the supply during the next 10 s (current still 3 A) is
+', solution_md = '**Idea used:** energy taken by a real coil = heat in $R$ + change in stored energy $\tfrac12LI^2$ (see *The inductor → Energy taken by a real coil*).
+
+The current is steady, so the stored energy does not change (it stays $\tfrac12\times1\times9 = 4.5$ J). All the energy taken is heat: $I^2Rt = 9\times2\times10 = 180$ J.
+
+Trap: 184.5 J adds the stored energy, which was put in **before** these 10 s.
+
+**Without a calculator:** $9\times2\times10 = 180$.
+
+**Answer: (B) 180 J.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-042', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '4.5 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '180 J', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '184.5 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'zero', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-inductor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-inductor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-043';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'In a DC circuit that has reached steady state, an ideal inductor behaves as', 'In a DC circuit that has reached steady state, an ideal inductor behaves as
+', '**Idea used:** $v = L\,di/dt$ (see *The inductor*).
+
+In DC steady state the current is constant, so $di/dt = 0$ and $v = 0$. A branch that carries current with zero voltage across it is a short circuit. (The capacitor is the opposite: an open circuit.)
+
+**Answer: (A) a short circuit.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-043', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'In a DC circuit that has reached steady state, an ideal inductor behaves as'), stem_md = 'In a DC circuit that has reached steady state, an ideal inductor behaves as
+', solution_md = '**Idea used:** $v = L\,di/dt$ (see *The inductor*).
+
+In DC steady state the current is constant, so $di/dt = 0$ and $v = 0$. A branch that carries current with zero voltage across it is a short circuit. (The capacitor is the opposite: an open circuit.)
+
+**Answer: (A) a short circuit.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-043', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'a short circuit', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'an open circuit', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'a 1 Ω resistor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'an ideal current source', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-inductor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-inductor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-044';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'By duality, the statement "the voltage across a capacitor cannot change instantly" becomes, for an inductor:', 'By duality, the statement "the voltage across a capacitor cannot change instantly" becomes, for an inductor:
+', '**Idea used:** duality: swap $v \leftrightarrow i$ and $C \leftrightarrow L$ (see *The inductor → Capacitor and inductor side by side*).
+
+"Capacitor voltage" becomes "inductor current". A jump in inductor current would need $v = L\,di/dt = \infty$, so the inductor current is continuous. The inductor **voltage** can jump.
+
+**Answer: (B).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-044', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'By duality, the statement "the voltage across a capacitor cannot change instantly" becomes, for an inductor:'), stem_md = 'By duality, the statement "the voltage across a capacitor cannot change instantly" becomes, for an inductor:
+', solution_md = '**Idea used:** duality: swap $v \leftrightarrow i$ and $C \leftrightarrow L$ (see *The inductor → Capacitor and inductor side by side*).
+
+"Capacitor voltage" becomes "inductor current". A jump in inductor current would need $v = L\,di/dt = \infty$, so the inductor current is continuous. The inductor **voltage** can jump.
+
+**Answer: (B).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-044', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'the voltage across an inductor cannot change instantly', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'the current through an inductor cannot change instantly', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'the energy of an inductor is $\tfrac12CV^2$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'an inductor is an open circuit at DC', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-inductor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-mutual-inductance';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-045';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Two coils of self-inductance 4 mH and 9 mH have a coefficient of coupling of 0.5. Their mutual inductance is', 'Two coils of self-inductance 4 mH and 9 mH have a coefficient of coupling of 0.5. Their mutual inductance is
+', '**Idea used:** $M = k\sqrt{L_1L_2}$ (see *Mutual inductance → How strong is the coupling?*).
+
+$\sqrt{4\times9} = 6$ mH. $M = 0.5\times6 = 3$ mH.
+
+**Without a calculator:** $\sqrt{36} = 6$, half is 3.
+
+**Answer: (D) 3 mH.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-045', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Two coils of self-inductance 4 mH and 9 mH have a coefficient of coupling of 0.5. Their mutual inductance is'), stem_md = 'Two coils of self-inductance 4 mH and 9 mH have a coefficient of coupling of 0.5. Their mutual inductance is
+', solution_md = '**Idea used:** $M = k\sqrt{L_1L_2}$ (see *Mutual inductance → How strong is the coupling?*).
+
+$\sqrt{4\times9} = 6$ mH. $M = 0.5\times6 = 3$ mH.
+
+**Without a calculator:** $\sqrt{36} = 6$, half is 3.
+
+**Answer: (D) 3 mH.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-045', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '13 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '6.5 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1.5 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '3 mH', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-mutual-inductance');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-mutual-inductance';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-046';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Two magnetically coupled coils, $L1 = 5$ mH and $L2 = 3$ mH with $M = 2$ mH, are connected in series opposing. The total inductance is', 'Two magnetically coupled coils, $L_1 = 5$ mH and $L_2 = 3$ mH with $M = 2$ mH, are connected in series **opposing**. The total inductance is
+', '**Idea used:** two coupled coils in series: $L = L_1 + L_2 \pm 2M$, + for aiding and − for opposing (see *Mutual inductance → Two coupled coils in series*).
+
+Opposing: $L = 5 + 3 - 2\times2 = 4$ mH. (Aiding would give 12 mH.)
+
+Trap: 6 mH uses $M$ instead of $2M$.
+
+**Answer: (C) 4 mH.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-046', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Two magnetically coupled coils, $L1 = 5$ mH and $L2 = 3$ mH with $M = 2$ mH, are connected in series opposing. The total inductance is'), stem_md = 'Two magnetically coupled coils, $L_1 = 5$ mH and $L_2 = 3$ mH with $M = 2$ mH, are connected in series **opposing**. The total inductance is
+', solution_md = '**Idea used:** two coupled coils in series: $L = L_1 + L_2 \pm 2M$, + for aiding and − for opposing (see *Mutual inductance → Two coupled coils in series*).
+
+Opposing: $L = 5 + 3 - 2\times2 = 4$ mH. (Aiding would give 12 mH.)
+
+Trap: 6 mH uses $M$ instead of $2M$.
+
+**Answer: (C) 4 mH.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-046', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '12 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '10 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '4 mH', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '6 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-mutual-inductance');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-mutual-inductance';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-047';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Two coupled coils give a total inductance of 16 mH when connected in series aiding and 8 mH when connected in series opposing. The mutual inductance is', 'Two coupled coils give a total inductance of 16 mH when connected in series aiding and 8 mH when connected in series opposing. The mutual inductance is
+', '**Idea used:** $L_a = L_1 + L_2 + 2M$ and $L_o = L_1 + L_2 - 2M$, so $L_a - L_o = 4M$ (see *Mutual inductance → Two coupled coils in series*).
+
+$M = \dfrac{16 - 8}{4} = 2$ mH.
+
+Trap: 4 mH divides by 2 instead of 4.
+
+**Without a calculator:** $8 \div 4 = 2$.
+
+**Answer: (D) 2 mH.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-047', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Two coupled coils give a total inductance of 16 mH when connected in series aiding and 8 mH when connected in series opposing. The mutual inductance is'), stem_md = 'Two coupled coils give a total inductance of 16 mH when connected in series aiding and 8 mH when connected in series opposing. The mutual inductance is
+', solution_md = '**Idea used:** $L_a = L_1 + L_2 + 2M$ and $L_o = L_1 + L_2 - 2M$, so $L_a - L_o = 4M$ (see *Mutual inductance → Two coupled coils in series*).
+
+$M = \dfrac{16 - 8}{4} = 2$ mH.
+
+Trap: 4 mH divides by 2 instead of 4.
+
+**Without a calculator:** $8 \div 4 = 2$.
+
+**Answer: (D) 2 mH.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-047', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '8 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '12 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2 mH', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-mutual-inductance');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-mutual-inductance';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-048';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'For two magnetically coupled coils marked with the dot convention, a current entering the dotted terminal of coil 1 and increasing induces a voltage in coil...', 'For two magnetically coupled coils marked with the dot convention, a current entering the dotted terminal of coil 1 and increasing induces a voltage in coil 2 that is
+', '**Idea used:** the dot convention (see *Mutual inductance → The dot convention*).
+
+The rule: a current entering a dotted terminal induces a mutual voltage $M\,di/dt$ in the other coil with its **+** at that coil''s dotted terminal. The coils need no wire between them; the coupling is magnetic, and the voltage is proportional to $M$.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-048', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'For two magnetically coupled coils marked with the dot convention, a current entering the dotted terminal of coil 1 and increasing induces a voltage in coil...'), stem_md = 'For two magnetically coupled coils marked with the dot convention, a current entering the dotted terminal of coil 1 and increasing induces a voltage in coil 2 that is
+', solution_md = '**Idea used:** the dot convention (see *Mutual inductance → The dot convention*).
+
+The rule: a current entering a dotted terminal induces a mutual voltage $M\,di/dt$ in the other coil with its **+** at that coil''s dotted terminal. The coils need no wire between them; the coupling is magnetic, and the voltage is proportional to $M$.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-048', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'positive at the dotted terminal of coil 2', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'negative at the dotted terminal of coil 2', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'zero, because the coils are not connected', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'independent of the mutual inductance', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-mutual-inductance');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-independent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-049';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'The internal resistances of an ideal voltage source and an ideal current source are, respectively,', 'The internal resistances of an ideal voltage source and an ideal current source are, respectively,
+', '**Idea used:** ideal sources (see *Independent sources*).
+
+An ideal voltage source keeps its terminal voltage whatever the current, so no voltage is lost inside: internal resistance zero (in series). An ideal current source keeps its current whatever the voltage, so no current leaks inside: internal resistance infinite (in parallel).
+
+**Answer: (C).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-049', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The internal resistances of an ideal voltage source and an ideal current source are, respectively,'), stem_md = 'The internal resistances of an ideal voltage source and an ideal current source are, respectively,
+', solution_md = '**Idea used:** ideal sources (see *Independent sources*).
+
+An ideal voltage source keeps its terminal voltage whatever the current, so no voltage is lost inside: internal resistance zero (in series). An ideal current source keeps its current whatever the voltage, so no current leaks inside: internal resistance infinite (in parallel).
+
+**Answer: (C).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-049', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'infinite and zero', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'zero and zero', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'zero and infinite', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'infinite and infinite', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-independent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-independent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-050';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Which one of the following connections of ideal sources is not allowed?', 'Which one of the following connections of ideal sources is **not** allowed?
+', '**Idea used:** which connections are allowed (see *Independent sources → Which connections are allowed*).
+
+In series every element must carry the same current, so 2 A and 3 A in series break KCL: not allowed. Equal voltage sources in parallel (A) are allowed (KVL holds). A voltage source in series with a current source (C) is fine: the current source sets the current. Current sources in parallel (D) simply add.
+
+**Answer: (B).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-050', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Which one of the following connections of ideal sources is not allowed?'), stem_md = 'Which one of the following connections of ideal sources is **not** allowed?
+', solution_md = '**Idea used:** which connections are allowed (see *Independent sources → Which connections are allowed*).
+
+In series every element must carry the same current, so 2 A and 3 A in series break KCL: not allowed. Equal voltage sources in parallel (A) are allowed (KVL holds). A voltage source in series with a current source (C) is fine: the current source sets the current. Current sources in parallel (D) simply add.
+
+**Answer: (B).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-050', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'Two 5 V ideal voltage sources in parallel, + to +', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'A 2 A and a 3 A ideal current source in series', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'A 5 V ideal voltage source in series with a 2 A ideal current source', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Two 2 A ideal current sources in parallel', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-independent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-independent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-051';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A practical voltage source of 12 V with an internal resistance of 3 Ω is replaced by an equivalent practical current source. The current source is', 'A practical voltage source of 12 V with an internal resistance of 3 Ω is replaced by an equivalent practical current source. The current source is
+', '**Idea used:** source transformation: $E$ in series with $r$ ⇔ $I = E/r$ in parallel with the same $r$ (see *Independent sources → Converting one into the other*).
+
+$I = \dfrac{12}{3} = 4$ A, with 3 Ω in **parallel**.
+
+**Without a calculator:** $12 \div 3 = 4$.
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-051', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A practical voltage source of 12 V with an internal resistance of 3 Ω is replaced by an equivalent practical current source. The current source is'), stem_md = 'A practical voltage source of 12 V with an internal resistance of 3 Ω is replaced by an equivalent practical current source. The current source is
+', solution_md = '**Idea used:** source transformation: $E$ in series with $r$ ⇔ $I = E/r$ in parallel with the same $r$ (see *Independent sources → Converting one into the other*).
+
+$I = \dfrac{12}{3} = 4$ A, with 3 Ω in **parallel**.
+
+**Without a calculator:** $12 \div 3 = 4$.
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-051', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '36 A in parallel with 3 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4 A in series with 3 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.25 A in parallel with 3 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4 A in parallel with 3 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-independent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-independent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-052';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A practical source with an internal resistance of 0.5 Ω supplies a load of 50 Ω. With this load, the source behaves nearly as', 'A practical source with an internal resistance of 0.5 Ω supplies a load of 50 Ω. With this load, the source behaves nearly as
+', '**Idea used:** when does a source behave as constant voltage or constant current (see *Independent sources → When does a source behave as "constant voltage"*).
+
+If $r \ll R_L$, almost all of the EMF appears across the load and the load voltage hardly changes with the load: constant voltage. Here $r = 0.5$ Ω is 1/100 of 50 Ω. (If $r \gg R_L$ it would act as a constant-current source.)
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-052', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A practical source with an internal resistance of 0.5 Ω supplies a load of 50 Ω. With this load, the source behaves nearly as'), stem_md = 'A practical source with an internal resistance of 0.5 Ω supplies a load of 50 Ω. With this load, the source behaves nearly as
+', solution_md = '**Idea used:** when does a source behave as constant voltage or constant current (see *Independent sources → When does a source behave as "constant voltage"*).
+
+If $r \ll R_L$, almost all of the EMF appears across the load and the load voltage hardly changes with the load: constant voltage. Here $r = 0.5$ Ω is 1/100 of 50 Ω. (If $r \gg R_L$ it would act as a constant-current source.)
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-052', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'a constant-voltage source', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'a constant-current source', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'both a constant-voltage and a constant-current source', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'neither', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-independent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-independent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-053';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The terminal voltage $v$ and current $i$ of a source are related by $v = 20 - 4i$ (volts, amperes). Its open-circuit voltage and short-circuit current are', 'The terminal voltage $v$ and current $i$ of a source are related by $v = 20 - 4i$ (volts, amperes). Its open-circuit voltage and short-circuit current are
+', '**Idea used:** the v–i line of a practical source (see *Independent sources → The v–i graph of a source with a resistor*).
+
+Open circuit: $i = 0$ ⇒ $v = 20$ V. Short circuit: $v = 0$ ⇒ $4i = 20$ ⇒ $i = 5$ A. (The internal resistance is 4 Ω.)
+
+Trap: 4 A takes the slope as the current.
+
+**Without a calculator:** $20 \div 4 = 5$.
+
+**Answer: (B).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-053', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The terminal voltage $v$ and current $i$ of a source are related by $v = 20 - 4i$ (volts, amperes). Its open-circuit voltage and short-circuit current are'), stem_md = 'The terminal voltage $v$ and current $i$ of a source are related by $v = 20 - 4i$ (volts, amperes). Its open-circuit voltage and short-circuit current are
+', solution_md = '**Idea used:** the v–i line of a practical source (see *Independent sources → The v–i graph of a source with a resistor*).
+
+Open circuit: $i = 0$ ⇒ $v = 20$ V. Short circuit: $v = 0$ ⇒ $4i = 20$ ⇒ $i = 5$ A. (The internal resistance is 4 Ω.)
+
+Trap: 4 A takes the slope as the current.
+
+**Without a calculator:** $20 \div 4 = 5$.
+
+**Answer: (B).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-053', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '20 V and 4 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '20 V and 5 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '5 V and 20 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4 V and 20 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-independent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-independent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-054';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 10 V source with an internal resistance of 5 Ω feeds a variable load resistor. The largest power the load can receive is', 'A 10 V source with an internal resistance of 5 Ω feeds a variable load resistor. The largest power the load can receive is
+', '**Idea used:** maximum power: $R_L = r$ and $P_{max} = \dfrac{E^2}{4r}$ (see *Independent sources → A first word on maximum power*).
+
+$P_{max} = \dfrac{100}{4\times5} = 5$ W, with $R_L = 5$ Ω (current 1 A, load voltage 5 V).
+
+Trap: 20 W is $E^2/r$, the short-circuit loss inside the source.
+
+**Without a calculator:** current $= 10/10 = 1$ A; $1^2\times5 = 5$ W.
+
+**Answer: (C) 5 W.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-054', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 10 V source with an internal resistance of 5 Ω feeds a variable load resistor. The largest power the load can receive is'), stem_md = 'A 10 V source with an internal resistance of 5 Ω feeds a variable load resistor. The largest power the load can receive is
+', solution_md = '**Idea used:** maximum power: $R_L = r$ and $P_{max} = \dfrac{E^2}{4r}$ (see *Independent sources → A first word on maximum power*).
+
+$P_{max} = \dfrac{100}{4\times5} = 5$ W, with $R_L = 5$ Ω (current 1 A, load voltage 5 V).
+
+Trap: 20 W is $E^2/r$, the short-circuit loss inside the source.
+
+**Without a calculator:** current $= 10/10 = 1$ A; $1^2\times5 = 5$ W.
+
+**Answer: (C) 5 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-054', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '20 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '10 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '5 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.5 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-independent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-independent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-055';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'An ideal 2 A current source is connected across a 5 Ω resistor. The voltage across the source and the power it delivers are', 'An ideal 2 A current source is connected across a 5 Ω resistor. The voltage across the source and the power it delivers are
+', '**Idea used:** an ideal current source fixes the current; the load decides the voltage (see *Independent sources → The ideal current source*).
+
+$V = IR = 2\times5 = 10$ V. $P = VI = 10\times2 = 20$ W (also $I^2R = 4\times5 = 20$ W).
+
+**Without a calculator:** two small products.
+
+**Answer: (B).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-055', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An ideal 2 A current source is connected across a 5 Ω resistor. The voltage across the source and the power it delivers are'), stem_md = 'An ideal 2 A current source is connected across a 5 Ω resistor. The voltage across the source and the power it delivers are
+', solution_md = '**Idea used:** an ideal current source fixes the current; the load decides the voltage (see *Independent sources → The ideal current source*).
+
+$V = IR = 2\times5 = 10$ V. $P = VI = 10\times2 = 20$ W (also $I^2R = 4\times5 = 20$ W).
+
+**Without a calculator:** two small products.
+
+**Answer: (B).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-055', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2.5 V and 5 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '10 V and 20 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '10 V and 10 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.4 V and 0.8 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-independent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-dependent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-056';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'In a voltage-controlled current source, $i = g\,vx$. The unit of $g$ is', 'In a voltage-controlled current source, $i = g\,v_x$. The unit of $g$ is
+', '**Idea used:** the four dependent sources and the units of their gains (see *Dependent sources*).
+
+$g = \dfrac{i}{v_x}$ is current per volt, the unit of conductance: siemens (it is called transconductance). For comparison: CCVS gain is in ohms; VCVS and CCCS gains have no unit.
+
+**Answer: (D) siemens.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-056', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'In a voltage-controlled current source, $i = g\,vx$. The unit of $g$ is'), stem_md = 'In a voltage-controlled current source, $i = g\,v_x$. The unit of $g$ is
+', solution_md = '**Idea used:** the four dependent sources and the units of their gains (see *Dependent sources*).
+
+$g = \dfrac{i}{v_x}$ is current per volt, the unit of conductance: siemens (it is called transconductance). For comparison: CCVS gain is in ohms; VCVS and CCCS gains have no unit.
+
+**Answer: (D) siemens.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-056', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'ohm', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'none (a pure number)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'volt', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'siemens', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-dependent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-dependent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-057';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Which one of the following statements about dependent (controlled) sources is correct?', 'Which one of the following statements about dependent (controlled) sources is correct?
+', '**Idea used:** what dependent sources are and the rules that apply to them (see *Dependent sources*).
+
+- (A) True: amplifier models (transistor, op-amp) are built from dependent sources.
+- (B) False: in superposition only **independent** sources are switched off; dependent sources stay, because their value follows the circuit.
+- (C) False: they are active and often deliver power.
+- (D) False: their value depends on a voltage or current elsewhere in the circuit; that is what "dependent" means.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-057', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Which one of the following statements about dependent (controlled) sources is correct?'), stem_md = 'Which one of the following statements about dependent (controlled) sources is correct?
+', solution_md = '**Idea used:** what dependent sources are and the rules that apply to them (see *Dependent sources*).
+
+- (A) True: amplifier models (transistor, op-amp) are built from dependent sources.
+- (B) False: in superposition only **independent** sources are switched off; dependent sources stay, because their value follows the circuit.
+- (C) False: they are active and often deliver power.
+- (D) False: their value depends on a voltage or current elsewhere in the circuit; that is what "dependent" means.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-057', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'They are used to model devices such as transistors and op-amps', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'They are switched off one at a time when superposition is applied', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'They can never deliver power', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Their value is fixed, whatever happens in the rest of the circuit', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-dependent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-dependent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-058';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A current-controlled voltage source has $v = 4\,ix$ (volts), where $ix = 2$ A. A current of 3 A enters its + terminal. The source', 'A current-controlled voltage source has $v = 4\,i_x$ (volts), where $i_x = 2$ A. A current of 3 A enters its **+** terminal. The source
+', '**Idea used:** power of a dependent source: use its present voltage and current with the passive sign convention (see *Dependent sources → Power of a dependent source*).
+
+$v = 4\times2 = 8$ V. The 3 A enters the + terminal, so absorbed power $= +8\times3 = 24$ W: it absorbs 24 W.
+
+Traps: 6 W multiplies the source current by $i_x$ ($3\times2$) instead of by the source voltage; 32 W multiplies the gain by the voltage ($4\times8$).
+
+**Without a calculator:** $4\times2 = 8$, $8\times3 = 24$.
+
+**Answer: (C) absorbs 24 W.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-058', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A current-controlled voltage source has $v = 4\,ix$ (volts), where $ix = 2$ A. A current of 3 A enters its + terminal. The source'), stem_md = 'A current-controlled voltage source has $v = 4\,i_x$ (volts), where $i_x = 2$ A. A current of 3 A enters its **+** terminal. The source
+', solution_md = '**Idea used:** power of a dependent source: use its present voltage and current with the passive sign convention (see *Dependent sources → Power of a dependent source*).
+
+$v = 4\times2 = 8$ V. The 3 A enters the + terminal, so absorbed power $= +8\times3 = 24$ W: it absorbs 24 W.
+
+Traps: 6 W multiplies the source current by $i_x$ ($3\times2$) instead of by the source voltage; 32 W multiplies the gain by the voltage ($4\times8$).
+
+**Without a calculator:** $4\times2 = 8$, $8\times3 = 24$.
+
+**Answer: (C) absorbs 24 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-058', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'absorbs 32 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'delivers 24 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'absorbs 24 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'absorbs 6 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-dependent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kcl-kvl-first-look';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-059';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Four branches meet at a node. Currents of 5 A and 3 A flow into the node in two branches, and 6 A flows out in the third. The current in the fourth branch is', 'Four branches meet at a node. Currents of 5 A and 3 A flow **into** the node in two branches, and 6 A flows **out** in the third. The current in the fourth branch is
+', '**Idea used:** KCL: total current in = total current out (see *KCL and KVL → Kirchhoff''s Current Law*).
+
+In: $5 + 3 = 8$ A. Out so far: 6 A. So another $8 - 6 = 2$ A must leave through the fourth branch.
+
+**Without a calculator:** $8 - 6 = 2$, and it leaves, because more is coming in than going out.
+
+**Answer: (D) 2 A out of the node.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-059', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Four branches meet at a node. Currents of 5 A and 3 A flow into the node in two branches, and 6 A flows out in the third. The current in the fourth branch is'), stem_md = 'Four branches meet at a node. Currents of 5 A and 3 A flow **into** the node in two branches, and 6 A flows **out** in the third. The current in the fourth branch is
+', solution_md = '**Idea used:** KCL: total current in = total current out (see *KCL and KVL → Kirchhoff''s Current Law*).
+
+In: $5 + 3 = 8$ A. Out so far: 6 A. So another $8 - 6 = 2$ A must leave through the fourth branch.
+
+**Without a calculator:** $8 - 6 = 2$, and it leaves, because more is coming in than going out.
+
+**Answer: (D) 2 A out of the node.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-059', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2 A into the node', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '8 A out of the node', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '14 A out of the node', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2 A out of the node', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kcl-kvl-first-look';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-060';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'In a single closed loop, a 24 V source drives a current through three elements in series. The voltage drops across two of them are 10 V and 6 V. The voltage...', 'In a single closed loop, a 24 V source drives a current through three elements in series. The voltage drops across two of them are 10 V and 6 V. The voltage drop across the third element is
+', '**Idea used:** KVL: around a loop, the sum of the rises equals the sum of the drops (see *KCL and KVL → Kirchhoff''s Voltage Law*).
+
+$24 = 10 + 6 + V_3$ ⇒ $V_3 = 8$ V.
+
+**Without a calculator:** $24 - 16 = 8$.
+
+**Answer: (C) 8 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-060', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In a single closed loop, a 24 V source drives a current through three elements in series. The voltage drops across two of them are 10 V and 6 V. The voltage...'), stem_md = 'In a single closed loop, a 24 V source drives a current through three elements in series. The voltage drops across two of them are 10 V and 6 V. The voltage drop across the third element is
+', solution_md = '**Idea used:** KVL: around a loop, the sum of the rises equals the sum of the drops (see *KCL and KVL → Kirchhoff''s Voltage Law*).
+
+$24 = 10 + 6 + V_3$ ⇒ $V_3 = 8$ V.
+
+**Without a calculator:** $24 - 16 = 8$.
+
+**Answer: (C) 8 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-060', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '16 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '40 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '8 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kcl-kvl-first-look';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-061';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A single loop contains an ideal 10 V voltage source, an ideal 2 A current source and a 3 Ω resistor, all in series. The current through the 3 Ω resistor is', 'A single loop contains an ideal 10 V voltage source, an ideal 2 A current source and a 3 Ω resistor, all in series. The current through the 3 Ω resistor is
+', '**Idea used:** in a series loop, an ideal current source fixes the loop current; the voltage source cannot change it (see *KCL and KVL → Using the laws with ideal sources*).
+
+The resistor carries the current-source current: 2 A. (The voltage across the current source adjusts itself to satisfy KVL; the 10 V source only changes that voltage.)
+
+Trap: $10/3 = 3.33$ A ignores the current source.
+
+**Answer: (B) 2 A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-061', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A single loop contains an ideal 10 V voltage source, an ideal 2 A current source and a 3 Ω resistor, all in series. The current through the 3 Ω resistor is'), stem_md = 'A single loop contains an ideal 10 V voltage source, an ideal 2 A current source and a 3 Ω resistor, all in series. The current through the 3 Ω resistor is
+', solution_md = '**Idea used:** in a series loop, an ideal current source fixes the loop current; the voltage source cannot change it (see *KCL and KVL → Using the laws with ideal sources*).
+
+The resistor carries the current-source current: 2 A. (The voltage across the current source adjusts itself to satisfy KVL; the 10 V source only changes that voltage.)
+
+Trap: $10/3 = 3.33$ A ignores the current source.
+
+**Answer: (B) 2 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-061', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3.33 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '5.33 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'it cannot be found', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kcl-kvl-first-look';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-062';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 12 V ideal source supplies a 4 Ω resistor and an 8 Ω resistor connected in parallel. The power supplied by the source is', 'A 12 V ideal source supplies a 4 Ω resistor and an 8 Ω resistor connected in parallel. The power supplied by the source is
+', '**Idea used:** power balance: the source supplies the total power absorbed by the resistors (see *KCL and KVL → Power balance*).
+
+Both resistors have 12 V across them. $P_4 = \dfrac{144}{4} = 36$ W, $P_8 = \dfrac{144}{8} = 18$ W. Total $= 54$ W. (Or: currents 3 A + 1.5 A = 4.5 A, and $12\times4.5 = 54$ W.)
+
+Trap: 12 W treats the resistors as in series ($144/12$).
+
+**Without a calculator:** $12\times4.5 = 54$.
+
+**Answer: (A) 54 W.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-p-062', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 12 V ideal source supplies a 4 Ω resistor and an 8 Ω resistor connected in parallel. The power supplied by the source is'), stem_md = 'A 12 V ideal source supplies a 4 Ω resistor and an 8 Ω resistor connected in parallel. The power supplied by the source is
+', solution_md = '**Idea used:** power balance: the source supplies the total power absorbed by the resistors (see *KCL and KVL → Power balance*).
+
+Both resistors have 12 V across them. $P_4 = \dfrac{144}{4} = 36$ W, $P_8 = \dfrac{144}{8} = 18$ W. Total $= 54$ W. (Or: currents 3 A + 1.5 A = 4.5 A, and $12\times4.5 = 54$ W.)
+
+Trap: 12 W treats the resistors as in series ($144/12$).
+
+**Without a calculator:** $12\times4.5 = 54$.
+
+**Answer: (A) 54 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-p-062', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '54 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '36 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '18 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '12 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kcl-kvl-first-look';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-p-063';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'In a series R-L-C circuit fed by a source, at one instant the voltages are $vR = 6$ V, $vL = 8$ V and $vC = -2$ V (all measured in the same direction around...', 'In a series R-L-C circuit fed by a source, at one instant the voltages are $v_R = 6$ V, $v_L = 8$ V and $v_C = -2$ V (all measured in the same direction around the loop as the source voltage). The source voltage at that instant is
+', '**Idea used:** KVL holds at **every instant**, using instantaneous values with their signs (see *KCL and KVL → Kirchhoff''s Voltage Law*).
+
+$v_s = v_R + v_L + v_C = 6 + 8 - 2 = 12$ V.
+
+Trap: 16 V ignores the minus sign of $v_C$. Phasor (r.m.s.) values do not simply add, but instantaneous values always do.
+
+**Without a calculator:** $14 - 2 = 12$.
+
+**Answer: (B) 12 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-p-063', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In a series R-L-C circuit fed by a source, at one instant the voltages are $vR = 6$ V, $vL = 8$ V and $vC = -2$ V (all measured in the same direction around...'), stem_md = 'In a series R-L-C circuit fed by a source, at one instant the voltages are $v_R = 6$ V, $v_L = 8$ V and $v_C = -2$ V (all measured in the same direction around the loop as the source voltage). The source voltage at that instant is
+', solution_md = '**Idea used:** KVL holds at **every instant**, using instantaneous values with their signs (see *KCL and KVL → Kirchhoff''s Voltage Law*).
+
+$v_s = v_R + v_L + v_C = 6 + 8 - 2 = 12$ V.
+
+Trap: 16 V ignores the minus sign of $v_C$. Phasor (r.m.s.) values do not simply add, but instantaneous values always do.
+
+**Without a calculator:** $14 - 2 = 12$.
+
+**Answer: (B) 12 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-p-063', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '16 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '12 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '10 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '14 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-charge-current-voltage';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-001';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A 400 km long transmission line at 50 Hz is modelled with distributed (not lumped) parameters because', 'A 400 km long transmission line at 50 Hz is modelled with distributed (not lumped) parameters because
+', '**Idea used:** the lumped model needs the circuit to be much smaller than the wavelength (see *Charge, current and voltage → Lumped elements*).
+
+At 50 Hz, $\lambda = \dfrac{3\times10^8}{50} = 6000$ km. A 400 km line is $\tfrac{1}{15}$ of that, which is not "very small", so its R, L and C are spread along the length (distributed). AC by itself does not need distributed parameters; a 50 Hz room circuit is lumped. A line certainly has capacitance.
+
+**Answer: (B).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-001', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A 400 km long transmission line at 50 Hz is modelled with distributed (not lumped) parameters because'), stem_md = 'A 400 km long transmission line at 50 Hz is modelled with distributed (not lumped) parameters because
+', solution_md = '**Idea used:** the lumped model needs the circuit to be much smaller than the wavelength (see *Charge, current and voltage → Lumped elements*).
+
+At 50 Hz, $\lambda = \dfrac{3\times10^8}{50} = 6000$ km. A 400 km line is $\tfrac{1}{15}$ of that, which is not "very small", so its R, L and C are spread along the length (distributed). AC by itself does not need distributed parameters; a 50 Hz room circuit is lumped. A line certainly has capacitance.
+
+**Answer: (B).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-001', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'its conductors are non-linear', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'its length is a noticeable fraction of the wavelength at 50 Hz', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'it carries AC and not DC', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'it has no capacitance', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-charge-current-voltage');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-charge-current-voltage';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-002';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The current into a capacitor rises in a straight line from 0 to 4 mA in the first 2 s, and then stays at 4 mA for the next 3 s. The total charge delivered...', 'The current into a capacitor rises in a straight line from 0 to 4 mA in the first 2 s, and then stays at 4 mA for the next 3 s. The total charge delivered in these 5 s is
+', '**Idea used:** charge is the area under the current–time graph, $q = \displaystyle\int i\,dt$ (see *Charge, current and voltage → Current*).
+
+- Ramp (triangle): $\tfrac12\times2\times4 = 4$ mC.
+- Flat part (rectangle): $3\times4 = 12$ mC.
+- Total $= 16$ mC.
+
+Trap: 20 mC treats the whole 5 s as 4 mA.
+
+**Without a calculator:** triangle + rectangle: $4 + 12$.
+
+**Answer: (C) 16 mC.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-q-002', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The current into a capacitor rises in a straight line from 0 to 4 mA in the first 2 s, and then stays at 4 mA for the next 3 s. The total charge delivered...'), stem_md = 'The current into a capacitor rises in a straight line from 0 to 4 mA in the first 2 s, and then stays at 4 mA for the next 3 s. The total charge delivered in these 5 s is
+', solution_md = '**Idea used:** charge is the area under the current–time graph, $q = \displaystyle\int i\,dt$ (see *Charge, current and voltage → Current*).
+
+- Ramp (triangle): $\tfrac12\times2\times4 = 4$ mC.
+- Flat part (rectangle): $3\times4 = 12$ mC.
+- Total $= 16$ mC.
+
+Trap: 20 mC treats the whole 5 s as 4 mA.
+
+**Without a calculator:** triangle + rectangle: $4 + 12$.
+
+**Answer: (C) 16 mC.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-q-002', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '12 mC', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '20 mC', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '16 mC', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '8 mC', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-charge-current-voltage');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-charge-current-voltage';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-003';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The total charge carried by $5\times10^{18}$ electrons is about (electron charge $= 1.6\times10^{-19}$ C)', 'The total charge carried by $5\times10^{18}$ electrons is about (electron charge $= 1.6\times10^{-19}$ C)
+', '**Idea used:** $q = n\,e$ (see *Charge, current and voltage → Charge*).
+
+$q = 5\times10^{18}\times1.6\times10^{-19} = 8\times10^{-1} = 0.8$ C.
+
+**Without a calculator:** $5\times1.6 = 8$, and $10^{18}\times10^{-19} = 10^{-1}$.
+
+**Answer: (A) 0.8 C.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-003', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The total charge carried by $5\times10^{18}$ electrons is about (electron charge $= 1.6\times10^{-19}$ C)'), stem_md = 'The total charge carried by $5\times10^{18}$ electrons is about (electron charge $= 1.6\times10^{-19}$ C)
+', solution_md = '**Idea used:** $q = n\,e$ (see *Charge, current and voltage → Charge*).
+
+$q = 5\times10^{18}\times1.6\times10^{-19} = 8\times10^{-1} = 0.8$ C.
+
+**Without a calculator:** $5\times1.6 = 8$, and $10^{18}\times10^{-19} = 10^{-1}$.
+
+**Answer: (A) 0.8 C.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-003', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.8 C', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3.2 C', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '8 C', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.32 C', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-charge-current-voltage');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-charge-current-voltage';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-004';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The charge flowing into an element is $q(t) = 2\sin 100t$ mC. The current at $t = 0$ is', 'The charge flowing into an element is $q(t) = 2\sin 100t$ mC. The current at $t = 0$ is
+', '**Idea used:** $i = \dfrac{dq}{dt}$ (see *Charge, current and voltage → Current*).
+
+$i(t) = 2\times100\cos100t = 200\cos100t$ mA. At $t = 0$, $\cos0 = 1$, so $i = 200$ mA.
+
+Trap: 0 is the **charge** at $t = 0$ ($\sin0 = 0$), not the current. The current is largest where the charge is changing fastest.
+
+**Without a calculator:** the derivative of $\sin at$ is $a\cos at$; $2\times100 = 200$.
+
+**Answer: (D) 200 mA.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-q-004', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The charge flowing into an element is $q(t) = 2\sin 100t$ mC. The current at $t = 0$ is'), stem_md = 'The charge flowing into an element is $q(t) = 2\sin 100t$ mC. The current at $t = 0$ is
+', solution_md = '**Idea used:** $i = \dfrac{dq}{dt}$ (see *Charge, current and voltage → Current*).
+
+$i(t) = 2\times100\cos100t = 200\cos100t$ mA. At $t = 0$, $\cos0 = 1$, so $i = 200$ mA.
+
+Trap: 0 is the **charge** at $t = 0$ ($\sin0 = 0$), not the current. The current is largest where the charge is changing fastest.
+
+**Without a calculator:** the derivative of $\sin at$ is $a\cos at$; $2\times100 = 200$.
+
+**Answer: (D) 200 mA.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-q-004', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2 mA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '20 mA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '200 mA', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-charge-current-voltage');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-charge-current-voltage';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-005';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The energy needed to move a charge of 0.5 C through a potential difference of 220 V is', 'The energy needed to move a charge of 0.5 C through a potential difference of 220 V is
+', '**Idea used:** $W = qV$ (see *Charge, current and voltage → Voltage*).
+
+$W = 0.5\times220 = 110$ J.
+
+**Without a calculator:** half of 220.
+
+**Answer: (B) 110 J.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-005', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The energy needed to move a charge of 0.5 C through a potential difference of 220 V is'), stem_md = 'The energy needed to move a charge of 0.5 C through a potential difference of 220 V is
+', solution_md = '**Idea used:** $W = qV$ (see *Charge, current and voltage → Voltage*).
+
+$W = 0.5\times220 = 110$ J.
+
+**Without a calculator:** half of 220.
+
+**Answer: (B) 110 J.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-005', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '440 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '110 J', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '220 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.27 mJ', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-charge-current-voltage');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-power-energy';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-006';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 2 kW heater is switched on for 15 minutes. The energy it uses, in megajoules, is', 'A 2 kW heater is switched on for 15 minutes. The energy it uses, in megajoules, is
+', '**Idea used:** $W = Pt$ and $1$ kWh $= 3.6$ MJ (see *Power and energy → Energy*).
+
+$W = 2\ \text{kW}\times0.25\ \text{h} = 0.5$ kWh $= 0.5\times3.6 = 1.8$ MJ. (Directly: $2000\times900 = 1.8\times10^6$ J.)
+
+Trap: 0.5 is the value in kWh, not MJ.
+
+**Without a calculator:** half of 3.6 is 1.8.
+
+**Answer: (C) 1.8 MJ.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-006', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 2 kW heater is switched on for 15 minutes. The energy it uses, in megajoules, is'), stem_md = 'A 2 kW heater is switched on for 15 minutes. The energy it uses, in megajoules, is
+', solution_md = '**Idea used:** $W = Pt$ and $1$ kWh $= 3.6$ MJ (see *Power and energy → Energy*).
+
+$W = 2\ \text{kW}\times0.25\ \text{h} = 0.5$ kWh $= 0.5\times3.6 = 1.8$ MJ. (Directly: $2000\times900 = 1.8\times10^6$ J.)
+
+Trap: 0.5 is the value in kWh, not MJ.
+
+**Without a calculator:** half of 3.6 is 1.8.
+
+**Answer: (C) 1.8 MJ.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-006', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.5 MJ', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '30 MJ', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1.8 MJ', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '7.2 MJ', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-power-energy');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kinds-of-elements';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-007';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A network made only of fixed resistors, inductors and capacitors is', 'A network made only of fixed resistors, inductors and capacitors is
+', '**Idea used:** classification of R, L and C (see *Kinds of circuit elements*).
+
+Fixed R, L and C are linear (their laws scale), bilateral (they behave the same both ways) and passive (they never give out more energy than they take). A network made only of such elements has the same three properties.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-007', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A network made only of fixed resistors, inductors and capacitors is'), stem_md = 'A network made only of fixed resistors, inductors and capacitors is
+', solution_md = '**Idea used:** classification of R, L and C (see *Kinds of circuit elements*).
+
+Fixed R, L and C are linear (their laws scale), bilateral (they behave the same both ways) and passive (they never give out more energy than they take). A network made only of such elements has the same three properties.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-007', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'linear, bilateral and passive', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'linear, unilateral and passive', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'non-linear, bilateral and active', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'linear, bilateral and active', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kinds-of-elements');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kinds-of-elements';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-008';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A semiconductor diode is', 'A semiconductor diode is
+', '**Idea used:** classification of elements (see *Kinds of circuit elements*).
+
+Its v–i graph is a curve (non-linear); it conducts one way only (unilateral); it only absorbs energy and cannot supply power on its own (passive).
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-008', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A semiconductor diode is'), stem_md = 'A semiconductor diode is
+', solution_md = '**Idea used:** classification of elements (see *Kinds of circuit elements*).
+
+Its v–i graph is a curve (non-linear); it conducts one way only (unilateral); it only absorbs energy and cannot supply power on its own (passive).
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-008', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'linear, bilateral and passive', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'non-linear, bilateral and active', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'linear, unilateral and active', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'non-linear, unilateral and passive', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kinds-of-elements');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-009';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The conductance of a 25 Ω resistor is', 'The conductance of a 25 Ω resistor is
+', '**Idea used:** $G = \dfrac1R$, unit siemens (see *The resistor → Ohm''s law*).
+
+$G = \dfrac{1}{25} = 0.04$ S.
+
+**Without a calculator:** $\tfrac1{25} = \tfrac{4}{100}$.
+
+**Answer: (B) 0.04 S.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-009', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The conductance of a 25 Ω resistor is'), stem_md = 'The conductance of a 25 Ω resistor is
+', solution_md = '**Idea used:** $G = \dfrac1R$, unit siemens (see *The resistor → Ohm''s law*).
+
+$G = \dfrac{1}{25} = 0.04$ S.
+
+**Without a calculator:** $\tfrac1{25} = \tfrac{4}{100}$.
+
+**Answer: (B) 0.04 S.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-009', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.4 S', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.04 S', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '25 S', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4 S', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-010';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Wire A and wire B are made of the same material. Wire A is twice as long as B and has half the diameter of B. The ratio $RA : RB$ is', 'Wire A and wire B are made of the same material. Wire A is twice as long as B and has half the diameter of B. The ratio $R_A : R_B$ is
+', '**Idea used:** $R = \rho\dfrac{l}{A}$ and $A = \dfrac{\pi d^2}{4}$, so $R \propto \dfrac{l}{d^2}$ (see *The resistor → What decides the resistance*).
+
+Length ratio 2; diameter ratio $\tfrac12$ gives area ratio $\tfrac14$. $\dfrac{R_A}{R_B} = \dfrac{2}{1/4} = 8$.
+
+Trap: 4 : 1 takes area proportional to diameter.
+
+**Without a calculator:** $2\times2^2 = 8$.
+
+**Answer: (C) 8 : 1.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-q-010', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Wire A and wire B are made of the same material. Wire A is twice as long as B and has half the diameter of B. The ratio $RA : RB$ is'), stem_md = 'Wire A and wire B are made of the same material. Wire A is twice as long as B and has half the diameter of B. The ratio $R_A : R_B$ is
+', solution_md = '**Idea used:** $R = \rho\dfrac{l}{A}$ and $A = \dfrac{\pi d^2}{4}$, so $R \propto \dfrac{l}{d^2}$ (see *The resistor → What decides the resistance*).
+
+Length ratio 2; diameter ratio $\tfrac12$ gives area ratio $\tfrac14$. $\dfrac{R_A}{R_B} = \dfrac{2}{1/4} = 8$.
+
+Trap: 4 : 1 takes area proportional to diameter.
+
+**Without a calculator:** $2\times2^2 = 8$.
+
+**Answer: (C) 8 : 1.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-q-010', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1 : 1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4 : 1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '8 : 1', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2 : 1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-011';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Resistors of 2 Ω, 3 Ω and 6 Ω are connected in parallel. The equivalent resistance is', 'Resistors of 2 Ω, 3 Ω and 6 Ω are connected in parallel. The equivalent resistance is
+', '**Idea used:** in parallel, conductances add (see *The resistor → Resistors in series and in parallel*).
+
+$\dfrac1R = \dfrac12 + \dfrac13 + \dfrac16 = \dfrac{3 + 2 + 1}{6} = 1$ ⇒ $R = 1$ Ω.
+
+Check: the result must be smaller than the smallest resistor (2 Ω); only 1 Ω and 0.5 Ω pass, and 0.5 Ω fails the sum.
+
+**Without a calculator:** use sixths: $3 + 2 + 1 = 6$ sixths $= 1$.
+
+**Answer: (D) 1 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-011', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Resistors of 2 Ω, 3 Ω and 6 Ω are connected in parallel. The equivalent resistance is'), stem_md = 'Resistors of 2 Ω, 3 Ω and 6 Ω are connected in parallel. The equivalent resistance is
+', solution_md = '**Idea used:** in parallel, conductances add (see *The resistor → Resistors in series and in parallel*).
+
+$\dfrac1R = \dfrac12 + \dfrac13 + \dfrac16 = \dfrac{3 + 2 + 1}{6} = 1$ ⇒ $R = 1$ Ω.
+
+Check: the result must be smaller than the smallest resistor (2 Ω); only 1 Ω and 0.5 Ω pass, and 0.5 Ω fails the sum.
+
+**Without a calculator:** use sixths: $3 + 2 + 1 = 6$ sixths $= 1$.
+
+**Answer: (D) 1 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-011', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '11 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3.67 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-012';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The coil of a 1000 W, 230 V heater is cut to half its length, and the remaining half is used on the same 230 V supply. Its power now is (ignore the change...', 'The coil of a 1000 W, 230 V heater is cut to half its length, and the remaining half is used on the same 230 V supply. Its power now is (ignore the change of resistance with temperature)
+', '**Idea used:** at fixed voltage, $P = \dfrac{V^2}{R} \propto \dfrac1R$; and $R \propto l$ (see *The resistor → Ratings of lamps and heaters*).
+
+Half the length ⇒ half the resistance ⇒ double the power: 2000 W. (It will also run much hotter, which is why this is unsafe in practice.)
+
+Trap: 500 W assumes power falls with length.
+
+**Without a calculator:** $R$ halves, so $P$ doubles.
+
+**Answer: (A) 2000 W.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-q-012', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The coil of a 1000 W, 230 V heater is cut to half its length, and the remaining half is used on the same 230 V supply. Its power now is (ignore the change...'), stem_md = 'The coil of a 1000 W, 230 V heater is cut to half its length, and the remaining half is used on the same 230 V supply. Its power now is (ignore the change of resistance with temperature)
+', solution_md = '**Idea used:** at fixed voltage, $P = \dfrac{V^2}{R} \propto \dfrac1R$; and $R \propto l$ (see *The resistor → Ratings of lamps and heaters*).
+
+Half the length ⇒ half the resistance ⇒ double the power: 2000 W. (It will also run much hotter, which is why this is unsafe in practice.)
+
+Trap: 500 W assumes power falls with length.
+
+**Without a calculator:** $R$ halves, so $P$ doubles.
+
+**Answer: (A) 2000 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-q-012', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2000 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '500 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1000 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4000 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-013';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A capacitor charged to 100 V stores 0.5 J. Its capacitance is', 'A capacitor charged to 100 V stores 0.5 J. Its capacitance is
+', '**Idea used:** $W = \tfrac12CV^2$ ⇒ $C = \dfrac{2W}{V^2}$ (see *The capacitor → Energy stored in a capacitor*).
+
+$C = \dfrac{2\times0.5}{100^2} = \dfrac{1}{10^4} = 10^{-4}$ F $= 100$ µF.
+
+Trap: 50 µF forgets the factor 2.
+
+**Without a calculator:** $10^{-4}$ F $= 100\times10^{-6}$ F.
+
+**Answer: (C) 100 µF.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-013', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A capacitor charged to 100 V stores 0.5 J. Its capacitance is'), stem_md = 'A capacitor charged to 100 V stores 0.5 J. Its capacitance is
+', solution_md = '**Idea used:** $W = \tfrac12CV^2$ ⇒ $C = \dfrac{2W}{V^2}$ (see *The capacitor → Energy stored in a capacitor*).
+
+$C = \dfrac{2\times0.5}{100^2} = \dfrac{1}{10^4} = 10^{-4}$ F $= 100$ µF.
+
+Trap: 50 µF forgets the factor 2.
+
+**Without a calculator:** $10^{-4}$ F $= 100\times10^{-6}$ F.
+
+**Answer: (C) 100 µF.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-013', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10 µF', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '50 µF', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '100 µF', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1000 µF', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-014';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A capacitor charged to voltage $V$ is connected across an identical uncharged capacitor. The fraction of the original stored energy that remains after...', 'A capacitor charged to voltage $V$ is connected across an identical uncharged capacitor. The fraction of the original stored energy that remains after charge sharing is
+', '**Idea used:** in charge sharing, charge is conserved but energy is not (see *The capacitor → Charge sharing between two capacitors*).
+
+Before: $\tfrac12CV^2$. Charge $CV$ spreads over $2C$, so each capacitor ends at $V/2$. After: $2\times\tfrac12C\left(\tfrac V2\right)^2 = \tfrac14CV^2$. Remaining fraction $= \dfrac{1/4}{1/2} = \tfrac12$. The other half is lost in the wires (as heat and radiation).
+
+Trap: one quarter is the energy left in **each** capacitor as a fraction of the original.
+
+**Without a calculator:** each capacitor ends at half the voltage, so it holds $\left(\tfrac12\right)^2 = \tfrac14$ of the original energy; two of them hold $\tfrac12$.
+
+**Answer: (B) one half.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-q-014', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A capacitor charged to voltage $V$ is connected across an identical uncharged capacitor. The fraction of the original stored energy that remains after...'), stem_md = 'A capacitor charged to voltage $V$ is connected across an identical uncharged capacitor. The fraction of the original stored energy that remains after charge sharing is
+', solution_md = '**Idea used:** in charge sharing, charge is conserved but energy is not (see *The capacitor → Charge sharing between two capacitors*).
+
+Before: $\tfrac12CV^2$. Charge $CV$ spreads over $2C$, so each capacitor ends at $V/2$. After: $2\times\tfrac12C\left(\tfrac V2\right)^2 = \tfrac14CV^2$. Remaining fraction $= \dfrac{1/4}{1/2} = \tfrac12$. The other half is lost in the wires (as heat and radiation).
+
+Trap: one quarter is the energy left in **each** capacitor as a fraction of the original.
+
+**Without a calculator:** each capacitor ends at half the voltage, so it holds $\left(\tfrac12\right)^2 = \tfrac14$ of the original energy; two of them hold $\tfrac12$.
+
+**Answer: (B) one half.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-q-014', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'one quarter', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'one half', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'all of it', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'three quarters', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-015';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Both the plate area and the plate separation of a parallel-plate capacitor are doubled. The capacitance', 'Both the plate area and the plate separation of a parallel-plate capacitor are doubled. The capacitance
+', '**Idea used:** $C = \dfrac{\varepsilon A}{d}$ (see *The capacitor → What a capacitor is*).
+
+$\dfrac{\varepsilon(2A)}{2d} = \dfrac{\varepsilon A}{d}$: no change.
+
+**Answer: (D) stays the same.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-015', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Both the plate area and the plate separation of a parallel-plate capacitor are doubled. The capacitance'), stem_md = 'Both the plate area and the plate separation of a parallel-plate capacitor are doubled. The capacitance
+', solution_md = '**Idea used:** $C = \dfrac{\varepsilon A}{d}$ (see *The capacitor → What a capacitor is*).
+
+$\dfrac{\varepsilon(2A)}{2d} = \dfrac{\varepsilon A}{d}$: no change.
+
+**Answer: (D) stays the same.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-015', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'becomes 4 times', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'becomes double', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'becomes half', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'stays the same', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-capacitor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-016';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A voltage $v = 100\sin100t$ V is applied across a 10 µF capacitor. The peak value of the current is', 'A voltage $v = 100\sin100t$ V is applied across a 10 µF capacitor. The peak value of the current is
+', '**Idea used:** $i = C\dfrac{dv}{dt}$ (see *The capacitor → The current–voltage rule*).
+
+$\dfrac{dv}{dt} = 100\times100\cos100t = 10^4\cos100t$ V/s. $i = 10\times10^{-6}\times10^4\cos100t = 0.1\cos100t$ A. Peak $= 0.1$ A.
+
+**Without a calculator:** peak current $= C\,\omega\,V_m = 10^{-5}\times10^2\times10^2 = 10^{-1}$ A.
+
+**Answer: (B) 0.1 A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-q-016', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A voltage $v = 100\sin100t$ V is applied across a 10 µF capacitor. The peak value of the current is'), stem_md = 'A voltage $v = 100\sin100t$ V is applied across a 10 µF capacitor. The peak value of the current is
+', solution_md = '**Idea used:** $i = C\dfrac{dv}{dt}$ (see *The capacitor → The current–voltage rule*).
+
+$\dfrac{dv}{dt} = 100\times100\cos100t = 10^4\cos100t$ V/s. $i = 10\times10^{-6}\times10^4\cos100t = 0.1\cos100t$ A. Peak $= 0.1$ A.
+
+**Without a calculator:** peak current $= C\,\omega\,V_m = 10^{-5}\times10^2\times10^2 = 10^{-1}$ A.
+
+**Answer: (B) 0.1 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-q-016', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1 mA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.1 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '10 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-capacitor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-inductor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-017';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Three uncoupled inductors of 6 mH each are connected so that two are in series and this pair is in parallel with the third. The equivalent inductance is', 'Three uncoupled inductors of 6 mH each are connected so that two are in series and this pair is in parallel with the third. The equivalent inductance is
+', '**Idea used:** uncoupled inductors combine like resistors (see *The inductor → Inductors in series and in parallel*).
+
+Series pair: $6 + 6 = 12$ mH. In parallel with 6 mH: $\dfrac{12\times6}{12 + 6} = \dfrac{72}{18} = 4$ mH.
+
+**Without a calculator:** $2L \parallel L = \tfrac23L = \tfrac23\times6 = 4$.
+
+**Answer: (A) 4 mH.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-017', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Three uncoupled inductors of 6 mH each are connected so that two are in series and this pair is in parallel with the third. The equivalent inductance is'), stem_md = 'Three uncoupled inductors of 6 mH each are connected so that two are in series and this pair is in parallel with the third. The equivalent inductance is
+', solution_md = '**Idea used:** uncoupled inductors combine like resistors (see *The inductor → Inductors in series and in parallel*).
+
+Series pair: $6 + 6 = 12$ mH. In parallel with 6 mH: $\dfrac{12\times6}{12 + 6} = \dfrac{72}{18} = 4$ mH.
+
+**Without a calculator:** $2L \parallel L = \tfrac23L = \tfrac23\times6 = 4$.
+
+**Answer: (A) 4 mH.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-017', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '4 mH', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '9 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '18 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-inductor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-inductor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-018';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The current in a 2 H inductor is increased from 2 A to 4 A. The extra energy stored in the inductor is', 'The current in a 2 H inductor is increased from 2 A to 4 A. The extra energy stored in the inductor is
+', '**Idea used:** $W = \tfrac12LI^2$; the extra energy is the difference of the two values (see *The inductor → Power and energy in an inductor*).
+
+At 4 A: $\tfrac12\times2\times16 = 16$ J. At 2 A: $\tfrac12\times2\times4 = 4$ J. Extra $= 16 - 4 = 12$ J.
+
+Trap: 4 J uses $\tfrac12L(\Delta I)^2 = \tfrac12\times2\times2^2$; energy goes with $I^2$, not with $(\Delta I)^2$.
+
+**Without a calculator:** with $L = 2$, $W = I^2$: $16 - 4 = 12$.
+
+**Answer: (D) 12 J.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-q-018', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The current in a 2 H inductor is increased from 2 A to 4 A. The extra energy stored in the inductor is'), stem_md = 'The current in a 2 H inductor is increased from 2 A to 4 A. The extra energy stored in the inductor is
+', solution_md = '**Idea used:** $W = \tfrac12LI^2$; the extra energy is the difference of the two values (see *The inductor → Power and energy in an inductor*).
+
+At 4 A: $\tfrac12\times2\times16 = 16$ J. At 2 A: $\tfrac12\times2\times4 = 4$ J. Extra $= 16 - 4 = 12$ J.
+
+Trap: 4 J uses $\tfrac12L(\Delta I)^2 = \tfrac12\times2\times2^2$; energy goes with $I^2$, not with $(\Delta I)^2$.
+
+**Without a calculator:** with $L = 2$, $W = I^2$: $16 - 4 = 12$.
+
+**Answer: (D) 12 J.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-q-018', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '4 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '16 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '8 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '12 J', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-inductor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-mutual-inductance';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-019';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Two coils of 16 mH and 25 mH are perfectly coupled ($k = 1$). Their mutual inductance is', 'Two coils of 16 mH and 25 mH are perfectly coupled ($k = 1$). Their mutual inductance is
+', '**Idea used:** $M = k\sqrt{L_1L_2}$; $k = 1$ gives the largest possible $M$ (see *Mutual inductance → How strong is the coupling?*).
+
+$M = \sqrt{16\times25} = \sqrt{400} = 20$ mH.
+
+**Without a calculator:** $\sqrt{16} = 4$, $\sqrt{25} = 5$, product 20.
+
+**Answer: (B) 20 mH.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-019', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Two coils of 16 mH and 25 mH are perfectly coupled ($k = 1$). Their mutual inductance is'), stem_md = 'Two coils of 16 mH and 25 mH are perfectly coupled ($k = 1$). Their mutual inductance is
+', solution_md = '**Idea used:** $M = k\sqrt{L_1L_2}$; $k = 1$ gives the largest possible $M$ (see *Mutual inductance → How strong is the coupling?*).
+
+$M = \sqrt{16\times25} = \sqrt{400} = 20$ mH.
+
+**Without a calculator:** $\sqrt{16} = 4$, $\sqrt{25} = 5$, product 20.
+
+**Answer: (B) 20 mH.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-019', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '41 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '20 mH', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '9 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '400 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-mutual-inductance');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-mutual-inductance';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-020';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Two coils have $L1 = 0.2$ H, $L2 = 0.8$ H and mutual inductance $M = 0.2$ H. The coefficient of coupling is', 'Two coils have $L_1 = 0.2$ H, $L_2 = 0.8$ H and mutual inductance $M = 0.2$ H. The coefficient of coupling is
+', '**Idea used:** $k = \dfrac{M}{\sqrt{L_1L_2}}$ (see *Mutual inductance → How strong is the coupling?*).
+
+$\sqrt{0.2\times0.8} = \sqrt{0.16} = 0.4$. $k = \dfrac{0.2}{0.4} = 0.5$.
+
+**Without a calculator:** $0.2\times0.8 = 0.16$, whose root is 0.4.
+
+**Answer: (C) 0.5.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-020', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Two coils have $L1 = 0.2$ H, $L2 = 0.8$ H and mutual inductance $M = 0.2$ H. The coefficient of coupling is'), stem_md = 'Two coils have $L_1 = 0.2$ H, $L_2 = 0.8$ H and mutual inductance $M = 0.2$ H. The coefficient of coupling is
+', solution_md = '**Idea used:** $k = \dfrac{M}{\sqrt{L_1L_2}}$ (see *Mutual inductance → How strong is the coupling?*).
+
+$\sqrt{0.2\times0.8} = \sqrt{0.16} = 0.4$. $k = \dfrac{0.2}{0.4} = 0.5$.
+
+**Without a calculator:** $0.2\times0.8 = 0.16$, whose root is 0.4.
+
+**Answer: (C) 0.5.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-020', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.25', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.5', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.2', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-mutual-inductance');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-mutual-inductance';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-021';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Coils of 3 mH and 5 mH with a mutual inductance of 1 mH are connected in series aiding. The total inductance is', 'Coils of 3 mH and 5 mH with a mutual inductance of 1 mH are connected in series **aiding**. The total inductance is
+', '**Idea used:** series aiding: $L = L_1 + L_2 + 2M$ (see *Mutual inductance → Two coupled coils in series*).
+
+$L = 3 + 5 + 2\times1 = 10$ mH.
+
+Traps: 9 mH adds $M$ once; 6 mH is the opposing connection; 8 mH ignores coupling.
+
+**Answer: (A) 10 mH.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-021', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Coils of 3 mH and 5 mH with a mutual inductance of 1 mH are connected in series aiding. The total inductance is'), stem_md = 'Coils of 3 mH and 5 mH with a mutual inductance of 1 mH are connected in series **aiding**. The total inductance is
+', solution_md = '**Idea used:** series aiding: $L = L_1 + L_2 + 2M$ (see *Mutual inductance → Two coupled coils in series*).
+
+$L = 3 + 5 + 2\times1 = 10$ mH.
+
+Traps: 9 mH adds $M$ once; 6 mH is the opposing connection; 8 mH ignores coupling.
+
+**Answer: (A) 10 mH.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-021', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10 mH', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '9 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '6 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '8 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-mutual-inductance');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-mutual-inductance';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-022';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Two coupled coils are joined in series so that the same current enters the dotted terminal of each coil. This connection is', 'Two coupled coils are joined in series so that the same current enters the dotted terminal of each coil. This connection is
+', '**Idea used:** dot convention in a series connection (see *Mutual inductance → The dot convention* and *Two coupled coils in series*).
+
+When the current enters both dotted ends (or leaves both), the fluxes add: series **aiding**, and each coil gets an extra $M\,di/dt$, so $L = L_1 + L_2 + 2M$. If it entered one dotted end and left the other, the fluxes would oppose and $L = L_1 + L_2 - 2M$.
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-q-022', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Two coupled coils are joined in series so that the same current enters the dotted terminal of each coil. This connection is'), stem_md = 'Two coupled coils are joined in series so that the same current enters the dotted terminal of each coil. This connection is
+', solution_md = '**Idea used:** dot convention in a series connection (see *Mutual inductance → The dot convention* and *Two coupled coils in series*).
+
+When the current enters both dotted ends (or leaves both), the fluxes add: series **aiding**, and each coil gets an extra $M\,di/dt$, so $L = L_1 + L_2 + 2M$. If it entered one dotted end and left the other, the fluxes would oppose and $L = L_1 + L_2 - 2M$.
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-q-022', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'series opposing, $L = L_1 + L_2 - 2M$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'series aiding, $L = L_1 + L_2 - M$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'series opposing, $L = L_1 + L_2 - M$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'series aiding, $L = L_1 + L_2 + 2M$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-mutual-inductance');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-independent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-023';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'When a practical voltage source delivers maximum power to a resistive load, the efficiency of power transfer is', 'When a practical voltage source delivers maximum power to a resistive load, the efficiency of power transfer is
+', '**Idea used:** maximum power transfer needs $R_L = r$ (see *Independent sources → A first word on maximum power*).
+
+With $R_L = r$, the same current flows through both, so the power lost in $r$ equals the power in $R_L$. Half of the source power reaches the load: 50 %.
+
+**Answer: (C) 50 %.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-023', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'When a practical voltage source delivers maximum power to a resistive load, the efficiency of power transfer is'), stem_md = 'When a practical voltage source delivers maximum power to a resistive load, the efficiency of power transfer is
+', solution_md = '**Idea used:** maximum power transfer needs $R_L = r$ (see *Independent sources → A first word on maximum power*).
+
+With $R_L = r$, the same current flows through both, so the power lost in $r$ equals the power in $R_L$. Half of the source power reaches the load: 50 %.
+
+**Answer: (C) 50 %.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-023', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '100 %', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '75 %', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '50 %', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '25 %', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-independent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-independent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-024';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A practical source has an internal resistance of 10 kΩ and feeds a 10 Ω load. With this load it behaves nearly as', 'A practical source has an internal resistance of 10 kΩ and feeds a 10 Ω load. With this load it behaves nearly as
+', '**Idea used:** when $r \gg R_L$, the current $\dfrac{E}{r + R_L} \approx \dfrac{E}{r}$ hardly depends on the load (see *Independent sources → When does a source behave as "constant current"*).
+
+10 kΩ is 1000 times 10 Ω, so the load current stays almost the same if the load changes a little: constant current.
+
+**Answer: (B).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-024', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A practical source has an internal resistance of 10 kΩ and feeds a 10 Ω load. With this load it behaves nearly as'), stem_md = 'A practical source has an internal resistance of 10 kΩ and feeds a 10 Ω load. With this load it behaves nearly as
+', solution_md = '**Idea used:** when $r \gg R_L$, the current $\dfrac{E}{r + R_L} \approx \dfrac{E}{r}$ hardly depends on the load (see *Independent sources → When does a source behave as "constant current"*).
+
+10 kΩ is 1000 times 10 Ω, so the load current stays almost the same if the load changes a little: constant current.
+
+**Answer: (B).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-024', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'a constant-voltage source', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'a constant-current source', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'an open circuit', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'a short circuit', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-independent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-dependent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-025';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'For a current-controlled current source $i = \beta\,ix$, the gain $\beta$ is measured in', 'For a current-controlled current source $i = \beta\,i_x$, the gain $\beta$ is measured in
+', '**Idea used:** units of the four dependent-source gains (see *Dependent sources*).
+
+$\beta = \dfrac{i}{i_x}$ is a current divided by a current: a pure number (current gain). VCVS gain is also unitless; CCVS gain is in ohms; VCCS gain is in siemens.
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-025', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'For a current-controlled current source $i = \beta\,ix$, the gain $\beta$ is measured in'), stem_md = 'For a current-controlled current source $i = \beta\,i_x$, the gain $\beta$ is measured in
+', solution_md = '**Idea used:** units of the four dependent-source gains (see *Dependent sources*).
+
+$\beta = \dfrac{i}{i_x}$ is a current divided by a current: a pure number (current gain). VCVS gain is also unitless; CCVS gain is in ohms; VCCS gain is in siemens.
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-025', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'ohm', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'siemens', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'ampere', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'no unit (it is a pure ratio)', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-dependent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-dependent-sources';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-026';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A voltage-controlled current source gives $i = 0.5\,vx$ A, where $vx = 4$ V. The voltage across the source is 10 V and its current leaves its + terminal....', 'A voltage-controlled current source gives $i = 0.5\,v_x$ A, where $v_x = 4$ V. The voltage across the source is 10 V and its current **leaves** its + terminal. The source
+', '**Idea used:** power of a dependent source with the passive sign convention (see *Dependent sources → Power of a dependent source*).
+
+Source current $= 0.5\times4 = 2$ A. Current leaving the + terminal means the source delivers $P = 10\times2 = 20$ W.
+
+Traps: 5 W uses $0.5\times10$; 2 W uses only the current.
+
+**Without a calculator:** $0.5\times4 = 2$, $2\times10 = 20$.
+
+**Answer: (A) delivers 20 W.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-q-026', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A voltage-controlled current source gives $i = 0.5\,vx$ A, where $vx = 4$ V. The voltage across the source is 10 V and its current leaves its + terminal....'), stem_md = 'A voltage-controlled current source gives $i = 0.5\,v_x$ A, where $v_x = 4$ V. The voltage across the source is 10 V and its current **leaves** its + terminal. The source
+', solution_md = '**Idea used:** power of a dependent source with the passive sign convention (see *Dependent sources → Power of a dependent source*).
+
+Source current $= 0.5\times4 = 2$ A. Current leaving the + terminal means the source delivers $P = 10\times2 = 20$ W.
+
+Traps: 5 W uses $0.5\times10$; 2 W uses only the current.
+
+**Without a calculator:** $0.5\times4 = 2$, $2\times10 = 20$.
+
+**Answer: (A) delivers 20 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-q-026', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'delivers 20 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'absorbs 20 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'delivers 5 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'delivers 2 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-dependent-sources');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kcl-kvl-first-look';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-027';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Four branch currents at a node are marked with arrows: $i1 = 2$ A (arrow into the node), $i3 = -4$ A (arrow into the node), $i2 = 3$ A (arrow out of the...', 'Four branch currents at a node are marked with arrows: $i_1 = 2$ A (arrow into the node), $i_3 = -4$ A (arrow into the node), $i_2 = 3$ A (arrow out of the node) and $i_4$ (arrow out of the node). The value of $i_4$ is
+', '**Idea used:** KCL with reference arrows: sum of currents with arrows in = sum with arrows out; a negative value just means the real current flows against its arrow (see *KCL and KVL → Kirchhoff''s Current Law*).
+
+In: $2 + (-4) = -2$. Out: $3 + i_4$. So $3 + i_4 = -2$ ⇒ $i_4 = -5$ A. (5 A actually flows **into** the node in branch 4.)
+
+Trap: 9 A ignores the sign of $i_3$.
+
+**Without a calculator:** $-2 - 3 = -5$.
+
+**Answer: (C) −5 A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-q-027', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Four branch currents at a node are marked with arrows: $i1 = 2$ A (arrow into the node), $i3 = -4$ A (arrow into the node), $i2 = 3$ A (arrow out of the...'), stem_md = 'Four branch currents at a node are marked with arrows: $i_1 = 2$ A (arrow into the node), $i_3 = -4$ A (arrow into the node), $i_2 = 3$ A (arrow out of the node) and $i_4$ (arrow out of the node). The value of $i_4$ is
+', solution_md = '**Idea used:** KCL with reference arrows: sum of currents with arrows in = sum with arrows out; a negative value just means the real current flows against its arrow (see *KCL and KVL → Kirchhoff''s Current Law*).
+
+In: $2 + (-4) = -2$. Out: $3 + i_4$. So $3 + i_4 = -2$ ⇒ $i_4 = -5$ A. (5 A actually flows **into** the node in branch 4.)
+
+Trap: 9 A ignores the sign of $i_3$.
+
+**Without a calculator:** $-2 - 3 = -5$.
+
+**Answer: (C) −5 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-q-027', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '9 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '−5 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '−1 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kcl-kvl-first-look';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-028';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Measured from ground, node a is at 12 V and node c is at −3 V. The voltage $V{ac}$ (a with respect to c) is', 'Measured from ground, node a is at 12 V and node c is at −3 V. The voltage $V_{ac}$ (a with respect to c) is
+', '**Idea used:** a voltage between two nodes is the difference of their node voltages, $V_{ac} = V_a - V_c$ (see *Charge, current and voltage → Ground* and *KCL and KVL*).
+
+$V_{ac} = 12 - (-3) = 15$ V.
+
+Trap: 9 V treats −3 as +3.
+
+**Answer: (B) 15 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-028', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Measured from ground, node a is at 12 V and node c is at −3 V. The voltage $V{ac}$ (a with respect to c) is'), stem_md = 'Measured from ground, node a is at 12 V and node c is at −3 V. The voltage $V_{ac}$ (a with respect to c) is
+', solution_md = '**Idea used:** a voltage between two nodes is the difference of their node voltages, $V_{ac} = V_a - V_c$ (see *Charge, current and voltage → Ground* and *KCL and KVL*).
+
+$V_{ac} = 12 - (-3) = 15$ V.
+
+Trap: 9 V treats −3 as +3.
+
+**Answer: (B) 15 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-028', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '9 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '15 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '−15 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '−9 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kcl-kvl-first-look';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-029';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A single loop has a 20 V source, a 5 V source and a 5 Ω resistor in series. The two sources are connected so that they push current in opposite directions...', 'A single loop has a 20 V source, a 5 V source and a 5 Ω resistor in series. The two sources are connected so that they push current in opposite directions round the loop. The current in the resistor is
+', '**Idea used:** KVL in one loop: net EMF = drop in the resistor (see *KCL and KVL → Kirchhoff''s Voltage Law*).
+
+The sources oppose, so the net push is $20 - 5 = 15$ V, in the direction of the 20 V source. $I = \dfrac{15}{5} = 3$ A.
+
+Trap: 5 A adds the sources ($25/5$).
+
+**Without a calculator:** $15 \div 5 = 3$.
+
+**Answer: (D) 3 A.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec1-q-029', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A single loop has a 20 V source, a 5 V source and a 5 Ω resistor in series. The two sources are connected so that they push current in opposite directions...'), stem_md = 'A single loop has a 20 V source, a 5 V source and a 5 Ω resistor in series. The two sources are connected so that they push current in opposite directions round the loop. The current in the resistor is
+', solution_md = '**Idea used:** KVL in one loop: net EMF = drop in the resistor (see *KCL and KVL → Kirchhoff''s Voltage Law*).
+
+The sources oppose, so the net push is $20 - 5 = 15$ V, in the direction of the 20 V source. $I = \dfrac{15}{5} = 3$ A.
+
+Trap: 5 A adds the sources ($25/5$).
+
+**Without a calculator:** $15 \div 5 = 3$.
+
+**Answer: (D) 3 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec1-q-029', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '5 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '3 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-kcl-kvl-first-look';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec1-q-030';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 12 V source charges a 4 V battery through a 4 Ω resistor (one loop; the battery''s + terminal is joined towards the source''s + terminal through the...', 'A 12 V source charges a 4 V battery through a 4 Ω resistor (one loop; the battery''s + terminal is joined towards the source''s + terminal through the resistor). The power absorbed by the 4 V battery is
+', '**Idea used:** KVL for the current, then the passive sign convention and power balance (see *KCL and KVL → Power balance in a part of a circuit*).
+
+The sources oppose: $I = \dfrac{12 - 4}{4} = 2$ A, entering the battery''s + terminal. Battery absorbs $4\times2 = 8$ W. Check: source gives $12\times2 = 24$ W; resistor takes $2^2\times4 = 16$ W; $16 + 8 = 24$ ✔.
+
+Traps: 16 W is the resistor''s share; 24 W is the source''s total.
+
+**Without a calculator:** $8 \div 4 = 2$ A, $4\times2 = 8$ W.
+
+**Answer: (A) 8 W.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec1-q-030', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 12 V source charges a 4 V battery through a 4 Ω resistor (one loop; the battery''s + terminal is joined towards the source''s + terminal through the...'), stem_md = 'A 12 V source charges a 4 V battery through a 4 Ω resistor (one loop; the battery''s + terminal is joined towards the source''s + terminal through the resistor). The power absorbed by the 4 V battery is
+', solution_md = '**Idea used:** KVL for the current, then the passive sign convention and power balance (see *KCL and KVL → Power balance in a part of a circuit*).
+
+The sources oppose: $I = \dfrac{12 - 4}{4} = 2$ A, entering the battery''s + terminal. Battery absorbs $4\times2 = 8$ W. Check: source gives $12\times2 = 24$ W; resistor takes $2^2\times4 = 16$ W; $16 + 8 = 24$ ✔.
+
+Traps: 16 W is the resistor''s share; 24 W is the source''s total.
+
+**Without a calculator:** $8 \div 4 = 2$ A, $4\times2 = 8$ W.
+
+**Answer: (A) 8 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec1-q-030', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '8 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '16 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '24 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
+END $ppimport$;
 
 -- mock tests
 INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch1-mock-pyq', 'Chapter 1 mock: PYQs only', 'CHAPTER', 74, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'PYQ', 'All Chapter 1 exam questions (GATE, ESE, APSC 2023), asked the APSC way.', 1) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
 DELETE FROM test_question WHERE test_id = (SELECT id FROM test WHERE code = 'ec-ch1-mock-pyq');
 INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch1-mock-pyq'), v.pos, qq.id, NULL FROM (VALUES (1, 'gate-2007-64'), (2, 'gate-2015-s1-28'), (3, 'ese-2018-126'), (4, 'ese-2017-56'), (5, 'ese-2020-28'), (6, 'gate-2024-13'), (7, 'ese-2021-8'), (8, 'ese-2024-87'), (9, 'gate-2003-inductor-energy'), (10, 'gate-2010-7'), (11, 'gate-1997-nonlinear-battery'), (12, 'gate-2001-bulbs'), (13, 'aegcl-2023-83'), (14, 'gate-1999-r-sources'), (15, 'ese-2025-29'), (16, 'gate-2014-s1-6'), (17, 'ese-2026-101'), (18, 'ese-2019-25'), (19, 'ese-2018-19'), (20, 'gate-1998-impulse'), (21, 'ese-2017-38'), (22, 'gate-2003-segment'), (23, 'gate-2012-17'), (24, 'gate-2000-inductor-current'), (25, 'ese-2026-105'), (26, 'gate-2009-10'), (27, 'ese-2020-25'), (28, 'gate-2009-22'), (29, 'ese-2018-16'), (30, 'gate-1997-cap-energy-cycle'), (31, 'gate-1999-capacitance-by'), (32, 'gate-2014-s1-29'), (33, 'gate-2014-s1-30'), (34, 'ese-2018-37'), (35, 'gate-2017-s2-22'), (36, 'apdcl-2023-46'), (37, 'ese-2019-149'), (38, 'gate-2017-s1-18'), (39, 'gate-2008-76'), (40, 'ese-2025-36'), (41, 'gate-2026-25'), (42, 'ese-2025-26'), (43, 'ese-2022-41'), (44, 'ese-2024-60'), (45, 'ese-2020-35'), (46, 'gate-2020-32'), (47, 'ese-2022-44'), (48, 'gate-2013-30'), (49, 'gate-2008-23'), (50, 'gate-2016-s2-23'), (51, 'gate-2021-15'), (52, 'ese-2019-36'), (53, 'apgcl-2023-2'), (54, 'gate-2025-18'), (55, 'ese-2018-24'), (56, 'ese-2025-27'), (57, 'ese-2021-10'), (58, 'gate-2026-23'), (59, 'gate-1999-rc-triangular'), (60, 'gate-2014-s1-8'), (61, 'gate-2025-19')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
+INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch1-mock-fresh', 'Chapter 1 mock: fresh questions', 'CHAPTER', 76, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'FRESH', 'New APSC-style questions only, at least one on every Chapter 1 concept. None of them appear in Study.', 2) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
+DELETE FROM test_question WHERE test_id = (SELECT id FROM test WHERE code = 'ec-ch1-mock-fresh');
+INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch1-mock-fresh'), v.pos, qq.id, NULL FROM (VALUES (1, 'ec1-p-022'), (2, 'ec1-p-032'), (3, 'ec1-p-021'), (4, 'ec1-p-047'), (5, 'ec1-p-009'), (6, 'ec1-p-048'), (7, 'ec1-p-042'), (8, 'ec1-p-053'), (9, 'ec1-p-027'), (10, 'ec1-p-051'), (11, 'ec1-p-014'), (12, 'ec1-p-018'), (13, 'ec1-p-059'), (14, 'ec1-p-023'), (15, 'ec1-p-054'), (16, 'ec1-p-016'), (17, 'ec1-p-043'), (18, 'ec1-p-028'), (19, 'ec1-p-017'), (20, 'ec1-p-058'), (21, 'ec1-p-019'), (22, 'ec1-p-024'), (23, 'ec1-p-061'), (24, 'ec1-p-015'), (25, 'ec1-p-025'), (26, 'ec1-p-049'), (27, 'ec1-p-044'), (28, 'ec1-p-008'), (29, 'ec1-p-037'), (30, 'ec1-p-046'), (31, 'ec1-p-002'), (32, 'ec1-p-004'), (33, 'ec1-p-005'), (34, 'ec1-p-034'), (35, 'ec1-p-001'), (36, 'ec1-p-011'), (37, 'ec1-p-045'), (38, 'ec1-p-026'), (39, 'ec1-p-039'), (40, 'ec1-p-003'), (41, 'ec1-p-035'), (42, 'ec1-p-006'), (43, 'ec1-p-010'), (44, 'ec1-p-020'), (45, 'ec1-p-057'), (46, 'ec1-p-007'), (47, 'ec1-p-052'), (48, 'ec1-p-040'), (49, 'ec1-p-041'), (50, 'ec1-p-031'), (51, 'ec1-p-062'), (52, 'ec1-p-012'), (53, 'ec1-p-013'), (54, 'ec1-p-038'), (55, 'ec1-p-060'), (56, 'ec1-p-033'), (57, 'ec1-p-063'), (58, 'ec1-p-030'), (59, 'ec1-p-050'), (60, 'ec1-p-055'), (61, 'ec1-p-036'), (62, 'ec1-p-056'), (63, 'ec1-p-029')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
+INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch1-mock-mix', 'Chapter 1 mock: mixed', 'CHAPTER', 72, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'MIX', 'Every Chapter 1 concept once: half exam questions, half new ones, mixed the way APSC sets a paper.', 3) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
+DELETE FROM test_question WHERE test_id = (SELECT id FROM test WHERE code = 'ec-ch1-mock-mix');
+INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch1-mock-mix'), v.pos, qq.id, NULL FROM (VALUES (1, 'gate-2007-64'), (2, 'ec1-q-016'), (3, 'ese-2026-105'), (4, 'ec1-q-011'), (5, 'ec1-q-021'), (6, 'ec1-q-024'), (7, 'ec1-q-001'), (8, 'ese-2025-36'), (9, 'ese-2021-10'), (10, 'aegcl-2023-83'), (11, 'ese-2018-126'), (12, 'gate-2021-15'), (13, 'gate-2009-10'), (14, 'gate-2024-13'), (15, 'ec1-q-030'), (16, 'ec1-q-022'), (17, 'ese-2022-44'), (18, 'ec1-q-010'), (19, 'ese-2017-38'), (20, 'ec1-q-018'), (21, 'apdcl-2023-46'), (22, 'ec1-q-002'), (23, 'gate-2016-s2-23'), (24, 'ec1-q-013'), (25, 'ec1-q-017'), (26, 'ec1-q-029'), (27, 'ec1-q-027'), (28, 'ec1-q-020'), (29, 'gate-2013-30'), (30, 'gate-2014-s1-6'), (31, 'ec1-q-009'), (32, 'ec1-q-004'), (33, 'ec1-q-028'), (34, 'ec1-q-007'), (35, 'ese-2022-41'), (36, 'gate-2014-s1-29'), (37, 'ec1-q-019'), (38, 'ec1-q-014'), (39, 'ec1-q-006'), (40, 'ec1-q-015'), (41, 'gate-2017-s2-22'), (42, 'ec1-q-025'), (43, 'gate-2010-7'), (44, 'gate-2026-25'), (45, 'ese-2025-26'), (46, 'gate-2015-s1-28'), (47, 'ese-2020-35'), (48, 'ec1-q-003'), (49, 'ec1-q-026'), (50, 'ec1-q-008'), (51, 'ese-2025-27'), (52, 'gate-2026-23'), (53, 'ec1-q-005'), (54, 'ec1-q-023'), (55, 'ese-2019-25'), (56, 'ese-2017-56'), (57, 'ec1-q-012'), (58, 'ese-2020-25'), (59, 'gate-2001-bulbs'), (60, 'ese-2018-37')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
 
 -- fixes
 UPDATE question SET subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits'), topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'thevenin-norton-36'), updated_at = now() WHERE id IN (SELECT qs.question_id FROM question_source qs JOIN source s ON s.id = qs.source_id WHERE s.code = 'GATE-2012' AND qs.q_no = '5') AND content_key IS NULL;
