@@ -22,6 +22,8 @@
     3. Total charge $= 0.18$ C (it started uncharged).
     4. $v = \dfrac{q}{C} = \dfrac{0.18}{0.01} = 18$ V.
 
+    **Without a calculator:** Work in mA × s = mC: $2\times30 + 4\times30 = 180$ mC $= 0.18$ C, and $0.18 \div 0.01 = 18$ V.
+
     **Answer: (B) 18 V.**
 
 - key: ese-2024-60
@@ -48,6 +50,8 @@
     2. $v(2\ \text{ms}) = 0 + \dfrac{q}{C} = \dfrac{10^{-4}}{1\times10^{-3}} = 0.1$ V $= 100$ mV.
 
     Trap: using the rectangle $100\ \text{mA}\times2\ \text{ms}$ gives 200 mV, which is wrong; the current was not 100 mA all the time.
+
+    **Without a calculator:** Use units that cancel: mA × ms = µC, and µC ÷ mF = mV. Area $= \tfrac12 \times 2 \times 100 = 100$ µC, divided by 1 mF $= 100$ mV.
 
     **Answer: (B) 100 mV.**
 
@@ -80,6 +84,8 @@
 
     (The capacitor value 0.3 nF is not needed for the charge; it is used in the linked Q.77, where the capacitor voltage $13/0.3 = 43.3$ V is the starting point of an LC transient, Chapter 5.)
 
+    **Without a calculator:** Count squares on the grid: each square is 1 µs × 1 mA = 1 nC. The triangle up to 2 µs is 4 squares; the trapezium from 2 to 5 µs is $\frac{4+2}{2}\times3 = 9$ squares. Total 13.
+
     **Answer: (C) 13 nC.**
 
 - key: ese-2018-24
@@ -109,6 +115,8 @@
 
     So the current is a square wave of ±5 A that **starts at –5 A** (because the voltage starts by falling). Options (C) and (D) are triangles (wrong shape). Option (A) starts at +5 A (wrong sign). Option (B) starts at –5 A and switches every 2 s.
 
+    **Without a calculator:** Slope $= 20$ V in 2 s $= 10$ V/s, and $0.5 \times 10 = 5$ A. The sign comes from the first part of the wave: falling voltage ⇒ negative current.
+
     **Answer: (B).**
 
 - key: ese-2025-36
@@ -133,6 +141,8 @@
     3. This same charge sits on each capacitor.
 
     Check: voltages $1600/10 + 1600/20 + 1600/40 = 160 + 80 + 40 = 280$ V ✔.
+
+    **Without a calculator:** In series, use parts of $1/40$: $\frac1{10} + \frac1{20} + \frac1{40} = \frac{4 + 2 + 1}{40} = \frac{7}{40}$, so $C = \frac{40}{7}$ µF. Then $Q = \frac{40}{7} \times 280 = 40 \times 40 = 1600$ µC (because $280 \div 7 = 40$).
 
     **Answer: (B) 1.6 × 10⁻³ C.**
 
@@ -170,6 +180,8 @@
 
     Trap: option (A) uses 2.8 V but a wrong charge; options with 7 V add the voltage ratings, which is never allowed.
 
+    **Without a calculator:** Small numbers only: $4 \div 5 = 0.8$, $4 \div 2 = 2$, so 2.8 V. Charge: $10 \times 2.8 = 28$, plus 4 ⇒ 32 µC.
+
     **Answer: (C) 2.8 and 32.**
 
 - key: gate-1999-capacitance-by
@@ -203,6 +215,8 @@
     These two paths are in parallel: $C_{BY} = C_C + \dfrac{C_C + C_S}{2} = \dfrac{3C_C + C_S}{2}$.
 
     (This is the classic three-core cable: $C_C$ = core-to-core, $C_S$ = core-to-sheath capacitance. You will see it again in Power Systems.)
+
+    **Without a calculator:** No numbers at all: only symbols. Write the two paths and add.
 
     **Answer: (C) $(C_S + 3C_C)/2$.**
 
@@ -287,6 +301,8 @@
 
     (Energy check: before $\tfrac12\times1\times9 = 4.5$ J, after $\tfrac12\times3\times1 = 1.5$ J. 3 J is lost in the switching. Charge is conserved, energy is not.)
 
+    **Without a calculator:** $Q = 1 \times 3 = 3$ C shared over $1 + 2 = 3$ F ⇒ 1 V.
+
     **Answer: (A) 1 V.**
 
 - key: gate-2017-s2-22
@@ -310,6 +326,8 @@
     4. The source voltage is constant, so energy given by the source $= Q\times V = 10\times10 = 100$ J.
 
     Of this, $\tfrac12CV^2 = 50$ J is stored in the capacitor and 50 J is lost as heat in the resistors, whatever their values. The resistor network is only there to distract you.
+
+    **Without a calculator:** $Q = CV = 10$ C, and energy from the source $= QV = 10 \times 10 = 100$ J. No resistor values are needed.
 
     **Answer: 100.0 J.**
 
@@ -364,6 +382,8 @@
     - (C) has the slopes the wrong way (upper parts falling).
     - (D) matches.
 
+    **Without a calculator:** No arithmetic needed: decide the shape (square from C, triangle from R) and the direction of the slopes.
+
     **Answer: (D).**
 
 - key: ese-2017-38
@@ -397,6 +417,8 @@
 
     This question first appeared as a fill-in-the-blank in **GATE EE 1997**; ESE 2017 used the same figure.
 
+    **Without a calculator:** $L = 2 \div 1 = 2$ H.
+
     **Answer: (B) Inductor, 2 H.**
 
 - key: ese-2018-16
@@ -423,6 +445,8 @@
     3. **Capacitor test:** $dv/dt = 10$ (constant), so a capacitor would carry a constant current. But $i = 2t^2$ is not constant ⇒ not a capacitor.
     4. **Inductor test:** $di/dt = 4t$ ⇒ $\dfrac{v}{di/dt} = \dfrac{10t}{4t} = 2.5$, a constant ⇒ inductor, $L = 2.5$ H.
 
+    **Without a calculator:** $\dfrac{10t}{4t} = 2.5$. The $t$ cancels, so no calculation beyond one division.
+
     **Answer: (B) Inductor of 2.5 H.**
 
 - key: ese-2018-37
@@ -448,6 +472,8 @@
 
     Trap: (A) treats the inductor like a resistor. The inductor current is the **integral** of the voltage, not a copy of it.
 
+    **Without a calculator:** $10 \div 1 = 10$ A/s for 2 s ⇒ 20 A.
+
     **Answer: (C).**
 
 - key: gate-2000-inductor-current
@@ -470,6 +496,8 @@
     $i(t) = 0 + \dfrac11\int_0^t 12t^2\,dt = 12\cdot\dfrac{t^3}{3} = 4t^3$ A.
 
     Trap: (B) $24t$ is the **derivative** of $12t^2$. For an inductor, current is the **integral** of voltage.
+
+    **Without a calculator:** Check the options by differentiating them: $\frac{d}{dt}(4t^3) = 12t^2$ ✔. That is quicker than integrating.
 
     **Answer: (D) $4t^3$.**
 
@@ -528,6 +556,8 @@
 
     Traps: 144 J is $36\times4$ (heat at 6 A for the full 4 s, forgetting the ramp and the stored energy). 168 J adds the stored energy to that wrong heat.
 
+    **Without a calculator:** Learn this shortcut: for a current that ramps linearly from 0 to $I$ in time $T$, the heat in $R$ is $\dfrac{I^2RT}{3}$. Here $\frac{36 \times 1 \times 2}{3} = 24$ J. Then $36 + 24 + 72 = 132$.
+
     **Answer: (C) 132 J.**
 
 - key: apdcl-2023-46
@@ -552,6 +582,8 @@
     - Total: $v = 100 + 75 = 175$ V.
 
     Traps: 100 V forgets the inductance; 75 V forgets the resistance. Both parts act together at the same instant.
+
+    **Without a calculator:** $10 \times 10 = 100$, $15 \times 5 = 75$, total 175.
 
     **Answer: (C) 175 V.**
 
@@ -579,6 +611,8 @@
     3. $p = vi = 15\times5000\,t = 75\,000\,t$ W.
 
     The power grows with time because the current grows while the voltage stays constant: the inductor is storing energy. (Check: energy at 2 ms $= \tfrac12\times3\times10^{-3}\times10^2 = 0.15$ J, and $\int_0^{0.002}75000\,t\,dt = 37500\times4\times10^{-6} = 0.15$ J ✔.)
+
+    **Without a calculator:** Slope $= 10$ A in 2 ms $= 5000$ A/s. $v = 3\ \text{mH} \times 5000 = 15$ V. Then $15 \times 5000 = 75000$. All options have the form $k\,t$, so only the number matters.
 
     **Answer: (B) 75000 t.**
 

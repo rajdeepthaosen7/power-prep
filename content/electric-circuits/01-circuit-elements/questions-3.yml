@@ -186,6 +186,8 @@
     2. Load: $v = 1\times i$.
     3. Together: $i + i = 100$ ⇒ $i = 50$ A (and $v = 50$ V).
 
+    **Without a calculator:** $i + i = 100$ ⇒ $i = 50$.
+
     **Answer: (B) 50 A.**
 
 - key: gate-2020-32
@@ -214,6 +216,8 @@
 
     Check the other options: a short gives $V = 0$ ⇒ $P = 0$; an open gives $I = 0$ ⇒ $P = 0$; (D) says 5 V, but at 2.5 Ω and 4 A the voltage is 10 V.
 
+    **Without a calculator:** $10 \div 4 = 2.5$ Ω. Also note that options (A) and (B) give zero power, so they are out immediately.
+
     **Answer: (C) 2.5 Ω, 4 A, 10 V.**
 
 - key: gate-1999-r-sources
@@ -241,6 +245,8 @@
     4. Then $x^2 = 18/2 = 9$ ⇒ $x = 3$.
 
     Check: $3^2\times2 = 18$ W ✔, $3^2/2 = 4.5$ W ✔.
+
+    **Without a calculator:** Test the options: (B) gives $3^2\times2 = 18$ W ✔ and $3^2 \div 2 = 4.5$ W ✔. One check settles it.
 
     **Answer: (B) 3 A and 2 Ω.**
 
@@ -342,6 +348,8 @@
 
     This question was repeated word for word in **APGCL 2023 (Q8)**.
 
+    **Without a calculator:** $10 + 5 \times 2 = 20$ V.
+
     **Answer: (D) 20.**
 
 - key: gate-2008-23
@@ -368,6 +376,8 @@
        - Through the 2 Ω resistor in the direction of the current: a drop of $1\times2 = 2$ V. So $v_a - v_{\text{right top}} = 2$ V.
        - Through the 5 V source from its top (–) to its bottom (+): the bottom is 5 V higher, so $v_{\text{right top}} - v_b = -5$ V.
     3. Add: $v_{ab} = v_a - v_b = 2 + (-5) = -3$ V.
+
+    **Without a calculator:** $2 - 5 = -3$ V.
 
     **Answer: (A) −3 V.**
 
@@ -397,6 +407,8 @@
     3. **KCL for N2:** current into N2 $= 0$ ⇒ $1 - 2 + I_s = 0$ ⇒ $I_s = 1$ A flows **from N1 to N2 through the source**.
     4. The source has – on the N1 side and + on the N2 side. The 1 A goes in at its – terminal and out at its + terminal, so the source **delivers** power: $5\times1 = 5$ W.
 
+    **Without a calculator:** $6 \div 3 = 2$ A, $2 \div 2 = 1$ A, so the source carries 1 A and gives $5 \times 1 = 5$ W.
+
     **Answer: (A) 5.** *(Matches the official GATE answer.)*
 
 - key: gate-2017-s1-18
@@ -420,6 +432,8 @@
     4. The 25 V source carries 10 A out of its + terminal, so it supplies $P = 25\times10 = 250$ W.
 
     Extra check: KVL gives the voltage of the right node $= 25 - 17 = 8$ V, which is the voltage across $R_2$ (shown with + at the top) ✔. You do not need $R_1$ or $R_2$ themselves.
+
+    **Without a calculator:** $14 \div 1.4 = 140 \div 14 = 10$ A, then $25 \times 10 = 250$ W.
 
     **Answer: 250 W.**
 
@@ -449,6 +463,8 @@
     5. The current through the α resistor is $\dfrac{V_X - 10}{\alpha} = 0$, so the 10 V source carries **no current** and delivers **0 W**.
 
     All 10 A of the current source go through the 1 Ω resistor ($10^2\times1 = 100$ W, supplied by the current source).
+
+    **Without a calculator:** Before writing algebra, try $V_X = 10$ V (the source voltage): it makes the α-branch current zero and satisfies KCL at once.
 
     **Answer: (A) 0.**
 
@@ -481,6 +497,8 @@
     6. $v_L$ (+ at N) $= L\,\dfrac{di_L}{dt} = 2\times(16\sin2t) = 32\sin2t$ V.
 
     Trap: option (A) is $i_L$, the inductor **current**, not its voltage.
+
+    **Without a calculator:** Only derivatives of $\sin 2t$ and $\cos 2t$: each derivative brings a factor 2. $4 \times 2 = 8$, then $8 \times 2 \times 2 = 32$.
 
     **Answer: (B) $32\sin2t$.**
 
@@ -540,6 +558,8 @@
 
     So $v_s$ **starts at 0** at $t = 0^+$ and rises in a **straight line**. (A real exponential would need a resistor in parallel; with an ideal current source the charging is linear.) Options (B) and (D) are exponential; option (A) starts at –2 V (it forgets the resistor's 2 V).
 
+    **Without a calculator:** $0.02 \div 10^{-6} = 20\,000$ V/s. The resistor's $+2$ V cancels the capacitor's $-2$ V, so the graph starts at 0.
+
     **Answer: (C).**
 
 - key: ese-2026-101
@@ -573,5 +593,7 @@
     **Supplied power** is the same with the opposite sign: $P_1 = +100$, $P_2 = -60$, $P_3 = -48$, $P_4 = +8$ W.
 
     **Defect in this question:** the circuit and the numbers come from Sadiku's textbook (Example 1.7), which lists *absorbed* powers: that set is option (D). But the question asks for the power **supplied**, and that set is exactly option (B). Both options are marked correct here until the UPSC key is checked. In the exam, the words "power supplied" point to (B); the setter's source points to (D).
+
+    **Without a calculator:** Only small products: $20\times5$, $12\times5$, $8\times6$, $8\times1$. Use the power balance $-100 + 60 + 48 - 8 = 0$ as your check.
 
     **Answer: (B) by the wording (supplied power); (D) if the setter meant absorbed power.**

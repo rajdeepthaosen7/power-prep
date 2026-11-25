@@ -58,3 +58,57 @@ Use this page for quick revision. Every line was explained in the sections befor
 5. Adding voltage ratings of series capacitors. Use the common charge.
 6. In a two-element loop, two arrows that both point "up" are **opposite** currents around the loop.
 7. Forgetting the starting value $v(0)$ or $i(0)$ in the integral forms.
+
+## Working without a calculator
+
+APSC does not allow a calculator, and it asks only MCQs. These habits save time in every chapter.
+
+### 1. Read the options before you calculate
+
+Often one rough estimate is enough. If the options are 4.05, 6.02, 7.67 and 8.35, and your first step gives "about 4", stop: the answer is the first one. Options also tell you the form of the answer (a number, a $\sin$ or $\cos$, a ratio), so you know which steps you can skip.
+
+### 2. Test the options instead of solving
+
+For a quadratic or a non-linear element, put each option back into the equation. One option usually fits in a few seconds. Example: $V = 3 - 2I$ and $V = I^2$. Try $I = 1$: $3 - 2 = 1 = 1^2$ ✔.
+
+### 3. Use ratios, not full values
+
+- Same voltage (parallel, or same rated voltage): $P \propto \dfrac1R$, so a 200 W lamp has half the resistance of a 100 W lamp.
+- Same current (series): $P \propto R$, so powers split in the same ratio as resistances.
+- Series capacitors: voltage $\propto \dfrac1C$.
+
+### 4. Pick units that cancel
+
+| Multiply / divide | Gives |
+|---|---|
+| mA × kΩ | V |
+| mA × ms | µC |
+| µC ÷ µF | V |
+| µC ÷ mF | mV |
+| mH × (A/ms) | V |
+| µF × (V/ms) | mA |
+
+Write the numbers in these units and the powers of ten disappear.
+
+### 5. Parallel resistors (and series capacitors) quickly
+
+- $n$ equal ones: $R/n$.
+- $R$ and $2R$: $\tfrac23R$. $R$ and $3R$: $\tfrac34R$. $R$ and $R$: $\tfrac12R$.
+- Take out a common factor: $600 \parallel 900 = 300\times(2\parallel3) = 300\times\tfrac65 = 360$.
+
+### 6. Numbers worth remembering
+
+- Squares: $11^2 = 121$ … $25^2 = 625$; $110^2 = 12100$, $220^2 = 48400$, $230^2 = 52900$, $240^2 = 57600$.
+- $\sqrt2 \approx 1.414$, $\sqrt3 \approx 1.732$, $\tfrac1{\sqrt2} \approx 0.707$, $\pi \approx 3.14$, $\tfrac1\pi \approx 0.318$.
+- $\tfrac13 \approx 0.333$, $\tfrac16 \approx 0.167$, $\tfrac17 \approx 0.143$, $\tfrac19 \approx 0.111$, $\tfrac1{4.5} \approx 0.222$.
+
+### 7. Areas instead of integrals
+
+- Charge, flux change, current change: areas of rectangles, triangles and trapeziums.
+- Heat in $R$ from a linear ramp of current $0 \to I$ in time $T$: $\dfrac{I^2RT}{3}$.
+
+### 8. Check before you mark
+
+- **Units:** energy must come out in joules, power in watts. An option with the wrong units is wrong.
+- **Limits:** if $R \to 0$ or $R \to \infty$, does your answer behave sensibly?
+- **Sign:** decide the sign from the physics (absorbing or delivering, rising or falling) before doing any arithmetic.

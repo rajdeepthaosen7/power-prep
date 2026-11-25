@@ -1174,6 +1174,60 @@ Use this page for quick revision. Every line was explained in the sections befor
 5. Adding voltage ratings of series capacitors. Use the common charge.
 6. In a two-element loop, two arrows that both point "up" are **opposite** currents around the loop.
 7. Forgetting the starting value $v(0)$ or $i(0)$ in the integral forms.
+
+## Working without a calculator
+
+APSC does not allow a calculator, and it asks only MCQs. These habits save time in every chapter.
+
+### 1. Read the options before you calculate
+
+Often one rough estimate is enough. If the options are 4.05, 6.02, 7.67 and 8.35, and your first step gives "about 4", stop: the answer is the first one. Options also tell you the form of the answer (a number, a $\sin$ or $\cos$, a ratio), so you know which steps you can skip.
+
+### 2. Test the options instead of solving
+
+For a quadratic or a non-linear element, put each option back into the equation. One option usually fits in a few seconds. Example: $V = 3 - 2I$ and $V = I^2$. Try $I = 1$: $3 - 2 = 1 = 1^2$ ✔.
+
+### 3. Use ratios, not full values
+
+- Same voltage (parallel, or same rated voltage): $P \propto \dfrac1R$, so a 200 W lamp has half the resistance of a 100 W lamp.
+- Same current (series): $P \propto R$, so powers split in the same ratio as resistances.
+- Series capacitors: voltage $\propto \dfrac1C$.
+
+### 4. Pick units that cancel
+
+| Multiply / divide | Gives |
+|---|---|
+| mA × kΩ | V |
+| mA × ms | µC |
+| µC ÷ µF | V |
+| µC ÷ mF | mV |
+| mH × (A/ms) | V |
+| µF × (V/ms) | mA |
+
+Write the numbers in these units and the powers of ten disappear.
+
+### 5. Parallel resistors (and series capacitors) quickly
+
+- $n$ equal ones: $R/n$.
+- $R$ and $2R$: $\tfrac23R$. $R$ and $3R$: $\tfrac34R$. $R$ and $R$: $\tfrac12R$.
+- Take out a common factor: $600 \parallel 900 = 300\times(2\parallel3) = 300\times\tfrac65 = 360$.
+
+### 6. Numbers worth remembering
+
+- Squares: $11^2 = 121$ … $25^2 = 625$; $110^2 = 12100$, $220^2 = 48400$, $230^2 = 52900$, $240^2 = 57600$.
+- $\sqrt2 \approx 1.414$, $\sqrt3 \approx 1.732$, $\tfrac1{\sqrt2} \approx 0.707$, $\pi \approx 3.14$, $\tfrac1\pi \approx 0.318$.
+- $\tfrac13 \approx 0.333$, $\tfrac16 \approx 0.167$, $\tfrac17 \approx 0.143$, $\tfrac19 \approx 0.111$, $\tfrac1{4.5} \approx 0.222$.
+
+### 7. Areas instead of integrals
+
+- Charge, flux change, current change: areas of rectangles, triangles and trapeziums.
+- Heat in $R$ from a linear ramp of current $0 \to I$ in time $T$: $\dfrac{I^2RT}{3}$.
+
+### 8. Check before you mark
+
+- **Units:** energy must come out in joules, power in watts. An option with the wrong units is wrong.
+- **Limits:** if $R \to 0$ or $R \to \infty$, does your answer behave sensibly?
+- **Sign:** decide the sign from the physics (absorbing or delivering, rising or falling) before doing any arithmetic.
 ', 'PUBLISHED', 'main') ON CONFLICT (topic_id, slug) DO UPDATE SET title = EXCLUDED.title, body_md = EXCLUDED.body_md, status = EXCLUDED.status, version = concept_section.version + 1, updated_at = now() WHERE concept_section.body_md IS DISTINCT FROM EXCLUDED.body_md OR concept_section.title IS DISTINCT FROM EXCLUDED.title;
 
 -- questions
@@ -1201,6 +1255,8 @@ BEGIN
 
 Shortcut: $w = v\,i\,t$ ⇒ $v = \dfrac{w}{it} = \dfrac{2300}{2\times10} = 115$ V.
 
+**Without a calculator:** Divide in two easy steps: $2300 \div 10 = 230$ W, then $230 \div 2 = 115$ V.
+
 **Answer: (B) 115 V.**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2021-10') RETURNING id INTO qid;
   ELSE
@@ -1212,6 +1268,8 @@ Shortcut: $w = v\,i\,t$ ⇒ $v = \dfrac{w}{it} = \dfrac{2300}{2\times10} = 115$ 
 3. $p = v\,i$ ⇒ $v = \dfrac{p}{i} = \dfrac{230}{2} = 115$ V.
 
 Shortcut: $w = v\,i\,t$ ⇒ $v = \dfrac{w}{it} = \dfrac{2300}{2\times10} = 115$ V.
+
+**Without a calculator:** Divide in two easy steps: $2300 \div 10 = 230$ W, then $230 \div 2 = 115$ V.
 
 **Answer: (B) 115 V.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2021-10', updated_at = now() WHERE id = qid;
@@ -1261,6 +1319,8 @@ BEGIN
 
 The total is not zero because these three elements are only *part* of the circuit; the rest of the circuit supplies the 330 W.
 
+**Without a calculator:** All numbers are whole: $1000 - 640 - 30 = 330$. Only the signs need care, not the arithmetic.
+
 **Answer: 330 W.**
 ', 'READY', 'NAT', 330, 330, 2, 'UNVERIFIED', 'gate-2014-s1-6') RETURNING id INTO qid;
   ELSE
@@ -1284,6 +1344,8 @@ The total is not zero because these three elements are only *part* of the circui
 **Step 4: total** $= 1000 - 640 - 30 = 330$ W.
 
 The total is not zero because these three elements are only *part* of the circuit; the rest of the circuit supplies the 330 W.
+
+**Without a calculator:** All numbers are whole: $1000 - 640 - 30 = 330$. Only the signs need care, not the arithmetic.
 
 **Answer: 330 W.**
 ', status = 'READY', answer_type = 'NAT', nat_min = 330, nat_max = 330, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s1-6', updated_at = now() WHERE id = qid;
@@ -1592,6 +1654,8 @@ Check: two 242 Ω lamps in series on 220 V: $P = 220^2/484 = 100$ W ✔ (each la
 
 The same question was asked word for word in **AEGCL 2023 (Q81)**.
 
+**Without a calculator:** You do not need $220^2$ at all. At the same rated voltage, $R \propto 1/P$, so a 200 W lamp has **half** the resistance of a 100 W lamp. Two of them in series make the same resistance, so the answer is 2.
+
 **Answer: (D) 2.**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2009-10') RETURNING id INTO qid;
   ELSE
@@ -1606,6 +1670,8 @@ The same question was asked word for word in **AEGCL 2023 (Q81)**.
 Check: two 242 Ω lamps in series on 220 V: $P = 220^2/484 = 100$ W ✔ (each lamp takes only 50 W, a quarter of its rating, because each gets only half its rated voltage).
 
 The same question was asked word for word in **AEGCL 2023 (Q81)**.
+
+**Without a calculator:** You do not need $220^2$ at all. At the same rated voltage, $R \propto 1/P$, so a 200 W lamp has **half** the resistance of a 100 W lamp. Two of them in series make the same resistance, so the answer is 2.
 
 **Answer: (D) 2.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2009-10', updated_at = now() WHERE id = qid;
@@ -1694,6 +1760,9 @@ $R_{20} = \dfrac{V^2}{P} = \dfrac{81}{20} = 4.05$ Ω.
 
 Check: $1.944 + 1.296 = 3.24$ Ω and $9/3.24 = 2.778$ A ✔.
 
+**Without a calculator:** Look at the options first. The 20 W bulb: $81 \div 20 \approx 4$, and only option (A) starts with about 4. Done.
+To check the other two without squaring 2.778: the pair takes 25 W from 9 V, so together $R = 81/25 = 3.24$ Ω. Same current ⇒ power ∝ R, so 3.24 Ω splits in the ratio $15 : 10 = 3 : 2$, giving $1.94$ Ω and $1.30$ Ω.
+
 **Answer: (A) 4.05 Ω, 1.945 Ω, 1.297 Ω.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2021-8') RETURNING id INTO qid;
   ELSE
@@ -1711,6 +1780,9 @@ $R_{20} = \dfrac{V^2}{P} = \dfrac{81}{20} = 4.05$ Ω.
 - $R_{15} = \dfrac{15}{7.716} = 1.944$ Ω, $R_{10} = \dfrac{10}{7.716} = 1.296$ Ω.
 
 Check: $1.944 + 1.296 = 3.24$ Ω and $9/3.24 = 2.778$ A ✔.
+
+**Without a calculator:** Look at the options first. The 20 W bulb: $81 \div 20 \approx 4$, and only option (A) starts with about 4. Done.
+To check the other two without squaring 2.778: the pair takes 25 W from 9 V, so together $R = 81/25 = 3.24$ Ω. Same current ⇒ power ∝ R, so 3.24 Ω splits in the ratio $15 : 10 = 3 : 2$, giving $1.94$ Ω and $1.30$ Ω.
 
 **Answer: (A) 4.05 Ω, 1.945 Ω, 1.297 Ω.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2021-8', updated_at = now() WHERE id = qid;
@@ -1750,6 +1822,8 @@ BEGIN
 4. $\dfrac{1440}{120} = 12 = 1 + 4.5\times10^{-3}(T - 26)$ ⇒ $T - 26 = \dfrac{11}{4.5\times10^{-3}} = 2444.4$
 5. $T \approx 2470$ °C.
 
+**Without a calculator:** $1440 \div 120 = 12$, so $11 = 0.0045\,(T - 26)$. Now $11 \div 0.0045 = 11000 \div 4.5$; and $1 \div 4.5 \approx 0.222$, so $11000 \times 0.222 \approx 2444$. Add 26 ⇒ about 2470.
+
 **Answer: about 2470 °C** (accepted range 2465–2475).
 ', 'READY', 'NAT', 2465, 2475, 2, 'UNVERIFIED', 'gate-2014-s1-29') RETURNING id INTO qid;
   ELSE
@@ -1761,6 +1835,8 @@ BEGIN
 3. $1440 = 120\,[1 + 4.5\times10^{-3}(T - 26)]$
 4. $\dfrac{1440}{120} = 12 = 1 + 4.5\times10^{-3}(T - 26)$ ⇒ $T - 26 = \dfrac{11}{4.5\times10^{-3}} = 2444.4$
 5. $T \approx 2470$ °C.
+
+**Without a calculator:** $1440 \div 120 = 12$, so $11 = 0.0045\,(T - 26)$. Now $11 \div 0.0045 = 11000 \div 4.5$; and $1 \div 4.5 \approx 0.222$, so $11000 \times 0.222 \approx 2444$. Add 26 ⇒ about 2470.
 
 **Answer: about 2470 °C** (accepted range 2465–2475).
 ', status = 'READY', answer_type = 'NAT', nat_min = 2465, nat_max = 2475, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s1-29', updated_at = now() WHERE id = qid;
@@ -1792,6 +1868,8 @@ BEGIN
 2. Insulation resistance of the joined cable: $\dfrac{600\times900}{600 + 900} = \dfrac{540\,000}{1500} = 360$ MΩ.
 3. Ratio $= \dfrac{360\times10^6}{1.2} = 300\times10^6$.
 
+**Without a calculator:** For 600 ∥ 900, take out the common factor 300: $300 \times (2 \parallel 3) = 300 \times \frac{6}{5} = 360$ MΩ. Then $360 \div 1.2 = 300$.
+
 **Answer: 300.**
 ', 'READY', 'NAT', 300, 300, 2, 'UNVERIFIED', 'gate-2021-15') RETURNING id INTO qid;
   ELSE
@@ -1801,6 +1879,8 @@ BEGIN
 1. Conductor resistance of the joined cable: $0.7 + 0.5 = 1.2$ Ω.
 2. Insulation resistance of the joined cable: $\dfrac{600\times900}{600 + 900} = \dfrac{540\,000}{1500} = 360$ MΩ.
 3. Ratio $= \dfrac{360\times10^6}{1.2} = 300\times10^6$.
+
+**Without a calculator:** For 600 ∥ 900, take out the common factor 300: $300 \times (2 \parallel 3) = 300 \times \frac{6}{5} = 360$ MΩ. Then $360 \div 1.2 = 300$.
 
 **Answer: 300.**
 ', status = 'READY', answer_type = 'NAT', nat_min = 300, nat_max = 300, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2021-15', updated_at = now() WHERE id = qid;
@@ -1833,6 +1913,8 @@ BEGIN
 
 The value $\omega = 500$ rad/s does not change the answer. (The average of this power is $62.5/2 = 31.25$ W, which you will meet again in the AC power chapter.)
 
+**Without a calculator:** $10 \times 2.5 = 25$ and $25 \times 2.5 = 62.5$. Only option (A) has both 25 and 62.5.
+
 **Answer: (A) 25 sin ωt (V); 62.5 sin² ωt (W).**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2026-105') RETURNING id INTO qid;
   ELSE
@@ -1843,6 +1925,8 @@ The value $\omega = 500$ rad/s does not change the answer. (The average of this 
 2. $p = vi = (25\sin\omega t)(2.5\sin\omega t) = 62.5\sin^2\omega t$ W. (Same as $i^2R = 6.25\sin^2\omega t\times10$.)
 
 The value $\omega = 500$ rad/s does not change the answer. (The average of this power is $62.5/2 = 31.25$ W, which you will meet again in the AC power chapter.)
+
+**Without a calculator:** $10 \times 2.5 = 25$ and $25 \times 2.5 = 62.5$. Only option (A) has both 25 and 62.5.
 
 **Answer: (A) 25 sin ωt (V); 62.5 sin² ωt (W).**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2026-105', updated_at = now() WHERE id = qid;
@@ -1880,6 +1964,8 @@ BEGIN
 4. $I = 1$ A or $I = -3$ A. With $I = -3$ A the element would have $V = 9$ V and current flowing the "wrong" way, i.e. a passive element delivering power: impossible. So $I = 1$ A.
 5. $V = 1^2 = 1$ V, power $= VI = 1\times1 = 1$ W.
 
+**Without a calculator:** Test the options instead of solving. With $V = I^2$, the power is $VI = I^3$. Try $I = 1$ A: power 1 W, and the supply gives $V = 3 - 2\times1 = 1$ V $= I^2$ ✔. So (A) fits at once.
+
 **Answer: (A) 1.0 W.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2007-64') RETURNING id INTO qid;
   ELSE
@@ -1891,6 +1977,8 @@ BEGIN
 3. Same $V$ and $I$: $I^2 = 3 - 2I$ ⇒ $I^2 + 2I - 3 = 0$ ⇒ $(I + 3)(I - 1) = 0$.
 4. $I = 1$ A or $I = -3$ A. With $I = -3$ A the element would have $V = 9$ V and current flowing the "wrong" way, i.e. a passive element delivering power: impossible. So $I = 1$ A.
 5. $V = 1^2 = 1$ V, power $= VI = 1\times1 = 1$ W.
+
+**Without a calculator:** Test the options instead of solving. With $V = I^2$, the power is $VI = I^3$. Try $I = 1$ A: power 1 W, and the supply gives $V = 3 - 2\times1 = 1$ V $= I^2$ ✔. So (A) fits at once.
 
 **Answer: (A) 1.0 W.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2007-64', updated_at = now() WHERE id = qid;
@@ -1931,6 +2019,8 @@ BEGIN
 
 Check: $R = 25 + 5 = 30$ Ω and $10\times30 = 300$ V ✔.
 
+**Without a calculator:** Guess a round number: try $I = 10$: $R = 25 + 5 = 30$ Ω and $10 \times 30 = 300$ V ✔. In an MCQ, trying each option this way is quicker than the quadratic.
+
 **Answer: 10 A.**
 ', 'READY', 'NAT', 10, 10, 2, 'UNVERIFIED', 'gate-2014-s1-30') RETURNING id INTO qid;
   ELSE
@@ -1945,6 +2035,8 @@ Check: $R = 25 + 5 = 30$ Ω and $10\times30 = 300$ V ✔.
 4. A negative current would make $R = 25 - 30 = -5$ Ω, not a real resistor. So $I = 10$ A.
 
 Check: $R = 25 + 5 = 30$ Ω and $10\times30 = 300$ V ✔.
+
+**Without a calculator:** Guess a round number: try $I = 10$: $R = 25 + 5 = 30$ Ω and $10 \times 30 = 300$ V ✔. In an MCQ, trying each option this way is quicker than the quadratic.
 
 **Answer: 10 A.**
 ', status = 'READY', answer_type = 'NAT', nat_min = 10, nat_max = 10, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s1-30', updated_at = now() WHERE id = qid;
@@ -1981,6 +2073,8 @@ BEGIN
 5. For $I = 24$ A, $V = 10 - 24 = -14$ V: the load would have current in one direction and voltage in the other, so it would be **delivering** power. A load cannot do that. Reject.
 6. $I = 5$ A ($V = 5$ V; check $7\times5 = 35 = 25 + 10$ ✔).
 
+**Without a calculator:** Try round numbers in $V = 10 - I$: $I = 5$ gives $V = 5$, and $7\times5 = 35 = 25 + 10$ ✔. In an MCQ you would test each option the same way.
+
 **Answer: 5 A.**
 ', 'READY', 'NAT', 5, 5, 2, 'TWO_SOURCES', 'gate-1997-nonlinear-battery') RETURNING id INTO qid;
   ELSE
@@ -1993,6 +2087,8 @@ BEGIN
 4. $I = \dfrac{29 \pm \sqrt{841 - 480}}{2} = \dfrac{29 \pm 19}{2}$ ⇒ $I = 5$ A or $I = 24$ A.
 5. For $I = 24$ A, $V = 10 - 24 = -14$ V: the load would have current in one direction and voltage in the other, so it would be **delivering** power. A load cannot do that. Reject.
 6. $I = 5$ A ($V = 5$ V; check $7\times5 = 35 = 25 + 10$ ✔).
+
+**Without a calculator:** Try round numbers in $V = 10 - I$: $I = 5$ gives $V = 5$, and $7\times5 = 35 = 25 + 10$ ✔. In an MCQ you would test each option the same way.
 
 **Answer: 5 A.**
 ', status = 'READY', answer_type = 'NAT', nat_min = 5, nat_max = 5, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-1997-nonlinear-battery', updated_at = now() WHERE id = qid;
@@ -2077,6 +2173,8 @@ BEGIN
 3. Total charge $= 0.18$ C (it started uncharged).
 4. $v = \dfrac{q}{C} = \dfrac{0.18}{0.01} = 18$ V.
 
+**Without a calculator:** Work in mA × s = mC: $2\times30 + 4\times30 = 180$ mC $= 0.18$ C, and $0.18 \div 0.01 = 18$ V.
+
 **Answer: (B) 18 V.**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2020-35') RETURNING id INTO qid;
   ELSE
@@ -2087,6 +2185,8 @@ BEGIN
 2. Charge in the next 30 s: $4\times10^{-3}\times30 = 0.12$ C.
 3. Total charge $= 0.18$ C (it started uncharged).
 4. $v = \dfrac{q}{C} = \dfrac{0.18}{0.01} = 18$ V.
+
+**Without a calculator:** Work in mA × s = mC: $2\times30 + 4\times30 = 180$ mC $= 0.18$ C, and $0.18 \div 0.01 = 18$ V.
 
 **Answer: (B) 18 V.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2020-35', updated_at = now() WHERE id = qid;
@@ -2126,6 +2226,8 @@ BEGIN
 
 Trap: using the rectangle $100\ \text{mA}\times2\ \text{ms}$ gives 200 mV, which is wrong; the current was not 100 mA all the time.
 
+**Without a calculator:** Use units that cancel: mA × ms = µC, and µC ÷ mF = mV. Area $= \tfrac12 \times 2 \times 100 = 100$ µC, divided by 1 mF $= 100$ mV.
+
 **Answer: (B) 100 mV.**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2024-60') RETURNING id INTO qid;
   ELSE
@@ -2139,6 +2241,8 @@ Trap: using the rectangle $100\ \text{mA}\times2\ \text{ms}$ gives 200 mV, which
 2. $v(2\ \text{ms}) = 0 + \dfrac{q}{C} = \dfrac{10^{-4}}{1\times10^{-3}} = 0.1$ V $= 100$ mV.
 
 Trap: using the rectangle $100\ \text{mA}\times2\ \text{ms}$ gives 200 mV, which is wrong; the current was not 100 mA all the time.
+
+**Without a calculator:** Use units that cancel: mA × ms = µC, and µC ÷ mF = mV. Area $= \tfrac12 \times 2 \times 100 = 100$ µC, divided by 1 mF $= 100$ mV.
 
 **Answer: (B) 100 mV.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2024-60', updated_at = now() WHERE id = qid;
@@ -2201,6 +2305,8 @@ Read the graph: the current rises from 0 to 4 mA in 0–2 µs, then falls in a s
 
 (The capacitor value 0.3 nF is not needed for the charge; it is used in the linked Q.77, where the capacitor voltage $13/0.3 = 43.3$ V is the starting point of an LC transient, Chapter 5.)
 
+**Without a calculator:** Count squares on the grid: each square is 1 µs × 1 mA = 1 nC. The triangle up to 2 µs is 4 squares; the trapezium from 2 to 5 µs is $\frac{4+2}{2}\times3 = 9$ squares. Total 13.
+
 **Answer: (C) 13 nC.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2008-76') RETURNING id INTO qid;
   ELSE
@@ -2218,6 +2324,8 @@ Read the graph: the current rises from 0 to 4 mA in 0–2 µs, then falls in a s
 3. Total charge at 5 µs $= 4 + 9 = 13$ nC.
 
 (The capacitor value 0.3 nF is not needed for the charge; it is used in the linked Q.77, where the capacitor voltage $13/0.3 = 43.3$ V is the starting point of an LC transient, Chapter 5.)
+
+**Without a calculator:** Count squares on the grid: each square is 1 µs × 1 mA = 1 nC. The triangle up to 2 µs is 4 squares; the trapezium from 2 to 5 µs is $\frac{4+2}{2}\times3 = 9$ squares. Total 13.
 
 **Answer: (C) 13 nC.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2008-76', updated_at = now() WHERE id = qid;
@@ -2315,6 +2423,8 @@ Read the voltage: it starts at +10 V at $t = 0$, falls to –10 V at 2 s, rises 
 
 So the current is a square wave of ±5 A that **starts at –5 A** (because the voltage starts by falling). Options (C) and (D) are triangles (wrong shape). Option (A) starts at +5 A (wrong sign). Option (B) starts at –5 A and switches every 2 s.
 
+**Without a calculator:** Slope $= 20$ V in 2 s $= 10$ V/s, and $0.5 \times 10 = 5$ A. The sign comes from the first part of the wave: falling voltage ⇒ negative current.
+
 **Answer: (B).**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2018-24') RETURNING id INTO qid;
   ELSE
@@ -2330,6 +2440,8 @@ Read the voltage: it starts at +10 V at $t = 0$, falls to –10 V at 2 s, rises 
 3. **4 to 6 s:** $-5$ A; **after 6 s:** $+5$ A.
 
 So the current is a square wave of ±5 A that **starts at –5 A** (because the voltage starts by falling). Options (C) and (D) are triangles (wrong shape). Option (A) starts at +5 A (wrong sign). Option (B) starts at –5 A and switches every 2 s.
+
+**Without a calculator:** Slope $= 20$ V in 2 s $= 10$ V/s, and $0.5 \times 10 = 5$ A. The sign comes from the first part of the wave: falling voltage ⇒ negative current.
 
 **Answer: (B).**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2018-24', updated_at = now() WHERE id = qid;
@@ -2507,6 +2619,8 @@ BEGIN
 
 Check: voltages $1600/10 + 1600/20 + 1600/40 = 160 + 80 + 40 = 280$ V ✔.
 
+**Without a calculator:** In series, use parts of $1/40$: $\frac1{10} + \frac1{20} + \frac1{40} = \frac{4 + 2 + 1}{40} = \frac{7}{40}$, so $C = \frac{40}{7}$ µF. Then $Q = \frac{40}{7} \times 280 = 40 \times 40 = 1600$ µC (because $280 \div 7 = 40$).
+
 **Answer: (B) 1.6 × 10⁻³ C.**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2025-36') RETURNING id INTO qid;
   ELSE
@@ -2518,6 +2632,8 @@ Check: voltages $1600/10 + 1600/20 + 1600/40 = 160 + 80 + 40 = 280$ V ✔.
 3. This same charge sits on each capacitor.
 
 Check: voltages $1600/10 + 1600/20 + 1600/40 = 160 + 80 + 40 = 280$ V ✔.
+
+**Without a calculator:** In series, use parts of $1/40$: $\frac1{10} + \frac1{20} + \frac1{40} = \frac{4 + 2 + 1}{40} = \frac{7}{40}$, so $C = \frac{40}{7}$ µF. Then $Q = \frac{40}{7} \times 280 = 40 \times 40 = 1600$ µC (because $280 \div 7 = 40$).
 
 **Answer: (B) 1.6 × 10⁻³ C.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2025-36', updated_at = now() WHERE id = qid;
@@ -2566,6 +2682,8 @@ The circuit: C₂ and C₃ are in series; this string is in parallel with C₁.
 
 Trap: option (A) uses 2.8 V but a wrong charge; options with 7 V add the voltage ratings, which is never allowed.
 
+**Without a calculator:** Small numbers only: $4 \div 5 = 0.8$, $4 \div 2 = 2$, so 2.8 V. Charge: $10 \times 2.8 = 28$, plus 4 ⇒ 32 µC.
+
 **Answer: (C) 2.8 and 32.**
 ', 'READY', 'MCQ', NULL, NULL, 3, 'UNVERIFIED', 'gate-2013-30') RETURNING id INTO qid;
   ELSE
@@ -2588,6 +2706,8 @@ The circuit: C₂ and C₃ are in series; this string is in parallel with C₁.
 - $Q = 11.43\times2.8 = 32$ µC. (Or: C₁ holds $10\times2.8 = 28$ µC, the string holds 4 µC, total 32 µC.)
 
 Trap: option (A) uses 2.8 V but a wrong charge; options with 7 V add the voltage ratings, which is never allowed.
+
+**Without a calculator:** Small numbers only: $4 \div 5 = 0.8$, $4 \div 2 = 2$, so 2.8 V. Charge: $10 \times 2.8 = 28$, plus 4 ⇒ 32 µC.
 
 **Answer: (C) 2.8 and 32.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'UNVERIFIED', content_key = 'gate-2013-30', updated_at = now() WHERE id = qid;
@@ -2636,6 +2756,8 @@ These two paths are in parallel: $C_{BY} = C_C + \dfrac{C_C + C_S}{2} = \dfrac{3
 
 (This is the classic three-core cable: $C_C$ = core-to-core, $C_S$ = core-to-sheath capacitance. You will see it again in Power Systems.)
 
+**Without a calculator:** No numbers at all: only symbols. Write the two paths and add.
+
 **Answer: (C) $(C_S + 3C_C)/2$.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-1999-capacitance-by') RETURNING id INTO qid;
   ELSE
@@ -2656,6 +2778,8 @@ These two paths are in parallel: $C_{BY} = C_C + \dfrac{C_C + C_S}{2} = \dfrac{3
 These two paths are in parallel: $C_{BY} = C_C + \dfrac{C_C + C_S}{2} = \dfrac{3C_C + C_S}{2}$.
 
 (This is the classic three-core cable: $C_C$ = core-to-core, $C_S$ = core-to-sheath capacitance. You will see it again in Power Systems.)
+
+**Without a calculator:** No numbers at all: only symbols. Write the two paths and add.
 
 **Answer: (C) $(C_S + 3C_C)/2$.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-1999-capacitance-by', updated_at = now() WHERE id = qid;
@@ -2806,6 +2930,8 @@ BEGIN
 
 (Energy check: before $\tfrac12\times1\times9 = 4.5$ J, after $\tfrac12\times3\times1 = 1.5$ J. 3 J is lost in the switching. Charge is conserved, energy is not.)
 
+**Without a calculator:** $Q = 1 \times 3 = 3$ C shared over $1 + 2 = 3$ F ⇒ 1 V.
+
 **Answer: (A) 1 V.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2009-22') RETURNING id INTO qid;
   ELSE
@@ -2820,6 +2946,8 @@ BEGIN
 4. $V = \dfrac{3}{3} = 1$ V, reached instantly (ideal elements, impulse current).
 
 (Energy check: before $\tfrac12\times1\times9 = 4.5$ J, after $\tfrac12\times3\times1 = 1.5$ J. 3 J is lost in the switching. Charge is conserved, energy is not.)
+
+**Without a calculator:** $Q = 1 \times 3 = 3$ C shared over $1 + 2 = 3$ F ⇒ 1 V.
 
 **Answer: (A) 1 V.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2009-22', updated_at = now() WHERE id = qid;
@@ -2862,6 +2990,8 @@ BEGIN
 
 Of this, $\tfrac12CV^2 = 50$ J is stored in the capacitor and 50 J is lost as heat in the resistors, whatever their values. The resistor network is only there to distract you.
 
+**Without a calculator:** $Q = CV = 10$ C, and energy from the source $= QV = 10 \times 10 = 100$ J. No resistor values are needed.
+
 **Answer: 100.0 J.**
 ', 'READY', 'NAT', 99.9, 100.1, 2, 'UNVERIFIED', 'gate-2017-s2-22') RETURNING id INTO qid;
   ELSE
@@ -2876,6 +3006,8 @@ Of this, $\tfrac12CV^2 = 50$ J is stored in the capacitor and 50 J is lost as he
 4. The source voltage is constant, so energy given by the source $= Q\times V = 10\times10 = 100$ J.
 
 Of this, $\tfrac12CV^2 = 50$ J is stored in the capacitor and 50 J is lost as heat in the resistors, whatever their values. The resistor network is only there to distract you.
+
+**Without a calculator:** $Q = CV = 10$ C, and energy from the source $= QV = 10 \times 10 = 100$ J. No resistor values are needed.
 
 **Answer: 100.0 J.**
 ', status = 'READY', answer_type = 'NAT', nat_min = 99.9, nat_max = 100.1, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2017-s2-22', updated_at = now() WHERE id = qid;
@@ -2960,6 +3092,8 @@ So the waveform is a square wave with sloping segments: the upper segments slope
 - (C) has the slopes the wrong way (upper parts falling).
 - (D) matches.
 
+**Without a calculator:** No arithmetic needed: decide the shape (square from C, triangle from R) and the direction of the slopes.
+
 **Answer: (D).**
 ', 'READY', 'MCQ', NULL, NULL, 3, 'TWO_SOURCES', 'gate-1999-rc-triangular') RETURNING id INTO qid;
   ELSE
@@ -2976,6 +3110,8 @@ So the waveform is a square wave with sloping segments: the upper segments slope
 - (B) is a sawtooth: wrong shape.
 - (C) has the slopes the wrong way (upper parts falling).
 - (D) matches.
+
+**Without a calculator:** No arithmetic needed: decide the shape (square from C, triangle from R) and the direction of the slopes.
 
 **Answer: (D).**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'TWO_SOURCES', content_key = 'gate-1999-rc-triangular', updated_at = now() WHERE id = qid;
@@ -3059,6 +3195,8 @@ Read the graphs: $i$ rises linearly from 0 to 2 A in 2 s, then stays at 2 A. $v$
 
 This question first appeared as a fill-in-the-blank in **GATE EE 1997**; ESE 2017 used the same figure.
 
+**Without a calculator:** $L = 2 \div 1 = 2$ H.
+
 **Answer: (B) Inductor, 2 H.**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'TWO_SOURCES', 'ese-2017-38') RETURNING id INTO qid;
   ELSE
@@ -3076,6 +3214,8 @@ Read the graphs: $i$ rises linearly from 0 to 2 A in 2 s, then stays at 2 A. $v$
 3. **Inductor?** $v = L\,di/dt$. During 0–2 s, $di/dt = 2/2 = 1$ A/s and $v = 2$ V ⇒ $L = 2/1 = 2$ H. After 2 s, $di/dt = 0$ and $v = 0$ ✔ consistent.
 
 This question first appeared as a fill-in-the-blank in **GATE EE 1997**; ESE 2017 used the same figure.
+
+**Without a calculator:** $L = 2 \div 1 = 2$ H.
 
 **Answer: (B) Inductor, 2 H.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'TWO_SOURCES', content_key = 'ese-2017-38', updated_at = now() WHERE id = qid;
@@ -3145,6 +3285,8 @@ The voltage and current characteristic of an element is as shown in figure. The 
 3. **Capacitor test:** $dv/dt = 10$ (constant), so a capacitor would carry a constant current. But $i = 2t^2$ is not constant ⇒ not a capacitor.
 4. **Inductor test:** $di/dt = 4t$ ⇒ $\dfrac{v}{di/dt} = \dfrac{10t}{4t} = 2.5$, a constant ⇒ inductor, $L = 2.5$ H.
 
+**Without a calculator:** $\dfrac{10t}{4t} = 2.5$. The $t$ cancels, so no calculation beyond one division.
+
 **Answer: (B) Inductor of 2.5 H.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2018-16') RETURNING id INTO qid;
   ELSE
@@ -3157,6 +3299,8 @@ The voltage and current characteristic of an element is as shown in figure. The 
 2. **Current:** a curve through the origin with 2 A at 1 s and 8 A at 2 s. $8/2 = 4 = (2/1)^2$, so $i \propto t^2$ ⇒ $i = 2t^2$ A.
 3. **Capacitor test:** $dv/dt = 10$ (constant), so a capacitor would carry a constant current. But $i = 2t^2$ is not constant ⇒ not a capacitor.
 4. **Inductor test:** $di/dt = 4t$ ⇒ $\dfrac{v}{di/dt} = \dfrac{10t}{4t} = 2.5$, a constant ⇒ inductor, $L = 2.5$ H.
+
+**Without a calculator:** $\dfrac{10t}{4t} = 2.5$. The $t$ cancels, so no calculation beyond one division.
 
 **Answer: (B) Inductor of 2.5 H.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2018-16', updated_at = now() WHERE id = qid;
@@ -3231,6 +3375,8 @@ BEGIN
 
 Trap: (A) treats the inductor like a resistor. The inductor current is the **integral** of the voltage, not a copy of it.
 
+**Without a calculator:** $10 \div 1 = 10$ A/s for 2 s ⇒ 20 A.
+
 **Answer: (C).**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2018-37') RETURNING id INTO qid;
   ELSE
@@ -3242,6 +3388,8 @@ Trap: (A) treats the inductor like a resistor. The inductor current is the **int
 3. After the pulse $v = 0$ ⇒ $di/dt = 0$ ⇒ the current stays at **+20 A** (there is no resistance to make it decay).
 
 Trap: (A) treats the inductor like a resistor. The inductor current is the **integral** of the voltage, not a copy of it.
+
+**Without a calculator:** $10 \div 1 = 10$ A/s for 2 s ⇒ 20 A.
 
 **Answer: (C).**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2018-37', updated_at = now() WHERE id = qid;
@@ -3277,6 +3425,8 @@ $i(t) = 0 + \dfrac11\int_0^t 12t^2\,dt = 12\cdot\dfrac{t^3}{3} = 4t^3$ A.
 
 Trap: (B) $24t$ is the **derivative** of $12t^2$. For an inductor, current is the **integral** of voltage.
 
+**Without a calculator:** Check the options by differentiating them: $\frac{d}{dt}(4t^3) = 12t^2$ ✔. That is quicker than integrating.
+
 **Answer: (D) $4t^3$.**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'TWO_SOURCES', 'gate-2000-inductor-current') RETURNING id INTO qid;
   ELSE
@@ -3286,6 +3436,8 @@ Trap: (B) $24t$ is the **derivative** of $12t^2$. For an inductor, current is th
 $i(t) = 0 + \dfrac11\int_0^t 12t^2\,dt = 12\cdot\dfrac{t^3}{3} = 4t^3$ A.
 
 Trap: (B) $24t$ is the **derivative** of $12t^2$. For an inductor, current is the **integral** of voltage.
+
+**Without a calculator:** Check the options by differentiating them: $\frac{d}{dt}(4t^3) = 12t^2$ ✔. That is quicker than integrating.
 
 **Answer: (D) $4t^3$.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'TWO_SOURCES', content_key = 'gate-2000-inductor-current', updated_at = now() WHERE id = qid;
@@ -3382,6 +3534,8 @@ The current rises linearly from 0 to 6 A in 2 s ($i = 3t$), then stays at 6 A up
 
 Traps: 144 J is $36\times4$ (heat at 6 A for the full 4 s, forgetting the ramp and the stored energy). 168 J adds the stored energy to that wrong heat.
 
+**Without a calculator:** Learn this shortcut: for a current that ramps linearly from 0 to $I$ in time $T$, the heat in $R$ is $\dfrac{I^2RT}{3}$. Here $\frac{36 \times 1 \times 2}{3} = 24$ J. Then $36 + 24 + 72 = 132$.
+
 **Answer: (C) 132 J.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-2003-inductor-energy') RETURNING id INTO qid;
   ELSE
@@ -3398,6 +3552,8 @@ The current rises linearly from 0 to 6 A in 2 s ($i = 3t$), then stays at 6 A up
 4. **Total absorbed** $= 36 + 24 + 72 = 132$ J.
 
 Traps: 144 J is $36\times4$ (heat at 6 A for the full 4 s, forgetting the ramp and the stored energy). 168 J adds the stored energy to that wrong heat.
+
+**Without a calculator:** Learn this shortcut: for a current that ramps linearly from 0 to $I$ in time $T$, the heat in $R$ is $\dfrac{I^2RT}{3}$. Here $\frac{36 \times 1 \times 2}{3} = 24$ J. Then $36 + 24 + 72 = 132$.
 
 **Answer: (C) 132 J.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-2003-inductor-energy', updated_at = now() WHERE id = qid;
@@ -3453,6 +3609,8 @@ BEGIN
 
 Traps: 100 V forgets the inductance; 75 V forgets the resistance. Both parts act together at the same instant.
 
+**Without a calculator:** $10 \times 10 = 100$, $15 \times 5 = 75$, total 175.
+
 **Answer: (C) 175 V.**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'apdcl-2023-46') RETURNING id INTO qid;
   ELSE
@@ -3464,6 +3622,8 @@ Traps: 100 V forgets the inductance; 75 V forgets the resistance. Both parts act
 - Total: $v = 100 + 75 = 175$ V.
 
 Traps: 100 V forgets the inductance; 75 V forgets the resistance. Both parts act together at the same instant.
+
+**Without a calculator:** $10 \times 10 = 100$, $15 \times 5 = 75$, total 175.
 
 **Answer: (C) 175 V.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'apdcl-2023-46', updated_at = now() WHERE id = qid;
@@ -3503,6 +3663,8 @@ BEGIN
 
 The power grows with time because the current grows while the voltage stays constant: the inductor is storing energy. (Check: energy at 2 ms $= \tfrac12\times3\times10^{-3}\times10^2 = 0.15$ J, and $\int_0^{0.002}75000\,t\,dt = 37500\times4\times10^{-6} = 0.15$ J ✔.)
 
+**Without a calculator:** Slope $= 10$ A in 2 ms $= 5000$ A/s. $v = 3\ \text{mH} \times 5000 = 15$ V. Then $15 \times 5000 = 75000$. All options have the form $k\,t$, so only the number matters.
+
 **Answer: (B) 75000 t.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'aegcl-2023-83') RETURNING id INTO qid;
   ELSE
@@ -3516,6 +3678,8 @@ The power grows with time because the current grows while the voltage stays cons
 3. $p = vi = 15\times5000\,t = 75\,000\,t$ W.
 
 The power grows with time because the current grows while the voltage stays constant: the inductor is storing energy. (Check: energy at 2 ms $= \tfrac12\times3\times10^{-3}\times10^2 = 0.15$ J, and $\int_0^{0.002}75000\,t\,dt = 37500\times4\times10^{-6} = 0.15$ J ✔.)
+
+**Without a calculator:** Slope $= 10$ A in 2 ms $= 5000$ A/s. $v = 3\ \text{mH} \times 5000 = 15$ V. Then $15 \times 5000 = 75000$. All options have the form $k\,t$, so only the number matters.
 
 **Answer: (B) 75000 t.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'aegcl-2023-83', updated_at = now() WHERE id = qid;
@@ -4033,6 +4197,8 @@ BEGIN
 2. Load: $v = 1\times i$.
 3. Together: $i + i = 100$ ⇒ $i = 50$ A (and $v = 50$ V).
 
+**Without a calculator:** $i + i = 100$ ⇒ $i = 50$.
+
 **Answer: (B) 50 A.**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2010-7') RETURNING id INTO qid;
   ELSE
@@ -4044,6 +4210,8 @@ BEGIN
 1. Source: $v + i = 100$ (this is a 100 V source with 1 Ω internal resistance: $V_{oc} = 100$ V, $I_{sc} = 100$ A).
 2. Load: $v = 1\times i$.
 3. Together: $i + i = 100$ ⇒ $i = 50$ A (and $v = 50$ V).
+
+**Without a calculator:** $i + i = 100$ ⇒ $i = 50$.
 
 **Answer: (B) 50 A.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2010-7', updated_at = now() WHERE id = qid;
@@ -4086,6 +4254,8 @@ Load resistance at the corner: $R = V/I = 10/4 = 2.5$ Ω.
 
 Check the other options: a short gives $V = 0$ ⇒ $P = 0$; an open gives $I = 0$ ⇒ $P = 0$; (D) says 5 V, but at 2.5 Ω and 4 A the voltage is 10 V.
 
+**Without a calculator:** $10 \div 4 = 2.5$ Ω. Also note that options (A) and (B) give zero power, so they are out immediately.
+
 **Answer: (C) 2.5 Ω, 4 A, 10 V.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2020-32') RETURNING id INTO qid;
   ELSE
@@ -4100,6 +4270,8 @@ Both parts give their largest power at the **corner** $V = 10$ V, $I = 4$ A: $P_
 Load resistance at the corner: $R = V/I = 10/4 = 2.5$ Ω.
 
 Check the other options: a short gives $V = 0$ ⇒ $P = 0$; an open gives $I = 0$ ⇒ $P = 0$; (D) says 5 V, but at 2.5 Ω and 4 A the voltage is 10 V.
+
+**Without a calculator:** $10 \div 4 = 2.5$ Ω. Also note that options (A) and (B) give zero power, so they are out immediately.
 
 **Answer: (C) 2.5 Ω, 4 A, 10 V.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2020-32', updated_at = now() WHERE id = qid;
@@ -4140,6 +4312,8 @@ Let the magnitude be $x$ (so the current source is $x$ A and the voltage source 
 
 Check: $3^2\times2 = 18$ W ✔, $3^2/2 = 4.5$ W ✔.
 
+**Without a calculator:** Test the options: (B) gives $3^2\times2 = 18$ W ✔ and $3^2 \div 2 = 4.5$ W ✔. One check settles it.
+
 **Answer: (B) 3 A and 2 Ω.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-1999-r-sources') RETURNING id INTO qid;
   ELSE
@@ -4154,6 +4328,8 @@ Let the magnitude be $x$ (so the current source is $x$ A and the voltage source 
 4. Then $x^2 = 18/2 = 9$ ⇒ $x = 3$.
 
 Check: $3^2\times2 = 18$ W ✔, $3^2/2 = 4.5$ W ✔.
+
+**Without a calculator:** Test the options: (B) gives $3^2\times2 = 18$ W ✔ and $3^2 \div 2 = 4.5$ W ✔. One check settles it.
 
 **Answer: (B) 3 A and 2 Ω.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-1999-r-sources', updated_at = now() WHERE id = qid;
@@ -4384,6 +4560,8 @@ So $V_{out} = 20$ V. (Power check: the current source delivers $20\times5 = 100$
 
 This question was repeated word for word in **APGCL 2023 (Q8)**.
 
+**Without a calculator:** $10 + 5 \times 2 = 20$ V.
+
 **Answer: (D) 20.**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2016-s2-23') RETURNING id INTO qid;
   ELSE
@@ -4400,6 +4578,8 @@ This question was repeated word for word in **APGCL 2023 (Q8)**.
 So $V_{out} = 20$ V. (Power check: the current source delivers $20\times5 = 100$ W; the resistor takes $5^2\times2 = 50$ W; the 10 V source, with current entering its + terminal, takes $10\times5 = 50$ W. $100 = 50 + 50$ ✔.)
 
 This question was repeated word for word in **APGCL 2023 (Q8)**.
+
+**Without a calculator:** $10 + 5 \times 2 = 20$ V.
 
 **Answer: (D) 20.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2016-s2-23', updated_at = now() WHERE id = qid;
@@ -4442,6 +4622,8 @@ BEGIN
    - Through the 5 V source from its top (–) to its bottom (+): the bottom is 5 V higher, so $v_{\text{right top}} - v_b = -5$ V.
 3. Add: $v_{ab} = v_a - v_b = 2 + (-5) = -3$ V.
 
+**Without a calculator:** $2 - 5 = -3$ V.
+
 **Answer: (A) −3 V.**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2008-23') RETURNING id INTO qid;
   ELSE
@@ -4455,6 +4637,8 @@ BEGIN
    - Through the 2 Ω resistor in the direction of the current: a drop of $1\times2 = 2$ V. So $v_a - v_{\text{right top}} = 2$ V.
    - Through the 5 V source from its top (–) to its bottom (+): the bottom is 5 V higher, so $v_{\text{right top}} - v_b = -5$ V.
 3. Add: $v_{ab} = v_a - v_b = 2 + (-5) = -3$ V.
+
+**Without a calculator:** $2 - 5 = -3$ V.
 
 **Answer: (A) −3 V.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2008-23', updated_at = now() WHERE id = qid;
@@ -4497,6 +4681,8 @@ We know nothing about the inside of N1 and N2, so draw a closed surface around *
 3. **KCL for N2:** current into N2 $= 0$ ⇒ $1 - 2 + I_s = 0$ ⇒ $I_s = 1$ A flows **from N1 to N2 through the source**.
 4. The source has – on the N1 side and + on the N2 side. The 1 A goes in at its – terminal and out at its + terminal, so the source **delivers** power: $5\times1 = 5$ W.
 
+**Without a calculator:** $6 \div 3 = 2$ A, $2 \div 2 = 1$ A, so the source carries 1 A and gives $5 \times 1 = 5$ W.
+
 **Answer: (A) 5.** *(Matches the official GATE answer.)*
 ', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate-2015-s1-28') RETURNING id INTO qid;
   ELSE
@@ -4511,6 +4697,8 @@ We know nothing about the inside of N1 and N2, so draw a closed surface around *
 2. **2 Ω branch:** 2 V with + on the N1 side, so $2/2 = 1$ A flows **from N1 to N2**.
 3. **KCL for N2:** current into N2 $= 0$ ⇒ $1 - 2 + I_s = 0$ ⇒ $I_s = 1$ A flows **from N1 to N2 through the source**.
 4. The source has – on the N1 side and + on the N2 side. The 1 A goes in at its – terminal and out at its + terminal, so the source **delivers** power: $5\times1 = 5$ W.
+
+**Without a calculator:** $6 \div 3 = 2$ A, $2 \div 2 = 1$ A, so the source carries 1 A and gives $5 \times 1 = 5$ W.
 
 **Answer: (A) 5.** *(Matches the official GATE answer.)*
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate-2015-s1-28', updated_at = now() WHERE id = qid;
@@ -4553,6 +4741,8 @@ BEGIN
 
 Extra check: KVL gives the voltage of the right node $= 25 - 17 = 8$ V, which is the voltage across $R_2$ (shown with + at the top) ✔. You do not need $R_1$ or $R_2$ themselves.
 
+**Without a calculator:** $14 \div 1.4 = 140 \div 14 = 10$ A, then $25 \times 10 = 250$ W.
+
 **Answer: 250 W.**
 ', 'READY', 'NAT', 250, 250, 2, 'UNVERIFIED', 'gate-2017-s1-18') RETURNING id INTO qid;
   ELSE
@@ -4567,6 +4757,8 @@ Extra check: KVL gives the voltage of the right node $= 25 - 17 = 8$ V, which is
 4. The 25 V source carries 10 A out of its + terminal, so it supplies $P = 25\times10 = 250$ W.
 
 Extra check: KVL gives the voltage of the right node $= 25 - 17 = 8$ V, which is the voltage across $R_2$ (shown with + at the top) ✔. You do not need $R_1$ or $R_2$ themselves.
+
+**Without a calculator:** $14 \div 1.4 = 140 \div 14 = 10$ A, then $25 \times 10 = 250$ W.
 
 **Answer: 250 W.**
 ', status = 'READY', answer_type = 'NAT', nat_min = 250, nat_max = 250, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2017-s1-18', updated_at = now() WHERE id = qid;
@@ -4606,6 +4798,8 @@ BEGIN
 
 All 10 A of the current source go through the 1 Ω resistor ($10^2\times1 = 100$ W, supplied by the current source).
 
+**Without a calculator:** Before writing algebra, try $V_X = 10$ V (the source voltage): it makes the α-branch current zero and satisfies KCL at once.
+
 **Answer: (A) 0.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2024-13') RETURNING id INTO qid;
   ELSE
@@ -4621,6 +4815,8 @@ All 10 A of the current source go through the 1 Ω resistor ($10^2\times1 = 100$
 5. The current through the α resistor is $\dfrac{V_X - 10}{\alpha} = 0$, so the 10 V source carries **no current** and delivers **0 W**.
 
 All 10 A of the current source go through the 1 Ω resistor ($10^2\times1 = 100$ W, supplied by the current source).
+
+**Without a calculator:** Before writing algebra, try $V_X = 10$ V (the source voltage): it makes the α-branch current zero and satisfies KCL at once.
 
 **Answer: (A) 0.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2024-13', updated_at = now() WHERE id = qid;
@@ -4667,6 +4863,8 @@ All four branches meet at the centre node N.
 
 Trap: option (A) is $i_L$, the inductor **current**, not its voltage.
 
+**Without a calculator:** Only derivatives of $\sin 2t$ and $\cos 2t$: each derivative brings a factor 2. $4 \times 2 = 8$, then $8 \times 2 \times 2 = 32$.
+
 **Answer: (B) $32\sin2t$.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-2003-segment') RETURNING id INTO qid;
   ELSE
@@ -4685,6 +4883,8 @@ All four branches meet at the centre node N.
 6. $v_L$ (+ at N) $= L\,\dfrac{di_L}{dt} = 2\times(16\sin2t) = 32\sin2t$ V.
 
 Trap: option (A) is $i_L$, the inductor **current**, not its voltage.
+
+**Without a calculator:** Only derivatives of $\sin 2t$ and $\cos 2t$: each derivative brings a factor 2. $4 \times 2 = 8$, then $8 \times 2 \times 2 = 32$.
 
 **Answer: (B) $32\sin2t$.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-2003-segment', updated_at = now() WHERE id = qid;
@@ -4784,6 +4984,8 @@ After $t = 0$ the current source, the capacitor and the 100 Ω resistor form one
 
 So $v_s$ **starts at 0** at $t = 0^+$ and rises in a **straight line**. (A real exponential would need a resistor in parallel; with an ideal current source the charging is linear.) Options (B) and (D) are exponential; option (A) starts at –2 V (it forgets the resistor''s 2 V).
 
+**Without a calculator:** $0.02 \div 10^{-6} = 20\,000$ V/s. The resistor''s $+2$ V cancels the capacitor''s $-2$ V, so the graph starts at 0.
+
 **Answer: (C).**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2014-s1-8') RETURNING id INTO qid;
   ELSE
@@ -4799,6 +5001,8 @@ After $t = 0$ the current source, the capacitor and the 100 Ω resistor form one
 3. KVL: $v_s = v_c + v_R = (-2 + 20\,000\,t) + 2 = 20\,000\,t$ V.
 
 So $v_s$ **starts at 0** at $t = 0^+$ and rises in a **straight line**. (A real exponential would need a resistor in parallel; with an ideal current source the charging is linear.) Options (B) and (D) are exponential; option (A) starts at –2 V (it forgets the resistor''s 2 V).
+
+**Without a calculator:** $0.02 \div 10^{-6} = 20\,000$ V/s. The resistor''s $+2$ V cancels the capacitor''s $-2$ V, so the graph starts at 0.
 
 **Answer: (C).**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s1-8', updated_at = now() WHERE id = qid;
@@ -4895,6 +5099,8 @@ Read the circuit: $I = 5$ A leaves the + terminal of the 20 V source ($P_1$) and
 
 **Defect in this question:** the circuit and the numbers come from Sadiku''s textbook (Example 1.7), which lists *absorbed* powers: that set is option (D). But the question asks for the power **supplied**, and that set is exactly option (B). Both options are marked correct here until the UPSC key is checked. In the exam, the words "power supplied" point to (B); the setter''s source points to (D).
 
+**Without a calculator:** Only small products: $20\times5$, $12\times5$, $8\times6$, $8\times1$. Use the power balance $-100 + 60 + 48 - 8 = 0$ as your check.
+
 **Answer: (B) by the wording (supplied power); (D) if the setter meant absorbed power.**
 ', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2026-101') RETURNING id INTO qid;
   ELSE
@@ -4915,6 +5121,8 @@ Read the circuit: $I = 5$ A leaves the + terminal of the 20 V source ($P_1$) and
 **Supplied power** is the same with the opposite sign: $P_1 = +100$, $P_2 = -60$, $P_3 = -48$, $P_4 = +8$ W.
 
 **Defect in this question:** the circuit and the numbers come from Sadiku''s textbook (Example 1.7), which lists *absorbed* powers: that set is option (D). But the question asks for the power **supplied**, and that set is exactly option (B). Both options are marked correct here until the UPSC key is checked. In the exam, the words "power supplied" point to (B); the setter''s source points to (D).
+
+**Without a calculator:** Only small products: $20\times5$, $12\times5$, $8\times6$, $8\times1$. Use the power balance $-100 + 60 + 48 - 8 = 0$ as your check.
 
 **Answer: (B) by the wording (supplied power); (D) if the setter meant absorbed power.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2026-101', updated_at = now() WHERE id = qid;

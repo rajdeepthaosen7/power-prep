@@ -24,6 +24,8 @@
 
     Shortcut: $w = v\,i\,t$ ⇒ $v = \dfrac{w}{it} = \dfrac{2300}{2\times10} = 115$ V.
 
+    **Without a calculator:** Divide in two easy steps: $2300 \div 10 = 230$ W, then $230 \div 2 = 115$ V.
+
     **Answer: (B) 115 V.**
 
 - key: gate-2014-s1-6
@@ -56,6 +58,8 @@
     **Step 4: total** $= 1000 - 640 - 30 = 330$ W.
 
     The total is not zero because these three elements are only *part* of the circuit; the rest of the circuit supplies the 330 W.
+
+    **Without a calculator:** All numbers are whole: $1000 - 640 - 30 = 330$. Only the signs need care, not the arithmetic.
 
     **Answer: 330 W.**
 
@@ -226,6 +230,8 @@
 
     The same question was asked word for word in **AEGCL 2023 (Q81)**.
 
+    **Without a calculator:** You do not need $220^2$ at all. At the same rated voltage, $R \propto 1/P$, so a 200 W lamp has **half** the resistance of a 100 W lamp. Two of them in series make the same resistance, so the answer is 2.
+
     **Answer: (D) 2.**
 
 - key: gate-2001-bulbs
@@ -280,6 +286,9 @@
 
     Check: $1.944 + 1.296 = 3.24$ Ω and $9/3.24 = 2.778$ A ✔.
 
+    **Without a calculator:** Look at the options first. The 20 W bulb: $81 \div 20 \approx 4$, and only option (A) starts with about 4. Done.
+    To check the other two without squaring 2.778: the pair takes 25 W from 9 V, so together $R = 81/25 = 3.24$ Ω. Same current ⇒ power ∝ R, so 3.24 Ω splits in the ratio $15 : 10 = 3 : 2$, giving $1.94$ Ω and $1.30$ Ω.
+
     **Answer: (A) 4.05 Ω, 1.945 Ω, 1.297 Ω.**
 
 - key: gate-2014-s1-29
@@ -301,6 +310,8 @@
     4. $\dfrac{1440}{120} = 12 = 1 + 4.5\times10^{-3}(T - 26)$ ⇒ $T - 26 = \dfrac{11}{4.5\times10^{-3}} = 2444.4$
     5. $T \approx 2470$ °C.
 
+    **Without a calculator:** $1440 \div 120 = 12$, so $11 = 0.0045\,(T - 26)$. Now $11 \div 0.0045 = 11000 \div 4.5$; and $1 \div 4.5 \approx 0.222$, so $11000 \times 0.222 \approx 2444$. Add 26 ⇒ about 2470.
+
     **Answer: about 2470 °C** (accepted range 2465–2475).
 
 - key: gate-2021-15
@@ -319,6 +330,8 @@
     1. Conductor resistance of the joined cable: $0.7 + 0.5 = 1.2$ Ω.
     2. Insulation resistance of the joined cable: $\dfrac{600\times900}{600 + 900} = \dfrac{540\,000}{1500} = 360$ MΩ.
     3. Ratio $= \dfrac{360\times10^6}{1.2} = 300\times10^6$.
+
+    **Without a calculator:** For 600 ∥ 900, take out the common factor 300: $300 \times (2 \parallel 3) = 300 \times \frac{6}{5} = 360$ MΩ. Then $360 \div 1.2 = 300$.
 
     **Answer: 300.**
 
@@ -343,6 +356,8 @@
     2. $p = vi = (25\sin\omega t)(2.5\sin\omega t) = 62.5\sin^2\omega t$ W. (Same as $i^2R = 6.25\sin^2\omega t\times10$.)
 
     The value $\omega = 500$ rad/s does not change the answer. (The average of this power is $62.5/2 = 31.25$ W, which you will meet again in the AC power chapter.)
+
+    **Without a calculator:** $10 \times 2.5 = 25$ and $25 \times 2.5 = 62.5$. Only option (A) has both 25 and 62.5.
 
     **Answer: (A) 25 sin ωt (V); 62.5 sin² ωt (W).**
 
@@ -369,6 +384,8 @@
     4. $I = 1$ A or $I = -3$ A. With $I = -3$ A the element would have $V = 9$ V and current flowing the "wrong" way, i.e. a passive element delivering power: impossible. So $I = 1$ A.
     5. $V = 1^2 = 1$ V, power $= VI = 1\times1 = 1$ W.
 
+    **Without a calculator:** Test the options instead of solving. With $V = I^2$, the power is $VI = I^3$. Try $I = 1$ A: power 1 W, and the supply gives $V = 3 - 2\times1 = 1$ V $= I^2$ ✔. So (A) fits at once.
+
     **Answer: (A) 1.0 W.**
 
 - key: gate-2014-s1-30
@@ -393,6 +410,8 @@
 
     Check: $R = 25 + 5 = 30$ Ω and $10\times30 = 300$ V ✔.
 
+    **Without a calculator:** Guess a round number: try $I = 10$: $R = 25 + 5 = 30$ Ω and $10 \times 30 = 300$ V ✔. In an MCQ, trying each option this way is quicker than the quadratic.
+
     **Answer: 10 A.**
 
 - key: gate-1997-nonlinear-battery
@@ -414,6 +433,8 @@
     4. $I = \dfrac{29 \pm \sqrt{841 - 480}}{2} = \dfrac{29 \pm 19}{2}$ ⇒ $I = 5$ A or $I = 24$ A.
     5. For $I = 24$ A, $V = 10 - 24 = -14$ V: the load would have current in one direction and voltage in the other, so it would be **delivering** power. A load cannot do that. Reject.
     6. $I = 5$ A ($V = 5$ V; check $7\times5 = 35 = 25 + 10$ ✔).
+
+    **Without a calculator:** Try round numbers in $V = 10 - I$: $I = 5$ gives $V = 5$, and $7\times5 = 35 = 25 + 10$ ✔. In an MCQ you would test each option the same way.
 
     **Answer: 5 A.**
 
