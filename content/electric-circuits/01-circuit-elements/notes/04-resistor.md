@@ -2,7 +2,9 @@
 
 A resistor opposes the flow of current and turns electrical energy into heat. For a linear resistor (passive sign convention):
 
-$$v = R\,i \qquad\qquad i = G\,v, \quad G = \frac{1}{R}$$
+$$v = R\,i$$
+
+$$i = G\,v, \quad G = \frac{1}{R}$$
 
 - $R$ = resistance, unit ohm (Ω).
 - $G$ = conductance, unit siemens (S). (Old name: mho, ℧.)
@@ -91,7 +93,9 @@ Equal power from the same supply needs equal total resistance. One 40 W heater: 
 
 The formula $p = i^2R$ works at every instant. If $i = I_m\sin\omega t$:
 
-$$v = R I_m \sin\omega t, \qquad p = R I_m^2 \sin^2\omega t$$
+$$v = R I_m \sin\omega t$$
+
+$$p = R I_m^2 \sin^2\omega t$$
 
 The power is never negative; it pulses between 0 and $RI_m^2$ at twice the supply frequency. Its average is $\tfrac12 RI_m^2$ (you will see this again as the RMS idea in the AC power chapter).
 

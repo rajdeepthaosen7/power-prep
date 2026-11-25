@@ -67,7 +67,9 @@ Unit: volt (V). $1\ \text{V} = 1\ \text{J/C}$.
 
 Voltage is always **between two points**. We mark it with a **+** and a **–** sign. $v_{ab}$ means "potential of $a$ minus potential of $b$":
 
-$$v_{ab} = v_a - v_b, \qquad v_{ba} = -v_{ab}$$
+$$v_{ab} = v_a - v_b$$
+
+$$v_{ba} = -v_{ab}$$
 
 So if $v_{ab} = 5\ \text{V}$, then point $a$ is 5 V higher than point $b$.
 

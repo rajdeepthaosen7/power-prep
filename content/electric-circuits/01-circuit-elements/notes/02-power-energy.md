@@ -16,7 +16,9 @@ An element has two terminals. We mark a voltage $v$ across it (with + and –) a
 
 **Passive sign convention:** the current arrow **enters the + terminal**. When we mark $v$ and $i$ this way:
 
-$$p = v\,i \quad \text{is the power ABSORBED by the element.}$$
+$$p = v\,i$$
+
+is the power **absorbed** by the element.
 
 - If $p > 0$: the element **absorbs** (takes in) power. A resistor, a charging battery, a capacitor being charged.
 - If $p < 0$: the element **delivers** (gives out) power. A battery driving a lamp.
@@ -41,7 +43,9 @@ Think of it like money. "Absorbed $= -100$ W" means exactly the same as "deliver
 
 Energy cannot be created or destroyed. So, at every instant, in any complete circuit:
 
-$$\sum p_{\text{absorbed}} = 0 \qquad\text{or}\qquad \sum p_{\text{delivered}} = \sum p_{\text{absorbed by others}}$$
+$$\sum p_{\text{absorbed}} = 0$$
+
+In words: the total power delivered by some elements = the total power absorbed by the others.
 
 This is called **Tellegen's balance** or simply power balance. It is a powerful check. After solving any circuit, add up the absorbed powers of all elements: the total must be zero.
 

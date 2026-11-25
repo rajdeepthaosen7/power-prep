@@ -64,7 +64,9 @@ This straight line on the $V$–$I$ graph is the source's **load line**. It cuts
 
 Connect a load $R_L$. The load's own line is $V = IR_L$. Where the two lines cross is the **operating point**:
 
-$$I = \frac{E}{r + R_L}, \qquad V = E\,\frac{R_L}{r + R_L}$$
+$$I = \frac{E}{r + R_L}$$
+
+$$V = E\,\frac{R_L}{r + R_L}$$
 
 **Example 1.** A 12 V battery with $r = 0.5$ Ω feeds 5.5 Ω. $I = 12/6 = 2$ A; terminal voltage $V = 12 - 2\times0.5 = 11$ V.
 
@@ -80,7 +82,7 @@ Same load line, written the other way. $I_{sc} = I_s$ and $V_{oc} = I_s\,r$.
 
 A voltage source $E$ in series with $r$ and a current source $I_s$ in parallel with the **same** $r$ behave identically at their terminals, when
 
-$$E = I_s\,r \qquad (\text{same } r)$$
+$$E = I_s\,r \quad (\text{same } r)$$
 
 Two sources are equivalent at their terminals if and only if they have the **same open-circuit voltage and the same short-circuit current**. Then $r = V_{oc}/I_{sc}$ is automatically the same too. (They are equivalent only for the outside circuit; the power lost *inside* the two models is different.)
 

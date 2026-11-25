@@ -11,7 +11,9 @@ First, two words:
 
 > **The algebraic sum of the currents leaving a node is zero.** Equivalently: total current entering = total current leaving.
 
-$$\sum i_{\text{leaving}} = 0 \qquad\text{or}\qquad \sum i_{\text{in}} = \sum i_{\text{out}}$$
+$$\sum i_{\text{leaving}} = 0$$
+
+or, the same thing: $\sum i_{\text{in}} = \sum i_{\text{out}}$.
 
 Reason: charge is conserved and a node cannot store charge, so whatever flows in must flow out.
 

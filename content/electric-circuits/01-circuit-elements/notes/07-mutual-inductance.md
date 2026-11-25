@@ -4,13 +4,17 @@ The syllabus lists "R, L, C, **M** elements". Here is the basic idea. Coupled ci
 
 When two coils are near each other (or on the same core), part of the flux made by coil 1 also links coil 2. So a **changing** current in coil 1 induces a voltage in coil 2, even though no wire connects them:
 
-$$v_2 = M\,\frac{di_1}{dt}, \qquad v_1 = M\,\frac{di_2}{dt}$$
+$$v_2 = M\,\frac{di_1}{dt}$$
+
+$$v_1 = M\,\frac{di_2}{dt}$$
 
 $M$ is the **mutual inductance**, unit henry. The same $M$ works in both directions.
 
 ### How strong is the coupling?
 
-$$M = k\sqrt{L_1L_2}, \qquad 0 \le k \le 1$$
+$$M = k\sqrt{L_1L_2}$$
+
+with $0 \le k \le 1$.
 
 $k$ is the **coefficient of coupling**. $k = 1$ means all the flux of one coil links the other (perfect coupling); $k = 0$ means no coupling. Note the formula uses the **product** $L_1L_2$ under the root, not the sum.
 

@@ -143,7 +143,9 @@ Unit: volt (V). $1\ \text{V} = 1\ \text{J/C}$.
 
 Voltage is always **between two points**. We mark it with a **+** and a **–** sign. $v_{ab}$ means "potential of $a$ minus potential of $b$":
 
-$$v_{ab} = v_a - v_b, \qquad v_{ba} = -v_{ab}$$
+$$v_{ab} = v_a - v_b$$
+
+$$v_{ba} = -v_{ab}$$
 
 So if $v_{ab} = 5\ \text{V}$, then point $a$ is 5 V higher than point $b$.
 
@@ -179,7 +181,9 @@ An element has two terminals. We mark a voltage $v$ across it (with + and –) a
 
 **Passive sign convention:** the current arrow **enters the + terminal**. When we mark $v$ and $i$ this way:
 
-$$p = v\,i \quad \text{is the power ABSORBED by the element.}$$
+$$p = v\,i$$
+
+is the power **absorbed** by the element.
 
 - If $p > 0$: the element **absorbs** (takes in) power. A resistor, a charging battery, a capacitor being charged.
 - If $p < 0$: the element **delivers** (gives out) power. A battery driving a lamp.
@@ -204,7 +208,9 @@ Think of it like money. "Absorbed $= -100$ W" means exactly the same as "deliver
 
 Energy cannot be created or destroyed. So, at every instant, in any complete circuit:
 
-$$\sum p_{\text{absorbed}} = 0 \qquad\text{or}\qquad \sum p_{\text{delivered}} = \sum p_{\text{absorbed by others}}$$
+$$\sum p_{\text{absorbed}} = 0$$
+
+In words: the total power delivered by some elements = the total power absorbed by the others.
 
 This is called **Tellegen''s balance** or simply power balance. It is a powerful check. After solving any circuit, add up the absorbed powers of all elements: the total must be zero.
 
@@ -334,7 +340,9 @@ INSERT INTO concept_section(topic_id, sort_order, title, body_md, status, slug) 
 
 A resistor opposes the flow of current and turns electrical energy into heat. For a linear resistor (passive sign convention):
 
-$$v = R\,i \qquad\qquad i = G\,v, \quad G = \frac{1}{R}$$
+$$v = R\,i$$
+
+$$i = G\,v, \quad G = \frac{1}{R}$$
 
 - $R$ = resistance, unit ohm (Ω).
 - $G$ = conductance, unit siemens (S). (Old name: mho, ℧.)
@@ -423,7 +431,9 @@ Equal power from the same supply needs equal total resistance. One 40 W heater: 
 
 The formula $p = i^2R$ works at every instant. If $i = I_m\sin\omega t$:
 
-$$v = R I_m \sin\omega t, \qquad p = R I_m^2 \sin^2\omega t$$
+$$v = R I_m \sin\omega t$$
+
+$$p = R I_m^2 \sin^2\omega t$$
 
 The power is never negative; it pulses between 0 and $RI_m^2$ at twice the supply frequency. Its average is $\tfrac12 RI_m^2$ (you will see this again as the RMS idea in the AC power chapter).
 
@@ -576,11 +586,15 @@ Energy is **not** conserved: some is always lost (in the connecting resistance o
 
 **Parallel:** same voltage on all, charges add: $Q = (C_1 + C_2 + \dots)V$, so
 
-$$C_{eq} = C_1 + C_2 + \dots \quad(\text{like resistors in series})$$
+$$C_{eq} = C_1 + C_2 + \dots$$
+
+This is like resistors in **series**.
 
 **Series:** the same charge $Q$ sits on every capacitor (the inner plates are isolated, so charge only shifts along). Voltages add: $V = Q/C_1 + Q/C_2 + \dots$, so
 
-$$\frac{1}{C_{eq}} = \frac{1}{C_1} + \frac{1}{C_2} + \dots \quad(\text{like resistors in parallel})$$
+$$\frac{1}{C_{eq}} = \frac{1}{C_1} + \frac{1}{C_2} + \dots$$
+
+This is like resistors in **parallel**.
 
 So the rules for capacitors are the **opposite** of the rules for resistors.
 
@@ -718,7 +732,9 @@ $$\boxed{\,w_L = \tfrac12 L i^2 = \frac{\lambda^2}{2L} = \tfrac12\lambda i\,}$$
 
 For a coil with $R$ and $L$, the energy taken from the source in a time interval is
 
-$$\text{energy absorbed} = \underbrace{\int i^2R\,dt}_{\text{heat in } R} + \underbrace{\tfrac12 L i^2}_{\text{stored (net change)}}$$
+$$w_{abs} = \int i^2R\,dt + \Delta\!\left(\tfrac12 L i^2\right)$$
+
+The first term is the heat in $R$; the second is the change in energy stored in $L$.
 
 **Example 9.** A coil with $R = 3$ Ω and $L = 1$ H. Its current rises linearly from 0 to 2 A in 3 s and then stays at 2 A until 5 s. Stored at 5 s: $\tfrac12\times1\times2^2 = 2$ J. Heat for 0–3 s ($i = \tfrac23 t$): $\int_0^3 3\cdot\tfrac49t^2\,dt = \tfrac43\cdot9 = 12$ J. Heat for 3–5 s: $2^2\times3\times2 = 24$ J. Total energy absorbed $= 2 + 12 + 24 = 38$ J.
 
@@ -763,13 +779,17 @@ The syllabus lists "R, L, C, **M** elements". Here is the basic idea. Coupled ci
 
 When two coils are near each other (or on the same core), part of the flux made by coil 1 also links coil 2. So a **changing** current in coil 1 induces a voltage in coil 2, even though no wire connects them:
 
-$$v_2 = M\,\frac{di_1}{dt}, \qquad v_1 = M\,\frac{di_2}{dt}$$
+$$v_2 = M\,\frac{di_1}{dt}$$
+
+$$v_1 = M\,\frac{di_2}{dt}$$
 
 $M$ is the **mutual inductance**, unit henry. The same $M$ works in both directions.
 
 ### How strong is the coupling?
 
-$$M = k\sqrt{L_1L_2}, \qquad 0 \le k \le 1$$
+$$M = k\sqrt{L_1L_2}$$
+
+with $0 \le k \le 1$.
 
 $k$ is the **coefficient of coupling**. $k = 1$ means all the flux of one coil links the other (perfect coupling); $k = 0$ means no coupling. Note the formula uses the **product** $L_1L_2$ under the root, not the sum.
 
@@ -874,7 +894,9 @@ This straight line on the $V$–$I$ graph is the source''s **load line**. It cut
 
 Connect a load $R_L$. The load''s own line is $V = IR_L$. Where the two lines cross is the **operating point**:
 
-$$I = \frac{E}{r + R_L}, \qquad V = E\,\frac{R_L}{r + R_L}$$
+$$I = \frac{E}{r + R_L}$$
+
+$$V = E\,\frac{R_L}{r + R_L}$$
 
 **Example 1.** A 12 V battery with $r = 0.5$ Ω feeds 5.5 Ω. $I = 12/6 = 2$ A; terminal voltage $V = 12 - 2\times0.5 = 11$ V.
 
@@ -890,7 +912,7 @@ Same load line, written the other way. $I_{sc} = I_s$ and $V_{oc} = I_s\,r$.
 
 A voltage source $E$ in series with $r$ and a current source $I_s$ in parallel with the **same** $r$ behave identically at their terminals, when
 
-$$E = I_s\,r \qquad (\text{same } r)$$
+$$E = I_s\,r \quad (\text{same } r)$$
 
 Two sources are equivalent at their terminals if and only if they have the **same open-circuit voltage and the same short-circuit current**. Then $r = V_{oc}/I_{sc}$ is automatically the same too. (They are equivalent only for the outside circuit; the power lost *inside* the two models is different.)
 
@@ -1023,7 +1045,9 @@ First, two words:
 
 > **The algebraic sum of the currents leaving a node is zero.** Equivalently: total current entering = total current leaving.
 
-$$\sum i_{\text{leaving}} = 0 \qquad\text{or}\qquad \sum i_{\text{in}} = \sum i_{\text{out}}$$
+$$\sum i_{\text{leaving}} = 0$$
+
+or, the same thing: $\sum i_{\text{in}} = \sum i_{\text{out}}$.
 
 Reason: charge is conserved and a node cannot store charge, so whatever flows in must flow out.
 

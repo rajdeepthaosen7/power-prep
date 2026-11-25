@@ -106,11 +106,15 @@ Energy is **not** conserved: some is always lost (in the connecting resistance o
 
 **Parallel:** same voltage on all, charges add: $Q = (C_1 + C_2 + \dots)V$, so
 
-$$C_{eq} = C_1 + C_2 + \dots \quad(\text{like resistors in series})$$
+$$C_{eq} = C_1 + C_2 + \dots$$
+
+This is like resistors in **series**.
 
 **Series:** the same charge $Q$ sits on every capacitor (the inner plates are isolated, so charge only shifts along). Voltages add: $V = Q/C_1 + Q/C_2 + \dots$, so
 
-$$\frac{1}{C_{eq}} = \frac{1}{C_1} + \frac{1}{C_2} + \dots \quad(\text{like resistors in parallel})$$
+$$\frac{1}{C_{eq}} = \frac{1}{C_1} + \frac{1}{C_2} + \dots$$
+
+This is like resistors in **parallel**.
 
 So the rules for capacitors are the **opposite** of the rules for resistors.
 

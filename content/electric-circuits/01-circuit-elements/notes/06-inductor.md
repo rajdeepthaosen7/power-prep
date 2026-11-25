@@ -94,7 +94,9 @@ $$\boxed{\,w_L = \tfrac12 L i^2 = \frac{\lambda^2}{2L} = \tfrac12\lambda i\,}$$
 
 For a coil with $R$ and $L$, the energy taken from the source in a time interval is
 
-$$\text{energy absorbed} = \underbrace{\int i^2R\,dt}_{\text{heat in } R} + \underbrace{\tfrac12 L i^2}_{\text{stored (net change)}}$$
+$$w_{abs} = \int i^2R\,dt + \Delta\!\left(\tfrac12 L i^2\right)$$
+
+The first term is the heat in $R$; the second is the change in energy stored in $L$.
 
 **Example 9.** A coil with $R = 3$ Ω and $L = 1$ H. Its current rises linearly from 0 to 2 A in 3 s and then stays at 2 A until 5 s. Stored at 5 s: $\tfrac12\times1\times2^2 = 2$ J. Heat for 0–3 s ($i = \tfrac23 t$): $\int_0^3 3\cdot\tfrac49t^2\,dt = \tfrac43\cdot9 = 12$ J. Heat for 3–5 s: $2^2\times3\times2 = 24$ J. Total energy absorbed $= 2 + 12 + 24 = 38$ J.
 
