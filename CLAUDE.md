@@ -4,6 +4,12 @@ Electrical Engineering prep hub for the APSC power-sector exams (APGCL / APDCL /
 The owner uses this as his main exam prep tool. It is serious work: **no placeholders, no fake data.**
 If anything is missing (a source file, an answer key, a syllabus item), ask the owner instead of guessing.
 
+## APSC exam format (owner's rules)
+- APSC asks **MCQ only** (no NAT, no MSQ). NAT questions from GATE are kept for practice only.
+- **No calculator** in the APSC exam. Every analysis must also show the calculator-free way: easy numbers,
+  approximation, ratios, option elimination, unit/limit checks. Notes should teach these mental-math shortcuts.
+- Practice questions written by us must be MCQ with numbers that can be worked by hand.
+
 ## Writing concept notes (Study tab)
 - Write like the best teacher. Style: Lakhmir Singh (S. Chand) - very clear, detailed, conceptual, simple English.
 - Teaching must be **integral, gradual and complete**:
