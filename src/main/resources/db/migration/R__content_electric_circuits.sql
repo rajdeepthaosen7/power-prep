@@ -1245,7 +1245,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'An energy source forces a constant current of 2 A for 10 s to flow through a light bulb. If 2.3 kJ is given off in the form of light and heat energy, what...', 'An energy source forces a constant current of 2 A for 10 s to flow through a light bulb. If 2.3 kJ is given off in the form of light and heat energy, what is the voltage drop across the bulb?
 ', '**Idea used:** energy $w = p\,t$ and power $p = v\,i$ (see *Power and energy*).
 
@@ -1258,7 +1258,7 @@ Shortcut: $w = v\,i\,t$ ⇒ $v = \dfrac{w}{it} = \dfrac{2300}{2\times10} = 115$ 
 **Without a calculator:** Divide in two easy steps: $2300 \div 10 = 230$ W, then $230 \div 2 = 115$ V.
 
 **Answer: (B) 115 V.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2021-10') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2021-10', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An energy source forces a constant current of 2 A for 10 s to flow through a light bulb. If 2.3 kJ is given off in the form of light and heat energy, what...'), stem_md = 'An energy source forces a constant current of 2 A for 10 s to flow through a light bulb. If 2.3 kJ is given off in the form of light and heat energy, what is the voltage drop across the bulb?
 ', solution_md = '**Idea used:** energy $w = p\,t$ and power $p = v\,i$ (see *Power and energy*).
@@ -1272,7 +1272,7 @@ Shortcut: $w = v\,i\,t$ ⇒ $v = \dfrac{w}{it} = \dfrac{2300}{2\times10} = 115$ 
 **Without a calculator:** Divide in two easy steps: $2300 \div 10 = 230$ W, then $230 \div 2 = 115$ V.
 
 **Answer: (B) 115 V.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2021-10', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2021-10', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2021'), '10', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -1297,7 +1297,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'The three circuit elements shown in the figure are part of an electric circuit. The total power absorbed by the three circuit elements in watts is .', 'The three circuit elements shown in the figure are part of an electric circuit. The total power absorbed by the three circuit elements in watts is ______.
 
 ![Figure](fig:q-gate2014-s1-6)
@@ -1322,7 +1322,7 @@ The total is not zero because these three elements are only *part* of the circui
 **Without a calculator:** All numbers are whole: $1000 - 640 - 30 = 330$. Only the signs need care, not the arithmetic.
 
 **Answer: 330 W.**
-', 'READY', 'NAT', 330, 330, 2, 'UNVERIFIED', 'gate-2014-s1-6') RETURNING id INTO qid;
+', 'READY', 'NAT', 330, 330, 2, 'UNVERIFIED', 'gate-2014-s1-6', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The three circuit elements shown in the figure are part of an electric circuit. The total power absorbed by the three circuit elements in watts is .'), stem_md = 'The three circuit elements shown in the figure are part of an electric circuit. The total power absorbed by the three circuit elements in watts is ______.
 
@@ -1348,10 +1348,14 @@ The total is not zero because these three elements are only *part* of the circui
 **Without a calculator:** All numbers are whole: $1000 - 640 - 30 = 330$. Only the signs need care, not the arithmetic.
 
 **Answer: 330 W.**
-', status = 'READY', answer_type = 'NAT', nat_min = 330, nat_max = 330, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s1-6', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'NAT', nat_min = 330, nat_max = 330, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s1-6', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2014'), 'S1-Q6', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
-  DELETE FROM question_option WHERE question_id = qid;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '330 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '390 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1670 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2014-s1-6', '<svg width="325" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-4.6 -50.699999999999996 282.8 184.9"><path d="M 0.0,-0.0 L 21.6,-0 L 43.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:2,3.3;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 43.199999999999996,-0.0 L 86.625,-0 M 93.375,-0 L 136.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 86.625,-13.5 L 86.625,13.5" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.375,-6.75 L 93.375,6.75" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 136.79999999999998,-0.0 L 180.225,-0 M 186.975,-0 L 230.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 186.975,13.5 L 186.975,-13.5" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 180.225,6.75 L 180.225,-6.75" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 230.4,-0.0 L 252,-0 L 273.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:2,3.3;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 136.79999999999998,-0.0 L 136.8,43.425 M 136.8,50.175 L 136.8,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 123.29999999999998,50.175000000000004 L 150.3,50.175" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 130.04999999999998,43.425000000000004 L 143.55,43.425" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 136.79999999999998,93.60000000000001 L 136.8,111.6 L 136.8,129.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:2,3.3;stroke-linecap:round;stroke-linejoin:round;" /><text x="90.0" y="4.099999999999998" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="90.0" dy="13">100 V</tspan></text><text x="90.0" y="-28.299999999999997" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="90.0" dy="13">+         −</tspan></text><text x="183.6" y="4.099999999999998" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="183.6" dy="13">80 V</tspan></text><text x="183.6" y="-28.299999999999997" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="183.6" dy="13">−         +</tspan></text><text x="153.89999999999998" y="33.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="153.89999999999998" dy="13">15 V</tspan></text><text x="124.19999999999997" y="24.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="124.19999999999997" dy="13">−</tspan></text><text x="124.19999999999997" y="53.60000000000001" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="124.19999999999997" dy="13">+</tspan></text><text x="93.60000000000001" y="-52.599999999999994" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000001" dy="13">10 A →</tspan></text><text x="187.2" y="-52.599999999999994" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="187.2" dy="13">→ 8 A</tspan></text><circle cx="136.8" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
 ', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
   DELETE FROM question_concept WHERE question_id = qid;
@@ -1371,7 +1375,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'Which of the following are satisfied in a non-linear network? 1. Associative 2. Superposition 3. Homogeneity 4. Bilaterality Select the correct answer using...', 'Which of the following are satisfied in a non-linear network?
 
 1. Associative
@@ -1388,7 +1392,7 @@ Select the correct answer using the code given below:
 4. The associative property (the order in which series/parallel parts are grouped does not change the result) also has nothing to do with linearity.
 
 **Answer: (B) 1 and 4 only.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2017-56') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2017-56', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Which of the following are satisfied in a non-linear network? 1. Associative 2. Superposition 3. Homogeneity 4. Bilaterality Select the correct answer using...'), stem_md = 'Which of the following are satisfied in a non-linear network?
 
@@ -1406,7 +1410,7 @@ Select the correct answer using the code given below:
 4. The associative property (the order in which series/parallel parts are grouped does not change the result) also has nothing to do with linearity.
 
 **Answer: (B) 1 and 4 only.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2017-56', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2017-56', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2017'), '56', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -1431,7 +1435,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'If the voltage across an element in a circuit is linearly proportional to the current through it, then it is a', 'If the voltage across an element in a circuit is linearly proportional to the current through it, then it is a
 ', '**Idea used:** each element is one v–i rule (see *Kinds of circuit elements*).
 
@@ -1443,7 +1447,7 @@ BEGIN
 Only the resistor has $v \propto i$. This is Ohm''s law.
 
 **Answer: (C) Resistor.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2019-25') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2019-25', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'If the voltage across an element in a circuit is linearly proportional to the current through it, then it is a'), stem_md = 'If the voltage across an element in a circuit is linearly proportional to the current through it, then it is a
 ', solution_md = '**Idea used:** each element is one v–i rule (see *Kinds of circuit elements*).
@@ -1456,7 +1460,7 @@ Only the resistor has $v \propto i$. This is Ohm''s law.
 Only the resistor has $v \propto i$. This is Ohm''s law.
 
 **Answer: (C) Resistor.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2019-25', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2019-25', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2019'), '25', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -1481,7 +1485,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'Which one of the following never dissipates energy but only stores it?', 'Which one of the following never dissipates energy but only stores it?
 ', '**Idea used:** what each passive element does with energy (see *Kinds of circuit elements → Active and passive elements*).
 
@@ -1490,7 +1494,7 @@ BEGIN
 - A **pure capacitor** stores energy $\tfrac12Cv^2$ in its electric field and gives it back; it has no resistance, so it never dissipates.
 
 **Answer: (A) Pure capacitor.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2025-26') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2025-26', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Which one of the following never dissipates energy but only stores it?'), stem_md = 'Which one of the following never dissipates energy but only stores it?
 ', solution_md = '**Idea used:** what each passive element does with energy (see *Kinds of circuit elements → Active and passive elements*).
@@ -1500,7 +1504,7 @@ BEGIN
 - A **pure capacitor** stores energy $\tfrac12Cv^2$ in its electric field and gives it back; it has no resistance, so it never dissipates.
 
 **Answer: (A) Pure capacitor.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2025-26', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2025-26', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2025'), '26', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -1525,7 +1529,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'A circuit with ideal elements is shown. Which one of the following options correctly identifies all the linear elements in the circuit?', 'A circuit with ideal elements is shown.
 
 ![Figure](fig:q-gate2026-23)
@@ -1542,7 +1546,7 @@ Which one of the following options correctly identifies all the linear elements 
 So the linear elements are R, L and C.
 
 **Answer: (B) R, L, and C only.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2026-23') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2026-23', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A circuit with ideal elements is shown. Which one of the following options correctly identifies all the linear elements in the circuit?'), stem_md = 'A circuit with ideal elements is shown.
 
@@ -1560,7 +1564,7 @@ Which one of the following options correctly identifies all the linear elements 
 So the linear elements are R, L and C.
 
 **Answer: (B) R, L, and C only.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2026-23', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2026-23', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2026'), '23', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -1587,7 +1591,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'A nullator is defined as a circuit element where the voltage across the device and the current through the device are both zero. A series combination of a...', 'A nullator is defined as a circuit element where the voltage across the device and the current through the device are both zero. A series combination of a nullator and a resistor of value, R, will behave as a
 ', '**Idea used:** an element is one v–i rule, and series elements carry the same current (see *Kinds of circuit elements → An element is a rule*).
 
@@ -1601,7 +1605,7 @@ The combination has $v = 0$ and $i = 0$ at the same time, which is exactly the d
 Why not the others? An **open circuit** has $i = 0$ but allows any voltage; here the voltage is also forced to 0. A **short circuit** has $v = 0$ but allows any current; here the current is also forced to 0.
 
 **Answer: (B) nullator.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2025-19') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2025-19', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A nullator is defined as a circuit element where the voltage across the device and the current through the device are both zero. A series combination of a...'), stem_md = 'A nullator is defined as a circuit element where the voltage across the device and the current through the device are both zero. A series combination of a nullator and a resistor of value, R, will behave as a
 ', solution_md = '**Idea used:** an element is one v–i rule, and series elements carry the same current (see *Kinds of circuit elements → An element is a rule*).
@@ -1616,7 +1620,7 @@ The combination has $v = 0$ and $i = 0$ at the same time, which is exactly the d
 Why not the others? An **open circuit** has $i = 0$ but allows any voltage; here the voltage is also forced to 0. A **short circuit** has $v = 0$ but allows any current; here the current is also forced to 0.
 
 **Answer: (B) nullator.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2025-19', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2025-19', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2025'), '19', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -1641,7 +1645,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'How many 200W/220V incandescent lamps connected in series would consume the same total power as a single 100W/220V incandescent lamp?', 'How many 200W/220V incandescent lamps connected in series would consume the same total power as a single 100W/220V incandescent lamp?
 ', '**Idea used:** a rated device has $R = V_r^2/P_r$; from the same supply, equal power needs equal resistance (see *The resistor → Ratings of lamps and heaters*).
 
@@ -1657,7 +1661,7 @@ The same question was asked word for word in **AEGCL 2023 (Q81)**.
 **Without a calculator:** You do not need $220^2$ at all. At the same rated voltage, $R \propto 1/P$, so a 200 W lamp has **half** the resistance of a 100 W lamp. Two of them in series make the same resistance, so the answer is 2.
 
 **Answer: (D) 2.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2009-10') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2009-10', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'How many 200W/220V incandescent lamps connected in series would consume the same total power as a single 100W/220V incandescent lamp?'), stem_md = 'How many 200W/220V incandescent lamps connected in series would consume the same total power as a single 100W/220V incandescent lamp?
 ', solution_md = '**Idea used:** a rated device has $R = V_r^2/P_r$; from the same supply, equal power needs equal resistance (see *The resistor → Ratings of lamps and heaters*).
@@ -1674,7 +1678,7 @@ The same question was asked word for word in **AEGCL 2023 (Q81)**.
 **Without a calculator:** You do not need $220^2$ at all. At the same rated voltage, $R \propto 1/P$, so a 200 W lamp has **half** the resistance of a 100 W lamp. Two of them in series make the same resistance, so the answer is 2.
 
 **Answer: (D) 2.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2009-10', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2009-10', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2009'), '10', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'AEGCL-2023'), '81', qid, 1, FALSE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
@@ -1700,7 +1704,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'Two incandescent light bulbs of 40 W and 60 W rating are connected in series across the mains. Then', 'Two incandescent light bulbs of 40 W and 60 W rating are connected in series across the mains. Then
 ', '**Idea used:** series ⇒ same current ⇒ power $= i^2R$ ⇒ larger $R$ gets more power (see *The resistor → Lamps in series*).
 
@@ -1709,7 +1713,7 @@ BEGIN
 3. Total power: $\dfrac{V^2}{R_{40} + R_{60}}$. With $R_{40} = V^2/40$ and $R_{60} = V^2/60$: $R_{40} + R_{60} = V^2\left(\dfrac{1}{40} + \dfrac{1}{60}\right) = \dfrac{V^2}{24}$. So the bulbs together take **24 W**, not 100 W and not 50 W.
 
 **Answer: (D) the 40 W bulb glows brighter.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'TWO_SOURCES', 'gate-2001-bulbs') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'TWO_SOURCES', 'gate-2001-bulbs', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Two incandescent light bulbs of 40 W and 60 W rating are connected in series across the mains. Then'), stem_md = 'Two incandescent light bulbs of 40 W and 60 W rating are connected in series across the mains. Then
 ', solution_md = '**Idea used:** series ⇒ same current ⇒ power $= i^2R$ ⇒ larger $R$ gets more power (see *The resistor → Lamps in series*).
@@ -1719,7 +1723,7 @@ BEGIN
 3. Total power: $\dfrac{V^2}{R_{40} + R_{60}}$. With $R_{40} = V^2/40$ and $R_{60} = V^2/60$: $R_{40} + R_{60} = V^2\left(\dfrac{1}{40} + \dfrac{1}{60}\right) = \dfrac{V^2}{24}$. So the bulbs together take **24 W**, not 100 W and not 50 W.
 
 **Answer: (D) the 40 W bulb glows brighter.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'TWO_SOURCES', content_key = 'gate-2001-bulbs', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'TWO_SOURCES', content_key = 'gate-2001-bulbs', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2001'), '~bulbs-series', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/two-incandescent-light-bulbs-of-40-w-and-60-w-2001-marks-1-hoknj9dsqwdefaxh.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -1744,7 +1748,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'Three light bulbs are connected to a 9 V battery as shown in the figure. What are the values of the resistance of 20 W, 15 W, 10 W bulbs respectively?', 'Three light bulbs are connected to a 9 V battery as shown in the figure. What are the values of the resistance of 20 W, 15 W, 10 W bulbs respectively?
 
 ![Figure](fig:q-ese2021-8)
@@ -1764,7 +1768,7 @@ Check: $1.944 + 1.296 = 3.24$ Ω and $9/3.24 = 2.778$ A ✔.
 To check the other two without squaring 2.778: the pair takes 25 W from 9 V, so together $R = 81/25 = 3.24$ Ω. Same current ⇒ power ∝ R, so 3.24 Ω splits in the ratio $15 : 10 = 3 : 2$, giving $1.94$ Ω and $1.30$ Ω.
 
 **Answer: (A) 4.05 Ω, 1.945 Ω, 1.297 Ω.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2021-8') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2021-8', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Three light bulbs are connected to a 9 V battery as shown in the figure. What are the values of the resistance of 20 W, 15 W, 10 W bulbs respectively?'), stem_md = 'Three light bulbs are connected to a 9 V battery as shown in the figure. What are the values of the resistance of 20 W, 15 W, 10 W bulbs respectively?
 
@@ -1785,7 +1789,7 @@ Check: $1.944 + 1.296 = 3.24$ Ω and $9/3.24 = 2.778$ A ✔.
 To check the other two without squaring 2.778: the pair takes 25 W from 9 V, so together $R = 81/25 = 3.24$ Ω. Same current ⇒ power ∝ R, so 3.24 Ω splits in the ratio $15 : 10 = 3 : 2$, giving $1.94$ Ω and $1.30$ Ω.
 
 **Answer: (A) 4.05 Ω, 1.945 Ω, 1.297 Ω.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2021-8', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2021-8', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2021'), '8', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -1812,7 +1816,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'An incandescent lamp is marked 40 W, 240 V. If resistance at room temperature (26°C) is 120 Ω, and temperature coefficient of resistance is 4.5×10⁻³/°C,...', 'An incandescent lamp is marked 40 W, 240 V. If resistance at room temperature (26°C) is 120 Ω, and temperature coefficient of resistance is 4.5×10⁻³/°C, then its ''ON'' state filament temperature in °C is approximately ______
 ', '**Idea used:** the rating gives the **hot** resistance; $R_T = R_0[1 + \alpha_0(T - T_0)]$ links hot and cold resistance (see *The resistor → Hot and cold resistance of a lamp*).
 
@@ -1825,7 +1829,7 @@ BEGIN
 **Without a calculator:** $1440 \div 120 = 12$, so $11 = 0.0045\,(T - 26)$. Now $11 \div 0.0045 = 11000 \div 4.5$; and $1 \div 4.5 \approx 0.222$, so $11000 \times 0.222 \approx 2444$. Add 26 ⇒ about 2470.
 
 **Answer: about 2470 °C** (accepted range 2465–2475).
-', 'READY', 'NAT', 2465, 2475, 2, 'UNVERIFIED', 'gate-2014-s1-29') RETURNING id INTO qid;
+', 'READY', 'NAT', 2465, 2475, 2, 'UNVERIFIED', 'gate-2014-s1-29', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An incandescent lamp is marked 40 W, 240 V. If resistance at room temperature (26°C) is 120 Ω, and temperature coefficient of resistance is 4.5×10⁻³/°C,...'), stem_md = 'An incandescent lamp is marked 40 W, 240 V. If resistance at room temperature (26°C) is 120 Ω, and temperature coefficient of resistance is 4.5×10⁻³/°C, then its ''ON'' state filament temperature in °C is approximately ______
 ', solution_md = '**Idea used:** the rating gives the **hot** resistance; $R_T = R_0[1 + \alpha_0(T - T_0)]$ links hot and cold resistance (see *The resistor → Hot and cold resistance of a lamp*).
@@ -1839,10 +1843,14 @@ BEGIN
 **Without a calculator:** $1440 \div 120 = 12$, so $11 = 0.0045\,(T - 26)$. Now $11 \div 0.0045 = 11000 \div 4.5$; and $1 \div 4.5 \approx 0.222$, so $11000 \times 0.222 \approx 2444$. Add 26 ⇒ about 2470.
 
 **Answer: about 2470 °C** (accepted range 2465–2475).
-', status = 'READY', answer_type = 'NAT', nat_min = 2465, nat_max = 2475, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s1-29', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'NAT', nat_min = 2465, nat_max = 2475, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s1-29', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2014'), 'S1-Q29', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
-  DELETE FROM question_option WHERE question_id = qid;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2444 °C', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2470 °C', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2667 °C', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2693 °C', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
 END $ppimport$;
@@ -1860,7 +1868,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'Two single-core power cables have total conductor resistances of 0.7 Ω and 0.5 Ω, respectively, and their insulation resistances (between core and sheath)...', 'Two single-core power cables have total conductor resistances of 0.7 Ω and 0.5 Ω, respectively, and their insulation resistances (between core and sheath) are 600 MΩ and 900 MΩ, respectively. When the two cables are joined in series, the ratio of insulation resistance to conductor resistance is ______ ×10⁶.
 ', '**Idea used:** conductor resistance is along the length (adds in series); insulation resistance is the leakage across the insulation (each length is a parallel path, so they combine in parallel) (see *The resistor → Conductor resistance and insulation resistance of a cable*).
 
@@ -1871,7 +1879,7 @@ BEGIN
 **Without a calculator:** For 600 ∥ 900, take out the common factor 300: $300 \times (2 \parallel 3) = 300 \times \frac{6}{5} = 360$ MΩ. Then $360 \div 1.2 = 300$.
 
 **Answer: 300.**
-', 'READY', 'NAT', 300, 300, 2, 'UNVERIFIED', 'gate-2021-15') RETURNING id INTO qid;
+', 'READY', 'NAT', 300, 300, 2, 'UNVERIFIED', 'gate-2021-15', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Two single-core power cables have total conductor resistances of 0.7 Ω and 0.5 Ω, respectively, and their insulation resistances (between core and sheath)...'), stem_md = 'Two single-core power cables have total conductor resistances of 0.7 Ω and 0.5 Ω, respectively, and their insulation resistances (between core and sheath) are 600 MΩ and 900 MΩ, respectively. When the two cables are joined in series, the ratio of insulation resistance to conductor resistance is ______ ×10⁶.
 ', solution_md = '**Idea used:** conductor resistance is along the length (adds in series); insulation resistance is the leakage across the insulation (each length is a parallel path, so they combine in parallel) (see *The resistor → Conductor resistance and insulation resistance of a cable*).
@@ -1883,10 +1891,14 @@ BEGIN
 **Without a calculator:** For 600 ∥ 900, take out the common factor 300: $300 \times (2 \parallel 3) = 300 \times \frac{6}{5} = 360$ MΩ. Then $360 \div 1.2 = 300$.
 
 **Answer: 300.**
-', status = 'READY', answer_type = 'NAT', nat_min = 300, nat_max = 300, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2021-15', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'NAT', nat_min = 300, nat_max = 300, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2021-15', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2021'), '15', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
-  DELETE FROM question_option WHERE question_id = qid;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '300', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '360', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1250', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1500', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
 END $ppimport$;
@@ -1904,7 +1916,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'A 10-ohm resistor has a current of i = 2.5 sin ωt (A). What are the values of voltage and power respectively over one cycle of ω = 500 rad/s?', 'A 10-ohm resistor has a current of i = 2.5 sin ωt (A). What are the values of voltage and power respectively over one cycle of ω = 500 rad/s?
 ', '**Idea used:** Ohm''s law and $p = i^2R$ hold at every instant (see *The resistor → Power when the current changes with time*).
 
@@ -1916,7 +1928,7 @@ The value $\omega = 500$ rad/s does not change the answer. (The average of this 
 **Without a calculator:** $10 \times 2.5 = 25$ and $25 \times 2.5 = 62.5$. Only option (A) has both 25 and 62.5.
 
 **Answer: (A) 25 sin ωt (V); 62.5 sin² ωt (W).**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2026-105') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2026-105', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 10-ohm resistor has a current of i = 2.5 sin ωt (A). What are the values of voltage and power respectively over one cycle of ω = 500 rad/s?'), stem_md = 'A 10-ohm resistor has a current of i = 2.5 sin ωt (A). What are the values of voltage and power respectively over one cycle of ω = 500 rad/s?
 ', solution_md = '**Idea used:** Ohm''s law and $p = i^2R$ hold at every instant (see *The resistor → Power when the current changes with time*).
@@ -1929,7 +1941,7 @@ The value $\omega = 500$ rad/s does not change the answer. (The average of this 
 **Without a calculator:** $10 \times 2.5 = 25$ and $25 \times 2.5 = 62.5$. Only option (A) has both 25 and 62.5.
 
 **Answer: (A) 25 sin ωt (V); 62.5 sin² ωt (W).**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2026-105', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2026-105', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2026'), '105', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -1954,7 +1966,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'A 3 V dc supply with an internal resistance of 2 Ω supplies a passive non-linear resistance characterized by the relation $V{NL} = I{NL}^2$. The power...', 'A 3 V dc supply with an internal resistance of 2 Ω supplies a passive non-linear resistance characterized by the relation $V_{NL} = I_{NL}^2$. The power dissipated in the non-linear resistance is
 ', '**Idea used:** solve the load line of the source together with the element''s own rule; reject the impossible root (see *The resistor → Non-linear resistors: how to solve*).
 
@@ -1967,7 +1979,7 @@ BEGIN
 **Without a calculator:** Test the options instead of solving. With $V = I^2$, the power is $VI = I^3$. Try $I = 1$ A: power 1 W, and the supply gives $V = 3 - 2\times1 = 1$ V $= I^2$ ✔. So (A) fits at once.
 
 **Answer: (A) 1.0 W.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2007-64') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2007-64', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 3 V dc supply with an internal resistance of 2 Ω supplies a passive non-linear resistance characterized by the relation $V{NL} = I{NL}^2$. The power...'), stem_md = 'A 3 V dc supply with an internal resistance of 2 Ω supplies a passive non-linear resistance characterized by the relation $V_{NL} = I_{NL}^2$. The power dissipated in the non-linear resistance is
 ', solution_md = '**Idea used:** solve the load line of the source together with the element''s own rule; reject the impossible root (see *The resistor → Non-linear resistors: how to solve*).
@@ -1981,7 +1993,7 @@ BEGIN
 **Without a calculator:** Test the options instead of solving. With $V = I^2$, the power is $VI = I^3$. Try $I = 1$ A: power 1 W, and the supply gives $V = 3 - 2\times1 = 1$ V $= I^2$ ✔. So (A) fits at once.
 
 **Answer: (A) 1.0 W.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2007-64', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2007-64', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2007'), '64', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -2006,7 +2018,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'In the figure, the value of resistor R is (25 + I/2) ohms, where I is the current in amperes. The current I is', 'In the figure, the value of resistor R is (25 + I/2) ohms, where I is the current in amperes. The current I is ______
 
 ![Figure](fig:q-gate2014-s1-30)
@@ -2022,7 +2034,7 @@ Check: $R = 25 + 5 = 30$ Ω and $10\times30 = 300$ V ✔.
 **Without a calculator:** Guess a round number: try $I = 10$: $R = 25 + 5 = 30$ Ω and $10 \times 30 = 300$ V ✔. In an MCQ, trying each option this way is quicker than the quadratic.
 
 **Answer: 10 A.**
-', 'READY', 'NAT', 10, 10, 2, 'UNVERIFIED', 'gate-2014-s1-30') RETURNING id INTO qid;
+', 'READY', 'NAT', 10, 10, 2, 'UNVERIFIED', 'gate-2014-s1-30', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In the figure, the value of resistor R is (25 + I/2) ohms, where I is the current in amperes. The current I is'), stem_md = 'In the figure, the value of resistor R is (25 + I/2) ohms, where I is the current in amperes. The current I is ______
 
@@ -2039,10 +2051,14 @@ Check: $R = 25 + 5 = 30$ Ω and $10\times30 = 300$ V ✔.
 **Without a calculator:** Guess a round number: try $I = 10$: $R = 25 + 5 = 30$ Ω and $10 \times 30 = 300$ V ✔. In an MCQ, trying each option this way is quicker than the quadratic.
 
 **Answer: 10 A.**
-', status = 'READY', answer_type = 'NAT', nat_min = 10, nat_max = 10, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s1-30', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'NAT', nat_min = 10, nat_max = 10, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s1-30', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2014'), 'S1-Q30', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
-  DELETE FROM question_option WHERE question_id = qid;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '5 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '10 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '12 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '60 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2014-s1-30', '<svg width="175" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-18.1 -127.39999999999999 152.03599999999997 132.0"><path d="M 0.0,-0.0 L 0,-36.675 M 0,-56.925 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 13.500000000000004,-56.925000000000004 L -13.5,-56.925" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 6.750000000000003,-50.175000000000004 L -6.75,-50.175" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 13.500000000000002,-43.425000000000004 L -13.5,-43.425" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 6.750000000000002,-36.675000000000004 L -6.75,-36.675" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 54,-93.6 L 108,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 18.000000000000007,-99.0 L 79.2,-99" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 88 -99 L 79.2 -95.4 L 79.2 -102.6 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 108.0,-93.60000000000001 L 108,-64.8 L 117,-64.8 L 117,-28.8 L 99,-28.8 L 99,-64.8 L 108,-64.8 M 108,-28.8 L 108,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 107.99999999999999,-0.0 L 54,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="17.1" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="17.1" dy="13">300 V</tspan></text><text x="54.00000000000001" y="-122.8" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="54.00000000000001" dy="13">I</tspan></text><text x="120.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.6" dy="13">R</tspan></text></svg>
 ', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
   DELETE FROM question_concept WHERE question_id = qid;
@@ -2062,7 +2078,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'A 10 V battery with an internal resistance of 1 Ω is connected across a nonlinear load whose V–I characteristic is given by $7I = V^2 + 2V$. The current...', 'A 10 V battery with an internal resistance of 1 Ω is connected across a nonlinear load whose V–I characteristic is given by $7I = V^2 + 2V$. The current delivered by the battery is ______ A.
 ', '**Idea used:** load line + element rule; reject the root that is not physical (see *The resistor → Non-linear resistors*).
 
@@ -2076,7 +2092,7 @@ BEGIN
 **Without a calculator:** Try round numbers in $V = 10 - I$: $I = 5$ gives $V = 5$, and $7\times5 = 35 = 25 + 10$ ✔. In an MCQ you would test each option the same way.
 
 **Answer: 5 A.**
-', 'READY', 'NAT', 5, 5, 2, 'TWO_SOURCES', 'gate-1997-nonlinear-battery') RETURNING id INTO qid;
+', 'READY', 'NAT', 5, 5, 2, 'TWO_SOURCES', 'gate-1997-nonlinear-battery', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 10 V battery with an internal resistance of 1 Ω is connected across a nonlinear load whose V–I characteristic is given by $7I = V^2 + 2V$. The current...'), stem_md = 'A 10 V battery with an internal resistance of 1 Ω is connected across a nonlinear load whose V–I characteristic is given by $7I = V^2 + 2V$. The current delivered by the battery is ______ A.
 ', solution_md = '**Idea used:** load line + element rule; reject the root that is not physical (see *The resistor → Non-linear resistors*).
@@ -2091,10 +2107,14 @@ BEGIN
 **Without a calculator:** Try round numbers in $V = 10 - I$: $I = 5$ gives $V = 5$, and $7\times5 = 35 = 25 + 10$ ✔. In an MCQ you would test each option the same way.
 
 **Answer: 5 A.**
-', status = 'READY', answer_type = 'NAT', nat_min = 5, nat_max = 5, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-1997-nonlinear-battery', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'NAT', nat_min = 5, nat_max = 5, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-1997-nonlinear-battery', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-1997'), '~nonlinear-load', qid, 2, TRUE, 'https://questions.examside.com/past-years/gate/question/a-10-v-battery-with-an-internal-resistance-of-1-1997-marks-5-7irufwqmec68qwpj.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
-  DELETE FROM question_option WHERE question_id = qid;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '5 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '7 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '24 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
 END $ppimport$;
@@ -2112,7 +2132,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'Statement (I): When a non-linear resistor, in series with a linear resistor, both being non-inductive, is connected to a voltage source, the current in the...', '**Statement (I):** When a non-linear resistor, in series with a linear resistor, both being non-inductive, is connected to a voltage source, the current in the circuit cannot be determined by using Ohm''s law.
 
 **Statement (II):** If the current-voltage characteristic of the non-linear resistor is known, the current-voltage characteristic of the series circuit can be obtained by graphical solution.
@@ -2125,7 +2145,7 @@ BEGIN
 **Is (II) the reason for (I)?** No. (I) is true because the element is non-linear (no fixed $R$). (II) only describes a way to solve such a circuit. It does not explain why Ohm''s law fails.
 
 **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2019-149') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2019-149', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Statement (I): When a non-linear resistor, in series with a linear resistor, both being non-inductive, is connected to a voltage source, the current in the...'), stem_md = '**Statement (I):** When a non-linear resistor, in series with a linear resistor, both being non-inductive, is connected to a voltage source, the current in the circuit cannot be determined by using Ohm''s law.
 
@@ -2139,7 +2159,7 @@ BEGIN
 **Is (II) the reason for (I)?** No. (I) is true because the element is non-linear (no fixed $R$). (II) only describes a way to solve such a circuit. It does not explain why Ohm''s law fails.
 
 **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2019-149', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2019-149', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2019'), '149', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -2164,7 +2184,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'An uncharged capacitor of 0.01 F is charged first by a current of 2 mA for 30 s and then by a current of 4 mA for 30 s. The final voltage in it will be', 'An uncharged capacitor of 0.01 F is charged first by a current of 2 mA for 30 s and then by a current of 4 mA for 30 s. The final voltage in it will be
 ', '**Idea used:** $q = \int i\,dt$ (area under the current graph) and $v = q/C$ (see *The capacitor → Voltage from current*).
 
@@ -2176,7 +2196,7 @@ BEGIN
 **Without a calculator:** Work in mA × s = mC: $2\times30 + 4\times30 = 180$ mC $= 0.18$ C, and $0.18 \div 0.01 = 18$ V.
 
 **Answer: (B) 18 V.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2020-35') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2020-35', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An uncharged capacitor of 0.01 F is charged first by a current of 2 mA for 30 s and then by a current of 4 mA for 30 s. The final voltage in it will be'), stem_md = 'An uncharged capacitor of 0.01 F is charged first by a current of 2 mA for 30 s and then by a current of 4 mA for 30 s. The final voltage in it will be
 ', solution_md = '**Idea used:** $q = \int i\,dt$ (area under the current graph) and $v = q/C$ (see *The capacitor → Voltage from current*).
@@ -2189,7 +2209,7 @@ BEGIN
 **Without a calculator:** Work in mA × s = mC: $2\times30 + 4\times30 = 180$ mC $= 0.18$ C, and $0.18 \div 0.01 = 18$ V.
 
 **Answer: (B) 18 V.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2020-35', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2020-35', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2020'), '35', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -2214,7 +2234,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'An initially uncharged 1 mF capacitor has the current shown in the figure. What is the voltage across it at t = 2 ms?', 'An initially uncharged 1 mF capacitor has the current shown in the figure. What is the voltage across it at t = 2 ms?
 
 ![Figure](fig:q-ese2024-60)
@@ -2229,7 +2249,7 @@ Trap: using the rectangle $100\ \text{mA}\times2\ \text{ms}$ gives 200 mV, which
 **Without a calculator:** Use units that cancel: mA × ms = µC, and µC ÷ mF = mV. Area $= \tfrac12 \times 2 \times 100 = 100$ µC, divided by 1 mF $= 100$ mV.
 
 **Answer: (B) 100 mV.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2024-60') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2024-60', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An initially uncharged 1 mF capacitor has the current shown in the figure. What is the voltage across it at t = 2 ms?'), stem_md = 'An initially uncharged 1 mF capacitor has the current shown in the figure. What is the voltage across it at t = 2 ms?
 
@@ -2245,7 +2265,7 @@ Trap: using the rectangle $100\ \text{mA}\times2\ \text{ms}$ gives 200 mV, which
 **Without a calculator:** Use units that cancel: mA × ms = µC, and µC ÷ mF = mV. Area $= \tfrac12 \times 2 \times 100 = 100$ µC, divided by 1 mF $= 100$ mV.
 
 **Answer: (B) 100 mV.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2024-60', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2024-60', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2024'), '60', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -2289,7 +2309,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'Statement for Linked Answer Questions 76 and 77: The current $i(t)$ sketched in the figure flows through an initially uncharged 0.3 nF capacitor. Q.76 The...', '**Statement for Linked Answer Questions 76 and 77:** The current $i(t)$ sketched in the figure flows through an initially uncharged 0.3 nF capacitor.
 
 ![Figure](fig:q-gate2008-76)
@@ -2308,7 +2328,7 @@ Read the graph: the current rises from 0 to 4 mA in 0–2 µs, then falls in a s
 **Without a calculator:** Count squares on the grid: each square is 1 µs × 1 mA = 1 nC. The triangle up to 2 µs is 4 squares; the trapezium from 2 to 5 µs is $\frac{4+2}{2}\times3 = 9$ squares. Total 13.
 
 **Answer: (C) 13 nC.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2008-76') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2008-76', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Statement for Linked Answer Questions 76 and 77: The current $i(t)$ sketched in the figure flows through an initially uncharged 0.3 nF capacitor. Q.76 The...'), stem_md = '**Statement for Linked Answer Questions 76 and 77:** The current $i(t)$ sketched in the figure flows through an initially uncharged 0.3 nF capacitor.
 
@@ -2328,7 +2348,7 @@ Read the graph: the current rises from 0 to 4 mA in 0–2 µs, then falls in a s
 **Without a calculator:** Count squares on the grid: each square is 1 µs × 1 mA = 1 nC. The triangle up to 2 µs is 4 squares; the trapezium from 2 to 5 µs is $\frac{4+2}{2}\times3 = 9$ squares. Total 13.
 
 **Answer: (C) 13 nC.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2008-76', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2008-76', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2008'), '76', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -2409,7 +2429,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'A triangular wave voltage, as shown in figure, is applied across the terminals of a 0.5 F pure capacitor at time t = 0. The corresponding current-wave is', '![Figure](fig:q-ese2018-24)
 
 A triangular wave voltage, as shown in figure, is applied across the terminals of a 0.5 F pure capacitor at time t = 0. The corresponding current-wave is
@@ -2426,7 +2446,7 @@ So the current is a square wave of ±5 A that **starts at –5 A** (because the 
 **Without a calculator:** Slope $= 20$ V in 2 s $= 10$ V/s, and $0.5 \times 10 = 5$ A. The sign comes from the first part of the wave: falling voltage ⇒ negative current.
 
 **Answer: (B).**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2018-24') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2018-24', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A triangular wave voltage, as shown in figure, is applied across the terminals of a 0.5 F pure capacitor at time t = 0. The corresponding current-wave is'), stem_md = '![Figure](fig:q-ese2018-24)
 
@@ -2444,7 +2464,7 @@ So the current is a square wave of ±5 A that **starts at –5 A** (because the 
 **Without a calculator:** Slope $= 20$ V in 2 s $= 10$ V/s, and $0.5 \times 10 = 5$ A. The sign comes from the first part of the wave: falling voltage ⇒ negative current.
 
 **Answer: (B).**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2018-24', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2018-24', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2018'), '24', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -2609,7 +2629,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'Three capacitors of capacitances 10 µF, 20 µF and 40 µF are connected in series across 280 V. The charge of each capacitor will be', 'Three capacitors of capacitances 10 µF, 20 µF and 40 µF are connected in series across 280 V. The charge of each capacitor will be
 ', '**Idea used:** capacitors in series carry the same charge, $Q = C_{eq}V$ with $\dfrac{1}{C_{eq}} = \sum\dfrac1C$ (see *The capacitor → Capacitors in parallel and in series*).
 
@@ -2622,7 +2642,7 @@ Check: voltages $1600/10 + 1600/20 + 1600/40 = 160 + 80 + 40 = 280$ V ✔.
 **Without a calculator:** In series, use parts of $1/40$: $\frac1{10} + \frac1{20} + \frac1{40} = \frac{4 + 2 + 1}{40} = \frac{7}{40}$, so $C = \frac{40}{7}$ µF. Then $Q = \frac{40}{7} \times 280 = 40 \times 40 = 1600$ µC (because $280 \div 7 = 40$).
 
 **Answer: (B) 1.6 × 10⁻³ C.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2025-36') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2025-36', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Three capacitors of capacitances 10 µF, 20 µF and 40 µF are connected in series across 280 V. The charge of each capacitor will be'), stem_md = 'Three capacitors of capacitances 10 µF, 20 µF and 40 µF are connected in series across 280 V. The charge of each capacitor will be
 ', solution_md = '**Idea used:** capacitors in series carry the same charge, $Q = C_{eq}V$ with $\dfrac{1}{C_{eq}} = \sum\dfrac1C$ (see *The capacitor → Capacitors in parallel and in series*).
@@ -2636,7 +2656,7 @@ Check: voltages $1600/10 + 1600/20 + 1600/40 = 160 + 80 + 40 = 280$ V ✔.
 **Without a calculator:** In series, use parts of $1/40$: $\frac1{10} + \frac1{20} + \frac1{40} = \frac{4 + 2 + 1}{40} = \frac{7}{40}$, so $C = \frac{40}{7}$ µF. Then $Q = \frac{40}{7} \times 280 = 40 \times 40 = 1600$ µC (because $280 \div 7 = 40$).
 
 **Answer: (B) 1.6 × 10⁻³ C.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2025-36', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2025-36', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2025'), '36', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -2661,7 +2681,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'Three capacitors C₁, C₂ and C₃, whose values are 10 µF, 5 µF, and 2 µF respectively, have breakdown voltages of 10 V, 5 V, and 2 V respectively. For the...', 'Three capacitors C₁, C₂ and C₃, whose values are 10 µF, 5 µF, and 2 µF respectively, have breakdown voltages of 10 V, 5 V, and 2 V respectively. For the interconnection shown, the maximum safe voltage in Volts that can be applied across the combination and the corresponding total charge in µC stored in the effective capacitance across the terminals are respectively
 
 ![Figure](fig:q-gate2013-30)
@@ -2685,7 +2705,7 @@ Trap: option (A) uses 2.8 V but a wrong charge; options with 7 V add the voltage
 **Without a calculator:** Small numbers only: $4 \div 5 = 0.8$, $4 \div 2 = 2$, so 2.8 V. Charge: $10 \times 2.8 = 28$, plus 4 ⇒ 32 µC.
 
 **Answer: (C) 2.8 and 32.**
-', 'READY', 'MCQ', NULL, NULL, 3, 'UNVERIFIED', 'gate-2013-30') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 3, 'UNVERIFIED', 'gate-2013-30', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Three capacitors C₁, C₂ and C₃, whose values are 10 µF, 5 µF, and 2 µF respectively, have breakdown voltages of 10 V, 5 V, and 2 V respectively. For the...'), stem_md = 'Three capacitors C₁, C₂ and C₃, whose values are 10 µF, 5 µF, and 2 µF respectively, have breakdown voltages of 10 V, 5 V, and 2 V respectively. For the interconnection shown, the maximum safe voltage in Volts that can be applied across the combination and the corresponding total charge in µC stored in the effective capacitance across the terminals are respectively
 
@@ -2710,7 +2730,7 @@ Trap: option (A) uses 2.8 V but a wrong charge; options with 7 V add the voltage
 **Without a calculator:** Small numbers only: $4 \div 5 = 0.8$, $4 \div 2 = 2$, so 2.8 V. Charge: $10 \times 2.8 = 28$, plus 4 ⇒ 32 µC.
 
 **Answer: (C) 2.8 and 32.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'UNVERIFIED', content_key = 'gate-2013-30', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'UNVERIFIED', content_key = 'gate-2013-30', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2013'), '30', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -2737,7 +2757,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'For the circuit shown in Figure, the capacitance measured between terminals B and Y will be', 'For the circuit shown in Figure, the capacitance measured between terminals B and Y will be
 
 ![Figure](fig:q-gate1999-cap-by)
@@ -2759,7 +2779,7 @@ These two paths are in parallel: $C_{BY} = C_C + \dfrac{C_C + C_S}{2} = \dfrac{3
 **Without a calculator:** No numbers at all: only symbols. Write the two paths and add.
 
 **Answer: (C) $(C_S + 3C_C)/2$.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-1999-capacitance-by') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-1999-capacitance-by', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'For the circuit shown in Figure, the capacitance measured between terminals B and Y will be'), stem_md = 'For the circuit shown in Figure, the capacitance measured between terminals B and Y will be
 
@@ -2782,7 +2802,7 @@ These two paths are in parallel: $C_{BY} = C_C + \dfrac{C_C + C_S}{2} = \dfrac{3
 **Without a calculator:** No numbers at all: only symbols. Write the two paths and add.
 
 **Answer: (C) $(C_S + 3C_C)/2$.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-1999-capacitance-by', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-1999-capacitance-by', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-1999'), '~capacitance-BY', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/for-the-circuit-shown-in-figure-the-capacitance-measured-be-1999-marks-1-fqjpegblus47f1rp.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -2809,7 +2829,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'In the following figure, C₁ and C₂ are ideal capacitors. C₁ has been charged to 12 V before the ideal switch S is closed at t = 0. The current i(t) for all t is', 'In the following figure, C₁ and C₂ are ideal capacitors. C₁ has been charged to 12 V before the ideal switch S is closed at t = 0. The current i(t) for all t is
 
 ![Figure](fig:q-gate2012-17)
@@ -2823,7 +2843,7 @@ BEGIN
 So $i(t) = q\,\delta(t)$: an impulse. (Option C would be correct only if there were a resistance in the loop.)
 
 **Answer: (D) an impulse function.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2012-17') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2012-17', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'In the following figure, C₁ and C₂ are ideal capacitors. C₁ has been charged to 12 V before the ideal switch S is closed at t = 0. The current i(t) for all t is'), stem_md = 'In the following figure, C₁ and C₂ are ideal capacitors. C₁ has been charged to 12 V before the ideal switch S is closed at t = 0. The current i(t) for all t is
 
@@ -2838,7 +2858,7 @@ So $i(t) = q\,\delta(t)$: an impulse. (Option C would be correct only if there w
 So $i(t) = q\,\delta(t)$: an impulse. (Option C would be correct only if there were a resistance in the loop.)
 
 **Answer: (D) an impulse function.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2012-17', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2012-17', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2012'), '17', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -2865,7 +2885,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'An ideal voltage source will charge an ideal capacitor', 'An ideal voltage source will charge an ideal capacitor
 ', '**Idea used:** an ideal voltage source has zero internal resistance, and an ideal capacitor has no resistance either, so the charging time constant $RC$ is zero (see *The capacitor → The capacitor voltage cannot jump* and *Independent sources → The ideal voltage source*).
 
@@ -2878,7 +2898,7 @@ So the capacitor charges **at once**. Options (A) and (B) need resistance in the
 **Defect in this question:** options (C) "immediately" and (D) "instantaneously" mean the same thing. Both are marked correct here. (APSC gave no answer key for this paper.)
 
 **Answer: (C) / (D) charged at once.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'apgcl-2023-2') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'apgcl-2023-2', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'An ideal voltage source will charge an ideal capacitor'), stem_md = 'An ideal voltage source will charge an ideal capacitor
 ', solution_md = '**Idea used:** an ideal voltage source has zero internal resistance, and an ideal capacitor has no resistance either, so the charging time constant $RC$ is zero (see *The capacitor → The capacitor voltage cannot jump* and *Independent sources → The ideal voltage source*).
@@ -2892,7 +2912,7 @@ So the capacitor charges **at once**. Options (A) and (B) need resistance in the
 **Defect in this question:** options (C) "immediately" and (D) "instantaneously" mean the same thing. Both are marked correct here. (APSC gave no answer key for this paper.)
 
 **Answer: (C) / (D) charged at once.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'apgcl-2023-2', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'apgcl-2023-2', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'APGCL-2023'), '2', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -2917,7 +2937,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'In the figure shown, all elements used are ideal. For time t < 0, S₁ remained closed and S₂ open. At t = 0, S₁ is opened and S₂ is closed. If the voltage...', 'In the figure shown, all elements used are ideal. For time t < 0, S₁ remained closed and S₂ open. At t = 0, S₁ is opened and S₂ is closed. If the voltage $V_{c2}$ across the capacitor C₂ at t = 0 is zero, the voltage across the capacitor combination at t = 0⁺ will be
 
 ![Figure](fig:q-gate2009-22)
@@ -2933,7 +2953,7 @@ BEGIN
 **Without a calculator:** $Q = 1 \times 3 = 3$ C shared over $1 + 2 = 3$ F ⇒ 1 V.
 
 **Answer: (A) 1 V.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2009-22') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2009-22', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In the figure shown, all elements used are ideal. For time t < 0, S₁ remained closed and S₂ open. At t = 0, S₁ is opened and S₂ is closed. If the voltage...'), stem_md = 'In the figure shown, all elements used are ideal. For time t < 0, S₁ remained closed and S₂ open. At t = 0, S₁ is opened and S₂ is closed. If the voltage $V_{c2}$ across the capacitor C₂ at t = 0 is zero, the voltage across the capacitor combination at t = 0⁺ will be
 
@@ -2950,7 +2970,7 @@ BEGIN
 **Without a calculator:** $Q = 1 \times 3 = 3$ C shared over $1 + 2 = 3$ F ⇒ 1 V.
 
 **Answer: (A) 1 V.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2009-22', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2009-22', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2009'), '22', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -2977,7 +2997,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'The initial charge in the 1 F capacitor present in the circuit shown is zero. The energy in joules transferred from the DC source until steady state...', 'The initial charge in the 1 F capacitor present in the circuit shown is zero. The energy in joules transferred from the DC source until steady state condition is reached equals ______. (Give the answer up to one decimal place.)
 
 ![Figure](fig:q-gate2017s2-22)
@@ -2993,7 +3013,7 @@ Of this, $\tfrac12CV^2 = 50$ J is stored in the capacitor and 50 J is lost as he
 **Without a calculator:** $Q = CV = 10$ C, and energy from the source $= QV = 10 \times 10 = 100$ J. No resistor values are needed.
 
 **Answer: 100.0 J.**
-', 'READY', 'NAT', 99.9, 100.1, 2, 'UNVERIFIED', 'gate-2017-s2-22') RETURNING id INTO qid;
+', 'READY', 'NAT', 99.9, 100.1, 2, 'UNVERIFIED', 'gate-2017-s2-22', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The initial charge in the 1 F capacitor present in the circuit shown is zero. The energy in joules transferred from the DC source until steady state...'), stem_md = 'The initial charge in the 1 F capacitor present in the circuit shown is zero. The energy in joules transferred from the DC source until steady state condition is reached equals ______. (Give the answer up to one decimal place.)
 
@@ -3010,10 +3030,14 @@ Of this, $\tfrac12CV^2 = 50$ J is stored in the capacitor and 50 J is lost as he
 **Without a calculator:** $Q = CV = 10$ C, and energy from the source $= QV = 10 \times 10 = 100$ J. No resistor values are needed.
 
 **Answer: 100.0 J.**
-', status = 'READY', answer_type = 'NAT', nat_min = 99.9, nat_max = 100.1, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2017-s2-22', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'NAT', nat_min = 99.9, nat_max = 100.1, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2017-s2-22', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2017_2'), '22', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
-  DELETE FROM question_option WHERE question_id = qid;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '25 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '50 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '100 J', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '200 J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2017s2-22', '<svg width="302" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -159.79999999999998 262.616 216.23999999999998"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 0,-111.6 L 0,-129.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 7.935711258474849e-15,-129.6 L 43.56,-129.6 M 43.56,-138.6 L 43.56,-120.6 M 50.04,-138.6 L 50.04,-120.6 M 50.04,-129.6 L 93.6,-129.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.6,-129.6 L 93.6,-108 L 102.6,-105 L 84.6,-99 L 102.6,-93 L 84.6,-87 L 102.6,-81 L 84.6,-75 L 93.6,-72 L 93.6,-50.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.59999999999997,-50.4 L 93.6,-28.8 L 102.6,-25.8 L 84.6,-19.8 L 102.6,-13.8 L 84.6,-7.8 L 102.6,-1.8 L 84.6,4.2 L 93.6,7.2 L 93.6,28.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.59999999999995,28.80000000000001 L 93.6,43.2 L 84.6,43.2 L 102.6,43.2 M 87.3,47.52 L 99.9,47.52 M 91.8,51.84 L 95.4,51.84" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.6,-129.6 L 147.6,-129.6 L 201.6,-129.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 201.6,-129.6 L 201.6,-108 L 210.6,-105 L 192.6,-99 L 210.6,-93 L 192.6,-87 L 210.6,-81 L 192.6,-75 L 201.6,-72 L 201.6,-50.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 201.6,-50.4 L 201.6,-28.8 L 210.6,-25.8 L 192.6,-19.8 L 210.6,-13.8 L 192.6,-7.8 L 210.6,-1.8 L 192.6,4.2 L 201.6,7.2 L 201.6,28.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 201.6,28.80000000000001 L 201.6,43.2 L 192.6,43.2 L 210.6,43.2 M 195.3,47.52 L 207.9,47.52 M 199.8,51.84 L 203.4,51.84" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.59999999999997,-50.4 L 129.6,-50.4 L 132.6,-59.4 L 138.6,-41.4 L 144.6,-59.4 L 150.6,-41.4 L 156.6,-59.4 L 162.6,-41.4 L 165.6,-50.4 L 201.6,-50.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L -0,5.4 L -0,10.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -1.983927814618712e-15,10.799999999999999 L -0,25.2 L -9,25.2 L 9,25.2 M -6.3,29.52 L 6.3,29.52 M -1.8,33.84 L 1.8,33.84" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">10 V</tspan></text><text x="46.800000000000004" y="-155.20000000000002" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.800000000000004" dy="13">1 F</tspan></text><text x="106.19999999999997" y="-103.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999997" dy="13">5 Ω</tspan></text><text x="106.19999999999996" y="-23.799999999999994" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999996" dy="13">5 Ω</tspan></text><text x="214.2" y="-103.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="214.2" dy="13">5 Ω</tspan></text><text x="214.2" y="-23.799999999999994" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="214.2" dy="13">5 Ω</tspan></text><text x="147.6" y="-50.8" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="147.6" dy="13">5 Ω</tspan></text></svg>
 ', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
   DELETE FROM question_concept WHERE question_id = qid;
@@ -3033,7 +3057,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'Energy stored in a capacitor over a cycle, when excited by an a.c. source is', 'Energy stored in a capacitor over a cycle, when excited by an a.c. source is
 ', '**Idea used:** an ideal capacitor only stores and returns energy; it never dissipates (see *Kinds of circuit elements → Active and passive elements* and *The capacitor → Energy stored*).
 
@@ -3042,7 +3066,7 @@ BEGIN
 3. During the cycle the capacitor takes energy in one quarter-cycle (while $|v|$ rises) and gives exactly the same back in the next quarter-cycle (while $|v|$ falls). So the average power is zero.
 
 **Answer: (C) zero.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'TWO_SOURCES', 'gate-1997-cap-energy-cycle') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'TWO_SOURCES', 'gate-1997-cap-energy-cycle', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Energy stored in a capacitor over a cycle, when excited by an a.c. source is'), stem_md = 'Energy stored in a capacitor over a cycle, when excited by an a.c. source is
 ', solution_md = '**Idea used:** an ideal capacitor only stores and returns energy; it never dissipates (see *Kinds of circuit elements → Active and passive elements* and *The capacitor → Energy stored*).
@@ -3052,7 +3076,7 @@ BEGIN
 3. During the cycle the capacitor takes energy in one quarter-cycle (while $|v|$ rises) and gives exactly the same back in the next quarter-cycle (while $|v|$ falls). So the average power is zero.
 
 **Answer: (C) zero.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'TWO_SOURCES', content_key = 'gate-1997-cap-energy-cycle', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'TWO_SOURCES', content_key = 'gate-1997-cap-energy-cycle', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-1997'), '~cap-energy-cycle', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/a-voltage-wafeform-vleft-t-right-12t2-is-appl-2000-marks-1-ifz1lwwwhp6tbdzq.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3077,7 +3101,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'When a periodic triangular voltage of peak amplitude 1 V and frequency 0.5 Hz is applied to a parallel combination of 1 Ω resistance and 1 F capacitance,...', 'When a periodic triangular voltage of peak amplitude 1 V and frequency 0.5 Hz is applied to a parallel combination of 1 Ω resistance and 1 F capacitance, the current through the voltage source has wave-form
 ', '**Idea used:** in parallel, the source current is the sum of the branch currents: $i = \dfrac{v}{R} + C\dfrac{dv}{dt}$ (see *The capacitor → Two useful circuit cases*).
 
@@ -3095,7 +3119,7 @@ So the waveform is a square wave with sloping segments: the upper segments slope
 **Without a calculator:** No arithmetic needed: decide the shape (square from C, triangle from R) and the direction of the slopes.
 
 **Answer: (D).**
-', 'READY', 'MCQ', NULL, NULL, 3, 'TWO_SOURCES', 'gate-1999-rc-triangular') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 3, 'TWO_SOURCES', 'gate-1999-rc-triangular', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'When a periodic triangular voltage of peak amplitude 1 V and frequency 0.5 Hz is applied to a parallel combination of 1 Ω resistance and 1 F capacitance,...'), stem_md = 'When a periodic triangular voltage of peak amplitude 1 V and frequency 0.5 Hz is applied to a parallel combination of 1 Ω resistance and 1 F capacitance, the current through the voltage source has wave-form
 ', solution_md = '**Idea used:** in parallel, the source current is the sum of the branch currents: $i = \dfrac{v}{R} + C\dfrac{dv}{dt}$ (see *The capacitor → Two useful circuit cases*).
@@ -3114,7 +3138,7 @@ So the waveform is a square wave with sloping segments: the upper segments slope
 **Without a calculator:** No arithmetic needed: decide the shape (square from C, triangle from R) and the direction of the slopes.
 
 **Answer: (D).**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'TWO_SOURCES', content_key = 'gate-1999-rc-triangular', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'TWO_SOURCES', content_key = 'gate-1999-rc-triangular', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-1999'), '~rc-triangular', qid, 2, TRUE, 'https://questions.examside.com/past-years/gate/question/when-a-periodic-triangular-voltage-peak-amplitude-1-v-1999-marks-2-5z1r5ndc7u2yzcqc.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3179,7 +3203,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'The voltage and current waveforms for an element are shown in the figure. The circuit element and its value are', 'The voltage and current waveforms for an element are shown in the figure.
 
 ![Figure](fig:q-ese2017-38)
@@ -3198,7 +3222,7 @@ This question first appeared as a fill-in-the-blank in **GATE EE 1997**; ESE 201
 **Without a calculator:** $L = 2 \div 1 = 2$ H.
 
 **Answer: (B) Inductor, 2 H.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'TWO_SOURCES', 'ese-2017-38') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'TWO_SOURCES', 'ese-2017-38', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The voltage and current waveforms for an element are shown in the figure. The circuit element and its value are'), stem_md = 'The voltage and current waveforms for an element are shown in the figure.
 
@@ -3218,7 +3242,7 @@ This question first appeared as a fill-in-the-blank in **GATE EE 1997**; ESE 201
 **Without a calculator:** $L = 2 \div 1 = 2$ H.
 
 **Answer: (B) Inductor, 2 H.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'TWO_SOURCES', content_key = 'ese-2017-38', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'TWO_SOURCES', content_key = 'ese-2017-38', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2017'), '38', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-1997'), '~element-waveforms', qid, 2, FALSE, 'https://questions.examside.com/past-years/gate/question/a-10-v-battery-with-an-internal-resistance-of-1-1997-marks-5-7irufwqmec68qwpj.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
@@ -3274,7 +3298,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'The voltage and current characteristic of an element is as shown in figure. The nature and value of the element are', '![Figure](fig:q-ese2018-16)
 
 The voltage and current characteristic of an element is as shown in figure. The nature and value of the element are
@@ -3288,7 +3312,7 @@ The voltage and current characteristic of an element is as shown in figure. The 
 **Without a calculator:** $\dfrac{10t}{4t} = 2.5$. The $t$ cancels, so no calculation beyond one division.
 
 **Answer: (B) Inductor of 2.5 H.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2018-16') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2018-16', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The voltage and current characteristic of an element is as shown in figure. The nature and value of the element are'), stem_md = '![Figure](fig:q-ese2018-16)
 
@@ -3303,7 +3327,7 @@ The voltage and current characteristic of an element is as shown in figure. The 
 **Without a calculator:** $\dfrac{10t}{4t} = 2.5$. The $t$ cancels, so no calculation beyond one division.
 
 **Answer: (B) Inductor of 2.5 H.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2018-16', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2018-16', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2018'), '16', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3365,7 +3389,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'A pulse of +10 V in magnitude and 2 s in duration is applied to the terminals of a lossless inductor of 1.0 H. The current through the inductor would', 'A pulse of +10 V in magnitude and 2 s in duration is applied to the terminals of a lossless inductor of 1.0 H. The current through the inductor would
 ', '**Idea used:** $i(t) = i(0) + \dfrac1L\int v\,dt$, and a lossless inductor keeps its current when the voltage is removed (see *The inductor → Current from voltage*).
 
@@ -3378,7 +3402,7 @@ Trap: (A) treats the inductor like a resistor. The inductor current is the **int
 **Without a calculator:** $10 \div 1 = 10$ A/s for 2 s ⇒ 20 A.
 
 **Answer: (C).**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2018-37') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2018-37', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A pulse of +10 V in magnitude and 2 s in duration is applied to the terminals of a lossless inductor of 1.0 H. The current through the inductor would'), stem_md = 'A pulse of +10 V in magnitude and 2 s in duration is applied to the terminals of a lossless inductor of 1.0 H. The current through the inductor would
 ', solution_md = '**Idea used:** $i(t) = i(0) + \dfrac1L\int v\,dt$, and a lossless inductor keeps its current when the voltage is removed (see *The inductor → Current from voltage*).
@@ -3392,7 +3416,7 @@ Trap: (A) treats the inductor like a resistor. The inductor current is the **int
 **Without a calculator:** $10 \div 1 = 10$ A/s for 2 s ⇒ 20 A.
 
 **Answer: (C).**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2018-37', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2018-37', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2018'), '37', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3417,7 +3441,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'A voltage waveform $v(t) = 12t^2$ is applied across a 1 H inductor for $t \ge 0$, with initial current through it being zero. The current through the...', 'A voltage waveform $v(t) = 12t^2$ is applied across a 1 H inductor for $t \ge 0$, with initial current through it being zero. The current through the inductor for $t \ge 0$ is given by
 ', '**Idea used:** $i(t) = i(0) + \dfrac1L\int_0^t v\,dt$ (see *The inductor → Current from voltage*).
 
@@ -3428,7 +3452,7 @@ Trap: (B) $24t$ is the **derivative** of $12t^2$. For an inductor, current is th
 **Without a calculator:** Check the options by differentiating them: $\frac{d}{dt}(4t^3) = 12t^2$ ✔. That is quicker than integrating.
 
 **Answer: (D) $4t^3$.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'TWO_SOURCES', 'gate-2000-inductor-current') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'TWO_SOURCES', 'gate-2000-inductor-current', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A voltage waveform $v(t) = 12t^2$ is applied across a 1 H inductor for $t \ge 0$, with initial current through it being zero. The current through the...'), stem_md = 'A voltage waveform $v(t) = 12t^2$ is applied across a 1 H inductor for $t \ge 0$, with initial current through it being zero. The current through the inductor for $t \ge 0$ is given by
 ', solution_md = '**Idea used:** $i(t) = i(0) + \dfrac1L\int_0^t v\,dt$ (see *The inductor → Current from voltage*).
@@ -3440,7 +3464,7 @@ Trap: (B) $24t$ is the **derivative** of $12t^2$. For an inductor, current is th
 **Without a calculator:** Check the options by differentiating them: $\frac{d}{dt}(4t^3) = 12t^2$ ✔. That is quicker than integrating.
 
 **Answer: (D) $4t^3$.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'TWO_SOURCES', content_key = 'gate-2000-inductor-current', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'TWO_SOURCES', content_key = 'gate-2000-inductor-current', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2000'), '~inductor-12t2', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/a-voltage-wafeform-vleft-t-right-12t2-is-appl-2000-marks-1-ifz1lwwwhp6tbdzq.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3465,7 +3489,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'In the circuit shown in Figure, it is desired to have a constant direct current $i(t)$ through the ideal inductor $L$. The nature of the voltage source...', 'In the circuit shown in Figure, it is desired to have a constant direct current $i(t)$ through the ideal inductor $L$. The nature of the voltage source $v(t)$ must be
 
 ![Figure](fig:q-gate1998-impulse)
@@ -3478,7 +3502,7 @@ BEGIN
 Why not (A)? A constant voltage $V$ across an ideal inductor gives $di/dt = V/L$, a current that keeps **rising** linearly, not a constant current. Option (B) gives a current that rises as $t^2$.
 
 **Answer: (C) an ideal impulse.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-1998-impulse') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-1998-impulse', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'In the circuit shown in Figure, it is desired to have a constant direct current $i(t)$ through the ideal inductor $L$. The nature of the voltage source...'), stem_md = 'In the circuit shown in Figure, it is desired to have a constant direct current $i(t)$ through the ideal inductor $L$. The nature of the voltage source $v(t)$ must be
 
@@ -3492,7 +3516,7 @@ Why not (A)? A constant voltage $V$ across an ideal inductor gives $di/dt = V/L$
 Why not (A)? A constant voltage $V$ across an ideal inductor gives $di/dt = V/L$, a current that keeps **rising** linearly, not a constant current. Option (B) gives a current that rises as $t^2$.
 
 **Answer: (C) an ideal impulse.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-1998-impulse', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-1998-impulse', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-1998'), '~constant-current', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/a-voltage-wafeform-vleft-t-right-12t2-is-appl-2000-marks-1-ifz1lwwwhp6tbdzq.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3519,7 +3543,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'Fig. shows the waveform of the current passing through an inductor of resistance 1 Ω and inductance 2 H. The energy absorbed by the inductor in the first...', 'Fig. shows the waveform of the current passing through an inductor of resistance 1 Ω and inductance 2 H. The energy absorbed by the inductor in the first four seconds is
 
 ![Figure](fig:q-gate2003-ind-energy)
@@ -3537,7 +3561,7 @@ Traps: 144 J is $36\times4$ (heat at 6 A for the full 4 s, forgetting the ramp a
 **Without a calculator:** Learn this shortcut: for a current that ramps linearly from 0 to $I$ in time $T$, the heat in $R$ is $\dfrac{I^2RT}{3}$. Here $\frac{36 \times 1 \times 2}{3} = 24$ J. Then $36 + 24 + 72 = 132$.
 
 **Answer: (C) 132 J.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-2003-inductor-energy') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-2003-inductor-energy', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Fig. shows the waveform of the current passing through an inductor of resistance 1 Ω and inductance 2 H. The energy absorbed by the inductor in the first...'), stem_md = 'Fig. shows the waveform of the current passing through an inductor of resistance 1 Ω and inductance 2 H. The energy absorbed by the inductor in the first four seconds is
 
@@ -3556,7 +3580,7 @@ Traps: 144 J is $36\times4$ (heat at 6 A for the full 4 s, forgetting the ramp a
 **Without a calculator:** Learn this shortcut: for a current that ramps linearly from 0 to $I$ in time $T$, the heat in $R$ is $\dfrac{I^2RT}{3}$. Here $\frac{36 \times 1 \times 2}{3} = 24$ J. Then $36 + 24 + 72 = 132$.
 
 **Answer: (C) 132 J.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-2003-inductor-energy', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-2003-inductor-energy', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2003'), '~coil-energy', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/fig-shows-the-waveform-of-the-current-passing-through-an-in-2003-marks-1-jyr4g28nmanmyryu.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3599,7 +3623,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'A coil has a resistance of 10 Ω and an inductance of 15 H. The voltage across the terminals of the coil at the instant when the current is 10 A and...', 'A coil has a resistance of 10 Ω and an inductance of 15 H. The voltage across the terminals of the coil at the instant when the current is 10 A and increasing at a rate 5 A/sec is
 ', '**Idea used:** a real coil: $v = Ri + L\,\dfrac{di}{dt}$ (see *The inductor → A real coil*).
 
@@ -3612,7 +3636,7 @@ Traps: 100 V forgets the inductance; 75 V forgets the resistance. Both parts act
 **Without a calculator:** $10 \times 10 = 100$, $15 \times 5 = 75$, total 175.
 
 **Answer: (C) 175 V.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'apdcl-2023-46') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'apdcl-2023-46', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A coil has a resistance of 10 Ω and an inductance of 15 H. The voltage across the terminals of the coil at the instant when the current is 10 A and...'), stem_md = 'A coil has a resistance of 10 Ω and an inductance of 15 H. The voltage across the terminals of the coil at the instant when the current is 10 A and increasing at a rate 5 A/sec is
 ', solution_md = '**Idea used:** a real coil: $v = Ri + L\,\dfrac{di}{dt}$ (see *The inductor → A real coil*).
@@ -3626,7 +3650,7 @@ Traps: 100 V forgets the inductance; 75 V forgets the resistance. Both parts act
 **Without a calculator:** $10 \times 10 = 100$, $15 \times 5 = 75$, total 175.
 
 **Answer: (C) 175 V.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'apdcl-2023-46', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'apdcl-2023-46', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'APDCL-2023'), '46', qid, 1.5, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3651,7 +3675,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'A current shown in Fig. 4 passes through a pure inductance of 3 mH. The instantaneous power in watt during 0 < t < 2 ms is', 'A current shown in Fig. 4 passes through a pure inductance of 3 mH. The instantaneous power in watt during 0 < t < 2 ms is
 
 ![Fig. 4](fig:q-aegcl2023-83)
@@ -3666,7 +3690,7 @@ The power grows with time because the current grows while the voltage stays cons
 **Without a calculator:** Slope $= 10$ A in 2 ms $= 5000$ A/s. $v = 3\ \text{mH} \times 5000 = 15$ V. Then $15 \times 5000 = 75000$. All options have the form $k\,t$, so only the number matters.
 
 **Answer: (B) 75000 t.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'aegcl-2023-83') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'aegcl-2023-83', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A current shown in Fig. 4 passes through a pure inductance of 3 mH. The instantaneous power in watt during 0 < t < 2 ms is'), stem_md = 'A current shown in Fig. 4 passes through a pure inductance of 3 mH. The instantaneous power in watt during 0 < t < 2 ms is
 
@@ -3682,7 +3706,7 @@ The power grows with time because the current grows while the voltage stays cons
 **Without a calculator:** Slope $= 10$ A in 2 ms $= 5000$ A/s. $v = 3\ \text{mH} \times 5000 = 15$ V. Then $15 \times 5000 = 75000$. All options have the form $k\,t$, so only the number matters.
 
 **Answer: (B) 75000 t.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'aegcl-2023-83', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'aegcl-2023-83', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'AEGCL-2023'), '83', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3727,7 +3751,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'If L is self-inductance, I is current, λ is flux linkage of a magnetic field, then the energy stored in the magnetic field is', 'If L is self-inductance, I is current, λ is flux linkage of a magnetic field, then the energy stored in the magnetic field is
 ', '**Idea used:** $w = \tfrac12LI^2$ and $\lambda = LI$ (see *The inductor → Power and energy*).
 
@@ -3738,7 +3762,7 @@ $$w = \tfrac12L\left(\frac{\lambda}{L}\right)^2 = \frac{\lambda^2}{2L} = 0.5\,\f
 Quick unit check: $\lambda^2/L$ has units $(\text{H·A})^2/\text{H} = \text{H·A}^2$, which is energy (like $LI^2$). Options (C) and (D) have the wrong units.
 
 **Answer: (A) $0.5\lambda^2/L$.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2022-44') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2022-44', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'If L is self-inductance, I is current, λ is flux linkage of a magnetic field, then the energy stored in the magnetic field is'), stem_md = 'If L is self-inductance, I is current, λ is flux linkage of a magnetic field, then the energy stored in the magnetic field is
 ', solution_md = '**Idea used:** $w = \tfrac12LI^2$ and $\lambda = LI$ (see *The inductor → Power and energy*).
@@ -3750,7 +3774,7 @@ $$w = \tfrac12L\left(\frac{\lambda}{L}\right)^2 = \frac{\lambda^2}{2L} = 0.5\,\f
 Quick unit check: $\lambda^2/L$ has units $(\text{H·A})^2/\text{H} = \text{H·A}^2$, which is energy (like $LI^2$). Options (C) and (D) have the wrong units.
 
 **Answer: (A) $0.5\lambda^2/L$.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2022-44', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2022-44', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2022'), '44', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3775,7 +3799,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'When angular frequency for d.c. sources is zero, capacitor and inductor will act like respectively', 'When angular frequency for d.c. sources is zero, capacitor and inductor will act like respectively
 ', '**Idea used:** in DC steady state nothing changes with time (see *The capacitor* and *The inductor*, DC steady state).
 
@@ -3783,7 +3807,7 @@ BEGIN
 - **Inductor:** $v = L\,di/dt$. Constant $i$ ⇒ $v = 0$ ⇒ **short circuit**. ($X_L = \omega L \to 0$.)
 
 **Answer: (B) open circuited, short circuited.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2022-41') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2022-41', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'When angular frequency for d.c. sources is zero, capacitor and inductor will act like respectively'), stem_md = 'When angular frequency for d.c. sources is zero, capacitor and inductor will act like respectively
 ', solution_md = '**Idea used:** in DC steady state nothing changes with time (see *The capacitor* and *The inductor*, DC steady state).
@@ -3792,7 +3816,7 @@ BEGIN
 - **Inductor:** $v = L\,di/dt$. Constant $i$ ⇒ $v = 0$ ⇒ **short circuit**. ($X_L = \omega L \to 0$.)
 
 **Answer: (B) open circuited, short circuited.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2022-41', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2022-41', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2022'), '41', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3817,7 +3841,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'Consider the following statements: 1. The rules for series and parallel combinations of capacitors are opposite to those for resistors. 2. The rules for...', 'Consider the following statements:
 
 1. The rules for series and parallel combinations of capacitors are opposite to those for resistors.
@@ -3832,7 +3856,7 @@ Which of the above statements are correct?
 3. With DC (constant current), $v = L\,di/dt = 0$: the inductor is a short circuit. **True.**
 
 **Answer: (D) 1, 2 and 3.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2019-36') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2019-36', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Consider the following statements: 1. The rules for series and parallel combinations of capacitors are opposite to those for resistors. 2. The rules for...'), stem_md = 'Consider the following statements:
 
@@ -3848,7 +3872,7 @@ Which of the above statements are correct?
 3. With DC (constant current), $v = L\,di/dt = 0$: the inductor is a short circuit. **True.**
 
 **Answer: (D) 1, 2 and 3.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2019-36', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2019-36', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2019'), '36', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3873,7 +3897,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'An ideal voltage source is defined as energy source whose terminal voltage (V) is', 'An ideal voltage source is defined as energy source whose terminal voltage (V) is
 ', '**Idea used:** definition of the ideal voltage source (see *Independent sources → The ideal voltage source*).
 
@@ -3882,7 +3906,7 @@ An ideal voltage source keeps its terminal voltage fixed whatever current it sup
 (A) and (D) describe voltage that changes with load, which happens only in a practical source. (B) is the opposite of the definition.
 
 **Answer: (C) independent of the output current.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2025-27') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2025-27', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'An ideal voltage source is defined as energy source whose terminal voltage (V) is'), stem_md = 'An ideal voltage source is defined as energy source whose terminal voltage (V) is
 ', solution_md = '**Idea used:** definition of the ideal voltage source (see *Independent sources → The ideal voltage source*).
@@ -3892,7 +3916,7 @@ An ideal voltage source keeps its terminal voltage fixed whatever current it sup
 (A) and (D) describe voltage that changes with load, which happens only in a practical source. (B) is the opposite of the definition.
 
 **Answer: (C) independent of the output current.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2025-27', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2025-27', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2025'), '27', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3917,7 +3941,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'An ideal voltage source is a two-terminal element in which the', 'An ideal voltage source is a two-terminal element in which the
 ', '**Idea used:** the ideal voltage source fixes its **voltage**; its **current** is decided by the external circuit (see *Independent sources*).
 
@@ -3927,7 +3951,7 @@ BEGIN
 - (D) describes a practical source or a resistor, not an ideal voltage source.
 
 **Answer: (B).**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2025-29') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2025-29', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'An ideal voltage source is a two-terminal element in which the'), stem_md = 'An ideal voltage source is a two-terminal element in which the
 ', solution_md = '**Idea used:** the ideal voltage source fixes its **voltage**; its **current** is decided by the external circuit (see *Independent sources*).
@@ -3938,7 +3962,7 @@ BEGIN
 - (D) describes a practical source or a resistor, not an ideal voltage source.
 
 **Answer: (B).**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2025-29', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2025-29', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2025'), '29', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -3963,7 +3987,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'Which of the following statements are correct for an ideal constant voltage source? 1. Its output voltage remains absolutely constant whatever the change in...', 'Which of the following statements are correct for an ideal constant voltage source?
 
 1. Its output voltage remains absolutely constant whatever the change in load current.
@@ -3980,7 +4004,7 @@ BEGIN
 Every option except (D) contains statement 4.
 
 **Answer: (D) 1, 2 and 3 only.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2020-28') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2020-28', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Which of the following statements are correct for an ideal constant voltage source? 1. Its output voltage remains absolutely constant whatever the change in...'), stem_md = 'Which of the following statements are correct for an ideal constant voltage source?
 
@@ -3998,7 +4022,7 @@ Every option except (D) contains statement 4.
 Every option except (D) contains statement 4.
 
 **Answer: (D) 1, 2 and 3 only.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2020-28', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2020-28', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2020'), '28', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4023,7 +4047,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'Statement (I): Two ideal current sources with currents $I1$ and $I2$ cannot be connected in series. Statement (II): Superposition Theorem cannot be applied...', '**Statement (I):** Two ideal current sources with currents $I_1$ and $I_2$ cannot be connected in series.
 
 **Statement (II):** Superposition Theorem cannot be applied to current sources when one terminal of each of these sources is connected to a common node.
@@ -4034,7 +4058,7 @@ BEGIN
 **Statement (II):** superposition depends only on the circuit being **linear**. It does not care how the sources are connected. Two current sources sharing a common node (a very common arrangement) are handled by superposition without any problem: switch one off (make it an open circuit), find the response, repeat for the other, add. **False.**
 
 **Answer: (C).**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2018-126') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2018-126', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Statement (I): Two ideal current sources with currents $I1$ and $I2$ cannot be connected in series. Statement (II): Superposition Theorem cannot be applied...'), stem_md = '**Statement (I):** Two ideal current sources with currents $I_1$ and $I_2$ cannot be connected in series.
 
@@ -4046,7 +4070,7 @@ BEGIN
 **Statement (II):** superposition depends only on the circuit being **linear**. It does not care how the sources are connected. Two current sources sharing a common node (a very common arrangement) are handled by superposition without any problem: switch one off (make it an open circuit), find the response, repeat for the other, add. **False.**
 
 **Answer: (C).**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2018-126', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2018-126', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2018'), '126', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4071,7 +4095,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'A voltage source-series resistance combination is equivalent to a current source-parallel resistance combination if and only if their 1. Respective...', 'A voltage source-series resistance combination is equivalent to a current source-parallel resistance combination if and only if their
 
 1. Respective open-circuit voltages are equal.
@@ -4092,7 +4116,7 @@ The two terminal laws are the same straight line only if they have the same inte
 All three statements describe true conditions of the equivalence (any two of them imply the third).
 
 **Answer: (D) 1, 2 and 3.** *(Our solution; check with the UPSC key when available.)*
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2020-25') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2020-25', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A voltage source-series resistance combination is equivalent to a current source-parallel resistance combination if and only if their 1. Respective...'), stem_md = 'A voltage source-series resistance combination is equivalent to a current source-parallel resistance combination if and only if their
 
@@ -4114,7 +4138,7 @@ The two terminal laws are the same straight line only if they have the same inte
 All three statements describe true conditions of the equivalence (any two of them imply the third).
 
 **Answer: (D) 1, 2 and 3.** *(Our solution; check with the UPSC key when available.)*
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2020-25', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2020-25', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2020'), '25', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4139,7 +4163,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'If a transducer has an output impedance of 1 Ω and a load resistance of 1 kΩ, it behaves as', 'If a transducer has an output impedance of 1 Ω and a load resistance of 1 kΩ, it behaves as
 ', '**Idea used:** compare the source''s internal (output) resistance with the load (see *Independent sources → When does a source behave as constant voltage or constant current?*).
 
@@ -4150,7 +4174,7 @@ $V_{load} = E\,\dfrac{R_L}{r + R_L} = E\,\dfrac{1000}{1001} \approx 0.999\,E$
 Almost the whole source voltage appears across the load, and even a large change of $R_L$ hardly changes it. Since $r \ll R_L$, the transducer behaves as a **constant-voltage source**.
 
 **Answer: (B) a constant voltage source.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2024-87') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2024-87', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'If a transducer has an output impedance of 1 Ω and a load resistance of 1 kΩ, it behaves as'), stem_md = 'If a transducer has an output impedance of 1 Ω and a load resistance of 1 kΩ, it behaves as
 ', solution_md = '**Idea used:** compare the source''s internal (output) resistance with the load (see *Independent sources → When does a source behave as constant voltage or constant current?*).
@@ -4162,7 +4186,7 @@ $V_{load} = E\,\dfrac{R_L}{r + R_L} = E\,\dfrac{1000}{1001} \approx 0.999\,E$
 Almost the whole source voltage appears across the load, and even a large change of $R_L$ hardly changes it. Since $r \ll R_L$, the transducer behaves as a **constant-voltage source**.
 
 **Answer: (B) a constant voltage source.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2024-87', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2024-87', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2024'), '87', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4187,7 +4211,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'As shown in the figure, a 1 Ω resistance is connected across a source that has a load line $v + i = 100$. The current through the resistance is', 'As shown in the figure, a 1 Ω resistance is connected across a source that has a load line $v + i = 100$. The current through the resistance is
 
 ![Figure](fig:q-gate2010-7)
@@ -4200,7 +4224,7 @@ BEGIN
 **Without a calculator:** $i + i = 100$ ⇒ $i = 50$.
 
 **Answer: (B) 50 A.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2010-7') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2010-7', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'As shown in the figure, a 1 Ω resistance is connected across a source that has a load line $v + i = 100$. The current through the resistance is'), stem_md = 'As shown in the figure, a 1 Ω resistance is connected across a source that has a load line $v + i = 100$. The current through the resistance is
 
@@ -4214,7 +4238,7 @@ BEGIN
 **Without a calculator:** $i + i = 100$ ⇒ $i = 50$.
 
 **Answer: (B) 50 A.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2010-7', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2010-7', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2010'), '7', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4241,7 +4265,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'A benchtop dc power supply acts as an ideal 4 A current source as long as its terminal voltage is below 10 V. Beyond this point, it begins to behave as an...', 'A benchtop dc power supply acts as an ideal 4 A current source as long as its terminal voltage is below 10 V. Beyond this point, it begins to behave as an ideal 10 V voltage source for all load currents going down to 0 A. When connected to an ideal rheostat, find the load resistance value at which maximum power is transferred, and the corresponding load voltage and current.
 ', '**Idea used:** for a source that is not a simple $E$ and $r$, find where $V\times I$ is largest on its real v–i graph (see *Independent sources → A first word on maximum power*).
 
@@ -4257,7 +4281,7 @@ Check the other options: a short gives $V = 0$ ⇒ $P = 0$; an open gives $I = 0
 **Without a calculator:** $10 \div 4 = 2.5$ Ω. Also note that options (A) and (B) give zero power, so they are out immediately.
 
 **Answer: (C) 2.5 Ω, 4 A, 10 V.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2020-32') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2020-32', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A benchtop dc power supply acts as an ideal 4 A current source as long as its terminal voltage is below 10 V. Beyond this point, it begins to behave as an...'), stem_md = 'A benchtop dc power supply acts as an ideal 4 A current source as long as its terminal voltage is below 10 V. Beyond this point, it begins to behave as an ideal 10 V voltage source for all load currents going down to 0 A. When connected to an ideal rheostat, find the load resistance value at which maximum power is transferred, and the corresponding load voltage and current.
 ', solution_md = '**Idea used:** for a source that is not a simple $E$ and $r$, find where $V\times I$ is largest on its real v–i graph (see *Independent sources → A first word on maximum power*).
@@ -4274,7 +4298,7 @@ Check the other options: a short gives $V = 0$ ⇒ $P = 0$; an open gives $I = 0
 **Without a calculator:** $10 \div 4 = 2.5$ Ω. Also note that options (A) and (B) give zero power, so they are out immediately.
 
 **Answer: (C) 2.5 Ω, 4 A, 10 V.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2020-32', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2020-32', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2020'), '32', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4299,7 +4323,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'When a resistor R is connected to a current source, it consumes a power of 18 W. When the same R is connected to a voltage source having the same magnitude...', 'When a resistor R is connected to a current source, it consumes a power of 18 W. When the same R is connected to a voltage source having the same magnitude as the current source, the power absorbed by R is 4.5 W. The magnitude of the current source and the value of R are
 ', '**Idea used:** an ideal current source forces its current ⇒ $P = I^2R$; an ideal voltage source forces its voltage ⇒ $P = V^2/R$ (see *Independent sources* and *The resistor → Power in a resistor*).
 
@@ -4315,7 +4339,7 @@ Check: $3^2\times2 = 18$ W ✔, $3^2/2 = 4.5$ W ✔.
 **Without a calculator:** Test the options: (B) gives $3^2\times2 = 18$ W ✔ and $3^2 \div 2 = 4.5$ W ✔. One check settles it.
 
 **Answer: (B) 3 A and 2 Ω.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-1999-r-sources') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-1999-r-sources', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'When a resistor R is connected to a current source, it consumes a power of 18 W. When the same R is connected to a voltage source having the same magnitude...'), stem_md = 'When a resistor R is connected to a current source, it consumes a power of 18 W. When the same R is connected to a voltage source having the same magnitude as the current source, the power absorbed by R is 4.5 W. The magnitude of the current source and the value of R are
 ', solution_md = '**Idea used:** an ideal current source forces its current ⇒ $P = I^2R$; an ideal voltage source forces its voltage ⇒ $P = V^2/R$ (see *Independent sources* and *The resistor → Power in a resistor*).
@@ -4332,7 +4356,7 @@ Check: $3^2\times2 = 18$ W ✔, $3^2/2 = 4.5$ W ✔.
 **Without a calculator:** Test the options: (B) gives $3^2\times2 = 18$ W ✔ and $3^2 \div 2 = 4.5$ W ✔. One check settles it.
 
 **Answer: (B) 3 A and 2 Ω.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-1999-r-sources', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-1999-r-sources', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-1999'), '~r-current-voltage-source', qid, 2, TRUE, 'https://questions.examside.com/past-years/gate/question/when-a-resistor-r-is-connected-to-a-current-source-it-c-1999-marks-2-uqzcpgtrmycupnfm.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4357,7 +4381,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'The I–V characteristics of the element between the nodes X and Y is best depicted by', 'The I–V characteristics of the element between the nodes X and Y is best depicted by
 
 ![Figure](fig:q-gate2025-18)
@@ -4376,7 +4400,7 @@ This is a straight line that cuts the $I$-axis at **1 A** when $V_{XY} = 0$ and 
 - (B) starts at 1 A and rises ✔.
 
 **Answer: (B).**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2025-18') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2025-18', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The I–V characteristics of the element between the nodes X and Y is best depicted by'), stem_md = 'The I–V characteristics of the element between the nodes X and Y is best depicted by
 
@@ -4396,7 +4420,7 @@ This is a straight line that cuts the $I$-axis at **1 A** when $V_{XY} = 0$ and 
 - (B) starts at 1 A and rises ✔.
 
 **Answer: (B).**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2025-18', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2025-18', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2025'), '18', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4475,7 +4499,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'Refer to the four circuits shown. Which one of the following options for k₁, k₂, k₃, and k₄ makes all of them realizable?', 'Refer to the four circuits shown.
 
 ![Figure](fig:q-gate2026-25)
@@ -4496,7 +4520,7 @@ Each circuit is just two elements joined at both ends.
 So: $k_1 = 1$, $k_4 = -\tfrac13$, and $k_2$, $k_3$ can be anything.
 
 **Answer: (A).**
-', 'READY', 'MCQ', NULL, NULL, 3, 'UNVERIFIED', 'gate-2026-25') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 3, 'UNVERIFIED', 'gate-2026-25', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Refer to the four circuits shown. Which one of the following options for k₁, k₂, k₃, and k₄ makes all of them realizable?'), stem_md = 'Refer to the four circuits shown.
 
@@ -4518,7 +4542,7 @@ Each circuit is just two elements joined at both ends.
 So: $k_1 = 1$, $k_4 = -\tfrac13$, and $k_2$, $k_3$ can be anything.
 
 **Answer: (A).**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'UNVERIFIED', content_key = 'gate-2026-25', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'UNVERIFIED', content_key = 'gate-2026-25', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2026'), '25', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4545,7 +4569,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'In the circuit shown below, the voltage and current sources are ideal. The voltage ($V{out}$) across the current source, in volts, is', 'In the circuit shown below, the voltage and current sources are ideal. The voltage ($V_{out}$) across the current source, in volts, is
 
 ![Figure](fig:q-gate2016-s2-23)
@@ -4563,7 +4587,7 @@ This question was repeated word for word in **APGCL 2023 (Q8)**.
 **Without a calculator:** $10 + 5 \times 2 = 20$ V.
 
 **Answer: (D) 20.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2016-s2-23') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2016-s2-23', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In the circuit shown below, the voltage and current sources are ideal. The voltage ($V{out}$) across the current source, in volts, is'), stem_md = 'In the circuit shown below, the voltage and current sources are ideal. The voltage ($V_{out}$) across the current source, in volts, is
 
@@ -4582,7 +4606,7 @@ This question was repeated word for word in **APGCL 2023 (Q8)**.
 **Without a calculator:** $10 + 5 \times 2 = 20$ V.
 
 **Answer: (D) 20.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2016-s2-23', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2016-s2-23', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q23', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'APGCL-2023'), '8', qid, 1, FALSE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
@@ -4610,7 +4634,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'Assuming ideal elements in the circuit shown below, the voltage $v{ab}$ will be', 'Assuming ideal elements in the circuit shown below, the voltage $v_{ab}$ will be
 
 ![Figure](fig:q-gate2008-23)
@@ -4625,7 +4649,7 @@ BEGIN
 **Without a calculator:** $2 - 5 = -3$ V.
 
 **Answer: (A) −3 V.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2008-23') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2008-23', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Assuming ideal elements in the circuit shown below, the voltage $v{ab}$ will be'), stem_md = 'Assuming ideal elements in the circuit shown below, the voltage $v_{ab}$ will be
 
@@ -4641,7 +4665,7 @@ BEGIN
 **Without a calculator:** $2 - 5 = -3$ V.
 
 **Answer: (A) −3 V.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2008-23', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2008-23', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2008'), '23', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4668,7 +4692,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'The voltages developed across the 3 Ω and 2 Ω resistors shown in the figure are 6 V and 2 V respectively, with the polarity as marked. What is the power (in...', 'The voltages developed across the 3 Ω and 2 Ω resistors shown in the figure are 6 V and 2 V respectively, with the polarity as marked. What is the power (in Watt) delivered by the 5 V voltage source?
 
 ![Figure](fig:q-gate2015-s1-28)
@@ -4684,7 +4708,7 @@ We know nothing about the inside of N1 and N2, so draw a closed surface around *
 **Without a calculator:** $6 \div 3 = 2$ A, $2 \div 2 = 1$ A, so the source carries 1 A and gives $5 \times 1 = 5$ W.
 
 **Answer: (A) 5.** *(Matches the official GATE answer.)*
-', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate-2015-s1-28') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate-2015-s1-28', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The voltages developed across the 3 Ω and 2 Ω resistors shown in the figure are 6 V and 2 V respectively, with the polarity as marked. What is the power (in...'), stem_md = 'The voltages developed across the 3 Ω and 2 Ω resistors shown in the figure are 6 V and 2 V respectively, with the polarity as marked. What is the power (in Watt) delivered by the 5 V voltage source?
 
@@ -4701,7 +4725,7 @@ We know nothing about the inside of N1 and N2, so draw a closed surface around *
 **Without a calculator:** $6 \div 3 = 2$ A, $2 \div 2 = 1$ A, so the source carries 1 A and gives $5 \times 1 = 5$ W.
 
 **Answer: (A) 5.** *(Matches the official GATE answer.)*
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate-2015-s1-28', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate-2015-s1-28', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2015'), 'S1-Q28', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4728,7 +4752,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'The power supplied by the 25 V source in the figure shown below is W.', 'The power supplied by the 25 V source in the figure shown below is ______ W.
 
 ![Figure](fig:q-gate2017s1-18)
@@ -4744,7 +4768,7 @@ Extra check: KVL gives the voltage of the right node $= 25 - 17 = 8$ V, which is
 **Without a calculator:** $14 \div 1.4 = 140 \div 14 = 10$ A, then $25 \times 10 = 250$ W.
 
 **Answer: 250 W.**
-', 'READY', 'NAT', 250, 250, 2, 'UNVERIFIED', 'gate-2017-s1-18') RETURNING id INTO qid;
+', 'READY', 'NAT', 250, 250, 2, 'UNVERIFIED', 'gate-2017-s1-18', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The power supplied by the 25 V source in the figure shown below is W.'), stem_md = 'The power supplied by the 25 V source in the figure shown below is ______ W.
 
@@ -4761,10 +4785,14 @@ Extra check: KVL gives the voltage of the right node $= 25 - 17 = 8$ V, which is
 **Without a calculator:** $14 \div 1.4 = 140 \div 14 = 10$ A, then $25 \times 10 = 250$ W.
 
 **Answer: 250 W.**
-', status = 'READY', answer_type = 'NAT', nat_min = 250, nat_max = 250, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2017-s1-18', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'NAT', nat_min = 250, nat_max = 250, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2017-s1-18', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2017_1'), '18', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
-  DELETE FROM question_option WHERE question_id = qid;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '140 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '250 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '350 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '490 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2017s1-18', '<svg width="398" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-52.641999999999996 -123.80000000000001 346.26200000000006 128.4"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 21.6,-93.6 L 43.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 43.2,-93.60000000000001 L 72,-93.6 L 75,-102.6 L 81,-84.6 L 87,-102.6 L 93,-84.6 L 99,-102.6 L 105,-84.6 L 108,-93.6 L 136.8,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 136.8,-93.60000000000001 L 136.8,-64.8 L 145.8,-61.8 L 127.8,-55.8 L 145.8,-49.8 L 127.8,-43.8 L 145.8,-37.8 L 127.8,-31.8 L 136.8,-28.8 L 136.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 136.79999999999998,-0.0 L 68.4,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 136.8,-93.60000000000001 L 190.8,-93.6 L 244.8,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 244.8,-93.60000000000001 L 244.8,-64.8 M 244.8,-28.8 L 226.8,-46.8 L 244.8,-64.8 L 262.8,-46.8 L 244.8,-28.8 L 244.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 244.8,-46.800000000000004 L 244.8,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 244.8 -53.8 L 247.5 -46.8 L 242.1 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 244.79999999999998,-0.0 L 190.8,-0 L 136.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="-21.599999999999994" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-21.599999999999994" dy="13">25 V</tspan></text><text x="90.0" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="90.0" dy="13">R₁</tspan></text><text x="66.60000000000001" y="-94.0" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="66.60000000000001" dy="13">+</tspan></text><text x="90.0" y="-94.0" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="90.0" dy="13">17 V</tspan></text><text x="113.4" y="-94.0" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="113.4" dy="13">−</tspan></text><text x="149.4" y="-83.2" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="149.4" dy="13">+</tspan></text><text x="149.4" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="149.4" dy="13">R₂</tspan></text><text x="149.4" y="-36.4" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="149.4" dy="13">−</tspan></text><text x="108.0" y="-56.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="108.0" dy="13">14 A ↓</tspan></text><text x="266.40000000000003" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="266.40000000000003" dy="13">0.4I</tspan></text><path d="M 3.600000000000003,-93.60000000000001 L 3.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 12.4 -93.6 L 3.6 -88.2 L 3.6 -99 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><text x="9.000000000000004" y="-117.39999999999999" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="9.000000000000004" dy="13">I</tspan></text></svg>
 ', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
   DELETE FROM question_concept WHERE question_id = qid;
@@ -4784,7 +4812,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'All the elements in the circuit are ideal. The power delivered by the 10 V source in watts is', 'All the elements in the circuit are ideal. The power delivered by the 10 V source in watts is
 
 ![Figure](fig:q-gate2024-13)
@@ -4801,7 +4829,7 @@ All 10 A of the current source go through the 1 Ω resistor ($10^2\times1 = 100$
 **Without a calculator:** Before writing algebra, try $V_X = 10$ V (the source voltage): it makes the α-branch current zero and satisfies KCL at once.
 
 **Answer: (A) 0.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2024-13') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2024-13', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'All the elements in the circuit are ideal. The power delivered by the 10 V source in watts is'), stem_md = 'All the elements in the circuit are ideal. The power delivered by the 10 V source in watts is
 
@@ -4819,7 +4847,7 @@ All 10 A of the current source go through the 1 Ω resistor ($10^2\times1 = 100$
 **Without a calculator:** Before writing algebra, try $V_X = 10$ V (the source voltage): it makes the α-branch current zero and satisfies KCL at once.
 
 **Answer: (A) 0.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2024-13', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2024-13', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2024'), '13', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4846,7 +4874,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'A segment of a circuit is shown in figure. $vR = 5\ \text{V}$, $vC = 4\sin2t$. The voltage $vL$ is given by', 'A segment of a circuit is shown in figure. $v_R = 5\ \text{V}$, $v_C = 4\sin2t$. The voltage $v_L$ is given by
 
 ![Figure](fig:q-gate2003-segment)
@@ -4866,7 +4894,7 @@ Trap: option (A) is $i_L$, the inductor **current**, not its voltage.
 **Without a calculator:** Only derivatives of $\sin 2t$ and $\cos 2t$: each derivative brings a factor 2. $4 \times 2 = 8$, then $8 \times 2 \times 2 = 32$.
 
 **Answer: (B) $32\sin2t$.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-2003-segment') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'TWO_SOURCES', 'gate-2003-segment', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A segment of a circuit is shown in figure. $vR = 5\ \text{V}$, $vC = 4\sin2t$. The voltage $vL$ is given by'), stem_md = 'A segment of a circuit is shown in figure. $v_R = 5\ \text{V}$, $v_C = 4\sin2t$. The voltage $v_L$ is given by
 
@@ -4887,7 +4915,7 @@ Trap: option (A) is $i_L$, the inductor **current**, not its voltage.
 **Without a calculator:** Only derivatives of $\sin 2t$ and $\cos 2t$: each derivative brings a factor 2. $4 \times 2 = 8$, then $8 \times 2 \times 2 = 32$.
 
 **Answer: (B) $32\sin2t$.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-2003-segment', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'TWO_SOURCES', content_key = 'gate-2003-segment', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2003'), '~segment-vl', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/a-segment-of-a-circuit-is-shown-in-figure-vr-5v-2003-marks-1-qpuqiphfwklvmyzn.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4914,7 +4942,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'THEORY', 'The v–i relationship for a circuit containing R and C and a battery of voltage E, all in series is 1. $\dfrac{1}{C}\displaystyle\int i\,dt + iR = E$ 2....', 'The v–i relationship for a circuit containing R and C and a battery of voltage E, all in series is
 
 1. $\dfrac{1}{C}\displaystyle\int i\,dt + iR = E$
@@ -4929,7 +4957,7 @@ Which of the above relationships are correct?
 3. Relation 3 swaps the roles: it multiplies $R$ by the integral and divides $i$ by $C$. Units do not even match ($i/C$ is not a voltage). **Wrong.**
 
 **Answer: (A) 1 and 2 only.**
-', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2018-19') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2018-19', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The v–i relationship for a circuit containing R and C and a battery of voltage E, all in series is 1. $\dfrac{1}{C}\displaystyle\int i\,dt + iR = E$ 2....'), stem_md = 'The v–i relationship for a circuit containing R and C and a battery of voltage E, all in series is
 
@@ -4945,7 +4973,7 @@ Which of the above relationships are correct?
 3. Relation 3 swaps the roles: it multiplies $R$ by the integral and divides $i$ by $C$. Units do not even match ($i/C$ is not a voltage). **Wrong.**
 
 **Answer: (A) 1 and 2 only.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2018-19', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2018-19', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2018'), '19', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -4970,7 +4998,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'A combination of 1 µF capacitor with an initial voltage $vc(0) = -2$ V in series with a 100 Ω resistor is connected to a 20 mA ideal dc current source by...', 'A combination of 1 µF capacitor with an initial voltage $v_c(0) = -2$ V in series with a 100 Ω resistor is connected to a 20 mA ideal dc current source by operating both switches at t = 0 s as shown. Which of the following graphs shown in the options approximates the voltage $v_s$ across the current source over the next few seconds?
 
 ![Figure](fig:q-gate2014-s1-8)
@@ -4987,7 +5015,7 @@ So $v_s$ **starts at 0** at $t = 0^+$ and rises in a **straight line**. (A real 
 **Without a calculator:** $0.02 \div 10^{-6} = 20\,000$ V/s. The resistor''s $+2$ V cancels the capacitor''s $-2$ V, so the graph starts at 0.
 
 **Answer: (C).**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2014-s1-8') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2014-s1-8', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A combination of 1 µF capacitor with an initial voltage $vc(0) = -2$ V in series with a 100 Ω resistor is connected to a 20 mA ideal dc current source by...'), stem_md = 'A combination of 1 µF capacitor with an initial voltage $v_c(0) = -2$ V in series with a 100 Ω resistor is connected to a 20 mA ideal dc current source by operating both switches at t = 0 s as shown. Which of the following graphs shown in the options approximates the voltage $v_s$ across the current source over the next few seconds?
 
@@ -5005,7 +5033,7 @@ So $v_s$ **starts at 0** at $t = 0^+$ and rises in a **straight line**. (A real 
 **Without a calculator:** $0.02 \div 10^{-6} = 20\,000$ V/s. The resistor''s $+2$ V cancels the capacitor''s $-2$ V, so the graph starts at 0.
 
 **Answer: (C).**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s1-8', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s1-8', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2014'), 'S1-Q8', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -5080,7 +5108,7 @@ BEGIN
   END IF;
   IF qid IS NULL THEN
     INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
-                         difficulty, answer_status, content_key)
+                         difficulty, answer_status, content_key, origin)
     VALUES (subj, tid, 'NUMERICAL', 'What is the power supplied by each element in the circuit shown below?', 'What is the power supplied by each element in the circuit shown below?
 
 ![Figure](fig:q-ese2026-101)
@@ -5102,7 +5130,7 @@ Read the circuit: $I = 5$ A leaves the + terminal of the 20 V source ($P_1$) and
 **Without a calculator:** Only small products: $20\times5$, $12\times5$, $8\times6$, $8\times1$. Use the power balance $-100 + 60 + 48 - 8 = 0$ as your check.
 
 **Answer: (B) by the wording (supplied power); (D) if the setter meant absorbed power.**
-', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2026-101') RETURNING id INTO qid;
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2026-101', 'PYQ') RETURNING id INTO qid;
   ELSE
     UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'What is the power supplied by each element in the circuit shown below?'), stem_md = 'What is the power supplied by each element in the circuit shown below?
 
@@ -5125,7 +5153,7 @@ Read the circuit: $I = 5$ A leaves the + terminal of the 20 V source ($P_1$) and
 **Without a calculator:** Only small products: $20\times5$, $12\times5$, $8\times6$, $8\times1$. Use the power balance $-100 + 60 + 48 - 8 = 0$ as your check.
 
 **Answer: (B) by the wording (supplied power); (D) if the setter meant absorbed power.**
-', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2026-101', updated_at = now() WHERE id = qid;
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2026-101', origin = 'PYQ', updated_at = now() WHERE id = qid;
   END IF;
   INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2026'), '101', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
   DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
@@ -5139,6 +5167,11 @@ Read the circuit: $I = 5$ A leaves the + terminal of the 20 V source ($P_1$) and
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
 END $ppimport$;
 
+-- mock tests
+INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch1-mock-pyq', 'Chapter 1 mock: PYQs only', 'CHAPTER', 74, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'PYQ', 'All Chapter 1 exam questions (GATE, ESE, APSC 2023), asked the APSC way.', 1) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
+DELETE FROM test_question WHERE test_id = (SELECT id FROM test WHERE code = 'ec-ch1-mock-pyq');
+INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch1-mock-pyq'), v.pos, qq.id, NULL FROM (VALUES (1, 'gate-2007-64'), (2, 'gate-2015-s1-28'), (3, 'ese-2018-126'), (4, 'ese-2017-56'), (5, 'ese-2020-28'), (6, 'gate-2024-13'), (7, 'ese-2021-8'), (8, 'ese-2024-87'), (9, 'gate-2003-inductor-energy'), (10, 'gate-2010-7'), (11, 'gate-1997-nonlinear-battery'), (12, 'gate-2001-bulbs'), (13, 'aegcl-2023-83'), (14, 'gate-1999-r-sources'), (15, 'ese-2025-29'), (16, 'gate-2014-s1-6'), (17, 'ese-2026-101'), (18, 'ese-2019-25'), (19, 'ese-2018-19'), (20, 'gate-1998-impulse'), (21, 'ese-2017-38'), (22, 'gate-2003-segment'), (23, 'gate-2012-17'), (24, 'gate-2000-inductor-current'), (25, 'ese-2026-105'), (26, 'gate-2009-10'), (27, 'ese-2020-25'), (28, 'gate-2009-22'), (29, 'ese-2018-16'), (30, 'gate-1997-cap-energy-cycle'), (31, 'gate-1999-capacitance-by'), (32, 'gate-2014-s1-29'), (33, 'gate-2014-s1-30'), (34, 'ese-2018-37'), (35, 'gate-2017-s2-22'), (36, 'apdcl-2023-46'), (37, 'ese-2019-149'), (38, 'gate-2017-s1-18'), (39, 'gate-2008-76'), (40, 'ese-2025-36'), (41, 'gate-2026-25'), (42, 'ese-2025-26'), (43, 'ese-2022-41'), (44, 'ese-2024-60'), (45, 'ese-2020-35'), (46, 'gate-2020-32'), (47, 'ese-2022-44'), (48, 'gate-2013-30'), (49, 'gate-2008-23'), (50, 'gate-2016-s2-23'), (51, 'gate-2021-15'), (52, 'ese-2019-36'), (53, 'apgcl-2023-2'), (54, 'gate-2025-18'), (55, 'ese-2018-24'), (56, 'ese-2025-27'), (57, 'ese-2021-10'), (58, 'gate-2026-23'), (59, 'gate-1999-rc-triangular'), (60, 'gate-2014-s1-8'), (61, 'gate-2025-19')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
+
 -- fixes
 UPDATE question SET subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits'), topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'thevenin-norton-36'), updated_at = now() WHERE id IN (SELECT qs.question_id FROM question_source qs JOIN source s ON s.id = qs.source_id WHERE s.code = 'GATE-2012' AND qs.q_no = '5') AND content_key IS NULL;
 UPDATE question SET subject_id = (SELECT id FROM subject WHERE slug = 'power-electronics'), topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'power-electronics') AND slug = 'power-devices-diode-reverse-recovery-326'), updated_at = now(), summary = 'Source voltage and current waveforms of an element between a and b: diode with reverse recovery' WHERE id IN (SELECT qs.question_id FROM question_source qs JOIN source s ON s.id = qs.source_id WHERE s.code = 'GATE-2009' AND qs.q_no = '3') AND content_key IS NULL;
@@ -5146,5 +5179,5 @@ UPDATE question SET subject_id = (SELECT id FROM subject WHERE slug = 'power-ele
 
 -- clean-up
 DELETE FROM question_link l WHERE NOT EXISTS (SELECT 1 FROM question_source qs WHERE qs.question_id = l.gate_question_id) OR NOT EXISTS (SELECT 1 FROM question_source qs WHERE qs.question_id = l.state_question_id);
-DELETE FROM question q WHERE NOT EXISTS (SELECT 1 FROM question_source qs WHERE qs.question_id = q.id) AND NOT EXISTS (SELECT 1 FROM attempt a WHERE a.question_id = q.id) AND NOT EXISTS (SELECT 1 FROM user_question_state u WHERE u.question_id = q.id) AND NOT EXISTS (SELECT 1 FROM test_question tq WHERE tq.question_id = q.id);
+DELETE FROM question q WHERE q.origin = 'PYQ' AND NOT EXISTS (SELECT 1 FROM question_source qs WHERE qs.question_id = q.id) AND NOT EXISTS (SELECT 1 FROM attempt a WHERE a.question_id = q.id) AND NOT EXISTS (SELECT 1 FROM user_question_state u WHERE u.question_id = q.id) AND NOT EXISTS (SELECT 1 FROM test_question tq WHERE tq.question_id = q.id);
 DELETE FROM topic t WHERE t.subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND t.slug IN ('ideal-sources-90', 'r-l-c-element-relations-v-ri-l-di-dt-42', 'power-in-resistive-loads-lamps-165', 'circuit-elements-nullator-linearity-363', 'nonlinear-resistance-195', 'nonlinear-resistor-circuits-251', '-373') AND NOT EXISTS (SELECT 1 FROM question x WHERE x.topic_id = t.id) AND NOT EXISTS (SELECT 1 FROM concept_section c WHERE c.topic_id = t.id) AND NOT EXISTS (SELECT 1 FROM syllabus_item_topic st WHERE st.topic_id = t.id);

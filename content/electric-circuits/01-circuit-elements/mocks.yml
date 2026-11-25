@@ -1,0 +1,73 @@
+# Chapter-wise mock tests (APSC format: 4-option MCQs, +1 / -0.25, about 72 seconds per question, no calculator).
+# The number of questions follows coverage, not a fixed count:
+#   pyq   - every Chapter 1 exam question we have (GATE, ESE, APSC), NAT ones asked as MCQs, as APSC does.
+#   fresh - only our own questions, at least one for every concept of the chapter.
+#   mix   - every concept once; about half exam questions and half our own (different from the fresh mock).
+# Order is mixed on purpose, like a real paper. Edit here and re-run content/tools/build_sql.py.
+
+- code: ec-ch1-mock-pyq
+  title: "Chapter 1 mock: PYQs only"
+  variant: PYQ
+  description: "All Chapter 1 exam questions (GATE, ESE, APSC 2023), asked the APSC way."
+  questions:
+    - gate-2007-64
+    - gate-2015-s1-28
+    - ese-2018-126
+    - ese-2017-56
+    - ese-2020-28
+    - gate-2024-13
+    - ese-2021-8
+    - ese-2024-87
+    - gate-2003-inductor-energy
+    - gate-2010-7
+    - gate-1997-nonlinear-battery
+    - gate-2001-bulbs
+    - aegcl-2023-83
+    - gate-1999-r-sources
+    - ese-2025-29
+    - gate-2014-s1-6
+    - ese-2026-101
+    - ese-2019-25
+    - ese-2018-19
+    - gate-1998-impulse
+    - ese-2017-38
+    - gate-2003-segment
+    - gate-2012-17
+    - gate-2000-inductor-current
+    - ese-2026-105
+    - gate-2009-10
+    - ese-2020-25
+    - gate-2009-22
+    - ese-2018-16
+    - gate-1997-cap-energy-cycle
+    - gate-1999-capacitance-by
+    - gate-2014-s1-29
+    - gate-2014-s1-30
+    - ese-2018-37
+    - gate-2017-s2-22
+    - apdcl-2023-46
+    - ese-2019-149
+    - gate-2017-s1-18
+    - gate-2008-76
+    - ese-2025-36
+    - gate-2026-25
+    - ese-2025-26
+    - ese-2022-41
+    - ese-2024-60
+    - ese-2020-35
+    - gate-2020-32
+    - ese-2022-44
+    - gate-2013-30
+    - gate-2008-23
+    - gate-2016-s2-23
+    - gate-2021-15
+    - ese-2019-36
+    - apgcl-2023-2
+    - gate-2025-18
+    - ese-2018-24
+    - ese-2025-27
+    - ese-2021-10
+    - gate-2026-23
+    - gate-1999-rc-triangular
+    - gate-2014-s1-8
+    - gate-2025-19

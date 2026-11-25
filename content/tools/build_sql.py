@@ -62,7 +62,7 @@ def main(subject):
         "",
     ]
 
-    questions, notes_by_topic, chapter_of_topic = [], {}, {}
+    questions, notes_by_topic, chapter_of_topic, mocks = [], {}, {}, []
     for ch in plan["chapters"]:
         for t in ch.get("topics", []):
             chapter_of_topic[t["slug"]] = ch["slug"]
@@ -70,10 +70,20 @@ def main(subject):
             d = os.path.join(base, ch["dir"])
             for t in ch["topics"]:
                 notes_by_topic[t["slug"]] = open(os.path.join(d, "notes", t["note"]), encoding="utf-8").read().strip() + "\n"
-            for f in sorted(glob.glob(os.path.join(d, "questions-*.yml"))):
-                for item in yaml.safe_load(open(f, encoding="utf-8")):
+            files = sorted(glob.glob(os.path.join(d, "questions-*.yml"))) + sorted(glob.glob(os.path.join(d, "practice-*.yml")))
+            for f in files:
+                practice = os.path.basename(f).startswith("practice-")
+                for item in yaml.safe_load(open(f, encoding="utf-8")) or []:
                     item["_dir"] = d
+                    item["_origin"] = "PRACTICE" if practice else "PYQ"
+                    item.setdefault("sources", [])
+                    assert bool(item["sources"]) != practice, "practice questions have no sources, exam questions need one: " + item["key"]
                     questions.append(item)
+            mf = os.path.join(d, "mocks.yml")
+            if os.path.exists(mf):
+                for m in yaml.safe_load(open(mf, encoding="utf-8")) or []:
+                    m["_chapter"] = ch["slug"]
+                    mocks.append(m)
 
     # ---- sources ----
     codes = sorted({s["code"] for it in questions for s in it["sources"]})
@@ -136,8 +146,12 @@ def main(subject):
         if typ == "NAT":
             assert it.get("nat"), "NAT without range in " + key
         nat = it.get("nat") or {}
+        if it["_origin"] == "PRACTICE":
+            assert typ == "MCQ" and len(opts) == 4, "practice questions are 4-option MCQs (APSC format): " + key
+        if typ == "NAT" and opts:
+            assert len(opts) == 4 and sum(bool(o.get("correct")) for o in opts) == 1, "NAT test options need 4 with one correct: " + key
         stem, sol = it["stem"].strip() + "\n", it["solution"].strip() + "\n"
-        pairs = ", ".join(f"({q(s['code'])}, {q(str(s['q']))})" for s in it["sources"])
+        pairs = ", ".join(f"({q(s['code'])}, {q(str(s['q']))})" for s in it["sources"]) or "(NULL, NULL)"
         blk = [f"DO {TAG}", "DECLARE qid int; subj int; tid int;", "BEGIN",
                f"  SELECT id INTO subj FROM subject WHERE slug = {q(subject)};",
                f"  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = {q(it['topic'])};",
@@ -150,14 +164,14 @@ def main(subject):
                "  END IF;",
                "  IF qid IS NULL THEN",
                "    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,",
-               "                         difficulty, answer_status, content_key)",
+               "                         difficulty, answer_status, content_key, origin)",
                f"    VALUES (subj, tid, {q(it['nature'])}, {q(summary_of(stem))}, {q(stem)}, {q(sol)}, 'READY', {q(typ)}, "
-               f"{q(nat.get('min'))}, {q(nat.get('max'))}, {it.get('difficulty', 2)}, {q(it['status'])}, {q(key)}) RETURNING id INTO qid;",
+               f"{q(nat.get('min'))}, {q(nat.get('max'))}, {it.get('difficulty', 2)}, {q(it['status'])}, {q(key)}, {q(it['_origin'])}) RETURNING id INTO qid;",
                "  ELSE",
                f"    UPDATE question SET subject_id = subj, topic_id = tid, nature = {q(it['nature'])}, "
                f"summary = COALESCE(NULLIF(summary, ''), {q(summary_of(stem))}), stem_md = {q(stem)}, solution_md = {q(sol)}, status = 'READY', "
                f"answer_type = {q(typ)}, nat_min = {q(nat.get('min'))}, nat_max = {q(nat.get('max'))}, difficulty = {it.get('difficulty', 2)}, "
-               f"answer_status = {q(it['status'])}, content_key = {q(key)}, updated_at = now() WHERE id = qid;",
+               f"answer_status = {q(it['status'])}, content_key = {q(key)}, origin = {q(it['_origin'])}, updated_at = now() WHERE id = qid;",
                "  END IF;"]
         for s in it["sources"]:
             primary = s.get("primary", len(it["sources"]) == 1)
@@ -190,6 +204,35 @@ def main(subject):
         blk.append(f"END {TAG};")
         out.append("\n".join(blk))
 
+    # ---- mock tests (content/<subject>/<chapter>/mocks.yml) ----
+    out.append("\n-- mock tests")
+    by_key = {it["key"]: it for it in questions}
+    for n, m in enumerate(mocks, 1):
+        keys = m["questions"]
+        assert len(keys) == len(set(keys)), "repeated question in mock " + m["code"]
+        for k in keys:
+            it = by_key.get(k)
+            assert it, f"mock {m['code']}: unknown question {k}"
+            assert it["type"] == "MCQ" or (it["type"] == "NAT" and it.get("options")), f"mock {m['code']}: {k} has no MCQ form"
+            if m["variant"] == "PYQ":
+                assert it["_origin"] == "PYQ", f"PYQ mock {m['code']} has our question {k}"
+            if m["variant"] == "FRESH":
+                assert it["_origin"] == "PRACTICE", f"FRESH mock {m['code']} has exam question {k}"
+        minutes = -(-len(keys) * 6 // 5)          # APSC pace: 100 questions in 120 minutes
+        C = f"(SELECT id FROM chapter WHERE subject_id = {S} AND slug = {q(m['_chapter'])})"
+        out.append(
+            f"INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) "
+            f"VALUES ({q(m['code'])}, {q(m['title'])}, 'CHAPTER', {minutes}, 1, 0.25, 'PUBLISHED', {S}, {C}, {q(m['variant'])}, "
+            f"{q(m.get('description'))}, {n}) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, "
+            f"duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, "
+            f"status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, "
+            f"description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();")
+        T = f"(SELECT id FROM test WHERE code = {q(m['code'])})"
+        out.append(f"DELETE FROM test_question WHERE test_id = {T};")
+        rows = ", ".join(f"({pos}, {q(k)})" for pos, k in enumerate(keys, 1))
+        out.append(f"INSERT INTO test_question(test_id, position, question_id, section) SELECT {T}, v.pos, qq.id, NULL "
+                   f"FROM (VALUES {rows}) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;")
+
     # ---- one-off fixes of earlier tagging ----
     out.append("\n-- fixes")
     for fx in plan.get("fixes", []):
@@ -205,7 +248,7 @@ def main(subject):
     out.append("\n-- clean-up")
     out.append("DELETE FROM question_link l WHERE NOT EXISTS (SELECT 1 FROM question_source qs WHERE qs.question_id = l.gate_question_id) "
                "OR NOT EXISTS (SELECT 1 FROM question_source qs WHERE qs.question_id = l.state_question_id);")
-    out.append("DELETE FROM question q WHERE NOT EXISTS (SELECT 1 FROM question_source qs WHERE qs.question_id = q.id) "
+    out.append("DELETE FROM question q WHERE q.origin = 'PYQ' AND NOT EXISTS (SELECT 1 FROM question_source qs WHERE qs.question_id = q.id) "
                "AND NOT EXISTS (SELECT 1 FROM attempt a WHERE a.question_id = q.id) "
                "AND NOT EXISTS (SELECT 1 FROM user_question_state u WHERE u.question_id = q.id) "
                "AND NOT EXISTS (SELECT 1 FROM test_question tq WHERE tq.question_id = q.id);")
@@ -219,7 +262,7 @@ def main(subject):
     dst = os.path.join(ROOT, "src", "main", "resources", "db", "migration", f"R__content_{subject.replace('-', '_')}.sql")
     with open(dst, "w", encoding="utf-8") as f:
         f.write("\n".join(out) + "\n")
-    print(f"wrote {os.path.relpath(dst, ROOT)}: {len(questions)} questions, {len(notes_by_topic)} notes, {len(codes)} sources")
+    print(f"wrote {os.path.relpath(dst, ROOT)}: {len(questions)} questions, {len(notes_by_topic)} notes, {len(codes)} sources, {len(mocks)} mocks")
 
 
 if __name__ == "__main__":

@@ -40,6 +40,12 @@
 
     ![Figure](fig:q-gate2014-s1-6)
   nat: {min: 330, max: 330}
+  # APSC form: in mock tests this question is asked as an MCQ with these options.
+  options:
+    - {label: A, md: "0 W"}
+    - {label: B, md: "330 W", correct: true}
+    - {label: C, md: "390 W"}
+    - {label: D, md: "1670 W"}
   solution: |
     **Idea used:** passive sign convention: current entering the **+** terminal ⇒ absorbed power $= +vi$; current entering the **–** terminal ⇒ absorbed power $= -vi$ (see *Power and energy*).
 
@@ -301,6 +307,12 @@
   stem: |
     An incandescent lamp is marked 40 W, 240 V. If resistance at room temperature (26°C) is 120 Ω, and temperature coefficient of resistance is 4.5×10⁻³/°C, then its 'ON' state filament temperature in °C is approximately ______
   nat: {min: 2465, max: 2475}
+  # APSC form: in mock tests this question is asked as an MCQ with these options.
+  options:
+    - {label: A, md: "2444 °C"}
+    - {label: B, md: "2470 °C", correct: true}
+    - {label: C, md: "2667 °C"}
+    - {label: D, md: "2693 °C"}
   solution: |
     **Idea used:** the rating gives the **hot** resistance; $R_T = R_0[1 + \alpha_0(T - T_0)]$ links hot and cold resistance (see *The resistor → Hot and cold resistance of a lamp*).
 
@@ -324,6 +336,12 @@
   stem: |
     Two single-core power cables have total conductor resistances of 0.7 Ω and 0.5 Ω, respectively, and their insulation resistances (between core and sheath) are 600 MΩ and 900 MΩ, respectively. When the two cables are joined in series, the ratio of insulation resistance to conductor resistance is ______ ×10⁶.
   nat: {min: 300, max: 300}
+  # APSC form: in mock tests this question is asked as an MCQ with these options.
+  options:
+    - {label: A, md: "300", correct: true}
+    - {label: B, md: "360"}
+    - {label: C, md: "1250"}
+    - {label: D, md: "1500"}
   solution: |
     **Idea used:** conductor resistance is along the length (adds in series); insulation resistance is the leakage across the insulation (each length is a parallel path, so they combine in parallel) (see *The resistor → Conductor resistance and insulation resistance of a cable*).
 
@@ -400,6 +418,12 @@
 
     ![Figure](fig:q-gate2014-s1-30)
   nat: {min: 10, max: 10}
+  # APSC form: in mock tests this question is asked as an MCQ with these options.
+  options:
+    - {label: A, md: "5 A"}
+    - {label: B, md: "10 A", correct: true}
+    - {label: C, md: "12 A"}
+    - {label: D, md: "60 A"}
   solution: |
     **Idea used:** a resistance that depends on its own current is a non-linear resistor; write $V = IR$ with the given rule and solve (see *The resistor → Non-linear resistors*).
 
@@ -424,6 +448,12 @@
   stem: |
     A 10 V battery with an internal resistance of 1 Ω is connected across a nonlinear load whose V–I characteristic is given by $7I = V^2 + 2V$. The current delivered by the battery is ______ A.
   nat: {min: 5, max: 5}
+  # APSC form: in mock tests this question is asked as an MCQ with these options.
+  options:
+    - {label: A, md: "2 A"}
+    - {label: B, md: "5 A", correct: true}
+    - {label: C, md: "7 A"}
+    - {label: D, md: "24 A"}
   solution: |
     **Idea used:** load line + element rule; reject the root that is not physical (see *The resistor → Non-linear resistors*).
 

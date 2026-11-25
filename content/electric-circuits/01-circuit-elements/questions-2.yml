@@ -317,6 +317,12 @@
 
     ![Figure](fig:q-gate2017s2-22)
   nat: {min: 99.9, max: 100.1}
+  # APSC form: in mock tests this question is asked as an MCQ with these options.
+  options:
+    - {label: A, md: "25 J"}
+    - {label: B, md: "50 J"}
+    - {label: C, md: "100 J", correct: true}
+    - {label: D, md: "200 J"}
   solution: |
     **Idea used:** in DC steady state a capacitor is an open circuit; while charging, the source gives $Q\times V$ (see *The capacitor → Charging a capacitor from a DC source*).
 

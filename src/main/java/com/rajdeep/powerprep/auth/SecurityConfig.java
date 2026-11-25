@@ -41,6 +41,7 @@ public class SecurityConfig {
                 a.requestMatchers("/api/admin/**").access((auth, ctx) -> new org.springframework.security.authorization.AuthorizationDecision(
                         auth.get().getAuthorities().stream().map(Object::toString).toList().containsAll(List.of("ROLE_ADMIN", "APPROVED"))));
                 a.requestMatchers(HttpMethod.POST, "/api/questions/*/attempts").hasAuthority("APPROVED");
+                a.requestMatchers("/api/tests/*/start", "/api/tests/*/attempts", "/api/test-attempts/**").hasAuthority("APPROVED");
                 if (props.contentRequiresApproval()) {
                     a.requestMatchers("/api/**").hasAuthority("APPROVED");
                 } else {

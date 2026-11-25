@@ -17,7 +17,7 @@ public class CatalogController {
         return jdbc.queryForList("""
             SELECT s.id, s.name, s.slug, s.in_syllabus AS "inSyllabus",
                    (SELECT count(*) FROM topic t WHERE t.subject_id = s.id) AS topics,
-                   (SELECT count(*) FROM question q WHERE q.subject_id = s.id) AS questions
+                   (SELECT count(*) FROM question q WHERE q.subject_id = s.id AND q.origin = 'PYQ') AS questions
             FROM subject s ORDER BY s.sort_order""");
     }
 
@@ -30,7 +30,7 @@ public class CatalogController {
                    count(DISTINCT q.id)    FILTER (WHERE so.kind = 'GATE')  AS "gateQuestions"
             FROM topic t
             JOIN subject s ON s.id = t.subject_id
-            LEFT JOIN question q         ON q.topic_id = t.id AND q.status <> 'RETIRED'
+            LEFT JOIN question q         ON q.topic_id = t.id AND q.status <> 'RETIRED' AND q.origin = 'PYQ'
             LEFT JOIN question_source qs ON qs.question_id = q.id
             LEFT JOIN source so          ON so.id = qs.source_id
             WHERE s.slug = ?

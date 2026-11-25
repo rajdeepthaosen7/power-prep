@@ -37,10 +37,10 @@ public class StudyController {
         List<Map<String, Object>> topics = jdbc.queryForList("""
             SELECT t.id, t.slug, t.name, t.chapter_id AS "chapterId", t.sort_order AS "sortOrder",
                    (SELECT count(*) FROM concept_section cs WHERE cs.topic_id = t.id AND cs.status = 'PUBLISHED') AS notes,
-                   (SELECT count(*) FROM question q WHERE q.topic_id = t.id AND q.status <> 'RETIRED') AS questions,
-                   (SELECT count(*) FROM question q WHERE q.topic_id = t.id AND q.status = 'READY') AS ready,
+                   (SELECT count(*) FROM question q WHERE q.topic_id = t.id AND q.status <> 'RETIRED' AND q.origin = 'PYQ') AS questions,
+                   (SELECT count(*) FROM question q WHERE q.topic_id = t.id AND q.status = 'READY' AND q.origin = 'PYQ') AS ready,
                    (SELECT count(DISTINCT a.question_id) FROM attempt a JOIN question q ON q.id = a.question_id
-                     WHERE q.topic_id = t.id AND a.user_id = ?) AS attempted
+                     WHERE q.topic_id = t.id AND q.origin = 'PYQ' AND a.user_id = ?) AS attempted
             FROM topic t JOIN subject s ON s.id = t.subject_id
             WHERE s.slug = ? AND t.chapter_id IS NOT NULL
             ORDER BY t.sort_order, t.name""", uid == null ? -1L : uid, slug);
@@ -76,7 +76,7 @@ public class StudyController {
             SELECT q.id, q.topic_id AS "topicId", q.content_key AS key, q.stem_md AS "stemMd", q.answer_type AS "answerType",
                    q.nature, q.difficulty, q.answer_status AS "answerStatus"
             FROM question q JOIN topic t ON t.id = q.topic_id
-            WHERE t.chapter_id = ? AND q.status = 'READY'
+            WHERE t.chapter_id = ? AND q.status = 'READY' AND q.origin = 'PYQ'
             ORDER BY t.sort_order, q.difficulty NULLS LAST, q.id""", chapterId);
         attachQuestionDetails(questions, uid);
 
@@ -104,7 +104,7 @@ public class StudyController {
         Long uid = userId(auth);
         if (uid == null) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "sign in to attempt questions");
         List<Map<String, Object>> qs = jdbc.queryForList(
-            "SELECT answer_type, nat_min, nat_max FROM question WHERE id = ? AND status = 'READY'", id);
+            "SELECT answer_type, nat_min, nat_max FROM question WHERE id = ? AND status = 'READY' AND origin = 'PYQ'", id);
         if (qs.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "question not found");
         Map<String, Object> q = qs.get(0);
         String type = (String) q.get("answer_type");

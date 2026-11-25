@@ -423,6 +423,12 @@
 
     ![Figure](fig:q-gate2017s1-18)
   nat: {min: 250, max: 250}
+  # APSC form: in mock tests this question is asked as an MCQ with these options.
+  options:
+    - {label: A, md: "140 W"}
+    - {label: B, md: "250 W", correct: true}
+    - {label: C, md: "350 W"}
+    - {label: D, md: "490 W"}
   solution: |
     **Idea used:** KCL at one node with a dependent source, then $p = vi$ for the source (see *KCL and KVL → Example 3* and *Dependent sources*).
 
