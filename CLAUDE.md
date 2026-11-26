@@ -54,6 +54,10 @@ Full doc: https://claude.ai/artifact/BjEpYbj8eGATVTrSGrfNmJ
   2. Use small worked examples after each idea, easy to hard.
   3. Only after the concept is complete, move to the source questions. Never jump straight into explaining one question.
 - Every solved question: show the full reasoning, not just the final formula. Link it back to the concept section it uses.
+- Worked numericals (owner, 26 Nov 2026: "so abstract, took me 1 hour"): start from a small table or a plain-words picture of what
+  happens, then the formula. Every example is numbered steps, one operation per step, every multiplication/division shown
+  (no "⇒" jumps), followed by a quick sense check. Prefer the physical route (e.g. "ohms per °C first") over pure algebra;
+  show the textbook algebra afterwards as a second way.
 - Goal: the reader can solve every probable question from the source pools: GATE EE 1-mark (+ easy 2-mark), GATE EC (Signals/Digital/Analog), ESE EE prelims, J.B. Gupta-type objective banks, and APSC 2023 PYQs.
 - Answers: mark each as verified (official key) or unverified (solved by us) until confirmed.
 - Textbook/bank questions are rewritten with new values (public portal). Exam PYQs keep original wording.

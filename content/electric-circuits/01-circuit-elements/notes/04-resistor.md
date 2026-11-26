@@ -40,36 +40,115 @@ So when two cables are joined end to end:
 
 ## Resistance changes with temperature
 
-For metals, resistance rises with temperature. Over a normal range:
+### What happens, in plain words
 
-$$R_T = R_0\,[\,1 + \alpha_0\,(T - T_0)\,]$$
+Heat a copper wire and its resistance goes up. Measure it at a few temperatures and plot $R$ against $T$: over the normal working range the points lie on a **straight line**. So the resistance rises by the **same number of ohms for every 1 °C**.
 
-where $R_0$ is the resistance at the reference temperature $T_0$ and $\alpha_0$ is the **temperature coefficient of resistance** at $T_0$ (per °C).
+Look at one copper coil:
+
+| Temperature | 20 °C | 30 °C | 40 °C | 70 °C |
+|---|---|---|---|---|
+| Resistance | 10.0 Ω | 10.4 Ω | 10.8 Ω | 12.0 Ω |
+
+Every 1 °C adds **0.04 Ω**. That is the whole idea. Everything below just writes it as a formula.
+
+### The temperature coefficient $\alpha$
+
+We do not quote "0.04 Ω per °C", because that depends on the size of the coil (a coil of 100 Ω would rise 0.4 Ω per °C). Instead we compare the rise with the resistance at a chosen starting (reference) temperature:
+
+$$\alpha_{ref} = \frac{\text{rise in resistance per °C}}{\text{resistance at the reference temperature}}$$
+
+For the coil above, with 20 °C as reference: $\alpha_{20} = \dfrac{0.04}{10} = 0.004$ /°C. In words: **each 1 °C rise adds 0.4 % of the 20 °C resistance**.
+
+Now the formula follows directly. Rise from $T_{ref}$ to $T$ is $(T - T_{ref})$ degrees; each degree adds $\alpha_{ref}R_{ref}$ ohms:
+
+$$R_T = R_{ref} + \alpha_{ref}R_{ref}(T - T_{ref}) = R_{ref}\,[\,1 + \alpha_{ref}\,(T - T_{ref})\,]$$
+
+Check with the table: $R_{70} = 10[1 + 0.004 \times 50] = 10 \times 1.2 = 12$ Ω. ✓
+
+Sign of $\alpha$:
 
 - Metals: $\alpha > 0$ (copper ≈ 0.0039 /°C at 20 °C).
 - Carbon, semiconductors, electrolytes, insulators: $\alpha < 0$ (resistance falls when hot).
 - Alloys like manganin and constantan: $\alpha \approx 0$. That is why standard resistors are made from them: **high resistivity** (so a small coil gives a big resistance) and **very low temperature coefficient** (so the value stays fixed).
+
+### Why $\alpha$ depends on the reference temperature
+
+The rise per °C (0.04 Ω for our coil) is fixed. But $\alpha$ divides it by the resistance **at the reference**, and that resistance is different at different references:
+
+- reference 20 °C: $\alpha_{20} = 0.04/10 = 0.004$
+- reference 70 °C: $\alpha_{70} = 0.04/12 = 0.00333$
+
+Same coil, same line, two different $\alpha$s. A higher reference temperature means a bigger resistance underneath, so a **smaller** $\alpha$. So $\alpha$ is always stated **at** a temperature: $\alpha_0$ at 0 °C, $\alpha_{20}$ at 20 °C, and so on. When an exam gives two readings and asks for "the temperature coefficient" without naming a reference, give $\alpha_0$ (at 0 °C).
+
+### The no-calculator trick: the "zero point" of the line
+
+Extend the straight line downwards. Our coil loses 0.04 Ω per °C going down, so from 10 Ω at 20 °C it reaches **zero** after $10/0.04 = 250$ °C, i.e. at $20 - 250 = -230$ °C. Call this temperature $-T_z$ (here $T_z = 230$).
+
+Now look at $\alpha$ again: $\alpha_{ref}$ = (rise per °C) ÷ (resistance at ref), and (resistance at ref) = (rise per °C) × (degrees from the zero point to ref). So
+
+$$\alpha_{ref} = \frac{1}{T_{ref} + T_z} \qquad\text{or}\qquad \frac{1}{\alpha_{ref}} = T_{ref} + T_z$$
+
+Check: $1/\alpha_{20} = 20 + 230 = 250$ ⇒ $\alpha_{20} = 1/250 = 0.004$ ✓; $1/\alpha_{70} = 300$ ⇒ $\alpha_{70} = 0.00333$ ✓.
+
+So **$1/\alpha$ simply goes up by 1 for every 1 °C you move the reference up**:
+
+$$\frac{1}{\alpha_{T_1}} = \frac{1}{\alpha_0} + T_1$$
+
+(This is the same as the textbook form $\alpha_{T_1} = \dfrac{\alpha_0}{1 + \alpha_0T_1}$, but much easier to use without a calculator.) For copper, $1/\alpha_0 \approx 234.5$, so copper's line hits zero at about −234.5 °C.
 
 ### Hot and cold resistance of a lamp
 
 A lamp filament (tungsten) runs at about 2500 °C. Its hot resistance is roughly 10–15 times its cold (room-temperature) resistance. This is why a lamp draws a big current for an instant when switched on.
 
 - The rating "60 W, 240 V" tells us the **hot** resistance: $R_{hot} = V^2/P$.
-- If you know the cold resistance and $\alpha$, you can find the filament temperature from $R_T = R_0[1 + \alpha(T - T_0)]$.
+- If you know the cold resistance and $\alpha$, you can find the filament temperature from $R_T = R_{ref}[1 + \alpha_{ref}(T - T_{ref})]$.
 
-**Example 2.** A lamp is rated 60 W, 240 V. Its resistance at 20 °C is 80 Ω and $\alpha_{20} = 5\times10^{-3}$ /°C. Hot resistance $= 240^2/60 = 960$ Ω. Then $960 = 80[1 + 0.005(T-20)]$ ⇒ $12 - 1 = 0.005(T-20)$ ⇒ $T - 20 = 2200$ ⇒ $T = 2220$ °C.
+**Example 2.** A lamp is rated 60 W, 240 V. Its resistance at 20 °C is 80 Ω and $\alpha_{20} = 5\times10^{-3}$ /°C. Find the filament temperature.
 
-### The coefficient depends on the reference temperature
+1. Hot resistance from the rating: $R_{hot} = \dfrac{240^2}{60} = \dfrac{57600}{60} = 960$ Ω.
+2. Put it in the formula: $960 = 80\,[1 + 0.005(T - 20)]$.
+3. Divide both sides by 80: $12 = 1 + 0.005(T - 20)$.
+4. Take 1 to the left: $11 = 0.005(T - 20)$.
+5. Divide by 0.005 (same as multiplying by 200): $T - 20 = 11 \times 200 = 2200$.
+6. $T = 2220$ °C.
 
-$\alpha$ is always stated **at** some temperature: $\alpha_0$ at 0 °C, $\alpha_{20}$ at 20 °C, and so on. They are not equal. Since $R_T = R_0(1 + \alpha_0 T)$ with $R_0$ at 0 °C,
+Quick sense check: the resistance became 12 times, i.e. it **rose by 11 times** $R_{20}$. Each °C adds 0.5 % = 1/200 of $R_{20}$, so we need $11 \times 200 = 2200$ °C of rise.
 
-$$\alpha_{T_1} = \frac{\alpha_0}{1 + \alpha_0T_1}$$
+**Example 3.** A resistor reads 50 Ω at 25 °C and 57.2 Ω at 70 °C. Find its temperature coefficient (a) at 25 °C, (b) at 0 °C.
 
-so $\alpha$ at a higher reference temperature is **smaller**. When an exam gives two readings and asks for "the temperature coefficient", find $\alpha_0$ (the value at 0 °C) unless it names another reference.
+*Step 1: the rise per °C.* From 25 °C to 70 °C is a 45 °C rise, and the resistance rose by $57.2 - 50 = 7.2$ Ω. So each °C adds
 
-**Example 3.** A resistor reads 50 Ω at 25 °C and 57.2 Ω at 70 °C.
-- Taking 0 °C as reference: $\dfrac{57.2}{50} = \dfrac{1 + 70\alpha_0}{1 + 25\alpha_0}$ ⇒ $57.2 + 1430\alpha_0 = 50 + 3500\alpha_0$ ⇒ $\alpha_0 = \dfrac{7.2}{2070} = \dfrac{1}{287.5}$ /°C.
-- Taking 25 °C as reference: $\alpha_{25} = \dfrac{57.2 - 50}{50\times45} = \dfrac{1}{312.5}$ /°C.
+$$\frac{7.2}{45} = 0.16 \text{ Ω per °C}$$
+
+(Without a calculator: $7.2/45 = 72/450 = 8/50 = 0.16$.)
+
+*(a) Reference 25 °C.* Divide the rise per °C by the resistance at 25 °C:
+
+$$\alpha_{25} = \frac{0.16}{50} = 0.0032 = \frac{1}{312.5} \text{ /°C}$$
+
+*(b) Reference 0 °C.* First we need the resistance at 0 °C. Going **down** from 25 °C to 0 °C is 25 degrees, and each degree removes 0.16 Ω:
+
+$$R_0 = 50 - 25 \times 0.16 = 50 - 4 = 46 \text{ Ω}$$
+
+Now divide the same rise per °C by this resistance:
+
+$$\alpha_0 = \frac{0.16}{46} = \frac{16}{4600} = \frac{1}{287.5} \text{ /°C}$$
+
+*Check with the trick:* $1/\alpha_{25} = 1/\alpha_0 + 25$ ⇒ $312.5 = 287.5 + 25$ ✓. (Also: $R_{70} = 46[1 + 70/287.5] = 46 + 11.2 = 57.2$ Ω ✓.)
+
+*Why the two answers differ:* both use the same 0.16 Ω per °C, but (a) divides by 50 Ω and (b) by 46 Ω. A smaller resistance underneath gives a bigger $\alpha$, so $\alpha_0 > \alpha_{25}$.
+
+*The same answer by the formula only (the way most books show it).* Write both readings with 0 °C as reference: $50 = R_0(1 + 25\alpha_0)$ and $57.2 = R_0(1 + 70\alpha_0)$. Divide the second by the first ($R_0$ cancels):
+
+$$\frac{57.2}{50} = \frac{1 + 70\alpha_0}{1 + 25\alpha_0}$$
+
+Cross-multiply: $57.2\,(1 + 25\alpha_0) = 50\,(1 + 70\alpha_0)$.
+Open the brackets: $57.2 + 1430\,\alpha_0 = 50 + 3500\,\alpha_0$ (since $57.2 \times 25 = 1430$ and $50 \times 70 = 3500$).
+Collect: $57.2 - 50 = 3500\,\alpha_0 - 1430\,\alpha_0$ ⇒ $7.2 = 2070\,\alpha_0$.
+So $\alpha_0 = \dfrac{7.2}{2070} = \dfrac{1}{287.5}$ (because $2070 \div 7.2 = 287.5$).
+
+Both ways give the same answer; the step-by-step way (find the ohms per °C first) is quicker and safer in the exam.
 
 ### Resistance from field and current density
 
@@ -77,8 +156,7 @@ Inside a conductor of length $l$ and area $A$: $V = El$ and $I = JA$. So
 
 $$R = \frac{V}{I} = \frac{El}{JA}$$
 
-and since $J = \sigma E$, this is the same as $R = \dfrac{l}{\sigma A} = 
-ho\dfrac{l}{A}$.
+and since $J = \sigma E$, this is the same as $R = \dfrac{l}{\sigma A} = \rho\dfrac{l}{A}$.
 
 ## Power in a resistor
 
@@ -105,9 +183,9 @@ Unless told otherwise, we take this resistance as constant (we ignore the change
 
 **Lamps in parallel** (same voltage, power $= v^2/R$): each gets its rated voltage, so each gives its rated power; the higher wattage lamp is brighter.
 
-**Example 3.** A 25 W, 230 V lamp and a 100 W, 230 V lamp are in series across 230 V. $R_1 = 230^2/25 = 2116$ Ω, $R_2 = 230^2/100 = 529$ Ω. Current $= 230/2645 = 0.087$ A. $P_1 = 0.087^2\times2116 = 16$ W, $P_2 = 4$ W. The **25 W lamp glows brighter**. Total $= 20$ W, less than either rating.
+**Example 4.** A 25 W, 230 V lamp and a 100 W, 230 V lamp are in series across 230 V. $R_1 = 230^2/25 = 2116$ Ω, $R_2 = 230^2/100 = 529$ Ω. Current $= 230/2645 = 0.087$ A. $P_1 = 0.087^2\times2116 = 16$ W, $P_2 = 4$ W. The **25 W lamp glows brighter**. Total $= 20$ W, less than either rating.
 
-**Example 4.** How many 120 W, 240 V heaters in series take the same total power from 240 V as one 40 W, 240 V heater?
+**Example 5.** How many 120 W, 240 V heaters in series take the same total power from 240 V as one 40 W, 240 V heater?
 Equal power from the same supply needs equal total resistance. One 40 W heater: $240^2/40 = 1440$ Ω. Each 120 W heater: $240^2/120 = 480$ Ω. So $n\times480 = 1440$ ⇒ $n = 3$.
 
 ### Power when the current changes with time
@@ -120,7 +198,7 @@ $$p = R I_m^2 \sin^2\omega t$$
 
 The power is never negative; it pulses between 0 and $RI_m^2$ at twice the supply frequency. Its average is $\tfrac12 RI_m^2$ (you will see this again as the RMS idea in the AC power chapter).
 
-**Example 5.** $i = 3\sin 100t$ A in a 4 Ω resistor: $v = 12\sin 100t$ V, $p = 36\sin^2 100t$ W.
+**Example 6.** $i = 3\sin 100t$ A in a 4 Ω resistor: $v = 12\sin 100t$ V, $p = 36\sin^2 100t$ W.
 
 ## Resistors in series and in parallel (only what you need now)
 
@@ -138,12 +216,12 @@ A non-linear resistor has a curved v–i rule, for example $V = kI^2$, or a resi
 3. Solve the equation (often a quadratic).
 4. **Throw away the impossible root**: a passive element must have $V$ and $I$ of the same sign (it absorbs power), and the current cannot exceed what the circuit can drive.
 
-**Example 6.** A 6 V source with internal resistance 1 Ω feeds a non-linear resistor with $V = 2I^2$.
+**Example 7.** A 6 V source with internal resistance 1 Ω feeds a non-linear resistor with $V = 2I^2$.
 $6 - I\times1 = 2I^2$ ⇒ $2I^2 + I - 6 = 0$ ⇒ $I = \dfrac{-1 \pm \sqrt{1+48}}{4} = \dfrac{-1\pm7}{4}$.
 So $I = 1.5$ A (the other root, $-2$ A, would make the passive element give power: reject).
 $V = 2(1.5)^2 = 4.5$ V, power in the resistor $= 4.5\times1.5 = 6.75$ W.
 
-**Example 7.** A resistor has $R = (10 + I)$ Ω, where $I$ is its current in amperes. It is connected to 24 V.
+**Example 8.** A resistor has $R = (10 + I)$ Ω, where $I$ is its current in amperes. It is connected to 24 V.
 $24 = I(10 + I)$ ⇒ $I^2 + 10I - 24 = 0$ ⇒ $(I + 12)(I - 2) = 0$ ⇒ $I = 2$ A (reject $-12$).
 
 **Graphical solution:** draw the load line $V = E - Ir$ and the curve of the non-linear element on the same axes; the crossing point is the answer. This works even when the curve has no formula (only a measured graph).
@@ -154,7 +232,7 @@ $24 = I(10 + I)$ ⇒ $I^2 + 10I - 24 = 0$ ⇒ $(I + 12)(I - 2) = 0$ ⇒ $I = 2$ 
 |---|---|
 | Ohm's law | $v = Ri$, $G = 1/R$ |
 | Resistance | $R = \rho l/A$ |
-| Temperature | $R_T = R_0[1 + \alpha_0(T - T_0)]$; metals $\alpha>0$ |
+| Temperature | $R_T = R_{ref}[1 + \alpha_{ref}(T - T_{ref})]$; $1/\alpha_{T} = 1/\alpha_0 + T$; metals $\alpha>0$ |
 | Power | $p = i^2R = v^2/R \ge 0$ (always absorbs) |
 | Rated device | $R = V_r^2/P_r$; lower watts ⇒ higher R |
 | Series lamps | lower-watt lamp glows brighter; total power < each rating |
