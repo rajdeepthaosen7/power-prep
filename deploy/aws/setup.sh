@@ -13,6 +13,8 @@ set -euo pipefail
 REGION=ap-southeast-1          # Singapore, same as the Neon database
 FN=power-prep-api
 REPO=rajdeepthaosen7/power-prep
+# GitHub now puts owner and repo ids in the OIDC "sub" claim: repo:owner@ownerId/repo@repoId:ref:...
+REPO_IDS=rajdeepthaosen7@147642901/power-prep@1470408163
 P=/power-prep
 export AWS_DEFAULT_REGION=$REGION AWS_PAGER=""
 
@@ -70,7 +72,7 @@ GH_TRUST=$(cat <<EOF
 {"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"Federated":"$OIDC"},
  "Action":"sts:AssumeRoleWithWebIdentity",
  "Condition":{"StringEquals":{"token.actions.githubusercontent.com:aud":"sts.amazonaws.com",
-                              "token.actions.githubusercontent.com:sub":"repo:$REPO:ref:refs/heads/main"}}}]}
+                              "token.actions.githubusercontent.com:sub":["repo:$REPO:ref:refs/heads/main","repo:$REPO_IDS:ref:refs/heads/main"]}}}]}
 EOF
 )
 aws iam create-role --role-name power-prep-deploy --assume-role-policy-document "$GH_TRUST" >/dev/null 2>&1 || \
