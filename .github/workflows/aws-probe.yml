@@ -1,0 +1,23 @@
+# Diagnostic: which regions/services the account's service control policy allows for the deploy role.
+# "explicit deny in a service control policy" = blocked by the account; "no identity-based policy allows" = allowed by the account.
+name: AWS probe
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/aws-probe.yml"]
+permissions: { id-token: write, contents: read }
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: aws-actions/configure-aws-credentials@v4
+        with: { role-to-assume: "arn:aws:iam::189352553185:role/power-prep-deploy", aws-region: ap-southeast-2 }
+      - run: |
+          for r in ap-southeast-1 ap-southeast-2 us-east-1 ap-south-1; do
+            for c in "lambda get-function --function-name power-prep-api" "lambda list-functions" "ssm get-parameter --name /power-prep/DB_USER" \
+                     "sns list-topics" "cloudwatch describe-alarms" "s3api list-buckets" "logs describe-log-groups --limit 1"; do
+              out=$(aws $c --region $r 2>&1 >/dev/null | head -c 400)
+              case "$out" in *"service control policy"*) v=SCP-DENY;; *"identity-based"*|*"not authorized"*) v=allowed-by-account;; "") v=OK;; *) v="other: ${out:0:120}";; esac
+              echo "$r | $c | $v"
+            done
+          done
