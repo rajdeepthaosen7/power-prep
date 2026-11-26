@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      AWS_ACCOUNT_ID: "000000000000"   # set after running deploy/aws/setup.sh
+      AWS_ACCOUNT_ID: "189352553185"   # not a secret; access is limited by the OIDC role trust (main branch of this repo)
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
