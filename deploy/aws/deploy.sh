@@ -26,13 +26,14 @@ else
   echo "Function $FN not found: run deploy/aws/setup.sh in CloudShell first"; exit 1
 fi
 
+PUBLISH_START=$(( $(date +%s) * 1000 ))
 echo "Publishing a version (starts the app once and takes the SnapStart snapshot)..."
 VERSION=$(aws lambda publish-version --function-name $FN --description "${GITHUB_SHA:-manual}" --query Version --output text)
 if ! aws lambda wait published-version-active --function-name "$FN:$VERSION"; then
   aws lambda get-function-configuration --function-name "$FN:$VERSION" --query '[State,StateReason]' --output text
-  echo "---- start-up log (last 15 minutes) ----"
-  aws logs filter-log-events --log-group-name /aws/lambda/$FN --start-time $(( ($(date +%s) - 900) * 1000 )) \
-    --query 'events[].message' --output text 2>&1 | tr '\t' '\n' | grep -v "^\s*at " | grep -iv "password" | tail -60 || true
+  echo "---- start-up log of this version ----"
+  aws logs filter-log-events --log-group-name /aws/lambda/$FN --start-time $PUBLISH_START \
+    --query 'events[].message' --output text 2>&1 | tr '\t' '\n' | grep -v "^\s*at " | grep -i "caused by\|message\|error\|exception\|INIT_REPORT" | tail -30 || true
   echo "Version $VERSION failed to start; the live API was not changed."
   exit 1
 fi
