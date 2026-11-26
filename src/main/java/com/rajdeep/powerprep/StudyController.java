@@ -86,6 +86,10 @@ public class StudyController {
             t.put("questions", questions.stream().filter(qq -> id.equals(qq.get("topicId"))).toList());
         }
         ch.put("topics", topics);
+        // spaced revision state of this chapter for the signed-in user (null until studied)
+        ch.put("progress", uid == null ? null : jdbc.queryForList(
+            "SELECT * FROM chapter_progress WHERE user_id = ? AND chapter_id = ?", uid, chapterId)
+            .stream().findFirst().map(ReviewController::progressView).orElse(null));
         ch.put("figures", figures("""
             SELECT f.storage_key, f.svg FROM figure f
             LEFT JOIN concept_section cs ON cs.id = f.concept_section_id
@@ -104,7 +108,9 @@ public class StudyController {
         Long uid = userId(auth);
         if (uid == null) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "sign in to attempt questions");
         List<Map<String, Object>> qs = jdbc.queryForList(
-            "SELECT answer_type, nat_min, nat_max FROM question WHERE id = ? AND status = 'READY' AND origin = 'PYQ'", id);
+            """
+            SELECT answer_type, nat_min, nat_max FROM question q WHERE q.id = ? AND q.status = 'READY'
+              AND (q.origin = 'PYQ' OR EXISTS (SELECT 1 FROM attempt a WHERE a.question_id = q.id AND a.user_id = ?))""", id, uid);
         if (qs.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "question not found");
         Map<String, Object> q = qs.get(0);
         String type = (String) q.get("answer_type");

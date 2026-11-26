@@ -35,6 +35,17 @@ Full doc: https://claude.ai/artifact/BjEpYbj8eGATVTrSGrfNmJ
   shorter exam-focused notes for light ones (EMF, Measurements). Every chapter keeps its 3 mocks.
 - The owner's time goes to studying, not building: build only what the loop needs, keep it simple.
 
+## Portal features (Nov 2026)
+- Today (`/today`, home): next chapter per track, revisions due, open mistakes, mixed mocks below 85 %. API `/api/today`.
+- Mistake log (`/mistakes`): built from the attempt table (a question is open while its latest attempt is wrong); one-tap reason in
+  `mistake_note`. Re-attempts use mode REVISION; our practice questions can be re-attempted once the user has seen them in a mock.
+- Spaced revision: `chapter_progress` (studied, then revisions after 1, 7, 21 days). A chapter is marked studied automatically when all
+  its written PYQs are attempted, or by the "I have finished this chapter" button.
+- Syllabus tab: `content/syllabus/apgcl-am-2026.yml` -> `python3 content/tools/build_syllabus.py` -> `R__syllabus.sql`.
+  Paper I = GATE EE syllabus without Engineering Maths (owner); 8085 kept because APGCL 2023 asked it. Every topic must map to an item.
+  APGCL also has Paper II (General Studies & General English, 100 MCQ, APSC No.25PSC/CON/Exam-13/2026-2027): not covered yet.
+- One-page summary: `/study/<subject>/c/<chapter>/print` prints the `*-chapter-summary` topic.
+
 ## Writing concept notes (Study tab)
 - Write like the best teacher. Style: Lakhmir Singh (S. Chand) - very clear, detailed, conceptual, simple English.
 - Teaching must be **integral, gradual and complete**:
