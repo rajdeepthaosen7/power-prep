@@ -94,7 +94,9 @@ aws iam put-role-policy --role-name power-prep-deploy --policy-name deploy --pol
 TOPIC=$(aws sns create-topic --name power-prep-alerts --query TopicArn --output text)
 TOPIC_POLICY=$(cat <<EOF
 {"Version":"2012-10-17","Statement":[
- {"Sid":"owner","Effect":"Allow","Principal":{"AWS":"arn:aws:iam::$ACCOUNT:root"},"Action":"SNS:*","Resource":"$TOPIC"},
+ {"Sid":"owner","Effect":"Allow","Principal":{"AWS":"arn:aws:iam::$ACCOUNT:root"},
+  "Action":["SNS:Publish","SNS:Subscribe","SNS:Receive","SNS:GetTopicAttributes","SNS:SetTopicAttributes","SNS:ListSubscriptionsByTopic","SNS:DeleteTopic","SNS:RemovePermission","SNS:AddPermission"],
+  "Resource":"$TOPIC"},
  {"Sid":"alarms","Effect":"Allow","Principal":{"Service":"cloudwatch.amazonaws.com"},"Action":"SNS:Publish","Resource":"$TOPIC"},
  {"Sid":"budgets","Effect":"Allow","Principal":{"Service":"budgets.amazonaws.com"},"Action":"SNS:Publish","Resource":"$TOPIC"}]}
 EOF
