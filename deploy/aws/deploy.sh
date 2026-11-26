@@ -7,7 +7,7 @@ REGION=${AWS_REGION:-ap-southeast-2}
 FN=power-prep-api
 P=/power-prep
 ZIP=target/power-prep-lambda.zip
-export AWS_DEFAULT_REGION=$REGION AWS_PAGER=""
+export AWS_DEFAULT_REGION=$REGION AWS_REGION=$REGION AWS_PAGER=""   # CloudShell sets AWS_REGION, which wins over AWS_DEFAULT_REGION
 ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
 ROLE=arn:aws:iam::$ACCOUNT:role/power-prep-api-role
 

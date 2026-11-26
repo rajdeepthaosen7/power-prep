@@ -17,7 +17,7 @@ REPO=rajdeepthaosen7/power-prep
 # GitHub now puts owner and repo ids in the OIDC "sub" claim: repo:owner@ownerId/repo@repoId:ref:...
 REPO_IDS=rajdeepthaosen7@147642901/power-prep@1470408163
 P=/power-prep
-export AWS_DEFAULT_REGION=$REGION AWS_PAGER=""
+export AWS_DEFAULT_REGION=$REGION AWS_REGION=$REGION AWS_PAGER=""   # CloudShell sets AWS_REGION, which wins over AWS_DEFAULT_REGION
 
 ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
 echo "AWS account $ACCOUNT, region $REGION"
