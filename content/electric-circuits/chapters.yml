@@ -29,8 +29,18 @@ chapters:
   - slug: basic-laws
     name: KCL, KVL and network reduction
     sort: 2
-    description: Kirchhoff's laws, series and parallel, voltage and current division, star-delta, bridges.
-    legacy_topics: [equivalent-resistance-network-reduction-33, series-circuits-voltage-division-163]
+    description: Kirchhoff's laws, series and parallel, voltage and current division, source transformation, star-delta, bridges, ladders.
+    dir: 02-basic-laws
+    topics:
+      - {slug: ec2-kirchhoffs-laws, name: "Kirchhoff's laws in full", note: 01-kirchhoffs-laws.md}
+      - {slug: ec2-series-parallel, name: "Series, parallel and equivalent resistance", note: 02-series-parallel.md}
+      - {slug: ec2-dividers, name: "Voltage and current dividers", note: 03-dividers.md}
+      - {slug: ec2-source-transformation, name: "Source transformation and Millman's theorem", note: 04-source-transformation.md}
+      - {slug: ec2-star-delta, name: "Star-delta conversion", note: 05-star-delta.md}
+      - {slug: ec2-bridges-symmetry, name: "Bridges and symmetry", note: 06-bridges-symmetry.md}
+      - {slug: ec2-ladders, name: "Ladder networks", note: 07-ladders.md}
+      - {slug: ec2-chapter-summary, name: "Chapter 2 at a glance", note: 08-chapter-summary.md}
+    retire_legacy_topics: [equivalent-resistance-network-reduction-33, series-circuits-voltage-division-163]
 
   - slug: node-mesh
     name: Node and mesh analysis
@@ -91,6 +101,8 @@ chapters:
 
 # one-off fixes of earlier tagging (question re-homing), applied with the chapter plan
 fixes:
+  - {source: GATE-2016, q: "S2-Q34", topic: nodal-mesh-kcl-kvl-38}
+  - {source: GATE-2018, q: "32", topic: ac-phasor-circuits-impedance-35}
   - {source: GATE-2012, q: "5", topic: thevenin-norton-36}
   - {source: GATE-2009, q: "3", subject: power-electronics, topic: power-devices-diode-reverse-recovery-326,
      summary: "Source voltage and current waveforms of an element between a and b: diode with reverse recovery"}

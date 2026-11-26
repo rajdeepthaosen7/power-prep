@@ -1,0 +1,385 @@
+# Our own APSC-style questions for the Chapter 2 MIX mock (concepts with no PYQ in that mock). Different from practice-1.yml.
+
+- key: ec2-q-001
+  topic: ec2-kirchhoffs-laws
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Points in a circuit that are joined by plain wire, with no element between them,
+  options:
+    - {label: A, md: "form one node, whatever the length of the wire", correct: true}
+    - {label: B, md: "form a separate node at every corner of the wire"}
+    - {label: C, md: "are at different potentials if the wire is long"}
+    - {label: D, md: "can carry current only in one direction"}
+  solution: |
+    **Idea used:** definition of a node — see *Kirchhoff's laws → The words we need*.
+
+    An ideal wire has no resistance, so there is no voltage along it: all its points are at one potential and form one node.
+
+    **Answer: (A).**
+
+- key: ec2-q-002
+  topic: ec2-kirchhoffs-laws
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    At a node, $i_1 = -2$ A has its arrow out of the node and $i_2 = 5$ A has its arrow into the node. The only other branch current $i_3$, with its arrow out of the node, is
+  options:
+    - {label: A, md: "3 A"}
+    - {label: B, md: "7 A", correct: true}
+    - {label: C, md: "−3 A"}
+    - {label: D, md: "−7 A"}
+  solution: |
+    **Idea used:** KCL with arrows: (arrows in) = (arrows out), keeping signs — see *Kirchhoff's laws → Working with arrows and signs*.
+
+    $5 = -2 + i_3$ ⇒ $i_3 = 7$ A.
+
+    Trap: 3 A ignores the minus sign of $i_1$.
+
+    **Answer: (B) 7 A.**
+
+- key: ec2-q-003
+  topic: ec2-kirchhoffs-laws
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    In a single loop, a 15 V source charges a 4 V battery through two resistors in series. The voltage across one resistor is 3 V. The voltage across the other resistor is
+  options:
+    - {label: A, md: "12 V"}
+    - {label: B, md: "22 V"}
+    - {label: C, md: "8 V", correct: true}
+    - {label: D, md: "4 V"}
+  solution: |
+    **Idea used:** KVL: rises = drops; a battery being charged is a drop — see *Kirchhoff's laws → KVL in full*.
+
+    Rise: 15 V. Drops: 3 V, $V$ and 4 V. $V = 15 - 3 - 4 = 8$ V.
+
+    Trap: 12 V forgets the battery.
+
+    **Answer: (C) 8 V.**
+
+- key: ec2-q-004
+  topic: ec2-kirchhoffs-laws
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    Walking from point B to point A, you pass first a 6 V source from its − to its + terminal, and then a 2 Ω resistor that carries 2 A from A towards B. The voltage $V_{AB}$ is
+  options:
+    - {label: A, md: "2 V"}
+    - {label: B, md: "6 V"}
+    - {label: C, md: "−10 V"}
+    - {label: D, md: "10 V", correct: true}
+  solution: |
+    **Idea used:** voltage between two points by adding rises along a path — see *Kirchhoff's laws → KVL along an open path*.
+
+    - Source, − to +: rise of 6 V.
+    - Resistor, walked **against** its current (current goes A → B, we walk B → A): rise of $2\times2 = 4$ V.
+
+    $V_A - V_B = 6 + 4 = 10$ V.
+
+    Trap: 2 V treats the resistor as a drop.
+
+    **Answer: (D) 10 V.**
+
+- key: ec2-q-005
+  topic: ec2-kirchhoffs-laws
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A connected circuit has 5 nodes and 8 branches. The number of independent KCL equations is
+  options:
+    - {label: A, md: "4", correct: true}
+    - {label: B, md: "5"}
+    - {label: C, md: "3"}
+    - {label: D, md: "8"}
+  solution: |
+    **Idea used:** independent KCL equations $= n - 1$ — see *Kirchhoff's laws → How many independent equations?*
+
+    $5 - 1 = 4$. (Independent KVL equations: $8 - 5 + 1 = 4$ as well.)
+
+    **Answer: (A) 4.**
+
+- key: ec2-q-006
+  topic: ec2-series-parallel
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    Two resistors give 9 Ω when connected in series and 2 Ω when connected in parallel. Their values are
+  options:
+    - {label: A, md: "4 Ω and 5 Ω"}
+    - {label: B, md: "3 Ω and 6 Ω", correct: true}
+    - {label: C, md: "2 Ω and 7 Ω"}
+    - {label: D, md: "1 Ω and 8 Ω"}
+  solution: |
+    **Idea used:** series sum and parallel product-over-sum — see *Series and parallel*.
+
+    Product over sum $= 2$ with sum 9 ⇒ product $= 18$. Two numbers with sum 9 and product 18: 3 and 6.
+
+    **Without a calculator:** every option sums to 9; only $3\times6 = 18$ gives $18/9 = 2$.
+
+    **Answer: (B) 3 Ω and 6 Ω.**
+
+- key: ec2-q-007
+  topic: ec2-series-parallel
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Resistors of 4 Ω, 6 Ω and 12 Ω are connected in parallel. The equivalent resistance is
+  options:
+    - {label: A, md: "22 Ω"}
+    - {label: B, md: "4 Ω"}
+    - {label: C, md: "2 Ω", correct: true}
+    - {label: D, md: "3 Ω"}
+  solution: |
+    **Idea used:** conductances add — see *Series and parallel → Parallel connection*.
+
+    $\tfrac14 + \tfrac16 + \tfrac1{12} = \tfrac{3 + 2 + 1}{12} = \tfrac12$, so $R = 2$ Ω.
+
+    **Without a calculator:** must be below 4 Ω; use twelfths.
+
+    **Answer: (C) 2 Ω.**
+
+- key: ec2-q-008
+  topic: ec2-series-parallel
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A resistor $R$ is connected in parallel with $3R$, and this pair is connected in series with $R/4$. The total resistance is
+  options:
+    - {label: A, md: "$R$", correct: true}
+    - {label: B, md: "$\\dfrac{3R}{4}$"}
+    - {label: C, md: "$\\dfrac{R}{2}$"}
+    - {label: D, md: "$4.25R$"}
+  solution: |
+    **Idea used:** $R \parallel 3R = \tfrac34R$ — see *Series and parallel* (ratio shortcuts).
+
+    $\tfrac34R + \tfrac14R = R$.
+
+    **Answer: (A) $R$.**
+
+- key: ec2-q-009
+  topic: ec2-series-parallel
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Resistors of 3 Ω and 6 Ω are connected in series across a supply. The 6 Ω resistor dissipates 12 W. The total power taken from the supply is
+  options:
+    - {label: A, md: "24 W"}
+    - {label: B, md: "36 W"}
+    - {label: C, md: "12 W"}
+    - {label: D, md: "18 W", correct: true}
+  solution: |
+    **Idea used:** in series $P \propto R$ — see *Series and parallel → Series connection*.
+
+    The 3 Ω takes half of 12 W, i.e. 6 W. Total $= 12 + 6 = 18$ W.
+
+    Trap: 36 W uses $P \propto 1/R$.
+
+    **Answer: (D) 18 W.**
+
+- key: ec2-q-010
+  topic: ec2-series-parallel
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Three 6 µF capacitors are connected so that two are in series and this pair is in parallel with the third. The equivalent capacitance is
+  options:
+    - {label: A, md: "4 µF"}
+    - {label: B, md: "9 µF", correct: true}
+    - {label: C, md: "18 µF"}
+    - {label: D, md: "2 µF"}
+  solution: |
+    **Idea used:** capacitors in series combine like resistors in parallel, and in parallel they add — see *Series and parallel → Inductors and capacitors*.
+
+    Two 6 µF in series: 3 µF. In parallel with 6 µF: 9 µF.
+
+    Trap: 4 µF combines them as if they were resistors.
+
+    **Answer: (B) 9 µF.**
+
+- key: ec2-q-011
+  topic: ec2-dividers
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A current of 14 A enters three parallel branches of 2 Ω, 4 Ω and 4 Ω. The current in the 2 Ω branch is
+  options:
+    - {label: A, md: "3.5 A"}
+    - {label: B, md: "4.67 A"}
+    - {label: C, md: "7 A", correct: true}
+    - {label: D, md: "10 A"}
+  solution: |
+    **Idea used:** current divider with conductances, $I_k = I\,G_k/\sum G$ — see *Dividers → The current divider*.
+
+    Conductances: 0.5, 0.25, 0.25 S; total 1 S. $I_{2\,\Omega} = 14\times0.5 = 7$ A.
+
+    **Answer: (C) 7 A.**
+
+- key: ec2-q-012
+  topic: ec2-dividers
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    Two 50 Ω resistors in series are connected across 100 V. A voltmeter of resistance 50 Ω is connected across the lower resistor. The voltmeter reads about
+  options:
+    - {label: A, md: "50 V"}
+    - {label: B, md: "33.3 V", correct: true}
+    - {label: C, md: "25 V"}
+    - {label: D, md: "66.7 V"}
+  solution: |
+    **Idea used:** a meter loads the divider — see *Dividers → A loaded divider*.
+
+    $50 \parallel 50 = 25$ Ω. Reading $= 100\times\dfrac{25}{50 + 25} = 33.3$ V. The true (unloaded) voltage is 50 V: a low-resistance meter reads low.
+
+    **Answer: (B) 33.3 V.**
+
+- key: ec2-q-013
+  topic: ec2-source-transformation
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A 10 V source in series with 2 Ω is replaced by its equivalent 5 A source in parallel with 2 Ω. A 3 Ω load is connected in each case. Which statement is correct?
+  options:
+    - {label: A, md: "The load power and the power lost inside the source are both the same in the two cases"}
+    - {label: B, md: "The load power is the same, but the power lost inside the source is different", correct: true}
+    - {label: C, md: "The load power is different, but the power lost inside the source is the same"}
+    - {label: D, md: "Both the load power and the power lost inside the source are different"}
+  solution: |
+    **Idea used:** source transformation is exact only for the outside circuit — see *Source transformation → The idea*.
+
+    - Voltage form: load current $10/5 = 2$ A, load power 12 W, loss in 2 Ω $= 4\times2 = 8$ W.
+    - Current form: load voltage $5\times(2 \parallel 3) = 6$ V, load current 2 A, load power 12 W; the internal 2 Ω has 6 V across it: loss $= 36/2 = 18$ W.
+
+    **Answer: (B).**
+
+- key: ec2-q-014
+  topic: ec2-star-delta
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A star of three 9 Ω arms is equivalent to a delta whose every side is
+  options:
+    - {label: A, md: "3 Ω"}
+    - {label: B, md: "9 Ω"}
+    - {label: C, md: "18 Ω"}
+    - {label: D, md: "27 Ω", correct: true}
+  solution: |
+    **Idea used:** equal resistors: $R_\Delta = 3R_Y$ — see *Star–delta → Special cases*.
+
+    $3\times9 = 27$ Ω.
+
+    **Answer: (D) 27 Ω.**
+
+- key: ec2-q-015
+  topic: ec2-bridges-symmetry
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A Wheatstone bridge is balanced when $\dfrac{P}{Q} = \dfrac{R}{S}$. With $P = 1$ kΩ, $Q = 100$ Ω and $S = 47$ Ω, the unknown $R$ is
+  options:
+    - {label: A, md: "470 Ω", correct: true}
+    - {label: B, md: "4.7 Ω"}
+    - {label: C, md: "47 Ω"}
+    - {label: D, md: "4.7 kΩ"}
+  solution: |
+    **Idea used:** balance condition — see *Bridges and symmetry → The balance condition*.
+
+    $R = S\dfrac{P}{Q} = 47\times10 = 470$ Ω.
+
+    **Answer: (A) 470 Ω.**
+
+- key: ec2-q-016
+  topic: ec2-bridges-symmetry
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 3
+  status: REVIEWED
+  stem: |
+    Four 4 Ω resistors form the sides of a square, and two more 4 Ω resistors form its diagonals (the diagonals are not joined where they cross). The resistance between two adjacent corners is
+  options:
+    - {label: A, md: "4 Ω"}
+    - {label: B, md: "1 Ω"}
+    - {label: C, md: "2 Ω", correct: true}
+    - {label: D, md: "8/3 Ω"}
+  solution: |
+    **Idea used:** symmetry: two points at equal potential carry no current between them — see *Bridges and symmetry → Symmetry*.
+
+    Call the adjacent corners A and B, and the other two C and D. C and D are joined to A and to B in exactly the same way, so they are at the same potential and the C–D resistor carries nothing.
+
+    - Direct side A–B: 4 Ω.
+    - A–C–B: 8 Ω. A–D–B: 8 Ω. These two in parallel: 4 Ω.
+    - Total: $4 \parallel 4 = 2$ Ω.
+
+    **Answer: (C) 2 Ω.**
+
+- key: ec2-q-017
+  topic: ec2-ladders
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A ladder network has, from the input: a 3 Ω series resistor, a 6 Ω shunt resistor, a 1 Ω series resistor and finally a 2 Ω shunt resistor. Its input resistance is
+  options:
+    - {label: A, md: "12 Ω"}
+    - {label: B, md: "5 Ω", correct: true}
+    - {label: C, md: "4 Ω"}
+    - {label: D, md: "6 Ω"}
+  solution: |
+    **Idea used:** combine a finite ladder from the far end — see *Ladders → A finite ladder*.
+
+    Far end: $1 + 2 = 3$ Ω; $6 \parallel 3 = 2$ Ω; plus 3 Ω: 5 Ω.
+
+    **Answer: (B) 5 Ω.**
+
+- key: ec2-q-018
+  topic: ec2-ladders
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 3
+  status: REVIEWED
+  stem: |
+    A ladder has, from the input: 1 Ω series, 1 Ω shunt, 1 Ω series, 1 Ω shunt (last). A 10 V supply is applied at the input. The current in the last shunt resistor is
+  options:
+    - {label: A, md: "1 A"}
+    - {label: B, md: "5 A"}
+    - {label: C, md: "2.5 A"}
+    - {label: D, md: "2 A", correct: true}
+  solution: |
+    **Idea used:** assume a value at the far end and scale — see *Ladders → Working backwards for voltages* (Example 2).
+
+    Assume 1 A in the last shunt: it has 1 V; the series 1 Ω before it carries 1 A (1 V), so the middle node is at 2 V; the middle shunt carries 2 A; the first series 1 Ω carries 3 A (3 V). Input: 5 V.
+
+    The real input is 10 V (twice), so the last shunt carries 2 A.
+
+    **Answer: (D) 2 A.**

@@ -1,0 +1,371 @@
+# Chapter 2 PYQs, part 2: source transformation, star-delta, bridges and symmetry, ladders.
+
+- key: ese-2017-60
+  topic: ec2-source-transformation
+  sources: [{code: ESE-2017, q: "60", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    What is the current through the 5 Ω resistance in the circuit shown?
+
+    ![Figure](fig:q-ese2017-60)
+  options:
+    - {label: A, md: "5.33 A"}
+    - {label: B, md: "4.66 A"}
+    - {label: C, md: "2.66 A", correct: true}
+    - {label: D, md: "1.33 A"}
+  solution: |
+    **Idea used:** source transformation turns the circuit into one loop — see *Source transformation* (Example 3).
+
+    - 5 A in parallel with 4 Ω → 20 V in series with 4 Ω (+ at the top).
+    - 10 A in parallel with 6 Ω → 60 V in series with 6 Ω (+ at the top).
+
+    Now one loop: 20 V source, 4 Ω, 5 Ω, 6 Ω, 60 V source, with the sources opposing.
+
+    $$I = \frac{60 - 20}{4 + 5 + 6} = \frac{40}{15} = 2.67\ \text{A}$$
+
+    flowing through the 5 Ω from the right (10 A side) to the left.
+
+    **Without a calculator:** $40/15 = 8/3 \approx 2.67$.
+
+    **Answer: (C) 2.66 A.**
+
+- key: ese-2018-26
+  topic: ec2-source-transformation
+  sources: [{code: ESE-2018, q: "26", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    For the network shown in the figure, the current flowing through the 5 Ω resistance will be
+
+    ![Figure](fig:q-ese2018-26)
+  options:
+    - {label: A, md: "$\\dfrac{37}{25}$ A"}
+    - {label: B, md: "$\\dfrac{40}{28}$ A"}
+    - {label: C, md: "$\\dfrac{39}{28}$ A", correct: true}
+    - {label: D, md: "$\\dfrac{41}{28}$ A"}
+  solution: |
+    **Idea used:** source transformation, then the current divider with conductances — see *Source transformation* (Example 2) and *Dividers → The current divider* (Example 5).
+
+    - 15 V with 4 Ω in series → 3.75 A in parallel with 4 Ω.
+    - Now all of these are between the top node and the bottom: 3.75 A and 6 A (both feeding the node), 4 Ω, 2 Ω and the 3 Ω + 5 Ω = 8 Ω path.
+    - Total current: $3.75 + 6 = 9.75$ A.
+    - Conductances: $\tfrac14, \tfrac12, \tfrac18$ S = 2, 4, 1 eighths, total 7 eighths.
+    - Current in the 8 Ω path (which is the 5 Ω current): $9.75\times\dfrac{1}{7} = \dfrac{39}{28}$ A.
+
+    **Without a calculator:** $9.75 = \dfrac{39}{4}$; $\dfrac{39}{4}\times\dfrac17 = \dfrac{39}{28}$. The options already have 28 in the bottom: only the top needs checking.
+
+    **Answer: (C) $\dfrac{39}{28}$ A.**
+
+- key: ese-2017-41
+  topic: ec2-source-transformation
+  sources: [{code: ESE-2017, q: "41", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    What is the current through the 8 Ω resistance connected across terminals, M and N in the circuit?
+
+    ![Figure](fig:q-ese2017-41)
+  options:
+    - {label: A, md: "0.34 A from M to N", correct: true}
+    - {label: B, md: "0.29 A from M to N"}
+    - {label: C, md: "0.29 A from N to M"}
+    - {label: D, md: "0.34 A from N to M"}
+  solution: |
+    **Idea used:** Millman's theorem (several "source + resistor" branches across the same two nodes) — see *Source transformation → Millman's theorem* (Example 5).
+
+    Three branches between M and N: 8 V with 12 Ω, 2 V with 8 Ω (both + towards M), and 8 Ω alone.
+
+    $$V_M = \frac{\dfrac{8}{12} + \dfrac{2}{8} + 0}{\dfrac{1}{12} + \dfrac{1}{8} + \dfrac{1}{8}} = \frac{0.667 + 0.25}{0.333} = 2.75\ \text{V}$$
+
+    Current in the middle 8 Ω: $2.75/8 \approx 0.34$ A, from M (higher) to N.
+
+    **Without a calculator:** use 24ths: top $= \tfrac{16}{24} + \tfrac{6}{24} = \tfrac{22}{24}$; bottom $= \tfrac{2 + 3 + 3}{24} = \tfrac{8}{24}$; $V_M = \tfrac{22}{8} = 2.75$; $2.75/8 \approx 0.34$.
+
+    **Answer: (A) 0.34 A from M to N.**
+
+- key: ese-2018-30
+  topic: ec2-source-transformation
+  sources: [{code: ESE-2018, q: "30", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The current in the 1 Ω resistor in the network as shown is
+
+    ![Figure](fig:q-ese2018-30)
+  options:
+    - {label: A, md: "2.00 A"}
+    - {label: B, md: "2.25 A", correct: true}
+    - {label: C, md: "2.50 A"}
+    - {label: D, md: "2.75 A"}
+  solution: |
+    **Idea used:** Millman's theorem with a current source branch — see *Source transformation → Millman's theorem*.
+
+    All four branches are between the top node X and the bottom: 2 V with 2 Ω, 3 V with 2 Ω (both + towards X), 1 Ω alone, and the 2 A source feeding X.
+
+    $$V_X = \frac{\dfrac22 + \dfrac32 + 2}{\dfrac12 + \dfrac12 + 1} = \frac{1 + 1.5 + 2}{2} = 2.25\ \text{V}$$
+
+    Current in the 1 Ω $= 2.25/1 = 2.25$ A.
+
+    **Without a calculator:** top $= 4.5$, bottom $= 2$.
+
+    **Answer: (B) 2.25 A.**
+
+- key: gate-2019-42
+  topic: ec2-source-transformation
+  sources: [{code: GATE-2019, q: "42", marks: 2}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The current $I$ flowing in the circuit shown below in amperes is ______.
+
+    ![Figure](fig:q-gate2019-42)
+  nat: {min: 4.3, max: 4.35}
+  # APSC form: in mock tests this question is asked as an MCQ with these options.
+  options:
+    - {label: A, md: "3.24 A"}
+    - {label: B, md: "4.32 A", correct: true}
+    - {label: C, md: "5.93 A"}
+    - {label: D, md: "16 A"}
+  solution: |
+    **Idea used:** source transformation of every branch (Millman) — see *Source transformation → Millman's theorem* (Example 4).
+
+    Each battery branch becomes a current source $E/R$ in parallel with $R$:
+    $200/50 = 160/40 = 100/25 = 80/20 = 4$ A. Total current into the top wire: 16 A.
+
+    Total conductance between the wires: $\tfrac1{50} + \tfrac1{40} + \tfrac1{25} + \tfrac1{20} + \tfrac1{20} = 0.02 + 0.025 + 0.04 + 0.05 + 0.05 = 0.185$ S.
+
+    $V = 16/0.185 \approx 86.5$ V, and $I = V/20 \approx 4.32$ A.
+
+    Traps: 16 A is the total source current; 5.93 A forgets the plain 20 Ω in the conductance sum.
+
+    **Without a calculator:** in 200ths: $4 + 5 + 8 + 10 + 10 = 37$, so $V = 16\times\dfrac{200}{37} = \dfrac{3200}{37} \approx 86.5$; $I = \dfrac{160}{37} \approx 4.3$.
+
+    **Answer: about 4.32 A.**
+
+- key: gate-2004-33
+  topic: ec2-star-delta
+  sources: [{code: GATE-2004, q: "33", marks: 2, url: "https://questions.examside.com/past-years/year-wise/gate/gate-ee/gate-ee-2004/N9bMw3llJX9EIovq"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    In Fig., $R_a$, $R_b$ and $R_c$ are 20 Ω, 10 Ω and 10 Ω respectively. The resistances $R_1$, $R_2$ and $R_3$ in Ω of an equivalent star-connection are
+
+    ![Figure](fig:q-gate2004-33)
+  options:
+    - {label: A, md: "2.5, 5, 5", correct: true}
+    - {label: B, md: "5, 2.5, 5"}
+    - {label: C, md: "5, 5, 2.5"}
+    - {label: D, md: "2.5, 5, 2.5"}
+  solution: |
+    **Idea used:** delta to star — see *Star–delta* (Example 1).
+
+    In the figure, $R_a$ is opposite node a (between b and c), $R_b$ between a and c, $R_c$ between a and b. Sum $= 40$ Ω.
+
+    - $R_1$ (at a) $= \dfrac{R_bR_c}{40} = \dfrac{100}{40} = 2.5$ Ω
+    - $R_2$ (at b) $= \dfrac{R_aR_c}{40} = \dfrac{200}{40} = 5$ Ω
+    - $R_3$ (at c) $= \dfrac{R_aR_b}{40} = \dfrac{200}{40} = 5$ Ω
+
+    **Without a calculator:** node a touches the two 10 Ω sides, so its arm is the smallest; b and c each touch the 20 Ω side and are equal.
+
+    **Answer: (A) 2.5, 5, 5.**
+
+- key: gate-2013-19
+  topic: ec2-star-delta
+  sources: [{code: GATE-2013, q: "19", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Consider a delta connection of resistors and its equivalent star connection as shown below. If all elements of the delta connection are scaled by a factor $k$, $k > 0$, the elements of the corresponding star equivalent will be scaled by a factor of
+
+    ![Figure](fig:q-gate2013-19)
+  options:
+    - {label: A, md: "$k^2$"}
+    - {label: B, md: "$k$", correct: true}
+    - {label: C, md: "$1/k$"}
+    - {label: D, md: "$\\sqrt{k}$"}
+  solution: |
+    **Idea used:** delta-to-star formula — see *Star–delta → Special cases*.
+
+    $R_A = \dfrac{R_bR_c}{R_a + R_b + R_c}$. Multiply every delta resistor by $k$: the top becomes $k^2R_bR_c$ and the bottom $k(R_a + R_b + R_c)$, so $R_A$ becomes $k$ times. Same for the other two arms.
+
+    In general, multiplying every resistance in a network by $k$ multiplies every equivalent resistance by $k$.
+
+    **Answer: (B) $k$.**
+
+- key: gate-2009-7
+  topic: ec2-bridges-symmetry
+  sources: [{code: GATE-2009, q: "7", marks: 1}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The current through the 2 kΩ resistance in the circuit shown is
+
+    ![Figure](fig:q-gate2009-7)
+  options:
+    - {label: A, md: "0 mA", correct: true}
+    - {label: B, md: "1 mA"}
+    - {label: C, md: "2 mA"}
+    - {label: D, md: "6 mA"}
+  solution: |
+    **Idea used:** balanced bridge — see *Bridges and symmetry* (Example 2).
+
+    The four arms are all 1 kΩ, so $1\times1 = 1\times1$: the bridge is balanced. C and D are at the same potential, and the middle 2 kΩ carries **no current**, whatever its value.
+
+    **Answer: (A) 0 mA.**
+
+- key: apdcl-2023-37
+  topic: ec2-bridges-symmetry
+  sources: [{code: APDCL-2023, q: "37", marks: 1.5}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    All resistances of the following circuit are of magnitude 10 Ω. The equivalent resistance between the terminals A and B of the circuit is
+
+    ![Figure](fig:q-apdcl2023-37)
+  options:
+    - {label: A, md: "50 Ω"}
+    - {label: B, md: "20 Ω"}
+    - {label: C, md: "10 Ω", correct: true}
+    - {label: D, md: "None of the above"}
+  solution: |
+    **Idea used:** balanced bridge — see *Bridges and symmetry* (Example 1).
+
+    Four equal arms: balanced, so the middle resistor carries no current and can be removed.
+
+    $R_{AB} = (10 + 10) \parallel (10 + 10) = 20 \parallel 20 = 10$ Ω.
+
+    **Answer: (C) 10 Ω.**
+
+- key: ese-2024-52
+  topic: ec2-bridges-symmetry
+  sources: [{code: ESE-2024, q: "52", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    Five resistances of 10 Ω each are connected between terminals A and B as shown in the figure. What is the total resistance between terminals A and B?
+
+    ![Figure](fig:q-ese2024-52)
+  options:
+    - {label: A, md: "5 Ω"}
+    - {label: B, md: "10 Ω", correct: true}
+    - {label: C, md: "15 Ω"}
+    - {label: D, md: "20 Ω"}
+  solution: |
+    **Idea used:** redraw by naming nodes; it is a balanced bridge — see *Series and parallel → Finding the equivalent resistance* and *Bridges and symmetry*.
+
+    Name the nodes. The resistors are:
+    - A–C (bottom left 10 Ω) and A–D (top 10 Ω, its left end is on the A wire);
+    - C–D (middle 10 Ω);
+    - C–B (bottom loop 10 Ω, its right end is on the B wire) and D–B (right 10 Ω).
+
+    So A connects to C and D, B connects to C and D, and C–D is the middle branch: a bridge with four equal arms. It is balanced; the C–D resistor carries nothing.
+
+    $R_{AB} = 20 \parallel 20 = 10$ Ω.
+
+    **Answer: (B) 10 Ω.**
+
+- key: ese-2024-51
+  topic: ec2-bridges-symmetry
+  sources: [{code: ESE-2024, q: "51", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    What is the value of $V_{AB}$ in the network shown in the figure?
+
+    ![Figure](fig:q-ese2024-51)
+  options:
+    - {label: A, md: "0.86 V"}
+    - {label: B, md: "0.96 V", correct: true}
+    - {label: C, md: "0.66 V"}
+    - {label: D, md: "0.76 V"}
+  solution: |
+    **Idea used:** voltage between the middle points of an unbalanced bridge — see *Bridges and symmetry* (Example 4).
+
+    The 10 V source is across the top and bottom corners. A is the left corner (between 10 Ω above and 20 Ω below); B is the right corner (between 30 Ω above and 40 Ω below). A and B are open terminals, so each side is a plain divider. With the bottom corner at 0 V:
+
+    - $V_A = 10\times\dfrac{20}{10 + 20} = 6.67$ V
+    - $V_B = 10\times\dfrac{40}{30 + 40} = 5.71$ V
+    - $V_{AB} = 6.67 - 5.71 \approx 0.95$ V
+
+    **Without a calculator:** $\tfrac23 - \tfrac47 = \tfrac{14 - 12}{21} = \tfrac{2}{21}$; $10\times\tfrac{2}{21} \approx 0.95$. Closest option: 0.96 V.
+
+    **Answer: (B) 0.96 V.**
+
+- key: gate-2015-s2-29
+  topic: ec2-bridges-symmetry
+  sources: [{code: GATE-2015, q: "S2-Q29", marks: 1}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: OFFICIAL_KEY
+  stem: |
+    The current $i$ (in Ampere) in the 2 Ω resistor of the given network is ______.
+
+    ![Figure](fig:q-gate2015-s2-29)
+  nat: {min: 0, max: 0}
+  # APSC form: in mock tests this question is asked as an MCQ with these options.
+  options:
+    - {label: A, md: "0", correct: true}
+    - {label: B, md: "0.5 A"}
+    - {label: C, md: "1 A"}
+    - {label: D, md: "2.5 A"}
+  solution: |
+    **Idea used:** symmetry (equal potentials) — see *Bridges and symmetry* (Example 5).
+
+    Call the left corners L+ (top, 5 V) and L− (bottom, 0 V). Each right corner is joined to **both** left corners by one 1 Ω each (top-right: by the top side to L+ and by a diagonal to L−; bottom-right: by the bottom side to L− and by the other diagonal to L+). The diagonals cross without joining.
+
+    With the 2 Ω removed, each right corner is the midpoint of two equal 1 Ω resistors between 5 V and 0 V, so both are at 2.5 V. With the 2 Ω connected, there is no voltage across it to start any current, so the potentials stay equal.
+
+    $i = 0$.
+
+    **Answer: 0** (official key).
+
+- key: gate-2016-s1-15
+  topic: ec2-ladders
+  sources: [{code: GATE-2016, q: "S1-Q15", marks: 1}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    $R_A$ and $R_B$ are the input resistances of circuits as shown below. The circuits extend infinitely in the direction shown. Which one of the following statements is TRUE?
+
+    ![Figure](fig:q-gate2016-s1-15)
+  options:
+    - {label: A, md: "$R_A = R_B$"}
+    - {label: B, md: "$R_A = R_B = 0$"}
+    - {label: C, md: "$R_A < R_B$"}
+    - {label: D, md: "$R_B = \\dfrac{R_A}{1 + R_A}$", correct: true}
+  solution: |
+    **Idea used:** an infinite ladder looks the same after one section — see *Ladders* (Examples 3 and 4).
+
+    Circuit B is a 1 Ω shunt placed in front of circuit A. Everything to the right of that 1 Ω is exactly circuit A, so
+
+    $$R_B = 1 \parallel R_A = \frac{1\times R_A}{1 + R_A} = \frac{R_A}{1 + R_A}$$
+
+    (For interest: $R_A = 2 + (1 \parallel R_A)$ gives $R_A = 1 + \sqrt3 \approx 2.73$ Ω, and $R_B \approx 0.73$ Ω. So (C) is false: $R_B < R_A$.)
+
+    **Answer: (D).**

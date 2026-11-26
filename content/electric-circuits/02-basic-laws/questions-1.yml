@@ -1,0 +1,436 @@
+# Chapter 2 PYQs, part 1: Kirchhoff's laws, series-parallel and dividers.
+# status: OFFICIAL_KEY = key printed with the paper; UNVERIFIED = solved by us, no key in hand yet.
+
+- key: gate-2012-28
+  topic: ec2-kirchhoffs-laws
+  sources: [{code: GATE-2012, q: "28", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 3
+  status: UNVERIFIED
+  stem: |
+    If $V_A - V_B = 6$ V, then $V_C - V_D$ is
+
+    ![Figure](fig:q-gate2012-28)
+  options:
+    - {label: A, md: "−5 V", correct: true}
+    - {label: B, md: "2 V"}
+    - {label: C, md: "3 V"}
+    - {label: D, md: "6 V"}
+  solution: |
+    **Idea used:** KCL for a closed boundary (cut set) — see *Kirchhoff's laws → KCL for a closed surface*.
+
+    Look at how the left part (nodes A, C and everything to their left) is joined to the right part (B, D and everything to their right). There are only **two** connections:
+
+    1. the 2 Ω resistor between A and B, and
+    2. the bottom link between C and D: a 1 Ω resistor in parallel with the 2 A source (arrow from C to D).
+
+    Step 1: current in the 2 Ω. $V_A - V_B = 6$ V, so it carries $6/2 = 3$ A from A to B (left to right).
+
+    Step 2: draw a closed boundary around the whole left part. Net current leaving it must be zero, so 3 A must come **back** from right to left through the bottom link.
+
+    Step 3: the 2 A source pushes 2 A from C to D (left to right). For the net to be 3 A right-to-left, the 1 Ω must carry $3 + 2 = 5$ A from D to C.
+
+    Step 4: current flows from higher to lower potential in a resistor, so $V_D - V_C = 5\times1 = 5$ V, i.e. $V_C - V_D = -5$ V.
+
+    None of the R values, the 5 V or the 10 V source matter.
+
+    **Without a calculator:** $6/2 = 3$; $3 + 2 = 5$; sign from the direction.
+
+    **Answer: (A) −5 V.**
+
+- key: gate-2014-s3-30
+  topic: ec2-kirchhoffs-laws
+  sources: [{code: GATE-2014, q: "S3-Q30", marks: 2}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The power delivered by the current source, in the figure, is ______.
+
+    ![Figure](fig:q-gate2014-s3-30)
+  nat: {min: 3, max: 3}
+  # APSC form: in mock tests this question is asked as an MCQ with these options.
+  options:
+    - {label: A, md: "0 W"}
+    - {label: B, md: "1.5 W"}
+    - {label: C, md: "3 W", correct: true}
+    - {label: D, md: "6 W"}
+  solution: |
+    **Idea used:** node voltages fixed by ideal voltage sources, then KCL at one node — see *Kirchhoff's laws → Ideal sources and the two laws*.
+
+    Take the bottom wire as 0 V.
+
+    - Left 1 V source: the top-left node is at **1 V**.
+    - The top 1 V source has + on the left, so the top-right node is $1 - 1 = $ **0 V**.
+    - So the right 1 Ω (from top-right to bottom) has 0 V across it and carries no current.
+
+    Middle node M (where the 2 A source feeds in): KCL, current in = current out:
+
+    $$2 = \frac{V_M - 1}{1} + \frac{V_M - 0}{1} \Rightarrow 2V_M = 3 \Rightarrow V_M = 1.5\ \text{V}$$
+
+    The current source pushes 2 A up into M (out of its + terminal, which is at 1.5 V above the bottom), so it **delivers** $P = 1.5\times2 = 3$ W.
+
+    **Without a calculator:** node voltages 1 and 0; $V_M$ is their average plus $2\times\tfrac12$: $0.5 + 1 = 1.5$.
+
+    **Answer: 3 W.**
+
+- key: gate-2004-32
+  topic: ec2-kirchhoffs-laws
+  sources:
+    - {code: GATE-2004, q: "32", marks: 2, primary: true, url: "https://questions.examside.com/past-years/year-wise/gate/gate-ee/gate-ee-2004/NqnTOSxoQQqFkBRQ"}
+    - {code: APGCL-2023, q: "4", marks: 1}
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    In Fig., the value of the source voltage is
+
+    ![Figure](fig:q-gate2004-32)
+  options:
+    - {label: A, md: "12 V"}
+    - {label: B, md: "24 V"}
+    - {label: C, md: "30 V", correct: true}
+    - {label: D, md: "44 V"}
+  solution: |
+    **Idea used:** KCL at a node, then KVL along a branch — see *Kirchhoff's laws*.
+
+    Step 1 (KCL at the middle node $V_a$, between 10 Ω, 6 Ω shunt and 6 Ω series): current coming in = 1 A (from the current source through 10 Ω) + 2 A (coming from P towards the node). Both must leave through the 6 Ω shunt:
+
+    $$\frac{V_a}{6} = 1 + 2 = 3 \Rightarrow V_a = 18\ \text{V}$$
+
+    Step 2 (KVL from the node to the source): the 2 A flows from P to the node through the series 6 Ω, so P is higher by $2\times6 = 12$ V. $E = V_P = 18 + 12 = 30$ V.
+
+    **Note on APGCL 2023 Q4.** APGCL printed the same question with **8 Ω** in place of the series 6 Ω, but kept GATE's options. With 8 Ω the answer would be $18 + 16 = 34$ V, which is not among the options, so the APGCL version is a misprint of GATE 2004; 30 V is the intended answer.
+
+    **Without a calculator:** $3\times6 = 18$, $2\times6 = 12$, $18 + 12 = 30$.
+
+    **Answer: (C) 30 V.**
+
+- key: apdcl-2023-42
+  topic: ec2-kirchhoffs-laws
+  sources: [{code: APDCL-2023, q: "42", marks: 1.5}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The value of the current $I$ shown in the figure below is
+
+    ![Figure](fig:q-apdcl2023-42)
+  options:
+    - {label: A, md: "2.2 A"}
+    - {label: B, md: "−2.2 A"}
+    - {label: C, md: "−4.4 A", correct: true}
+    - {label: D, md: "10 A"}
+  solution: |
+    **Idea used:** an ideal voltage source fixes a node voltage; KCL finds the current through it — see *Kirchhoff's laws → Ideal sources and the two laws*.
+
+    The 8 V source sits directly between the top wire and the bottom wire, so the top wire is at **8 V** (bottom = 0 V).
+
+    Middle branch (5 Ω in series with the 5 V source, + at the top): current downward $= \dfrac{8 - 5}{5} = 0.6$ A.
+
+    KCL at the top wire. In: 5 A (from the current source) and $I$ (up through the 8 V source, as marked). Out: 0.6 A (down the middle branch).
+
+    $$5 + I = 0.6 \Rightarrow I = -4.4\ \text{A}$$
+
+    The minus sign means 4.4 A actually flows **down** into the 8 V source's + terminal: the 8 V battery is being charged.
+
+    **Without a calculator:** $(8-5)/5 = 0.6$; $0.6 - 5 = -4.4$.
+
+    **Answer: (C) −4.4 A.**
+
+- key: ese-2026-102
+  topic: ec2-kirchhoffs-laws
+  sources: [{code: ESE-2026, q: "102", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 3
+  status: UNVERIFIED
+  stem: |
+    What are $V_o$ and $i$ respectively in the circuit shown below?
+
+    ![Figure](fig:q-ese2026-102)
+  options:
+    - {label: A, md: "+48 V, −8 A", correct: true}
+    - {label: B, md: "+24 V, −4 A"}
+    - {label: C, md: "−48 V, +8 A"}
+    - {label: D, md: "−24 V, +4 A"}
+  solution: |
+    **Idea used:** KVL in a single loop with a dependent source — see *Kirchhoff's laws → KVL* (Example 8).
+
+    Take the loop current $i$ clockwise, as marked (left to right through the 4 Ω).
+
+    Step 1: $V_o$ in terms of $i$. $V_o$ is marked + on the **left** of the 6 Ω (bottom wire). Clockwise current flows through the bottom wire from **right to left**, i.e. it enters the 6 Ω at its − end. So $V_o = -6i$.
+
+    Step 2: KVL clockwise, starting at the bottom-left:
+    - 12 V source (− to +): rise $+12$.
+    - 4 Ω with the current: drop $-4i$.
+    - dependent source $2V_o$, entered at its + side: drop $-2V_o$.
+    - 4 V source, entered at its − (top) side and left at + (bottom): rise $+4$.
+    - 6 Ω with the current: drop $-6i$.
+
+    $$12 - 4i - 2V_o + 4 - 6i = 0$$
+
+    Step 3: put $V_o = -6i$: $16 - 10i + 12i = 0 \Rightarrow i = -8$ A, $V_o = -6(-8) = +48$ V.
+
+    **Check with options:** only (A) has $V_o = -6i$ with $16 + 2i = 0$.
+
+    **Without a calculator:** test options in $V_o = -6i$: (A) $48 = -6(-8)$ ✔, (B) $24 = -6(-4)$ ✔ too; then KVL $16 + 2i = 0$ picks $i = -8$.
+
+    **Answer: (A) +48 V, −8 A.**
+
+- key: ese-2022-40
+  topic: ec2-kirchhoffs-laws
+  sources: [{code: ESE-2022, q: "40", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    What is the voltage $v$ in the circuit diagram?
+
+    ![Figure](fig:q-ese2022-40)
+  options:
+    - {label: A, md: "7.5 V"}
+    - {label: B, md: "16.5 V"}
+    - {label: C, md: "12.5 V", correct: true}
+    - {label: D, md: "14.4 V"}
+  solution: |
+    **Idea used:** current sources in parallel add; resistors in parallel combine — see *Series and parallel → Sources in series and in parallel*.
+
+    All five elements are across the same two wires (top and bottom).
+
+    - Net current pushed **into** the top wire by the sources: $2.5 - 2.5 - 5 = -5$ A.
+    - Resistance between the wires: $5 \parallel 5 = 2.5$ Ω.
+    - $v = (-5)(2.5) = -12.5$ V (top 12.5 V **below** the bottom).
+
+    The options give only magnitudes; the intended answer is 12.5 V. Strictly, with the + mark at the top, $v = -12.5$ V.
+
+    **Without a calculator:** $5\times2.5 = 12.5$.
+
+    **Answer: (C) 12.5 V (magnitude; the actual sign is negative).**
+
+- key: gate-2017-s1-19
+  topic: ec2-series-parallel
+  sources: [{code: GATE-2017_1, q: "19", marks: 1}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The equivalent resistance between the terminals A and B is ______ Ω.
+
+    ![Figure](fig:q-gate2017-s1-19)
+  nat: {min: 3, max: 3}
+  # APSC form: in mock tests this question is asked as an MCQ with these options.
+  options:
+    - {label: A, md: "2.8 Ω"}
+    - {label: B, md: "3 Ω", correct: true}
+    - {label: C, md: "3.6 Ω"}
+    - {label: D, md: "4.8 Ω"}
+  solution: |
+    **Idea used:** name the nodes, watch the crossing, then series–parallel — see *Series and parallel → Finding the equivalent resistance* (Example 5).
+
+    Name the nodes: P (after the first 1 Ω), Q (after the 2 Ω), S (the whole bottom wire: every point on it is one node).
+
+    The two diagonals **cross without joining**: the 6 Ω diagonal goes from P to S, and the 3 Ω diagonal goes from S to Q.
+
+    - Between Q and S: 3 Ω (diagonal), 6 Ω (vertical) and the right-hand path 1 Ω + 1 Ω = 2 Ω. All in parallel: $3 \parallel 6 \parallel 2 = 1$ Ω.
+    - Path P → Q → S: $2 + 1 = 3$ Ω.
+    - Between P and S directly: 3 Ω (vertical) ∥ 6 Ω (diagonal) = 2 Ω.
+    - P to S overall: $2 \parallel 3 = 1.2$ Ω.
+    - A to B: $1 + 1.2 + 0.8 = 3$ Ω.
+
+    Trap: if you join the diagonals at the crossing you get 2.8 Ω.
+
+    **Without a calculator:** $\tfrac13 + \tfrac16 + \tfrac12 = 1$; $2 \parallel 3 = \tfrac{6}{5}$.
+
+    **Answer: 3 Ω.**
+
+- key: gate-2005-1
+  topic: ec2-series-parallel
+  sources: [{code: GATE-2005, q: "1", marks: 1, url: "https://questions.examside.com/past-years/year-wise/gate/gate-ee/gate-ee-2005/iD99ad2QwwvbeqUj"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    In the figure given below the value of $R$ is
+
+    ![Figure](fig:q-gate2005-1)
+  options:
+    - {label: A, md: "2.5 Ω"}
+    - {label: B, md: "5.0 Ω"}
+    - {label: C, md: "7.5 Ω", correct: true}
+    - {label: D, md: "10.0 Ω"}
+  solution: |
+    **Idea used:** total resistance from $V/I$, then series and parallel — see *Series and parallel*.
+
+    The whole circuit takes 8 A from 100 V, so the total resistance is $100/8 = 12.5$ Ω.
+
+    The two 10 Ω resistors are in parallel: 5 Ω. This is in series with $R$: $R + 5 = 12.5$, so $R = 7.5$ Ω.
+
+    **Without a calculator:** $100/8 = 12.5$; $12.5 - 5 = 7.5$.
+
+    **Answer: (C) 7.5 Ω.**
+
+- key: ese-2017-50
+  topic: ec2-dividers
+  sources: [{code: ESE-2017, q: "50", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    What is the potential drop across the 80 Ω resistor in the figure?
+
+    ![Figure](fig:q-ese2017-50)
+  options:
+    - {label: A, md: "20 V", correct: true}
+    - {label: B, md: "15 V"}
+    - {label: C, md: "10 V"}
+    - {label: D, md: "5 V"}
+  solution: |
+    **Idea used:** voltage divider — see *Dividers → The voltage divider* (Example 1).
+
+    $V_{80} = 25\times\dfrac{80}{80 + 20} = 25\times0.8 = 20$ V.
+
+    **Without a calculator:** ratio 80 : 20 = 4 : 1, so the 80 Ω takes $\tfrac45$ of 25 V.
+
+    **Answer: (A) 20 V.**
+
+- key: aegcl-2023-78
+  topic: ec2-dividers
+  sources: [{code: AEGCL-2023, q: "78", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A series circuit contains $n$ linear identical resistors each with a value of $R$ and the circuit is connected to a d.c. voltage source of $V$. If the values of all resistors are halved, then the voltage across each resistor will be
+  options:
+    - {label: A, md: "$V/(2n)$"}
+    - {label: B, md: "$2V/n$"}
+    - {label: C, md: "$V/n$", correct: true}
+    - {label: D, md: "$V/n^2$"}
+  solution: |
+    **Idea used:** in a series circuit the voltage divides in the ratio of the resistances — see *Dividers* (Example 2) and *Series and parallel → Series connection*.
+
+    All $n$ resistors are equal, so each takes $\dfrac{V}{n}$. Halving every resistor keeps them equal: the share stays $V/n$. Only the current doubles (from $V/nR$ to $2V/nR$).
+
+    **Answer: (C) $V/n$.**
+
+- key: gate-2016-s1-17
+  topic: ec2-dividers
+  sources: [{code: GATE-2016, q: "S1-Q17", marks: 1}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    In the portion of a circuit shown, if the heat generated in 5 Ω resistance is 10 calories per second, then heat generated by the 4 Ω resistance, in calories per second, is ______.
+
+    ![Figure](fig:q-gate2016-s1-17)
+  nat: {min: 2, max: 2}
+  # APSC form: in mock tests this question is asked as an MCQ with these options.
+  options:
+    - {label: A, md: "2", correct: true}
+    - {label: B, md: "3"}
+    - {label: C, md: "5"}
+    - {label: D, md: "12.5"}
+  solution: |
+    **Idea used:** power ratios: parallel $P \propto 1/R$, series $P \propto R$ — see *Dividers → Using power ratios* (Example 6).
+
+    The 5 Ω and the (4 + 6) = 10 Ω branch are in parallel, so they have the same voltage. Power $\propto 1/R$: the 10 Ω branch takes $10\times\dfrac{5}{10} = 5$ cal/s.
+
+    Inside that branch, 4 Ω and 6 Ω are in series (same current), so power $\propto R$: the 4 Ω takes $5\times\dfrac{4}{10} = 2$ cal/s.
+
+    **Without a calculator:** half of 10 is 5; 4 parts out of 10 of 5 is 2.
+
+    **Answer: 2.**
+
+- key: ese-2018-17
+  topic: ec2-dividers
+  sources: [{code: ESE-2018, q: "17", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    In the circuit shown, what value of $R$ will result in $I = 4$ A?
+
+    ![Figure](fig:q-ese2018-17)
+  options:
+    - {label: A, md: "9 Ω"}
+    - {label: B, md: "7 Ω", correct: true}
+    - {label: C, md: "5.5 Ω"}
+    - {label: D, md: "3.5 Ω"}
+  solution: |
+    **Idea used:** work backwards with Ohm's law, KCL and KVL — see *Dividers → Finding an unknown resistor* (Example 7).
+
+    Let the voltage across the parallel pair be $4R$. Current in 14 Ω $= 4R/14$. Source current $I_s = 4 + 4R/14$.
+
+    KVL: $100 = 12I_s + 4R = 48 + \dfrac{48R}{14} + 4R$ ⇒ $52 = R\times\dfrac{104}{14}$ ⇒ $R = 7$ Ω.
+
+    **Without a calculator (test the options):** $R = 7$: pair voltage 28 V; 14 Ω takes 2 A; $I_s = 6$ A; drop in 12 Ω = 72 V; $72 + 28 = 100$ ✔.
+
+    **Answer: (B) 7 Ω.**
+
+- key: gate-2004-35
+  topic: ec2-dividers
+  sources: [{code: GATE-2004, q: "35", marks: 2, url: "https://questions.examside.com/past-years/year-wise/gate/gate-ee/gate-ee-2004/0Dte9FxLeaNWsaBk"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    In Fig., the value of resistance $R$ in Ω is
+
+    ![Figure](fig:q-gate2004-35)
+  options:
+    - {label: A, md: "10"}
+    - {label: B, md: "20", correct: true}
+    - {label: C, md: "30"}
+    - {label: D, md: "40"}
+  solution: |
+    **Idea used:** work backwards from the known branch current — see *Dividers → Finding an unknown resistor*.
+
+    Voltage across $R$ (and across the shunt 10 Ω) $= 2R$. Shunt current $= 2R/10$. Total current $= 2 + 0.2R$.
+
+    KVL: $100 = 10(2 + 0.2R) + 2R = 20 + 4R$ ⇒ $R = 20$ Ω.
+
+    **Without a calculator (test the options):** $R = 20$: 40 V across the pair, 4 A in the shunt, 6 A total, 60 V in the series 10 Ω, $60 + 40 = 100$ ✔.
+
+    **Answer: (B) 20.**
+
+- key: gate-2010-33
+  topic: ec2-dividers
+  sources: [{code: GATE-2010, q: "33", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    If the 12 Ω resistor draws a current of 1 A as shown in the figure, the value of resistance $R$ is
+
+    ![Figure](fig:q-gate2010-33)
+  options:
+    - {label: A, md: "4 Ω"}
+    - {label: B, md: "6 Ω", correct: true}
+    - {label: C, md: "8 Ω"}
+    - {label: D, md: "18 Ω"}
+  solution: |
+    **Idea used:** KCL at a node and KVL along a branch — see *Kirchhoff's laws* and *Dividers → Finding an unknown resistor*.
+
+    - The 12 Ω draws 1 A, so the middle node is at $12\times1 = 12$ V.
+    - The 2 A source feeds the node (through the 1 Ω, which does not change the current). KCL: $2 = 1 + I_R$ ⇒ $I_R = 1$ A flows through $R$ towards the 6 V source.
+    - KVL along $R$: $12 - 1\times R = 6$ ⇒ $R = 6$ Ω.
+
+    The 1 Ω in series with the current source has no effect on the rest of the circuit.
+
+    **Without a calculator:** node 12 V, battery 6 V, so $R$ drops 6 V with 1 A.
+
+    **Answer: (B) 6 Ω.**

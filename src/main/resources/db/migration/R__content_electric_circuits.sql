@@ -20,6 +20,8 @@ INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-1999', 'GATE', '
 INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2000', 'GATE', 'GATE', 2000, 'GATE EE 2000') ON CONFLICT (code) DO NOTHING;
 INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2001', 'GATE', 'GATE', 2001, 'GATE EE 2001') ON CONFLICT (code) DO NOTHING;
 INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2003', 'GATE', 'GATE', 2003, 'GATE EE 2003') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2004', 'GATE', 'GATE', 2004, 'GATE EE 2004') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2005', 'GATE', 'GATE', 2005, 'GATE EE 2005') ON CONFLICT (code) DO NOTHING;
 INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2007', 'GATE', 'GATE', 2007, 'GATE EE 2007') ON CONFLICT (code) DO NOTHING;
 INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2008', 'GATE', 'GATE', 2008, 'GATE EE 2008') ON CONFLICT (code) DO NOTHING;
 INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2009', 'GATE', 'GATE', 2009, 'GATE EE 2009') ON CONFLICT (code) DO NOTHING;
@@ -31,6 +33,7 @@ INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2015', 'GATE', '
 INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2016', 'GATE', 'GATE', 2016, 'GATE EE 2016') ON CONFLICT (code) DO NOTHING;
 INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2017_1', 'GATE', 'GATE', 2017, 'GATE EE 2017') ON CONFLICT (code) DO NOTHING;
 INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2017_2', 'GATE', 'GATE', 2017, 'GATE EE 2017') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2019', 'GATE', 'GATE', 2019, 'GATE EE 2019') ON CONFLICT (code) DO NOTHING;
 INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2020', 'GATE', 'GATE', 2020, 'GATE EE 2020') ON CONFLICT (code) DO NOTHING;
 INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2021', 'GATE', 'GATE', 2021, 'GATE EE 2021') ON CONFLICT (code) DO NOTHING;
 INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2024', 'GATE', 'GATE', 2024, 'GATE EE 2024') ON CONFLICT (code) DO NOTHING;
@@ -39,7 +42,7 @@ INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2026', 'GATE', '
 
 -- chapters
 INSERT INTO chapter(subject_id, name, slug, sort_order, description) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), 'Circuit elements and sources', 'circuit-elements', 1, 'Charge, current, voltage, power and energy; R, L, C and M; ideal, practical and dependent sources; a first look at KCL and KVL.') ON CONFLICT (subject_id, slug) DO UPDATE SET name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, description = EXCLUDED.description, updated_at = now();
-INSERT INTO chapter(subject_id, name, slug, sort_order, description) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), 'KCL, KVL and network reduction', 'basic-laws', 2, 'Kirchhoff''s laws, series and parallel, voltage and current division, star-delta, bridges.') ON CONFLICT (subject_id, slug) DO UPDATE SET name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, description = EXCLUDED.description, updated_at = now();
+INSERT INTO chapter(subject_id, name, slug, sort_order, description) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), 'KCL, KVL and network reduction', 'basic-laws', 2, 'Kirchhoff''s laws, series and parallel, voltage and current division, source transformation, star-delta, bridges, ladders.') ON CONFLICT (subject_id, slug) DO UPDATE SET name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, description = EXCLUDED.description, updated_at = now();
 INSERT INTO chapter(subject_id, name, slug, sort_order, description) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), 'Node and mesh analysis', 'node-mesh', 3, 'Nodal and mesh methods, supernode and supermesh, network graph theory.') ON CONFLICT (subject_id, slug) DO UPDATE SET name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, description = EXCLUDED.description, updated_at = now();
 INSERT INTO chapter(subject_id, name, slug, sort_order, description) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), 'Network theorems', 'theorems', 4, 'Superposition, Thevenin, Norton, maximum power transfer; circuits with dependent sources.') ON CONFLICT (subject_id, slug) DO UPDATE SET name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, description = EXCLUDED.description, updated_at = now();
 INSERT INTO chapter(subject_id, name, slug, sort_order, description) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), 'Transient response', 'transients', 5, 'Switching in RC, RL and RLC circuits, DC and AC sources, initial conditions, state equations.') ON CONFLICT (subject_id, slug) DO UPDATE SET name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, description = EXCLUDED.description, updated_at = now();
@@ -62,7 +65,14 @@ INSERT INTO topic(subject_id, chapter_id, name, slug, sort_order) VALUES ((SELEC
 INSERT INTO topic(subject_id, chapter_id, name, slug, sort_order) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'Dependent (controlled) sources', 'ec1-dependent-sources', 9) ON CONFLICT (subject_id, slug) DO UPDATE SET chapter_id = EXCLUDED.chapter_id, name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, updated_at = now();
 INSERT INTO topic(subject_id, chapter_id, name, slug, sort_order) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'KCL and KVL: a first look', 'ec1-kcl-kvl-first-look', 10) ON CONFLICT (subject_id, slug) DO UPDATE SET chapter_id = EXCLUDED.chapter_id, name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, updated_at = now();
 INSERT INTO topic(subject_id, chapter_id, name, slug, sort_order) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'Chapter 1 at a glance', 'ec1-chapter-summary', 11) ON CONFLICT (subject_id, slug) DO UPDATE SET chapter_id = EXCLUDED.chapter_id, name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, updated_at = now();
-UPDATE topic SET chapter_id = (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'basic-laws'), updated_at = now() WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug IN ('equivalent-resistance-network-reduction-33', 'series-circuits-voltage-division-163');
+INSERT INTO topic(subject_id, chapter_id, name, slug, sort_order) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'basic-laws'), 'Kirchhoff''s laws in full', 'ec2-kirchhoffs-laws', 1) ON CONFLICT (subject_id, slug) DO UPDATE SET chapter_id = EXCLUDED.chapter_id, name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, updated_at = now();
+INSERT INTO topic(subject_id, chapter_id, name, slug, sort_order) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'basic-laws'), 'Series, parallel and equivalent resistance', 'ec2-series-parallel', 2) ON CONFLICT (subject_id, slug) DO UPDATE SET chapter_id = EXCLUDED.chapter_id, name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, updated_at = now();
+INSERT INTO topic(subject_id, chapter_id, name, slug, sort_order) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'basic-laws'), 'Voltage and current dividers', 'ec2-dividers', 3) ON CONFLICT (subject_id, slug) DO UPDATE SET chapter_id = EXCLUDED.chapter_id, name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, updated_at = now();
+INSERT INTO topic(subject_id, chapter_id, name, slug, sort_order) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'basic-laws'), 'Source transformation and Millman''s theorem', 'ec2-source-transformation', 4) ON CONFLICT (subject_id, slug) DO UPDATE SET chapter_id = EXCLUDED.chapter_id, name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, updated_at = now();
+INSERT INTO topic(subject_id, chapter_id, name, slug, sort_order) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'basic-laws'), 'Star-delta conversion', 'ec2-star-delta', 5) ON CONFLICT (subject_id, slug) DO UPDATE SET chapter_id = EXCLUDED.chapter_id, name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, updated_at = now();
+INSERT INTO topic(subject_id, chapter_id, name, slug, sort_order) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'basic-laws'), 'Bridges and symmetry', 'ec2-bridges-symmetry', 6) ON CONFLICT (subject_id, slug) DO UPDATE SET chapter_id = EXCLUDED.chapter_id, name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, updated_at = now();
+INSERT INTO topic(subject_id, chapter_id, name, slug, sort_order) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'basic-laws'), 'Ladder networks', 'ec2-ladders', 7) ON CONFLICT (subject_id, slug) DO UPDATE SET chapter_id = EXCLUDED.chapter_id, name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, updated_at = now();
+INSERT INTO topic(subject_id, chapter_id, name, slug, sort_order) VALUES ((SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'basic-laws'), 'Chapter 2 at a glance', 'ec2-chapter-summary', 8) ON CONFLICT (subject_id, slug) DO UPDATE SET chapter_id = EXCLUDED.chapter_id, name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, updated_at = now();
 UPDATE topic SET chapter_id = (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'node-mesh'), updated_at = now() WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug IN ('nodal-mesh-kcl-kvl-38', 'network-graph-theory-91');
 UPDATE topic SET chapter_id = (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'theorems'), updated_at = now() WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug IN ('superposition-164', 'thevenin-norton-36', 'maximum-power-transfer-40', 'dependent-sources-impedance-237');
 UPDATE topic SET chapter_id = (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'transients'), updated_at = now() WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug IN ('transients-rc-ideal-elements-88', 'transients-rl-switching-dc-offset-315', 'state-equations-of-networks-190');
@@ -396,6 +406,27 @@ A lamp filament (tungsten) runs at about 2500 °C. Its hot resistance is roughly
 - If you know the cold resistance and $\alpha$, you can find the filament temperature from $R_T = R_0[1 + \alpha(T - T_0)]$.
 
 **Example 2.** A lamp is rated 60 W, 240 V. Its resistance at 20 °C is 80 Ω and $\alpha_{20} = 5\times10^{-3}$ /°C. Hot resistance $= 240^2/60 = 960$ Ω. Then $960 = 80[1 + 0.005(T-20)]$ ⇒ $12 - 1 = 0.005(T-20)$ ⇒ $T - 20 = 2200$ ⇒ $T = 2220$ °C.
+
+### The coefficient depends on the reference temperature
+
+$\alpha$ is always stated **at** some temperature: $\alpha_0$ at 0 °C, $\alpha_{20}$ at 20 °C, and so on. They are not equal. Since $R_T = R_0(1 + \alpha_0 T)$ with $R_0$ at 0 °C,
+
+$$\alpha_{T_1} = \frac{\alpha_0}{1 + \alpha_0T_1}$$
+
+so $\alpha$ at a higher reference temperature is **smaller**. When an exam gives two readings and asks for "the temperature coefficient", find $\alpha_0$ (the value at 0 °C) unless it names another reference.
+
+**Example 3.** A resistor reads 50 Ω at 25 °C and 57.2 Ω at 70 °C.
+- Taking 0 °C as reference: $\dfrac{57.2}{50} = \dfrac{1 + 70\alpha_0}{1 + 25\alpha_0}$ ⇒ $57.2 + 1430\alpha_0 = 50 + 3500\alpha_0$ ⇒ $\alpha_0 = \dfrac{7.2}{2070} = \dfrac{1}{287.5}$ /°C.
+- Taking 25 °C as reference: $\alpha_{25} = \dfrac{57.2 - 50}{50\times45} = \dfrac{1}{312.5}$ /°C.
+
+### Resistance from field and current density
+
+Inside a conductor of length $l$ and area $A$: $V = El$ and $I = JA$. So
+
+$$R = \frac{V}{I} = \frac{El}{JA}$$
+
+and since $J = \sigma E$, this is the same as $R = \dfrac{l}{\sigma A} = 
+ho\dfrac{l}{A}$.
 
 ## Power in a resistor
 
@@ -1228,6 +1259,541 @@ Write the numbers in these units and the powers of ten disappear.
 - **Units:** energy must come out in joules, power in watts. An option with the wrong units is wrong.
 - **Limits:** if $R \to 0$ or $R \to \infty$, does your answer behave sensibly?
 - **Sign:** decide the sign from the physics (absorbing or delivering, rising or falling) before doing any arithmetic.
+', 'PUBLISHED', 'main') ON CONFLICT (topic_id, slug) DO UPDATE SET title = EXCLUDED.title, body_md = EXCLUDED.body_md, status = EXCLUDED.status, version = concept_section.version + 1, updated_at = now() WHERE concept_section.body_md IS DISTINCT FROM EXCLUDED.body_md OR concept_section.title IS DISTINCT FROM EXCLUDED.title;
+INSERT INTO concept_section(topic_id, sort_order, title, body_md, status, slug) VALUES ((SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-kirchhoffs-laws'), 1, 'Kirchhoff''s laws in full', '## What this chapter does
+
+Chapter 1 gave the rule of each element ($v = iR$, $i = C\,dv/dt$, $v = L\,di/dt$, sources) and a first look at Kirchhoff''s laws. In this chapter we use the two laws fully and learn the quick methods that turn a big network into a small one: series and parallel, voltage and current dividers, source conversion, star–delta, bridges, symmetry and ladders. Most APSC circuit questions are solved with exactly these tools, in under a minute, without a calculator.
+
+## The words we need
+
+![Nodes, branches and loops in a small circuit](fig:c2-node-loop)
+
+- **Branch:** one element (or one series string of elements treated together) between two nodes.
+- **Node:** a point where two or more branches meet. **All wire joined together without any element in between is one node**, however long it is drawn. This is the most common trap in "find the equivalent resistance" questions.
+- **Loop:** any closed path that starts at a node and comes back to it without passing through any node twice.
+- **Mesh:** a loop that has no other loop inside it (a "window" of the drawing).
+- **Essential node:** a node where three or more branches meet. Currents change only at essential nodes.
+
+**Example 1.** A circuit has a source and two resistors in parallel with it, all drawn with long wires. However many corners the drawing has, there are only **2 nodes**: the top wire and the bottom wire. There are 3 branches and 2 meshes.
+
+## Kirchhoff''s Current Law (KCL) in full
+
+> **At any node, the sum of the currents entering equals the sum of the currents leaving.** Written with signs: $\sum i_{\text{leaving}} = 0$.
+
+Why it is true: charge cannot pile up at a node (a node has no capacitance), so charge flowing in each second must flow out in the same second.
+
+### Working with arrows and signs
+
+Each branch current has a **reference arrow**. The value written next to it may be negative.
+
+- A current of $-4$ A with its arrow **into** the node is really 4 A **leaving** the node.
+- Write KCL using the arrows as drawn: (sum of values with arrows in) = (sum of values with arrows out). Keep the signs of the values.
+
+**Example 2.** At a node: $i_1 = 2$ A (arrow in), $i_2 = 3$ A (arrow out), $i_3 = -4$ A (arrow in), $i_4$ (arrow out). Then $2 + (-4) = 3 + i_4$, so $i_4 = -5$ A. The real current in branch 4 is 5 A **into** the node.
+
+### KCL for a closed surface (cut set)
+
+Draw any closed boundary around part of a circuit: one node, several nodes, or a whole box. **The total current leaving the boundary is zero.** This "generalised KCL" often finds a current in one line, with no node equations.
+
+**Example 3.** Two networks are joined by only three wires. Currents from the left network to the right one are 3 A and $-1$ A in two of the wires. Current in the third wire from left to right $= 0 - 3 - (-1) = -2$ A, i.e. 2 A from right to left.
+
+**Example 4 (a classic GATE idea).** Two networks are joined by only two paths: a 2 Ω resistor at the top, and at the bottom a 1 Ω resistor in parallel with a 2 A current source. If 3 A flows left to right through the top 2 Ω, then 3 A must flow **right to left** through the bottom paths together. Since the current source pushes 2 A left to right, the 1 Ω must carry $3 + 2 = 5$ A right to left, and the voltage across it is 5 V. No other part of either network matters.
+
+## Kirchhoff''s Voltage Law (KVL) in full
+
+> **Around any closed loop, the algebraic sum of the voltages is zero.** Sum of rises = sum of drops.
+
+Why it is true: the potential at a point has one value. If you walk round a loop and return to the start, you must be back at the same potential.
+
+### The walking rule
+
+Walk round the loop in one direction (say clockwise).
+
+- Going from − to + across an element is a **rise** (+).
+- Going from + to − is a **drop** (−).
+- Through a resistor **in the direction of its current**, you go from + to −: a drop of $IR$. Against the current: a rise of $IR$.
+
+Add everything up and set the sum to zero.
+
+**Example 5.** One loop: a 24 V source and three elements in series. Drops across two of them are 10 V and 6 V. The third must drop $24 - 10 - 6 = 8$ V.
+
+### KVL along an open path (finding the voltage between two points)
+
+KVL also gives the voltage between any two points A and B: **start at B, walk to A along any path, and add the rises (subtract the drops).** The answer is $V_A - V_B$. Every path gives the same answer, so choose the path with the fewest unknowns.
+
+**Example 6.** Node a is at 12 V and node c is at −3 V, both measured from ground. $V_{ac} = V_a - V_c = 12 - (-3) = 15$ V.
+
+**Example 7.** From B to A the path has: a 5 V source (− to +, a rise), then a 2 Ω resistor carrying 1 A from A towards B (walking from B to A is against the current: a rise of 2 V). $V_A - V_B = 5 + 2 = 7$ V.
+
+## How many independent equations?
+
+For a connected circuit with $b$ branches and $n$ nodes:
+
+- independent **KCL** equations: $n - 1$ (the last node''s equation is the sum of the others);
+- independent **KVL** equations: $b - n + 1$ (this equals the number of meshes in a flat drawing);
+- element (v–i) equations: one per branch, $b$.
+
+Together: $2b$ equations for $2b$ unknowns (a current and a voltage in every branch). Chapter 3 (node and mesh analysis) builds on these counts.
+
+## Ideal sources and the two laws
+
+From Chapter 1, keep these two tools ready:
+
+- The **voltage across a current source** is not fixed by the source. Find it by **KVL** around a loop that contains it.
+- The **current through a voltage source** is not fixed by the source. Find it by **KCL** at one of its nodes.
+
+**Example 8 (single loop with a dependent source).** A loop has a 12 V source, a 4 Ω resistor, a dependent voltage source $2V_o$, a 4 V source and a 6 Ω resistor, with $V_o$ the voltage across the 6 Ω resistor. Write KVL in terms of the loop current $i$, express $V_o$ in terms of $i$ (watch its marked polarity against the current direction), and solve one equation. A negative answer for $i$ just means the current flows against the chosen arrow.
+
+## Power balance as a check
+
+In every circuit, total power delivered = total power absorbed (Chapter 1). After solving, check it: it catches sign mistakes quickly.
+
+## Without a calculator
+
+- Find a current by KCL on a **big boundary** before writing node equations.
+- For $V_{AB}$, pick the path through **sources and known currents** only.
+- Signs first, numbers later: decide which way current must flow from the physics, then do the arithmetic.
+', 'PUBLISHED', 'main') ON CONFLICT (topic_id, slug) DO UPDATE SET title = EXCLUDED.title, body_md = EXCLUDED.body_md, status = EXCLUDED.status, version = concept_section.version + 1, updated_at = now() WHERE concept_section.body_md IS DISTINCT FROM EXCLUDED.body_md OR concept_section.title IS DISTINCT FROM EXCLUDED.title;
+INSERT INTO figure(concept_section_id, storage_key, svg, sort_order) VALUES ((SELECT cs.id FROM concept_section cs WHERE cs.topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-kirchhoffs-laws') AND cs.slug = 'main'), 'c2-node-loop', '<svg width="368" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-34.93599999999999 -123.80000000000001 320.282 158.3"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 46.8,-93.6 L 49.8,-102.6 L 55.8,-84.6 L 61.8,-102.6 L 67.8,-84.6 L 73.8,-102.6 L 79.8,-84.6 L 82.8,-93.6 L 129.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.6,-93.60000000000001 L 129.6,-64.8 L 138.6,-61.8 L 120.6,-55.8 L 138.6,-49.8 L 120.6,-43.8 L 138.6,-37.8 L 120.6,-31.8 L 129.6,-28.8 L 129.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.59999999999997,-0.0 L 64.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.6,-93.60000000000001 L 190.8,-93.6 L 252,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252.0,-93.60000000000001 L 252,-64.8 L 261,-61.8 L 243,-55.8 L 261,-49.8 L 243,-43.8 L 261,-37.8 L 243,-31.8 L 252,-28.8 L 252,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 251.99999999999997,-0.0 L 190.8,-0 L 129.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="-21.599999999999994" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-21.599999999999994" dy="13">V</tspan></text><text x="64.8" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="64.8" dy="13">R1</tspan></text><text x="142.2" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="142.2" dy="13">R2</tspan></text><text x="264.59999999999997" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="264.59999999999997" dy="13">R3</tspan></text><text x="125.99999999999997" y="10.400000000000002" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="125.99999999999997" dy="13">node b (the whole bottom wire)</tspan></text><text x="64.8" y="-56.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="64.8" dy="13">mesh 1</tspan></text><text x="194.4" y="-56.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="194.4" dy="13">mesh 2</tspan></text><circle cx="129.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="129.6" y="-112.89999999999999" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="129.6" dy="13">node a</tspan></text><circle cx="129.6" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET concept_section_id = EXCLUDED.concept_section_id, question_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+INSERT INTO concept_section(topic_id, sort_order, title, body_md, status, slug) VALUES ((SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-series-parallel'), 1, 'Series, parallel and equivalent resistance', '## Series connection
+
+Two or more elements are in **series** when they are joined end to end and **no other branch leaves the joints between them**. Then the same current flows through all of them (KCL at each joint).
+
+For resistors in series:
+
+$$R_{eq} = R_1 + R_2 + \dots + R_n$$
+
+Proof: same current $I$; KVL gives $V = IR_1 + IR_2 + \dots = I(R_1 + R_2 + \dots)$.
+
+Facts to remember:
+
+- $R_{eq}$ is **larger than the largest** resistor.
+- $n$ equal resistors $R$ in series: $nR$.
+- Each one takes a voltage in proportion to its resistance (voltage divider, next topic). With $n$ equal resistors across $V$, each gets $V/n$, **whatever the value of $R$**. Halving or doubling every resistor does not change this; only the current changes.
+- Power in series: $P = I^2R \propto R$, so the **larger** resistor takes more power.
+
+**Example 1.** 2 Ω, 3 Ω and 5 Ω in series across 20 V: $R_{eq} = 10$ Ω, $I = 2$ A, voltages 4 V, 6 V, 10 V.
+
+## Parallel connection
+
+Two or more elements are in **parallel** when they are connected across the **same pair of nodes**. Then they all have the same voltage (KVL).
+
+For resistors in parallel, conductances add:
+
+$$\frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots \qquad G_{eq} = G_1 + G_2 + \dots$$
+
+Proof: same voltage $V$; KCL gives $I = V/R_1 + V/R_2 + \dots$
+
+Facts to remember:
+
+- $R_{eq}$ is **smaller than the smallest** resistor. This alone often kills two options.
+- Two resistors: $R_1 \parallel R_2 = \dfrac{R_1R_2}{R_1 + R_2}$ ("product over sum").
+- $n$ equal resistors $R$ in parallel: $R/n$.
+- $R \parallel 2R = \tfrac23R$, $R \parallel 3R = \tfrac34R$, $R \parallel R = \tfrac12R$.
+- $R \parallel 0 = 0$ (a short across anything shorts it). $R \parallel \infty = R$ (an open branch changes nothing).
+- Power in parallel: $P = V^2/R \propto 1/R$, so the **smaller** resistor takes more power.
+
+**Example 2.** $2 \parallel 3 \parallel 6$: $\tfrac12 + \tfrac13 + \tfrac16 = \tfrac{3+2+1}{6} = 1$, so $R_{eq} = 1$ Ω.
+
+**Example 3 (taking out a common factor).** $600 \parallel 900 = 300\times(2 \parallel 3) = 300\times\tfrac{6}{5} = 360$ Ω.
+
+## Finding the equivalent resistance of a network
+
+Work from the end **farthest** from the terminals towards the terminals, combining series and parallel groups step by step. Before you start, simplify the drawing:
+
+1. **Name the nodes.** Put a letter at every node. Remember: wire with no element in it is one node. Give the same letter to all points joined by plain wire.
+2. **Remove shorted elements.** An element whose two ends are the same node carries no current and has no effect. Delete it.
+3. **Remove dangling elements.** An element that is connected at only one end (an open branch) carries no current. Delete it.
+4. **Redraw** with each lettered node as one dot and each element between its two letters. Series and parallel groups now become obvious.
+5. **Watch crossings.** Where two wires cross with a small hump (or with no dot), they are **not** connected. A dot means they are.
+
+**Example 4.** Five resistors are drawn in a zig-zag between A and B, but a straight wire joins the middle node to B. Then every element between the middle node and B is shorted (both ends are "B"), and $R_{AB}$ is just what lies between A and the middle node.
+
+**Example 5 (step by step).** From A: 1 Ω to node P. Between P and the bottom node S: 3 Ω and 6 Ω (in parallel, $= 2$ Ω). From P: 2 Ω to node Q. Between Q and S: 3 Ω, 6 Ω, and a path of 1 Ω + 1 Ω (all three in parallel: $3 \parallel 6 \parallel 2 = 1$ Ω). From S: 0.8 Ω to B.
+
+- Q to S: 1 Ω. Add the 2 Ω from P: 3 Ω between P and S through Q.
+- P to S: $2 \parallel 3 = 1.2$ Ω.
+- A to B: $1 + 1.2 + 0.8 = 3$ Ω.
+
+## Inductors and capacitors (reminder)
+
+- Uncoupled **inductors** combine like resistors: series add, parallel by product over sum.
+- **Capacitors** combine the opposite way: parallel add; series by product over sum ($\frac{1}{C} = \frac{1}{C_1} + \frac{1}{C_2}$).
+
+## Sources in series and in parallel
+
+- **Voltage sources in series** add with their signs: 10 V and 4 V in series aiding give 14 V; opposing give 6 V.
+- **Current sources in parallel** add with their signs (arrows into the same node add; opposite arrows subtract).
+- Voltage sources in parallel are allowed **only if equal** (otherwise KVL fails). Current sources in series are allowed **only if equal** (otherwise KCL fails).
+- A resistor in **parallel with an ideal voltage source** does not change the voltage seen outside; for the outside circuit you may remove it (it still takes current from the source).
+- A resistor in **series with an ideal current source** does not change the current seen outside; for the outside circuit you may short it.
+
+**Example 6.** A node has a 2.5 A source feeding it, a 2.5 A source and a 5 A source drawing from it, and two 5 Ω resistors to the other node. Net current into the resistors: $2.5 - 2.5 - 5 = -5$ A. $5 \parallel 5 = 2.5$ Ω, so the node voltage is $-5\times2.5 = -12.5$ V (the top is 12.5 V **below** the bottom).
+
+## Without a calculator
+
+- Kill options with bounds: series result > largest; parallel result < smallest.
+- Use the ratio shortcuts ($R \parallel R$, $R \parallel 2R$, $R \parallel 3R$) and common factors.
+- With many equal resistors, count: $n$ in series is $nR$, $n$ in parallel is $R/n$.
+', 'PUBLISHED', 'main') ON CONFLICT (topic_id, slug) DO UPDATE SET title = EXCLUDED.title, body_md = EXCLUDED.body_md, status = EXCLUDED.status, version = concept_section.version + 1, updated_at = now() WHERE concept_section.body_md IS DISTINCT FROM EXCLUDED.body_md OR concept_section.title IS DISTINCT FROM EXCLUDED.title;
+INSERT INTO concept_section(topic_id, sort_order, title, body_md, status, slug) VALUES ((SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-dividers'), 1, 'Voltage and current dividers', '## The voltage divider
+
+![Voltage divider (left) and current divider (right)](fig:c2-dividers)
+
+Two resistors $R_1$ and $R_2$ in **series** across a voltage $V$ carry the same current $I = \dfrac{V}{R_1 + R_2}$. So
+
+$$V_1 = V\,\frac{R_1}{R_1 + R_2}, \qquad V_2 = V\,\frac{R_2}{R_1 + R_2}$$
+
+In words: **the voltage divides in the ratio of the resistances.** The bigger resistor takes the bigger share.
+
+For $n$ resistors in series, $V_k = V\,\dfrac{R_k}{R_1 + R_2 + \dots + R_n}$.
+
+**Example 1.** 80 Ω and 20 Ω in series across 25 V. $V_{80} = 25\times\dfrac{80}{100} = 20$ V, $V_{20} = 5$ V.
+
+**Example 2.** $n$ identical resistors in series across $V$: each gets $V/n$. If all are halved, each still gets $V/n$ (the ratio did not change).
+
+### Capacitors divide the other way
+
+Capacitors in series carry the same **charge**, so $V \propto 1/C$:
+
+$$V_1 = V\,\frac{C_2}{C_1 + C_2}$$
+
+The **smaller** capacitor takes the **larger** voltage.
+
+### A loaded divider
+
+If a load $R_L$ is connected across $R_2$, the divider is changed: replace $R_2$ by $R_2 \parallel R_L$ first, then divide. A load always **lowers** the output voltage.
+
+**Example 3.** 10 kΩ and 10 kΩ across 12 V give 6 V. Put a 10 kΩ load across the lower one: $10 \parallel 10 = 5$ kΩ, so the output becomes $12\times\dfrac{5}{15} = 4$ V.
+
+## The current divider
+
+Two resistors in **parallel** with total current $I$ entering share the same voltage $V = I\,(R_1 \parallel R_2)$. So
+
+$$I_1 = I\,\frac{R_2}{R_1 + R_2}, \qquad I_2 = I\,\frac{R_1}{R_1 + R_2}$$
+
+Note the **cross-over**: the current in $R_1$ has $R_2$ on top. **The current divides in the inverse ratio of the resistances**: the smaller resistor takes the larger current.
+
+With conductances it looks like the voltage divider: $I_k = I\,\dfrac{G_k}{G_1 + G_2 + \dots}$. Use this form for three or more branches.
+
+**Example 4.** 12 A into 4 Ω ∥ 2 Ω. $I_4 = 12\times\dfrac{2}{6} = 4$ A, $I_2 = 8$ A.
+
+**Example 5.** 9.75 A into three branches of 4 Ω, 2 Ω and 8 Ω. Conductances 0.25, 0.5, 0.125 S, total 0.875 S. Current in the 8 Ω branch $= 9.75\times\dfrac{0.125}{0.875} = \dfrac{9.75}{7} = \dfrac{39}{28}$ A.
+
+## Using power ratios (very common in APSC and GATE)
+
+- **Series** (same current): $P \propto R$. If one resistor''s power is known, the other''s is $P\,\dfrac{R_2}{R_1}$.
+- **Parallel** (same voltage): $P \propto 1/R$.
+
+**Example 6.** A 4 Ω and a 6 Ω in series, and this pair in parallel with a 5 Ω. The 5 Ω produces 10 units of heat per second. Common voltage: $V^2 = 10\times5 = 50$. The 4 + 6 branch takes $V^2/10 = 5$ units, split in the ratio 4 : 6, so the 4 Ω produces 2 units.
+
+## Finding an unknown resistor
+
+Many questions give one current and ask for a resistor. Work **backwards** with Ohm''s law, KCL and KVL, one element at a time.
+
+**Example 7.** 100 V source, then 12 Ω in series, then 14 Ω in parallel with $R$. The current in $R$ is 4 A.
+
+- Voltage across the parallel pair $= 4R$.
+- Current in 14 Ω $= 4R/14$. Source current $= 4 + 4R/14$.
+- KVL: $100 = 12\,(4 + 4R/14) + 4R$ ⇒ $52 = R\,(48/14 + 4) = R\times\dfrac{104}{14}$ ⇒ $R = 7$ Ω.
+
+Faster: **test the options.** With $R = 7$: pair voltage 28 V, current in 14 Ω is 2 A, total 6 A, drop in 12 Ω is 72 V, $72 + 28 = 100$ ✔.
+
+## Without a calculator
+
+- Divider answers are fractions of the supply: write the ratio first (80 : 20 = 4 : 1, so 4/5 of 25 V).
+- For unknown resistors, put each option back in; one fits in a few seconds.
+- Check: in a voltage divider each part is less than $V$; in a current divider each part is less than $I$.
+', 'PUBLISHED', 'main') ON CONFLICT (topic_id, slug) DO UPDATE SET title = EXCLUDED.title, body_md = EXCLUDED.body_md, status = EXCLUDED.status, version = concept_section.version + 1, updated_at = now() WHERE concept_section.body_md IS DISTINCT FROM EXCLUDED.body_md OR concept_section.title IS DISTINCT FROM EXCLUDED.title;
+INSERT INTO figure(concept_section_id, storage_key, svg, sort_order) VALUES ((SELECT cs.id FROM concept_section cs WHERE cs.topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-dividers') AND cs.slug = 'main'), 'c2-dividers', '<svg width="526" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-34.935999999999986 -194.50000000000003 457.082 199.10000000000005"><circle cx="0" cy="-93.6" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="252" cy="-93.6" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-23.4 L 0,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 2.865673510004807e-15,-46.800000000000004 L 0,-75.6 L 0,-75.6 M 0,-111.6 L 0,-111.6 L 0,-140.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.600000000000006,-84.60000000000001 L -3.6,-84.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 6.0620016557793985e-15,-99.0 L 0,-106.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000068,-102.60000000000001 L -3.6,-102.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 8.597020530014421e-15,-140.4 L 0,-163.8 L 0,-187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 1.1462694040019228e-14,-187.20000000000002 L 54,-187.2 L 108,-187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 108.00000000000001,-187.20000000000002 L 108,-158.4 L 117,-155.4 L 99,-149.4 L 117,-143.4 L 99,-137.4 L 117,-131.4 L 99,-125.4 L 108,-122.4 L 108,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 108.0,-93.60000000000001 L 108,-64.8 L 117,-61.8 L 99,-55.8 L 117,-49.8 L 99,-43.8 L 117,-37.8 L 99,-31.8 L 108,-28.8 L 108,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 107.99999999999999,-0.0 L 54,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252.0,-0.0 L 252,-75.6 L 252,-75.6 M 252,-111.6 L 252,-111.6 L 252,-187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252.0,-84.60000000000001 L 252,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252 -100.6 L 254.7 -93.6 L 249.3 -93.6 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 252.0,-187.20000000000002 L 280.8,-187.2 L 309.6,-187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 309.59999999999997,-187.20000000000002 L 309.6,-111.6 L 318.6,-108.6 L 300.6,-102.6 L 318.6,-96.6 L 300.6,-90.6 L 318.6,-84.6 L 300.6,-78.6 L 309.6,-75.6 L 309.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 309.5999999999999,-0.0 L 280.8,-0 L 252,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 309.59999999999997,-187.20000000000002 L 349.2,-187.2 L 388.8,-187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 388.8,-187.20000000000002 L 388.8,-111.6 L 397.8,-108.6 L 379.8,-102.6 L 397.8,-96.6 L 379.8,-90.6 L 397.8,-84.6 L 379.8,-78.6 L 388.8,-75.6 L 388.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 388.79999999999995,-0.0 L 349.2,-0 L 309.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="-21.59999999999999" y="-106.60000000000001" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-21.59999999999999" dy="13">V</tspan></text><text x="120.60000000000002" y="-176.79999999999998" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.60000000000002" dy="13">+</tspan></text><text x="120.60000000000001" y="-153.4" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.60000000000001" dy="13">V1</tspan></text><text x="120.60000000000001" y="-130.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.60000000000001" dy="13">−</tspan></text><text x="95.4" y="-153.4" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="95.4" dy="13">R1</tspan></text><text x="120.6" y="-83.2" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.6" dy="13">+</tspan></text><text x="120.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.6" dy="13">V2</tspan></text><text x="120.6" y="-36.4" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.6" dy="13">−</tspan></text><text x="95.39999999999999" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="95.39999999999999" dy="13">R2</tspan></text><text x="230.4" y="-106.60000000000001" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="230.4" dy="13">I</tspan></text><text x="322.2" y="-106.60000000000001" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="322.2" dy="13">R1</tspan></text><text x="401.40000000000003" y="-106.60000000000001" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="401.40000000000003" dy="13">R2</tspan></text><text x="325.8" y="-160.60000000000002" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="325.8" dy="13">I1 ↓</tspan></text><text x="405.0" y="-160.60000000000002" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="405.0" dy="13">I2 ↓</tspan></text><circle cx="309.6" cy="-187.2" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET concept_section_id = EXCLUDED.concept_section_id, question_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+INSERT INTO concept_section(topic_id, sort_order, title, body_md, status, slug) VALUES ((SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-source-transformation'), 1, 'Source transformation and Millman''s theorem', '## Source transformation: the idea
+
+Chapter 1 showed that a practical voltage source ($E$ in series with $r$) and a practical current source ($I$ in parallel with $r$) can be the same thing as seen from outside. Here we use this as a **tool to simplify circuits**.
+
+$$E \text{ in series with } R \quad\Longleftrightarrow\quad I = \frac{E}{R} \text{ in parallel with } R$$
+
+Rules:
+
+- The **same $R$** appears in both forms (series in one, parallel in the other).
+- The current source arrow points towards the terminal that was **+** of the voltage source.
+- Both forms have the same open-circuit voltage ($E = IR$) and the same short-circuit current ($I = E/R$).
+- They are equivalent **only for the outside circuit**. The power lost inside $R$ is not the same in the two forms.
+- An ideal voltage source (no series $R$) or an ideal current source (no parallel $R$) cannot be transformed.
+
+**Example 1.** 15 V in series with 4 Ω becomes 3.75 A in parallel with 4 Ω.
+
+## Why it helps
+
+A string of "source + resistor" branches in parallel becomes a set of current sources in parallel (which simply add) and resistors in parallel (which combine). A long chain becomes one source and one resistor.
+
+**Example 2.** A 15 V source with 4 Ω in series feeds a node. From that node to ground: 2 Ω, a 6 A current source feeding the node, and a 3 Ω + 5 Ω path. Find the current in the 5 Ω.
+
+- 15 V and 4 Ω → 3.75 A in parallel with 4 Ω.
+- Current sources into the node: $3.75 + 6 = 9.75$ A.
+- Resistances from node to ground: 4 Ω, 2 Ω and 8 Ω (3 + 5) in parallel.
+- Current divider (Topic 3, Example 5): $I_{8\,\Omega} = \dfrac{39}{28}$ A ≈ 1.39 A.
+
+**Example 3.** A 5 A source in parallel with 4 Ω, then 5 Ω in series, then 6 Ω in parallel with a 10 A source (both current sources feed the top wire). Convert both ends: 20 V with 4 Ω, and 60 V with 6 Ω. Now it is one loop: $I = \dfrac{60 - 20}{4 + 5 + 6} = \dfrac{40}{15} = 2.67$ A through the 5 Ω (from the 10 A side to the 5 A side).
+
+## Millman''s theorem: many sources in parallel
+
+When several branches, each "$E_k$ in series with $R_k$", are connected between the **same two nodes**, the voltage between the nodes is
+
+$$V = \frac{\dfrac{E_1}{R_1} + \dfrac{E_2}{R_2} + \dots}{\dfrac{1}{R_1} + \dfrac{1}{R_2} + \dots} = \frac{\sum E_k G_k}{\sum G_k}$$
+
+It is just source transformation done for all branches at once: each branch gives $E_k/R_k$ amperes; the currents add; the resistances combine in parallel. A branch that is only a resistor has $E = 0$ (it adds to the bottom, not the top). A current source branch adds its current directly to the top. Signs: take $E_k$ positive when its + side faces the top node.
+
+**Example 4.** Four branches, each a battery with a series resistor: 200 V/50 Ω, 160 V/40 Ω, 100 V/25 Ω, 80 V/20 Ω, and a fifth branch of 20 Ω only. Each battery branch gives $E/R = 4$ A. Top: $4\times4 = 16$ A. Bottom: $\tfrac1{50} + \tfrac1{40} + \tfrac1{25} + \tfrac1{20} + \tfrac1{20} = 0.185$ S. $V = 16/0.185 \approx 86.5$ V. Current in the plain 20 Ω $\approx 4.32$ A.
+
+**Example 5 (two sources, one middle resistor).** 8 V with 12 Ω, and 2 V with 8 Ω, both + towards node M, and 8 Ω from M to the bottom N. $V_M = \dfrac{8/12 + 2/8}{1/12 + 1/8 + 1/8} = \dfrac{0.667 + 0.25}{0.333} = 2.75$ V. Current in the middle 8 Ω $= 2.75/8 \approx 0.34$ A from M to N.
+
+## Without a calculator
+
+- Look for "$E$/$R$" pairs that give equal or round currents (200/50 = 160/40 = 4 A).
+- Work with conductances in a common unit: in Example 5, use $\tfrac1{24}$ as the unit: $\tfrac1{12} = \tfrac{2}{24}$, $\tfrac18 = \tfrac{3}{24}$.
+- Check the result lies between the smallest and the largest source voltage when every branch has a source (a weighted average must).
+', 'PUBLISHED', 'main') ON CONFLICT (topic_id, slug) DO UPDATE SET title = EXCLUDED.title, body_md = EXCLUDED.body_md, status = EXCLUDED.status, version = concept_section.version + 1, updated_at = now() WHERE concept_section.body_md IS DISTINCT FROM EXCLUDED.body_md OR concept_section.title IS DISTINCT FROM EXCLUDED.title;
+INSERT INTO concept_section(topic_id, sort_order, title, body_md, status, slug) VALUES ((SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-star-delta'), 1, 'Star-delta conversion', '## Why we need star–delta
+
+Some networks have no series or parallel pair anywhere (a bridge with five resistors is the usual example). Converting a group of three resistors from one shape to the other creates series and parallel pairs, and then the network reduces.
+
+![Delta (left) and its equivalent star (right)](fig:c2-star-delta)
+
+- **Delta (Δ, also π):** three resistors forming a triangle between three nodes a, b, c.
+- **Star (Y, also T):** three resistors from a, b, c to one common centre point.
+
+The two are equivalent if the resistance measured between **every pair** of terminals is the same.
+
+Naming used here: in the delta, $R_a$ is the side **opposite** node a (between b and c), $R_b$ is opposite b (between c and a), $R_c$ is opposite c (between a and b). In the star, $R_1$ is the arm at node a, $R_2$ at b, $R_3$ at c.
+
+## Delta to star
+
+$$R_1 = \frac{R_bR_c}{R_a + R_b + R_c},\quad R_2 = \frac{R_cR_a}{R_a + R_b + R_c},\quad R_3 = \frac{R_aR_b}{R_a + R_b + R_c}$$
+
+**Rule:** star arm at a node = (product of the two delta sides **touching** that node) ÷ (sum of all three sides).
+
+**Derivation (one pair is enough).** Between a and b, the star gives $R_1 + R_2$. The delta gives $R_c \parallel (R_a + R_b) = \dfrac{R_c(R_a + R_b)}{R_a + R_b + R_c}$. Write the same for the other two pairs, add two of them and subtract the third, and the formulas above appear.
+
+## Star to delta
+
+$$R_a = \frac{R_1R_2 + R_2R_3 + R_3R_1}{R_1},\quad R_b = \frac{\text{same top}}{R_2},\quad R_c = \frac{\text{same top}}{R_3}$$
+
+**Rule:** delta side = (sum of the products of the star arms taken two at a time) ÷ (the star arm **opposite** that side).
+
+In conductances the star-to-delta rule looks like delta-to-star: $G_{ab} = \dfrac{G_1G_2}{G_1 + G_2 + G_3}$.
+
+## Special cases to remember
+
+- **All equal:** $R_Y = \dfrac{R_\Delta}{3}$, $R_\Delta = 3R_Y$.
+- **Scaling:** if every delta resistor is multiplied by $k$, every star arm is multiplied by $k$ too (top is $k^2$, bottom is $k$). Resistance networks scale linearly.
+- The star arms are always **smaller** than the delta sides they replace.
+
+**Example 1.** $R_a = 20$ Ω, $R_b = 10$ Ω, $R_c = 10$ Ω. Sum = 40 Ω.
+- $R_1$ (at a) $= \dfrac{R_bR_c}{40} = \dfrac{100}{40} = 2.5$ Ω.
+- $R_2$ (at b) $= \dfrac{R_cR_a}{40} = \dfrac{200}{40} = 5$ Ω.
+- $R_3$ (at c) $= \dfrac{R_aR_b}{40} = 5$ Ω.
+
+**Example 2.** A star of three 4 Ω arms is the same as a delta of three 12 Ω sides.
+
+**Example 3 (an unbalanced bridge).** Between A and B: 10 Ω (A–C), 20 Ω (A–D), 10 Ω (C–D), 30 Ω (C–B), 20 Ω (D–B). Convert the delta A–C–D (10, 20, 10; sum 40) to a star with centre O:
+- arm at A $= \dfrac{10\times20}{40} = 5$ Ω, arm at C $= \dfrac{10\times10}{40} = 2.5$ Ω, arm at D $= \dfrac{20\times10}{40} = 5$ Ω.
+- Now: A–O 5 Ω; then two paths to B: $2.5 + 30 = 32.5$ Ω and $5 + 20 = 25$ Ω in parallel $= \dfrac{32.5\times25}{57.5} \approx 14.1$ Ω.
+- $R_{AB} \approx 19.1$ Ω.
+
+## Without a calculator
+
+- Equal resistors: divide or multiply by 3, nothing more.
+- For delta to star, the denominator is the same for all three arms; compute it once.
+- Before converting, check if the bridge is **balanced** (next topic). Then no conversion is needed.
+', 'PUBLISHED', 'main') ON CONFLICT (topic_id, slug) DO UPDATE SET title = EXCLUDED.title, body_md = EXCLUDED.body_md, status = EXCLUDED.status, version = concept_section.version + 1, updated_at = now() WHERE concept_section.body_md IS DISTINCT FROM EXCLUDED.body_md OR concept_section.title IS DISTINCT FROM EXCLUDED.title;
+INSERT INTO figure(concept_section_id, storage_key, svg, sort_order) VALUES ((SELECT cs.id FROM concept_section cs WHERE cs.topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-star-delta') AND cs.slug = 'main'), 'c2-star-delta', '<svg width="588" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-17.529999999999998 -189.49999999999994 511.04 203.09999999999994"><path d="M 93.60000000000001,-162.0 L 131.395,-96.586 L 140.689,-98.49 L 128.105,-84.29 L 146.692,-88.1 L 134.108,-73.9 L 152.695,-77.71 L 140.111,-63.51 L 149.405,-65.414 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-0.0 L 111.6,-0 L 108.6,9 L 102.6,-9 L 96.6,9 L 90.6,-9 L 84.6,9 L 78.6,-9 L 75.6,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 37.795,-65.414 L 31.503,-72.515 L 50.09,-68.705 L 37.506,-82.905 L 56.094,-79.095 L 43.51,-93.295 L 62.097,-89.485 L 55.805,-96.586 L 93.6,-162" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 381.59999999999997,-57.6 L 381.6,-93.6 L 372.6,-96.6 L 390.6,-102.6 L 372.6,-108.6 L 390.6,-114.6 L 372.6,-120.6 L 390.6,-126.6 L 381.6,-129.6 L 381.6,-165.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 381.59999999999997,-57.6 L 413.07,-38.234 L 420.342,-44.326 L 416.018,-25.852 L 430.562,-38.037 L 426.238,-19.563 L 440.782,-31.748 L 436.458,-13.274 L 443.73,-19.366 L 475.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 381.59999999999997,-57.6 L 350.13,-38.234 L 352.292,-28.997 L 337.748,-41.182 L 342.072,-22.707 L 327.528,-34.893 L 331.852,-16.418 L 317.308,-28.603 L 319.47,-19.366 L 288,0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="151.30989992288133" y="-100.30349773322033" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="151.30989992288133" dy="13">Rc</tspan></text><text x="93.60000000000001" y="-25.600000000000012" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000001" dy="13">Ra</tspan></text><text x="35.89010007711867" y="-100.30349773322033" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="35.89010007711867" dy="13">Rb</tspan></text><text x="369.0" y="-124.6" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="369.0" dy="13">R1</tspan></text><text x="435.0036275633706" y="-52.530894790477255" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="435.0036275633706" dy="13">R2</tspan></text><text x="328.19637243662936" y="-52.53089479047724" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="328.19637243662936" dy="13">R3</tspan></text><circle cx="93.6" cy="-162" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="93.60000000000001" y="-181.29999999999998" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000001" dy="13">a</tspan></text><circle cx="187.2" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="193.5" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="193.5" dy="13">b</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="-6.3" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-6.3" dy="13">c</tspan></text><circle cx="381.6" cy="-165.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="381.59999999999997" y="-184.89999999999998" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="381.59999999999997" dy="13">a</tspan></text><circle cx="475.2" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="481.5" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="481.5" dy="13">b</tspan></text><circle cx="288" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="281.7" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="281.7" dy="13">c</tspan></text><circle cx="381.6" cy="-57.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET concept_section_id = EXCLUDED.concept_section_id, question_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+INSERT INTO concept_section(topic_id, sort_order, title, body_md, status, slug) VALUES ((SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-bridges-symmetry'), 1, 'Bridges and symmetry', '## The bridge network
+
+![Bridge: four arms P, Q, R, S with a middle branch between C and D](fig:c2-bridge)
+
+Four resistors form a diamond A–C–B–D: $P$ (A–C), $Q$ (C–B), $R$ (A–D), $S$ (D–B). A fifth branch (a resistor or a galvanometer) joins C and D. The supply is connected across A and B.
+
+The middle branch makes the network neither series nor parallel. But in one important case it carries **no current**.
+
+## The balance condition
+
+The bridge is **balanced** when C and D are at the same potential. Then no current flows in the middle branch, whatever it is.
+
+Find $V_C$ and $V_D$ by the voltage divider (with the middle branch removed). With $V$ across A–B and B as 0 V:
+
+$$V_C = V\frac{Q}{P + Q},\qquad V_D = V\frac{S}{R + S}$$
+
+These are equal when $\dfrac{Q}{P + Q} = \dfrac{S}{R + S}$, which simplifies to
+
+$$\boxed{\;\frac{P}{Q} = \frac{R}{S}\quad\text{or}\quad PS = QR\;}$$
+
+**Products of opposite arms are equal.** The same ratio idea works for impedances in AC bridges (Measurements).
+
+## What to do with a balanced bridge
+
+Because the middle branch carries no current, you may either:
+
+- **remove** it (open it): then $R_{AB} = (P + Q) \parallel (R + S)$; or
+- **short** it (join C and D): then $R_{AB} = (P \parallel R) + (Q \parallel S)$.
+
+Both give the same answer, and the middle resistor''s value does not matter.
+
+**Example 1.** All five resistors are 10 Ω. Balanced ($10\times10 = 10\times10$). $R_{AB} = 20 \parallel 20 = 10$ Ω.
+
+**Example 2.** 1 kΩ in all four arms, 2 kΩ in the middle, 6 V across A–B. Balanced, so the current in the 2 kΩ is **0 mA**.
+
+**Example 3.** Arms 2, 4 (top path) and 3, 6 (bottom path), middle 5 Ω. $2\times6 = 4\times3$: balanced. $R_{AB} = 6 \parallel 9 = 3.6$ Ω.
+
+## Voltage between the middle points of an unbalanced bridge
+
+If the bridge is not balanced and the middle branch is **open** (no element, just two terminals A and B to measure), find each side''s potential by the divider and subtract.
+
+**Example 4.** 10 V across the bridge. Left path: 10 Ω then 20 Ω; right path: 30 Ω then 40 Ω (from the + end). Taking the − end as 0 V: point on the left $= 10\times\dfrac{20}{30} = 6.67$ V; point on the right $= 10\times\dfrac{40}{70} = 5.71$ V. Difference $\approx 0.95$ V.
+
+If the middle branch has a resistor and the bridge is unbalanced, use star–delta (Topic 5), Thevenin (Chapter 4) or node analysis (Chapter 3).
+
+## Symmetry: points at the same potential
+
+Balance is a special case of a bigger idea:
+
+> **If two points must be at the same potential, any element between them carries no current, and the two points may be joined or separated as you like.**
+
+How to spot equal potentials: look for a **mirror line** in the network. If the network looks the same when reflected, with A and B swapped in a matching way, then points that map onto each other across the mirror (or that lie on a line that must sit half-way between the terminals) are at the same potential.
+
+**Example 5 (crossed square).** A 5 V source is on the left side of a square. The top and bottom sides are 1 Ω each, the two diagonals are 1 Ω each, and a 2 Ω resistor is on the right side. Each right corner is joined to **both** left corners by 1 Ω (one straight, one diagonal). By symmetry, each right corner sits exactly half-way between the two left corners: both are at 2.5 V. So the 2 Ω resistor has 0 V across it: **current 0**.
+
+**Example 6 (twelve equal resistors on a cube, between opposite corners).** From corner A, three edges go out to three corners that are all alike: they are at one potential and may be joined. In the same way the three corners next to B are at one potential. So $R = \dfrac{R}{3} + \dfrac{R}{6} + \dfrac{R}{3} = \dfrac{5}{6}R$.
+
+## Without a calculator
+
+- Always test $PS = QR$ first. If it holds, the middle branch disappears.
+- Look for mirror symmetry before writing any equation.
+- In a balanced bridge the middle element''s value is a **distractor**.
+', 'PUBLISHED', 'main') ON CONFLICT (topic_id, slug) DO UPDATE SET title = EXCLUDED.title, body_md = EXCLUDED.body_md, status = EXCLUDED.status, version = concept_section.version + 1, updated_at = now() WHERE concept_section.body_md IS DISTINCT FROM EXCLUDED.body_md OR concept_section.title IS DISTINCT FROM EXCLUDED.title;
+INSERT INTO figure(concept_section_id, storage_key, svg, sort_order) VALUES ((SELECT cs.id FROM concept_section cs WHERE cs.topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-bridges-symmetry') AND cs.slug = 'main'), 'c2-bridge', '<svg width="325" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-47.800000000000026 -124.7 282.80000000000007 294.9"><circle cx="93.6" cy="147.6" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 34.072,-34.072 L 29.829,-42.557 L 46.8,-34.072 L 38.315,-51.043 L 55.285,-42.557 L 46.8,-59.528 L 63.771,-51.043 L 59.528,-59.528 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 127.672,-59.528 L 136.157,-63.771 L 127.672,-46.8 L 144.643,-55.285 L 136.157,-38.315 L 153.128,-46.8 L 144.643,-29.829 L 153.128,-34.072 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 34.072,34.072 L 42.557,29.829 L 34.072,46.8 L 51.043,38.315 L 42.557,55.285 L 59.528,46.8 L 51.043,63.771 L 59.528,59.528 L 93.6,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,93.60000000000001 L 127.672,59.528 L 123.429,51.043 L 140.4,59.528 L 131.915,42.557 L 148.885,51.043 L 140.4,34.072 L 157.371,42.557 L 153.128,34.072 L 187.2,0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 93.6,-18 L 102.6,-15 L 84.6,-9 L 102.6,-3 L 84.6,3 L 102.6,9 L 84.6,15 L 93.6,18 L 93.6,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L -21.6,-0 L -43.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -43.199999999999996,-5.290474172316566e-15 L -43.2,73.8 L -43.2,147.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -43.200000000000024,147.6 L 75.6,147.6 L 75.6,147.6 M 111.6,147.6 L 111.6,147.6 L 230.4,147.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 84.60000000000001,151.2 L 84.6,144" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 99.0,147.6 L 106.2,147.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 102.60000000000001,151.2 L 102.6,144" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 230.4,147.6 L 230.4,73.8 L 230.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 230.4,-0.0 L 208.8,-0 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="37.8904545570495" y="-68.70954544295049" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="37.8904545570495" dy="13">P</tspan></text><text x="149.30954544295048" y="-68.70954544295051" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="149.30954544295048" dy="13">Q</tspan></text><text x="37.8904545570495" y="42.70954544295049" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="37.8904545570495" dy="13">R</tspan></text><text x="149.30954544295048" y="42.70954544295051" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="149.30954544295048" dy="13">S</tspan></text><text x="106.2" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.2" dy="13">G</tspan></text><text x="93.60000000000001" y="112.99999999999999" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000001" dy="13">V</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="-13.5" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-13.5" dy="13">A</tspan></text><circle cx="93.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="93.60000000000001" y="-120.10000000000001" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000001" dy="13">C</tspan></text><circle cx="187.2" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="200.70000000000002" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="200.70000000000002" dy="13">B</tspan></text><circle cx="93.6" cy="93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="93.60000000000001" y="94.10000000000001" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000001" dy="13">D</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET concept_section_id = EXCLUDED.concept_section_id, question_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+INSERT INTO concept_section(topic_id, sort_order, title, body_md, status, slug) VALUES ((SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-ladders'), 1, 'Ladder networks', '## The ladder network
+
+A **ladder** is a chain of repeated sections, each with a **series** element and a **shunt** element (to the bottom rail). It looks like a ladder lying on its side.
+
+![A ladder: series elements along the top, shunt elements down to the bottom rail](fig:c2-ladder)
+
+### A finite ladder: start from the far end
+
+Combine from the end **away from the input**:
+
+1. The last shunt and the last series element: series or parallel, whichever they are.
+2. Put the result in parallel with the next shunt, then in series with the next series element.
+3. Repeat until you reach the input.
+
+**Example 1.** Input, then 2 Ω series, 3 Ω shunt, 1 Ω series, 6 Ω shunt (last).
+- Far end: the 1 Ω series element leads into the 6 Ω shunt, so together they form 1 + 6 = 7 Ω.
+- In parallel with 3 Ω: $3 \parallel 7 = 2.1$ Ω.
+- In series with 2 Ω: $R_{in} = 4.1$ Ω.
+
+### Working backwards for voltages (the "assume 1 A" trick)
+
+To find the output of a ladder, **assume** the current or voltage at the far end (say 1 A or 1 V), work back to the input with Ohm''s law and KCL, and then scale everything by (actual input) ÷ (input you got). This works because the network is linear.
+
+**Example 2.** Ladder: 1 Ω series, 1 Ω shunt, 1 Ω series, 1 Ω shunt (last), fed with 13 V. Find the voltage across the last shunt.
+- Assume 1 V across the last shunt: it carries 1 A; the series 1 Ω before it carries 1 A too, dropping 1 V. So the middle node is at 2 V.
+- Middle shunt carries 2 A. Total current in the first series 1 Ω: $1 + 2 = 3$ A, dropping 3 V. Input $= 2 + 3 = 5$ V.
+- Actual input is 13 V, so scale by $13/5$: output $= 13/5 = 2.6$ V.
+
+## The infinite ladder
+
+If the ladder goes on forever, adding one more section at the input does not change the input resistance. That gives an equation.
+
+Let one section be a series $R_s$ then a shunt $R_p$, and let the whole ladder have input resistance $R$. Then
+
+$$R = R_s + (R_p \parallel R) = R_s + \frac{R_pR}{R_p + R}$$
+
+Multiply out: $R^2 - R_sR - R_sR_p = 0$, so
+
+$$R = \frac{R_s + \sqrt{R_s^2 + 4R_sR_p}}{2}$$
+
+(take the positive root: a resistance cannot be negative).
+
+**Example 3.** $R_s = 2$ Ω, $R_p = 1$ Ω: $R^2 - 2R - 2 = 0$ ⇒ $R = 1 + \sqrt3 \approx 2.73$ Ω.
+
+**Example 4 (the same ladder, but starting with a shunt).** If the infinite ladder starts with the 1 Ω **shunt** at the input, followed by the ladder of Example 3, then $R_B = 1 \parallel R_A = \dfrac{R_A}{1 + R_A}$.
+
+**Example 5.** $R_s = R_p = R$: $x^2 - x - 1 = 0$ (with $x = R_{in}/R$) gives $R_{in} = \dfrac{1 + \sqrt5}{2}R \approx 1.618R$ (the golden ratio).
+
+## Without a calculator
+
+- For an infinite ladder, **do not solve the quadratic**: test the options in $R = R_s + R_p \parallel R$. The right option satisfies it.
+- Bounds: $R_s < R_{in} < R_s + R_p$ for a ladder starting with a series element.
+- For finite ladders, the "assume 1 V at the end" trick needs only additions.
+', 'PUBLISHED', 'main') ON CONFLICT (topic_id, slug) DO UPDATE SET title = EXCLUDED.title, body_md = EXCLUDED.body_md, status = EXCLUDED.status, version = concept_section.version + 1, updated_at = now() WHERE concept_section.body_md IS DISTINCT FROM EXCLUDED.body_md OR concept_section.title IS DISTINCT FROM EXCLUDED.title;
+INSERT INTO figure(concept_section_id, storage_key, svg, sort_order) VALUES ((SELECT cs.id FROM concept_section cs WHERE cs.topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-ladders') AND cs.slug = 'main'), 'c2-ladder', '<svg width="434" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-36.483999999999995 -30.199999999999996 377.459 131.1"><path d="M 0.0,-0.0 L 10.8,-0 L 21.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 21.599999999999998,-0.0 L 46.8,-0 L 49.8,-9 L 55.8,9 L 61.8,-9 L 67.8,9 L 73.8,-9 L 79.8,9 L 82.8,-0 L 108,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 108.0,-0.0 L 108,28.8 L 117,31.8 L 99,37.8 L 117,43.8 L 99,49.8 L 117,55.8 L 99,61.8 L 108,64.8 L 108,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 108.0,-0.0 L 133.2,-0 L 136.2,-9 L 142.2,9 L 148.2,-9 L 154.2,9 L 160.2,-9 L 166.2,9 L 169.2,-0 L 194.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 194.4,-0.0 L 194.4,28.8 L 203.4,31.8 L 185.4,37.8 L 203.4,43.8 L 185.4,49.8 L 203.4,55.8 L 185.4,61.8 L 194.4,64.8 L 194.4,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 194.4,-0.0 L 219.6,-0 L 222.6,-9 L 228.6,9 L 234.6,-9 L 240.6,9 L 246.6,-9 L 252.6,9 L 255.6,-0 L 280.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 280.8,-0.0 L 280.8,28.8 L 289.8,31.8 L 271.8,37.8 L 289.8,43.8 L 271.8,49.8 L 289.8,55.8 L 271.8,61.8 L 280.8,64.8 L 280.8,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 280.8,-0.0 L 291.6,-0 L 302.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,93.60000000000001 L 151.2,93.6 L 302.4,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="64.8" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="64.8" dy="13">Rs</tspan></text><text x="120.6" y="33.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.6" dy="13">Rp</tspan></text><text x="151.20000000000002" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="151.20000000000002" dy="13">Rs</tspan></text><text x="207.0" y="33.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="207.0" dy="13">Rp</tspan></text><text x="237.60000000000002" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="237.60000000000002" dy="13">Rs</tspan></text><text x="293.40000000000003" y="33.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="293.40000000000003" dy="13">Rp</tspan></text><text x="327.59999999999997" y="30.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="327.59999999999997" dy="13">···</tspan></text><text x="-18.0" y="30.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-18.0" dy="13">Rin →</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="0" cy="93.6" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET concept_section_id = EXCLUDED.concept_section_id, question_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+INSERT INTO concept_section(topic_id, sort_order, title, body_md, status, slug) VALUES ((SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ec2-chapter-summary'), 1, 'Chapter 2 at a glance', '## Chapter 2 at a glance
+
+### Kirchhoff''s laws
+
+- **KCL:** at a node (or across any closed boundary), current in = current out. Use the arrows as drawn and keep the signs of the values.
+- **KVL:** around any loop, rises = drops. Voltage between two points = sum of rises along **any** path from one to the other.
+- One wire with no element in it = **one node**, however it is drawn.
+- Counts: $n - 1$ KCL equations, $b - n + 1$ KVL equations.
+- Current through a voltage source: by KCL. Voltage across a current source: by KVL.
+
+### Series and parallel
+
+| | Series | Parallel |
+|---|---|---|
+| Same quantity | current | voltage |
+| Resistors | $R_1 + R_2$ | $\dfrac{R_1R_2}{R_1 + R_2}$ |
+| Result is | > largest | < smallest |
+| Power share | $\propto R$ | $\propto 1/R$ |
+| Capacitors | $\dfrac{C_1C_2}{C_1 + C_2}$ | $C_1 + C_2$ |
+
+- $n$ equal: $nR$ in series, $R/n$ in parallel. $R \parallel 2R = \tfrac23R$, $R \parallel 3R = \tfrac34R$.
+- Delete shorted elements (both ends on one node) and dangling elements (one end free).
+
+### Dividers
+
+- Voltage divider: $V_1 = V\dfrac{R_1}{R_1 + R_2}$ (bigger $R$, bigger share).
+- Current divider: $I_1 = I\dfrac{R_2}{R_1 + R_2}$ (cross-over; smaller $R$, bigger share). For many branches use $I_k = I\,G_k/\sum G$.
+- A load across a divider lowers its output: replace the lower resistor by its parallel combination with the load.
+
+### Source transformation and Millman
+
+- $E$ in series with $R$ ⇔ $E/R$ in parallel with $R$ (arrow towards the old + terminal).
+- Millman: $V = \dfrac{\sum E_kG_k + \sum I_k}{\sum G_k}$ for branches across the same two nodes.
+
+### Star–delta
+
+- Δ → Y: arm = (product of the two sides at that node) ÷ (sum of the three sides).
+- Y → Δ: side = (sum of products two at a time) ÷ (opposite arm).
+- Equal: $R_Y = R_\Delta/3$. Scaling by $k$ scales the other form by $k$.
+
+### Bridges, symmetry, ladders
+
+- Balance: $PS = QR$ (products of opposite arms). Then the middle branch carries zero current; open it or short it.
+- Points that symmetry forces to the same potential may be joined; any element between them carries nothing.
+- Infinite ladder: $R = R_s + R_p \parallel R$ ⇒ $R^2 - R_sR - R_sR_p = 0$.
+- Finite ladder: combine from the far end; for voltages assume 1 V (or 1 A) at the end and scale.
+
+## Common traps
+
+- Treating a long drawn wire as several nodes.
+- Missing a crossover hump (no connection) or a dot (connection).
+- Using the voltage-divider formula for a current divider (forgetting the cross-over).
+- Keeping a resistor in parallel with an ideal voltage source when finding what the outside circuit sees (it changes the source current only).
+- In a balanced bridge, computing with the middle resistor: it is a distractor.
+- Sign of a current given as negative: it flows against its arrow.
+
+## Working without a calculator
+
+- **Bounds first:** series > largest, parallel < smallest. Two options usually fall at once.
+- **Ratios:** 80 : 20 = 4 : 1, so 4/5 of the voltage. Power ratios need no current at all.
+- **Test options** for unknown resistors and infinite ladders: put the option back in and check one line.
+- **Use conductances** for three or more parallel branches; pick a common denominator (for 4, 2 and 8 Ω use eighths: 2 + 4 + 1 = 7 eighths).
+- **Check balance and symmetry** before any algebra.
 ', 'PUBLISHED', 'main') ON CONFLICT (topic_id, slug) DO UPDATE SET title = EXCLUDED.title, body_md = EXCLUDED.body_md, status = EXCLUDED.status, version = concept_section.version + 1, updated_at = now() WHERE concept_section.body_md IS DISTINCT FROM EXCLUDED.body_md OR concept_section.title IS DISTINCT FROM EXCLUDED.title;
 
 -- questions
@@ -5165,6 +5731,158 @@ Read the circuit: $I = 5$ A leaves the + terminal of the 20 V source ($P_1$) and
 ', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2020-27';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2020', '27')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'The resistance $R$ of a conductor is where: $E$ = Electric field intensity, $A$ = Cross-sectional area, $J$ = Current density, $l$ = Length of conductor', 'The resistance $R$ of a conductor is
+
+where: $E$ = Electric field intensity, $A$ = Cross-sectional area, $J$ = Current density, $l$ = Length of conductor
+', '**Idea used:** $V = El$ and $I = JA$ — see *The resistor → Resistance from field and current density*.
+
+$R = \dfrac{V}{I} = \dfrac{El}{JA}$.
+
+**Without a calculator:** unit check. $E$ is V/m, $l$ is m, $J$ is A/m², $A$ is m². $\dfrac{(V/m)(m)}{(A/m^2)(m^2)} = \dfrac{V}{A}$ = Ω. Only (C) gives ohms.
+
+**Answer: (C).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2020-27', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The resistance $R$ of a conductor is where: $E$ = Electric field intensity, $A$ = Cross-sectional area, $J$ = Current density, $l$ = Length of conductor'), stem_md = 'The resistance $R$ of a conductor is
+
+where: $E$ = Electric field intensity, $A$ = Cross-sectional area, $J$ = Current density, $l$ = Length of conductor
+', solution_md = '**Idea used:** $V = El$ and $I = JA$ — see *The resistor → Resistance from field and current density*.
+
+$R = \dfrac{V}{I} = \dfrac{El}{JA}$.
+
+**Without a calculator:** unit check. $E$ is V/m, $l$ is m, $J$ is A/m², $A$ is m². $\dfrac{(V/m)(m)}{(A/m^2)(m^2)} = \dfrac{V}{A}$ = Ω. Only (C) gives ohms.
+
+**Answer: (C).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2020-27', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2020'), '27', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$\dfrac{EA}{Jl}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$\dfrac{EJ}{Al}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$\dfrac{El}{JA}$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$\dfrac{JA}{El}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2021-65';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2021', '65')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A heater element is made of nichrome wire having resistivity equal to $100\times10^{-8}$ Ωm. The diameter of the wire is 0.4 mm. The length of the wire...', 'A heater element is made of nichrome wire having resistivity equal to $100\times10^{-8}$ Ωm. The diameter of the wire is 0.4 mm. The length of the wire required to get a resistance of 40 Ω and 1000 W is
+', '**Idea used:** $R = \rho\dfrac{l}{A}$ — see *The resistor → What decides the resistance*.
+
+Area: $A = \dfrac{\pi d^2}{4} = \dfrac{\pi(0.4\times10^{-3})^2}{4} = \pi\times0.04\times10^{-6} = 1.257\times10^{-7}$ m².
+
+$l = \dfrac{RA}{\rho} = \dfrac{40\times1.257\times10^{-7}}{10^{-6}} = 40\times0.1257 = 5.03$ m.
+
+The 1000 W is extra information (it does not change the length for a given resistance).
+
+**Without a calculator:** $\rho = 10^{-6}$; $A = 0.04\pi\times10^{-6}$, so $l = 40\times0.04\pi = 1.6\pi \approx 5.0$ m.
+
+**Answer: (A) 5.0 metres.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2021-65', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A heater element is made of nichrome wire having resistivity equal to $100\times10^{-8}$ Ωm. The diameter of the wire is 0.4 mm. The length of the wire...'), stem_md = 'A heater element is made of nichrome wire having resistivity equal to $100\times10^{-8}$ Ωm. The diameter of the wire is 0.4 mm. The length of the wire required to get a resistance of 40 Ω and 1000 W is
+', solution_md = '**Idea used:** $R = \rho\dfrac{l}{A}$ — see *The resistor → What decides the resistance*.
+
+Area: $A = \dfrac{\pi d^2}{4} = \dfrac{\pi(0.4\times10^{-3})^2}{4} = \pi\times0.04\times10^{-6} = 1.257\times10^{-7}$ m².
+
+$l = \dfrac{RA}{\rho} = \dfrac{40\times1.257\times10^{-7}}{10^{-6}} = 40\times0.1257 = 5.03$ m.
+
+The 1000 W is extra information (it does not change the length for a given resistance).
+
+**Without a calculator:** $\rho = 10^{-6}$; $A = 0.04\pi\times10^{-6}$, so $l = 40\times0.04\pi = 1.6\pi \approx 5.0$ m.
+
+**Answer: (A) 5.0 metres.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2021-65', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2021'), '65', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '5.0 metres', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4.5 metres', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '5.5 metres', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4.0 metres', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-resistor';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2021-72';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2021', '72')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'What is the temperature coefficient of resistance of material used in a resistor if the resistance at 25 °C is 50 Ω and at 70 °C is 57.2 Ω?', 'What is the temperature coefficient of resistance of material used in a resistor if the resistance at 25 °C is 50 Ω and at 70 °C is 57.2 Ω?
+', '**Idea used:** the temperature coefficient at 0 °C, $\alpha_0$ — see *The resistor → The coefficient depends on the reference temperature* (Example 3).
+
+With $R_T = R_0(1 + \alpha_0T)$:
+
+$$\frac{57.2}{50} = \frac{1 + 70\alpha_0}{1 + 25\alpha_0} \Rightarrow 57.2 + 1430\alpha_0 = 50 + 3500\alpha_0 \Rightarrow \alpha_0 = \frac{7.2}{2070} = \frac{1}{287.5}\ \text{per °C}$$
+
+Trap: using 25 °C as the reference gives $\alpha_{25} = \dfrac{7.2}{50\times45} = \dfrac{1}{312.5}$, which is not an option. The options are written for $\alpha_0$.
+
+**Without a calculator:** $2070/7.2 = 20700/72 = 287.5$ (since $72\times287.5 = 20700$).
+
+**Answer: (D) $\dfrac{1}{287.5}$.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2021-72', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'What is the temperature coefficient of resistance of material used in a resistor if the resistance at 25 °C is 50 Ω and at 70 °C is 57.2 Ω?'), stem_md = 'What is the temperature coefficient of resistance of material used in a resistor if the resistance at 25 °C is 50 Ω and at 70 °C is 57.2 Ω?
+', solution_md = '**Idea used:** the temperature coefficient at 0 °C, $\alpha_0$ — see *The resistor → The coefficient depends on the reference temperature* (Example 3).
+
+With $R_T = R_0(1 + \alpha_0T)$:
+
+$$\frac{57.2}{50} = \frac{1 + 70\alpha_0}{1 + 25\alpha_0} \Rightarrow 57.2 + 1430\alpha_0 = 50 + 3500\alpha_0 \Rightarrow \alpha_0 = \frac{7.2}{2070} = \frac{1}{287.5}\ \text{per °C}$$
+
+Trap: using 25 °C as the reference gives $\alpha_{25} = \dfrac{7.2}{50\times45} = \dfrac{1}{312.5}$, which is not an option. The options are written for $\alpha_0$.
+
+**Without a calculator:** $2070/7.2 = 20700/72 = 287.5$ (since $72\times287.5 = 20700$).
+
+**Answer: (D) $\dfrac{1}{287.5}$.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2021-72', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2021'), '72', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$\dfrac{1}{168.5}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$\dfrac{1}{378.5}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$\dfrac{1}{463.5}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$\dfrac{1}{287.5}$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
 END $ppimport$;
 DO $ppimport$
 DECLARE qid int; subj int; tid int;
@@ -9211,19 +9929,3747 @@ Traps: 16 W is the resistor''s share; 24 W is the source''s total.
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-kcl-kvl-first-look');
 END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2012-28';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2012', '28')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'If $VA - VB = 6$ V, then $VC - VD$ is', 'If $V_A - V_B = 6$ V, then $V_C - V_D$ is
+
+![Figure](fig:q-gate2012-28)
+', '**Idea used:** KCL for a closed boundary (cut set) — see *Kirchhoff''s laws → KCL for a closed surface*.
+
+Look at how the left part (nodes A, C and everything to their left) is joined to the right part (B, D and everything to their right). There are only **two** connections:
+
+1. the 2 Ω resistor between A and B, and
+2. the bottom link between C and D: a 1 Ω resistor in parallel with the 2 A source (arrow from C to D).
+
+Step 1: current in the 2 Ω. $V_A - V_B = 6$ V, so it carries $6/2 = 3$ A from A to B (left to right).
+
+Step 2: draw a closed boundary around the whole left part. Net current leaving it must be zero, so 3 A must come **back** from right to left through the bottom link.
+
+Step 3: the 2 A source pushes 2 A from C to D (left to right). For the net to be 3 A right-to-left, the 1 Ω must carry $3 + 2 = 5$ A from D to C.
+
+Step 4: current flows from higher to lower potential in a resistor, so $V_D - V_C = 5\times1 = 5$ V, i.e. $V_C - V_D = -5$ V.
+
+None of the R values, the 5 V or the 10 V source matter.
+
+**Without a calculator:** $6/2 = 3$; $3 + 2 = 5$; sign from the direction.
+
+**Answer: (A) −5 V.**
+', 'READY', 'MCQ', NULL, NULL, 3, 'UNVERIFIED', 'gate-2012-28', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'If $VA - VB = 6$ V, then $VC - VD$ is'), stem_md = 'If $V_A - V_B = 6$ V, then $V_C - V_D$ is
+
+![Figure](fig:q-gate2012-28)
+', solution_md = '**Idea used:** KCL for a closed boundary (cut set) — see *Kirchhoff''s laws → KCL for a closed surface*.
+
+Look at how the left part (nodes A, C and everything to their left) is joined to the right part (B, D and everything to their right). There are only **two** connections:
+
+1. the 2 Ω resistor between A and B, and
+2. the bottom link between C and D: a 1 Ω resistor in parallel with the 2 A source (arrow from C to D).
+
+Step 1: current in the 2 Ω. $V_A - V_B = 6$ V, so it carries $6/2 = 3$ A from A to B (left to right).
+
+Step 2: draw a closed boundary around the whole left part. Net current leaving it must be zero, so 3 A must come **back** from right to left through the bottom link.
+
+Step 3: the 2 A source pushes 2 A from C to D (left to right). For the net to be 3 A right-to-left, the 1 Ω must carry $3 + 2 = 5$ A from D to C.
+
+Step 4: current flows from higher to lower potential in a resistor, so $V_D - V_C = 5\times1 = 5$ V, i.e. $V_C - V_D = -5$ V.
+
+None of the R values, the 5 V or the 10 V source matter.
+
+**Without a calculator:** $6/2 = 3$; $3 + 2 = 5$; sign from the direction.
+
+**Answer: (A) −5 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'UNVERIFIED', content_key = 'gate-2012-28', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2012'), '28', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '−5 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '6 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2012-28', '<svg width="532" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-13.599999999999996 -140.9 462.242 180.1"><circle cx="61.2" cy="-0" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="396" cy="-54" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="198" cy="-0" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-108.0 L 43.2,-108 L 46.2,-117 L 52.2,-99 L 58.2,-117 L 64.2,-99 L 70.2,-117 L 76.2,-99 L 79.2,-108 L 122.4,-108" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-108.0 L 0,-72 L 9,-69 L -9,-63 L 9,-57 L -9,-51 L 9,-45 L -9,-39 L 0,-36 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 47.703,-42.091 L 43.998,-50.824 L 60.406,-41.297 L 52.996,-58.764 L 69.404,-49.236 L 61.994,-66.703 L 78.402,-57.176 L 74.697,-65.909 L 122.4,-108" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.39999999999999,-108.0 L 122.4,-72 L 131.4,-69 L 113.4,-63 L 131.4,-57 L 113.4,-51 L 131.4,-45 L 113.4,-39 L 122.4,-36 L 122.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.39999999999999,-0.0 L 79.2,-0 L 79.2,-0 M 43.2,-0 L 43.2,-0 L -0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 70.2,-3.6000000000000068 L 70.2,3.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 55.8,-8.156147682321373e-15 L 48.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 52.199999999999996,-3.6000000000000085 L 52.2,3.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.39999999999999,-108.0 L 180,-108 L 183,-117 L 189,-99 L 195,-117 L 201,-99 L 207,-117 L 213,-99 L 216,-108 L 273.6,-108" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 273.59999999999997,-108.0 L 316.8,-108 L 319.8,-117 L 325.8,-99 L 331.8,-117 L 337.8,-99 L 343.8,-117 L 349.8,-99 L 352.8,-108 L 396,-108" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 273.59999999999997,-108.0 L 273.6,-72 L 282.6,-69 L 264.6,-63 L 282.6,-57 L 264.6,-51 L 282.6,-45 L 264.6,-39 L 273.6,-36 L 273.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 396.0,-108.0 L 348.297,-65.909 L 352.002,-57.176 L 335.594,-66.703 L 343.004,-49.236 L 326.596,-58.764 L 334.006,-41.297 L 317.598,-50.824 L 321.303,-42.091 L 273.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 396.0,-108.0 L 396,-72 L 396,-72 M 396,-36 L 396,-36 L 396,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 392.40000000000003,-63.0 L 399.6,-63" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 396.0,-48.6 L 396,-41.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 392.40000000000003,-45.0 L 399.6,-45" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 273.59999999999997,-0.0 L 316.8,-0 L 319.8,-9 L 325.8,9 L 331.8,-9 L 337.8,9 L 343.8,-9 L 349.8,9 L 352.8,-0 L 396,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.39999999999999,-0.0 L 136.8,-0 L 151.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 244.79999999999998,-0.0 L 259.2,-0 L 273.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 151.20000000000002,-0.0 L 180,-0 L 180,-0 M 216,-0 L 216,-0 L 244.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 189.0,-0.0 L 198,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 205 0 L 198 2.7 L 198 -2.7 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 151.20000000000002,-0.0 L 151.2,-19.8 L 151.2,-39.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 151.20000000000002,-39.6 L 180,-39.6 L 183,-48.6 L 189,-30.6 L 195,-48.6 L 201,-30.6 L 207,-48.6 L 213,-30.6 L 216,-39.6 L 244.8,-39.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 244.79999999999998,-39.6 L 244.8,-19.8 L 244.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="61.2" y="-133.60000000000002" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="61.2" dy="13">R</tspan></text><text x="12.600000000000003" y="-67.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="12.600000000000003" dy="13">R</tspan></text><text x="52.863567372705724" y="-76.44795697760017" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="52.863567372705724" dy="13">R</tspan></text><text x="135.0" y="-67.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="135.0" dy="13">R</tspan></text><text x="61.19999999999999" y="8.59999999999999" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="61.19999999999999" dy="13">5 V</tspan></text><text x="198.0" y="-133.60000000000002" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="198.0" dy="13">2 Ω</tspan></text><text x="334.8" y="-133.60000000000002" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="334.8" dy="13">R</tspan></text><text x="261.0" y="-67.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="261.0" dy="13">R</tspan></text><text x="343.13643262729425" y="-57.552043022399864" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="343.13643262729425" dy="13">R</tspan></text><text x="417.59999999999997" y="-67.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="417.59999999999997" dy="13">10 V</tspan></text><text x="334.8" y="-0.40000000000000036" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="334.8" dy="13">R</tspan></text><text x="198.0" y="8.599999999999998" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="198.0" dy="13">2 A</tspan></text><text x="198.0" y="-65.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="198.0" dy="13">1 Ω</tspan></text><circle cx="122.4" cy="-108" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="122.39999999999999" y="-136.3" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="122.39999999999999" dy="13">VA</tspan></text><circle cx="273.6" cy="-108" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="273.59999999999997" y="-136.3" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="273.59999999999997" dy="13">VB</tspan></text><circle cx="122.4" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="122.39999999999999" y="2.299999999999999" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="122.39999999999999" dy="13">VC</tspan></text><circle cx="273.6" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="273.59999999999997" y="2.299999999999999" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="273.59999999999997" dy="13">VD</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2014-s3-30';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2014', 'S3-Q30')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The power delivered by the current source, in the figure, is .', 'The power delivered by the current source, in the figure, is ______.
+
+![Figure](fig:q-gate2014-s3-30)
+', '**Idea used:** node voltages fixed by ideal voltage sources, then KCL at one node — see *Kirchhoff''s laws → Ideal sources and the two laws*.
+
+Take the bottom wire as 0 V.
+
+- Left 1 V source: the top-left node is at **1 V**.
+- The top 1 V source has + on the left, so the top-right node is $1 - 1 = $ **0 V**.
+- So the right 1 Ω (from top-right to bottom) has 0 V across it and carries no current.
+
+Middle node M (where the 2 A source feeds in): KCL, current in = current out:
+
+$$2 = \frac{V_M - 1}{1} + \frac{V_M - 0}{1} \Rightarrow 2V_M = 3 \Rightarrow V_M = 1.5\ \text{V}$$
+
+The current source pushes 2 A up into M (out of its + terminal, which is at 1.5 V above the bottom), so it **delivers** $P = 1.5\times2 = 3$ W.
+
+**Without a calculator:** node voltages 1 and 0; $V_M$ is their average plus $2\times\tfrac12$: $0.5 + 1 = 1.5$.
+
+**Answer: 3 W.**
+', 'READY', 'NAT', 3, 3, 2, 'UNVERIFIED', 'gate-2014-s3-30', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The power delivered by the current source, in the figure, is .'), stem_md = 'The power delivered by the current source, in the figure, is ______.
+
+![Figure](fig:q-gate2014-s3-30)
+', solution_md = '**Idea used:** node voltages fixed by ideal voltage sources, then KCL at one node — see *Kirchhoff''s laws → Ideal sources and the two laws*.
+
+Take the bottom wire as 0 V.
+
+- Left 1 V source: the top-left node is at **1 V**.
+- The top 1 V source has + on the left, so the top-right node is $1 - 1 = $ **0 V**.
+- So the right 1 Ω (from top-right to bottom) has 0 V across it and carries no current.
+
+Middle node M (where the 2 A source feeds in): KCL, current in = current out:
+
+$$2 = \frac{V_M - 1}{1} + \frac{V_M - 0}{1} \Rightarrow 2V_M = 3 \Rightarrow V_M = 1.5\ \text{V}$$
+
+The current source pushes 2 A up into M (out of its + terminal, which is at 1.5 V above the bottom), so it **delivers** $P = 1.5\times2 = 3$ W.
+
+**Without a calculator:** node voltages 1 and 0; $V_M$ is their average plus $2\times\tfrac12$: $0.5 + 1 = 1.5$.
+
+**Answer: 3 W.**
+', status = 'READY', answer_type = 'NAT', nat_min = 3, nat_max = 3, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2014-s3-30', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2014'), 'S3-Q30', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.5 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '6 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2014-s3-30', '<svg width="285" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -183.2 248.216 187.8"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="93.6" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="93.6" cy="-144" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 122.4,-93.6 L 125.4,-102.6 L 131.4,-84.6 L 137.4,-102.6 L 143.4,-84.6 L 149.4,-102.6 L 155.4,-84.6 L 158.4,-93.6 L 187.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-93.60000000000001 L 187.2,-64.8 L 196.2,-61.8 L 178.2,-55.8 L 196.2,-49.8 L 178.2,-43.8 L 196.2,-37.8 L 178.2,-31.8 L 187.2,-28.8 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.2,-0.0 L 93.6,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-0.0 L 93.6,-28.8 L 93.6,-28.8 M 93.6,-64.8 L 93.6,-64.8 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-37.800000000000004 L 93.6,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.6 -53.8 L 96.3 -46.8 L 90.9 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 0,-118.8 L 0,-144" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 8.817456953860943e-15,-144.0 L 75.6,-144 L 75.6,-144 M 111.6,-144 L 111.6,-144 L 187.2,-144" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 102.60000000000002,-147.6 L 102.6,-140.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 81.00000000000001,-144.0 L 88.2,-144" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 84.60000000000002,-147.6 L 84.6,-140.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-144.0 L 187.2,-118.8 L 187.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">1 V</tspan></text><text x="46.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">1 Ω</tspan></text><text x="140.4" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="140.4" dy="13">1 Ω</tspan></text><text x="199.79999999999998" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="199.79999999999998" dy="13">1 Ω</tspan></text><text x="115.2" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="115.2" dy="13">2 A</tspan></text><text x="93.60000000000002" y="-178.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000002" dy="13">1 V</tspan></text><circle cx="0" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="93.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="187.2" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2004-32';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2004', '32'), ('APGCL-2023', '4')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'In Fig., the value of the source voltage is', 'In Fig., the value of the source voltage is
+
+![Figure](fig:q-gate2004-32)
+', '**Idea used:** KCL at a node, then KVL along a branch — see *Kirchhoff''s laws*.
+
+Step 1 (KCL at the middle node $V_a$, between 10 Ω, 6 Ω shunt and 6 Ω series): current coming in = 1 A (from the current source through 10 Ω) + 2 A (coming from P towards the node). Both must leave through the 6 Ω shunt:
+
+$$\frac{V_a}{6} = 1 + 2 = 3 \Rightarrow V_a = 18\ \text{V}$$
+
+Step 2 (KVL from the node to the source): the 2 A flows from P to the node through the series 6 Ω, so P is higher by $2\times6 = 12$ V. $E = V_P = 18 + 12 = 30$ V.
+
+**Note on APGCL 2023 Q4.** APGCL printed the same question with **8 Ω** in place of the series 6 Ω, but kept GATE''s options. With 8 Ω the answer would be $18 + 16 = 34$ V, which is not among the options, so the APGCL version is a misprint of GATE 2004; 30 V is the intended answer.
+
+**Without a calculator:** $3\times6 = 18$, $2\times6 = 12$, $18 + 12 = 30$.
+
+**Answer: (C) 30 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2004-32', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In Fig., the value of the source voltage is'), stem_md = 'In Fig., the value of the source voltage is
+
+![Figure](fig:q-gate2004-32)
+', solution_md = '**Idea used:** KCL at a node, then KVL along a branch — see *Kirchhoff''s laws*.
+
+Step 1 (KCL at the middle node $V_a$, between 10 Ω, 6 Ω shunt and 6 Ω series): current coming in = 1 A (from the current source through 10 Ω) + 2 A (coming from P towards the node). Both must leave through the 6 Ω shunt:
+
+$$\frac{V_a}{6} = 1 + 2 = 3 \Rightarrow V_a = 18\ \text{V}$$
+
+Step 2 (KVL from the node to the source): the 2 A flows from P to the node through the series 6 Ω, so P is higher by $2\times6 = 12$ V. $E = V_P = 18 + 12 = 30$ V.
+
+**Note on APGCL 2023 Q4.** APGCL printed the same question with **8 Ω** in place of the series 6 Ω, but kept GATE''s options. With 8 Ω the answer would be $18 + 16 = 34$ V, which is not among the options, so the APGCL version is a misprint of GATE 2004; 30 V is the intended answer.
+
+**Without a calculator:** $3\times6 = 18$, $2\times6 = 12$, $18 + 12 = 30$.
+
+**Answer: (C) 30 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2004-32', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2004'), '32', qid, 2, TRUE, 'https://questions.examside.com/past-years/year-wise/gate/gate-ee/gate-ee-2004/NqnTOSxoQQqFkBRQ') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'APGCL-2023'), '4', qid, 1, FALSE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '12 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '24 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '30 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '44 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2004-32', '<svg width="339" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -123.80000000000001 295.136 128.4"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="237.6" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 2.3145824503884976e-15,-37.800000000000004 L 0,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0 -53.8 L 2.7 -46.8 L -2.7 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 93.6,-64.8 L 102.6,-61.8 L 84.6,-55.8 L 102.6,-49.8 L 84.6,-43.8 L 102.6,-37.8 L 84.6,-31.8 L 93.6,-28.8 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.6,-0.0 L 46.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 122.4,-93.6 L 125.4,-102.6 L 131.4,-84.6 L 137.4,-102.6 L 143.4,-84.6 L 149.4,-102.6 L 155.4,-84.6 L 158.4,-93.6 L 187.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-93.60000000000001 L 212.4,-93.6 L 237.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 237.6,-93.60000000000001 L 237.6,-64.8 L 237.6,-64.8 M 237.6,-28.8 L 237.6,-28.8 L 237.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 241.2,-37.800000000000004 L 234,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 237.6,-59.4 L 237.6,-52.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 241.2,-55.800000000000004 L 234,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 237.59999999999997,-0.0 L 165.6,-0 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">1 A</tspan></text><text x="46.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">10 Ω</tspan></text><text x="106.19999999999999" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999999" dy="13">6 Ω</tspan></text><text x="140.4" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="140.4" dy="13">6 Ω</tspan></text><text x="259.2" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="259.2" dy="13">E</tspan></text><text x="208.8" y="-119.2" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="208.8" dy="13">← 2 A</tspan></text><circle cx="93.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="187.2" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="187.20000000000002" y="-112.89999999999999" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="187.20000000000002" dy="13">P</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'apdcl-2023-42';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('APDCL-2023', '42')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The value of the current $I$ shown in the figure below is', 'The value of the current $I$ shown in the figure below is
+
+![Figure](fig:q-apdcl2023-42)
+', '**Idea used:** an ideal voltage source fixes a node voltage; KCL finds the current through it — see *Kirchhoff''s laws → Ideal sources and the two laws*.
+
+The 8 V source sits directly between the top wire and the bottom wire, so the top wire is at **8 V** (bottom = 0 V).
+
+Middle branch (5 Ω in series with the 5 V source, + at the top): current downward $= \dfrac{8 - 5}{5} = 0.6$ A.
+
+KCL at the top wire. In: 5 A (from the current source) and $I$ (up through the 8 V source, as marked). Out: 0.6 A (down the middle branch).
+
+$$5 + I = 0.6 \Rightarrow I = -4.4\ \text{A}$$
+
+The minus sign means 4.4 A actually flows **down** into the 8 V source''s + terminal: the 8 V battery is being charged.
+
+**Without a calculator:** $(8-5)/5 = 0.6$; $0.6 - 5 = -4.4$.
+
+**Answer: (C) −4.4 A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'apdcl-2023-42', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The value of the current $I$ shown in the figure below is'), stem_md = 'The value of the current $I$ shown in the figure below is
+
+![Figure](fig:q-apdcl2023-42)
+', solution_md = '**Idea used:** an ideal voltage source fixes a node voltage; KCL finds the current through it — see *Kirchhoff''s laws → Ideal sources and the two laws*.
+
+The 8 V source sits directly between the top wire and the bottom wire, so the top wire is at **8 V** (bottom = 0 V).
+
+Middle branch (5 Ω in series with the 5 V source, + at the top): current downward $= \dfrac{8 - 5}{5} = 0.6$ A.
+
+KCL at the top wire. In: 5 A (from the current source) and $I$ (up through the 8 V source, as marked). Out: 0.6 A (down the middle branch).
+
+$$5 + I = 0.6 \Rightarrow I = -4.4\ \text{A}$$
+
+The minus sign means 4.4 A actually flows **down** into the 8 V source''s + terminal: the 8 V battery is being charged.
+
+**Without a calculator:** $(8-5)/5 = 0.6$; $0.6 - 5 = -4.4$.
+
+**Answer: (C) −4.4 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'apdcl-2023-42', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'APDCL-2023'), '42', qid, 1.5, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2.2 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '−2.2 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '−4.4 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '10 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-apdcl2023-42', '<svg width="260" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -100.9 226.23200000000003 105.50000000000001"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="72" cy="-28.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="158.4" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 2.3145824503884976e-15,-37.800000000000004 L 0,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0 -53.8 L 2.7 -46.8 L -2.7 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 36,-93.6 L 72,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 72.0,-93.60000000000001 L 81,-90.6 L 63,-84.6 L 81,-78.6 L 63,-72.6 L 81,-66.6 L 63,-60.6 L 72,-57.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 71.99999999999999,-57.6 L 72,-46.8 L 72,-46.8 M 72,-10.8 L 72,-10.8 L 72,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 75.6,-19.8 L 68.4,-19.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 71.99999999999999,-41.4 L 72,-34.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 75.6,-37.800000000000004 L 68.4,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 71.99999999999999,-0.0 L 36,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 72.0,-93.60000000000001 L 115.2,-93.6 L 158.4,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 158.4,-93.60000000000001 L 158.4,-64.8 L 158.4,-64.8 M 158.4,-28.8 L 158.4,-28.8 L 158.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 162.0,-37.800000000000004 L 154.8,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 158.4,-59.4 L 158.4,-52.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 162.0,-55.800000000000004 L 154.8,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 158.39999999999998,-0.0 L 115.2,-0 L 72,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">5 A</tspan></text><text x="84.6" y="-88.60000000000001" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="84.6" dy="13">5 Ω</tspan></text><text x="93.6" y="-41.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="93.6" dy="13">5 V</tspan></text><text x="180.0" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="180.0" dy="13">8 V</tspan></text><text x="190.8" y="-81.39999999999999" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="190.8" dy="13">I ↑</tspan></text><circle cx="72" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2026-102';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2026', '102')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'What are $Vo$ and $i$ respectively in the circuit shown below?', 'What are $V_o$ and $i$ respectively in the circuit shown below?
+
+![Figure](fig:q-ese2026-102)
+', '**Idea used:** KVL in a single loop with a dependent source — see *Kirchhoff''s laws → KVL* (Example 8).
+
+Take the loop current $i$ clockwise, as marked (left to right through the 4 Ω).
+
+Step 1: $V_o$ in terms of $i$. $V_o$ is marked + on the **left** of the 6 Ω (bottom wire). Clockwise current flows through the bottom wire from **right to left**, i.e. it enters the 6 Ω at its − end. So $V_o = -6i$.
+
+Step 2: KVL clockwise, starting at the bottom-left:
+- 12 V source (− to +): rise $+12$.
+- 4 Ω with the current: drop $-4i$.
+- dependent source $2V_o$, entered at its + side: drop $-2V_o$.
+- 4 V source, entered at its − (top) side and left at + (bottom): rise $+4$.
+- 6 Ω with the current: drop $-6i$.
+
+$$12 - 4i - 2V_o + 4 - 6i = 0$$
+
+Step 3: put $V_o = -6i$: $16 - 10i + 12i = 0 \Rightarrow i = -8$ A, $V_o = -6(-8) = +48$ V.
+
+**Check with options:** only (A) has $V_o = -6i$ with $16 + 2i = 0$.
+
+**Without a calculator:** test options in $V_o = -6i$: (A) $48 = -6(-8)$ ✔, (B) $24 = -6(-4)$ ✔ too; then KVL $16 + 2i = 0$ picks $i = -8$.
+
+**Answer: (A) +48 V, −8 A.**
+', 'READY', 'MCQ', NULL, NULL, 3, 'UNVERIFIED', 'ese-2026-102', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'What are $Vo$ and $i$ respectively in the circuit shown below?'), stem_md = 'What are $V_o$ and $i$ respectively in the circuit shown below?
+
+![Figure](fig:q-ese2026-102)
+', solution_md = '**Idea used:** KVL in a single loop with a dependent source — see *Kirchhoff''s laws → KVL* (Example 8).
+
+Take the loop current $i$ clockwise, as marked (left to right through the 4 Ω).
+
+Step 1: $V_o$ in terms of $i$. $V_o$ is marked + on the **left** of the 6 Ω (bottom wire). Clockwise current flows through the bottom wire from **right to left**, i.e. it enters the 6 Ω at its − end. So $V_o = -6i$.
+
+Step 2: KVL clockwise, starting at the bottom-left:
+- 12 V source (− to +): rise $+12$.
+- 4 Ω with the current: drop $-4i$.
+- dependent source $2V_o$, entered at its + side: drop $-2V_o$.
+- 4 V source, entered at its − (top) side and left at + (bottom): rise $+4$.
+- 6 Ω with the current: drop $-6i$.
+
+$$12 - 4i - 2V_o + 4 - 6i = 0$$
+
+Step 3: put $V_o = -6i$: $16 - 10i + 12i = 0 \Rightarrow i = -8$ A, $V_o = -6(-8) = +48$ V.
+
+**Check with options:** only (A) has $V_o = -6i$ with $16 + 2i = 0$.
+
+**Without a calculator:** test options in $V_o = -6i$: (A) $48 = -6(-8)$ ✔, (B) $24 = -6(-4)$ ✔ too; then KVL $16 + 2i = 0$ picks $i = -8$.
+
+**Answer: (A) +48 V, −8 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'UNVERIFIED', content_key = 'ese-2026-102', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2026'), '102', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '+48 V, −8 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '+24 V, −4 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '−48 V, +8 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '−24 V, +4 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-ese2026-102', '<svg width="293" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -132.8 255.03200000000004 172.0"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="187.2" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 122.4,-93.6 M 158.4,-93.6 L 140.4,-75.6 L 122.4,-93.6 L 140.4,-111.6 L 158.4,-93.6 L 187.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 149.4,-97.2 L 149.4,-90" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 127.80000000000001,-93.60000000000001 L 135,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 131.4,-97.2 L 131.4,-90" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-93.60000000000001 L 187.2,-64.8 L 187.2,-64.8 M 187.2,-28.8 L 187.2,-28.8 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 183.6,-55.800000000000004 L 190.8,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-41.4 L 187.2,-34.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 183.6,-37.800000000000004 L 190.8,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.2,-0.0 L 111.6,-0 L 108.6,9 L 102.6,-9 L 96.6,9 L 90.6,-9 L 84.6,9 L 78.6,-9 L 75.6,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">12 V</tspan></text><text x="46.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">4 Ω</tspan></text><text x="140.4" y="-128.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="140.4" dy="13">2Vo</tspan></text><text x="208.79999999999998" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="208.79999999999998" dy="13">4 V</tspan></text><text x="140.39999999999998" y="8.599999999999994" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="140.39999999999998" dy="13">−</tspan></text><text x="93.6" y="8.599999999999987" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.6" dy="13">Vo</tspan></text><text x="46.8" y="8.599999999999984" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.8" dy="13">+</tspan></text><text x="93.6" y="-25.600000000000012" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.6" dy="13">6 Ω</tspan></text><text x="14.400000000000002" y="-85.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="14.400000000000002" dy="13">i →</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2022-40';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2022', '40')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'What is the voltage $v$ in the circuit diagram?', 'What is the voltage $v$ in the circuit diagram?
+
+![Figure](fig:q-ese2022-40)
+', '**Idea used:** current sources in parallel add; resistors in parallel combine — see *Series and parallel → Sources in series and in parallel*.
+
+All five elements are across the same two wires (top and bottom).
+
+- Net current pushed **into** the top wire by the sources: $2.5 - 2.5 - 5 = -5$ A.
+- Resistance between the wires: $5 \parallel 5 = 2.5$ Ω.
+- $v = (-5)(2.5) = -12.5$ V (top 12.5 V **below** the bottom).
+
+The options give only magnitudes; the intended answer is 12.5 V. Strictly, with the + mark at the top, $v = -12.5$ V.
+
+**Without a calculator:** $5\times2.5 = 12.5$.
+
+**Answer: (C) 12.5 V (magnitude; the actual sign is negative).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2022-40', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'What is the voltage $v$ in the circuit diagram?'), stem_md = 'What is the voltage $v$ in the circuit diagram?
+
+![Figure](fig:q-ese2022-40)
+', solution_md = '**Idea used:** current sources in parallel add; resistors in parallel combine — see *Series and parallel → Sources in series and in parallel*.
+
+All five elements are across the same two wires (top and bottom).
+
+- Net current pushed **into** the top wire by the sources: $2.5 - 2.5 - 5 = -5$ A.
+- Resistance between the wires: $5 \parallel 5 = 2.5$ Ω.
+- $v = (-5)(2.5) = -12.5$ V (top 12.5 V **below** the bottom).
+
+The options give only magnitudes; the intended answer is 12.5 V. Strictly, with the + mark at the top, $v = -12.5$ V.
+
+**Without a calculator:** $5\times2.5 = 12.5$.
+
+**Answer: (C) 12.5 V (magnitude; the actual sign is negative).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2022-40', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2022'), '40', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '7.5 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '16.5 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '12.5 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '14.4 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-ese2022-40', '<svg width="614" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-56.54199999999999 -98.2 533.774 102.8"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="216" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="432" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 2.3145824503884976e-15,-37.800000000000004 L 0,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0 -53.8 L 2.7 -46.8 L -2.7 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 108.0,-93.60000000000001 L 108,-64.8 L 117,-61.8 L 99,-55.8 L 117,-49.8 L 99,-43.8 L 117,-37.8 L 99,-31.8 L 108,-28.8 L 108,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 216.0,-93.60000000000001 L 216,-64.8 L 216,-64.8 M 216,-28.8 L 216,-28.8 L 216,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 216.0,-55.800000000000004 L 216,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 216 -39.8 L 213.3 -46.8 L 218.7 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 324.0,-93.60000000000001 L 324,-64.8 L 333,-61.8 L 315,-55.8 L 333,-49.8 L 315,-43.8 L 333,-37.8 L 315,-31.8 L 324,-28.8 L 324,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 432.0,-93.60000000000001 L 432,-64.8 L 432,-64.8 M 432,-28.8 L 432,-28.8 L 432,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 432.0,-55.800000000000004 L 432,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 432 -39.8 L 429.3 -46.8 L 434.7 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 0.0,-93.60000000000001 L 216,-93.6 L 432,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 216,-0 L 432,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="-21.599999999999994" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-21.599999999999994" dy="13">2.5 A</tspan></text><text x="120.6" y="-83.2" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.6" dy="13">+</tspan></text><text x="120.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.6" dy="13">v</tspan></text><text x="120.6" y="-36.4" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.6" dy="13">−</tspan></text><text x="95.39999999999999" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="95.39999999999999" dy="13">5 Ω</tspan></text><text x="237.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="237.6" dy="13">2.5 A</tspan></text><text x="336.59999999999997" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="336.59999999999997" dy="13">5 Ω</tspan></text><text x="453.59999999999997" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="453.59999999999997" dy="13">5 A</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2017-s1-19';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2017_1', '19')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The equivalent resistance between the terminals A and B is Ω.', 'The equivalent resistance between the terminals A and B is ______ Ω.
+
+![Figure](fig:q-gate2017-s1-19)
+', '**Idea used:** name the nodes, watch the crossing, then series–parallel — see *Series and parallel → Finding the equivalent resistance* (Example 5).
+
+Name the nodes: P (after the first 1 Ω), Q (after the 2 Ω), S (the whole bottom wire: every point on it is one node).
+
+The two diagonals **cross without joining**: the 6 Ω diagonal goes from P to S, and the 3 Ω diagonal goes from S to Q.
+
+- Between Q and S: 3 Ω (diagonal), 6 Ω (vertical) and the right-hand path 1 Ω + 1 Ω = 2 Ω. All in parallel: $3 \parallel 6 \parallel 2 = 1$ Ω.
+- Path P → Q → S: $2 + 1 = 3$ Ω.
+- Between P and S directly: 3 Ω (vertical) ∥ 6 Ω (diagonal) = 2 Ω.
+- P to S overall: $2 \parallel 3 = 1.2$ Ω.
+- A to B: $1 + 1.2 + 0.8 = 3$ Ω.
+
+Trap: if you join the diagonals at the crossing you get 2.8 Ω.
+
+**Without a calculator:** $\tfrac13 + \tfrac16 + \tfrac12 = 1$; $2 \parallel 3 = \tfrac{6}{5}$.
+
+**Answer: 3 Ω.**
+', 'READY', 'NAT', 3, 3, 2, 'UNVERIFIED', 'gate-2017-s1-19', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The equivalent resistance between the terminals A and B is Ω.'), stem_md = 'The equivalent resistance between the terminals A and B is ______ Ω.
+
+![Figure](fig:q-gate2017-s1-19)
+', solution_md = '**Idea used:** name the nodes, watch the crossing, then series–parallel — see *Series and parallel → Finding the equivalent resistance* (Example 5).
+
+Name the nodes: P (after the first 1 Ω), Q (after the 2 Ω), S (the whole bottom wire: every point on it is one node).
+
+The two diagonals **cross without joining**: the 6 Ω diagonal goes from P to S, and the 3 Ω diagonal goes from S to Q.
+
+- Between Q and S: 3 Ω (diagonal), 6 Ω (vertical) and the right-hand path 1 Ω + 1 Ω = 2 Ω. All in parallel: $3 \parallel 6 \parallel 2 = 1$ Ω.
+- Path P → Q → S: $2 + 1 = 3$ Ω.
+- Between P and S directly: 3 Ω (vertical) ∥ 6 Ω (diagonal) = 2 Ω.
+- P to S overall: $2 \parallel 3 = 1.2$ Ω.
+- A to B: $1 + 1.2 + 0.8 = 3$ Ω.
+
+Trap: if you join the diagonals at the crossing you get 2.8 Ω.
+
+**Without a calculator:** $\tfrac13 + \tfrac16 + \tfrac12 = 1$; $2 \parallel 3 = \tfrac{6}{5}$.
+
+**Answer: 3 Ω.**
+', status = 'READY', answer_type = 'NAT', nat_min = 3, nat_max = 3, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2017-s1-19', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2017_1'), '19', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2.8 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3.6 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4.8 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2017-s1-19', '<svg width="464" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-19.636 -174.2 403.65199999999993 216.21586803966937"><path d="M 0.0,-144.0 L 28.8,-144 L 31.8,-153 L 37.8,-135 L 43.8,-153 L 49.8,-135 L 55.8,-153 L 61.8,-135 L 64.8,-144 L 93.6,-144" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-144.0 L 140.4,-144 L 143.4,-153 L 149.4,-135 L 155.4,-153 L 161.4,-135 L 167.4,-153 L 173.4,-135 L 176.4,-144 L 223.2,-144" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,-144.0 L 266.4,-144 L 269.4,-153 L 275.4,-135 L 281.4,-153 L 287.4,-135 L 293.4,-153 L 299.4,-135 L 302.4,-144 L 345.6,-144" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 345.59999999999997,-144.0 L 345.6,-90 L 354.6,-87 L 336.6,-81 L 354.6,-75 L 336.6,-69 L 354.6,-63 L 336.6,-57 L 345.6,-54 L 345.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 28.8,-0 L 31.8,-9 L 37.8,9 L 43.8,-9 L 49.8,9 L 55.8,-9 L 61.8,9 L 64.8,-0 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-0.0 L 219.6,-0 L 345.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-144.0 L 93.6,-90 L 102.6,-87 L 84.6,-81 L 102.6,-75 L 84.6,-69 L 102.6,-63 L 84.6,-57 L 93.6,-54 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,-144.0 L 223.2,-90 L 232.2,-87 L 214.2,-81 L 232.2,-75 L 214.2,-69 L 232.2,-63 L 214.2,-57 L 223.2,-54 L 223.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-144.0 L 108.775,-127.139 L 117.471,-130.93 L 108.106,-114.429 L 125.499,-122.011 L 116.133,-105.509 L 133.526,-113.091 L 124.161,-96.59 L 132.857,-100.381 L 148.032,-83.52" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 148.032,-83.52000000000001 L 185.616,-41.76 L 223.2,0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-0.0 L 131.184,-41.76 L 168.768,-83.52" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 168.76800000000003,-83.52 L 183.943,-100.381 L 179.26,-108.631 L 196.653,-101.05 L 187.287,-117.551 L 204.681,-109.969 L 195.315,-126.47 L 212.708,-118.889 L 208.025,-127.139 L 223.2,-144" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="46.800000000000004" y="-169.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.800000000000004" dy="13">1 Ω</tspan></text><text x="158.4" y="-169.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="158.4" dy="13">2 Ω</tspan></text><text x="284.40000000000003" y="-169.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="284.40000000000003" dy="13">1 Ω</tspan></text><text x="358.2" y="-85.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="358.2" dy="13">1 Ω</tspan></text><text x="46.800000000000004" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.800000000000004" dy="13">0.8 Ω</tspan></text><text x="106.2" y="-85.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.2" dy="13">3 Ω</tspan></text><text x="235.8" y="-85.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="235.8" dy="13">6 Ω</tspan></text><text x="130.1815062427143" y="-135.1889556184429" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="130.1815062427143" dy="13">6 Ω</tspan></text><text x="205.3495062427143" y="-118.33104438155713" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="205.3495062427143" dy="13">3 Ω</tspan></text><text x="172.532414107351" y="17.91586803966938" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="172.532414107351" dy="13">Diagonals cross without joining.</tspan></text><circle cx="0" cy="-144" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="-6.3" y="-157.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-6.3" dy="13">A</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="-6.3" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-6.3" dy="13">B</tspan></text><circle cx="93.6" cy="-144" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="223.2" cy="-144" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="93.6" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="223.2" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2005-1';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2005', '1')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'In the figure given below the value of $R$ is', 'In the figure given below the value of $R$ is
+
+![Figure](fig:q-gate2005-1)
+', '**Idea used:** total resistance from $V/I$, then series and parallel — see *Series and parallel*.
+
+The whole circuit takes 8 A from 100 V, so the total resistance is $100/8 = 12.5$ Ω.
+
+The two 10 Ω resistors are in parallel: 5 Ω. This is in series with $R$: $R + 5 = 12.5$, so $R = 7.5$ Ω.
+
+**Without a calculator:** $100/8 = 12.5$; $12.5 - 5 = 7.5$.
+
+**Answer: (C) 7.5 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2005-1', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In the figure given below the value of $R$ is'), stem_md = 'In the figure given below the value of $R$ is
+
+![Figure](fig:q-gate2005-1)
+', solution_md = '**Idea used:** total resistance from $V/I$, then series and parallel — see *Series and parallel*.
+
+The whole circuit takes 8 A from 100 V, so the total resistance is $100/8 = 12.5$ Ω.
+
+The two 10 Ω resistors are in parallel: 5 Ω. This is in series with $R$: $R + 5 = 12.5$, so $R = 7.5$ Ω.
+
+**Without a calculator:** $100/8 = 12.5$; $12.5 - 5 = 7.5$.
+
+**Answer: (C) 7.5 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2005-1', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2005'), '1', qid, 1, TRUE, 'https://questions.examside.com/past-years/year-wise/gate/gate-ee/gate-ee-2005/iD99ad2QwwvbeqUj') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2.5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '5.0 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '7.5 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '10.0 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2005-1', '<svg width="277" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -123.80000000000001 241.22600000000006 128.4"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 93.6,-64.8 L 102.6,-61.8 L 84.6,-55.8 L 102.6,-49.8 L 84.6,-43.8 L 102.6,-37.8 L 84.6,-31.8 L 93.6,-28.8 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.6,-0.0 L 46.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 133.2,-93.6 L 172.8,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 172.8,-93.60000000000001 L 172.8,-64.8 L 181.8,-61.8 L 163.8,-55.8 L 181.8,-49.8 L 163.8,-43.8 L 181.8,-37.8 L 163.8,-31.8 L 172.8,-28.8 L 172.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 172.79999999999998,-0.0 L 133.2,-0 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">100 V</tspan></text><text x="46.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">R</tspan></text><text x="106.19999999999999" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999999" dy="13">10 Ω</tspan></text><text x="185.4" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="185.4" dy="13">10 Ω</tspan></text><text x="18.000000000000004" y="-119.2" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="18.000000000000004" dy="13">8 A →</tspan></text><circle cx="93.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2017-50';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2017', '50')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'What is the potential drop across the 80 Ω resistor in the figure?', 'What is the potential drop across the 80 Ω resistor in the figure?
+
+![Figure](fig:q-ese2017-50)
+', '**Idea used:** voltage divider — see *Dividers → The voltage divider* (Example 1).
+
+$V_{80} = 25\times\dfrac{80}{80 + 20} = 25\times0.8 = 20$ V.
+
+**Without a calculator:** ratio 80 : 20 = 4 : 1, so the 80 Ω takes $\tfrac45$ of 25 V.
+
+**Answer: (A) 20 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2017-50', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'What is the potential drop across the 80 Ω resistor in the figure?'), stem_md = 'What is the potential drop across the 80 Ω resistor in the figure?
+
+![Figure](fig:q-ese2017-50)
+', solution_md = '**Idea used:** voltage divider — see *Dividers → The voltage divider* (Example 1).
+
+$V_{80} = 25\times\dfrac{80}{80 + 20} = 25\times0.8 = 20$ V.
+
+**Without a calculator:** ratio 80 : 20 = 4 : 1, so the 80 Ω takes $\tfrac45$ of 25 V.
+
+**Answer: (A) 20 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2017-50', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2017'), '50', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '20 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '15 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '10 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '5 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-ese2017-50', '<svg width="226" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-4.6 -30.199999999999996 196.4 124.79999999999997"><circle cx="93.6" cy="72" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 28.8,-0 L 31.8,-9 L 37.8,9 L 43.8,-9 L 49.8,9 L 55.8,-9 L 61.8,9 L 64.8,-0 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-0.0 L 122.4,-0 L 125.4,-9 L 131.4,9 L 137.4,-9 L 143.4,9 L 149.4,-9 L 155.4,9 L 158.4,-0 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-0.0 L 187.2,36 L 187.2,72" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,72.0 L 163.8,72 L 140.4,72" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 140.4,71.99999999999999 L 111.6,72 L 111.6,72 M 75.6,72 L 75.6,72 L 46.8,72" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 84.60000000000002,75.6 L 84.6,68.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 106.2,71.99999999999999 L 99,72" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 102.60000000000002,75.6 L 102.6,68.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 46.80000000000001,71.99999999999999 L 23.4,72 L 0,72" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,71.99999999999997 L 0,36 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="46.800000000000004" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.800000000000004" dy="13">80 Ω</tspan></text><text x="140.4" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="140.4" dy="13">20 Ω</tspan></text><text x="93.60000000000002" y="37.39999999999999" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000002" dy="13">25 V</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'aegcl-2023-78';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('AEGCL-2023', '78')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A series circuit contains $n$ linear identical resistors each with a value of $R$ and the circuit is connected to a d.c. voltage source of $V$. If the...', 'A series circuit contains $n$ linear identical resistors each with a value of $R$ and the circuit is connected to a d.c. voltage source of $V$. If the values of all resistors are halved, then the voltage across each resistor will be
+', '**Idea used:** in a series circuit the voltage divides in the ratio of the resistances — see *Dividers* (Example 2) and *Series and parallel → Series connection*.
+
+All $n$ resistors are equal, so each takes $\dfrac{V}{n}$. Halving every resistor keeps them equal: the share stays $V/n$. Only the current doubles (from $V/nR$ to $2V/nR$).
+
+**Answer: (C) $V/n$.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'aegcl-2023-78', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A series circuit contains $n$ linear identical resistors each with a value of $R$ and the circuit is connected to a d.c. voltage source of $V$. If the...'), stem_md = 'A series circuit contains $n$ linear identical resistors each with a value of $R$ and the circuit is connected to a d.c. voltage source of $V$. If the values of all resistors are halved, then the voltage across each resistor will be
+', solution_md = '**Idea used:** in a series circuit the voltage divides in the ratio of the resistances — see *Dividers* (Example 2) and *Series and parallel → Series connection*.
+
+All $n$ resistors are equal, so each takes $\dfrac{V}{n}$. Halving every resistor keeps them equal: the share stays $V/n$. Only the current doubles (from $V/nR$ to $2V/nR$).
+
+**Answer: (C) $V/n$.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'aegcl-2023-78', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'AEGCL-2023'), '78', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$V/(2n)$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$2V/n$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$V/n$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$V/n^2$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2016-s1-17';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q17')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'In the portion of a circuit shown, if the heat generated in 5 Ω resistance is 10 calories per second, then heat generated by the 4 Ω resistance, in calories...', 'In the portion of a circuit shown, if the heat generated in 5 Ω resistance is 10 calories per second, then heat generated by the 4 Ω resistance, in calories per second, is ______.
+
+![Figure](fig:q-gate2016-s1-17)
+', '**Idea used:** power ratios: parallel $P \propto 1/R$, series $P \propto R$ — see *Dividers → Using power ratios* (Example 6).
+
+The 5 Ω and the (4 + 6) = 10 Ω branch are in parallel, so they have the same voltage. Power $\propto 1/R$: the 10 Ω branch takes $10\times\dfrac{5}{10} = 5$ cal/s.
+
+Inside that branch, 4 Ω and 6 Ω are in series (same current), so power $\propto R$: the 4 Ω takes $5\times\dfrac{4}{10} = 2$ cal/s.
+
+**Without a calculator:** half of 10 is 5; 4 parts out of 10 of 5 is 2.
+
+**Answer: 2.**
+', 'READY', 'NAT', 2, 2, 2, 'UNVERIFIED', 'gate-2016-s1-17', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In the portion of a circuit shown, if the heat generated in 5 Ω resistance is 10 calories per second, then heat generated by the 4 Ω resistance, in calories...'), stem_md = 'In the portion of a circuit shown, if the heat generated in 5 Ω resistance is 10 calories per second, then heat generated by the 4 Ω resistance, in calories per second, is ______.
+
+![Figure](fig:q-gate2016-s1-17)
+', solution_md = '**Idea used:** power ratios: parallel $P \propto 1/R$, series $P \propto R$ — see *Dividers → Using power ratios* (Example 6).
+
+The 5 Ω and the (4 + 6) = 10 Ω branch are in parallel, so they have the same voltage. Power $\propto 1/R$: the 10 Ω branch takes $10\times\dfrac{5}{10} = 5$ cal/s.
+
+Inside that branch, 4 Ω and 6 Ω are in series (same current), so power $\propto R$: the 4 Ω takes $5\times\dfrac{4}{10} = 2$ cal/s.
+
+**Without a calculator:** half of 10 is 5; 4 parts out of 10 of 5 is 2.
+
+**Answer: 2.**
+', status = 'READY', answer_type = 'NAT', nat_min = 2, nat_max = 2, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2016-s1-17', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q17', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '12.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s1-17', '<svg width="309" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-4.6 -66.2 268.4 115.80000000000001"><path d="M 0.0,-0.0 L 18,-0 L 36,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 36.0,-0.0 L 36,-18 L 36,-36" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 36.0,-36.0 L 64.8,-36 L 67.8,-45 L 73.8,-27 L 79.8,-45 L 85.8,-27 L 91.8,-45 L 97.8,-27 L 100.8,-36 L 129.6,-36" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.6,-36.0 L 158.4,-36 L 161.4,-45 L 167.4,-27 L 173.4,-45 L 179.4,-27 L 185.4,-45 L 191.4,-27 L 194.4,-36 L 223.2,-36" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,-36.0 L 223.2,-18 L 223.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,-0.0 L 241.2,-0 L 259.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 36.0,-0.0 L 36,18 L 36,36" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 35.99999999999999,36.0 L 111.6,36 L 114.6,27 L 120.6,45 L 126.6,27 L 132.6,45 L 138.6,27 L 144.6,45 L 147.6,36 L 223.2,36" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,36.0 L 223.2,18 L 223.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="82.8" y="-61.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="82.8" dy="13">4 Ω</tspan></text><text x="176.4" y="-61.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="176.4" dy="13">6 Ω</tspan></text><text x="129.6" y="10.400000000000002" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="129.6" dy="13">5 Ω</tspan></text><circle cx="36" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="223.2" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2018-17';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2018', '17')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'In the circuit shown, what value of $R$ will result in $I = 4$ A?', 'In the circuit shown, what value of $R$ will result in $I = 4$ A?
+
+![Figure](fig:q-ese2018-17)
+', '**Idea used:** work backwards with Ohm''s law, KCL and KVL — see *Dividers → Finding an unknown resistor* (Example 7).
+
+Let the voltage across the parallel pair be $4R$. Current in 14 Ω $= 4R/14$. Source current $I_s = 4 + 4R/14$.
+
+KVL: $100 = 12I_s + 4R = 48 + \dfrac{48R}{14} + 4R$ ⇒ $52 = R\times\dfrac{104}{14}$ ⇒ $R = 7$ Ω.
+
+**Without a calculator (test the options):** $R = 7$: pair voltage 28 V; 14 Ω takes 2 A; $I_s = 6$ A; drop in 12 Ω = 72 V; $72 + 28 = 100$ ✔.
+
+**Answer: (B) 7 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2018-17', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In the circuit shown, what value of $R$ will result in $I = 4$ A?'), stem_md = 'In the circuit shown, what value of $R$ will result in $I = 4$ A?
+
+![Figure](fig:q-ese2018-17)
+', solution_md = '**Idea used:** work backwards with Ohm''s law, KCL and KVL — see *Dividers → Finding an unknown resistor* (Example 7).
+
+Let the voltage across the parallel pair be $4R$. Current in 14 Ω $= 4R/14$. Source current $I_s = 4 + 4R/14$.
+
+KVL: $100 = 12I_s + 4R = 48 + \dfrac{48R}{14} + 4R$ ⇒ $52 = R\times\dfrac{104}{14}$ ⇒ $R = 7$ Ω.
+
+**Without a calculator (test the options):** $R = 7$: pair voltage 28 V; 14 Ω takes 2 A; $I_s = 6$ A; drop in 12 Ω = 72 V; $72 + 28 = 100$ ✔.
+
+**Answer: (B) 7 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2018-17', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2018'), '17', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '9 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '7 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '5.5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '3.5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-ese2018-17', '<svg width="263" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -123.80000000000001 228.536 128.4"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 93.6,-64.8 L 102.6,-61.8 L 84.6,-55.8 L 102.6,-49.8 L 84.6,-43.8 L 102.6,-37.8 L 84.6,-31.8 L 93.6,-28.8 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.6,-0.0 L 46.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 136.8,-93.6 L 180,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 180.0,-93.60000000000001 L 180,-64.8 L 189,-61.8 L 171,-55.8 L 189,-49.8 L 171,-43.8 L 189,-37.8 L 171,-31.8 L 180,-28.8 L 180,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 179.99999999999997,-0.0 L 136.8,-0 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">100 V</tspan></text><text x="46.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">12 Ω</tspan></text><text x="106.19999999999999" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999999" dy="13">14 Ω</tspan></text><text x="192.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="192.6" dy="13">R</tspan></text><text x="64.8" y="-86.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="64.8" dy="13">Is →</tspan></text><text x="133.2" y="-119.2" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="133.2" dy="13">I = 4 A →</tspan></text><circle cx="93.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2004-35';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2004', '35')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'In Fig., the value of resistance $R$ in Ω is', 'In Fig., the value of resistance $R$ in Ω is
+
+![Figure](fig:q-gate2004-35)
+', '**Idea used:** work backwards from the known branch current — see *Dividers → Finding an unknown resistor*.
+
+Voltage across $R$ (and across the shunt 10 Ω) $= 2R$. Shunt current $= 2R/10$. Total current $= 2 + 0.2R$.
+
+KVL: $100 = 10(2 + 0.2R) + 2R = 20 + 4R$ ⇒ $R = 20$ Ω.
+
+**Without a calculator (test the options):** $R = 20$: 40 V across the pair, 4 A in the shunt, 6 A total, 60 V in the series 10 Ω, $60 + 40 = 100$ ✔.
+
+**Answer: (B) 20.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2004-35', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In Fig., the value of resistance $R$ in Ω is'), stem_md = 'In Fig., the value of resistance $R$ in Ω is
+
+![Figure](fig:q-gate2004-35)
+', solution_md = '**Idea used:** work backwards from the known branch current — see *Dividers → Finding an unknown resistor*.
+
+Voltage across $R$ (and across the shunt 10 Ω) $= 2R$. Shunt current $= 2R/10$. Total current $= 2 + 0.2R$.
+
+KVL: $100 = 10(2 + 0.2R) + 2R = 20 + 4R$ ⇒ $R = 20$ Ω.
+
+**Without a calculator (test the options):** $R = 20$: 40 V across the pair, 4 A in the shunt, 6 A total, 60 V in the series 10 Ω, $60 + 40 = 100$ ✔.
+
+**Answer: (B) 20.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2004-35', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2004'), '35', qid, 2, TRUE, 'https://questions.examside.com/past-years/year-wise/gate/gate-ee/gate-ee-2004/0Dte9FxLeaNWsaBk') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '20', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '30', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '40', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2004-35', '<svg width="263" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -123.80000000000001 228.536 128.4"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 93.6,-64.8 L 102.6,-61.8 L 84.6,-55.8 L 102.6,-49.8 L 84.6,-43.8 L 102.6,-37.8 L 84.6,-31.8 L 93.6,-28.8 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.6,-0.0 L 46.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 136.8,-93.6 L 180,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 180.0,-93.60000000000001 L 180,-64.8 L 189,-61.8 L 171,-55.8 L 189,-49.8 L 171,-43.8 L 189,-37.8 L 171,-31.8 L 180,-28.8 L 180,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 179.99999999999997,-0.0 L 136.8,-0 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">100 V</tspan></text><text x="46.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">10 Ω</tspan></text><text x="106.19999999999999" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999999" dy="13">10 Ω</tspan></text><text x="192.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="192.6" dy="13">R</tspan></text><text x="133.2" y="-119.2" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="133.2" dy="13">2 A →</tspan></text><circle cx="93.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2010-33';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2010', '33')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'If the 12 Ω resistor draws a current of 1 A as shown in the figure, the value of resistance $R$ is', 'If the 12 Ω resistor draws a current of 1 A as shown in the figure, the value of resistance $R$ is
+
+![Figure](fig:q-gate2010-33)
+', '**Idea used:** KCL at a node and KVL along a branch — see *Kirchhoff''s laws* and *Dividers → Finding an unknown resistor*.
+
+- The 12 Ω draws 1 A, so the middle node is at $12\times1 = 12$ V.
+- The 2 A source feeds the node (through the 1 Ω, which does not change the current). KCL: $2 = 1 + I_R$ ⇒ $I_R = 1$ A flows through $R$ towards the 6 V source.
+- KVL along $R$: $12 - 1\times R = 6$ ⇒ $R = 6$ Ω.
+
+The 1 Ω in series with the current source has no effect on the rest of the circuit.
+
+**Without a calculator:** node 12 V, battery 6 V, so $R$ drops 6 V with 1 A.
+
+**Answer: (B) 6 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2010-33', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'If the 12 Ω resistor draws a current of 1 A as shown in the figure, the value of resistance $R$ is'), stem_md = 'If the 12 Ω resistor draws a current of 1 A as shown in the figure, the value of resistance $R$ is
+
+![Figure](fig:q-gate2010-33)
+', solution_md = '**Idea used:** KCL at a node and KVL along a branch — see *Kirchhoff''s laws* and *Dividers → Finding an unknown resistor*.
+
+- The 12 Ω draws 1 A, so the middle node is at $12\times1 = 12$ V.
+- The 2 A source feeds the node (through the 1 Ω, which does not change the current). KCL: $2 = 1 + I_R$ ⇒ $I_R = 1$ A flows through $R$ towards the 6 V source.
+- KVL along $R$: $12 - 1\times R = 6$ ⇒ $R = 6$ Ω.
+
+The 1 Ω in series with the current source has no effect on the rest of the circuit.
+
+**Without a calculator:** node 12 V, battery 6 V, so $R$ drops 6 V with 1 A.
+
+**Answer: (B) 6 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2010-33', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2010'), '33', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '4 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '6 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '8 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '18 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2010-33', '<svg width="326" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -123.80000000000001 283.832 128.4"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="216" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 2.3145824503884976e-15,-37.800000000000004 L 0,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0 -53.8 L 2.7 -46.8 L -2.7 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 93.6,-64.8 L 102.6,-61.8 L 84.6,-55.8 L 102.6,-49.8 L 84.6,-43.8 L 102.6,-37.8 L 84.6,-31.8 L 93.6,-28.8 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.6,-0.0 L 46.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 122.4,-93.6 L 125.4,-102.6 L 131.4,-84.6 L 137.4,-102.6 L 143.4,-84.6 L 149.4,-102.6 L 155.4,-84.6 L 158.4,-93.6 L 187.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-93.60000000000001 L 201.6,-93.6 L 216,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 216.0,-93.60000000000001 L 216,-64.8 L 216,-64.8 M 216,-28.8 L 216,-28.8 L 216,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 219.6,-37.800000000000004 L 212.4,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 216.0,-59.4 L 216,-52.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 219.6,-55.800000000000004 L 212.4,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 215.99999999999997,-0.0 L 154.8,-0 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">2 A</tspan></text><text x="46.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">1 Ω</tspan></text><text x="106.19999999999999" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999999" dy="13">12 Ω</tspan></text><text x="140.4" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="140.4" dy="13">R</tspan></text><text x="237.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="237.6" dy="13">6 V</tspan></text><text x="68.39999999999999" y="-56.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="68.39999999999999" dy="13">1 A ↓</tspan></text><circle cx="93.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-source-transformation';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2017-60';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2017', '60')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'What is the current through the 5 Ω resistance in the circuit shown?', 'What is the current through the 5 Ω resistance in the circuit shown?
+
+![Figure](fig:q-ese2017-60)
+', '**Idea used:** source transformation turns the circuit into one loop — see *Source transformation* (Example 3).
+
+- 5 A in parallel with 4 Ω → 20 V in series with 4 Ω (+ at the top).
+- 10 A in parallel with 6 Ω → 60 V in series with 6 Ω (+ at the top).
+
+Now one loop: 20 V source, 4 Ω, 5 Ω, 6 Ω, 60 V source, with the sources opposing.
+
+$$I = \frac{60 - 20}{4 + 5 + 6} = \frac{40}{15} = 2.67\ \text{A}$$
+
+flowing through the 5 Ω from the right (10 A side) to the left.
+
+**Without a calculator:** $40/15 = 8/3 \approx 2.67$.
+
+**Answer: (C) 2.66 A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2017-60', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'What is the current through the 5 Ω resistance in the circuit shown?'), stem_md = 'What is the current through the 5 Ω resistance in the circuit shown?
+
+![Figure](fig:q-ese2017-60)
+', solution_md = '**Idea used:** source transformation turns the circuit into one loop — see *Source transformation* (Example 3).
+
+- 5 A in parallel with 4 Ω → 20 V in series with 4 Ω (+ at the top).
+- 10 A in parallel with 6 Ω → 60 V in series with 6 Ω (+ at the top).
+
+Now one loop: 20 V source, 4 Ω, 5 Ω, 6 Ω, 60 V source, with the sources opposing.
+
+$$I = \frac{60 - 20}{4 + 5 + 6} = \frac{40}{15} = 2.67\ \text{A}$$
+
+flowing through the 5 Ω from the right (10 A side) to the left.
+
+**Without a calculator:** $40/15 = 8/3 \approx 2.67$.
+
+**Answer: (C) 2.66 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2017-60', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2017'), '60', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '5.33 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4.66 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2.66 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1.33 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-ese2017-60', '<svg width="327" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -123.80000000000001 284.04200000000003 128.4"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="208.8" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 2.3145824503884976e-15,-37.800000000000004 L 0,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0 -53.8 L 2.7 -46.8 L -2.7 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 57.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 57.60000000000001,-93.60000000000001 L 57.6,-64.8 L 66.6,-61.8 L 48.6,-55.8 L 66.6,-49.8 L 48.6,-43.8 L 66.6,-37.8 L 48.6,-31.8 L 57.6,-28.8 L 57.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 57.599999999999994,-0.0 L 28.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 57.60000000000001,-93.60000000000001 L 86.4,-93.6 L 89.4,-102.6 L 95.4,-84.6 L 101.4,-102.6 L 107.4,-84.6 L 113.4,-102.6 L 119.4,-84.6 L 122.4,-93.6 L 151.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 151.20000000000002,-93.60000000000001 L 151.2,-64.8 L 160.2,-61.8 L 142.2,-55.8 L 160.2,-49.8 L 142.2,-43.8 L 160.2,-37.8 L 142.2,-31.8 L 151.2,-28.8 L 151.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 151.2,-0.0 L 104.4,-0 L 57.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 151.20000000000002,-93.60000000000001 L 180,-93.6 L 208.8,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 208.8,-93.60000000000001 L 208.8,-64.8 L 208.8,-64.8 M 208.8,-28.8 L 208.8,-28.8 L 208.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 208.8,-46.800000000000004 L 208.8,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 208.8 -53.8 L 211.5 -46.8 L 206.1 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 208.79999999999998,-0.0 L 180,-0 L 151.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">5 A</tspan></text><text x="70.2" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="70.2" dy="13">4 Ω</tspan></text><text x="104.4" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="104.4" dy="13">5 Ω</tspan></text><text x="163.79999999999998" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="163.79999999999998" dy="13">6 Ω</tspan></text><text x="230.4" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="230.4" dy="13">10 A</tspan></text><circle cx="57.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="151.2" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-source-transformation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-source-transformation';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2018-26';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2018', '26')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'For the network shown in the figure, the current flowing through the 5 Ω resistance will be', 'For the network shown in the figure, the current flowing through the 5 Ω resistance will be
+
+![Figure](fig:q-ese2018-26)
+', '**Idea used:** source transformation, then the current divider with conductances — see *Source transformation* (Example 2) and *Dividers → The current divider* (Example 5).
+
+- 15 V with 4 Ω in series → 3.75 A in parallel with 4 Ω.
+- Now all of these are between the top node and the bottom: 3.75 A and 6 A (both feeding the node), 4 Ω, 2 Ω and the 3 Ω + 5 Ω = 8 Ω path.
+- Total current: $3.75 + 6 = 9.75$ A.
+- Conductances: $\tfrac14, \tfrac12, \tfrac18$ S = 2, 4, 1 eighths, total 7 eighths.
+- Current in the 8 Ω path (which is the 5 Ω current): $9.75\times\dfrac{1}{7} = \dfrac{39}{28}$ A.
+
+**Without a calculator:** $9.75 = \dfrac{39}{4}$; $\dfrac{39}{4}\times\dfrac17 = \dfrac{39}{28}$. The options already have 28 in the bottom: only the top needs checking.
+
+**Answer: (C) $\dfrac{39}{28}$ A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2018-26', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'For the network shown in the figure, the current flowing through the 5 Ω resistance will be'), stem_md = 'For the network shown in the figure, the current flowing through the 5 Ω resistance will be
+
+![Figure](fig:q-ese2018-26)
+', solution_md = '**Idea used:** source transformation, then the current divider with conductances — see *Source transformation* (Example 2) and *Dividers → The current divider* (Example 5).
+
+- 15 V with 4 Ω in series → 3.75 A in parallel with 4 Ω.
+- Now all of these are between the top node and the bottom: 3.75 A and 6 A (both feeding the node), 4 Ω, 2 Ω and the 3 Ω + 5 Ω = 8 Ω path.
+- Total current: $3.75 + 6 = 9.75$ A.
+- Conductances: $\tfrac14, \tfrac12, \tfrac18$ S = 2, 4, 1 eighths, total 7 eighths.
+- Current in the 8 Ω path (which is the 5 Ω current): $9.75\times\dfrac{1}{7} = \dfrac{39}{28}$ A.
+
+**Without a calculator:** $9.75 = \dfrac{39}{4}$; $\dfrac{39}{4}\times\dfrac17 = \dfrac{39}{28}$. The options already have 28 in the bottom: only the top needs checking.
+
+**Answer: (C) $\dfrac{39}{28}$ A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2018-26', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2018'), '26', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$\dfrac{37}{25}$ A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$\dfrac{40}{28}$ A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$\dfrac{39}{28}$ A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$\dfrac{41}{28}$ A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-ese2018-26', '<svg width="377" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -123.80000000000001 327.416 128.4"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="172.8" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 93.6,-64.8 L 102.6,-61.8 L 84.6,-55.8 L 102.6,-49.8 L 84.6,-43.8 L 102.6,-37.8 L 84.6,-31.8 L 93.6,-28.8 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.6,-0.0 L 46.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 133.2,-93.6 L 172.8,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 172.8,-93.60000000000001 L 172.8,-64.8 L 172.8,-64.8 M 172.8,-28.8 L 172.8,-28.8 L 172.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 172.8,-46.800000000000004 L 172.8,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 172.8 -53.8 L 175.5 -46.8 L 170.1 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 172.79999999999998,-0.0 L 133.2,-0 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 172.8,-93.60000000000001 L 201.6,-93.6 L 204.6,-102.6 L 210.6,-84.6 L 216.6,-102.6 L 222.6,-84.6 L 228.6,-102.6 L 234.6,-84.6 L 237.6,-93.6 L 266.4,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 266.40000000000003,-93.60000000000001 L 266.4,-64.8 L 275.4,-61.8 L 257.4,-55.8 L 275.4,-49.8 L 257.4,-43.8 L 275.4,-37.8 L 257.4,-31.8 L 266.4,-28.8 L 266.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 266.4,-0.0 L 219.6,-0 L 172.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">15 V</tspan></text><text x="46.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">4 Ω</tspan></text><text x="106.19999999999999" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999999" dy="13">2 Ω</tspan></text><text x="194.4" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="194.4" dy="13">6 A</tspan></text><text x="219.60000000000002" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="219.60000000000002" dy="13">3 Ω</tspan></text><text x="279.0" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="279.0" dy="13">5 Ω</tspan></text><circle cx="93.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="172.8" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-source-transformation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-source-transformation';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2017-41';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2017', '41')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'What is the current through the 8 Ω resistance connected across terminals, M and N in the circuit?', 'What is the current through the 8 Ω resistance connected across terminals, M and N in the circuit?
+
+![Figure](fig:q-ese2017-41)
+', '**Idea used:** Millman''s theorem (several "source + resistor" branches across the same two nodes) — see *Source transformation → Millman''s theorem* (Example 5).
+
+Three branches between M and N: 8 V with 12 Ω, 2 V with 8 Ω (both + towards M), and 8 Ω alone.
+
+$$V_M = \frac{\dfrac{8}{12} + \dfrac{2}{8} + 0}{\dfrac{1}{12} + \dfrac{1}{8} + \dfrac{1}{8}} = \frac{0.667 + 0.25}{0.333} = 2.75\ \text{V}$$
+
+Current in the middle 8 Ω: $2.75/8 \approx 0.34$ A, from M (higher) to N.
+
+**Without a calculator:** use 24ths: top $= \tfrac{16}{24} + \tfrac{6}{24} = \tfrac{22}{24}$; bottom $= \tfrac{2 + 3 + 3}{24} = \tfrac{8}{24}$; $V_M = \tfrac{22}{8} = 2.75$; $2.75/8 \approx 0.34$.
+
+**Answer: (A) 0.34 A from M to N.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2017-41', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'What is the current through the 8 Ω resistance connected across terminals, M and N in the circuit?'), stem_md = 'What is the current through the 8 Ω resistance connected across terminals, M and N in the circuit?
+
+![Figure](fig:q-ese2017-41)
+', solution_md = '**Idea used:** Millman''s theorem (several "source + resistor" branches across the same two nodes) — see *Source transformation → Millman''s theorem* (Example 5).
+
+Three branches between M and N: 8 V with 12 Ω, 2 V with 8 Ω (both + towards M), and 8 Ω alone.
+
+$$V_M = \frac{\dfrac{8}{12} + \dfrac{2}{8} + 0}{\dfrac{1}{12} + \dfrac{1}{8} + \dfrac{1}{8}} = \frac{0.667 + 0.25}{0.333} = 2.75\ \text{V}$$
+
+Current in the middle 8 Ω: $2.75/8 \approx 0.34$ A, from M (higher) to N.
+
+**Without a calculator:** use 24ths: top $= \tfrac{16}{24} + \tfrac{6}{24} = \tfrac{22}{24}$; bottom $= \tfrac{2 + 3 + 3}{24} = \tfrac{8}{24}$; $V_M = \tfrac{22}{8} = 2.75$; $2.75/8 \approx 0.34$.
+
+**Answer: (A) 0.34 A from M to N.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2017-41', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2017'), '41', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.34 A from M to N', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.29 A from M to N', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.29 A from N to M', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.34 A from N to M', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-ese2017-41', '<svg width="293" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -123.80000000000001 255.03200000000004 158.3"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="187.2" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 122.4,-93.6 L 125.4,-102.6 L 131.4,-84.6 L 137.4,-102.6 L 143.4,-84.6 L 149.4,-102.6 L 155.4,-84.6 L 158.4,-93.6 L 187.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-93.60000000000001 L 187.2,-64.8 L 187.2,-64.8 M 187.2,-28.8 L 187.2,-28.8 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 190.79999999999998,-37.800000000000004 L 183.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-59.4 L 187.2,-52.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 190.79999999999998,-55.800000000000004 L 183.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.2,-0.0 L 93.6,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 93.6,-64.8 L 102.6,-61.8 L 84.6,-55.8 L 102.6,-49.8 L 84.6,-43.8 L 102.6,-37.8 L 84.6,-31.8 L 93.6,-28.8 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">8 V</tspan></text><text x="46.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">12 Ω</tspan></text><text x="140.4" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="140.4" dy="13">8 Ω</tspan></text><text x="208.79999999999998" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="208.79999999999998" dy="13">2 V</tspan></text><text x="106.19999999999999" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999999" dy="13">8 Ω</tspan></text><text x="97.2" y="10.400000000000002" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="97.2" dy="13">N</tspan></text><circle cx="93.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="93.60000000000001" y="-112.89999999999999" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000001" dy="13">M</tspan></text><circle cx="93.6" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-source-transformation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-source-transformation';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2018-30';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2018', '30')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The current in the 1 Ω resistor in the network as shown is', 'The current in the 1 Ω resistor in the network as shown is
+
+![Figure](fig:q-ese2018-30)
+', '**Idea used:** Millman''s theorem with a current source branch — see *Source transformation → Millman''s theorem*.
+
+All four branches are between the top node X and the bottom: 2 V with 2 Ω, 3 V with 2 Ω (both + towards X), 1 Ω alone, and the 2 A source feeding X.
+
+$$V_X = \frac{\dfrac22 + \dfrac32 + 2}{\dfrac12 + \dfrac12 + 1} = \frac{1 + 1.5 + 2}{2} = 2.25\ \text{V}$$
+
+Current in the 1 Ω $= 2.25/1 = 2.25$ A.
+
+**Without a calculator:** top $= 4.5$, bottom $= 2$.
+
+**Answer: (B) 2.25 A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2018-30', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The current in the 1 Ω resistor in the network as shown is'), stem_md = 'The current in the 1 Ω resistor in the network as shown is
+
+![Figure](fig:q-ese2018-30)
+', solution_md = '**Idea used:** Millman''s theorem with a current source branch — see *Source transformation → Millman''s theorem*.
+
+All four branches are between the top node X and the bottom: 2 V with 2 Ω, 3 V with 2 Ω (both + towards X), 1 Ω alone, and the 2 A source feeding X.
+
+$$V_X = \frac{\dfrac22 + \dfrac32 + 2}{\dfrac12 + \dfrac12 + 1} = \frac{1 + 1.5 + 2}{2} = 2.25\ \text{V}$$
+
+Current in the 1 Ω $= 2.25/1 = 2.25$ A.
+
+**Without a calculator:** top $= 4.5$, bottom $= 2$.
+
+**Answer: (B) 2.25 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2018-30', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2018'), '30', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2.00 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2.25 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2.50 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.75 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-ese2018-30', '<svg width="368" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -123.80000000000001 319.83200000000005 128.4"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="93.6" cy="-28.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="252" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 102.6,-90.6 L 84.6,-84.6 L 102.6,-78.6 L 84.6,-72.6 L 102.6,-66.6 L 84.6,-60.6 L 93.6,-57.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-57.6 L 93.6,-46.8 L 93.6,-46.8 M 93.6,-10.8 L 93.6,-10.8 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 97.19999999999999,-19.8 L 90,-19.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-41.4 L 93.6,-34.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 97.2,-37.800000000000004 L 90,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.6,-0.0 L 46.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 133.2,-93.6 L 172.8,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 172.8,-93.60000000000001 L 172.8,-64.8 L 181.8,-61.8 L 163.8,-55.8 L 181.8,-49.8 L 163.8,-43.8 L 181.8,-37.8 L 163.8,-31.8 L 172.8,-28.8 L 172.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 172.79999999999998,-0.0 L 133.2,-0 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 172.8,-93.60000000000001 L 212.4,-93.6 L 252,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252.00000000000003,-93.60000000000001 L 252,-64.8 L 252,-64.8 M 252,-28.8 L 252,-28.8 L 252,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252.00000000000003,-46.800000000000004 L 252,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252 -53.8 L 254.7 -46.8 L 249.3 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 252.0,-0.0 L 212.4,-0 L 172.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">2 V</tspan></text><text x="46.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">2 Ω</tspan></text><text x="106.2" y="-88.60000000000001" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.2" dy="13">2 Ω</tspan></text><text x="115.2" y="-41.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="115.2" dy="13">3 V</tspan></text><text x="185.4" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="185.4" dy="13">1 Ω</tspan></text><text x="273.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="273.6" dy="13">2 A</tspan></text><circle cx="93.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="172.8" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-source-transformation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-source-transformation';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2019-42';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2019', '42')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The current $I$ flowing in the circuit shown below in amperes is .', 'The current $I$ flowing in the circuit shown below in amperes is ______.
+
+![Figure](fig:q-gate2019-42)
+', '**Idea used:** source transformation of every branch (Millman) — see *Source transformation → Millman''s theorem* (Example 4).
+
+Each battery branch becomes a current source $E/R$ in parallel with $R$:
+$200/50 = 160/40 = 100/25 = 80/20 = 4$ A. Total current into the top wire: 16 A.
+
+Total conductance between the wires: $\tfrac1{50} + \tfrac1{40} + \tfrac1{25} + \tfrac1{20} + \tfrac1{20} = 0.02 + 0.025 + 0.04 + 0.05 + 0.05 = 0.185$ S.
+
+$V = 16/0.185 \approx 86.5$ V, and $I = V/20 \approx 4.32$ A.
+
+Traps: 16 A is the total source current; 5.93 A forgets the plain 20 Ω in the conductance sum.
+
+**Without a calculator:** in 200ths: $4 + 5 + 8 + 10 + 10 = 37$, so $V = 16\times\dfrac{200}{37} = \dfrac{3200}{37} \approx 86.5$; $I = \dfrac{160}{37} \approx 4.3$.
+
+**Answer: about 4.32 A.**
+', 'READY', 'NAT', 4.3, 4.35, 2, 'UNVERIFIED', 'gate-2019-42', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The current $I$ flowing in the circuit shown below in amperes is .'), stem_md = 'The current $I$ flowing in the circuit shown below in amperes is ______.
+
+![Figure](fig:q-gate2019-42)
+', solution_md = '**Idea used:** source transformation of every branch (Millman) — see *Source transformation → Millman''s theorem* (Example 4).
+
+Each battery branch becomes a current source $E/R$ in parallel with $R$:
+$200/50 = 160/40 = 100/25 = 80/20 = 4$ A. Total current into the top wire: 16 A.
+
+Total conductance between the wires: $\tfrac1{50} + \tfrac1{40} + \tfrac1{25} + \tfrac1{20} + \tfrac1{20} = 0.02 + 0.025 + 0.04 + 0.05 + 0.05 = 0.185$ S.
+
+$V = 16/0.185 \approx 86.5$ V, and $I = V/20 \approx 4.32$ A.
+
+Traps: 16 A is the total source current; 5.93 A forgets the plain 20 Ω in the conductance sum.
+
+**Without a calculator:** in 200ths: $4 + 5 + 8 + 10 + 10 = 37$, so $V = 16\times\dfrac{200}{37} = \dfrac{3200}{37} \approx 86.5$; $I = \dfrac{160}{37} \approx 4.3$.
+
+**Answer: about 4.32 A.**
+', status = 'READY', answer_type = 'NAT', nat_min = 4.3, nat_max = 4.35, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2019-42', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2019'), '42', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3.24 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4.32 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '5.93 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '16 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2019-42', '<svg width="509" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.60000000000001 -191.79999999999998 442.826 196.4"><circle cx="-0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="93.6" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="187.2" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="280.8" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-187.20000000000002 L -0,-158.4 L 9,-155.4 L -9,-149.4 L 9,-143.4 L -9,-137.4 L 9,-131.4 L -9,-125.4 L -0,-122.4 L -0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-93.60000000000001 L -0,-64.8 L -0,-64.8 M -0,-28.8 L -0,-28.8 L -0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.59999999999999,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -6.282438079625922e-15,-59.4 L -0,-52.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.5999999999999934,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-187.20000000000002 L 93.6,-158.4 L 102.6,-155.4 L 84.6,-149.4 L 102.6,-143.4 L 84.6,-137.4 L 102.6,-131.4 L 84.6,-125.4 L 93.6,-122.4 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 93.6,-64.8 L 93.6,-64.8 M 93.6,-28.8 L 93.6,-28.8 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 97.19999999999999,-37.800000000000004 L 90,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-59.4 L 93.6,-52.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 97.19999999999999,-55.800000000000004 L 90,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-187.20000000000002 L 187.2,-158.4 L 196.2,-155.4 L 178.2,-149.4 L 196.2,-143.4 L 178.2,-137.4 L 196.2,-131.4 L 178.2,-125.4 L 187.2,-122.4 L 187.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-93.60000000000001 L 187.2,-64.8 L 187.2,-64.8 M 187.2,-28.8 L 187.2,-28.8 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 190.79999999999998,-37.800000000000004 L 183.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-59.4 L 187.2,-52.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 190.79999999999998,-55.800000000000004 L 183.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 280.8,-187.20000000000002 L 280.8,-158.4 L 289.8,-155.4 L 271.8,-149.4 L 289.8,-143.4 L 271.8,-137.4 L 289.8,-131.4 L 271.8,-125.4 L 280.8,-122.4 L 280.8,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 280.8,-93.60000000000001 L 280.8,-64.8 L 280.8,-64.8 M 280.8,-28.8 L 280.8,-28.8 L 280.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 284.4,-37.800000000000004 L 277.2,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 280.8,-59.4 L 280.8,-52.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 284.4,-55.800000000000004 L 277.2,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 374.40000000000003,-187.20000000000002 L 374.4,-111.6 L 383.4,-108.6 L 365.4,-102.6 L 383.4,-96.6 L 365.4,-90.6 L 383.4,-84.6 L 365.4,-78.6 L 374.4,-75.6 L 374.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-187.20000000000002 L 187.2,-187.2 L 374.4,-187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 187.2,-0 L 374.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="12.59999999999999" y="-153.4" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="12.59999999999999" dy="13">50 Ω</tspan></text><text x="21.59999999999999" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.59999999999999" dy="13">200 V</tspan></text><text x="106.19999999999999" y="-153.4" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999999" dy="13">40 Ω</tspan></text><text x="115.19999999999999" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="115.19999999999999" dy="13">160 V</tspan></text><text x="199.79999999999998" y="-153.4" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="199.79999999999998" dy="13">25 Ω</tspan></text><text x="208.79999999999998" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="208.79999999999998" dy="13">100 V</tspan></text><text x="293.40000000000003" y="-153.4" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="293.40000000000003" dy="13">20 Ω</tspan></text><text x="302.40000000000003" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="302.40000000000003" dy="13">80 V</tspan></text><text x="387.0" y="-106.60000000000001" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="387.0" dy="13">20 Ω</tspan></text><text x="403.2" y="-175.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="403.2" dy="13">I ↓</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-source-transformation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-star-delta';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2004-33';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2004', '33')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'In Fig., $Ra$, $Rb$ and $Rc$ are 20 Ω, 10 Ω and 10 Ω respectively. The resistances $R1$, $R2$ and $R3$ in Ω of an equivalent star-connection are', 'In Fig., $R_a$, $R_b$ and $R_c$ are 20 Ω, 10 Ω and 10 Ω respectively. The resistances $R_1$, $R_2$ and $R_3$ in Ω of an equivalent star-connection are
+
+![Figure](fig:q-gate2004-33)
+', '**Idea used:** delta to star — see *Star–delta* (Example 1).
+
+In the figure, $R_a$ is opposite node a (between b and c), $R_b$ between a and c, $R_c$ between a and b. Sum $= 40$ Ω.
+
+- $R_1$ (at a) $= \dfrac{R_bR_c}{40} = \dfrac{100}{40} = 2.5$ Ω
+- $R_2$ (at b) $= \dfrac{R_aR_c}{40} = \dfrac{200}{40} = 5$ Ω
+- $R_3$ (at c) $= \dfrac{R_aR_b}{40} = \dfrac{200}{40} = 5$ Ω
+
+**Without a calculator:** node a touches the two 10 Ω sides, so its arm is the smallest; b and c each touch the 20 Ω side and are equal.
+
+**Answer: (A) 2.5, 5, 5.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2004-33', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In Fig., $Ra$, $Rb$ and $Rc$ are 20 Ω, 10 Ω and 10 Ω respectively. The resistances $R1$, $R2$ and $R3$ in Ω of an equivalent star-connection are'), stem_md = 'In Fig., $R_a$, $R_b$ and $R_c$ are 20 Ω, 10 Ω and 10 Ω respectively. The resistances $R_1$, $R_2$ and $R_3$ in Ω of an equivalent star-connection are
+
+![Figure](fig:q-gate2004-33)
+', solution_md = '**Idea used:** delta to star — see *Star–delta* (Example 1).
+
+In the figure, $R_a$ is opposite node a (between b and c), $R_b$ between a and c, $R_c$ between a and b. Sum $= 40$ Ω.
+
+- $R_1$ (at a) $= \dfrac{R_bR_c}{40} = \dfrac{100}{40} = 2.5$ Ω
+- $R_2$ (at b) $= \dfrac{R_aR_c}{40} = \dfrac{200}{40} = 5$ Ω
+- $R_3$ (at c) $= \dfrac{R_aR_b}{40} = \dfrac{200}{40} = 5$ Ω
+
+**Without a calculator:** node a touches the two 10 Ω sides, so its arm is the smallest; b and c each touch the 20 Ω side and are equal.
+
+**Answer: (A) 2.5, 5, 5.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2004-33', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2004'), '33', qid, 2, TRUE, 'https://questions.examside.com/past-years/year-wise/gate/gate-ee/gate-ee-2004/N9bMw3llJX9EIovq') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2.5, 5, 5', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '5, 2.5, 5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '5, 5, 2.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.5, 5, 2.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2004-33', '<svg width="588" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-17.529999999999998 -189.49999999999994 511.04 203.09999999999994"><path d="M 93.60000000000001,-162.0 L 131.395,-96.586 L 140.689,-98.49 L 128.105,-84.29 L 146.692,-88.1 L 134.108,-73.9 L 152.695,-77.71 L 140.111,-63.51 L 149.405,-65.414 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-0.0 L 111.6,-0 L 108.6,9 L 102.6,-9 L 96.6,9 L 90.6,-9 L 84.6,9 L 78.6,-9 L 75.6,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 37.795,-65.414 L 31.503,-72.515 L 50.09,-68.705 L 37.506,-82.905 L 56.094,-79.095 L 43.51,-93.295 L 62.097,-89.485 L 55.805,-96.586 L 93.6,-162" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 381.59999999999997,-57.6 L 381.6,-93.6 L 372.6,-96.6 L 390.6,-102.6 L 372.6,-108.6 L 390.6,-114.6 L 372.6,-120.6 L 390.6,-126.6 L 381.6,-129.6 L 381.6,-165.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 381.59999999999997,-57.6 L 413.07,-38.234 L 420.342,-44.326 L 416.018,-25.852 L 430.562,-38.037 L 426.238,-19.563 L 440.782,-31.748 L 436.458,-13.274 L 443.73,-19.366 L 475.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 381.59999999999997,-57.6 L 350.13,-38.234 L 352.292,-28.997 L 337.748,-41.182 L 342.072,-22.707 L 327.528,-34.893 L 331.852,-16.418 L 317.308,-28.603 L 319.47,-19.366 L 288,0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="151.30989992288133" y="-100.30349773322033" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="151.30989992288133" dy="13">Rc</tspan></text><text x="93.60000000000001" y="-25.600000000000012" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000001" dy="13">Ra</tspan></text><text x="35.89010007711867" y="-100.30349773322033" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="35.89010007711867" dy="13">Rb</tspan></text><text x="369.0" y="-124.6" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="369.0" dy="13">R1</tspan></text><text x="435.0036275633706" y="-52.530894790477255" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="435.0036275633706" dy="13">R2</tspan></text><text x="328.19637243662936" y="-52.53089479047724" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="328.19637243662936" dy="13">R3</tspan></text><circle cx="93.6" cy="-162" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="93.60000000000001" y="-181.29999999999998" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000001" dy="13">a</tspan></text><circle cx="187.2" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="193.5" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="193.5" dy="13">b</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="-6.3" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-6.3" dy="13">c</tspan></text><circle cx="381.6" cy="-165.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="381.59999999999997" y="-184.89999999999998" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="381.59999999999997" dy="13">a</tspan></text><circle cx="475.2" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="481.5" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="481.5" dy="13">b</tspan></text><circle cx="288" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="281.7" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="281.7" dy="13">c</tspan></text><circle cx="381.6" cy="-57.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-star-delta');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-star-delta';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2013-19';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2013', '19')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Consider a delta connection of resistors and its equivalent star connection as shown below. If all elements of the delta connection are scaled by a factor...', 'Consider a delta connection of resistors and its equivalent star connection as shown below. If all elements of the delta connection are scaled by a factor $k$, $k > 0$, the elements of the corresponding star equivalent will be scaled by a factor of
+
+![Figure](fig:q-gate2013-19)
+', '**Idea used:** delta-to-star formula — see *Star–delta → Special cases*.
+
+$R_A = \dfrac{R_bR_c}{R_a + R_b + R_c}$. Multiply every delta resistor by $k$: the top becomes $k^2R_bR_c$ and the bottom $k(R_a + R_b + R_c)$, so $R_A$ becomes $k$ times. Same for the other two arms.
+
+In general, multiplying every resistance in a network by $k$ multiplies every equivalent resistance by $k$.
+
+**Answer: (B) $k$.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2013-19', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Consider a delta connection of resistors and its equivalent star connection as shown below. If all elements of the delta connection are scaled by a factor...'), stem_md = 'Consider a delta connection of resistors and its equivalent star connection as shown below. If all elements of the delta connection are scaled by a factor $k$, $k > 0$, the elements of the corresponding star equivalent will be scaled by a factor of
+
+![Figure](fig:q-gate2013-19)
+', solution_md = '**Idea used:** delta-to-star formula — see *Star–delta → Special cases*.
+
+$R_A = \dfrac{R_bR_c}{R_a + R_b + R_c}$. Multiply every delta resistor by $k$: the top becomes $k^2R_bR_c$ and the bottom $k(R_a + R_b + R_c)$, so $R_A$ becomes $k$ times. Same for the other two arms.
+
+In general, multiplying every resistance in a network by $k$ multiplies every equivalent resistance by $k$.
+
+**Answer: (B) $k$.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2013-19', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2013'), '19', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$k^2$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$k$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$1/k$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$\sqrt{k}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2013-19', '<svg width="547" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-7.3 -123.80000000000001 475.4 131.10000000000002"><path d="M 0.0,-93.60000000000001 L 14.4,-93.6 L 28.8,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 28.8,-93.60000000000001 L 57.6,-93.6 L 60.6,-102.6 L 66.6,-84.6 L 72.6,-102.6 L 78.6,-84.6 L 84.6,-102.6 L 90.6,-84.6 L 93.6,-93.6 L 122.4,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.4,-93.60000000000001 L 136.8,-93.6 L 151.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 28.8,-93.60000000000001 L 28.8,-64.8 L 37.8,-61.8 L 19.8,-55.8 L 37.8,-49.8 L 19.8,-43.8 L 37.8,-37.8 L 19.8,-31.8 L 28.8,-28.8 L 28.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.4,-93.60000000000001 L 122.4,-64.8 L 131.4,-61.8 L 113.4,-55.8 L 131.4,-49.8 L 113.4,-43.8 L 131.4,-37.8 L 113.4,-31.8 L 122.4,-28.8 L 122.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 90,-0 L 180,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 288.0,-93.60000000000001 L 313.2,-93.6 L 316.2,-102.6 L 322.2,-84.6 L 328.2,-102.6 L 334.2,-84.6 L 340.2,-102.6 L 346.2,-84.6 L 349.2,-93.6 L 374.4,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 374.40000000000003,-93.60000000000001 L 399.6,-93.6 L 402.6,-102.6 L 408.6,-84.6 L 414.6,-102.6 L 420.6,-84.6 L 426.6,-102.6 L 432.6,-84.6 L 435.6,-93.6 L 460.8,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 374.40000000000003,-93.60000000000001 L 374.4,-64.8 L 383.4,-61.8 L 365.4,-55.8 L 383.4,-49.8 L 365.4,-43.8 L 383.4,-37.8 L 365.4,-31.8 L 374.4,-28.8 L 374.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 288.0,-0.0 L 374.4,-0 L 460.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="75.60000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="75.60000000000001" dy="13">Ra</tspan></text><text x="41.4" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="41.4" dy="13">Rb</tspan></text><text x="135.0" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="135.0" dy="13">Rc</tspan></text><text x="331.2" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="331.2" dy="13">RC</tspan></text><text x="417.59999999999997" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="417.59999999999997" dy="13">RB</tspan></text><text x="387.0" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="387.0" dy="13">RA</tspan></text><circle cx="0" cy="-93.6" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="28.8" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="122.4" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="151.2" cy="-93.6" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="180" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="288" cy="-93.6" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="374.4" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="460.8" cy="-93.6" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="288" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="460.8" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-star-delta');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-bridges-symmetry';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2009-7';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2009', '7')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The current through the 2 kΩ resistance in the circuit shown is', 'The current through the 2 kΩ resistance in the circuit shown is
+
+![Figure](fig:q-gate2009-7)
+', '**Idea used:** balanced bridge — see *Bridges and symmetry* (Example 2).
+
+The four arms are all 1 kΩ, so $1\times1 = 1\times1$: the bridge is balanced. C and D are at the same potential, and the middle 2 kΩ carries **no current**, whatever its value.
+
+**Answer: (A) 0 mA.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2009-7', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The current through the 2 kΩ resistance in the circuit shown is'), stem_md = 'The current through the 2 kΩ resistance in the circuit shown is
+
+![Figure](fig:q-gate2009-7)
+', solution_md = '**Idea used:** balanced bridge — see *Bridges and symmetry* (Example 2).
+
+The four arms are all 1 kΩ, so $1\times1 = 1\times1$: the bridge is balanced. C and D are at the same potential, and the middle 2 kΩ carries **no current**, whatever its value.
+
+**Answer: (A) 0 mA.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2009-7', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2009'), '7', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0 mA', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1 mA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 mA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '6 mA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2009-7', '<svg width="309" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-40.60000000000002 -124.7 268.4 291.3"><circle cx="93.6" cy="144" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 34.072,-34.072 L 29.829,-42.557 L 46.8,-34.072 L 38.315,-51.043 L 55.285,-42.557 L 46.8,-59.528 L 63.771,-51.043 L 59.528,-59.528 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 127.672,-59.528 L 136.157,-63.771 L 127.672,-46.8 L 144.643,-55.285 L 136.157,-38.315 L 153.128,-46.8 L 144.643,-29.829 L 153.128,-34.072 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 34.072,34.072 L 42.557,29.829 L 34.072,46.8 L 51.043,38.315 L 42.557,55.285 L 59.528,46.8 L 51.043,63.771 L 59.528,59.528 L 93.6,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,93.60000000000001 L 127.672,59.528 L 123.429,51.043 L 140.4,59.528 L 131.915,42.557 L 148.885,51.043 L 140.4,34.072 L 157.371,42.557 L 153.128,34.072 L 187.2,0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 93.6,-18 L 102.6,-15 L 84.6,-9 L 102.6,-3 L 84.6,3 L 102.6,9 L 84.6,15 L 93.6,18 L 93.6,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L -18,-0 L -36,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -36.0,-4.408728476930472e-15 L -36,72 L -36,144" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -36.00000000000002,144.0 L 75.6,144 L 75.6,144 M 111.6,144 L 111.6,144 L 223.2,144" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 84.6,147.6 L 84.6,140.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 99.0,144.0 L 106.2,144" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 102.6,147.6 L 102.6,140.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,144.0 L 223.2,72 L 223.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,-0.0 L 205.2,-0 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="37.8904545570495" y="-68.70954544295049" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="37.8904545570495" dy="13">1 kΩ</tspan></text><text x="149.30954544295048" y="-68.70954544295051" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="149.30954544295048" dy="13">1 kΩ</tspan></text><text x="37.8904545570495" y="42.70954544295049" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="37.8904545570495" dy="13">1 kΩ</tspan></text><text x="149.30954544295048" y="42.70954544295051" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="149.30954544295048" dy="13">1 kΩ</tspan></text><text x="106.2" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.2" dy="13">2 kΩ</tspan></text><text x="93.6" y="109.39999999999999" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.6" dy="13">6 V</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="-13.5" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-13.5" dy="13">A</tspan></text><circle cx="93.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="93.60000000000001" y="-120.10000000000001" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000001" dy="13">C</tspan></text><circle cx="187.2" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="200.70000000000002" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="200.70000000000002" dy="13">B</tspan></text><circle cx="93.6" cy="93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="93.60000000000001" y="94.10000000000001" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000001" dy="13">D</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-bridges-symmetry');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-bridges-symmetry';
+  SELECT id INTO qid FROM question WHERE content_key = 'apdcl-2023-37';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('APDCL-2023', '37')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'All resistances of the following circuit are of magnitude 10 Ω. The equivalent resistance between the terminals A and B of the circuit is', 'All resistances of the following circuit are of magnitude 10 Ω. The equivalent resistance between the terminals A and B of the circuit is
+
+![Figure](fig:q-apdcl2023-37)
+', '**Idea used:** balanced bridge — see *Bridges and symmetry* (Example 1).
+
+Four equal arms: balanced, so the middle resistor carries no current and can be removed.
+
+$R_{AB} = (10 + 10) \parallel (10 + 10) = 20 \parallel 20 = 10$ Ω.
+
+**Answer: (C) 10 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'apdcl-2023-37', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'All resistances of the following circuit are of magnitude 10 Ω. The equivalent resistance between the terminals A and B of the circuit is'), stem_md = 'All resistances of the following circuit are of magnitude 10 Ω. The equivalent resistance between the terminals A and B of the circuit is
+
+![Figure](fig:q-apdcl2023-37)
+', solution_md = '**Idea used:** balanced bridge — see *Bridges and symmetry* (Example 1).
+
+Four equal arms: balanced, so the middle resistor carries no current and can be removed.
+
+$R_{AB} = (10 + 10) \parallel (10 + 10) = 20 \parallel 20 = 10$ Ω.
+
+**Answer: (C) 10 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'apdcl-2023-37', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'APDCL-2023'), '37', qid, 1.5, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '50 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '20 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '10 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'None of the above', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-apdcl2023-37', '<svg width="360" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-62.836 -98.2 312.872 231.7"><path d="M 0.0,-0.0 L 34.072,-34.072 L 29.829,-42.557 L 46.8,-34.072 L 38.315,-51.043 L 55.285,-42.557 L 46.8,-59.528 L 63.771,-51.043 L 59.528,-59.528 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 127.672,-59.528 L 136.157,-63.771 L 127.672,-46.8 L 144.643,-55.285 L 136.157,-38.315 L 153.128,-46.8 L 144.643,-29.829 L 153.128,-34.072 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 34.072,34.072 L 42.557,29.829 L 34.072,46.8 L 51.043,38.315 L 42.557,55.285 L 59.528,46.8 L 51.043,63.771 L 59.528,59.528 L 93.6,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,93.60000000000001 L 127.672,59.528 L 123.429,51.043 L 140.4,59.528 L 131.915,42.557 L 148.885,51.043 L 140.4,34.072 L 157.371,42.557 L 153.128,34.072 L 187.2,0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 93.6,-18 L 102.6,-15 L 84.6,-9 L 102.6,-3 L 84.6,3 L 102.6,9 L 84.6,15 L 93.6,18 L 93.6,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -43.199999999999996,-0.0 L -21.6,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-0.0 L 208.8,-0 L 230.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="97.2" y="109.39999999999999" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="97.2" dy="13">(every resistor 10 Ω)</tspan></text><circle cx="-43.2" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="-49.5" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-49.5" dy="13">A</tspan></text><circle cx="230.4" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="236.70000000000002" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="236.70000000000002" dy="13">B</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-bridges-symmetry');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-bridges-symmetry';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2024-52';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2024', '52')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Five resistances of 10 Ω each are connected between terminals A and B as shown in the figure. What is the total resistance between terminals A and B?', 'Five resistances of 10 Ω each are connected between terminals A and B as shown in the figure. What is the total resistance between terminals A and B?
+
+![Figure](fig:q-ese2024-52)
+', '**Idea used:** redraw by naming nodes; it is a balanced bridge — see *Series and parallel → Finding the equivalent resistance* and *Bridges and symmetry*.
+
+Name the nodes. The resistors are:
+- A–C (bottom left 10 Ω) and A–D (top 10 Ω, its left end is on the A wire);
+- C–D (middle 10 Ω);
+- C–B (bottom loop 10 Ω, its right end is on the B wire) and D–B (right 10 Ω).
+
+So A connects to C and D, B connects to C and D, and C–D is the middle branch: a bridge with four equal arms. It is balanced; the C–D resistor carries nothing.
+
+$R_{AB} = 20 \parallel 20 = 10$ Ω.
+
+**Answer: (B) 10 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2024-52', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Five resistances of 10 Ω each are connected between terminals A and B as shown in the figure. What is the total resistance between terminals A and B?'), stem_md = 'Five resistances of 10 Ω each are connected between terminals A and B as shown in the figure. What is the total resistance between terminals A and B?
+
+![Figure](fig:q-ese2024-52)
+', solution_md = '**Idea used:** redraw by naming nodes; it is a balanced bridge — see *Series and parallel → Finding the equivalent resistance* and *Bridges and symmetry*.
+
+Name the nodes. The resistors are:
+- A–C (bottom left 10 Ω) and A–D (top 10 Ω, its left end is on the A wire);
+- C–D (middle 10 Ω);
+- C–B (bottom loop 10 Ω, its right end is on the B wire) and D–B (right 10 Ω).
+
+So A connects to C and D, B connects to C and D, and C–D is the middle branch: a bridge with four equal arms. It is balanced; the C–D resistor carries nothing.
+
+$R_{AB} = 20 \parallel 20 = 10$ Ω.
+
+**Answer: (B) 10 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2024-52', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2024'), '52', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '10 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '15 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '20 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-ese2024-52', '<svg width="434" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-19.636 -80.6 377.672 144.6"><path d="M 21.599999999999998,-0.0 L 39.6,-0 L 42.6,-9 L 48.6,9 L 54.6,-9 L 60.6,9 L 66.6,-9 L 72.6,9 L 75.6,-0 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 10.8,-0 L 21.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-0.0 L 140.4,-0 L 143.4,-9 L 149.4,9 L 155.4,-9 L 161.4,9 L 167.4,-9 L 173.4,9 L 176.4,-0 L 223.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,-0.0 L 248.4,-0 L 251.4,-9 L 257.4,9 L 263.4,-9 L 269.4,9 L 275.4,-9 L 281.4,9 L 284.4,-0 L 309.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 309.59999999999997,-0.0 L 324,-0 L 338.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 21.599999999999998,-0.0 L 21.6,-25.2 L 21.6,-50.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 21.599999999999998,-50.4 L 104.4,-50.4 L 107.4,-59.4 L 113.4,-41.4 L 119.4,-59.4 L 125.4,-41.4 L 131.4,-59.4 L 137.4,-41.4 L 140.4,-50.4 L 223.2,-50.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,-50.4 L 223.2,-25.2 L 223.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-0.0 L 93.6,25.2 L 93.6,50.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,50.4 L 183.6,50.4 L 186.6,41.4 L 192.6,59.4 L 198.6,41.4 L 204.6,59.4 L 210.6,41.4 L 216.6,59.4 L 219.6,50.4 L 309.6,50.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 309.59999999999997,50.4 L 309.6,25.2 L 309.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="57.6" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="57.6" dy="13">10 Ω</tspan></text><text x="158.4" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="158.4" dy="13">10 Ω</tspan></text><text x="266.40000000000003" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="266.40000000000003" dy="13">10 Ω</tspan></text><text x="122.4" y="-76.0" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="122.4" dy="13">10 Ω</tspan></text><text x="201.6" y="24.799999999999997" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="201.6" dy="13">10 Ω</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="-6.3" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-6.3" dy="13">A</tspan></text><circle cx="338.4" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="344.70000000000005" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="344.70000000000005" dy="13">B</tspan></text><circle cx="93.6" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="93.60000000000001" y="-19.3" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="93.60000000000001" dy="13">C</tspan></text><circle cx="223.2" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="231.29999999999998" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="231.29999999999998" dy="13">D</tspan></text><circle cx="21.6" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="309.6" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-bridges-symmetry');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-bridges-symmetry';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2024-51';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2024', '51')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'What is the value of $V{AB}$ in the network shown in the figure?', 'What is the value of $V_{AB}$ in the network shown in the figure?
+
+![Figure](fig:q-ese2024-51)
+', '**Idea used:** voltage between the middle points of an unbalanced bridge — see *Bridges and symmetry* (Example 4).
+
+The 10 V source is across the top and bottom corners. A is the left corner (between 10 Ω above and 20 Ω below); B is the right corner (between 30 Ω above and 40 Ω below). A and B are open terminals, so each side is a plain divider. With the bottom corner at 0 V:
+
+- $V_A = 10\times\dfrac{20}{10 + 20} = 6.67$ V
+- $V_B = 10\times\dfrac{40}{30 + 40} = 5.71$ V
+- $V_{AB} = 6.67 - 5.71 \approx 0.95$ V
+
+**Without a calculator:** $\tfrac23 - \tfrac47 = \tfrac{14 - 12}{21} = \tfrac{2}{21}$; $10\times\tfrac{2}{21} \approx 0.95$. Closest option: 0.96 V.
+
+**Answer: (B) 0.96 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2024-51', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'What is the value of $V{AB}$ in the network shown in the figure?'), stem_md = 'What is the value of $V_{AB}$ in the network shown in the figure?
+
+![Figure](fig:q-ese2024-51)
+', solution_md = '**Idea used:** voltage between the middle points of an unbalanced bridge — see *Bridges and symmetry* (Example 4).
+
+The 10 V source is across the top and bottom corners. A is the left corner (between 10 Ω above and 20 Ω below); B is the right corner (between 30 Ω above and 40 Ω below). A and B are open terminals, so each side is a plain divider. With the bottom corner at 0 V:
+
+- $V_A = 10\times\dfrac{20}{10 + 20} = 6.67$ V
+- $V_B = 10\times\dfrac{40}{30 + 40} = 5.71$ V
+- $V_{AB} = 6.67 - 5.71 \approx 0.95$ V
+
+**Without a calculator:** $\tfrac23 - \tfrac47 = \tfrac{14 - 12}{21} = \tfrac{2}{21}$; $10\times\tfrac{2}{21} \approx 0.95$. Closest option: 0.96 V.
+
+**Answer: (B) 0.96 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2024-51', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2024'), '51', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.86 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.96 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.66 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.76 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-ese2024-51', '<svg width="380" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-139.042 -130.60000000000002 330.842 261.20000000000005"><circle cx="-86.4" cy="-0" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 34.072,-34.072 L 29.829,-42.557 L 46.8,-34.072 L 38.315,-51.043 L 55.285,-42.557 L 46.8,-59.528 L 63.771,-51.043 L 59.528,-59.528 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 127.672,-59.528 L 136.157,-63.771 L 127.672,-46.8 L 144.643,-55.285 L 136.157,-38.315 L 153.128,-46.8 L 144.643,-29.829 L 153.128,-34.072 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 34.072,34.072 L 42.557,29.829 L 34.072,46.8 L 51.043,38.315 L 42.557,55.285 L 59.528,46.8 L 51.043,63.771 L 59.528,59.528 L 93.6,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,93.60000000000001 L 127.672,59.528 L 123.429,51.043 L 140.4,59.528 L 131.915,42.557 L 148.885,51.043 L 140.4,34.072 L 157.371,42.557 L 153.128,34.072 L 187.2,0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 36,-0 L 72,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 115.2,-0.0 L 151.2,-0 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 93.6,-109.8 L 93.6,-126" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-126.0 L 3.6,-126 L -86.4,-126" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -86.39999999999999,126.0 L -86.4,18 L -86.4,18 M -86.4,-18 L -86.4,-18 L -86.4,-126" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -82.8,9.0 L -90,9" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -86.39999999999998,-5.399999999999997 L -86.4,-12.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -82.8,-9.0 L -90,-9" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -86.39999999999999,126.0 L 3.6,126 L 93.6,126" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,126.0 L 93.6,109.8 L 93.6,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="37.8904545570495" y="-68.70954544295049" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="37.8904545570495" dy="13">10 Ω</tspan></text><text x="149.30954544295048" y="-68.70954544295051" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="149.30954544295048" dy="13">30 Ω</tspan></text><text x="37.8904545570495" y="42.70954544295049" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="37.8904545570495" dy="13">20 Ω</tspan></text><text x="149.30954544295048" y="42.70954544295051" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="149.30954544295048" dy="13">40 Ω</tspan></text><text x="-107.99999999999999" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-107.99999999999999" dy="13">10 V</tspan></text><circle cx="72" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="72.0" y="0.5" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="72.0" dy="13">A</tspan></text><circle cx="115.2" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="115.2" y="0.5" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="115.2" dy="13">B</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-bridges-symmetry');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-bridges-symmetry';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2015-s2-29';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2015', 'S2-Q29')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The current $i$ (in Ampere) in the 2 Ω resistor of the given network is .', 'The current $i$ (in Ampere) in the 2 Ω resistor of the given network is ______.
+
+![Figure](fig:q-gate2015-s2-29)
+', '**Idea used:** symmetry (equal potentials) — see *Bridges and symmetry* (Example 5).
+
+Call the left corners L+ (top, 5 V) and L− (bottom, 0 V). Each right corner is joined to **both** left corners by one 1 Ω each (top-right: by the top side to L+ and by a diagonal to L−; bottom-right: by the bottom side to L− and by the other diagonal to L+). The diagonals cross without joining.
+
+With the 2 Ω removed, each right corner is the midpoint of two equal 1 Ω resistors between 5 V and 0 V, so both are at 2.5 V. With the 2 Ω connected, there is no voltage across it to start any current, so the potentials stay equal.
+
+$i = 0$.
+
+**Answer: 0** (official key).
+', 'READY', 'NAT', 0, 0, 2, 'OFFICIAL_KEY', 'gate-2015-s2-29', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The current $i$ (in Ampere) in the 2 Ω resistor of the given network is .'), stem_md = 'The current $i$ (in Ampere) in the 2 Ω resistor of the given network is ______.
+
+![Figure](fig:q-gate2015-s2-29)
+', solution_md = '**Idea used:** symmetry (equal potentials) — see *Bridges and symmetry* (Example 5).
+
+Call the left corners L+ (top, 5 V) and L− (bottom, 0 V). Each right corner is joined to **both** left corners by one 1 Ω each (top-right: by the top side to L+ and by a diagonal to L−; bottom-right: by the bottom side to L− and by the other diagonal to L+). The diagonals cross without joining.
+
+With the 2 Ω removed, each right corner is the midpoint of two equal 1 Ω resistors between 5 V and 0 V, so both are at 2.5 V. With the 2 Ω connected, there is no voltage across it to start any current, so the potentials stay equal.
+
+$i = 0$.
+
+**Answer: 0** (official key).
+', status = 'READY', answer_type = 'NAT', nat_min = 0, nat_max = 0, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate-2015-s2-29', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2015'), 'S2-Q29', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.5 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.5 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2015-s2-29', '<svg width="302" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.599999999999994 -145.40000000000003 262.61599999999993 196.10000000000002"><circle cx="0" cy="-57.6" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-39.6 L 0,-39.6 M 0,-75.6 L 0,-75.6 L 0,-115.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.600000000000003,-48.6 L -3.6,-48.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.857637417314163e-15,-63.0 L 0,-70.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.600000000000004,-66.60000000000001 L -3.6,-66.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-115.2 L 61.2,-115.2 L 64.2,-124.2 L 70.2,-106.2 L 76.2,-124.2 L 82.2,-106.2 L 88.2,-124.2 L 94.2,-106.2 L 97.2,-115.2 L 158.4,-115.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 61.2,-0 L 64.2,-9 L 70.2,9 L 76.2,-9 L 82.2,9 L 88.2,-9 L 94.2,9 L 97.2,-0 L 158.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-115.2 L 18.707,-101.595 L 26.427,-107.109 L 20.692,-89.023 L 36.131,-100.051 L 30.397,-81.965 L 45.836,-92.993 L 40.101,-74.907 L 47.821,-80.421 L 66.528,-66.816" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 66.528,-66.816 L 112.464,-33.408 L 158.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 45.936,-33.408 L 91.872,-66.816" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 91.872,-66.816 L 110.579,-80.421 L 107.711,-89.464 L 123.151,-78.436 L 117.416,-96.522 L 132.856,-85.494 L 127.121,-103.58 L 142.561,-92.552 L 139.693,-101.595 L 158.4,-115.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 158.4,-115.2 L 180,-115.2 L 201.6,-115.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 201.6,-115.2 L 201.6,-75.6 L 210.6,-72.6 L 192.6,-66.6 L 210.6,-60.6 L 192.6,-54.6 L 210.6,-48.6 L 192.6,-42.6 L 201.6,-39.6 L 201.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 201.6,-0.0 L 180,-0 L 158.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-70.6" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">5 V</tspan></text><text x="79.2" y="-140.8" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="79.2" dy="13">1 Ω</tspan></text><text x="79.2" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="79.2" dy="13">1 Ω</tspan></text><text x="40.674963390705585" y="-114.19807466222018" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="40.674963390705585" dy="13">1 Ω</tspan></text><text x="132.54696339070557" y="-93.81792533777983" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="132.54696339070557" dy="13">1 Ω</tspan></text><text x="214.2" y="-70.6" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="214.2" dy="13">2 Ω</tspan></text><text x="223.20000000000002" y="-103.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="223.20000000000002" dy="13">i ↓</tspan></text><text x="90.0" y="26.6" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="90.0" dy="13">Diagonals cross without joining.</tspan></text><circle cx="0" cy="-115.2" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="158.4" cy="-115.2" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="158.4" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-bridges-symmetry');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-ladders';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2016-s1-15';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q15')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', '$RA$ and $RB$ are the input resistances of circuits as shown below. The circuits extend infinitely in the direction shown. Which one of the following...', '$R_A$ and $R_B$ are the input resistances of circuits as shown below. The circuits extend infinitely in the direction shown. Which one of the following statements is TRUE?
+
+![Figure](fig:q-gate2016-s1-15)
+', '**Idea used:** an infinite ladder looks the same after one section — see *Ladders* (Examples 3 and 4).
+
+Circuit B is a 1 Ω shunt placed in front of circuit A. Everything to the right of that 1 Ω is exactly circuit A, so
+
+$$R_B = 1 \parallel R_A = \frac{1\times R_A}{1 + R_A} = \frac{R_A}{1 + R_A}$$
+
+(For interest: $R_A = 2 + (1 \parallel R_A)$ gives $R_A = 1 + \sqrt3 \approx 2.73$ Ω, and $R_B \approx 0.73$ Ω. So (C) is false: $R_B < R_A$.)
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2016-s1-15', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), '$RA$ and $RB$ are the input resistances of circuits as shown below. The circuits extend infinitely in the direction shown. Which one of the following...'), stem_md = '$R_A$ and $R_B$ are the input resistances of circuits as shown below. The circuits extend infinitely in the direction shown. Which one of the following statements is TRUE?
+
+![Figure](fig:q-gate2016-s1-15)
+', solution_md = '**Idea used:** an infinite ladder looks the same after one section — see *Ladders* (Examples 3 and 4).
+
+Circuit B is a 1 Ω shunt placed in front of circuit A. Everything to the right of that 1 Ω is exactly circuit A, so
+
+$$R_B = 1 \parallel R_A = \frac{1\times R_A}{1 + R_A} = \frac{R_A}{1 + R_A}$$
+
+(For interest: $R_A = 2 + (1 \parallel R_A)$ gives $R_A = 1 + \sqrt3 \approx 2.73$ Ω, and $R_B \approx 0.73$ Ω. So (C) is false: $R_B < R_A$.)
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2016-s1-15', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q15', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$R_A = R_B$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$R_A = R_B = 0$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$R_A < R_B$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$R_B = \dfrac{R_A}{1 + R_A}$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s1-15', '<svg width="417" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-21.304 -30.900000000000002 362.279 297.3999999999999"><path d="M 0.0,-0.0 L 10.8,-0 L 21.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 21.599999999999998,-0.0 L 46.8,-0 L 49.8,-9 L 55.8,9 L 61.8,-9 L 67.8,9 L 73.8,-9 L 79.8,9 L 82.8,-0 L 108,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 108.0,-0.0 L 108,28.8 L 117,31.8 L 99,37.8 L 117,43.8 L 99,49.8 L 117,55.8 L 99,61.8 L 108,64.8 L 108,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 108.0,-0.0 L 133.2,-0 L 136.2,-9 L 142.2,9 L 148.2,-9 L 154.2,9 L 160.2,-9 L 166.2,9 L 169.2,-0 L 194.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 194.4,-0.0 L 194.4,28.8 L 203.4,31.8 L 185.4,37.8 L 203.4,43.8 L 185.4,49.8 L 203.4,55.8 L 185.4,61.8 L 194.4,64.8 L 194.4,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 194.4,-0.0 L 219.6,-0 L 222.6,-9 L 228.6,9 L 234.6,-9 L 240.6,9 L 246.6,-9 L 252.6,9 L 255.6,-0 L 280.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 280.8,-0.0 L 280.8,28.8 L 289.8,31.8 L 271.8,37.8 L 289.8,43.8 L 271.8,49.8 L 289.8,55.8 L 271.8,61.8 L 280.8,64.8 L 280.8,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 280.8,-0.0 L 291.6,-0 L 302.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,93.60000000000001 L 151.2,93.6 L 302.4,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,165.6 L 10.8,165.6 L 21.6,165.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 21.599999999999998,165.6 L 21.6,194.4 L 30.6,197.4 L 12.6,203.4 L 30.6,209.4 L 12.6,215.4 L 30.6,221.4 L 12.6,227.4 L 21.6,230.4 L 21.6,259.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 21.599999999999998,165.6 L 46.8,165.6 L 49.8,156.6 L 55.8,174.6 L 61.8,156.6 L 67.8,174.6 L 73.8,156.6 L 79.8,174.6 L 82.8,165.6 L 108,165.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 108.0,165.6 L 108,194.4 L 117,197.4 L 99,203.4 L 117,209.4 L 99,215.4 L 117,221.4 L 99,227.4 L 108,230.4 L 108,259.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 108.0,165.6 L 133.2,165.6 L 136.2,156.6 L 142.2,174.6 L 148.2,156.6 L 154.2,174.6 L 160.2,156.6 L 166.2,174.6 L 169.2,165.6 L 194.4,165.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 194.4,165.6 L 194.4,194.4 L 203.4,197.4 L 185.4,203.4 L 203.4,209.4 L 185.4,215.4 L 203.4,221.4 L 185.4,227.4 L 194.4,230.4 L 194.4,259.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 194.4,165.6 L 219.6,165.6 L 222.6,156.6 L 228.6,174.6 L 234.6,156.6 L 240.6,174.6 L 246.6,156.6 L 252.6,174.6 L 255.6,165.6 L 280.8,165.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 280.8,165.6 L 280.8,194.4 L 289.8,197.4 L 271.8,203.4 L 289.8,209.4 L 271.8,215.4 L 289.8,221.4 L 271.8,227.4 L 280.8,230.4 L 280.8,259.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 280.8,165.6 L 291.6,165.6 L 302.4,165.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,259.2 L 151.2,259.2 L 302.4,259.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="-3.6" y="-32.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-3.6" dy="13">RA →</tspan></text><text x="64.8" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="64.8" dy="13">2 Ω</tspan></text><text x="120.6" y="33.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.6" dy="13">1 Ω</tspan></text><text x="151.20000000000002" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="151.20000000000002" dy="13">2 Ω</tspan></text><text x="207.0" y="33.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="207.0" dy="13">1 Ω</tspan></text><text x="237.60000000000002" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="237.60000000000002" dy="13">2 Ω</tspan></text><text x="293.40000000000003" y="33.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="293.40000000000003" dy="13">1 Ω</tspan></text><text x="327.59999999999997" y="30.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="327.59999999999997" dy="13">···</tspan></text><text x="-3.6" y="132.79999999999998" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-3.6" dy="13">RB →</tspan></text><text x="34.19999999999999" y="199.39999999999998" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="34.19999999999999" dy="13">1 Ω</tspan></text><text x="64.8" y="140.0" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="64.8" dy="13">2 Ω</tspan></text><text x="120.6" y="199.39999999999998" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="120.6" dy="13">1 Ω</tspan></text><text x="151.20000000000002" y="140.0" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="151.20000000000002" dy="13">2 Ω</tspan></text><text x="207.0" y="199.39999999999998" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="207.0" dy="13">1 Ω</tspan></text><text x="237.60000000000002" y="140.0" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="237.60000000000002" dy="13">2 Ω</tspan></text><text x="293.40000000000003" y="199.39999999999998" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="293.40000000000003" dy="13">1 Ω</tspan></text><text x="327.59999999999997" y="195.79999999999998" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="327.59999999999997" dy="13">···</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="0" cy="93.6" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="0" cy="165.6" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="0" cy="259.2" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-ladders');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-001';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A source and three resistors are all connected between one long top wire and one long bottom wire. The drawing has eight corners in its wires. The number of...', 'A source and three resistors are all connected between one long top wire and one long bottom wire. The drawing has eight corners in its wires. The number of nodes in the circuit is
+', '**Idea used:** all wire with no element in it is one node — see *Kirchhoff''s laws → The words we need*.
+
+Corners in a wire are not nodes. Every point of the top wire is one node and every point of the bottom wire is another: 2 nodes (four branches between them).
+
+**Answer: (C) 2.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-001', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A source and three resistors are all connected between one long top wire and one long bottom wire. The drawing has eight corners in its wires. The number of...'), stem_md = 'A source and three resistors are all connected between one long top wire and one long bottom wire. The drawing has eight corners in its wires. The number of nodes in the circuit is
+', solution_md = '**Idea used:** all wire with no element in it is one node — see *Kirchhoff''s laws → The words we need*.
+
+Corners in a wire are not nodes. Every point of the top wire is one node and every point of the bottom wire is another: 2 nodes (four branches between them).
+
+**Answer: (C) 2.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-001', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '8', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-002';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'At a node, $i1 = 3$ A (arrow into the node), $i2 = -2$ A (arrow into the node) and $i3 = 4$ A (arrow out of the node). The fourth branch current $i4$, with...', 'At a node, $i_1 = 3$ A (arrow into the node), $i_2 = -2$ A (arrow into the node) and $i_3 = 4$ A (arrow out of the node). The fourth branch current $i_4$, with its arrow out of the node, is
+', '**Idea used:** KCL with reference arrows; keep the signs of the values — see *Kirchhoff''s laws → Working with arrows and signs*.
+
+(Arrows in) = (arrows out): $3 + (-2) = 4 + i_4$ ⇒ $i_4 = -3$ A. So 3 A actually flows **into** the node in branch 4.
+
+**Answer: (D) −3 A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-002', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'At a node, $i1 = 3$ A (arrow into the node), $i2 = -2$ A (arrow into the node) and $i3 = 4$ A (arrow out of the node). The fourth branch current $i4$, with...'), stem_md = 'At a node, $i_1 = 3$ A (arrow into the node), $i_2 = -2$ A (arrow into the node) and $i_3 = 4$ A (arrow out of the node). The fourth branch current $i_4$, with its arrow out of the node, is
+', solution_md = '**Idea used:** KCL with reference arrows; keep the signs of the values — see *Kirchhoff''s laws → Working with arrows and signs*.
+
+(Arrows in) = (arrows out): $3 + (-2) = 4 + i_4$ ⇒ $i_4 = -3$ A. So 3 A actually flows **into** the node in branch 4.
+
+**Answer: (D) −3 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-002', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '9 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '−3 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-003';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Two networks are joined by three wires only. In wire 1, 5 A flows from network 1 to network 2. In wire 2, 2 A flows from network 2 to network 1. The current...', 'Two networks are joined by three wires only. In wire 1, 5 A flows from network 1 to network 2. In wire 2, 2 A flows from network 2 to network 1. The current in wire 3 is
+', '**Idea used:** KCL for a closed boundary — see *Kirchhoff''s laws → KCL for a closed surface*.
+
+Draw a boundary around network 1. Out: 5 A (wire 1). In: 2 A (wire 2). Net out must be zero, so wire 3 must bring $5 - 2 = 3$ A **into** network 1, i.e. from network 2 to network 1.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-003', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Two networks are joined by three wires only. In wire 1, 5 A flows from network 1 to network 2. In wire 2, 2 A flows from network 2 to network 1. The current...'), stem_md = 'Two networks are joined by three wires only. In wire 1, 5 A flows from network 1 to network 2. In wire 2, 2 A flows from network 2 to network 1. The current in wire 3 is
+', solution_md = '**Idea used:** KCL for a closed boundary — see *Kirchhoff''s laws → KCL for a closed surface*.
+
+Draw a boundary around network 1. Out: 5 A (wire 1). In: 2 A (wire 2). Net out must be zero, so wire 3 must bring $5 - 2 = 3$ A **into** network 1, i.e. from network 2 to network 1.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-003', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3 A from network 2 to network 1', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3 A from network 1 to network 2', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '7 A from network 2 to network 1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'zero', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-004';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A single loop contains a 30 V source and three elements in series. The voltage drops across two of them are 12 V and 8 V. The drop across the third element is', 'A single loop contains a 30 V source and three elements in series. The voltage drops across two of them are 12 V and 8 V. The drop across the third element is
+', '**Idea used:** KVL: rises = drops — see *Kirchhoff''s laws → KVL in full*.
+
+$30 = 12 + 8 + V$ ⇒ $V = 10$ V.
+
+**Answer: (B) 10 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-004', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A single loop contains a 30 V source and three elements in series. The voltage drops across two of them are 12 V and 8 V. The drop across the third element is'), stem_md = 'A single loop contains a 30 V source and three elements in series. The voltage drops across two of them are 12 V and 8 V. The drop across the third element is
+', solution_md = '**Idea used:** KVL: rises = drops — see *Kirchhoff''s laws → KVL in full*.
+
+$30 = 12 + 8 + V$ ⇒ $V = 10$ V.
+
+**Answer: (B) 10 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-004', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '50 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '10 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '4 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '20 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-005';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Measured from ground, node P is at 9 V and node Q is at −6 V. The voltage $V{QP}$ (Q with respect to P) is', 'Measured from ground, node P is at 9 V and node Q is at −6 V. The voltage $V_{QP}$ (Q with respect to P) is
+', '**Idea used:** $V_{QP} = V_Q - V_P$ — see *Kirchhoff''s laws → KVL along an open path*.
+
+$V_{QP} = -6 - 9 = -15$ V.
+
+Trap: 15 V is $V_{PQ}$.
+
+**Answer: (D) −15 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-005', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Measured from ground, node P is at 9 V and node Q is at −6 V. The voltage $V{QP}$ (Q with respect to P) is'), stem_md = 'Measured from ground, node P is at 9 V and node Q is at −6 V. The voltage $V_{QP}$ (Q with respect to P) is
+', solution_md = '**Idea used:** $V_{QP} = V_Q - V_P$ — see *Kirchhoff''s laws → KVL along an open path*.
+
+$V_{QP} = -6 - 9 = -15$ V.
+
+Trap: 15 V is $V_{PQ}$.
+
+**Answer: (D) −15 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-005', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '15 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '−3 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '−15 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-006';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A connected circuit has 6 branches and 4 nodes. The number of independent KVL equations is', 'A connected circuit has 6 branches and 4 nodes. The number of independent KVL equations is
+', '**Idea used:** independent KVL equations $= b - n + 1$ — see *Kirchhoff''s laws → How many independent equations?*
+
+$6 - 4 + 1 = 3$. (Independent KCL equations: $n - 1 = 3$ too.)
+
+**Answer: (B) 3.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-006', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A connected circuit has 6 branches and 4 nodes. The number of independent KVL equations is'), stem_md = 'A connected circuit has 6 branches and 4 nodes. The number of independent KVL equations is
+', solution_md = '**Idea used:** independent KVL equations $= b - n + 1$ — see *Kirchhoff''s laws → How many independent equations?*
+
+$6 - 4 + 1 = 3$. (Independent KCL equations: $n - 1 = 3$ too.)
+
+**Answer: (B) 3.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-006', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '4', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '6', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-007';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'An ideal 10 V source feeds a 5 Ω resistor and a 2 Ω resistor connected in parallel across it. The current through the source is', 'An ideal 10 V source feeds a 5 Ω resistor and a 2 Ω resistor connected in parallel across it. The current through the source is
+', '**Idea used:** the current through a voltage source is found by KCL — see *Kirchhoff''s laws → Ideal sources and the two laws*.
+
+Both resistors have 10 V: $10/5 = 2$ A and $10/2 = 5$ A. KCL: source current $= 7$ A.
+
+Trap: 1.43 A is $10/7$ (treating the resistors as in series).
+
+**Answer: (A) 7 A.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-007', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An ideal 10 V source feeds a 5 Ω resistor and a 2 Ω resistor connected in parallel across it. The current through the source is'), stem_md = 'An ideal 10 V source feeds a 5 Ω resistor and a 2 Ω resistor connected in parallel across it. The current through the source is
+', solution_md = '**Idea used:** the current through a voltage source is found by KCL — see *Kirchhoff''s laws → Ideal sources and the two laws*.
+
+Both resistors have 10 V: $10/5 = 2$ A and $10/2 = 5$ A. KCL: source current $= 7$ A.
+
+Trap: 1.43 A is $10/7$ (treating the resistors as in series).
+
+**Answer: (A) 7 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-007', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '7 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.43 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3.5 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-008';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'An ideal 3 A current source drives its current through a 4 Ω resistor and a 6 V battery in series, the current entering the battery''s + terminal. The...', 'An ideal 3 A current source drives its current through a 4 Ω resistor and a 6 V battery in series, the current entering the battery''s + terminal. The voltage across the current source is
+', '**Idea used:** the voltage across a current source is found by KVL — see *Kirchhoff''s laws → Ideal sources and the two laws*.
+
+The current source must supply the drops in the loop: $3\times4 = 12$ V in the resistor plus 6 V across the battery being charged: $12 + 6 = 18$ V.
+
+**Answer: (C) 18 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-008', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An ideal 3 A current source drives its current through a 4 Ω resistor and a 6 V battery in series, the current entering the battery''s + terminal. The...'), stem_md = 'An ideal 3 A current source drives its current through a 4 Ω resistor and a 6 V battery in series, the current entering the battery''s + terminal. The voltage across the current source is
+', solution_md = '**Idea used:** the voltage across a current source is found by KVL — see *Kirchhoff''s laws → Ideal sources and the two laws*.
+
+The current source must supply the drops in the loop: $3\times4 = 12$ V in the resistor plus 6 V across the battery being charged: $12 + 6 = 18$ V.
+
+**Answer: (C) 18 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-008', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '6 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '12 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '18 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-009';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A single loop has a 20 V source, a 2 Ω resistor and a current-controlled voltage source of value $3i$ volts, where $i$ is the loop current. The dependent...', 'A single loop has a 20 V source, a 2 Ω resistor and a current-controlled voltage source of value $3i$ volts, where $i$ is the loop current. The dependent source opposes the current (its + terminal is where the current enters). The loop current is
+', '**Idea used:** KVL in one loop with a dependent source — see *Kirchhoff''s laws* (Example 8).
+
+$20 = 2i + 3i = 5i$ ⇒ $i = 4$ A. The dependent source acts like an extra 3 Ω.
+
+Trap: 10 A ignores the dependent source.
+
+**Answer: (D) 4 A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-009', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A single loop has a 20 V source, a 2 Ω resistor and a current-controlled voltage source of value $3i$ volts, where $i$ is the loop current. The dependent...'), stem_md = 'A single loop has a 20 V source, a 2 Ω resistor and a current-controlled voltage source of value $3i$ volts, where $i$ is the loop current. The dependent source opposes the current (its + terminal is where the current enters). The loop current is
+', solution_md = '**Idea used:** KVL in one loop with a dependent source — see *Kirchhoff''s laws* (Example 8).
+
+$20 = 2i + 3i = 5i$ ⇒ $i = 4$ A. The dependent source acts like an extra 3 Ω.
+
+Trap: 10 A ignores the dependent source.
+
+**Answer: (D) 4 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-009', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '6.67 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-010';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Resistors of 1 Ω, 2 Ω and 3 Ω are connected in series. A 4 Ω resistor is then connected in parallel with the 3 Ω resistor only. The total resistance is about', 'Resistors of 1 Ω, 2 Ω and 3 Ω are connected in series. A 4 Ω resistor is then connected in parallel with the 3 Ω resistor only. The total resistance is about
+', '**Idea used:** combine step by step — see *Series and parallel*.
+
+$3 \parallel 4 = \dfrac{12}{7} \approx 1.71$ Ω. Total $= 1 + 2 + 1.71 \approx 4.71$ Ω.
+
+**Without a calculator:** the answer must be between 3 Ω (1 + 2) and 6 Ω (the 3 Ω part can only get smaller): only 4.71 fits.
+
+**Answer: (C) 4.71 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-010', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Resistors of 1 Ω, 2 Ω and 3 Ω are connected in series. A 4 Ω resistor is then connected in parallel with the 3 Ω resistor only. The total resistance is about'), stem_md = 'Resistors of 1 Ω, 2 Ω and 3 Ω are connected in series. A 4 Ω resistor is then connected in parallel with the 3 Ω resistor only. The total resistance is about
+', solution_md = '**Idea used:** combine step by step — see *Series and parallel*.
+
+$3 \parallel 4 = \dfrac{12}{7} \approx 1.71$ Ω. Total $= 1 + 2 + 1.71 \approx 4.71$ Ω.
+
+**Without a calculator:** the answer must be between 3 Ω (1 + 2) and 6 Ω (the 3 Ω part can only get smaller): only 4.71 fits.
+
+**Answer: (C) 4.71 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-010', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '6 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '4.71 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1.71 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-011';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Several resistors are connected in parallel. The smallest of them is 3 Ω. Which one of the following can be their equivalent resistance?', 'Several resistors are connected in parallel. The smallest of them is 3 Ω. Which one of the following can be their equivalent resistance?
+', '**Idea used:** a parallel combination is smaller than its smallest resistor — see *Series and parallel → Parallel connection*.
+
+Only 2.4 Ω is below 3 Ω. (3 Ω itself would need the others to be infinite.)
+
+**Answer: (A) 2.4 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-011', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Several resistors are connected in parallel. The smallest of them is 3 Ω. Which one of the following can be their equivalent resistance?'), stem_md = 'Several resistors are connected in parallel. The smallest of them is 3 Ω. Which one of the following can be their equivalent resistance?
+', solution_md = '**Idea used:** a parallel combination is smaller than its smallest resistor — see *Series and parallel → Parallel connection*.
+
+Only 2.4 Ω is below 3 Ω. (3 Ω itself would need the others to be infinite.)
+
+**Answer: (A) 2.4 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-011', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2.4 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3.6 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '12 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-012';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Eight identical resistors of 16 Ω each are connected in parallel. The equivalent resistance is', 'Eight identical resistors of 16 Ω each are connected in parallel. The equivalent resistance is
+', '**Idea used:** $n$ equal resistors in parallel give $R/n$ — see *Series and parallel*.
+
+$16/8 = 2$ Ω.
+
+**Answer: (D) 2 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-012', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Eight identical resistors of 16 Ω each are connected in parallel. The equivalent resistance is'), stem_md = 'Eight identical resistors of 16 Ω each are connected in parallel. The equivalent resistance is
+', solution_md = '**Idea used:** $n$ equal resistors in parallel give $R/n$ — see *Series and parallel*.
+
+$16/8 = 2$ Ω.
+
+**Answer: (D) 2 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-012', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '128 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '16 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '4 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-013';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Between terminals A and B: a 6 Ω resistor runs from A to node X. From X to B there are two paths in parallel: a 3 Ω resistor and a plain wire. The...', 'Between terminals A and B: a 6 Ω resistor runs from A to node X. From X to B there are two paths in parallel: a 3 Ω resistor and a plain wire. The resistance between A and B is
+', '**Idea used:** an element whose two ends are on the same node is shorted — see *Series and parallel → Finding the equivalent resistance*.
+
+The plain wire makes X and B one node, so the 3 Ω has both ends on that node and carries nothing. $R_{AB} = 6$ Ω.
+
+Trap: 9 Ω adds the shorted 3 Ω.
+
+**Answer: (B) 6 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-013', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Between terminals A and B: a 6 Ω resistor runs from A to node X. From X to B there are two paths in parallel: a 3 Ω resistor and a plain wire. The...'), stem_md = 'Between terminals A and B: a 6 Ω resistor runs from A to node X. From X to B there are two paths in parallel: a 3 Ω resistor and a plain wire. The resistance between A and B is
+', solution_md = '**Idea used:** an element whose two ends are on the same node is shorted — see *Series and parallel → Finding the equivalent resistance*.
+
+The plain wire makes X and B one node, so the 3 Ω has both ends on that node and carries nothing. $R_{AB} = 6$ Ω.
+
+Trap: 9 Ω adds the shorted 3 Ω.
+
+**Answer: (B) 6 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-013', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '9 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '6 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '8 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-014';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 2 Ω and a 6 Ω resistor are connected in parallel. The 2 Ω resistor dissipates 18 W. The 6 Ω resistor dissipates', 'A 2 Ω and a 6 Ω resistor are connected in parallel. The 2 Ω resistor dissipates 18 W. The 6 Ω resistor dissipates
+', '**Idea used:** in parallel, same voltage, so $P \propto 1/R$ — see *Series and parallel → Parallel connection*.
+
+The 6 Ω has three times the resistance, so one third of the power: $18/3 = 6$ W. (Check: $V^2 = 18\times2 = 36$, $36/6 = 6$ W.)
+
+Trap: 54 W uses $P \propto R$, which is for series.
+
+**Answer: (B) 6 W.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-014', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 2 Ω and a 6 Ω resistor are connected in parallel. The 2 Ω resistor dissipates 18 W. The 6 Ω resistor dissipates'), stem_md = 'A 2 Ω and a 6 Ω resistor are connected in parallel. The 2 Ω resistor dissipates 18 W. The 6 Ω resistor dissipates
+', solution_md = '**Idea used:** in parallel, same voltage, so $P \propto 1/R$ — see *Series and parallel → Parallel connection*.
+
+The 6 Ω has three times the resistance, so one third of the power: $18/3 = 6$ W. (Check: $V^2 = 18\times2 = 36$, $36/6 = 6$ W.)
+
+Trap: 54 W uses $P \propto R$, which is for series.
+
+**Answer: (B) 6 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-014', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '54 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '6 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '18 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '3 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-015';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'An ideal 12 V source feeds a 3 Ω load. A 5 Ω resistor is then also connected directly across the same source. The current in the 3 Ω load is now', 'An ideal 12 V source feeds a 3 Ω load. A 5 Ω resistor is then also connected directly across the same source. The current in the 3 Ω load is now
+', '**Idea used:** a resistor in parallel with an ideal voltage source does not change what the rest of the circuit sees — see *Series and parallel → Sources in series and in parallel*.
+
+The load still has 12 V across it: $12/3 = 4$ A. Only the source current rises (to 6.4 A).
+
+**Answer: (A) 4 A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-015', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An ideal 12 V source feeds a 3 Ω load. A 5 Ω resistor is then also connected directly across the same source. The current in the 3 Ω load is now'), stem_md = 'An ideal 12 V source feeds a 3 Ω load. A 5 Ω resistor is then also connected directly across the same source. The current in the 3 Ω load is now
+', solution_md = '**Idea used:** a resistor in parallel with an ideal voltage source does not change what the rest of the circuit sees — see *Series and parallel → Sources in series and in parallel*.
+
+The load still has 12 V across it: $12/3 = 4$ A. Only the source current rises (to 6.4 A).
+
+**Answer: (A) 4 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-015', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '4 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.5 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2.4 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '6.4 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-016';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Capacitors of 2 µF and 3 µF are connected in parallel, and this combination is connected in series with a 5 µF capacitor. The equivalent capacitance is', 'Capacitors of 2 µF and 3 µF are connected in parallel, and this combination is connected in series with a 5 µF capacitor. The equivalent capacitance is
+', '**Idea used:** capacitors: parallel add, series by product over sum — see *Series and parallel → Inductors and capacitors*.
+
+$2 + 3 = 5$ µF; 5 µF in series with 5 µF $= 2.5$ µF.
+
+**Answer: (B) 2.5 µF.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-016', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Capacitors of 2 µF and 3 µF are connected in parallel, and this combination is connected in series with a 5 µF capacitor. The equivalent capacitance is'), stem_md = 'Capacitors of 2 µF and 3 µF are connected in parallel, and this combination is connected in series with a 5 µF capacitor. The equivalent capacitance is
+', solution_md = '**Idea used:** capacitors: parallel add, series by product over sum — see *Series and parallel → Inductors and capacitors*.
+
+$2 + 3 = 5$ µF; 5 µF in series with 5 µF $= 2.5$ µF.
+
+**Answer: (B) 2.5 µF.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-016', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10 µF', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2.5 µF', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1.2 µF', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '6.2 µF', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-017';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Resistors of 3 kΩ and 9 kΩ are connected in series across 24 V. The voltage across the 3 kΩ resistor is', 'Resistors of 3 kΩ and 9 kΩ are connected in series across 24 V. The voltage across the 3 kΩ resistor is
+', '**Idea used:** voltage divider — see *Dividers*.
+
+$24\times\dfrac{3}{3 + 9} = 24\times\dfrac14 = 6$ V.
+
+**Answer: (A) 6 V.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-017', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Resistors of 3 kΩ and 9 kΩ are connected in series across 24 V. The voltage across the 3 kΩ resistor is'), stem_md = 'Resistors of 3 kΩ and 9 kΩ are connected in series across 24 V. The voltage across the 3 kΩ resistor is
+', solution_md = '**Idea used:** voltage divider — see *Dividers*.
+
+$24\times\dfrac{3}{3 + 9} = 24\times\dfrac14 = 6$ V.
+
+**Answer: (A) 6 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-017', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '6 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '8 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '18 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '12 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-018';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A current of 15 A divides between a 2 Ω and a 3 Ω resistor connected in parallel. The current in the 2 Ω resistor is', 'A current of 15 A divides between a 2 Ω and a 3 Ω resistor connected in parallel. The current in the 2 Ω resistor is
+', '**Idea used:** current divider (cross-over): $I_1 = I\dfrac{R_2}{R_1 + R_2}$ — see *Dividers → The current divider*.
+
+$I_2 = 15\times\dfrac{3}{5} = 9$ A. The smaller resistor takes the larger current.
+
+Trap: 6 A uses the voltage-divider form.
+
+**Answer: (C) 9 A.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-018', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A current of 15 A divides between a 2 Ω and a 3 Ω resistor connected in parallel. The current in the 2 Ω resistor is'), stem_md = 'A current of 15 A divides between a 2 Ω and a 3 Ω resistor connected in parallel. The current in the 2 Ω resistor is
+', solution_md = '**Idea used:** current divider (cross-over): $I_1 = I\dfrac{R_2}{R_1 + R_2}$ — see *Dividers → The current divider*.
+
+$I_2 = 15\times\dfrac{3}{5} = 9$ A. The smaller resistor takes the larger current.
+
+Trap: 6 A uses the voltage-divider form.
+
+**Answer: (C) 9 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-018', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '6 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '7.5 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '9 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '10 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-019';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Two 20 kΩ resistors in series are connected across 30 V. A 20 kΩ load is then connected across the lower resistor. The voltage across the load is', 'Two 20 kΩ resistors in series are connected across 30 V. A 20 kΩ load is then connected across the lower resistor. The voltage across the load is
+', '**Idea used:** a loaded divider: replace the lower resistor by its parallel combination with the load — see *Dividers → A loaded divider*.
+
+$20 \parallel 20 = 10$ kΩ. Output $= 30\times\dfrac{10}{20 + 10} = 10$ V.
+
+Trap: 15 V is the unloaded output.
+
+**Answer: (B) 10 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-019', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Two 20 kΩ resistors in series are connected across 30 V. A 20 kΩ load is then connected across the lower resistor. The voltage across the load is'), stem_md = 'Two 20 kΩ resistors in series are connected across 30 V. A 20 kΩ load is then connected across the lower resistor. The voltage across the load is
+', solution_md = '**Idea used:** a loaded divider: replace the lower resistor by its parallel combination with the load — see *Dividers → A loaded divider*.
+
+$20 \parallel 20 = 10$ kΩ. Output $= 30\times\dfrac{10}{20 + 10} = 10$ V.
+
+Trap: 15 V is the unloaded output.
+
+**Answer: (B) 10 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-019', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '15 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '10 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '7.5 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '20 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-020';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 24 V source feeds a 2 Ω series resistor, followed by a resistor $R$ in parallel with 6 Ω. The current in the 6 Ω resistor is 2 A. The value of $R$ is', 'A 24 V source feeds a 2 Ω series resistor, followed by a resistor $R$ in parallel with 6 Ω. The current in the 6 Ω resistor is 2 A. The value of $R$ is
+', '**Idea used:** work backwards from the known current — see *Dividers → Finding an unknown resistor*.
+
+- Voltage across the pair $= 2\times6 = 12$ V.
+- Drop in the 2 Ω $= 24 - 12 = 12$ V, so the total current is 6 A.
+- Current in $R = 6 - 2 = 4$ A, so $R = 12/4 = 3$ Ω.
+
+**Answer: (A) 3 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-020', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 24 V source feeds a 2 Ω series resistor, followed by a resistor $R$ in parallel with 6 Ω. The current in the 6 Ω resistor is 2 A. The value of $R$ is'), stem_md = 'A 24 V source feeds a 2 Ω series resistor, followed by a resistor $R$ in parallel with 6 Ω. The current in the 6 Ω resistor is 2 A. The value of $R$ is
+', solution_md = '**Idea used:** work backwards from the known current — see *Dividers → Finding an unknown resistor*.
+
+- Voltage across the pair $= 2\times6 = 12$ V.
+- Drop in the 2 Ω $= 24 - 12 = 12$ V, so the total current is 6 A.
+- Current in $R = 6 - 2 = 4$ A, so $R = 12/4 = 3$ Ω.
+
+**Answer: (A) 3 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-020', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '6 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '12 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-021';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 4 Ω and a 12 Ω resistor are connected in series. The 4 Ω resistor dissipates 8 W. The 12 Ω resistor dissipates', 'A 4 Ω and a 12 Ω resistor are connected in series. The 4 Ω resistor dissipates 8 W. The 12 Ω resistor dissipates
+', '**Idea used:** in series, same current, so $P \propto R$ — see *Dividers → Using power ratios*.
+
+$8\times\dfrac{12}{4} = 24$ W.
+
+**Answer: (D) 24 W.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-021', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 4 Ω and a 12 Ω resistor are connected in series. The 4 Ω resistor dissipates 8 W. The 12 Ω resistor dissipates'), stem_md = 'A 4 Ω and a 12 Ω resistor are connected in series. The 4 Ω resistor dissipates 8 W. The 12 Ω resistor dissipates
+', solution_md = '**Idea used:** in series, same current, so $P \propto R$ — see *Dividers → Using power ratios*.
+
+$8\times\dfrac{12}{4} = 24$ W.
+
+**Answer: (D) 24 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-021', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2.67 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '8 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '32 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '24 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-source-transformation';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-022';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 6 A current source in parallel with a 5 Ω resistor is equivalent to', 'A 6 A current source in parallel with a 5 Ω resistor is equivalent to
+', '**Idea used:** $I$ in parallel with $R$ ⇔ $IR$ in series with the same $R$ — see *Source transformation*.
+
+$E = 6\times5 = 30$ V, in **series** with 5 Ω.
+
+**Answer: (C).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-022', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 6 A current source in parallel with a 5 Ω resistor is equivalent to'), stem_md = 'A 6 A current source in parallel with a 5 Ω resistor is equivalent to
+', solution_md = '**Idea used:** $I$ in parallel with $R$ ⇔ $IR$ in series with the same $R$ — see *Source transformation*.
+
+$E = 6\times5 = 30$ V, in **series** with 5 Ω.
+
+**Answer: (C).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-022', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'a 1.2 V source in series with 5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'a 30 V source in parallel with 5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'a 30 V source in series with 5 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'a 30 V source in series with 0.2 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-source-transformation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-source-transformation';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-023';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Three branches are connected between the same two nodes: a 12 V source in series with 3 Ω, a 6 V source in series with 6 Ω (both with + towards the top...', 'Three branches are connected between the same two nodes: a 12 V source in series with 3 Ω, a 6 V source in series with 6 Ω (both with + towards the top node), and a 6 Ω resistor alone. The voltage of the top node with respect to the bottom node is
+', '**Idea used:** Millman''s theorem — see *Source transformation → Millman''s theorem*.
+
+$$V = \frac{\dfrac{12}{3} + \dfrac{6}{6} + 0}{\dfrac13 + \dfrac16 + \dfrac16} = \frac{4 + 1}{\dfrac23} = 7.5\ \text{V}$$
+
+**Without a calculator:** in sixths, the bottom is $\tfrac{2 + 1 + 1}{6} = \tfrac46$; $5\times\tfrac64 = 7.5$.
+
+**Answer: (B) 7.5 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-023', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Three branches are connected between the same two nodes: a 12 V source in series with 3 Ω, a 6 V source in series with 6 Ω (both with + towards the top...'), stem_md = 'Three branches are connected between the same two nodes: a 12 V source in series with 3 Ω, a 6 V source in series with 6 Ω (both with + towards the top node), and a 6 Ω resistor alone. The voltage of the top node with respect to the bottom node is
+', solution_md = '**Idea used:** Millman''s theorem — see *Source transformation → Millman''s theorem*.
+
+$$V = \frac{\dfrac{12}{3} + \dfrac{6}{6} + 0}{\dfrac13 + \dfrac16 + \dfrac16} = \frac{4 + 1}{\dfrac23} = 7.5\ \text{V}$$
+
+**Without a calculator:** in sixths, the bottom is $\tfrac{2 + 1 + 1}{6} = \tfrac46$; $5\times\tfrac64 = 7.5$.
+
+**Answer: (B) 7.5 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-023', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '9 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '7.5 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '6 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '5 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-source-transformation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-source-transformation';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-024';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Which one of the following can NOT be changed into an equivalent current source by source transformation?', 'Which one of the following can NOT be changed into an equivalent current source by source transformation?
+', '**Idea used:** source transformation needs the series resistance — see *Source transformation → The idea*.
+
+With $R = 0$ the equivalent current $E/R$ would be infinite. An ideal voltage source (and, likewise, an ideal current source with no parallel resistance) cannot be transformed.
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-024', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Which one of the following can NOT be changed into an equivalent current source by source transformation?'), stem_md = 'Which one of the following can NOT be changed into an equivalent current source by source transformation?
+', solution_md = '**Idea used:** source transformation needs the series resistance — see *Source transformation → The idea*.
+
+With $R = 0$ the equivalent current $E/R$ would be infinite. An ideal voltage source (and, likewise, an ideal current source with no parallel resistance) cannot be transformed.
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-024', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'A 12 V source in series with 2 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'A 5 V source in series with 1 kΩ', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'A 230 V source in series with 0.5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'An ideal 10 V source with no series resistance', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-source-transformation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-star-delta';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-025';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A delta has $Ra = 12$ Ω (between b and c), $Rb = 6$ Ω (between c and a) and $Rc = 6$ Ω (between a and b). In the equivalent star, the arm connected to node a is', 'A delta has $R_a = 12$ Ω (between b and c), $R_b = 6$ Ω (between c and a) and $R_c = 6$ Ω (between a and b). In the equivalent star, the arm connected to node a is
+', '**Idea used:** star arm = (product of the two delta sides at that node) ÷ (sum of all three) — see *Star–delta → Delta to star*.
+
+The sides touching a are $R_b = 6$ and $R_c = 6$. Sum $= 24$. Arm at a $= \dfrac{36}{24} = 1.5$ Ω. (Arms at b and c are $\dfrac{72}{24} = 3$ Ω each.)
+
+**Answer: (A) 1.5 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-025', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A delta has $Ra = 12$ Ω (between b and c), $Rb = 6$ Ω (between c and a) and $Rc = 6$ Ω (between a and b). In the equivalent star, the arm connected to node a is'), stem_md = 'A delta has $R_a = 12$ Ω (between b and c), $R_b = 6$ Ω (between c and a) and $R_c = 6$ Ω (between a and b). In the equivalent star, the arm connected to node a is
+', solution_md = '**Idea used:** star arm = (product of the two delta sides at that node) ÷ (sum of all three) — see *Star–delta → Delta to star*.
+
+The sides touching a are $R_b = 6$ and $R_c = 6$. Sum $= 24$. Arm at a $= \dfrac{36}{24} = 1.5$ Ω. (Arms at b and c are $\dfrac{72}{24} = 3$ Ω each.)
+
+**Answer: (A) 1.5 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-025', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1.5 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '6 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-star-delta');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-star-delta';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-026';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A star has arms $R1 = 2$ Ω (to a), $R2 = 2$ Ω (to b) and $R3 = 4$ Ω (to c). In the equivalent delta, the resistance between a and b is', 'A star has arms $R_1 = 2$ Ω (to a), $R_2 = 2$ Ω (to b) and $R_3 = 4$ Ω (to c). In the equivalent delta, the resistance between a and b is
+', '**Idea used:** delta side = (sum of products two at a time) ÷ (the opposite star arm) — see *Star–delta → Star to delta*.
+
+Sum of products $= 2\times2 + 2\times4 + 4\times2 = 4 + 8 + 8 = 20$. The arm opposite side a–b is $R_3 = 4$ Ω. $R_{ab} = 20/4 = 5$ Ω.
+
+**Answer: (D) 5 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-026', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A star has arms $R1 = 2$ Ω (to a), $R2 = 2$ Ω (to b) and $R3 = 4$ Ω (to c). In the equivalent delta, the resistance between a and b is'), stem_md = 'A star has arms $R_1 = 2$ Ω (to a), $R_2 = 2$ Ω (to b) and $R_3 = 4$ Ω (to c). In the equivalent delta, the resistance between a and b is
+', solution_md = '**Idea used:** delta side = (sum of products two at a time) ÷ (the opposite star arm) — see *Star–delta → Star to delta*.
+
+Sum of products $= 2\times2 + 2\times4 + 4\times2 = 4 + 8 + 8 = 20$. The arm opposite side a–b is $R_3 = 4$ Ω. $R_{ab} = 20/4 = 5$ Ω.
+
+**Answer: (D) 5 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-026', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '8 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '6 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '5 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-star-delta');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-star-delta';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-027';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A delta of three 15 Ω resistors is equivalent to a star whose every arm is', 'A delta of three 15 Ω resistors is equivalent to a star whose every arm is
+', '**Idea used:** equal resistors: $R_Y = R_\Delta/3$ — see *Star–delta → Special cases*.
+
+$15/3 = 5$ Ω.
+
+**Answer: (C) 5 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-027', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A delta of three 15 Ω resistors is equivalent to a star whose every arm is'), stem_md = 'A delta of three 15 Ω resistors is equivalent to a star whose every arm is
+', solution_md = '**Idea used:** equal resistors: $R_Y = R_\Delta/3$ — see *Star–delta → Special cases*.
+
+$15/3 = 5$ Ω.
+
+**Answer: (C) 5 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-027', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '45 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '15 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '5 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '7.5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-star-delta');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-bridges-symmetry';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-028';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'In a bridge, $P = 4$ Ω (A–C), $Q = 8$ Ω (C–B), $R = 6$ Ω (A–D) and $S$ (D–B). For no current in the C–D branch, $S$ must be', 'In a bridge, $P = 4$ Ω (A–C), $Q = 8$ Ω (C–B), $R = 6$ Ω (A–D) and $S$ (D–B). For no current in the C–D branch, $S$ must be
+', '**Idea used:** balance condition $PS = QR$ — see *Bridges and symmetry → The balance condition*.
+
+$4S = 8\times6$ ⇒ $S = 12$ Ω.
+
+**Answer: (B) 12 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-p-028', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In a bridge, $P = 4$ Ω (A–C), $Q = 8$ Ω (C–B), $R = 6$ Ω (A–D) and $S$ (D–B). For no current in the C–D branch, $S$ must be'), stem_md = 'In a bridge, $P = 4$ Ω (A–C), $Q = 8$ Ω (C–B), $R = 6$ Ω (A–D) and $S$ (D–B). For no current in the C–D branch, $S$ must be
+', solution_md = '**Idea used:** balance condition $PS = QR$ — see *Bridges and symmetry → The balance condition*.
+
+$4S = 8\times6$ ⇒ $S = 12$ Ω.
+
+**Answer: (B) 12 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-p-028', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '12 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '16 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '8 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-bridges-symmetry');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-bridges-symmetry';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-029';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A bridge has $P = 2$ Ω (A–C), $Q = 4$ Ω (C–B), $R = 3$ Ω (A–D), $S = 6$ Ω (D–B) and a 10 Ω resistor between C and D. The resistance between A and B is', 'A bridge has $P = 2$ Ω (A–C), $Q = 4$ Ω (C–B), $R = 3$ Ω (A–D), $S = 6$ Ω (D–B) and a 10 Ω resistor between C and D. The resistance between A and B is
+', '**Idea used:** a balanced bridge''s middle branch can be removed — see *Bridges and symmetry* (Example 3).
+
+$PS = 12 = QR$: balanced. Remove the 10 Ω: $(2 + 4) \parallel (3 + 6) = 6 \parallel 9 = 3.6$ Ω.
+
+The 10 Ω is a distractor.
+
+**Answer: (A) 3.6 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-029', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A bridge has $P = 2$ Ω (A–C), $Q = 4$ Ω (C–B), $R = 3$ Ω (A–D), $S = 6$ Ω (D–B) and a 10 Ω resistor between C and D. The resistance between A and B is'), stem_md = 'A bridge has $P = 2$ Ω (A–C), $Q = 4$ Ω (C–B), $R = 3$ Ω (A–D), $S = 6$ Ω (D–B) and a 10 Ω resistor between C and D. The resistance between A and B is
+', solution_md = '**Idea used:** a balanced bridge''s middle branch can be removed — see *Bridges and symmetry* (Example 3).
+
+$PS = 12 = QR$: balanced. Remove the 10 Ω: $(2 + 4) \parallel (3 + 6) = 6 \parallel 9 = 3.6$ Ω.
+
+The 10 Ω is a distractor.
+
+**Answer: (A) 3.6 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-029', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3.6 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '15 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2.9 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-bridges-symmetry');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-bridges-symmetry';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-030';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 12 V supply is connected across a bridge. From the + end, the left path is 2 Ω then 4 Ω, and the right path is 4 Ω then 2 Ω. There is nothing connected...', 'A 12 V supply is connected across a bridge. From the + end, the left path is 2 Ω then 4 Ω, and the right path is 4 Ω then 2 Ω. There is nothing connected between the two mid-points. The voltage between the two mid-points is
+', '**Idea used:** each side is a plain voltage divider — see *Bridges and symmetry → Voltage between the middle points*.
+
+Taking the − end as 0 V: left mid-point $= 12\times\dfrac46 = 8$ V; right mid-point $= 12\times\dfrac26 = 4$ V. Difference $= 4$ V.
+
+**Answer: (D) 4 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-030', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 12 V supply is connected across a bridge. From the + end, the left path is 2 Ω then 4 Ω, and the right path is 4 Ω then 2 Ω. There is nothing connected...'), stem_md = 'A 12 V supply is connected across a bridge. From the + end, the left path is 2 Ω then 4 Ω, and the right path is 4 Ω then 2 Ω. There is nothing connected between the two mid-points. The voltage between the two mid-points is
+', solution_md = '**Idea used:** each side is a plain voltage divider — see *Bridges and symmetry → Voltage between the middle points*.
+
+Taking the − end as 0 V: left mid-point $= 12\times\dfrac46 = 8$ V; right mid-point $= 12\times\dfrac26 = 4$ V. Difference $= 4$ V.
+
+**Answer: (D) 4 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-030', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '6 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-bridges-symmetry');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-bridges-symmetry';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-031';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Twelve 6 Ω resistors form the edges of a cube. The resistance between two diagonally opposite corners of the cube is', 'Twelve 6 Ω resistors form the edges of a cube. The resistance between two diagonally opposite corners of the cube is
+', '**Idea used:** symmetry: corners at the same potential can be joined — see *Bridges and symmetry* (Example 6).
+
+The three corners next to A are alike (same potential); so are the three next to B. Then:
+- A to the first group: three edges in parallel, $R/3$;
+- first group to second group: six edges in parallel, $R/6$;
+- second group to B: three edges in parallel, $R/3$.
+
+Total $= \tfrac{R}{3} + \tfrac{R}{6} + \tfrac{R}{3} = \tfrac56R = \tfrac56\times6 = 5$ Ω.
+
+**Answer: (B) 5 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 3, 'REVIEWED', 'ec2-p-031', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Twelve 6 Ω resistors form the edges of a cube. The resistance between two diagonally opposite corners of the cube is'), stem_md = 'Twelve 6 Ω resistors form the edges of a cube. The resistance between two diagonally opposite corners of the cube is
+', solution_md = '**Idea used:** symmetry: corners at the same potential can be joined — see *Bridges and symmetry* (Example 6).
+
+The three corners next to A are alike (same potential); so are the three next to B. Then:
+- A to the first group: three edges in parallel, $R/3$;
+- first group to second group: six edges in parallel, $R/6$;
+- second group to B: three edges in parallel, $R/3$.
+
+Total $= \tfrac{R}{3} + \tfrac{R}{6} + \tfrac{R}{3} = \tfrac56R = \tfrac56\times6 = 5$ Ω.
+
+**Answer: (B) 5 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'REVIEWED', content_key = 'ec2-p-031', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '6 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '5 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '7.5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-bridges-symmetry');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-ladders';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-032';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A ladder network has, from the input: a 4 Ω series resistor, a 6 Ω shunt resistor, a 1 Ω series resistor and finally a 2 Ω shunt resistor. Its input...', 'A ladder network has, from the input: a 4 Ω series resistor, a 6 Ω shunt resistor, a 1 Ω series resistor and finally a 2 Ω shunt resistor. Its input resistance is
+', '**Idea used:** combine a finite ladder from the far end — see *Ladders → A finite ladder*.
+
+Far end: $1 + 2 = 3$ Ω. In parallel with 6 Ω: $6 \parallel 3 = 2$ Ω. Plus 4 Ω: 6 Ω.
+
+**Answer: (C) 6 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-032', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A ladder network has, from the input: a 4 Ω series resistor, a 6 Ω shunt resistor, a 1 Ω series resistor and finally a 2 Ω shunt resistor. Its input...'), stem_md = 'A ladder network has, from the input: a 4 Ω series resistor, a 6 Ω shunt resistor, a 1 Ω series resistor and finally a 2 Ω shunt resistor. Its input resistance is
+', solution_md = '**Idea used:** combine a finite ladder from the far end — see *Ladders → A finite ladder*.
+
+Far end: $1 + 2 = 3$ Ω. In parallel with 6 Ω: $6 \parallel 3 = 2$ Ω. Plus 4 Ω: 6 Ω.
+
+**Answer: (C) 6 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-032', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '13 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '5.5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '6 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4.5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-ladders');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-ladders';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-033';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'An infinite ladder network has, in every section, a 1 Ω series resistor followed by a 2 Ω shunt resistor (the input sees the series resistor first). Its...', 'An infinite ladder network has, in every section, a 1 Ω series resistor followed by a 2 Ω shunt resistor (the input sees the series resistor first). Its input resistance is
+', '**Idea used:** $R = R_s + R_p \parallel R$ — see *Ladders → The infinite ladder*.
+
+Test the options: $R = 2$: $1 + (2 \parallel 2) = 1 + 1 = 2$ ✔. (Solving: $R^2 - R - 2 = 0$ ⇒ $R = 2$.)
+
+**Answer: (A) 2 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-p-033', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An infinite ladder network has, in every section, a 1 Ω series resistor followed by a 2 Ω shunt resistor (the input sees the series resistor first). Its...'), stem_md = 'An infinite ladder network has, in every section, a 1 Ω series resistor followed by a 2 Ω shunt resistor (the input sees the series resistor first). Its input resistance is
+', solution_md = '**Idea used:** $R = R_s + R_p \parallel R$ — see *Ladders → The infinite ladder*.
+
+Test the options: $R = 2$: $1 + (2 \parallel 2) = 1 + 1 = 2$ ✔. (Solving: $R^2 - R - 2 = 0$ ⇒ $R = 2$.)
+
+**Answer: (A) 2 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-p-033', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1.5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-ladders');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-ladders';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-p-034';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A ladder has, from the input: 2 Ω series, 2 Ω shunt, 2 Ω series, 2 Ω shunt (last). A 20 V supply is applied at the input. The voltage across the last shunt...', 'A ladder has, from the input: 2 Ω series, 2 Ω shunt, 2 Ω series, 2 Ω shunt (last). A 20 V supply is applied at the input. The voltage across the last shunt resistor is
+', '**Idea used:** assume 1 V at the far end and scale — see *Ladders → Working backwards for voltages*.
+
+- Assume 1 V across the last shunt: it carries 0.5 A; the series 2 Ω before it also carries 0.5 A and drops 1 V. Middle node: 2 V.
+- Middle shunt carries 1 A. Total in the first series 2 Ω: 1.5 A, drop 3 V. Input: $2 + 3 = 5$ V.
+- Real input is 20 V, four times as much: output $= 4\times1 = 4$ V.
+
+**Answer: (D) 4 V.**
+', 'READY', 'MCQ', NULL, NULL, 3, 'REVIEWED', 'ec2-p-034', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A ladder has, from the input: 2 Ω series, 2 Ω shunt, 2 Ω series, 2 Ω shunt (last). A 20 V supply is applied at the input. The voltage across the last shunt...'), stem_md = 'A ladder has, from the input: 2 Ω series, 2 Ω shunt, 2 Ω series, 2 Ω shunt (last). A 20 V supply is applied at the input. The voltage across the last shunt resistor is
+', solution_md = '**Idea used:** assume 1 V at the far end and scale — see *Ladders → Working backwards for voltages*.
+
+- Assume 1 V across the last shunt: it carries 0.5 A; the series 2 Ω before it also carries 0.5 A and drops 1 V. Middle node: 2 V.
+- Middle shunt carries 1 A. Total in the first series 2 Ω: 1.5 A, drop 3 V. Input: $2 + 3 = 5$ V.
+- Real input is 20 V, four times as much: output $= 4\times1 = 4$ V.
+
+**Answer: (D) 4 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'REVIEWED', content_key = 'ec2-p-034', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '5 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-ladders');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-001';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Points in a circuit that are joined by plain wire, with no element between them,', 'Points in a circuit that are joined by plain wire, with no element between them,
+', '**Idea used:** definition of a node — see *Kirchhoff''s laws → The words we need*.
+
+An ideal wire has no resistance, so there is no voltage along it: all its points are at one potential and form one node.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-q-001', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Points in a circuit that are joined by plain wire, with no element between them,'), stem_md = 'Points in a circuit that are joined by plain wire, with no element between them,
+', solution_md = '**Idea used:** definition of a node — see *Kirchhoff''s laws → The words we need*.
+
+An ideal wire has no resistance, so there is no voltage along it: all its points are at one potential and form one node.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-q-001', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'form one node, whatever the length of the wire', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'form a separate node at every corner of the wire', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'are at different potentials if the wire is long', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'can carry current only in one direction', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-002';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'At a node, $i1 = -2$ A has its arrow out of the node and $i2 = 5$ A has its arrow into the node. The only other branch current $i3$, with its arrow out of...', 'At a node, $i_1 = -2$ A has its arrow out of the node and $i_2 = 5$ A has its arrow into the node. The only other branch current $i_3$, with its arrow out of the node, is
+', '**Idea used:** KCL with arrows: (arrows in) = (arrows out), keeping signs — see *Kirchhoff''s laws → Working with arrows and signs*.
+
+$5 = -2 + i_3$ ⇒ $i_3 = 7$ A.
+
+Trap: 3 A ignores the minus sign of $i_1$.
+
+**Answer: (B) 7 A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-q-002', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'At a node, $i1 = -2$ A has its arrow out of the node and $i2 = 5$ A has its arrow into the node. The only other branch current $i3$, with its arrow out of...'), stem_md = 'At a node, $i_1 = -2$ A has its arrow out of the node and $i_2 = 5$ A has its arrow into the node. The only other branch current $i_3$, with its arrow out of the node, is
+', solution_md = '**Idea used:** KCL with arrows: (arrows in) = (arrows out), keeping signs — see *Kirchhoff''s laws → Working with arrows and signs*.
+
+$5 = -2 + i_3$ ⇒ $i_3 = 7$ A.
+
+Trap: 3 A ignores the minus sign of $i_1$.
+
+**Answer: (B) 7 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-q-002', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '7 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '−3 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '−7 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-003';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'In a single loop, a 15 V source charges a 4 V battery through two resistors in series. The voltage across one resistor is 3 V. The voltage across the other...', 'In a single loop, a 15 V source charges a 4 V battery through two resistors in series. The voltage across one resistor is 3 V. The voltage across the other resistor is
+', '**Idea used:** KVL: rises = drops; a battery being charged is a drop — see *Kirchhoff''s laws → KVL in full*.
+
+Rise: 15 V. Drops: 3 V, $V$ and 4 V. $V = 15 - 3 - 4 = 8$ V.
+
+Trap: 12 V forgets the battery.
+
+**Answer: (C) 8 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-q-003', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In a single loop, a 15 V source charges a 4 V battery through two resistors in series. The voltage across one resistor is 3 V. The voltage across the other...'), stem_md = 'In a single loop, a 15 V source charges a 4 V battery through two resistors in series. The voltage across one resistor is 3 V. The voltage across the other resistor is
+', solution_md = '**Idea used:** KVL: rises = drops; a battery being charged is a drop — see *Kirchhoff''s laws → KVL in full*.
+
+Rise: 15 V. Drops: 3 V, $V$ and 4 V. $V = 15 - 3 - 4 = 8$ V.
+
+Trap: 12 V forgets the battery.
+
+**Answer: (C) 8 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-q-003', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '12 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '22 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '8 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-004';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Walking from point B to point A, you pass first a 6 V source from its − to its + terminal, and then a 2 Ω resistor that carries 2 A from A towards B. The...', 'Walking from point B to point A, you pass first a 6 V source from its − to its + terminal, and then a 2 Ω resistor that carries 2 A from A towards B. The voltage $V_{AB}$ is
+', '**Idea used:** voltage between two points by adding rises along a path — see *Kirchhoff''s laws → KVL along an open path*.
+
+- Source, − to +: rise of 6 V.
+- Resistor, walked **against** its current (current goes A → B, we walk B → A): rise of $2\times2 = 4$ V.
+
+$V_A - V_B = 6 + 4 = 10$ V.
+
+Trap: 2 V treats the resistor as a drop.
+
+**Answer: (D) 10 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-q-004', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Walking from point B to point A, you pass first a 6 V source from its − to its + terminal, and then a 2 Ω resistor that carries 2 A from A towards B. The...'), stem_md = 'Walking from point B to point A, you pass first a 6 V source from its − to its + terminal, and then a 2 Ω resistor that carries 2 A from A towards B. The voltage $V_{AB}$ is
+', solution_md = '**Idea used:** voltage between two points by adding rises along a path — see *Kirchhoff''s laws → KVL along an open path*.
+
+- Source, − to +: rise of 6 V.
+- Resistor, walked **against** its current (current goes A → B, we walk B → A): rise of $2\times2 = 4$ V.
+
+$V_A - V_B = 6 + 4 = 10$ V.
+
+Trap: 2 V treats the resistor as a drop.
+
+**Answer: (D) 10 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-q-004', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '6 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '−10 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '10 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-kirchhoffs-laws';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-005';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A connected circuit has 5 nodes and 8 branches. The number of independent KCL equations is', 'A connected circuit has 5 nodes and 8 branches. The number of independent KCL equations is
+', '**Idea used:** independent KCL equations $= n - 1$ — see *Kirchhoff''s laws → How many independent equations?*
+
+$5 - 1 = 4$. (Independent KVL equations: $8 - 5 + 1 = 4$ as well.)
+
+**Answer: (A) 4.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-q-005', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A connected circuit has 5 nodes and 8 branches. The number of independent KCL equations is'), stem_md = 'A connected circuit has 5 nodes and 8 branches. The number of independent KCL equations is
+', solution_md = '**Idea used:** independent KCL equations $= n - 1$ — see *Kirchhoff''s laws → How many independent equations?*
+
+$5 - 1 = 4$. (Independent KVL equations: $8 - 5 + 1 = 4$ as well.)
+
+**Answer: (A) 4.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-q-005', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '4', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '8', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-kirchhoffs-laws');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-006';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Two resistors give 9 Ω when connected in series and 2 Ω when connected in parallel. Their values are', 'Two resistors give 9 Ω when connected in series and 2 Ω when connected in parallel. Their values are
+', '**Idea used:** series sum and parallel product-over-sum — see *Series and parallel*.
+
+Product over sum $= 2$ with sum 9 ⇒ product $= 18$. Two numbers with sum 9 and product 18: 3 and 6.
+
+**Without a calculator:** every option sums to 9; only $3\times6 = 18$ gives $18/9 = 2$.
+
+**Answer: (B) 3 Ω and 6 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-q-006', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Two resistors give 9 Ω when connected in series and 2 Ω when connected in parallel. Their values are'), stem_md = 'Two resistors give 9 Ω when connected in series and 2 Ω when connected in parallel. Their values are
+', solution_md = '**Idea used:** series sum and parallel product-over-sum — see *Series and parallel*.
+
+Product over sum $= 2$ with sum 9 ⇒ product $= 18$. Two numbers with sum 9 and product 18: 3 and 6.
+
+**Without a calculator:** every option sums to 9; only $3\times6 = 18$ gives $18/9 = 2$.
+
+**Answer: (B) 3 Ω and 6 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-q-006', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '4 Ω and 5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3 Ω and 6 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 Ω and 7 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1 Ω and 8 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-007';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Resistors of 4 Ω, 6 Ω and 12 Ω are connected in parallel. The equivalent resistance is', 'Resistors of 4 Ω, 6 Ω and 12 Ω are connected in parallel. The equivalent resistance is
+', '**Idea used:** conductances add — see *Series and parallel → Parallel connection*.
+
+$\tfrac14 + \tfrac16 + \tfrac1{12} = \tfrac{3 + 2 + 1}{12} = \tfrac12$, so $R = 2$ Ω.
+
+**Without a calculator:** must be below 4 Ω; use twelfths.
+
+**Answer: (C) 2 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-q-007', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Resistors of 4 Ω, 6 Ω and 12 Ω are connected in parallel. The equivalent resistance is'), stem_md = 'Resistors of 4 Ω, 6 Ω and 12 Ω are connected in parallel. The equivalent resistance is
+', solution_md = '**Idea used:** conductances add — see *Series and parallel → Parallel connection*.
+
+$\tfrac14 + \tfrac16 + \tfrac1{12} = \tfrac{3 + 2 + 1}{12} = \tfrac12$, so $R = 2$ Ω.
+
+**Without a calculator:** must be below 4 Ω; use twelfths.
+
+**Answer: (C) 2 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-q-007', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '22 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '3 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-008';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A resistor $R$ is connected in parallel with $3R$, and this pair is connected in series with $R/4$. The total resistance is', 'A resistor $R$ is connected in parallel with $3R$, and this pair is connected in series with $R/4$. The total resistance is
+', '**Idea used:** $R \parallel 3R = \tfrac34R$ — see *Series and parallel* (ratio shortcuts).
+
+$\tfrac34R + \tfrac14R = R$.
+
+**Answer: (A) $R$.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-q-008', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A resistor $R$ is connected in parallel with $3R$, and this pair is connected in series with $R/4$. The total resistance is'), stem_md = 'A resistor $R$ is connected in parallel with $3R$, and this pair is connected in series with $R/4$. The total resistance is
+', solution_md = '**Idea used:** $R \parallel 3R = \tfrac34R$ — see *Series and parallel* (ratio shortcuts).
+
+$\tfrac34R + \tfrac14R = R$.
+
+**Answer: (A) $R$.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-q-008', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$R$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$\dfrac{3R}{4}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$\dfrac{R}{2}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$4.25R$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-009';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Resistors of 3 Ω and 6 Ω are connected in series across a supply. The 6 Ω resistor dissipates 12 W. The total power taken from the supply is', 'Resistors of 3 Ω and 6 Ω are connected in series across a supply. The 6 Ω resistor dissipates 12 W. The total power taken from the supply is
+', '**Idea used:** in series $P \propto R$ — see *Series and parallel → Series connection*.
+
+The 3 Ω takes half of 12 W, i.e. 6 W. Total $= 12 + 6 = 18$ W.
+
+Trap: 36 W uses $P \propto 1/R$.
+
+**Answer: (D) 18 W.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-q-009', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Resistors of 3 Ω and 6 Ω are connected in series across a supply. The 6 Ω resistor dissipates 12 W. The total power taken from the supply is'), stem_md = 'Resistors of 3 Ω and 6 Ω are connected in series across a supply. The 6 Ω resistor dissipates 12 W. The total power taken from the supply is
+', solution_md = '**Idea used:** in series $P \propto R$ — see *Series and parallel → Series connection*.
+
+The 3 Ω takes half of 12 W, i.e. 6 W. Total $= 12 + 6 = 18$ W.
+
+Trap: 36 W uses $P \propto 1/R$.
+
+**Answer: (D) 18 W.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-q-009', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '24 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '36 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '12 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '18 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-series-parallel';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-010';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Three 6 µF capacitors are connected so that two are in series and this pair is in parallel with the third. The equivalent capacitance is', 'Three 6 µF capacitors are connected so that two are in series and this pair is in parallel with the third. The equivalent capacitance is
+', '**Idea used:** capacitors in series combine like resistors in parallel, and in parallel they add — see *Series and parallel → Inductors and capacitors*.
+
+Two 6 µF in series: 3 µF. In parallel with 6 µF: 9 µF.
+
+Trap: 4 µF combines them as if they were resistors.
+
+**Answer: (B) 9 µF.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-q-010', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Three 6 µF capacitors are connected so that two are in series and this pair is in parallel with the third. The equivalent capacitance is'), stem_md = 'Three 6 µF capacitors are connected so that two are in series and this pair is in parallel with the third. The equivalent capacitance is
+', solution_md = '**Idea used:** capacitors in series combine like resistors in parallel, and in parallel they add — see *Series and parallel → Inductors and capacitors*.
+
+Two 6 µF in series: 3 µF. In parallel with 6 µF: 9 µF.
+
+Trap: 4 µF combines them as if they were resistors.
+
+**Answer: (B) 9 µF.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-q-010', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '4 µF', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '9 µF', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '18 µF', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2 µF', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-series-parallel');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-011';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A current of 14 A enters three parallel branches of 2 Ω, 4 Ω and 4 Ω. The current in the 2 Ω branch is', 'A current of 14 A enters three parallel branches of 2 Ω, 4 Ω and 4 Ω. The current in the 2 Ω branch is
+', '**Idea used:** current divider with conductances, $I_k = I\,G_k/\sum G$ — see *Dividers → The current divider*.
+
+Conductances: 0.5, 0.25, 0.25 S; total 1 S. $I_{2\,\Omega} = 14\times0.5 = 7$ A.
+
+**Answer: (C) 7 A.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-q-011', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A current of 14 A enters three parallel branches of 2 Ω, 4 Ω and 4 Ω. The current in the 2 Ω branch is'), stem_md = 'A current of 14 A enters three parallel branches of 2 Ω, 4 Ω and 4 Ω. The current in the 2 Ω branch is
+', solution_md = '**Idea used:** current divider with conductances, $I_k = I\,G_k/\sum G$ — see *Dividers → The current divider*.
+
+Conductances: 0.5, 0.25, 0.25 S; total 1 S. $I_{2\,\Omega} = 14\times0.5 = 7$ A.
+
+**Answer: (C) 7 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-q-011', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3.5 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4.67 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '7 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '10 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-dividers';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-012';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Two 50 Ω resistors in series are connected across 100 V. A voltmeter of resistance 50 Ω is connected across the lower resistor. The voltmeter reads about', 'Two 50 Ω resistors in series are connected across 100 V. A voltmeter of resistance 50 Ω is connected across the lower resistor. The voltmeter reads about
+', '**Idea used:** a meter loads the divider — see *Dividers → A loaded divider*.
+
+$50 \parallel 50 = 25$ Ω. Reading $= 100\times\dfrac{25}{50 + 25} = 33.3$ V. The true (unloaded) voltage is 50 V: a low-resistance meter reads low.
+
+**Answer: (B) 33.3 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-q-012', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Two 50 Ω resistors in series are connected across 100 V. A voltmeter of resistance 50 Ω is connected across the lower resistor. The voltmeter reads about'), stem_md = 'Two 50 Ω resistors in series are connected across 100 V. A voltmeter of resistance 50 Ω is connected across the lower resistor. The voltmeter reads about
+', solution_md = '**Idea used:** a meter loads the divider — see *Dividers → A loaded divider*.
+
+$50 \parallel 50 = 25$ Ω. Reading $= 100\times\dfrac{25}{50 + 25} = 33.3$ V. The true (unloaded) voltage is 50 V: a low-resistance meter reads low.
+
+**Answer: (B) 33.3 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-q-012', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '50 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '33.3 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '25 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '66.7 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-dividers');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-source-transformation';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-013';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A 10 V source in series with 2 Ω is replaced by its equivalent 5 A source in parallel with 2 Ω. A 3 Ω load is connected in each case. Which statement is...', 'A 10 V source in series with 2 Ω is replaced by its equivalent 5 A source in parallel with 2 Ω. A 3 Ω load is connected in each case. Which statement is correct?
+', '**Idea used:** source transformation is exact only for the outside circuit — see *Source transformation → The idea*.
+
+- Voltage form: load current $10/5 = 2$ A, load power 12 W, loss in 2 Ω $= 4\times2 = 8$ W.
+- Current form: load voltage $5\times(2 \parallel 3) = 6$ V, load current 2 A, load power 12 W; the internal 2 Ω has 6 V across it: loss $= 36/2 = 18$ W.
+
+**Answer: (B).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-q-013', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A 10 V source in series with 2 Ω is replaced by its equivalent 5 A source in parallel with 2 Ω. A 3 Ω load is connected in each case. Which statement is...'), stem_md = 'A 10 V source in series with 2 Ω is replaced by its equivalent 5 A source in parallel with 2 Ω. A 3 Ω load is connected in each case. Which statement is correct?
+', solution_md = '**Idea used:** source transformation is exact only for the outside circuit — see *Source transformation → The idea*.
+
+- Voltage form: load current $10/5 = 2$ A, load power 12 W, loss in 2 Ω $= 4\times2 = 8$ W.
+- Current form: load voltage $5\times(2 \parallel 3) = 6$ V, load current 2 A, load power 12 W; the internal 2 Ω has 6 V across it: loss $= 36/2 = 18$ W.
+
+**Answer: (B).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-q-013', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'The load power and the power lost inside the source are both the same in the two cases', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'The load power is the same, but the power lost inside the source is different', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'The load power is different, but the power lost inside the source is the same', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Both the load power and the power lost inside the source are different', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-source-transformation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-star-delta';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-014';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A star of three 9 Ω arms is equivalent to a delta whose every side is', 'A star of three 9 Ω arms is equivalent to a delta whose every side is
+', '**Idea used:** equal resistors: $R_\Delta = 3R_Y$ — see *Star–delta → Special cases*.
+
+$3\times9 = 27$ Ω.
+
+**Answer: (D) 27 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-q-014', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A star of three 9 Ω arms is equivalent to a delta whose every side is'), stem_md = 'A star of three 9 Ω arms is equivalent to a delta whose every side is
+', solution_md = '**Idea used:** equal resistors: $R_\Delta = 3R_Y$ — see *Star–delta → Special cases*.
+
+$3\times9 = 27$ Ω.
+
+**Answer: (D) 27 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-q-014', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '9 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '18 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '27 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-star-delta');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-bridges-symmetry';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-015';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A Wheatstone bridge is balanced when $\dfrac{P}{Q} = \dfrac{R}{S}$. With $P = 1$ kΩ, $Q = 100$ Ω and $S = 47$ Ω, the unknown $R$ is', 'A Wheatstone bridge is balanced when $\dfrac{P}{Q} = \dfrac{R}{S}$. With $P = 1$ kΩ, $Q = 100$ Ω and $S = 47$ Ω, the unknown $R$ is
+', '**Idea used:** balance condition — see *Bridges and symmetry → The balance condition*.
+
+$R = S\dfrac{P}{Q} = 47\times10 = 470$ Ω.
+
+**Answer: (A) 470 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'REVIEWED', 'ec2-q-015', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A Wheatstone bridge is balanced when $\dfrac{P}{Q} = \dfrac{R}{S}$. With $P = 1$ kΩ, $Q = 100$ Ω and $S = 47$ Ω, the unknown $R$ is'), stem_md = 'A Wheatstone bridge is balanced when $\dfrac{P}{Q} = \dfrac{R}{S}$. With $P = 1$ kΩ, $Q = 100$ Ω and $S = 47$ Ω, the unknown $R$ is
+', solution_md = '**Idea used:** balance condition — see *Bridges and symmetry → The balance condition*.
+
+$R = S\dfrac{P}{Q} = 47\times10 = 470$ Ω.
+
+**Answer: (A) 470 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'REVIEWED', content_key = 'ec2-q-015', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '470 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4.7 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '47 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4.7 kΩ', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-bridges-symmetry');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-bridges-symmetry';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-016';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Four 4 Ω resistors form the sides of a square, and two more 4 Ω resistors form its diagonals (the diagonals are not joined where they cross). The resistance...', 'Four 4 Ω resistors form the sides of a square, and two more 4 Ω resistors form its diagonals (the diagonals are not joined where they cross). The resistance between two adjacent corners is
+', '**Idea used:** symmetry: two points at equal potential carry no current between them — see *Bridges and symmetry → Symmetry*.
+
+Call the adjacent corners A and B, and the other two C and D. C and D are joined to A and to B in exactly the same way, so they are at the same potential and the C–D resistor carries nothing.
+
+- Direct side A–B: 4 Ω.
+- A–C–B: 8 Ω. A–D–B: 8 Ω. These two in parallel: 4 Ω.
+- Total: $4 \parallel 4 = 2$ Ω.
+
+**Answer: (C) 2 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 3, 'REVIEWED', 'ec2-q-016', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Four 4 Ω resistors form the sides of a square, and two more 4 Ω resistors form its diagonals (the diagonals are not joined where they cross). The resistance...'), stem_md = 'Four 4 Ω resistors form the sides of a square, and two more 4 Ω resistors form its diagonals (the diagonals are not joined where they cross). The resistance between two adjacent corners is
+', solution_md = '**Idea used:** symmetry: two points at equal potential carry no current between them — see *Bridges and symmetry → Symmetry*.
+
+Call the adjacent corners A and B, and the other two C and D. C and D are joined to A and to B in exactly the same way, so they are at the same potential and the C–D resistor carries nothing.
+
+- Direct side A–B: 4 Ω.
+- A–C–B: 8 Ω. A–D–B: 8 Ω. These two in parallel: 4 Ω.
+- Total: $4 \parallel 4 = 2$ Ω.
+
+**Answer: (C) 2 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'REVIEWED', content_key = 'ec2-q-016', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '4 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '8/3 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-bridges-symmetry');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-ladders';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-017';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A ladder network has, from the input: a 3 Ω series resistor, a 6 Ω shunt resistor, a 1 Ω series resistor and finally a 2 Ω shunt resistor. Its input...', 'A ladder network has, from the input: a 3 Ω series resistor, a 6 Ω shunt resistor, a 1 Ω series resistor and finally a 2 Ω shunt resistor. Its input resistance is
+', '**Idea used:** combine a finite ladder from the far end — see *Ladders → A finite ladder*.
+
+Far end: $1 + 2 = 3$ Ω; $6 \parallel 3 = 2$ Ω; plus 3 Ω: 5 Ω.
+
+**Answer: (B) 5 Ω.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'ec2-q-017', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A ladder network has, from the input: a 3 Ω series resistor, a 6 Ω shunt resistor, a 1 Ω series resistor and finally a 2 Ω shunt resistor. Its input...'), stem_md = 'A ladder network has, from the input: a 3 Ω series resistor, a 6 Ω shunt resistor, a 1 Ω series resistor and finally a 2 Ω shunt resistor. Its input resistance is
+', solution_md = '**Idea used:** combine a finite ladder from the far end — see *Ladders → A finite ladder*.
+
+Far end: $1 + 2 = 3$ Ω; $6 \parallel 3 = 2$ Ω; plus 3 Ω: 5 Ω.
+
+**Answer: (B) 5 Ω.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'ec2-q-017', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '12 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '5 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '4 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '6 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-ladders');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec2-ladders';
+  SELECT id INTO qid FROM question WHERE content_key = 'ec2-q-018';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN ((NULL, NULL)) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A ladder has, from the input: 1 Ω series, 1 Ω shunt, 1 Ω series, 1 Ω shunt (last). A 10 V supply is applied at the input. The current in the last shunt...', 'A ladder has, from the input: 1 Ω series, 1 Ω shunt, 1 Ω series, 1 Ω shunt (last). A 10 V supply is applied at the input. The current in the last shunt resistor is
+', '**Idea used:** assume a value at the far end and scale — see *Ladders → Working backwards for voltages* (Example 2).
+
+Assume 1 A in the last shunt: it has 1 V; the series 1 Ω before it carries 1 A (1 V), so the middle node is at 2 V; the middle shunt carries 2 A; the first series 1 Ω carries 3 A (3 V). Input: 5 V.
+
+The real input is 10 V (twice), so the last shunt carries 2 A.
+
+**Answer: (D) 2 A.**
+', 'READY', 'MCQ', NULL, NULL, 3, 'REVIEWED', 'ec2-q-018', 'PRACTICE') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A ladder has, from the input: 1 Ω series, 1 Ω shunt, 1 Ω series, 1 Ω shunt (last). A 10 V supply is applied at the input. The current in the last shunt...'), stem_md = 'A ladder has, from the input: 1 Ω series, 1 Ω shunt, 1 Ω series, 1 Ω shunt (last). A 10 V supply is applied at the input. The current in the last shunt resistor is
+', solution_md = '**Idea used:** assume a value at the far end and scale — see *Ladders → Working backwards for voltages* (Example 2).
+
+Assume 1 A in the last shunt: it has 1 V; the series 1 Ω before it carries 1 A (1 V), so the middle node is at 2 V; the middle shunt carries 2 A; the first series 1 Ω carries 3 A (3 V). Input: 5 V.
+
+The real input is 10 V (twice), so the last shunt carries 2 A.
+
+**Answer: (D) 2 A.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'REVIEWED', content_key = 'ec2-q-018', origin = 'PRACTICE', updated_at = now() WHERE id = qid;
+  END IF;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '5 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2.5 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec2-ladders');
+END $ppimport$;
 
 -- mock tests
-INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch1-mock-pyq', 'Chapter 1 mock: PYQs only', 'CHAPTER', 74, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'PYQ', 'All Chapter 1 exam questions (GATE, ESE, APSC 2023), asked the APSC way.', 1) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
+INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch1-mock-pyq', 'Chapter 1 mock: PYQs only', 'CHAPTER', 77, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'PYQ', 'All Chapter 1 exam questions (GATE, ESE, APSC 2023), asked the APSC way.', 1) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
 DELETE FROM test_question WHERE test_id = (SELECT id FROM test WHERE code = 'ec-ch1-mock-pyq');
-INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch1-mock-pyq'), v.pos, qq.id, NULL FROM (VALUES (1, 'gate-2007-64'), (2, 'gate-2015-s1-28'), (3, 'ese-2018-126'), (4, 'ese-2017-56'), (5, 'ese-2020-28'), (6, 'gate-2024-13'), (7, 'ese-2021-8'), (8, 'ese-2024-87'), (9, 'gate-2003-inductor-energy'), (10, 'gate-2010-7'), (11, 'gate-1997-nonlinear-battery'), (12, 'gate-2001-bulbs'), (13, 'aegcl-2023-83'), (14, 'gate-1999-r-sources'), (15, 'ese-2025-29'), (16, 'gate-2014-s1-6'), (17, 'ese-2026-101'), (18, 'ese-2019-25'), (19, 'ese-2018-19'), (20, 'gate-1998-impulse'), (21, 'ese-2017-38'), (22, 'gate-2003-segment'), (23, 'gate-2012-17'), (24, 'gate-2000-inductor-current'), (25, 'ese-2026-105'), (26, 'gate-2009-10'), (27, 'ese-2020-25'), (28, 'gate-2009-22'), (29, 'ese-2018-16'), (30, 'gate-1997-cap-energy-cycle'), (31, 'gate-1999-capacitance-by'), (32, 'gate-2014-s1-29'), (33, 'gate-2014-s1-30'), (34, 'ese-2018-37'), (35, 'gate-2017-s2-22'), (36, 'apdcl-2023-46'), (37, 'ese-2019-149'), (38, 'gate-2017-s1-18'), (39, 'gate-2008-76'), (40, 'ese-2025-36'), (41, 'gate-2026-25'), (42, 'ese-2025-26'), (43, 'ese-2022-41'), (44, 'ese-2024-60'), (45, 'ese-2020-35'), (46, 'gate-2020-32'), (47, 'ese-2022-44'), (48, 'gate-2013-30'), (49, 'gate-2008-23'), (50, 'gate-2016-s2-23'), (51, 'gate-2021-15'), (52, 'ese-2019-36'), (53, 'apgcl-2023-2'), (54, 'gate-2025-18'), (55, 'ese-2018-24'), (56, 'ese-2025-27'), (57, 'ese-2021-10'), (58, 'gate-2026-23'), (59, 'gate-1999-rc-triangular'), (60, 'gate-2014-s1-8'), (61, 'gate-2025-19')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
+INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch1-mock-pyq'), v.pos, qq.id, NULL FROM (VALUES (1, 'gate-2007-64'), (2, 'gate-2015-s1-28'), (3, 'ese-2018-126'), (4, 'ese-2017-56'), (5, 'ese-2020-28'), (6, 'gate-2024-13'), (7, 'ese-2021-8'), (8, 'ese-2024-87'), (9, 'gate-2003-inductor-energy'), (10, 'gate-2010-7'), (11, 'gate-1997-nonlinear-battery'), (12, 'gate-2001-bulbs'), (13, 'aegcl-2023-83'), (14, 'gate-1999-r-sources'), (15, 'ese-2025-29'), (16, 'gate-2014-s1-6'), (17, 'ese-2026-101'), (18, 'ese-2019-25'), (19, 'ese-2018-19'), (20, 'gate-1998-impulse'), (21, 'ese-2017-38'), (22, 'gate-2003-segment'), (23, 'gate-2012-17'), (24, 'gate-2000-inductor-current'), (25, 'ese-2026-105'), (26, 'gate-2009-10'), (27, 'ese-2020-25'), (28, 'gate-2009-22'), (29, 'ese-2018-16'), (30, 'gate-1997-cap-energy-cycle'), (31, 'gate-1999-capacitance-by'), (32, 'gate-2014-s1-29'), (33, 'gate-2014-s1-30'), (34, 'ese-2018-37'), (35, 'gate-2017-s2-22'), (36, 'apdcl-2023-46'), (37, 'ese-2019-149'), (38, 'gate-2017-s1-18'), (39, 'gate-2008-76'), (40, 'ese-2025-36'), (41, 'gate-2026-25'), (42, 'ese-2025-26'), (43, 'ese-2022-41'), (44, 'ese-2024-60'), (45, 'ese-2020-35'), (46, 'gate-2020-32'), (47, 'ese-2022-44'), (48, 'gate-2013-30'), (49, 'gate-2008-23'), (50, 'gate-2016-s2-23'), (51, 'gate-2021-15'), (52, 'ese-2019-36'), (53, 'apgcl-2023-2'), (54, 'gate-2025-18'), (55, 'ese-2018-24'), (56, 'ese-2025-27'), (57, 'ese-2021-10'), (58, 'gate-2026-23'), (59, 'gate-1999-rc-triangular'), (60, 'gate-2014-s1-8'), (61, 'gate-2025-19'), (62, 'ese-2020-27'), (63, 'ese-2021-65'), (64, 'ese-2021-72')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
 INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch1-mock-fresh', 'Chapter 1 mock: fresh questions', 'CHAPTER', 76, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'FRESH', 'New APSC-style questions only, at least one on every Chapter 1 concept. None of them appear in Study.', 2) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
 DELETE FROM test_question WHERE test_id = (SELECT id FROM test WHERE code = 'ec-ch1-mock-fresh');
 INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch1-mock-fresh'), v.pos, qq.id, NULL FROM (VALUES (1, 'ec1-p-022'), (2, 'ec1-p-032'), (3, 'ec1-p-021'), (4, 'ec1-p-047'), (5, 'ec1-p-009'), (6, 'ec1-p-048'), (7, 'ec1-p-042'), (8, 'ec1-p-053'), (9, 'ec1-p-027'), (10, 'ec1-p-051'), (11, 'ec1-p-014'), (12, 'ec1-p-018'), (13, 'ec1-p-059'), (14, 'ec1-p-023'), (15, 'ec1-p-054'), (16, 'ec1-p-016'), (17, 'ec1-p-043'), (18, 'ec1-p-028'), (19, 'ec1-p-017'), (20, 'ec1-p-058'), (21, 'ec1-p-019'), (22, 'ec1-p-024'), (23, 'ec1-p-061'), (24, 'ec1-p-015'), (25, 'ec1-p-025'), (26, 'ec1-p-049'), (27, 'ec1-p-044'), (28, 'ec1-p-008'), (29, 'ec1-p-037'), (30, 'ec1-p-046'), (31, 'ec1-p-002'), (32, 'ec1-p-004'), (33, 'ec1-p-005'), (34, 'ec1-p-034'), (35, 'ec1-p-001'), (36, 'ec1-p-011'), (37, 'ec1-p-045'), (38, 'ec1-p-026'), (39, 'ec1-p-039'), (40, 'ec1-p-003'), (41, 'ec1-p-035'), (42, 'ec1-p-006'), (43, 'ec1-p-010'), (44, 'ec1-p-020'), (45, 'ec1-p-057'), (46, 'ec1-p-007'), (47, 'ec1-p-052'), (48, 'ec1-p-040'), (49, 'ec1-p-041'), (50, 'ec1-p-031'), (51, 'ec1-p-062'), (52, 'ec1-p-012'), (53, 'ec1-p-013'), (54, 'ec1-p-038'), (55, 'ec1-p-060'), (56, 'ec1-p-033'), (57, 'ec1-p-063'), (58, 'ec1-p-030'), (59, 'ec1-p-050'), (60, 'ec1-p-055'), (61, 'ec1-p-036'), (62, 'ec1-p-056'), (63, 'ec1-p-029')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
 INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch1-mock-mix', 'Chapter 1 mock: mixed', 'CHAPTER', 72, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'MIX', 'Every Chapter 1 concept once: half exam questions, half new ones, mixed the way APSC sets a paper.', 3) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
 DELETE FROM test_question WHERE test_id = (SELECT id FROM test WHERE code = 'ec-ch1-mock-mix');
 INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch1-mock-mix'), v.pos, qq.id, NULL FROM (VALUES (1, 'gate-2007-64'), (2, 'ec1-q-016'), (3, 'ese-2026-105'), (4, 'ec1-q-011'), (5, 'ec1-q-021'), (6, 'ec1-q-024'), (7, 'ec1-q-001'), (8, 'ese-2025-36'), (9, 'ese-2021-10'), (10, 'aegcl-2023-83'), (11, 'ese-2018-126'), (12, 'gate-2021-15'), (13, 'gate-2009-10'), (14, 'gate-2024-13'), (15, 'ec1-q-030'), (16, 'ec1-q-022'), (17, 'ese-2022-44'), (18, 'ec1-q-010'), (19, 'ese-2017-38'), (20, 'ec1-q-018'), (21, 'apdcl-2023-46'), (22, 'ec1-q-002'), (23, 'gate-2016-s2-23'), (24, 'ec1-q-013'), (25, 'ec1-q-017'), (26, 'ec1-q-029'), (27, 'ec1-q-027'), (28, 'ec1-q-020'), (29, 'gate-2013-30'), (30, 'gate-2014-s1-6'), (31, 'ec1-q-009'), (32, 'ec1-q-004'), (33, 'ec1-q-028'), (34, 'ec1-q-007'), (35, 'ese-2022-41'), (36, 'gate-2014-s1-29'), (37, 'ec1-q-019'), (38, 'ec1-q-014'), (39, 'ec1-q-006'), (40, 'ec1-q-015'), (41, 'gate-2017-s2-22'), (42, 'ec1-q-025'), (43, 'gate-2010-7'), (44, 'gate-2026-25'), (45, 'ese-2025-26'), (46, 'gate-2015-s1-28'), (47, 'ese-2020-35'), (48, 'ec1-q-003'), (49, 'ec1-q-026'), (50, 'ec1-q-008'), (51, 'ese-2025-27'), (52, 'gate-2026-23'), (53, 'ec1-q-005'), (54, 'ec1-q-023'), (55, 'ese-2019-25'), (56, 'ese-2017-56'), (57, 'ec1-q-012'), (58, 'ese-2020-25'), (59, 'gate-2001-bulbs'), (60, 'ese-2018-37')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
+INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch2-mock-pyq', 'Chapter 2 mock: PYQs only', 'CHAPTER', 33, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'basic-laws'), 'PYQ', 'All Chapter 2 exam questions (GATE, ESE, APSC 2023), asked the APSC way.', 4) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
+DELETE FROM test_question WHERE test_id = (SELECT id FROM test WHERE code = 'ec-ch2-mock-pyq');
+INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch2-mock-pyq'), v.pos, qq.id, NULL FROM (VALUES (1, 'gate-2017-s1-19'), (2, 'ese-2024-51'), (3, 'gate-2009-7'), (4, 'ese-2024-52'), (5, 'gate-2014-s3-30'), (6, 'ese-2022-40'), (7, 'gate-2004-35'), (8, 'gate-2016-s1-17'), (9, 'aegcl-2023-78'), (10, 'ese-2017-60'), (11, 'gate-2016-s1-15'), (12, 'apdcl-2023-37'), (13, 'gate-2010-33'), (14, 'apdcl-2023-42'), (15, 'ese-2017-41'), (16, 'ese-2017-50'), (17, 'gate-2013-19'), (18, 'gate-2012-28'), (19, 'gate-2004-32'), (20, 'gate-2015-s2-29'), (21, 'ese-2018-26'), (22, 'gate-2004-33'), (23, 'ese-2018-17'), (24, 'ese-2026-102'), (25, 'ese-2018-30'), (26, 'gate-2019-42'), (27, 'gate-2005-1')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
+INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch2-mock-fresh', 'Chapter 2 mock: fresh questions', 'CHAPTER', 41, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'basic-laws'), 'FRESH', 'New APSC-style questions only, one on every Chapter 2 concept. None of them appear in Study.', 5) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
+DELETE FROM test_question WHERE test_id = (SELECT id FROM test WHERE code = 'ec-ch2-mock-fresh');
+INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch2-mock-fresh'), v.pos, qq.id, NULL FROM (VALUES (1, 'ec2-p-010'), (2, 'ec2-p-009'), (3, 'ec2-p-022'), (4, 'ec2-p-014'), (5, 'ec2-p-029'), (6, 'ec2-p-030'), (7, 'ec2-p-034'), (8, 'ec2-p-026'), (9, 'ec2-p-011'), (10, 'ec2-p-020'), (11, 'ec2-p-003'), (12, 'ec2-p-005'), (13, 'ec2-p-007'), (14, 'ec2-p-019'), (15, 'ec2-p-033'), (16, 'ec2-p-001'), (17, 'ec2-p-031'), (18, 'ec2-p-024'), (19, 'ec2-p-018'), (20, 'ec2-p-013'), (21, 'ec2-p-028'), (22, 'ec2-p-016'), (23, 'ec2-p-012'), (24, 'ec2-p-004'), (25, 'ec2-p-006'), (26, 'ec2-p-032'), (27, 'ec2-p-021'), (28, 'ec2-p-008'), (29, 'ec2-p-025'), (30, 'ec2-p-015'), (31, 'ec2-p-027'), (32, 'ec2-p-002'), (33, 'ec2-p-023'), (34, 'ec2-p-017')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
+INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch2-mock-mix', 'Chapter 2 mock: mixed', 'CHAPTER', 42, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'basic-laws'), 'MIX', 'Every Chapter 2 concept once: half exam questions, half new ones, mixed the way APSC sets a paper.', 6) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
+DELETE FROM test_question WHERE test_id = (SELECT id FROM test WHERE code = 'ec-ch2-mock-mix');
+INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch2-mock-mix'), v.pos, qq.id, NULL FROM (VALUES (1, 'ec2-q-015'), (2, 'ec2-q-009'), (3, 'ese-2018-17'), (4, 'ec2-q-012'), (5, 'ese-2017-60'), (6, 'apdcl-2023-37'), (7, 'gate-2017-s1-19'), (8, 'gate-2015-s2-29'), (9, 'ec2-q-002'), (10, 'ec2-q-018'), (11, 'ese-2026-102'), (12, 'ec2-q-004'), (13, 'ec2-q-006'), (14, 'ese-2017-50'), (15, 'gate-2004-33'), (16, 'ec2-q-008'), (17, 'ec2-q-014'), (18, 'gate-2013-19'), (19, 'apdcl-2023-42'), (20, 'ec2-q-017'), (21, 'ec2-q-016'), (22, 'ec2-q-010'), (23, 'gate-2014-s3-30'), (24, 'ec2-q-003'), (25, 'ese-2024-51'), (26, 'gate-2016-s1-15'), (27, 'gate-2019-42'), (28, 'gate-2012-28'), (29, 'ec2-q-005'), (30, 'ec2-q-011'), (31, 'ese-2022-40'), (32, 'gate-2016-s1-17'), (33, 'ec2-q-001'), (34, 'ec2-q-007'), (35, 'ec2-q-013')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
 
 -- fixes
+UPDATE question SET subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits'), topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'nodal-mesh-kcl-kvl-38'), updated_at = now() WHERE id IN (SELECT qs.question_id FROM question_source qs JOIN source s ON s.id = qs.source_id WHERE s.code = 'GATE-2016' AND qs.q_no = 'S2-Q34') AND content_key IS NULL;
+UPDATE question SET subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits'), topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'ac-phasor-circuits-impedance-35'), updated_at = now() WHERE id IN (SELECT qs.question_id FROM question_source qs JOIN source s ON s.id = qs.source_id WHERE s.code = 'GATE-2018' AND qs.q_no = '32') AND content_key IS NULL;
 UPDATE question SET subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits'), topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'thevenin-norton-36'), updated_at = now() WHERE id IN (SELECT qs.question_id FROM question_source qs JOIN source s ON s.id = qs.source_id WHERE s.code = 'GATE-2012' AND qs.q_no = '5') AND content_key IS NULL;
 UPDATE question SET subject_id = (SELECT id FROM subject WHERE slug = 'power-electronics'), topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'power-electronics') AND slug = 'power-devices-diode-reverse-recovery-326'), updated_at = now(), summary = 'Source voltage and current waveforms of an element between a and b: diode with reverse recovery' WHERE id IN (SELECT qs.question_id FROM question_source qs JOIN source s ON s.id = qs.source_id WHERE s.code = 'GATE-2009' AND qs.q_no = '3') AND content_key IS NULL;
 UPDATE question SET subject_id = (SELECT id FROM subject WHERE slug = 'power-electronics'), topic_id = (SELECT id FROM topic WHERE subject_id = (SELECT id FROM subject WHERE slug = 'power-electronics') AND slug = 'diode-rectifiers-battery-charging-187'), updated_at = now(), summary = 'Diode with R = 10 ohm and 50 V battery fed from 100 sin(100 pi t): average diode current' WHERE id IN (SELECT qs.question_id FROM question_source qs JOIN source s ON s.id = qs.source_id WHERE s.code = 'GATE-2026' AND qs.q_no = '61') AND content_key IS NULL;
@@ -9231,4 +13677,4 @@ UPDATE question SET subject_id = (SELECT id FROM subject WHERE slug = 'power-ele
 -- clean-up
 DELETE FROM question_link l WHERE NOT EXISTS (SELECT 1 FROM question_source qs WHERE qs.question_id = l.gate_question_id) OR NOT EXISTS (SELECT 1 FROM question_source qs WHERE qs.question_id = l.state_question_id);
 DELETE FROM question q WHERE q.origin = 'PYQ' AND NOT EXISTS (SELECT 1 FROM question_source qs WHERE qs.question_id = q.id) AND NOT EXISTS (SELECT 1 FROM attempt a WHERE a.question_id = q.id) AND NOT EXISTS (SELECT 1 FROM user_question_state u WHERE u.question_id = q.id) AND NOT EXISTS (SELECT 1 FROM test_question tq WHERE tq.question_id = q.id);
-DELETE FROM topic t WHERE t.subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND t.slug IN ('ideal-sources-90', 'r-l-c-element-relations-v-ri-l-di-dt-42', 'power-in-resistive-loads-lamps-165', 'circuit-elements-nullator-linearity-363', 'nonlinear-resistance-195', 'nonlinear-resistor-circuits-251', '-373') AND NOT EXISTS (SELECT 1 FROM question x WHERE x.topic_id = t.id) AND NOT EXISTS (SELECT 1 FROM concept_section c WHERE c.topic_id = t.id) AND NOT EXISTS (SELECT 1 FROM syllabus_item_topic st WHERE st.topic_id = t.id);
+DELETE FROM topic t WHERE t.subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND t.slug IN ('ideal-sources-90', 'r-l-c-element-relations-v-ri-l-di-dt-42', 'power-in-resistive-loads-lamps-165', 'circuit-elements-nullator-linearity-363', 'nonlinear-resistance-195', 'nonlinear-resistor-circuits-251', 'equivalent-resistance-network-reduction-33', 'series-circuits-voltage-division-163', '-373') AND NOT EXISTS (SELECT 1 FROM question x WHERE x.topic_id = t.id) AND NOT EXISTS (SELECT 1 FROM concept_section c WHERE c.topic_id = t.id) AND NOT EXISTS (SELECT 1 FROM syllabus_item_topic st WHERE st.topic_id = t.id);

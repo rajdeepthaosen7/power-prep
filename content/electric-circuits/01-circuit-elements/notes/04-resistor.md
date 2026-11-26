@@ -59,6 +59,27 @@ A lamp filament (tungsten) runs at about 2500 °C. Its hot resistance is roughly
 
 **Example 2.** A lamp is rated 60 W, 240 V. Its resistance at 20 °C is 80 Ω and $\alpha_{20} = 5\times10^{-3}$ /°C. Hot resistance $= 240^2/60 = 960$ Ω. Then $960 = 80[1 + 0.005(T-20)]$ ⇒ $12 - 1 = 0.005(T-20)$ ⇒ $T - 20 = 2200$ ⇒ $T = 2220$ °C.
 
+### The coefficient depends on the reference temperature
+
+$\alpha$ is always stated **at** some temperature: $\alpha_0$ at 0 °C, $\alpha_{20}$ at 20 °C, and so on. They are not equal. Since $R_T = R_0(1 + \alpha_0 T)$ with $R_0$ at 0 °C,
+
+$$\alpha_{T_1} = \frac{\alpha_0}{1 + \alpha_0T_1}$$
+
+so $\alpha$ at a higher reference temperature is **smaller**. When an exam gives two readings and asks for "the temperature coefficient", find $\alpha_0$ (the value at 0 °C) unless it names another reference.
+
+**Example 3.** A resistor reads 50 Ω at 25 °C and 57.2 Ω at 70 °C.
+- Taking 0 °C as reference: $\dfrac{57.2}{50} = \dfrac{1 + 70\alpha_0}{1 + 25\alpha_0}$ ⇒ $57.2 + 1430\alpha_0 = 50 + 3500\alpha_0$ ⇒ $\alpha_0 = \dfrac{7.2}{2070} = \dfrac{1}{287.5}$ /°C.
+- Taking 25 °C as reference: $\alpha_{25} = \dfrac{57.2 - 50}{50\times45} = \dfrac{1}{312.5}$ /°C.
+
+### Resistance from field and current density
+
+Inside a conductor of length $l$ and area $A$: $V = El$ and $I = JA$. So
+
+$$R = \frac{V}{I} = \frac{El}{JA}$$
+
+and since $J = \sigma E$, this is the same as $R = \dfrac{l}{\sigma A} = 
+ho\dfrac{l}{A}$.
+
 ## Power in a resistor
 
 $$p = v\,i = i^2R = \frac{v^2}{R}$$

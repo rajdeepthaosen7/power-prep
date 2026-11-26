@@ -1,0 +1,117 @@
+# Chapter 2 mock tests (APSC format: 4-option MCQs, +1 / -0.25, about 72 seconds per question, no calculator).
+# Question count follows coverage: pyq = every Chapter 2 exam question; fresh = one new question per concept;
+# mix = every concept once, about half exam questions and half new ones (different from the fresh mock).
+
+- code: ec-ch2-mock-pyq
+  title: "Chapter 2 mock: PYQs only"
+  variant: PYQ
+  description: "All Chapter 2 exam questions (GATE, ESE, APSC 2023), asked the APSC way."
+  questions:
+    - gate-2017-s1-19
+    - ese-2024-51
+    - gate-2009-7
+    - ese-2024-52
+    - gate-2014-s3-30
+    - ese-2022-40
+    - gate-2004-35
+    - gate-2016-s1-17
+    - aegcl-2023-78
+    - ese-2017-60
+    - gate-2016-s1-15
+    - apdcl-2023-37
+    - gate-2010-33
+    - apdcl-2023-42
+    - ese-2017-41
+    - ese-2017-50
+    - gate-2013-19
+    - gate-2012-28
+    - gate-2004-32
+    - gate-2015-s2-29
+    - ese-2018-26
+    - gate-2004-33
+    - ese-2018-17
+    - ese-2026-102
+    - ese-2018-30
+    - gate-2019-42
+    - gate-2005-1
+
+- code: ec-ch2-mock-fresh
+  title: "Chapter 2 mock: fresh questions"
+  variant: FRESH
+  description: "New APSC-style questions only, one on every Chapter 2 concept. None of them appear in Study."
+  questions:
+    - ec2-p-010
+    - ec2-p-009
+    - ec2-p-022
+    - ec2-p-014
+    - ec2-p-029
+    - ec2-p-030
+    - ec2-p-034
+    - ec2-p-026
+    - ec2-p-011
+    - ec2-p-020
+    - ec2-p-003
+    - ec2-p-005
+    - ec2-p-007
+    - ec2-p-019
+    - ec2-p-033
+    - ec2-p-001
+    - ec2-p-031
+    - ec2-p-024
+    - ec2-p-018
+    - ec2-p-013
+    - ec2-p-028
+    - ec2-p-016
+    - ec2-p-012
+    - ec2-p-004
+    - ec2-p-006
+    - ec2-p-032
+    - ec2-p-021
+    - ec2-p-008
+    - ec2-p-025
+    - ec2-p-015
+    - ec2-p-027
+    - ec2-p-002
+    - ec2-p-023
+    - ec2-p-017
+
+- code: ec-ch2-mock-mix
+  title: "Chapter 2 mock: mixed"
+  variant: MIX
+  description: "Every Chapter 2 concept once: half exam questions, half new ones, mixed the way APSC sets a paper."
+  questions:
+    - ec2-q-015
+    - ec2-q-009
+    - ese-2018-17
+    - ec2-q-012
+    - ese-2017-60
+    - apdcl-2023-37
+    - gate-2017-s1-19
+    - gate-2015-s2-29
+    - ec2-q-002
+    - ec2-q-018
+    - ese-2026-102
+    - ec2-q-004
+    - ec2-q-006
+    - ese-2017-50
+    - gate-2004-33
+    - ec2-q-008
+    - ec2-q-014
+    - gate-2013-19
+    - apdcl-2023-42
+    - ec2-q-017
+    - ec2-q-016
+    - ec2-q-010
+    - gate-2014-s3-30
+    - ec2-q-003
+    - ese-2024-51
+    - gate-2016-s1-15
+    - gate-2019-42
+    - gate-2012-28
+    - ec2-q-005
+    - ec2-q-011
+    - ese-2022-40
+    - gate-2016-s1-17
+    - ec2-q-001
+    - ec2-q-007
+    - ec2-q-013

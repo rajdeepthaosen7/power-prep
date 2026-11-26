@@ -20,6 +20,17 @@ If anything is missing (a source file, an answer key, a syllabus item), ask the 
   NAT PYQs get 4 `options` so tests can ask them as MCQ (Study still asks them as NAT).
 - Subject-wise mock: only after **all** chapters of that subject are ready.
 
+## Prep strategy (owner's rule: every build decision must serve this)
+Full doc: https://claude.ai/artifact/BjEpYbj8eGATVTrSGrfNmJ
+- Target 80+/100 in APSC AM (100 MCQs, 2 h, no calculator, -0.25). Skip no subject.
+- Subject order: Circuits, Machines, Power Systems, Measurements, Control, Power Electronics, Analog & Digital, Signals, EMF.
+- Chapter loop: notes + one-page short note -> PYQs (attempt first) -> mistake log -> 3 mocks (PYQ, Fresh, Mixed) -> revision after 1, 7, 21 days.
+  A chapter is done at 85%+ on its Mixed mock.
+- Phases: learn (~16 weeks), test (subject + full mocks), sharpen (short notes + mistake log + full mocks).
+- Content stays at least one week ahead of the owner's study. Full notes for heavy subjects (Power Systems, Machines, Circuits, Control);
+  shorter exam-focused notes for light ones (EMF, Measurements). Every chapter keeps its 3 mocks.
+- The owner's time goes to studying, not building: build only what the loop needs, keep it simple.
+
 ## Writing concept notes (Study tab)
 - Write like the best teacher. Style: Lakhmir Singh (S. Chand) - very clear, detailed, conceptual, simple English.
 - Teaching must be **integral, gradual and complete**:

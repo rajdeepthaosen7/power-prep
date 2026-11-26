@@ -71,6 +71,9 @@
     - gate-1999-rc-triangular
     - gate-2014-s1-8
     - gate-2025-19
+    - ese-2020-27
+    - ese-2021-65
+    - ese-2021-72
 
 - code: ec-ch1-mock-fresh
   title: "Chapter 1 mock: fresh questions"

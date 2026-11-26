@@ -603,3 +603,83 @@
     **Without a calculator:** Only small products: $20\times5$, $12\times5$, $8\times6$, $8\times1$. Use the power balance $-100 + 60 + 48 - 8 = 0$ as your check.
 
     **Answer: (B) by the wording (supplied power); (D) if the setter meant absorbed power.**
+
+# ---------- added Nov 2026: ESE resistor questions missed in the first pass ----------
+- key: ese-2020-27
+  topic: ec1-resistor
+  sources: [{code: ESE-2020, q: "27", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The resistance $R$ of a conductor is
+
+    where: $E$ = Electric field intensity, $A$ = Cross-sectional area, $J$ = Current density, $l$ = Length of conductor
+  options:
+    - {label: A, md: "$\\dfrac{EA}{Jl}$"}
+    - {label: B, md: "$\\dfrac{EJ}{Al}$"}
+    - {label: C, md: "$\\dfrac{El}{JA}$", correct: true}
+    - {label: D, md: "$\\dfrac{JA}{El}$"}
+  solution: |
+    **Idea used:** $V = El$ and $I = JA$ — see *The resistor → Resistance from field and current density*.
+
+    $R = \dfrac{V}{I} = \dfrac{El}{JA}$.
+
+    **Without a calculator:** unit check. $E$ is V/m, $l$ is m, $J$ is A/m², $A$ is m². $\dfrac{(V/m)(m)}{(A/m^2)(m^2)} = \dfrac{V}{A}$ = Ω. Only (C) gives ohms.
+
+    **Answer: (C).**
+
+- key: ese-2021-65
+  topic: ec1-resistor
+  sources: [{code: ESE-2021, q: "65", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    A heater element is made of nichrome wire having resistivity equal to $100\times10^{-8}$ Ωm. The diameter of the wire is 0.4 mm. The length of the wire required to get a resistance of 40 Ω and 1000 W is
+  options:
+    - {label: A, md: "5.0 metres", correct: true}
+    - {label: B, md: "4.5 metres"}
+    - {label: C, md: "5.5 metres"}
+    - {label: D, md: "4.0 metres"}
+  solution: |
+    **Idea used:** $R = \rho\dfrac{l}{A}$ — see *The resistor → What decides the resistance*.
+
+    Area: $A = \dfrac{\pi d^2}{4} = \dfrac{\pi(0.4\times10^{-3})^2}{4} = \pi\times0.04\times10^{-6} = 1.257\times10^{-7}$ m².
+
+    $l = \dfrac{RA}{\rho} = \dfrac{40\times1.257\times10^{-7}}{10^{-6}} = 40\times0.1257 = 5.03$ m.
+
+    The 1000 W is extra information (it does not change the length for a given resistance).
+
+    **Without a calculator:** $\rho = 10^{-6}$; $A = 0.04\pi\times10^{-6}$, so $l = 40\times0.04\pi = 1.6\pi \approx 5.0$ m.
+
+    **Answer: (A) 5.0 metres.**
+
+- key: ese-2021-72
+  topic: ec1-resistor
+  sources: [{code: ESE-2021, q: "72", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    What is the temperature coefficient of resistance of material used in a resistor if the resistance at 25 °C is 50 Ω and at 70 °C is 57.2 Ω?
+  options:
+    - {label: A, md: "$\\dfrac{1}{168.5}$"}
+    - {label: B, md: "$\\dfrac{1}{378.5}$"}
+    - {label: C, md: "$\\dfrac{1}{463.5}$"}
+    - {label: D, md: "$\\dfrac{1}{287.5}$", correct: true}
+  solution: |
+    **Idea used:** the temperature coefficient at 0 °C, $\alpha_0$ — see *The resistor → The coefficient depends on the reference temperature* (Example 3).
+
+    With $R_T = R_0(1 + \alpha_0T)$:
+
+    $$\frac{57.2}{50} = \frac{1 + 70\alpha_0}{1 + 25\alpha_0} \Rightarrow 57.2 + 1430\alpha_0 = 50 + 3500\alpha_0 \Rightarrow \alpha_0 = \frac{7.2}{2070} = \frac{1}{287.5}\ \text{per °C}$$
+
+    Trap: using 25 °C as the reference gives $\alpha_{25} = \dfrac{7.2}{50\times45} = \dfrac{1}{312.5}$, which is not an option. The options are written for $\alpha_0$.
+
+    **Without a calculator:** $2070/7.2 = 20700/72 = 287.5$ (since $72\times287.5 = 20700$).
+
+    **Answer: (D) $\dfrac{1}{287.5}$.**
