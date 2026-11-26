@@ -31,7 +31,7 @@ jobs:
         if: env.AWS_ACCOUNT_ID != '000000000000'
         with:
           role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/power-prep-deploy
-          aws-region: ap-southeast-1
+          aws-region: ap-southeast-2
       - name: Deploy
         if: env.AWS_ACCOUNT_ID != '000000000000'
         run: bash deploy/aws/deploy.sh

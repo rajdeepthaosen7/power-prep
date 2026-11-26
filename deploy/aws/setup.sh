@@ -10,7 +10,8 @@
 # The API function itself is created by the first GitHub Actions deploy.
 set -euo pipefail
 
-REGION=ap-southeast-1          # Singapore, same as the Neon database
+REGION=ap-southeast-2          # Sydney: the Free plan allows Lambda only in Sydney, us-east-1, us-west-2
+SSM_REGION=ap-southeast-1      # the secrets were saved in Singapore first; they stay there
 FN=power-prep-api
 REPO=rajdeepthaosen7/power-prep
 # GitHub now puts owner and repo ids in the OIDC "sub" claim: repo:owner@ownerId/repo@repoId:ref:...
@@ -24,13 +25,13 @@ echo
 
 ask()  { local v; read -rp "$1: " v; echo "$v"; }
 asks() { local v; read -rsp "$1 (hidden): " v; echo >&2; echo "$v"; }
-have() { aws ssm get-parameter --name "$P/$1" >/dev/null 2>&1; }
-put()  { aws ssm put-parameter --name "$P/$1" --type "$2" --value "$3" --overwrite >/dev/null; }
+have() { aws ssm get-parameter --region $SSM_REGION --name "$P/$1" >/dev/null 2>&1; }
+put()  { aws ssm put-parameter --region $SSM_REGION --name "$P/$1" --type "$2" --value "$3" --overwrite >/dev/null; }
 
 # ---------- 1. secrets ----------
 if have DATABASE_URL && [ "${RESET_SECRETS:-}" != "1" ]; then
   echo "Secrets already saved (run with RESET_SECRETS=1 to type them again)."
-  ALERT_EMAIL=$(aws ssm get-parameter --name "$P/ALERT_EMAIL" --query Parameter.Value --output text)
+  ALERT_EMAIL=$(aws ssm get-parameter --region $SSM_REGION --name "$P/ALERT_EMAIL" --query Parameter.Value --output text)
 else
   echo "Open Render -> your power-prep service -> Environment, and copy the values from there."
   ALERT_EMAIL=$(ask "Your email for cost alerts")
@@ -94,7 +95,7 @@ aws iam put-role-policy --role-name power-prep-deploy --policy-name deploy --pol
 # ---------- 3b. the API function and its environment ----------
 # GitHub Actions only uploads new code; the secrets are set here, from CloudShell.
 if [ "${TYPED:-}" != "1" ]; then
-  get() { aws ssm get-parameter --with-decryption --name "$P/$1" --query Parameter.Value --output text; }
+  get() { aws ssm get-parameter --region $SSM_REGION --with-decryption --name "$P/$1" --query Parameter.Value --output text; }
   if ! DATABASE_URL=$(get DATABASE_URL); then
     echo "Could not read the saved secrets. Run again with:  RESET_SECRETS=1 bash setup.sh"; exit 1
   fi
@@ -176,6 +177,7 @@ else
       --environment "Variables={TARGET=$FN}" --zip-file "fileb://$TMP/kill.zip" >/dev/null && break
     echo "waiting for the new role..."; sleep 10
   done
+  aws lambda get-function --function-name power-prep-kill-switch >/dev/null || { echo "Could not create the kill switch (see the error above). Send it to Claude."; exit 1; }
 fi
 aws lambda add-permission --function-name power-prep-kill-switch --statement-id sns --action lambda:InvokeFunction \
   --principal sns.amazonaws.com --source-arn "$TOPIC" >/dev/null 2>&1 || true

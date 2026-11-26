@@ -3,7 +3,7 @@
 # Publishing a SnapStart version starts the app once (Flyway migrations run then). If start-up fails,
 # the publish fails and the live alias keeps pointing at the old version: users never see a broken API.
 set -euo pipefail
-REGION=${AWS_REGION:-ap-southeast-1}
+REGION=${AWS_REGION:-ap-southeast-2}
 FN=power-prep-api
 P=/power-prep
 ZIP=target/power-prep-lambda.zip

@@ -1,6 +1,6 @@
 # API on AWS Lambda
 
-The same Spring Boot app runs on Lambda (Singapore, `ap-southeast-1`, next to Neon).
+The same Spring Boot app runs on Lambda in Sydney (`ap-southeast-2`). The AWS Free plan blocks Lambda in Singapore (only Sydney, us-east-1 and us-west-2 are allowed), so it is not next to Neon (Singapore). Secrets stay in SSM in Singapore.
 
 | Piece | What |
 |---|---|
@@ -27,6 +27,6 @@ which sets the API's concurrency to 0 (every request refused, nothing charged).
 
 Switch the API back on (CloudShell):
 
-    aws lambda delete-function-concurrency --function-name power-prep-api --region ap-southeast-1
+    aws lambda delete-function-concurrency --function-name power-prep-api --region ap-southeast-2
 
 First deploy: 26 Nov 2026 (function created by setup.sh).
