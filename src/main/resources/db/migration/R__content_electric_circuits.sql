@@ -498,13 +498,39 @@ So $\alpha_0 = \dfrac{7.2}{2070} = \dfrac{1}{287.5}$ (because $2070 \div 7.2 = 2
 
 Both ways give the same answer; the step-by-step way (find the ohms per °C first) is quicker and safer in the exam.
 
-### Resistance from field and current density
+### Resistance from electric field and current density
 
-Inside a conductor of length $l$ and area $A$: $V = El$ and $I = JA$. So
+Some questions describe what happens **inside** the conductor instead of giving $V$ and $I$. Three new quantities appear there. Here is what each one means.
 
-$$R = \frac{V}{I} = \frac{El}{JA}$$
+- **Electric field $E$** (unit V/m): how much voltage drops **per metre** along the conductor. A 2 m wire with 10 V across it has $E = 10/2 = 5$ V/m. So for a wire of length $l$:
 
-and since $J = \sigma E$, this is the same as $R = \dfrac{l}{\sigma A} = \rho\dfrac{l}{A}$.
+$$V = E\,l$$
+
+- **Current density $J$** (unit A/m²): how much current flows **through each square metre** of the cross-section. A wire of area 2 mm² $= 2\times10^{-6}$ m² carrying 4 A has $J = 4/(2\times10^{-6}) = 2\times10^{6}$ A/m². So for a wire of area $A$:
+
+$$I = J\,A$$
+
+- **Conductivity $\sigma$** (unit S/m): how easily the material lets current flow. It is simply the reciprocal of resistivity: $\sigma = 1/\rho$. Copper: $\sigma \approx 5.8\times10^{7}$ S/m.
+
+**Ohm''s law at a point.** A stronger field pushes more current through each square metre, and a better conductor carries more. So
+
+$$J = \sigma E$$
+
+This is just Ohm''s law ($I = V/R$) written for one tiny piece of the material.
+
+**Putting it together.** Divide $V$ by $I$:
+
+1. $R = \dfrac{V}{I} = \dfrac{E\,l}{J\,A}$
+2. Put $J = \sigma E$: $R = \dfrac{E\,l}{\sigma E\,A}$
+3. $E$ cancels: $R = \dfrac{l}{\sigma A}$
+4. Since $\sigma = 1/\rho$: $R = \rho\,\dfrac{l}{A}$, the same formula we started this section with.
+
+**Example (field and density).** A wire 4 m long and 1 mm² in area has 2 V across it and carries 10 A.
+
+1. $E = V/l = 2/4 = 0.5$ V/m.
+2. $J = I/A = 10/(1\times10^{-6}) = 10^{7}$ A/m².
+3. $\sigma = J/E = 10^{7}/0.5 = 2\times10^{7}$ S/m, so $\rho = 1/\sigma = 5\times10^{-8}$ Ω·m.
+4. Check: $R = V/I = 2/10 = 0.2$ Ω, and $\rho l/A = 5\times10^{-8}\times4/10^{-6} = 0.2$ Ω ✓.
 
 ## Power in a resistor
 
