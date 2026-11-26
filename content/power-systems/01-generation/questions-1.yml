@@ -1,0 +1,286 @@
+# Power Systems Chapter 1 PYQs, part 1: the power system and the grid, load factors, base/peak plants, economics.
+# Exam questions keep their original wording. "status": OFFICIAL_KEY | TWO_SOURCES | UNVERIFIED (solved by us).
+
+- key: ese-2020-122
+  topic: ps1-power-system-structure
+  sources: [{code: ESE-2020, q: "122", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Which of the following are the main parts of a power system?
+
+    1. Generating stations
+    2. Transmission systems
+    3. Distribution networks
+  options:
+    - {label: A, md: "1 and 2 only"}
+    - {label: B, md: "1 and 3 only"}
+    - {label: C, md: "2 and 3 only"}
+    - {label: D, md: "1, 2 and 3", correct: true}
+  solution: |
+    **Idea used:** the three parts of a power system — see *The power system and the grid → What is a power system?*
+
+    Energy is produced in generating stations, carried in bulk by the transmission system and spread to the consumers by the distribution network. A power system needs all three.
+
+    **Answer: (D) 1, 2 and 3.**
+
+- key: ese-2021-97
+  topic: ps1-power-system-structure
+  sources: [{code: ESE-2021, q: "97", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The main function of electric power system is to
+  options:
+    - {label: A, md: "transmit energy with maximum efficiency.", correct: true}
+    - {label: B, md: "generate energy with minimum efficiency."}
+    - {label: C, md: "store energy with maximum efficiency."}
+    - {label: D, md: "convert energy with minimum efficiency."}
+  solution: |
+    **Idea used:** the main function of a power system — see *The power system and the grid → What is a power system?*
+
+    A power system converts energy to electrical form and delivers (transmits) it to the consumers, as efficiently as possible.
+
+    - (B) and (D) say **minimum** efficiency: nobody designs for minimum efficiency. Wrong.
+    - (C) Electrical energy is not stored in bulk in a power system; it is produced as it is used. Wrong.
+    - (A) is the only sensible choice.
+
+    **Option elimination is enough here:** two options have "minimum efficiency", one has "store".
+
+    **Answer: (A).**
+
+- key: ese-2019-121
+  topic: ps1-power-system-structure
+  sources: [{code: ESE-2019, q: "121", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    Consider the following statements for a large national interconnected grid:
+
+    1. Better load frequency control
+    2. Same total installed capacity can meet lower demands
+    3. Better hydro / thermal / nuclear / renewable co-ordination and energy conservation
+
+    Which of the above statements are correct?
+  options:
+    - {label: A, md: "1 and 3 only", correct: true}
+    - {label: B, md: "1 and 2 only"}
+    - {label: C, md: "2 and 3 only"}
+    - {label: D, md: "1, 2 and 3"}
+  solution: |
+    **Idea used:** advantages of a large interconnected grid — see *The power system and the grid → The grid: why we interconnect*.
+
+    1. **True.** A big grid has a huge rotating mass and many generators sharing any change of load, so the frequency is held much better.
+    2. **False as written.** Because the peaks of different areas come at different times (diversity) and reserves are shared, a grid lets a **smaller** installed capacity meet the **same** demand, or the **same** capacity meet a **higher** demand. "Same capacity can meet lower demands" turns the advantage upside down (and is no advantage at all).
+    3. **True.** Hydro, thermal, nuclear and renewable plants anywhere in the country can be scheduled together, so water, coal and fuel are saved.
+
+    **Answer: (A) 1 and 3 only.**
+
+    *Note:* statement 2 is a reversed form of a textbook advantage; read such statements word by word.
+
+- key: ese-2020-131
+  topic: ps1-power-system-structure
+  sources: [{code: ESE-2020, q: "131", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    In a power system, due to interconnection or grid formation and transmission line redundancy, the ability to serve all power demands without failure over long periods of time, is due to
+  options:
+    - {label: A, md: "Power system quality"}
+    - {label: B, md: "Power system reliability", correct: true}
+    - {label: C, md: "Computers and microprocessors"}
+    - {label: D, md: "Reserve generating capacity"}
+  solution: |
+    **Idea used:** the meaning of reliability — see *The power system and the grid → Reliability, reserve and quality*.
+
+    "Serving all demands without failure over long periods of time" is the definition of **reliability**. Quality is about the shape of the supply (voltage, frequency, harmonics). Reserve capacity is only one of the means used to get reliability.
+
+    **Answer: (B) Power system reliability.**
+
+- key: aegcl-2023-26
+  topic: ps1-load-curves-factors
+  sources: [{code: AEGCL-2023, q: "26", marks: 1}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A generating station has connected load of 500 MW and maximum demand of 200 MW. The demand factor of the station will be
+  options:
+    - {label: A, md: "0·4", correct: true}
+    - {label: B, md: "2·5"}
+    - {label: C, md: "0·5"}
+    - {label: D, md: "0·2"}
+  solution: |
+    **Idea used:** demand factor — see *Load curves and load factors → Demand factor*.
+
+    $$\text{Demand factor} = \frac{\text{maximum demand}}{\text{connected load}} = \frac{200}{500} = 0.4$$
+
+    **Check:** the demand factor can never be more than 1 (the maximum demand cannot exceed what is connected), so 2.5 is the upside-down ratio, a trap.
+
+    **Answer: (A) 0.4.**
+
+- key: gate-1999-industrial-lf
+  topic: ps1-load-curves-factors
+  sources: [{code: GATE-1999, q: "~industrial-load-factor", marks: 2, url: "https://questions.examside.com/past-years/gate/question/an-industrial-consumer-has-a-daily-load-pattern-of-2000-kw-0-gate-ee-1999-marks-2-0jnbwcchuhtetmol.htm"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    An industrial consumer has a daily load pattern of 2000 kW, 0.8 lag for 12 Hrs. and 1000 kW UPF for 12 Hrs. The load factor is
+  options:
+    - {label: A, md: "0.5"}
+    - {label: B, md: "0.75", correct: true}
+    - {label: C, md: "0.6"}
+    - {label: D, md: "2.0"}
+  solution: |
+    **Idea used:** load factor = average load ÷ maximum demand, on a kW basis — see *Load curves and load factors → Load factor* (Example 3 and the trap).
+
+    - Energy in the day $= 2000\times12 + 1000\times12 = 36\,000$ kWh.
+    - Average load $= 36\,000/24 = 1500$ kW.
+    - Maximum demand $= 2000$ kW.
+
+    $$LF = \frac{1500}{2000} = 0.75$$
+
+    The power factors (0.8 lag and UPF) do not enter the load factor; they are distractors.
+
+    **Without a calculator:** equal hours at each level, so the average is simply $(2000+1000)/2 = 1500$.
+
+    **Answer: (B) 0.75.**
+
+- key: gate-1995-lf-df
+  topic: ps1-economics-tariffs
+  concepts: [ps1-economics-tariffs, ps1-load-curves-factors]
+  sources: [{code: GATE-1995, q: "~load-diversity-factor", marks: 1, url: "https://questions.examside.com/past-years/gate/question/in-order-to-have-a-lower-cost-of-electrical-energy-generatio-gate-ee-1995-marks-1-7x7s1rrnospur5iu.htm"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    In order to have a lower cost of electrical energy generation,
+  options:
+    - {label: A, md: "The load factor and diversity factor should be low"}
+    - {label: B, md: "The load factor should be low but diversity factor should be high"}
+    - {label: C, md: "The load factor should be high but diversity factor should be low"}
+    - {label: D, md: "The load factor and diversity factor should be high", correct: true}
+  solution: |
+    **Idea used:** how the load factor and the diversity factor change the cost per unit — see *Cost of generation and tariffs → Cost per unit and the load factor* and *Load curves and load factors → Why high load factor and high diversity mean cheap power*.
+
+    - **High load factor:** more kWh from the same plant, so the fixed cost is shared by more units.
+    - **High diversity factor:** the maximum demand of the station is smaller for the same consumers, so a smaller (cheaper) plant is enough.
+
+    Both lower the cost per unit.
+
+    **Answer: (D).**
+
+- key: ese-2025-132
+  topic: ps1-economics-tariffs
+  sources: [{code: ESE-2025, q: "132", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Fixed and semi-fixed costs being independent of the amount of energy generated are also called
+  options:
+    - {label: A, md: "generating costs"}
+    - {label: B, md: "operating costs"}
+    - {label: C, md: "running costs"}
+    - {label: D, md: "standing costs", correct: true}
+  solution: |
+    **Idea used:** the parts of the annual cost — see *Cost of generation and tariffs → The costs of a power station*.
+
+    Fixed costs (interest, depreciation, taxes) and semi-fixed costs (depending on the maximum demand) have to be paid even if the plant produces nothing. Together they are the **standing charges (standing costs)**. Operating or running costs depend on the energy generated.
+
+    **Answer: (D) standing costs.**
+
+- key: gate-2009-8
+  topic: ps1-base-peak-plants
+  sources: [{code: GATE-2009, q: "8", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Out of the following plant categories
+
+    (i) Nuclear (ii) Run-of-river (iii) Pump Storage (iv) Diesel
+
+    the base load power plants are
+  options:
+    - {label: A, md: "(i) and (ii)", correct: true}
+    - {label: B, md: "(ii) and (iii)"}
+    - {label: C, md: "(i), (ii) and (iv)"}
+    - {label: D, md: "(i), (iii) and (iv)"}
+  solution: |
+    **Idea used:** what a base load plant needs — see *Base load and peak load plants* (Example 1).
+
+    - **Nuclear:** very high capital cost, very low fuel cost, cannot change output quickly → base load.
+    - **Run-of-river:** no storage, the river water must be used as it comes, all day → base load.
+    - **Pumped storage:** pumps water up in off-peak hours and generates in peak hours → peak load.
+    - **Diesel:** quick start, costly fuel → peak load / standby.
+
+    **Answer: (A) (i) and (ii).**
+
+- key: gate-2015-s1-27
+  topic: ps1-base-peak-plants
+  sources: [{code: GATE-2015, q: "S1-Q27", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Base load power plants are
+
+    P: wind farms
+    Q: run-of-river plants
+    R: nuclear power plants
+    S: diesel power plants
+  options:
+    - {label: A, md: "P, Q and S only"}
+    - {label: B, md: "P, R and S only"}
+    - {label: C, md: "P, Q and R only"}
+    - {label: D, md: "Q and R only", correct: true}
+  solution: |
+    **Idea used:** base load plants, and why wind farms are not one — see *Base load and peak load plants → Plants that do not fit neatly*.
+
+    - Wind farms run only when the wind blows; their output cannot be scheduled. Not a base load plant. This removes (A), (B) and (C) at once.
+    - Run-of-river and nuclear are the standard base load plants.
+    - Diesel is for peaks and standby.
+
+    **Answer: (D) Q and R only.**
+
+- key: ese-2025-121
+  topic: ps1-base-peak-plants
+  concepts: [ps1-base-peak-plants, ps1-nuclear-gas-diesel]
+  sources: [{code: ESE-2025, q: "121", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Which one of the following power plants is suitable for supplying peak loads?
+  options:
+    - {label: A, md: "Nuclear power plant"}
+    - {label: B, md: "Steam power plant"}
+    - {label: C, md: "Hydropower plant"}
+    - {label: D, md: "Gas turbine power plant", correct: true}
+  solution: |
+    **Idea used:** what a peak load plant needs — see *Base load and peak load plants* (Example 2) and *Nuclear, gas turbine and diesel plants → Gas turbine power plants*.
+
+    A peak load plant must start in minutes and have a low capital cost; a high fuel cost does not matter because it runs only a few hours.
+
+    - Nuclear and steam: slow to start, high capital cost → base load.
+    - Hydro: depends on the type (run-of-river is base load; only storage hydro suits peaks).
+    - **Gas turbine:** starts in minutes, cheapest to build, costly fuel: the textbook peak load plant.
+
+    **Answer: (D) Gas turbine power plant.**

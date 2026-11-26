@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="340" viewBox="0 0 340 200">
+<line x1="40.0" y1="164.0" x2="296.0" y2="164.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="298.0,164.0 292.0,161.0 292.0,167.0" fill="currentColor"/>
+<line x1="40.0" y1="168.0" x2="40.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="40.0,6.0 37.0,12.0 43.0,12.0" fill="currentColor"/>
+<text x="304.0" y="164.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">hour</text>
+<text x="46.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">load (MW)</text>
+<text x="33.0" y="175.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="100.5" y1="161.0" x2="100.5" y2="167.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="100.5" y="177.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">6</text>
+<line x1="161.0" y1="161.0" x2="161.0" y2="167.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="161.0" y="177.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">12</text>
+<line x1="221.5" y1="161.0" x2="221.5" y2="167.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="221.5" y="177.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">18</text>
+<line x1="282.0" y1="161.0" x2="282.0" y2="167.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="282.0" y="177.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">24</text>
+<line x1="37.0" y1="105.6" x2="43.0" y2="105.6" stroke="currentColor" stroke-width="1.2"/>
+<text x="34.0" y="105.6" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">40</text>
+<line x1="37.0" y1="32.6" x2="43.0" y2="32.6" stroke="currentColor" stroke-width="1.2"/>
+<text x="34.0" y="32.6" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">90</text>
+<line x1="40.0" y1="105.6" x2="282.0" y2="105.6" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<polyline points="40.0,120.2 60.2,120.2 60.2,127.5 80.3,127.5 80.3,127.5 100.5,127.5 100.5,105.6 120.7,105.6 120.7,76.4 140.8,76.4 140.8,61.8 161.0,61.8 161.0,69.1 181.2,69.1 181.2,76.4 201.3,76.4 201.3,69.1 221.5,69.1 221.5,32.6 241.7,32.6 241.7,47.2 261.8,47.2 261.8,91.0 282.0,91.0" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+<text x="161.0" y="134.8" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">base load: runs all 24 h</text>
+<text x="171.1" y="47.2" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">peak load</text>
+</svg>

@@ -1,0 +1,508 @@
+# More of our own APSC-style questions, used in the Chapter 1 MIXED mock (different from the fresh mock).
+# 4-option MCQs, hand-workable numbers. Shown only inside mock tests.
+
+- key: ps1-q-001
+  topic: ps1-power-system-structure
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    The voltage of a transmission line is raised from 200 kV to 400 kV while the power, power factor and line are unchanged. The percentage line loss (loss as a fraction of power sent)
+  options:
+    - {label: A, md: "Becomes one quarter", correct: true}
+    - {label: B, md: "Becomes one half"}
+    - {label: C, md: "Is unchanged"}
+    - {label: D, md: "Doubles"}
+  solution: |
+    **Idea used:** loss $\propto 1/V^2$ for the same power — see *The power system and the grid → Why do we transmit at high voltage?*
+
+    The power is the same, so the fraction lost also falls in the ratio $(200/400)^2 = 1/4$.
+
+    **Answer: (A) Becomes one quarter.**
+
+- key: ps1-q-002
+  topic: ps1-power-system-structure
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Which one of the following is a standard extra-high transmission voltage in India?
+  options:
+    - {label: A, md: "33 kV"}
+    - {label: B, md: "11 kV"}
+    - {label: C, md: "400 kV", correct: true}
+    - {label: D, md: "415 V"}
+  solution: |
+    **Idea used:** voltage levels — see *The power system and the grid → Voltage levels used in India*.
+
+    765, 400 and 220 kV are transmission voltages; 33 kV is sub-transmission/distribution; 11 kV and 415 V are distribution.
+
+    **Answer: (C) 400 kV.**
+
+- key: ps1-q-003
+  topic: ps1-power-system-structure
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    In a very large interconnected grid, a sudden loss of 100 MW of load in one area causes
+  options:
+    - {label: A, md: "A large frequency rise, because only the local generators respond"}
+    - {label: B, md: "Only a small frequency change, because many generators share the correction", correct: true}
+    - {label: C, md: "No change at all in frequency"}
+    - {label: D, md: "A blackout of the whole grid"}
+  solution: |
+    **Idea used:** grid advantage: better frequency control — see *The power system and the grid → The grid: why we interconnect*.
+
+    The huge rotating mass of the grid and the governors of many machines share the disturbance, so the frequency moves only a little.
+
+    **Answer: (B) Only a small frequency change, because many generators share the correction.**
+
+- key: ps1-q-004
+  topic: ps1-load-curves-factors
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A substation supplies a residential area with a maximum demand of 6 MW, a factory with 10 MW and shops with 4 MW. The maximum demand on the substation is 16 MW. The diversity factor is
+  options:
+    - {label: A, md: "0.8"}
+    - {label: B, md: "1.25", correct: true}
+    - {label: C, md: "1.6"}
+    - {label: D, md: "2.5"}
+  solution: |
+    **Idea used:** diversity factor — see *Load curves and load factors → Diversity factor*.
+
+    $(6+10+4)/16 = 20/16 = 1.25$.
+
+    **Answer: (B) 1.25.**
+
+- key: ps1-q-005
+  topic: ps1-load-curves-factors
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A station of 50 MW capacity has a maximum demand of 40 MW and an annual load factor of 0.5. Its annual energy output and capacity factor are
+  options:
+    - {label: A, md: "175 200 MWh and 0.4", correct: true}
+    - {label: B, md: "219 000 MWh and 0.5"}
+    - {label: C, md: "175 200 MWh and 0.5"}
+    - {label: D, md: "438 000 MWh and 0.4"}
+  solution: |
+    **Idea used:** energy = MD × LF × 8760; capacity factor = average load ÷ capacity — see *Load curves and load factors* (Example 5).
+
+    Average load $= 0.5\times40 = 20$ MW. Energy $= 20\times8760 = 175\,200$ MWh. Capacity factor $= 20/50 = 0.4$.
+
+    **Answer: (A) 175 200 MWh and 0.4.**
+
+- key: ps1-q-006
+  topic: ps1-load-curves-factors
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A plant of rated capacity 120 MW has a maximum demand of 90 MW. Its utilisation factor is
+  options:
+    - {label: A, md: "0.75", correct: true}
+    - {label: B, md: "1.33"}
+    - {label: C, md: "0.25"}
+    - {label: D, md: "30 MW"}
+  solution: |
+    **Idea used:** utilisation factor = MD ÷ capacity — see *Load curves and load factors → Utilisation factor*.
+
+    $90/120 = 0.75$. (30 MW is the reserve capacity.)
+
+    **Answer: (A) 0.75.**
+
+- key: ps1-q-007
+  topic: ps1-load-curves-factors
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A load duration curve is obtained from the load curve by
+  options:
+    - {label: A, md: "Adding the loads of all the days"}
+    - {label: B, md: "Arranging the loads in descending order of magnitude", correct: true}
+    - {label: C, md: "Taking the time integral of the load"}
+    - {label: D, md: "Dividing the loads by the maximum demand"}
+  solution: |
+    **Idea used:** load duration curve — see *Load curves and load factors → The load curve and the load duration curve*.
+
+    **Answer: (B) Arranging the loads in descending order of magnitude.**
+
+- key: ps1-q-008
+  topic: ps1-thermal-plants
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    In a steam power plant, a reheater is used to
+  options:
+    - {label: A, md: "Heat the feed water before the boiler"}
+    - {label: B, md: "Heat the steam again after it has partly expanded in the turbine", correct: true}
+    - {label: C, md: "Heat the combustion air"}
+    - {label: D, md: "Heat the coal before pulverising"}
+  solution: |
+    **Idea used:** superheater and reheater — see *Steam (thermal) power plants → Superheater*.
+
+    Steam leaving the high-pressure turbine goes back to the boiler to be heated again, raising efficiency and keeping the steam dry.
+
+    **Answer: (B) Heat the steam again after it has partly expanded in the turbine.**
+
+- key: ps1-q-009
+  topic: ps1-thermal-plants
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A steam station has an overall efficiency of 25 %. Its heat rate is
+  options:
+    - {label: A, md: "860 kcal/kWh"}
+    - {label: B, md: "2150 kcal/kWh"}
+    - {label: C, md: "3440 kcal/kWh", correct: true}
+    - {label: D, md: "4000 kcal/kWh"}
+  solution: |
+    **Idea used:** heat rate $= 860/\eta$ kcal/kWh — see *Steam (thermal) power plants → Efficiency, heat rate and coal consumption*.
+
+    $860/0.25 = 3440$ kcal/kWh.
+
+    **Answer: (C) 3440 kcal/kWh.**
+
+- key: ps1-q-010
+  topic: ps1-thermal-plants
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A supercritical boiler does not need a steam drum because
+  options:
+    - {label: A, md: "It works at low pressure"}
+    - {label: B, md: "Above the critical pressure water turns into steam without a separate boiling stage", correct: true}
+    - {label: C, md: "It uses no feed pump"}
+    - {label: D, md: "It burns gas instead of coal"}
+  solution: |
+    **Idea used:** supercritical plants — see *Steam (thermal) power plants → Supercritical plants*.
+
+    There is no water–steam mixture to separate, so the boiler is once-through.
+
+    **Answer: (B) Above the critical pressure water turns into steam without a separate boiling stage.**
+
+- key: ps1-q-011
+  topic: ps1-thermal-plants
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    In a thermal power station, the cooling tower is used to
+  options:
+    - {label: A, md: "Cool the flue gases before the chimney"}
+    - {label: B, md: "Cool the water that has taken heat from the condenser", correct: true}
+    - {label: C, md: "Cool the alternator windings"}
+    - {label: D, md: "Cool the coal mills"}
+  solution: |
+    **Idea used:** condenser and cooling tower — see *Steam (thermal) power plants → Condenser and cooling tower*.
+
+    **Answer: (B) Cool the water that has taken heat from the condenser.**
+
+- key: ps1-q-012
+  topic: ps1-hydro-plants
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    How much water per second is needed for a 10 MW hydro plant with a head of 50 m and an overall efficiency of 80 %? (take $g = 10$ m/s²)
+  options:
+    - {label: A, md: "2.5 m³/s"}
+    - {label: B, md: "25 m³/s", correct: true}
+    - {label: C, md: "250 m³/s"}
+    - {label: D, md: "12.5 m³/s"}
+  solution: |
+    **Idea used:** $P = \rho g Q H\eta$ — see *Hydroelectric power plants* (Example 2).
+
+    $Q = \dfrac{10\,000\ \text{kW}}{10\times50\times0.8} = \dfrac{10\,000}{400} = 25$ m³/s.
+
+    **Answer: (B) 25 m³/s.**
+
+- key: ps1-q-013
+  topic: ps1-hydro-plants
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    Water hammer in the penstock of a hydro plant occurs mainly when
+  options:
+    - {label: A, md: "The turbine gates are closed suddenly on a sudden fall of load", correct: true}
+    - {label: B, md: "The reservoir level rises slowly"}
+    - {label: C, md: "The draft tube is too long"}
+    - {label: D, md: "The plant runs at constant load"}
+  solution: |
+    **Idea used:** surge tank and water hammer — see *Hydroelectric power plants → The parts of a hydro plant*.
+
+    Suddenly stopping a long column of moving water creates a pressure wave; the surge tank absorbs it.
+
+    **Answer: (A) The turbine gates are closed suddenly on a sudden fall of load.**
+
+- key: ps1-q-014
+  topic: ps1-hydro-plants
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A Kaplan turbine is
+  options:
+    - {label: A, md: "An impulse turbine for high heads"}
+    - {label: B, md: "A radial-flow reaction turbine for medium heads"}
+    - {label: C, md: "An axial-flow reaction turbine with adjustable runner blades for low heads", correct: true}
+    - {label: D, md: "A gas turbine"}
+  solution: |
+    **Idea used:** Kaplan turbine — see *Hydroelectric power plants → Kaplan turbine*.
+
+    **Answer: (C) An axial-flow reaction turbine with adjustable runner blades for low heads.**
+
+- key: ps1-q-015
+  topic: ps1-hydro-plants
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    A run-of-river plant with pondage is able to
+  options:
+    - {label: A, md: "Store water for several years"}
+    - {label: B, md: "Store water for a few hours or days and help meet the daily peak", correct: true}
+    - {label: C, md: "Pump water up during off-peak hours"}
+    - {label: D, md: "Work without any water flow"}
+  solution: |
+    **Idea used:** types by storage — see *Hydroelectric power plants → By the storage of water*.
+
+    Pondage is short-term storage behind a weir: water saved during low load is used during the peak.
+
+    **Answer: (B) Store water for a few hours or days and help meet the daily peak.**
+
+- key: ps1-q-016
+  topic: ps1-nuclear-gas-diesel
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Which one of the following is used as a moderator in nuclear reactors?
+  options:
+    - {label: A, md: "Cadmium"}
+    - {label: B, md: "Boron"}
+    - {label: C, md: "Graphite", correct: true}
+    - {label: D, md: "Hafnium"}
+  solution: |
+    **Idea used:** moderator vs control materials — see *Nuclear, gas turbine and diesel plants → Parts of a nuclear reactor*.
+
+    Graphite slows neutrons (moderator). Cadmium, boron and hafnium absorb neutrons (control rods).
+
+    **Answer: (C) Graphite.**
+
+- key: ps1-q-017
+  topic: ps1-nuclear-gas-diesel
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    The main reason a nuclear power station is run as a base load station is that it has
+  options:
+    - {label: A, md: "Low capital cost and high fuel cost"}
+    - {label: B, md: "High capital cost and low fuel cost, and cannot change output quickly", correct: true}
+    - {label: C, md: "Quick starting ability"}
+    - {label: D, md: "Very small unit size"}
+  solution: |
+    **Idea used:** nuclear plants — see *Nuclear, gas turbine and diesel plants → Advantages and disadvantages*.
+
+    **Answer: (B) High capital cost and low fuel cost, and cannot change output quickly.**
+
+- key: ps1-q-018
+  topic: ps1-nuclear-gas-diesel
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    The open-cycle gas turbine plant is well suited for peak loads because it
+  options:
+    - {label: A, md: "Has the highest efficiency of all plants"}
+    - {label: B, md: "Starts quickly and has a low capital cost", correct: true}
+    - {label: C, md: "Uses the cheapest fuel"}
+    - {label: D, md: "Needs a large cooling water supply"}
+  solution: |
+    **Idea used:** gas turbine — see *Nuclear, gas turbine and diesel plants → Gas turbine power plants*.
+
+    Its fuel is costly and its efficiency low, but it starts in minutes and is cheap to build: ideal for a few hours of peak.
+
+    **Answer: (B) Starts quickly and has a low capital cost.**
+
+- key: ps1-q-019
+  topic: ps1-base-peak-plants
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    Which one of the following combinations is correct?
+  options:
+    - {label: A, md: "Run-of-river plant — peak load"}
+    - {label: B, md: "Gas turbine — base load"}
+    - {label: C, md: "Pumped storage — peak load", correct: true}
+    - {label: D, md: "Nuclear — peak load"}
+  solution: |
+    **Idea used:** base and peak plants — see *Base load and peak load plants → Summary*.
+
+    Run-of-river and nuclear are base load; gas turbine and pumped storage are peak load.
+
+    **Answer: (C) Pumped storage — peak load.**
+
+- key: ps1-q-020
+  topic: ps1-renewables
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    If the wind speed rises by 10 %, the power available in the wind rises by about
+  options:
+    - {label: A, md: "10 %"}
+    - {label: B, md: "21 %"}
+    - {label: C, md: "33 %", correct: true}
+    - {label: D, md: "50 %"}
+  solution: |
+    **Idea used:** $P\propto V^3$ — see *Solar, wind and other renewables* (Example 3).
+
+    $1.1^3 = 1.331$: about 33 % more.
+
+    **Answer: (C) 33 %.**
+
+- key: ps1-q-021
+  topic: ps1-renewables
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    The tip speed ratio of a wind turbine is the ratio of
+  options:
+    - {label: A, md: "Wind speed to rotor speed in rpm"}
+    - {label: B, md: "Speed of the blade tip to the wind speed", correct: true}
+    - {label: C, md: "Rated speed to cut-in speed"}
+    - {label: D, md: "Blade length to tower height"}
+  solution: |
+    **Idea used:** tip speed ratio $\lambda = \omega R/V$ — see *Solar, wind and other renewables → Tip speed ratio*.
+
+    **Answer: (B) Speed of the blade tip to the wind speed.**
+
+- key: ps1-q-022
+  topic: ps1-renewables
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    Each cell of a PV module has $V_{oc} = 0.6$ V and $I_{sc} = 4$ A. The module has 36 cells in series and its fill factor is 0.75. Its maximum power is about
+  options:
+    - {label: A, md: "64.8 W", correct: true}
+    - {label: B, md: "86.4 W"}
+    - {label: C, md: "43.2 W"}
+    - {label: D, md: "1.8 W"}
+  solution: |
+    **Idea used:** $P_{max} = FF\times V_{oc}\times I_{sc}$; series cells add voltage — see *Solar, wind and other renewables* (Example 1).
+
+    $V_{oc} = 36\times0.6 = 21.6$ V; $P_{max} = 0.75\times21.6\times4 = 0.75\times86.4 = 64.8$ W.
+
+    **Answer: (A) 64.8 W.**
+
+- key: ps1-q-023
+  topic: ps1-renewables
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: REVIEWED
+  stem: |
+    Connecting identical solar cells in parallel increases the
+  options:
+    - {label: A, md: "Open-circuit voltage"}
+    - {label: B, md: "Output current", correct: true}
+    - {label: C, md: "Fill factor"}
+    - {label: D, md: "Efficiency of each cell"}
+  solution: |
+    **Idea used:** cells in series and parallel — see *Solar, wind and other renewables → Cells in series and parallel*.
+
+    **Answer: (B) Output current.**
+
+- key: ps1-q-024
+  topic: ps1-economics-tariffs
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A station's fixed charges are ₹43.8 crore per year. Its maximum demand is 50 MW and its annual load factor is 0.5. The fixed cost per kWh generated is
+  options:
+    - {label: A, md: "₹0.50"}
+    - {label: B, md: "₹1.00"}
+    - {label: C, md: "₹2.00", correct: true}
+    - {label: D, md: "₹4.00"}
+  solution: |
+    **Idea used:** fixed cost per unit = fixed charges ÷ ($P_m\times LF\times8760$) — see *Cost of generation and tariffs → Cost per unit and the load factor*.
+
+    Energy $= 50\,000\times0.5\times8760 = 25\,000\times8760 = 21.9\times10^7$ kWh. Cost per unit $= 43.8\times10^7/21.9\times10^7 = ₹2$.
+
+    **Answer: (C) ₹2.00.**
+
+- key: ps1-q-025
+  topic: ps1-economics-tariffs
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    A power factor tariff that charges the maximum demand in kVA instead of kW encourages consumers to
+  options:
+    - {label: A, md: "Reduce their energy use only"}
+    - {label: B, md: "Improve their power factor", correct: true}
+    - {label: C, md: "Increase their connected load"}
+    - {label: D, md: "Use more energy in peak hours"}
+  solution: |
+    **Idea used:** power factor tariff — see *Cost of generation and tariffs* (Example 4).
+
+    For the same kW, a higher power factor means fewer kVA, so a smaller bill.
+
+    **Answer: (B) Improve their power factor.**
+
+- key: ps1-q-026
+  topic: ps1-economics-tariffs
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: REVIEWED
+  stem: |
+    Compared with the straight-line method, the sinking fund method of depreciation needs
+  options:
+    - {label: A, md: "A larger yearly amount, because no interest is earned"}
+    - {label: B, md: "A smaller yearly amount, because the fund earns compound interest", correct: true}
+    - {label: C, md: "The same yearly amount"}
+    - {label: D, md: "No yearly amount"}
+  solution: |
+    **Idea used:** depreciation methods — see *Cost of generation and tariffs → Depreciation*.
+
+    **Answer: (B) A smaller yearly amount, because the fund earns compound interest.**

@@ -1,0 +1,542 @@
+# Power Systems Chapter 1 PYQs, part 2: thermal, hydro, nuclear and renewable plants.
+# Exam questions keep their original wording. "status": OFFICIAL_KEY | TWO_SOURCES | UNVERIFIED (solved by us).
+
+# ---------------- thermal ----------------
+
+- key: gate-2004-feed-pump
+  topic: ps1-thermal-plants
+  sources: [{code: GATE-2004, q: "~working-fluid-pressure", marks: 1, url: "https://questions.examside.com/past-years/gate/question/in-thermal-power-plants-the-pressure-in-the-working-fluid-cy-gate-ee-2004-marks-1-maitqbpg6b1ftxs5.htm"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    In thermal power plants, the pressure in the working fluid cycle is developed by
+  options:
+    - {label: A, md: "Condenser"}
+    - {label: B, md: "Super heater"}
+    - {label: C, md: "Feed water pump", correct: true}
+    - {label: D, md: "Turbine"}
+  solution: |
+    **Idea used:** the job of each part of the Rankine cycle — see *Steam (thermal) power plants → The water–steam cycle*.
+
+    - The **feed pump** pushes the condensed water into the boiler at the high boiler pressure: it develops the pressure of the cycle.
+    - The boiler and superheater add heat at (nearly) constant pressure; they do not create the pressure.
+    - The turbine *uses* the pressure (the steam expands and its pressure falls).
+    - The condenser works at the lowest pressure (vacuum).
+
+    **Answer: (C) Feed water pump.**
+
+- key: gate-2000-economiser
+  topic: ps1-thermal-plants
+  sources: [{code: GATE-2000, q: "~economiser", marks: 1, url: "https://questions.examside.com/past-years/gate/question/in-a-thermal-power-plant-the-feed-water-coming-to-the-econom-gate-ee-2000-marks-1-70l3mam1aebrsn2r.htm"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    In a thermal power plant, the feed water coming to the economiser is heated using
+  options:
+    - {label: A, md: "H.P steam"}
+    - {label: B, md: "L.P steam"}
+    - {label: C, md: "Direct heat in the furnace"}
+    - {label: D, md: "Flue gases.", correct: true}
+  solution: |
+    **Idea used:** the economiser — see *Steam (thermal) power plants → Economiser*.
+
+    The economiser is placed in the path of the hot **flue gases** after the boiler and superheater. It uses heat that would otherwise go up the chimney to warm the feed water, which saves fuel.
+
+    (Feed-water heaters that use steam bled from the turbine also exist, but they are separate heaters, not the economiser.)
+
+    **Answer: (D) Flue gases.**
+
+- key: aegcl-2023-42
+  topic: ps1-thermal-plants
+  sources: [{code: AEGCL-2023, q: "42", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    In coal-fired thermal power station, what are the electrostatic precipitators used for?
+  options:
+    - {label: A, md: "To remove dust particles setting on the busbar conductors in the station switchyard"}
+    - {label: B, md: "To condense steam by electrostatic means"}
+    - {label: C, md: "To keep the air heaters clean"}
+    - {label: D, md: "To collect the dust particles from the flue gases", correct: true}
+  solution: |
+    **Idea used:** the electrostatic precipitator — see *Steam (thermal) power plants → Electrostatic precipitator (ESP)*.
+
+    The flue gases of a coal plant carry fine ash (fly ash). The ESP charges these particles and collects them on charged plates, so that clean gas goes up the chimney.
+
+    **Answer: (D).**
+
+- key: ese-2020-121
+  topic: ps1-thermal-plants
+  sources: [{code: ESE-2020, q: "121", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    Which of the following statements regarding steam boilers are correct?
+
+    1. The boiler must be capable of quick starting and loading.
+    2. The boiler should have no joints exposed to flames.
+    3. The boiler must be capable of burning low ash content coal efficiently.
+  options:
+    - {label: A, md: "1 and 2 only"}
+    - {label: B, md: "1 and 3 only"}
+    - {label: C, md: "2 and 3 only"}
+    - {label: D, md: "1, 2 and 3", correct: true}
+  solution: |
+    **Idea used:** the requirements of a good boiler — see *Steam (thermal) power plants → Boiler*.
+
+    1. Quick starting and loading lets the boiler follow changes of load. **Required.**
+    2. Joints in the direct flame get overheated and weaken. **Required: no joints exposed to flames.**
+    3. The boiler must burn its fuel efficiently (complete combustion, maximum steam per kg of fuel). This statement is taken from the same textbook list of requirements.
+
+    **Answer: (D) 1, 2 and 3** (the answer given in the commonly used keys; no official key in hand).
+
+- key: ese-2024-113
+  topic: ps1-thermal-plants
+  sources: [{code: ESE-2024, q: "113", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 3
+  status: UNVERIFIED
+  stem: |
+    Which one of the following statements is correct regarding superheaters in steam power plants?
+  options:
+    - {label: A, md: "In modern utility high-pressure boilers, more than 40% of the total heat absorbed in the generation of steam takes place in the superheaters.", correct: true}
+    - {label: B, md: "In modern utility high-pressure boilers, less than 40% of the total heat absorbed in the generation of steam takes place in the superheaters."}
+    - {label: C, md: "In modern utility high-pressure boilers, less than 20% of the total heat absorbed in the generation of steam takes place in the superheaters."}
+    - {label: D, md: "In modern utility high-pressure boilers, less than 30% of the total heat absorbed in the generation of steam takes place in the superheaters."}
+  solution: |
+    **Idea used:** why superheating takes a big share of the heat at high pressure — see *Steam (thermal) power plants → Superheater*.
+
+    Heat given to water in a boiler goes into three jobs: warming the water, boiling it (latent heat) and superheating the steam. As the pressure rises, the **latent heat becomes smaller** (it is zero at the critical point). Modern utility boilers work at very high pressure and very high final steam temperature, so the **superheating share becomes large: more than 40 %** of the total heat.
+
+    **Option logic:** (B), (C) and (D) all say "less than …", and (C) and (D) are already inside (B). If any of them were true, (B) would be true too, giving more than one correct answer. Only (A) stands alone.
+
+    **Answer: (A).**
+
+- key: ese-2025-123
+  topic: ps1-thermal-plants
+  sources: [{code: ESE-2025, q: "123", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    A steam power station of 100 MW capacity uses coal of calorific value of 6400 kcal/kg. The thermal efficiency of the station is 30% and electrical generation efficiency is 92%. When the station is working at full load, the coal required per hour will be nearly
+  options:
+    - {label: A, md: "38·3 tonnes"}
+    - {label: B, md: "48·7 tonnes", correct: true}
+    - {label: C, md: "54·7 tonnes"}
+    - {label: D, md: "64·3 tonnes"}
+  solution: |
+    **Idea used:** coal per hour $= P\times860/(\eta_{overall}\times CV)$ — see *Steam (thermal) power plants → Efficiency, heat rate and coal consumption* (Example 1).
+
+    - Overall efficiency $= 0.30\times0.92 = 0.276$.
+    - Electrical energy in one hour $= 100\,000$ kWh $= 100\,000\times860 = 8.6\times10^7$ kcal.
+    - Heat needed from coal $= 8.6\times10^7/0.276 \approx 3.116\times10^8$ kcal.
+    - Coal $= 3.116\times10^8/6400 \approx 48\,690$ kg $\approx 48.7$ tonnes.
+
+    **Without a calculator:** $860/6400 = 0.134$; so coal $= \dfrac{100\,000\times0.134}{0.276}$ kg. Now $0.134/0.276 \approx 0.49$ (since $0.276\times0.5 = 0.138$, a little more than 0.134). So about $0.487\times100\,000 \approx 48\,700$ kg.
+
+    **Trap:** using only the thermal efficiency (0.30) gives $8.6\times10^7/(0.30\times6400) = 44.8$ t, which is not an option. Always divide by the **overall** efficiency (thermal × generator); the generator loses a little more, so more coal is needed, not less.
+
+    **Answer: (B) 48.7 tonnes.**
+
+- key: ese-2025-125
+  topic: ps1-thermal-plants
+  sources: [{code: ESE-2025, q: "125", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The advantages of supercritical steam power plants are
+
+    1. low grade fossil fuels can be used
+    2. NOx emissions are completely eliminated
+    3. SOx emissions are reduced and complete burning of coal occurs
+
+    Which of the above advantages are correct?
+  options:
+    - {label: A, md: "1 and 2 only"}
+    - {label: B, md: "1 and 3 only", correct: true}
+    - {label: C, md: "2 and 3 only"}
+    - {label: D, md: "1, 2 and 3"}
+  solution: |
+    **Idea used:** supercritical plants — see *Steam (thermal) power plants → Supercritical plants*.
+
+    - Statement 2 says NOx is **completely eliminated**. A supercritical plant burns less coal per kWh, so it emits **less** NOx, but never zero. **False.** This removes (A), (C) and (D).
+    - Statements 1 and 3 are the listed advantages: low-grade coal can be used, more complete burning, lower SOx per unit.
+
+    **Answer: (B) 1 and 3 only.**
+
+# ---------------- hydro ----------------
+
+- key: aegcl-2023-27
+  topic: ps1-hydro-plants
+  sources: [{code: AEGCL-2023, q: "27", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The output from a hydroelectric power plant depends on
+  options:
+    - {label: A, md: "head, type of dam and discharge"}
+    - {label: B, md: "type of catchment area, dam and discharge"}
+    - {label: C, md: "type of draft tube, turbine and efficiency of the system"}
+    - {label: D, md: "head, discharge and efficiency of the system", correct: true}
+  solution: |
+    **Idea used:** $P = 9.81\,Q\,H\,\eta$ kW — see *Hydroelectric power plants → How much power?*
+
+    The formula has exactly three variables: the **head** $H$, the **discharge** $Q$ and the **efficiency** $\eta$. The type of dam, catchment or draft tube does not appear.
+
+    **Answer: (D).**
+
+- key: ese-2024-125
+  topic: ps1-hydro-plants
+  sources: [{code: ESE-2024, q: "125", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A large hydropower station has a head of 324 m and an average flow of 1370 m³/s. The reservoir of water behind the dams and dikes is composed of series of lakes covering an area of 6400 km². What is the available hydraulic power?
+  options:
+    - {label: A, md: "4350 kW"}
+    - {label: B, md: "4350 MW", correct: true}
+    - {label: C, md: "435 MW"}
+    - {label: D, md: "435 kW"}
+  solution: |
+    **Idea used:** $P = \rho g Q H$ — see *Hydroelectric power plants → How much power?* (and the trap about the reservoir area).
+
+    $$P = 1000\times9.81\times1370\times324\ \text{W}$$
+
+    **Without a calculator:** take $g = 10$: $10\times1370\times324 = 4\,438\,800$ kW $\approx 4440$ MW. Reduce by 2 % (for 9.81): about 4350 MW. The options differ by factors of 10 and 1000, so only the size matters: **4350 MW**.
+
+    The lake area (6400 km²) is extra data; hydraulic power needs only flow and head.
+
+    **Answer: (B) 4350 MW.**
+
+- key: apdcl-2023-81
+  topic: ps1-hydro-plants
+  sources: [{code: APDCL-2023, q: "81", marks: 1.5}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    A hydel power plant of run-off-river type should be provided with a pondage so that the
+  options:
+    - {label: A, md: "firm capacity of the plant is increased", correct: true}
+    - {label: B, md: "operating head is controlled"}
+    - {label: C, md: "pressure inside the turbine casing remains constant"}
+    - {label: D, md: "kinetic energy of the running water is fully utilized"}
+  solution: |
+    **Idea used:** run-of-river plants with pondage, and firm capacity — see *Hydroelectric power plants → By the storage of water*.
+
+    Without pondage, the plant can give only what the river brings at that moment, so its dependable output (firm capacity) is set by the lowest flow. A pond stores water during low-load hours and releases it during peak hours, so the power the plant can **always** supply goes up: the **firm capacity increases**.
+
+    **Answer: (A).**
+
+- key: apgcl-2023-47
+  topic: ps1-hydro-plants
+  sources:
+    - {code: APGCL-2023, q: "47", marks: 1.5, primary: true}
+    - {code: GATE-2004, q: "~kaplan", marks: 1, url: "https://questions.examside.com/past-years/gate/gate-ee/power-system-analysis/generating-power-station/marks-1"}
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    For harnessing low variable water heads, the suitable hydraulic turbine with high percentage of reaction and runner adjustable vanes is
+  options:
+    - {label: A, md: "Kaplan", correct: true}
+    - {label: B, md: "Francis"}
+    - {label: C, md: "Pelton"}
+    - {label: D, md: "Impeller"}
+  solution: |
+    **Idea used:** the Kaplan turbine — see *Hydroelectric power plants → Kaplan turbine*.
+
+    Every clue points to Kaplan: **low head**, head that **varies**, **high degree of reaction** (axial-flow reaction turbine) and **adjustable runner blades** (vanes). Francis suits medium heads and has fixed runner blades; Pelton is an impulse turbine for high heads; an impeller is the rotating part of a pump.
+
+    *Note:* APGCL 2023 Q47 is word-for-word GATE EE 2004 (1 mark). APSC does pick GATE questions.
+
+    **Answer: (A) Kaplan.**
+
+- key: ese-2019-146
+  topic: ps1-hydro-plants
+  sources: [{code: ESE-2019, q: "146", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    **Statement (I):** Reaction turbines are generally used for sites with high head and low flow.
+
+    **Statement (II):** Kaplan and Francis turbines are reaction turbines.
+  options:
+    - {label: A, md: "Both Statement (I) and Statement (II) are individually true and Statement (II) is the correct explanation of Statement (I)"}
+    - {label: B, md: "Both Statement (I) and Statement (II) are individually true but Statement (II) is NOT the correct explanation of Statement (I)"}
+    - {label: C, md: "Statement (I) is true but Statement (II) is false"}
+    - {label: D, md: "Statement (I) is false but Statement (II) is true", correct: true}
+  solution: |
+    **Idea used:** impulse and reaction turbines — see *Hydroelectric power plants → Impulse and reaction turbines* (and the trap there).
+
+    - **Statement (I):** high head and low flow is the field of the **Pelton** (impulse) turbine. Reaction turbines are used for medium and low heads with large flows. **False.**
+    - **Statement (II):** Kaplan and Francis runners work fully immersed in water and are driven by the pressure drop across them: both are reaction turbines. **True.**
+
+    **Answer: (D).**
+
+- key: ese-2023-108
+  topic: ps1-hydro-plants
+  sources: [{code: ESE-2023, q: "108", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Which type of hydro turbine is totally embedded in the fluid and powered from the pressure drop across the device?
+  options:
+    - {label: A, md: "Impulse turbine only"}
+    - {label: B, md: "Reaction turbine only", correct: true}
+    - {label: C, md: "Squirrel cage turbine only"}
+    - {label: D, md: "Both impulse turbine and reaction turbine"}
+  solution: |
+    **Idea used:** reaction turbines — see *Hydroelectric power plants → Impulse and reaction turbines*.
+
+    A reaction turbine's runner is completely filled with water in a closed casing and is driven by the drop of pressure across it. An impulse turbine (Pelton) is driven by a free jet in open air at atmospheric pressure, so its runner is not embedded in the water and there is no pressure drop across it. "Squirrel cage" is an induction-motor rotor, not a turbine.
+
+    **Answer: (B) Reaction turbine only.**
+
+- key: ese-2025-122
+  topic: ps1-hydro-plants
+  sources: [{code: ESE-2025, q: "122", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The specific rotational speed ($N_s$) for a water turbine is
+
+    where, $P_t$ is output in metric hp, $N$ is actual rotational speed of the turbine and $H$ is effective head in metres.
+  options:
+    - {label: A, md: "$\\dfrac{N\\sqrt{P_t}}{H^{2.25}}$"}
+    - {label: B, md: "$\\dfrac{P_t\\sqrt{N}}{H^{1.25}}$"}
+    - {label: C, md: "$\\dfrac{N\\sqrt{P_t}}{H^{1.25}}$", correct: true}
+    - {label: D, md: "$\\dfrac{P_t\\sqrt{N}}{H^{2.25}}$"}
+  solution: |
+    **Idea used:** $N_s = N\sqrt P/H^{5/4}$ — see *Hydroelectric power plants → Specific speed*.
+
+    The speed $N$ appears directly (not under a root), the power under a square root, and the head to the power $5/4 = 1.25$ in the denominator.
+
+    **Memory check:** specific speed is "a speed", so $N$ itself must be in the numerator, not $\sqrt N$. That removes (B) and (D). Between $H^{1.25}$ and $H^{2.25}$, the correct power is $5/4 = 1.25$.
+
+    **Answer: (C).**
+
+# ---------------- nuclear ----------------
+
+- key: gate-1996-boron
+  topic: ps1-nuclear-gas-diesel
+  sources: [{code: GATE-1996, q: "~control-rods", marks: 1, url: "https://questions.examside.com/past-years/gate/question/which-material-is-used-in-controlling-chain-reaction-in-a-nu-gate-ee-1996-marks-1-jh4u11d1cbcpv6r4.htm"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Which material is used in controlling chain reaction in a nuclear reactor?
+  options:
+    - {label: A, md: "Thorium"}
+    - {label: B, md: "Heavy water"}
+    - {label: C, md: "Boron", correct: true}
+    - {label: D, md: "Beryllium"}
+  solution: |
+    **Idea used:** the parts of a reactor — see *Nuclear, gas turbine and diesel plants → Parts of a nuclear reactor*.
+
+    The chain reaction is controlled by **control rods** that absorb neutrons. They are made of **boron** (or cadmium, hafnium).
+
+    - Thorium is a (fertile) fuel.
+    - Heavy water is a moderator (and coolant): it slows neutrons, it does not absorb them.
+    - Beryllium is a moderator/reflector.
+
+    **Answer: (C) Boron.**
+
+# ---------------- renewables ----------------
+
+- key: ese-2022-96
+  topic: ps1-renewables
+  sources: [{code: ESE-2022, q: "96", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Which one of the following is not an example of renewable energy?
+  options:
+    - {label: A, md: "Solar"}
+    - {label: B, md: "Wind"}
+    - {label: C, md: "Geothermal"}
+    - {label: D, md: "Nuclear", correct: true}
+  solution: |
+    **Idea used:** renewable and non-renewable sources — see *Solar, wind and other renewables → Renewable and non-renewable sources*.
+
+    Nuclear fuel (uranium) is a limited mineral stock; it is low-carbon but **not renewable**. Solar, wind and geothermal are refilled by nature.
+
+    **Answer: (D) Nuclear.**
+
+- key: ese-2021-106
+  topic: ps1-renewables
+  sources: [{code: ESE-2021, q: "106", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    Which one of the following power plants is the least reliable?
+  options:
+    - {label: A, md: "Tidal"}
+    - {label: B, md: "Solar"}
+    - {label: C, md: "Wind", correct: true}
+    - {label: D, md: "Geothermal"}
+  solution: |
+    **Idea used:** reliability of renewable sources — see *Solar, wind and other renewables → Reliability of renewable sources*.
+
+    - Geothermal runs steadily all the time: most reliable.
+    - Tides follow the moon and can be predicted years ahead.
+    - Solar output follows the known day–night cycle (clouds add some uncertainty).
+    - **Wind** changes from minute to minute and may stop for days; it is the hardest to predict.
+
+    **Answer: (C) Wind.**
+
+- key: ese-2020-130
+  topic: ps1-renewables
+  sources: [{code: ESE-2020, q: "130", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    In a photovoltaic system, there is a thermally generated small reverse saturation current which flows even in the absence of light, called
+  options:
+    - {label: A, md: "Photon current"}
+    - {label: B, md: "Diode current"}
+    - {label: C, md: "Leakage current"}
+    - {label: D, md: "Dark current", correct: true}
+  solution: |
+    **Idea used:** the equivalent circuit of a solar cell — see *Solar, wind and other renewables → The equivalent circuit*.
+
+    The reverse saturation current $I_0$ of the cell's p-n junction is produced by heat, not by light, so it flows even in the dark. It is called the **dark current**. The photon (light-generated) current is the one that needs light.
+
+    **Answer: (D) Dark current.**
+
+- key: ese-2021-103
+  topic: ps1-renewables
+  sources: [{code: ESE-2021, q: "103", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The fill factor of a photovoltaic module is 0·8. A single cell in a module has an open circuit voltage of 0·6 V and short circuit current of 8 A. The module has 48 cells connected in series. If the voltage at maximum power is 0·9 times open circuit voltage, the current at maximum power is
+  options:
+    - {label: A, md: "8·21 A"}
+    - {label: B, md: "7·11 A", correct: true}
+    - {label: C, md: "6·32 A"}
+    - {label: D, md: "5·45 A"}
+  solution: |
+    **Idea used:** fill factor $FF = V_{mp}I_{mp}/(V_{oc}I_{sc})$ and cells in series — see *Solar, wind and other renewables → The I-V curve and the key numbers* (Example 1).
+
+    - Module: $V_{oc} = 48\times0.6 = 28.8$ V; $I_{sc} = 8$ A (series cells carry the same current).
+    - $V_{mp} = 0.9\times28.8 = 25.92$ V.
+
+    $$I_{mp} = \frac{FF\,V_{oc}I_{sc}}{V_{mp}} = \frac{0.8\times28.8\times8}{25.92} = 7.11\ \text{A}$$
+
+    **Without a calculator:** $V_{oc}/V_{mp} = 1/0.9$, so $I_{mp} = I_{sc}\times\dfrac{0.8}{0.9} = 8\times\dfrac89 = \dfrac{64}{9} = 7.11$ A. The 48 cells and 0.6 V cancel out completely.
+
+    **Check:** $I_{mp}$ must be less than $I_{sc} = 8$ A, which removes (A).
+
+    **Answer: (B) 7.11 A.**
+
+- key: ese-2021-104
+  topic: ps1-renewables
+  sources: [{code: ESE-2021, q: "104", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The equivalent circuit of a photovoltaic module is presented below:
+
+    ![PV module equivalent circuit (redrawn in the standard form): light current source, diode, shunt resistance Rsh and series resistance Rs](fig:q-ese2021-104)
+
+    The requirements for more power production are
+  options:
+    - {label: A, md: "$I_L$ should be maximum, $R_s$ should be large, $R_{sh}$ should be small"}
+    - {label: B, md: "$I_L$ should be minimum, $R_s$ should be small, $R_{sh}$ should be large"}
+    - {label: C, md: "$I_L$ should be maximum, $R_s$ should be small, $R_{sh}$ should be large", correct: true}
+    - {label: D, md: "$I_L$ should be minimum, $R_s$ should be large, $R_{sh}$ should be small"}
+  solution: |
+    **Idea used:** what each element of the PV model does — see *Solar, wind and other renewables → The equivalent circuit*.
+
+    - $I_L$ is the current made by light: **more is better** → removes (B) and (D).
+    - $R_s$ is in series with the output: the load current flows through it and loses voltage and power → it should be **small**.
+    - $R_{sh}$ is a leakage path across the cell: a small $R_{sh}$ would steal current from the load → it should be **large**.
+
+    An ideal cell has $R_s = 0$ and $R_{sh} = \infty$.
+
+    **Answer: (C).**
+
+- key: ese-2017-150
+  topic: ps1-renewables
+  sources: [{code: ESE-2017, q: "150", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    **Statement (I):** The power available from wind is directly proportional to $V^3$ where $V$ is the velocity.
+
+    **Statement (II):** Drag type wind turbines have lower speeds and high torque capabilities.
+  options:
+    - {label: A, md: "Both Statement (I) and Statement (II) are individually true and Statement (II) is the correct explanation of Statement (I)"}
+    - {label: B, md: "Both Statement (I) and Statement (II) are individually true but Statement (II) is NOT the correct explanation of Statement (I)", correct: true}
+    - {label: C, md: "Statement (I) is true but Statement (II) is false"}
+    - {label: D, md: "Statement (I) is false but Statement (II) is true"}
+  solution: |
+    **Idea used:** power in the wind and the two kinds of wind turbine — see *Solar, wind and other renewables → Wind power*.
+
+    - **Statement (I):** $P = \tfrac12\rho AV^3$, so $P \propto V^3$. **True.**
+    - **Statement (II):** in a drag-type rotor (Savonius, water-pumping windmill) the wind just pushes the blades, so the blades cannot move faster than the wind: **low speed, high torque**. **True.**
+    - **Is (II) the reason for (I)?** No. $P\propto V^3$ comes from the kinetic energy of the moving air ($\tfrac12 V^2$ per kg) times the mass flow ($\rho AV$ per second); it has nothing to do with the turbine type.
+
+    **Answer: (B).**
+
+- key: ese-2020-132
+  topic: ps1-renewables
+  sources: [{code: ESE-2020, q: "132", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    In wind power, the speed which is considered as the single most important parameter is
+  options:
+    - {label: A, md: "Wind speed"}
+    - {label: B, md: "Peripheral speed"}
+    - {label: C, md: "Tip speed", correct: true}
+    - {label: D, md: "Blade speed"}
+  solution: |
+    **Idea used:** tip speed ratio — see *Solar, wind and other renewables → Tip speed ratio*.
+
+    In wind-turbine design, the **tip speed** (the tip speed ratio $\lambda = \omega R/V$ = speed of the blade tip ÷ wind speed) is treated as the single most important parameter: the power coefficient of a rotor depends on it, and the rotor is designed and controlled to work at its best tip speed ratio.
+
+    **Careful:** the wind speed decides how much power is *available* (it goes as $V^3$), so (A) is tempting. But the question asks for the design parameter "considered as the single most important", which in the wind-energy textbooks is the tip speed. The keys in common use give (C).
+
+    **Answer: (C) Tip speed.**

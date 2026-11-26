@@ -24,6 +24,10 @@ If anything is missing (a source file, an answer key, a syllabus item), ask the 
 Full doc: https://claude.ai/artifact/BjEpYbj8eGATVTrSGrfNmJ
 - Target 80+/100 in APSC AM (100 MCQs, 2 h, no calculator, -0.25). Skip no subject.
 - Subject order: Circuits, Machines, Power Systems, Measurements, Control, Power Electronics, Analog & Digital, Signals, EMF.
+- Two tracks (from 26 Nov 2026): Circuits = main track; Power Systems in parallel. PS order: first the chapters that need no AC theory
+  (generation & economics, insulators, cables & grounding, line parameters, protection & breakers, HVDC); AC-heavy PS chapters
+  (per unit, line performance, power flow, compensation, load flow, ELD, LFC, stability, faults) after Circuits phasors and 3-phase.
+  Build alternately (one Circuits chapter, one PS chapter) and keep both at least a week ahead.
 - Chapter loop: notes + one-page short note -> PYQs (attempt first) -> mistake log -> 3 mocks (PYQ, Fresh, Mixed) -> revision after 1, 7, 21 days.
   A chapter is done at 85%+ on its Mixed mock.
 - Phases: learn (~16 weeks), test (subject + full mocks), sharpen (short notes + mistake log + full mocks).
