@@ -71,5 +71,6 @@ cat /tmp/health.json; echo
 [ "$CODE" = "200" ] || { echo "Health check failed ($CODE)"; exit 1; }
 CODE=$(curl -s -o /dev/null -w "%{http_code}" "${URL%/}/api/subjects")
 echo "/api/subjects -> $CODE"
-[ "$CODE" = "200" ] || exit 1
+# 401 is fine: content needs a signed-in, approved account (CONTENT_REQUIRES_APPROVAL=true)
+[ "$CODE" = "200" ] || [ "$CODE" = "401" ] || exit 1
 
