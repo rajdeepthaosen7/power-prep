@@ -89,7 +89,7 @@ Full doc: https://claude.ai/artifact/BjEpYbj8eGATVTrSGrfNmJ
 ## Infra
 - Backend: Spring Boot 4.2 (Java 21, Flyway 12) on Render (free, Docker), Postgres on Neon (Singapore), API at https://power-api.rajdeepthaosen.com
 - Since 26 Nov 2026 the live API is AWS Lambda in Sydney (SnapStart, Function URL https://bxi3fbizgkqn4ab5l7cexysxzi0kgihd.lambda-url.ap-southeast-2.on.aws, cost kill switch): see deploy/aws/README.md. Render still runs as a fallback until the owner deletes it. Secrets are changed only in CloudShell (Parameter Store, then `bash setup.sh`), never in GitHub. Lambda-only code lives in src/lambda/java (Maven profile `lambda`); never put the Lambda adapter in the main build, it replaces Tomcat and breaks the Render jar.
-- Frontend: repo power-prep-web on Cloudflare, site at https://power.rajdeepthaosen.com
+- Frontend: repo power-prep-web on Cloudflare, site at https://power.rajdeepthaosen.com. Its Worker (worker/index.js) passes /api/* to the Lambda Function URL, so the API is https://power.rajdeepthaosen.com/api/... (same origin, no CORS preflight). power-api.rajdeepthaosen.com (Render) is unused.
 - Health check must not touch the DB (keeps Neon able to sleep).
 
 ## Users
