@@ -87,7 +87,8 @@ DEPLOY_POLICY=$(cat <<EOF
    "lambda:GetFunctionUrlConfig","lambda:CreateFunctionUrlConfig","lambda:UpdateFunctionUrlConfig",
    "lambda:AddPermission","lambda:GetPolicy","lambda:GetFunctionConcurrency","lambda:TagResource"],
   "Resource":["arn:aws:lambda:$REGION:$ACCOUNT:function:$FN","arn:aws:lambda:$REGION:$ACCOUNT:function:$FN:*"]},
- {"Effect":"Allow","Action":"iam:PassRole","Resource":"$API_ROLE"}]}
+ {"Effect":"Allow","Action":"iam:PassRole","Resource":"$API_ROLE"},
+ {"Effect":"Allow","Action":["logs:FilterLogEvents","logs:DescribeLogStreams","logs:GetLogEvents"],"Resource":"arn:aws:logs:$REGION:$ACCOUNT:log-group:/aws/lambda/$FN:*"}]}
 EOF
 )
 aws iam put-role-policy --role-name power-prep-deploy --policy-name deploy --policy-document "$DEPLOY_POLICY"
