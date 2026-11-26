@@ -29,4 +29,4 @@ Switch the API back on (CloudShell):
 
     aws lambda delete-function-concurrency --function-name power-prep-api --region ap-southeast-2
 
-First deploy: 26 Nov 2026 (Sydney).
+First deploy: 26 Nov 2026 (Sydney, ap-southeast-2).
