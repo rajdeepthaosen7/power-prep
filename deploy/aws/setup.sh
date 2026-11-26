@@ -11,7 +11,7 @@
 set -euo pipefail
 
 REGION=ap-southeast-2          # Sydney: the Free plan allows Lambda only in Sydney, us-east-1, us-west-2
-SSM_REGION=ap-southeast-1      # the secrets were saved in Singapore first; they stay there
+SSM_REGION=$REGION            # secrets live in Sydney too (the Free plan blocks Singapore)
 FN=power-prep-api
 REPO=rajdeepthaosen7/power-prep
 # GitHub now puts owner and repo ids in the OIDC "sub" claim: repo:owner@ownerId/repo@repoId:ref:...

@@ -1,6 +1,6 @@
 # API on AWS Lambda
 
-The same Spring Boot app runs on Lambda in Sydney (`ap-southeast-2`). The AWS Free plan blocks Lambda in Singapore (only Sydney, us-east-1 and us-west-2 are allowed), so it is not next to Neon (Singapore). Secrets stay in SSM in Singapore.
+The same Spring Boot app runs on Lambda in Sydney (`ap-southeast-2`). The AWS Free plan blocks Lambda in Singapore (only Sydney, us-east-1 and us-west-2 are allowed), so it is not next to Neon (Singapore). Secrets are in SSM in Sydney too.
 
 | Piece | What |
 |---|---|
