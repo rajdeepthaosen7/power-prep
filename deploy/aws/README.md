@@ -28,3 +28,5 @@ which sets the API's concurrency to 0 (every request refused, nothing charged).
 Switch the API back on (CloudShell):
 
     aws lambda delete-function-concurrency --function-name power-prep-api --region ap-southeast-1
+
+First deploy: 26 Nov 2026.
