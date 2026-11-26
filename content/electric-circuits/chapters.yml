@@ -108,4 +108,33 @@ fixes:
      summary: "Source voltage and current waveforms of an element between a and b: diode with reverse recovery"}
   - {source: GATE-2026, q: "61", subject: power-electronics, topic: diode-rectifiers-battery-charging-187,
      summary: "Diode with R = 10 ohm and 50 V battery fed from 100 sin(100 pi t): average diode current"}
-delete_empty_topics: ["-373"]
+  # Nov 2026 sanity pass: 14 GATE questions were tagged "unreadable" in nameless topics; re-homed from the paper text
+  - {source: GATE-2022, q: "64", subject: electrical-machines, topic: synchronous-machines-phasor-diagram-power-factor-359,
+     summary: "400 V, 50 kVA star synchronous motor, Xs 1 ohm, 10 kW shaft load at 0.8 leading, 2 kW loss: find excitation emf"}
+  - {source: GATE-2022, q: "65", subject: electrical-machines, topic: induction-motor-starting-methods-199,
+     summary: "Induction motor takes 5x rated current at start; autotransformer to cut supply current to 2x rated: transformation ratio"}
+  - {source: GATE-2023, q: "63", subject: signals-systems, topic: sampling-theorem-nyquist-rate-56,
+     summary: "x(t) = 2cos(180 pi t)cos(60 pi t) sampled at 200 Hz, ideal LPF 100 Hz: highest frequency in output"}
+  - {source: GATE-2023, q: "64", topic: balanced-3-phase-circuits-41,
+     summary: "Balanced delta R-C load (15 ohm, 212.21 uF) fed at 415 V, 50 Hz through 31.83 mH line inductance"}
+  - {source: GATE-2023, q: "65", subject: engineering-maths, topic: vector-calculus-gradient-directional-derivative-342,
+     summary: "Maximum rate of change of f(x1,x2) = x1^2 + 2x2^2 + 3x1 + 3x2 + x1x2 + 1 at (1,1): magnitude of gradient"}
+  - {source: GATE-2024, q: "62", subject: power-electronics, topic: controlled-rectifiers-output-v-pf-overlap-18,
+     summary: "1-phase half-controlled bridge, ripple-free load current, alpha 60 deg: fundamental rms / total rms of input current"}
+  - {source: GATE-2024, q: "63", subject: power-electronics, topic: inverters-21,
+     summary: "1-phase full-bridge VSI, 100 V DC, square wave at 50 Hz, purely inductive 20 mH load: peak-to-peak load current"}
+  - {source: GATE-2024, q: "64", subject: power-electronics, topic: dc-dc-choppers-buck-boost-19,
+     summary: "DC-DC converter, continuous inductor current, 500 Hz switching, ripple-free Vo: peak inductor current"}
+  - {source: GATE-2024, q: "65", subject: power-electronics, topic: drives-converter-fed-dc-motor-135,
+     summary: "1-phase full converter for regenerative braking of a separately excited DC motor (210 V, 10 A, 1200 rpm, Ra 1 ohm)"}
+  - {source: GATE-2026, q: "62", subject: engineering-maths, topic: complex-variables-contour-integral-186,
+     summary: "Contour integral of (z+1)^2 / ((z-i)(z-2)) over |z - 2 - i| = 3/2: magnitude"}
+  - {source: GATE-2026, q: "63", subject: electromagnetic-fields, topic: electric-field-and-potential-167,
+     summary: "Uniform spherical charge (radius 2 m, pi x 10^-6 C/m^3): work to move a point charge from (-3,0,-4) to (0,0,4)"}
+  - {source: GATE-2026, q: "64", subject: engineering-maths, topic: probability-statistics-estimators-347,
+     summary: "E(X)=1, E(Y)=2, E(X^2)=4, E(Y^2)=9, E(XY)=0.9: alpha that minimises E((X - alpha Y)^2)"}
+  - {source: GATE-2026, q: "65", subject: engineering-maths, topic: calculus-definite-integral-25,
+     summary: "(1/pi) integral 0 to infinity of x^2026 / ((1 + x^2026)(1 + x^2)) dx"}
+  - {source: GATE-2014, q: "S3-Q55", subject: power-electronics, topic: inverters-21,
+     summary: "1-phase VSI with phase-shifted gate pulses (theta), sinusoidal load current zero at 0, pi: waveform of node voltage VAO"}
+delete_empty_topics: ["-373", "-344", "-355"]

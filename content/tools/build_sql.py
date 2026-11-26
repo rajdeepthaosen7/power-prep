@@ -252,7 +252,13 @@ def main(subject):
                "AND NOT EXISTS (SELECT 1 FROM attempt a WHERE a.question_id = q.id) "
                "AND NOT EXISTS (SELECT 1 FROM user_question_state u WHERE u.question_id = q.id) "
                "AND NOT EXISTS (SELECT 1 FROM test_question tq WHERE tq.question_id = q.id);")
-    retire = [s for ch in plan["chapters"] for s in ch.get("retire_legacy_topics", [])] + plan.get("delete_empty_topics", [])
+    retire = [s for ch in plan["chapters"] for s in ch.get("retire_legacy_topics", [])]
+    empty_any = plan.get("delete_empty_topics", [])  # leftover topics of any subject, removed once they hold nothing
+    if empty_any:
+        out.append(f"DELETE FROM topic t WHERE t.slug IN ({', '.join(q(s) for s in empty_any)}) "
+                   "AND NOT EXISTS (SELECT 1 FROM question x WHERE x.topic_id = t.id) "
+                   "AND NOT EXISTS (SELECT 1 FROM concept_section c WHERE c.topic_id = t.id) "
+                   "AND NOT EXISTS (SELECT 1 FROM syllabus_item_topic st WHERE st.topic_id = t.id);")
     if retire:
         out.append(f"DELETE FROM topic t WHERE t.subject_id = {S} AND t.slug IN ({', '.join(q(s) for s in retire)}) "
                    "AND NOT EXISTS (SELECT 1 FROM question x WHERE x.topic_id = t.id) "

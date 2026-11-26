@@ -1,0 +1,271 @@
+# APGCL Assistant Manager (Electrical), Advt. 09/2026 - Paper I syllabus.
+# The owner's information: Paper I follows the GATE EE syllabus word for word, without Engineering Mathematics.
+# Items below are the GATE EE syllabus items (2026), one row per item; `topics` links each item to the portal's topics
+# (subject-scoped), so the Syllabus tab can show how many past questions (and APSC 2023 questions) each item has.
+# `note` flags what the APSC papers say about an item (owner's rule: what is asked is confirmed from PYQs).
+# Paper II (General Studies & General English, APSC No.25PSC/CON/Exam-13/2026-2027 of 14 Aug 2026) is not part of this file.
+
+exam: APGCL-AM-2026
+title: "APGCL Assistant Manager (Electrical) - Paper I"
+sections:
+  - code: "2"
+    subject: electric-circuits
+    text: "Electric Circuits"
+    items:
+      - text: "Network elements: ideal voltage and current sources, dependent sources, R, L, C, M elements"
+        topics: [ec1-charge-current-voltage, ec1-power-energy, ec1-kinds-of-elements, ec1-resistor, ec1-capacitor, ec1-inductor,
+                 ec1-mutual-inductance, ec1-independent-sources, ec1-dependent-sources, ec1-chapter-summary,
+                 inductors-in-series-parallel-coupled-coils-39, dependent-sources-impedance-237, ideal-transformer-impedance-matching-279]
+      - text: "Network solution methods: KCL, KVL, node and mesh analysis"
+        topics: [ec1-kcl-kvl-first-look, ec2-kirchhoffs-laws, ec2-series-parallel, ec2-dividers, ec2-source-transformation,
+                 ec2-bridges-symmetry, ec2-ladders, ec2-chapter-summary, nodal-mesh-kcl-kvl-38, network-graph-theory-91]
+      - text: "Network theorems: Thevenin's, Norton's, superposition and maximum power transfer"
+        topics: [thevenin-norton-36, superposition-164, maximum-power-transfer-40]
+      - text: "Transient response of dc and ac networks"
+        topics: [transients-rc-ideal-elements-88, transients-rl-switching-dc-offset-315, state-equations-of-networks-190]
+      - text: "Sinusoidal steady-state analysis"
+        topics: [ac-phasor-circuits-impedance-35, network-functions-driving-point-impedance-258, transfer-function-of-rlc-network-239,
+                 constant-resistance-network-297, series-rlc-response-to-square-wave-harmonics-283]
+      - text: "Resonance"
+        topics: [resonance-q-factor-337, q-factor-of-coils-246, ac-circuits-resonance-203, series-rlc-resonance-261,
+                 resonance-parallel-lc-impedance-vs-frequency-269]
+      - text: "Two port networks"
+        topics: [two-port-parameters-37]
+      - text: "Balanced three phase circuits"
+        topics: [balanced-3-phase-circuits-41, three-phase-circuits-unbalanced-87, balanced-polyphase-currents-89]
+      - text: "Star-delta transformation"
+        topics: [ec2-star-delta]
+      - text: "Complex power and power factor in ac circuits"
+        topics: [ac-power-p-q-pf-complex-power-34]
+
+  - code: "3"
+    subject: electromagnetic-fields
+    text: "Electromagnetic Fields"
+    items:
+      - text: "Coulomb's law, electric field intensity, electric flux density, Gauss's law, divergence"
+        topics: [coulomb-s-law-charges-magnetic-poles-166, gauss-s-law-and-applications-46, conservative-fields-curl-divergence-45, vector-algebra-169, units-of-field-quantities-48]
+      - text: "Electric field and potential due to point, line, plane and spherical charge distributions"
+        topics: [electric-field-and-potential-167, poisson-laplace-equations-47]
+      - text: "Effect of dielectric medium, capacitance of simple configurations"
+        topics: [dielectric-boundary-conditions-278, dielectric-insulating-materials-249, capacitance-stored-energy-breakdown-131]
+      - text: "Biot-Savart's law, Ampere's law, curl"
+        topics: [biot-savart-ampere-s-law-49, curl-ampere-s-law-current-density-170, divergence-of-b-solenoidal-field-133, magnetic-vector-potential-44, magnetic-boundary-conditions-288]
+      - text: "Faraday's law, Lorentz force"
+        topics: [faraday-s-law-induced-emf-267, faraday-s-law-induced-emf-371, lorentz-force-charge-in-e-and-b-fields-351, lorentz-force-on-moving-charge-331,
+                 force-on-current-carrying-conductor-168, maxwell-s-equations-displacement-current-43]
+      - text: "Inductance, magnetomotive force, reluctance, magnetic circuits"
+        topics: [inductance-solenoid-136, magnetic-circuits-reluctance-171, magnetic-circuits-force-on-air-gap-200]
+      - text: "Self and mutual inductance of simple configurations"
+        topics: [mutual-inductance-loop-and-wire-328, inductance-solenoid-136]
+
+  - code: "4"
+    subject: signals-systems
+    text: "Signals and Systems"
+    items:
+      - text: "Representation of continuous and discrete time signals, shifting and scaling properties"
+        topics: [signal-operations-shift-scale-204, energy-and-power-signals-54, impulse-step-functions-and-response-137]
+      - text: "Linear time invariant and causal systems"
+        topics: [system-properties-linear-time-invariant-50, causality-and-stability-92, convolution-191, convolution-properties-266,
+                 lti-system-eigen-signals-293, lti-systems-eigenfunction-309, lti-response-to-sinusoid-174, lti-filtering-of-sinusoids-341]
+      - text: "Fourier series representation of continuous and discrete time periodic signals"
+        topics: [fourier-series-symmetry-periodicity-55]
+      - text: "Sampling theorem"
+        topics: [sampling-theorem-nyquist-rate-56]
+      - text: "Applications of Fourier transform for continuous and discrete time signals"
+        topics: [fourier-transform-properties-51, frequency-response-dtft-93, distortionless-transmission-linear-phase-201,
+                 filters-type-from-transfer-function-333, transfer-function-filter-type-313]
+      - text: "Laplace transform and Z transform"
+        topics: [laplace-transform-incl-final-value-theorem-58, lti-system-response-laplace-52, z-transform-53, region-of-convergence-roc-95]
+      - text: "R.M.S. value, average value calculation for any general periodic waveform"
+        topics: [rms-average-of-periodic-waveform-57]
+
+  - code: "5"
+    subject: electrical-machines
+    text: "Electrical Machines"
+    items:
+      - text: "Single phase transformer: equivalent circuit, phasor diagram, open circuit and short circuit tests, regulation and efficiency"
+        topics: [transformers-emf-equation-213, transformers-equivalent-circuit-262, transformers-equivalent-circuit-inductance-270,
+                 transformers-impedance-referral-291, transformers-no-load-phasor-diagram-64, transformers-magnetizing-self-inductance-353,
+                 transformers-oc-sc-tests-65, transformers-voltage-regulation-177, transformers-losses-efficiency-100, transformers-kva-loading-322]
+      - text: "Three-phase transformers: connections, vector groups, parallel operation"
+        topics: [transformers-3-phase-connections-vector-groups-146, transformers-third-harmonics-connections-223, transformers-parallel-operation-140, transformers-three-winding-284]
+      - text: "Auto-transformer"
+        topics: [transformers-autotransformer-141]
+      - text: "Electromechanical energy conversion principles"
+        topics: [electromechanical-energy-conversion-138, windings-pitch-distribution-factor-105, machine-construction-damper-bars-skewing-compensating-winding-329]
+      - text: "DC machines: separate, series and shunt, motoring and generating modes, characteristics, speed control of dc motors"
+        topics: [dc-machines-armature-reaction-61, dc-machines-armature-winding-96, dc-machines-braking-66, dc-machines-emf-equation-99,
+                 dc-machines-generator-basics-62, dc-machines-motor-applications-63, dc-machines-motor-back-emf-current-139,
+                 dc-machines-motor-starting-97, dc-machines-motor-torque-speed-98, dc-machines-speed-direction-control-102]
+      - text: "Three-phase induction machines: principle, types, performance, torque-speed characteristics, no-load and blocked-rotor tests, equivalent circuit, starting and speed control"
+        topics: [induction-generator-255, induction-motor-air-gap-no-load-pf-143, induction-motor-crawling-cogging-142, induction-motor-double-cage-rotor-367,
+                 induction-motor-equivalent-circuit-314, induction-motor-equivalent-circuit-starting-current-224, induction-motor-equivalent-circuit-torque-252,
+                 induction-motor-leakage-flux-243, induction-motor-rotor-resistance-max-torque-285, induction-motor-slip-rotor-frequency-power-flow-67,
+                 induction-motor-space-harmonics-104, induction-motor-starting-298, induction-motor-starting-methods-199,
+                 induction-motor-torque-slip-maximum-torque-197, induction-motor-v-f-speed-control-106]
+      - text: "Operating principle of single-phase induction motors"
+        topics: [single-phase-induction-motor-101, special-machines-stepper-motor-189]
+      - text: "Synchronous machines: cylindrical and salient pole machines, performance and characteristics, regulation and parallel operation of generators, starting of synchronous motors"
+        topics: [synchronous-machines-armature-reaction-103, synchronous-machines-excitation-on-infinite-bus-145, synchronous-machines-hunting-damper-259,
+                 synchronous-machines-load-torque-angle-60, synchronous-machines-oc-sc-test-regulation-188, synchronous-machines-phasor-diagram-power-factor-359,
+                 synchronous-machines-phasor-induced-emf-323, synchronous-machines-power-torque-59, synchronous-machines-salient-pole-two-reaction-296,
+                 synchronous-machines-speed-poles-frequency-366, synchronous-machines-synchronization-parallel-operation-144, synchronous-machines-voltage-regulation-305]
+      - text: "Types of losses and efficiency calculations of electric machines"
+        topics: [dc-machines-losses-efficiency-361, transformers-losses-efficiency-100]
+
+  - code: "6"
+    subject: power-systems
+    text: "Power Systems"
+    items:
+      - text: "Basic concepts of electrical power generation"
+        topics: [ps1-power-system-structure, ps1-load-curves-factors, ps1-thermal-plants, ps1-hydro-plants, ps1-nuclear-gas-diesel,
+                 ps1-base-peak-plants, ps1-economics-tariffs, ps1-chapter-summary, ps1-renewables]
+        note: "APSC 2023 asked hydro, thermal and load factors (5 questions); solar and wind appear only in ESE, so they are low priority."
+      - text: "AC and DC transmission concepts"
+        topics: [hvdc-transmission-155, transmission-line-transmission-configuration-228, facts-voltage-source-converter-control-182]
+      - text: "Models and performance of transmission lines and cables"
+        topics: [transmission-line-inductance-134, transmission-line-capacitance-256, transmission-line-bundled-conductor-field-172,
+                 transmission-line-voltage-regulation-149, transmission-line-losses-efficiency-154, transmission-line-ferranti-effect-150,
+                 transmission-line-sil-surge-impedance-148, transmission-line-propagation-wavelength-108, transmission-line-distortionless-line-260,
+                 travelling-waves-cable-parameters-112, underground-cables-68, power-flow-between-two-buses-116, power-transfer-capability-113]
+      - text: "Economic load dispatch (with and without considering transmission losses)"
+        topics: [economic-load-dispatch-114]
+      - text: "Series and shunt compensation"
+        topics: [reactive-power-compensation-109, voltage-control-shunt-reactor-110]
+      - text: "Electric field distribution and insulators"
+        topics: [overhead-insulators-117]
+      - text: "Distribution systems"
+        topics: [distribution-radial-system-losses-214, distribution-fed-from-both-ends-253, distribution-loss-minimization-reconfiguration-356]
+      - text: "Per-unit quantities"
+        topics: [per-unit-system-153]
+      - text: "Bus admittance matrix"
+        topics: [bus-admittance-matrix-ybus-151, bus-impedance-matrix-zbus-244]
+      - text: "Gauss-Seidel and Newton-Raphson load flow methods"
+        topics: [load-flow-newton-raphson-74, load-flow-bus-classification-76, load-flow-dc-load-flow-248, load-flow-bus-angles-183, load-flow-fast-decoupled-273]
+      - text: "Voltage and frequency control"
+        topics: [load-frequency-control-70, voltage-control-shunt-reactor-110]
+      - text: "Power factor correction"
+        topics: [reactive-power-compensation-109]
+      - text: "Symmetrical components"
+        topics: [symmetrical-components-sequence-impedance-107, neutral-grounding-73]
+      - text: "Symmetrical and unsymmetrical fault analysis"
+        topics: [fault-analysis-symmetrical-fault-215, fault-analysis-symmetrical-faults-289, fault-analysis-symmetrical-sc-mva-318, symmetrical-fault-fault-mva-235,
+                 fault-analysis-zbus-symmetrical-fault-364, fault-analysis-unsymmetrical-faults-311, fault-analysis-unsymmetrical-slg-216,
+                 fault-analysis-fault-location-from-phasors-274]
+      - text: "Principles of over-current, differential, directional and distance protection"
+        topics: [protection-relays-and-zones-69, protection-transformer-differential-ct-currents-282]
+      - text: "Circuit breakers"
+        topics: [circuit-breakers-ratings-sf6-115]
+      - text: "System stability concepts, equal area criterion"
+        topics: [stability-equal-area-criterion-71, stability-inertia-constant-h-75, stability-transient-stability-111, stability-swing-equation-242]
+
+  - code: "7"
+    subject: control-systems
+    text: "Control Systems"
+    items:
+      - text: "Mathematical modeling and representation of systems"
+        topics: [analogous-systems-125, transfer-function-basics-type-order-81]
+      - text: "Feedback principle, transfer function"
+        topics: [feedback-effects-of-negative-feedback-156, feedback-tacho-derivative-feedback-233, transfer-function-basics-type-order-81, all-pass-system-poles-and-zeros-275]
+      - text: "Block diagrams and signal flow graphs"
+        topics: [block-diagram-signal-flow-graph-118]
+      - text: "Transient and steady-state analysis of linear time invariant systems"
+        topics: [first-order-system-time-constant-80, second-order-system-damping-overshoot-79, steady-state-error-196,
+                 steady-state-error-error-constants-312, closed-loop-poles-157, dominant-pole-approximation-357, frequency-response-sinusoidal-steady-state-121]
+      - text: "Stability analysis using Routh-Hurwitz and Nyquist criteria"
+        topics: [routh-hurwitz-stability-119, nyquist-criterion-340, nyquist-plot-280, nyquist-plot-stability-316, polar-nyquist-plot-184,
+                 stability-pole-zero-cancellation-173, discrete-time-system-stability-185, stability-of-discrete-time-system-286]
+      - text: "Bode plots"
+        topics: [bode-plot-slopes-margins-78]
+      - text: "Root loci"
+        topics: [root-locus-77]
+      - text: "Lag, lead and lead-lag compensators; P, PI and PID controllers"
+        topics: [lead-lag-compensators-83, p-pi-pd-pid-controllers-84]
+      - text: "State space model, solution of state equations of LTI systems"
+        topics: [state-space-82]
+
+  - code: "8"
+    subject: measurements
+    text: "Electrical and Electronic Measurements"
+    items:
+      - text: "Bridges and potentiometers"
+        topics: [ac-bridge-balance-condition-5, ac-bridges-which-bridge-measures-what-4, dc-bridges-wheatstone-sensitivity-272,
+                 wheatstone-bridge-balance-sensitivity-365, dc-potentiometer-1, capacitor-loss-tan-delta-230]
+      - text: "Measurement of voltage, current, power, energy and power factor"
+        topics: [instrument-types-mi-pmmc-dynamometer-thermocouple-85, range-extension-shunt-multiplier-124, power-measurement-blondel-two-wattmeter-120,
+                 wattmeter-connections-errors-86, wattmeter-calibration-phantom-loading-2, energy-meter-constant-rev-kwh-3, three-voltmeter-method-238,
+                 transducers-strain-gauge-lvdt-123]
+      - text: "Instrument transformers"
+        topics: [instrument-transformers-ct-pt-271, instrument-transformers-ct-burden-319]
+      - text: "Digital voltmeters and multimeters"
+        topics: [digital-meters-timer-counter-306]
+      - text: "Phase, time and frequency measurement"
+        topics: [digital-meters-timer-counter-306, cro-6]
+      - text: "Oscilloscopes"
+        topics: [cro-6]
+      - text: "Error analysis"
+        topics: [errors-tolerance-122]
+
+  - code: "9"
+    subject: analog-digital
+    text: "Analog and Digital Electronics"
+    items:
+      - text: "Simple diode circuits: clipping, clamping, rectifiers"
+        topics: [diode-circuits-7, diode-rectifiers-peak-inverse-voltage-160, zener-regulator-162, semiconductor-devices-mos-capacitor-327]
+      - text: "Amplifiers: biasing, equivalent circuit and frequency response"
+        topics: [bjt-biasing-region-of-operation-8, bjt-current-mirror-210, bjt-small-signal-amplifier-11, mosfet-amplifiers-small-signal-334,
+                 mosfet-region-of-operation-317, mosfet-small-signal-amplifier-325, amplifier-gain-in-db-158, power-amplifiers-push-pull-efficiency-178]
+      - text: "Oscillators and feedback amplifiers"
+        topics: [oscillators-257, oscillators-wien-bridge-250, feedback-amplifiers-impedance-240, op-amp-feedback-topologies-219]
+      - text: "Operational amplifiers: characteristics and applications"
+        topics: [op-amp-basics-ideal-gbw-instrumentation-amp-10, op-amp-circuits-221, op-amp-circuits-precision-rectifier-301,
+                 op-amp-circuits-saturation-limiting-335, op-amp-difference-amplifier-cmrr-362, op-amp-waveform-generator-212, op-amp-circuits-astable-multivibrator-281]
+      - text: "Single stage active filters, active filters: Sallen-Key, Butterworth"
+        topics: [op-amp-active-filters-9]
+      - text: "VCOs and timers"
+        topics: [555-timer-194, multivibrators-263]
+      - text: "Combinatorial and sequential logic circuits"
+        topics: [boolean-algebra-k-map-12, combinational-logic-adders-13, combinational-logic-comparator-127, combinational-logic-decoder-211,
+                 combinational-logic-gates-241, combinational-logic-xor-parity-179, flip-flops-sequential-circuits-15, number-systems-159,
+                 logic-families-ttl-open-collector-94, logic-gates-equivalent-circuit-321, logic-gates-mosfet-switch-logic-369,
+                 logic-gates-propagation-delay-226, logic-gates-universal-gates-220]
+      - text: "Multiplexers, demultiplexers"
+        topics: [multiplexer-14]
+      - text: "Schmitt triggers"
+        topics: [op-amp-comparator-schmitt-trigger-181, schmitt-trigger-oscillator-332]
+      - text: "Sample and hold circuits"
+        topics: []
+      - text: "A/D and D/A converters"
+        topics: [a-d-converter-flash-294, a-d-converter-quantization-output-code-349, a-d-converter-resolution-bits-287, a-d-converter-sar-16]
+
+  - code: "10"
+    subject: power-electronics
+    text: "Power Electronics"
+    items:
+      - text: "Static V-I characteristics and firing/gating circuits for thyristor, MOSFET, IGBT"
+        topics: [scr-characteristics-triggering-commutation-17, power-devices-selection-mosfet-igbt-scr-126, power-devices-switch-quadrants-characteristics-161,
+                 power-devices-conduction-loss-290, power-devices-switching-loss-295, power-devices-switching-transients-368, power-devices-diode-reverse-recovery-326,
+                 diode-switch-circuit-states-352]
+      - text: "DC to DC conversion: buck, boost and buck-boost converters"
+        topics: [dc-dc-choppers-buck-boost-19]
+      - text: "Single and three-phase configuration of uncontrolled rectifiers"
+        topics: [diode-rectifiers-with-r-load-338, diode-rectifiers-with-l-load-130, diode-rectifiers-battery-charging-187, diode-rectifiers-input-power-factor-307]
+      - text: "Voltage and current commutated thyristor based converters"
+        topics: [controlled-rectifiers-output-v-pf-overlap-18, dual-converter-four-quadrant-20, drives-converter-fed-dc-motor-135, drives-motor-load-dynamics-132, ac-voltage-controllers-202]
+      - text: "Bidirectional ac to dc voltage source converters"
+        topics: [static-var-compensation-tcr-tsc-22]
+      - text: "Magnitude and phase of line current harmonics for uncontrolled and thyristor based converters"
+        topics: [harmonics-input-power-factor-234]
+      - text: "Power factor and distortion factor of ac to dc converters"
+        topics: [input-power-factor-with-harmonics-distortion-factor-339, diode-rectifiers-input-power-factor-307]
+      - text: "Single-phase and three-phase voltage and current source inverters, sinusoidal pulse width modulation"
+        topics: [inverters-21]
+
+  - code: "X"
+    subject: 8085-microprocessor
+    text: "Outside the GATE syllabus but asked by APSC"
+    items:
+      - text: "8085 microprocessor: architecture, instructions, interfacing"
+        topics: [8085-instructions-128, 8085-instructions-flags-129, 8085-interfacing-address-decoding-254, computer-memory-hierarchy-217,
+                 microcontroller-flags-after-add-354, microprocessor-interrupts-and-bus-request-198]
+        note: "Not in the GATE EE syllabus, but APGCL 2023 asked 2 questions on it. Keep a short revision."
