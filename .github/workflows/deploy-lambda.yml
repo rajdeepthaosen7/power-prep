@@ -1,0 +1,33 @@
+# Builds the Lambda zip and deploys it to AWS on every push to main (Render keeps deploying too, until it is retired).
+name: Deploy API to AWS Lambda
+on:
+  push:
+    branches: [main]
+    paths: ["src/**", "pom.xml", "deploy/aws/**", ".github/workflows/deploy-lambda.yml"]
+  workflow_dispatch:
+permissions:
+  id-token: write   # GitHub OIDC -> AWS role, no AWS keys stored in GitHub
+  contents: read
+concurrency:
+  group: deploy-lambda
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      AWS_ACCOUNT_ID: "000000000000"   # set after running deploy/aws/setup.sh
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: "21", cache: maven }
+      - name: Build Lambda zip
+        run: mvn -B -q -DskipTests -Plambda package
+      - uses: aws-actions/configure-aws-credentials@v4
+        if: env.AWS_ACCOUNT_ID != '000000000000'
+        with:
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/power-prep-deploy
+          aws-region: ap-southeast-1
+      - name: Deploy
+        if: env.AWS_ACCOUNT_ID != '000000000000'
+        run: bash deploy/aws/deploy.sh
