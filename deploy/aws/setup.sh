@@ -124,6 +124,7 @@ else
       --zip-file "fileb://$ZTMP/p.zip" >/dev/null && break
     echo "waiting for the new role..."; sleep 10
   done
+  aws lambda get-function --function-name $FN >/dev/null || { echo "Could not create the API function (see the error above). Send it to Claude."; exit 1; }
   echo "API function created (code arrives with the first GitHub deploy)."
 fi
 rm -f "$ENV_FILE"

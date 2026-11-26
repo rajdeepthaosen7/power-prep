@@ -16,7 +16,7 @@ COMMON=(--runtime java21 --handler com.rajdeep.powerprep.lambda.StreamLambdaHand
 )
 # the environment (secrets) is set by deploy/aws/setup.sh from CloudShell and left as it is here
 
-if aws lambda get-function --function-name $FN >/dev/null 2>&1; then
+if aws lambda get-function --function-name $FN >/dev/null; then
   echo "Updating $FN"
   aws lambda update-function-configuration --function-name $FN "${COMMON[@]}" >/dev/null
   aws lambda wait function-updated-v2 --function-name $FN
