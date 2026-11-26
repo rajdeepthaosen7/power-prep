@@ -1,4 +1,4 @@
-package com.rajdeep.powerprep;
+package com.rajdeep.powerprep.config;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.boot.LazyInitializationExcludeFilter;

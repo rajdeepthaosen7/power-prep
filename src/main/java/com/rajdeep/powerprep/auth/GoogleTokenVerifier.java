@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 /** Checks the ID token that Google Sign-In gives the browser. */
 @Component
-public class GoogleTokenVerifier {
+public class GoogleTokenVerifier implements IdentityTokenVerifier {
     private static final List<String> ISSUERS = List.of("accounts.google.com", "https://accounts.google.com");
     private final NimbusJwtDecoder decoder;
 
@@ -32,8 +32,14 @@ public class GoogleTokenVerifier {
                 new JwtTimestampValidator(), issuer, audience, verified));
     }
 
-    /** Returns the verified claims, or throws JwtException. */
-    public Jwt verify(String idToken) {
-        return decoder.decode(idToken);
+    @Override
+    public IdentityToken verify(String idToken) {
+        try {
+            Jwt g = decoder.decode(idToken);
+            return new IdentityToken(g.getSubject(), g.getClaimAsString("email"), g.getClaimAsString("name"),
+                    g.getClaimAsString("picture"));
+        } catch (JwtException e) {
+            throw new InvalidIdentityTokenException(e);
+        }
     }
 }

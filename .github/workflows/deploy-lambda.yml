@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: "21", cache: maven }
       - name: Build Lambda zip
-        run: mvn -B -q -DskipTests -Plambda package
+        run: mvn -B -q -Plambda package   # runs the unit tests too
       - name: Show OIDC claims (no secrets; helps fix the AWS trust policy)
         run: |
           T=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r .value)

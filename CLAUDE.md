@@ -64,6 +64,18 @@ Full doc: https://claude.ai/artifact/BjEpYbj8eGATVTrSGrfNmJ
 - Answers: mark each as verified (official key) or unverified (solved by us) until confirmed.
 - Textbook/bank questions are rewritten with new values (public portal). Exam PYQs keep original wording.
 
+## Backend design (owner, 26 Nov 2026: "follow LLD and SOLID")
+- Package by feature under `com.rajdeep.powerprep`: catalog, study, practice, mocktest, mistakes, revision, today, syllabus, auth.
+  Shared: `question` (QuestionBank: options, sources, figures, review; `grading` strategy), `attempt` (AttemptRecorder), `common`
+  (ApiException family + GlobalExceptionHandler, CurrentUser argument, `Rows.of(Record.class)` row mapper), `config`.
+- Every feature: Controller (HTTP only) -> Service (rules, @Transactional) -> Repository **interface** + `Jdbc...Repository`
+  (SQL with JdbcClient, named parameters). Responses are Java records; never return `Map<String, Object>`.
+- Rules live in small classes with unit tests: AnswerGrader per answer type (MCQ/MSQ/NAT, add a type = add a class),
+  TestScore (+1/-0.25), RevisionSchedule (1/7/21 days, injected Clock), PivotDimension (whitelisted SQL), enums for every
+  status/action/reason. Throw NotFound/BadRequest/Conflict/UnauthorizedException; the message is shown to the user.
+- Any change to an endpoint: run `tools/golden/golden.py` with the old and the new jar (fresh copy of a snapshot DB,
+  90 scripted calls incl. writes) and `cmp.py`; only intended differences may show. `mvn package` runs the unit tests.
+
 ## Content and data
 - All questions, solutions, notes and tags live in Postgres, served by the Java API. The frontend only displays.
 - Content is added through versioned files in the repo: `content/<subject>/chapters.yml`, chapter folders with
