@@ -9,7 +9,7 @@ The same Spring Boot app runs on Lambda (Singapore, `ap-southeast-1`, next to Ne
 | Start-up | SnapStart on published versions: Spring + Flyway run once at deploy; cold starts restore the snapshot (~1–1.5 s). `DbSnapshotHook` closes DB connections before the snapshot. |
 | Gzip | `GzipFilter` (no Tomcat on Lambda, so `server.compression` does nothing) |
 | Deploy | GitHub Actions `deploy-lambda.yml` on push to main → `deploy/aws/deploy.sh` (OIDC role `power-prep-deploy`, no AWS keys in GitHub). A version that fails to start is never made live. |
-| Secrets | SSM Parameter Store `/power-prep/*`, typed once into `deploy/aws/setup.sh` in CloudShell |
+| Secrets | Typed once into `deploy/aws/setup.sh` in CloudShell, kept in SSM `/power-prep/*`; setup.sh sets them on the function. GitHub never sees them (the Free-plan account blocks SSM reads from the deploy role anyway). |
 
 ## Cost kill switch
 

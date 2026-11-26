@@ -11,18 +11,10 @@ export AWS_DEFAULT_REGION=$REGION AWS_PAGER=""
 ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
 ROLE=arn:aws:iam::$ACCOUNT:role/power-prep-api-role
 
-# environment from SSM (values are never printed)
-ENV_FILE=$(mktemp)
-aws ssm get-parameters --with-decryption --names \
-  $P/DATABASE_URL $P/DB_USER $P/DB_PASSWORD $P/JWT_SECRET $P/GOOGLE_CLIENT_ID $P/ADMIN_EMAIL $P/CONTENT_REQUIRES_APPROVAL \
-  --query Parameters --output json | jq --arg p "$P/" '
-    {Variables: ((map({key: (.Name | ltrimstr($p)), value: .Value}) | from_entries) + {
-      JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"})}' > "$ENV_FILE"
-[ "$(jq '.Variables | length' "$ENV_FILE")" -ge 8 ] || { echo "Missing SSM parameters: run deploy/aws/setup.sh first"; exit 1; }
-
 COMMON=(--runtime java21 --handler com.rajdeep.powerprep.lambda.StreamLambdaHandler::handleRequest
         --memory-size 1536 --timeout 30 --role "$ROLE" --snap-start ApplyOn=PublishedVersions
-        --environment "file://$ENV_FILE")
+)
+# the environment (secrets) is set by deploy/aws/setup.sh from CloudShell and left as it is here
 
 if aws lambda get-function --function-name $FN >/dev/null 2>&1; then
   echo "Updating $FN"
@@ -31,11 +23,8 @@ if aws lambda get-function --function-name $FN >/dev/null 2>&1; then
   aws lambda update-function-code --function-name $FN --zip-file "fileb://$ZIP" --architectures arm64 >/dev/null
   aws lambda wait function-updated-v2 --function-name $FN
 else
-  echo "Creating $FN"
-  aws lambda create-function --function-name $FN --architectures arm64 "${COMMON[@]}" --zip-file "fileb://$ZIP" >/dev/null
-  aws lambda wait function-active-v2 --function-name $FN
+  echo "Function $FN not found: run deploy/aws/setup.sh in CloudShell first"; exit 1
 fi
-rm -f "$ENV_FILE"
 
 echo "Publishing a version (starts the app once and takes the SnapStart snapshot)..."
 VERSION=$(aws lambda publish-version --function-name $FN --description "${GITHUB_SHA:-manual}" --query Version --output text)

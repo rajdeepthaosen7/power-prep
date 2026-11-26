@@ -49,6 +49,7 @@ else
   put DB_USER SecureString "$DB_USER"
   put DB_PASSWORD SecureString "$DB_PASSWORD"
   put JWT_SECRET SecureString "$JWT_SECRET"
+  TYPED=1
   echo "Secrets saved."
 fi
 
@@ -85,11 +86,47 @@ DEPLOY_POLICY=$(cat <<EOF
    "lambda:GetFunctionUrlConfig","lambda:CreateFunctionUrlConfig","lambda:UpdateFunctionUrlConfig",
    "lambda:AddPermission","lambda:GetPolicy","lambda:GetFunctionConcurrency","lambda:TagResource"],
   "Resource":["arn:aws:lambda:$REGION:$ACCOUNT:function:$FN","arn:aws:lambda:$REGION:$ACCOUNT:function:$FN:*"]},
- {"Effect":"Allow","Action":"iam:PassRole","Resource":"$API_ROLE"},
- {"Effect":"Allow","Action":["ssm:GetParameter","ssm:GetParameters"],"Resource":"arn:aws:ssm:$REGION:$ACCOUNT:parameter$P/*"}]}
+ {"Effect":"Allow","Action":"iam:PassRole","Resource":"$API_ROLE"}]}
 EOF
 )
 aws iam put-role-policy --role-name power-prep-deploy --policy-name deploy --policy-document "$DEPLOY_POLICY"
+
+# ---------- 3b. the API function and its environment ----------
+# GitHub Actions only uploads new code; the secrets are set here, from CloudShell.
+if [ "${TYPED:-}" != "1" ]; then
+  get() { aws ssm get-parameter --with-decryption --name "$P/$1" --query Parameter.Value --output text; }
+  if ! DATABASE_URL=$(get DATABASE_URL); then
+    echo "Could not read the saved secrets. Run again with:  RESET_SECRETS=1 bash setup.sh"; exit 1
+  fi
+  DB_USER=$(get DB_USER); DB_PASSWORD=$(get DB_PASSWORD); JWT_SECRET=$(get JWT_SECRET); ADMIN_EMAIL=$(get ADMIN_EMAIL)
+fi
+ENV_FILE=$(mktemp)
+export DATABASE_URL DB_USER DB_PASSWORD JWT_SECRET ADMIN_EMAIL
+python3 - "$ENV_FILE" <<'PY' 
+import json, os, sys
+v = {k: os.environ[k] for k in ["DATABASE_URL","DB_USER","DB_PASSWORD","JWT_SECRET","ADMIN_EMAIL"]}
+v.update(GOOGLE_CLIENT_ID="705442845625-h9sd1n52qa7ejs1aidc24p93r3i3ji4d.apps.googleusercontent.com",
+         CONTENT_REQUIRES_APPROVAL="true",
+         JAVA_TOOL_OPTIONS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1")
+json.dump({"Variables": v}, open(sys.argv[1], "w"))
+PY
+if aws lambda get-function --function-name $FN >/dev/null 2>&1; then
+  aws lambda update-function-configuration --function-name $FN --environment "file://$ENV_FILE" >/dev/null
+  echo "API environment updated."
+else
+  ZTMP=$(mktemp -d); echo "code comes from GitHub Actions" > "$ZTMP/README"
+  (cd "$ZTMP" && python3 -c "import zipfile; z=zipfile.ZipFile('p.zip','w'); z.write('README'); z.close()")
+  sleep 10   # a new IAM role takes a few seconds before Lambda can use it
+  for i in 1 2 3 4 5; do
+    aws lambda create-function --function-name $FN --runtime java21 --architectures arm64 \
+      --handler com.rajdeep.powerprep.lambda.StreamLambdaHandler::handleRequest --memory-size 1536 --timeout 30 \
+      --role "$API_ROLE" --snap-start ApplyOn=PublishedVersions --environment "file://$ENV_FILE" \
+      --zip-file "fileb://$ZTMP/p.zip" >/dev/null && break
+    echo "waiting for the new role..."; sleep 10
+  done
+  echo "API function created (code arrives with the first GitHub deploy)."
+fi
+rm -f "$ENV_FILE"
 
 # ---------- 4. kill switch ----------
 # 4a. alert topic: emails you, and calls the kill-switch function
