@@ -42,7 +42,8 @@ Full doc: https://claude.ai/artifact/BjEpYbj8eGATVTrSGrfNmJ
 - Spaced revision: `chapter_progress` (studied, then revisions after 1, 7, 21 days). A chapter is marked studied automatically when all
   its written PYQs are attempted, or by the "I have finished this chapter" button.
 - Syllabus tab: `content/syllabus/apgcl-am-2026.yml` -> `python3 content/tools/build_syllabus.py` -> `R__syllabus.sql`.
-  Paper I = GATE EE syllabus without Engineering Maths (owner); 8085 kept because APGCL 2023 asked it. Every topic must map to an item.
+  Paper I = official APSC text (No.8 PSC/CON/Exam-13/2026-2027), i.e. GATE EE without maths; 8085 kept because APGCL 2023 asked it.
+  Every topic must map to an item; an item may name its own `subject` when it is taught elsewhere (R.M.S. line).
   APGCL also has Paper II (General Studies & General English, 100 MCQ, APSC No.25PSC/CON/Exam-13/2026-2027): not covered yet.
 - One-page summary: `/study/<subject>/c/<chapter>/print` prints the `*-chapter-summary` topic.
 
@@ -65,7 +66,7 @@ Full doc: https://claude.ai/artifact/BjEpYbj8eGATVTrSGrfNmJ
 - Study flow: the API sends a question's correct answer and analysis only after the signed-in user has attempted it.
 - Hierarchy: subject -> chapter -> topic, linked to the official syllabus. One question can have many sources (e.g. APGCL 2023 Q36 and GATE 2005).
 - Source material ("dump"): Google Drive folder `dump` (always) and a gitignored `dump/` folder in this repo (when on PC).
-  Keep a list of what is dumped and what is still to be processed.
+  Keep a list of what is dumped and what is still to be processed: `DUMP.md`. The owner's open items live in `TODO.md`.
 
 ## Infra
 - Backend: Spring Boot 4.2 (Java 21, Flyway 12) on Render (free, Docker), Postgres on Neon (Singapore), API at https://power-api.rajdeepthaosen.com

@@ -41,10 +41,10 @@ public class SyllabusController {
         Map<Object, Map<String, Object>> countById = new LinkedHashMap<>();
         counts.forEach(c -> countById.put(c.get("id"), c));
         List<Map<String, Object>> chapters = jdbc.queryForList("""
-            SELECT DISTINCT sit.syllabus_item_id AS id, c.slug, c.name, c.sort_order AS "sortOrder",
+            SELECT DISTINCT sit.syllabus_item_id AS id, c.slug, c.name, c.sort_order AS "sortOrder", cs_sub.slug AS "subjectSlug",
                    EXISTS (SELECT 1 FROM topic t2 JOIN concept_section cs ON cs.topic_id = t2.id WHERE t2.chapter_id = c.id) AS notes
             FROM syllabus_item_topic sit JOIN syllabus_item si ON si.id = sit.syllabus_item_id
-            JOIN topic t ON t.id = sit.topic_id JOIN chapter c ON c.id = t.chapter_id
+            JOIN topic t ON t.id = sit.topic_id JOIN chapter c ON c.id = t.chapter_id JOIN subject cs_sub ON cs_sub.id = c.subject_id
             WHERE si.exam_code = ? ORDER BY c.sort_order""", exam);
 
         List<Map<String, Object>> sections = new ArrayList<>();
@@ -73,7 +73,8 @@ public class SyllabusController {
             for (String k : List.of("questions", "apsc", "written", "solved"))
                 it.put(k, ((Number) c.getOrDefault(k, 0)).longValue());
             it.put("chapters", chapters.stream().filter(ch -> ch.get("id").equals(r.get("id")))
-                .map(ch -> Map.of("slug", ch.get("slug"), "name", ch.get("name"), "sortOrder", ch.get("sortOrder"), "notes", ch.get("notes")))
+                .map(ch -> Map.of("slug", ch.get("slug"), "name", ch.get("name"), "sortOrder", ch.get("sortOrder"), "notes", ch.get("notes"),
+                    "subjectSlug", ch.get("subjectSlug")))
                 .toList());
             @SuppressWarnings("unchecked") List<Map<String, Object>> items = (List<Map<String, Object>>) s.get("items");
             items.add(it);

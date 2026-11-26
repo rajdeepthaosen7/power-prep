@@ -38,8 +38,9 @@ def main():
                 out.append(f"DELETE FROM syllabus_item_topic WHERE syllabus_item_id = {I};")
                 if it["topics"]:
                     lst = ", ".join(q(t) for t in it["topics"])
+                    TS = f"(SELECT id FROM subject WHERE slug = {q(it['subject'])})" if it.get("subject") else S  # item taught in another subject
                     out.append(f"INSERT INTO syllabus_item_topic(syllabus_item_id, topic_id) SELECT {I}, t.id FROM topic t "
-                               f"WHERE t.subject_id = {S} AND t.slug IN ({lst}) ON CONFLICT DO NOTHING;")
+                               f"WHERE t.subject_id = {TS} AND t.slug IN ({lst}) ON CONFLICT DO NOTHING;")
         keep = ", ".join(q(c) for c in codes)
         out.append(f"DELETE FROM syllabus_item WHERE exam_code = {q(ex)} AND parent_id IS NOT NULL AND code NOT IN ({keep});")
         out.append(f"DELETE FROM syllabus_item WHERE exam_code = {q(ex)} AND code NOT IN ({keep});")
