@@ -64,7 +64,7 @@ Tick each paper when it is complete in the portal.
 |---|---|
 | 1. Backend | done 27 Nov 2026 (API below) |
 | 2. UI mockup, then UI | done 27 Nov 2026: mockup https://claude.ai/artifact/7bh3YuzxmTZjv1cnewn1dN approved; built on the frontend `preview` branch |
-| 3. GATE EE papers | 0 of about 45 papers (counting sets) |
+| 3. GATE EE papers | 1 of about 45 (counting sets): GATE 2016 Set 1 complete, 27 Nov 2026 (`content/gate-papers/2016-set1.yml` + Circuits Ch2 Q15, Q17) |
 | 4. GATE EC (4 subjects) | not started |
 | 5. JE/AE Machines set | not started |
 
@@ -85,4 +85,13 @@ Tick each paper when it is complete in the portal.
 - Marking: APSC +1 / -0.25, 1.2 min per question. GATE: own marks, wrong MCQ -1/3 of its marks, no negative for MSQ / NAT,
   1.8 min per mark. Old GATE years had other negative rules; the portal uses the current one for all years.
 - Content: an MSQ can have `mcq_options` (4, one right, A-D) in its YAML for APSC style (`question_mcq_option`).
+
+## Phase 3 notes (27 Nov 2026)
+
+- Pipeline: `content/gate-papers/<paper>.yml` + `figures/` -> `python3 content/tools/build_papers.py` -> `R__content_zz_gate_papers.sql`.
+  Rules in `content/gate-papers/README.md`. Questions of written chapters stay in the chapter files.
+- Source for 2007-2026: the dump PDFs (Drive `EE<year>.pdf`, which carry the official answer key at the end). Pre-2007 has no
+  PDF in the dump yet; examside.com has no figures and no paper order, so a PDF dump of 1991-2006 is still needed for those papers.
+- Order: the plan's order puts 2004 first, but 2004 needs that dump; 2016 (next most copied) was done first. Next: GATE 2016 Set 2,
+  then 2012, 2014 (three sets), 2008, 2010.
 

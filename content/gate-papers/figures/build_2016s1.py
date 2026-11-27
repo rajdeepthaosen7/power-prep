@@ -369,7 +369,85 @@ def q45():
     write("q-gate2016-s1-q45", svg(360, 280, gv, gi))
 
 
+def tank(d, start, end, c_label, l_label):
+    """Parallel L-C between two points on one horizontal line: capacitor above, inductor below."""
+    (x1, y), (x2, _) = start, end
+    d += elm.Line().at((x1, y)).to((x1, y + 0.5))
+    d += elm.Line().at((x1, y)).to((x1, y - 0.5))
+    d += elm.Capacitor().at((x1, y + 0.5)).to((x2, y + 0.5)).label(c_label, loc="top")
+    d += elm.Inductor2().at((x1, y - 0.5)).to((x2, y - 0.5)).label(l_label, loc="bottom")
+    d += elm.Line().at((x2, y + 0.5)).to((x2, y - 0.5))
+
+
+def q52():
+    """Left rail and right rail joined at the bottom by the source 10 sin(1000t). From the left rail: 4 ohm to node P (top) and a
+    250 uF || 4 mH tank to node Q (lower). 1 ohm from P to Q. From P: 2 uF || 500 mH tank to the right rail. From Q: 5 ohm to the right rail."""
+    d = D()
+    xl, xp, xr = 0, 4.0, 8.4
+    yt, yq, yb = 3.6, 1.6, -0.8
+    d += elm.Line().at((xl, yb)).to((xl, yt))
+    d += elm.Resistor().at((xl, yt)).to((xp, yt)).label("4 Ω", loc="top")
+    d += elm.Dot().at((xp, yt))
+    d += elm.Line().at((xp, yt)).to((xp + 0.6, yt))
+    tank(d, (xp + 0.6, yt), (xr - 0.6, yt), "2 μF", "500 mH")
+    d += elm.Line().at((xr - 0.6, yt)).to((xr, yt))
+    d += elm.Line().at((xr, yt)).to((xr, yb))
+    d += elm.Resistor().at((xp, yt)).to((xp, yq)).label("1 Ω", loc="bottom")
+    d += elm.Dot().at((xp, yq))
+    d += elm.Line().at((xl, yq)).to((xl + 0.6, yq))
+    d += elm.Dot().at((xl, yq))
+    tank(d, (xl + 0.6, yq), (xp - 0.6, yq), "250 μF", "4 mH")
+    d += elm.Line().at((xp - 0.6, yq)).to((xp, yq))
+    d += elm.Resistor().at((xp, yq)).to((xr, yq)).label("5 Ω", loc="top")
+    d += elm.Dot().at((xr, yq))
+    d += elm.Line().at((xl, yb)).to((xp - 0.9, yb))
+    d += elm.SourceSin().at((xp - 0.9, yb)).to((xp + 0.9, yb)).label("10 sin(1000t)", loc="bottom")
+    d += elm.Line().at((xp + 0.9, yb)).to((xr, yb))
+    save("q-gate2016-s1-q52", d)
+
+
+def q54():
+    """Two branches in parallel across a sinusoidal source: 100 uF in series with R; 0.02 H in series with R."""
+    d = D()
+    x0, x1 = 0, 5.4
+    d += elm.Capacitor().at((x0, 2.2)).to((2.4, 2.2)).label("100 μF", loc="top")
+    d += elm.Resistor().at((2.4, 2.2)).to((x1, 2.2)).label("R", loc="top")
+    d += elm.Inductor2().at((x0, 0.8)).to((2.4, 0.8)).label("0.02 H", loc="bottom")
+    d += elm.Resistor().at((2.4, 0.8)).to((x1, 0.8)).label("R", loc="bottom")
+    d += elm.Line().at((x0, 2.2)).to((x0, -0.8))
+    d += elm.Line().at((x1, 2.2)).to((x1, -0.8))
+    d += elm.Dot().at((x0, 0.8))
+    d += elm.Dot().at((x1, 0.8))
+    d += elm.Line().at((x0, -0.8)).to((1.8, -0.8))
+    d += elm.SourceSin().right().at((1.8, -0.8)).length(1.8)
+    d += elm.Line().right().tox(x1)
+    save("q-gate2016-s1-q54", d)
+
+
+def q55():
+    """Node A at the top. To ground: 5 ohm; a 5 A source pushing up into A; 5 ohm in series with a dependent source 10 I1
+    (minus at top, plus at the bottom). From A: 5 ohm carrying I1 to the right, then 5 ohm down and a 10 V source (+ at top) to ground."""
+    d = D()
+    yt, yb = 3.0, -0.6
+    d += elm.Resistor().at((0, yt)).to((0, yb)).label("5 Ω", loc="bottom")
+    d += elm.SourceI().at((2.0, yb)).to((2.0, yt)).label("5 A", loc="bottom")
+    d += elm.Resistor().at((4.0, yt)).to((4.0, 1.2)).label("5 Ω", loc="bottom")
+    d += elm.SourceControlledV().at((4.0, yb)).to((4.0, 1.2)).reverse().label("10 I1", loc="bottom").label(("+", "", "−"), loc="top")
+    d += elm.Line().at((0, yt)).to((4.0, yt))
+    d += elm.Dot().at((2.0, yt))
+    d += elm.Dot().at((4.0, yt)).label("A", loc="top")
+    d += elm.Resistor().at((4.0, yt)).to((7.0, yt)).label("5 Ω", loc="top")
+    d += elm.Arrow().at((4.3, yt + 0.8)).to((5.3, yt + 0.8)).label("I1", loc="top")
+    d += elm.Resistor().at((7.0, yt)).to((7.0, 1.0)).label("5 Ω", loc="bottom")
+    d += elm.SourceV().at((7.0, yb)).to((7.0, 1.0)).label("10 V", loc="bottom")
+    d += elm.Line().at((0, yb)).to((7.0, yb))
+    save("q-gate2016-s1-q55", d)
+
+
 if __name__ == "__main__":
+    q52()
+    q54()
+    q55()
     q44()
     q45()
     q42()

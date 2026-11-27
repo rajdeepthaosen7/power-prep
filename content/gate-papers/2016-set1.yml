@@ -1366,3 +1366,117 @@ questions:
       $D = GMD^{1.5} = 1.275 \times \sqrt{1.275} \approx 1.275 \times 1.13 \approx 1.44$. Option B is the GMD itself and option D is $D^2$.
 
       **Answer: about 1.44 m.**
+  - n: 52
+    marks: 2
+    type: NAT
+    nat: {min: 1, max: 1}
+    difficulty: 2
+    stem: |
+      In the circuit shown below, the supply voltage is $10\sin(1000t)$ volts. The peak value of the steady state current through the 1 Ω
+      resistor, in amperes, is ______.
+
+      ![From the left rail: 4 ohm to a top node P, and a 250 microfarad parallel 4 mH tank to a lower node Q. 1 ohm from P to Q. From P: a 2 microfarad parallel 500 mH tank to the right rail. From Q: 5 ohm to the right rail. The source 10 sin(1000t) joins the two rails at the bottom](fig:q-gate2016-s1-q52)
+    options:
+      - {label: A, md: "0"}
+      - {label: B, md: "1", correct: true}
+      - {label: C, md: "2"}
+      - {label: D, md: "2.5"}
+    solution: |
+      **Idea used:** a parallel L-C tank at its resonant frequency has infinite impedance (an open circuit). Check each tank at
+      $\omega = 1000$ rad/s.
+
+      1. Lower tank: $X_L = 1000 \times 4 \times 10^{-3} = 4\ \Omega$; $X_C = \dfrac{1}{1000 \times 250 \times 10^{-6}} = 4\ \Omega$. Equal, so it is **open**.
+      2. Upper tank: $X_L = 1000 \times 0.5 = 500\ \Omega$; $X_C = \dfrac{1}{1000 \times 2 \times 10^{-6}} = 500\ \Omega$. Equal, so it is **open** too.
+      3. Only one path is left: 4 Ω → 1 Ω → 5 Ω, total 10 Ω.
+      4. Peak current $= 10 \div 10 = 1$ A, and all of it flows through the 1 Ω.
+
+      **Without a calculator:** whenever a paper gives "odd" L and C values with a round $\omega$, check $\omega^2 LC = 1$ first:
+      $10^6 \times 4 \times 10^{-3} \times 250 \times 10^{-6} = 1$ and $10^6 \times 0.5 \times 2 \times 10^{-6} = 1$.
+
+      **Answer: 1 A.**
+  - n: 53
+    marks: 2
+    type: NAT
+    nat: {min: 0.30, max: 0.33}
+    difficulty: 2
+    stem: |
+      A dc voltage with ripple is given by $v(t) = [100 + 10\sin(\omega t) - 5\sin(3\omega t)]$ volts. Measurements of this voltage $v(t)$, made by
+      moving-coil and moving-iron voltmeters, show readings of $V_1$ and $V_2$ respectively. The value of $V_2 - V_1$, in volts, is _________.
+    options:
+      - {label: A, md: "0.31", correct: true}
+      - {label: B, md: "0"}
+      - {label: C, md: "7.9"}
+      - {label: D, md: "0.62"}
+    solution: |
+      **Idea used:** a moving-coil (PMMC) meter reads the **average** (dc) value; a moving-iron meter reads the **rms** value.
+
+      1. $V_1$ = average $= 100$ V (sine terms average to zero).
+      2. $V_2$ = rms $= \sqrt{100^2 + \dfrac{10^2}{2} + \dfrac{5^2}{2}} = \sqrt{10\,000 + 50 + 12.5} = \sqrt{10\,062.5}$.
+      3. $\sqrt{10\,062.5} \approx 100.31$ V.
+      4. $V_2 - V_1 \approx 0.31$ V.
+
+      **Without a calculator:** for a small addition $\Delta$ to $100^2$, $\sqrt{100^2 + \Delta} \approx 100 + \dfrac{\Delta}{200}$.
+      Here $\Delta = 62.5$, so the difference is $62.5 / 200 \approx 0.31$. Option C is the rms of the ripple alone
+      ($\sqrt{62.5} \approx 7.9$); option D forgets the $\tfrac12$ in the sine rms.
+
+      **Answer: about 0.31 V.**
+  - n: 54
+    marks: 2
+    type: NAT
+    nat: {min: 14.0, max: 14.2}
+    difficulty: 2
+    stem: |
+      The circuit below is excited by a sinusoidal source. The value of R, in Ω, for which the admittance of the circuit becomes a pure
+      conductance at all frequencies is _____________.
+
+      ![Two branches in parallel across a sinusoidal source: 100 microfarad in series with R, and 0.02 H in series with R](fig:q-gate2016-s1-q54)
+    options:
+      - {label: A, md: "10"}
+      - {label: B, md: "14.14", correct: true}
+      - {label: C, md: "200"}
+      - {label: D, md: "0.07"}
+    solution: |
+      **Idea used (constant-resistance network):** an R-L branch in parallel with an R-C branch, both with the same R, looks like a pure
+      resistance $R$ at **every** frequency when $R^2 = \dfrac{L}{C}$.
+
+      1. $\dfrac{L}{C} = \dfrac{0.02}{100 \times 10^{-6}} = \dfrac{0.02}{10^{-4}} = 200\ \Omega^2$.
+      2. $R = \sqrt{200} = 10\sqrt2 \approx 14.14\ \Omega$.
+
+      **Why it works:** with $R^2 = L/C$ the admittance $\dfrac{1}{R + j\omega L} + \dfrac{1}{R + \frac{1}{j\omega C}}$ works out to exactly $\dfrac{1}{R}$
+      for every $\omega$; the reactive parts of the two branches cancel.
+
+      **Without a calculator:** $\sqrt{200} = 10\sqrt2 \approx 14.1$. Option C forgets the square root.
+
+      **Answer: about 14.14 Ω.**
+  - n: 55
+    marks: 2
+    type: NAT
+    nat: {min: 11.25, max: 11.50}
+    difficulty: 2
+    stem: |
+      In the circuit shown below, the node voltage $V_A$ is ___________ V.
+
+      ![Node A at the top. From A to ground: 5 ohm; a 5 A source pushing current into A; 5 ohm in series with a dependent voltage source 10 I1 (minus at the top, plus at the ground end). From A: 5 ohm carrying I1 to the right, then 5 ohm and a 10 V source (+ at the top) to ground](fig:q-gate2016-s1-q55)
+    options:
+      - {label: A, md: "11.43", correct: true}
+      - {label: B, md: "10"}
+      - {label: C, md: "7.14"}
+      - {label: D, md: "14.29"}
+    solution: |
+      **Idea used:** one KCL equation at node A, with $I_1$ written in terms of $V_A$.
+
+      1. Right branch: 5 Ω + 5 Ω down to a 10 V source (+ at top). So $I_1 = \dfrac{V_A - 10}{10}$.
+      2. Middle branch: the dependent source has its + end at ground, so its top end is at $-10I_1$. Current down this branch
+         $= \dfrac{V_A - (-10I_1)}{5} = \dfrac{V_A + 10I_1}{5}$.
+      3. Left: current down the 5 Ω $= \dfrac{V_A}{5}$. The 5 A source pushes 5 A **into** A.
+      4. KCL at A: $5 = \dfrac{V_A}{5} + \dfrac{V_A + 10I_1}{5} + I_1$.
+      5. Put $10I_1 = V_A - 10$: middle current $= \dfrac{2V_A - 10}{5}$, and $I_1 = \dfrac{V_A - 10}{10}$.
+      6. $5 = 0.2V_A + 0.4V_A - 2 + 0.1V_A - 1 = 0.7V_A - 3$.
+      7. $0.7V_A = 8$, so $V_A = 80 \div 7 \approx 11.43$ V.
+
+      **Check:** $I_1 = (11.43 - 10)/10 = 0.143$ A. Currents leaving A: left $= 11.43/5 = 2.286$ A, middle $= (11.43 + 1.43)/5 = 2.571$ A,
+      right $= 0.143$ A. Total $= 5.0$ A. ✔
+
+      **Without a calculator:** keep fractions: $V_A = \dfrac{80}{7}$, and $\dfrac{80}{7} \approx 11.4$.
+
+      **Answer: about 11.43 V.**
