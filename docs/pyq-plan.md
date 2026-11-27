@@ -63,7 +63,7 @@ Tick each paper when it is complete in the portal.
 | Phase | Status |
 |---|---|
 | 1. Backend | done 27 Nov 2026 (API below) |
-| 2. UI mockup, then UI | not started |
+| 2. UI mockup, then UI | mockup ready 27 Nov 2026 (https://claude.ai/artifact/7bh3YuzxmTZjv1cnewn1dN), waiting for the owner's OK |
 | 3. GATE EE papers | 0 of about 45 papers (counting sets) |
 | 4. GATE EC (4 subjects) | not started |
 | 5. JE/AE Machines set | not started |
