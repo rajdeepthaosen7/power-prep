@@ -96,7 +96,13 @@ by writing the questions in chapter YAML with their GATE `sources`.
   show the textbook algebra afterwards as a second way.
 - Owner, 27 Nov 2026: "no jump steps in example numericals"; "not just GATE questions, we have other sources as well";
   "use various colour, it helps"; "calculations in canvas or on a different layer". So: colour-coded note blocks and a
-  separate rough-work panel for every worked numerical (format: see "Note blocks" once the mockup is approved).
+  separate rough-work panel for every worked numerical (format: "Note blocks" below; owner picked option B, 27 Nov 2026).
+- **Note blocks** (rendered by power-prep-web `components/NoteBlocks.tsx`; also work in question solutions):
+  fenced ```definition (blue), ```formula (purple), ```remember (green), ```watchout (red), each a box with a word label.
+  ```example <title> = worked example: question text, then `:::given ...`, `:::find ...`, `:::step <words>` followed by one
+  rough-work line per line (hidden behind "Show working"; "Show all rough work" is remembered), `:::answer ...` (each line a
+  paragraph, put the sense check here). One operation per rough-work line, no jumps. Maths colours: `\given{}` blue,
+  `\find{}` orange, `\fx{}` purple, `\ans{}` green. Colours keep these meanings everywhere; labels carry the meaning too.
 - Never use a symbol before defining it (name, meaning in plain words, unit, one small number example). Owner, 26 Nov 2026:
   "you use J but never mention J as current density".
 - Goal: the reader can solve every probable question from the source pools: GATE EE 1-mark (+ easy 2-mark), GATE EC (Signals/Digital/Analog), ESE EE prelims, J.B. Gupta-type objective banks, and APSC 2023 PYQs.

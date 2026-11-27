@@ -1,0 +1,89 @@
+# Electrical Machines (subject slug: electrical-machines) - chapter plan.
+# Order: chapters that need no AC phasors first (1-2), then the AC machines (3-9, after Circuits phasors and three-phase).
+# Magnetic circuits are listed under EMF in the syllabus; they are taught here (Ch 1) because every machine is built on them,
+# and the EMF chapters link back instead of repeating them.
+# `topics` are new topics written for this portal (notes + questions).
+# `legacy_topics` are the earlier tagging topics (slugs in the DB) that belong to the chapter until it is rewritten.
+
+subject: electrical-machines
+chapters:
+  - slug: magnetic-basics
+    name: Magnetic circuits and transformer basics
+    sort: 1
+    description: Flux, flux density and permeability; the magnetic circuit and reluctance; B-H curve and hysteresis; induced EMF and inductance; force and energy; the transformer and its EMF equation; core losses; the ideal transformer.
+    dir: 01-magnetic-basics
+    topics:
+      - {slug: em1-magnetic-field, name: "Magnetic field, flux and permeability", note: 01-magnetic-field.md}
+      - {slug: em1-magnetic-circuit, name: "The magnetic circuit and reluctance", note: 02-magnetic-circuit.md}
+      - {slug: em1-bh-hysteresis, name: "B-H curve, saturation and hysteresis", note: 03-bh-hysteresis.md}
+      - {slug: em1-induced-emf, name: "Induced EMF and inductance", note: 04-induced-emf.md}
+      - {slug: em1-force-energy, name: "Force, torque and stored energy", note: 05-force-energy.md}
+      - {slug: em1-transformer-principle, name: "The transformer: principle and construction", note: 06-transformer-principle.md}
+      - {slug: em1-emf-equation, name: "EMF equation of a transformer", note: 07-emf-equation.md}
+      - {slug: em1-core-losses, name: "Core losses: hysteresis and eddy current", note: 08-core-losses.md}
+      - {slug: em1-ideal-transformer, name: "The ideal transformer", note: 09-ideal-transformer.md}
+      - {slug: em1-chapter-summary, name: "Chapter 1 at a glance", note: 10-chapter-summary.md}
+    # these earlier topics are fully replaced by the topics above; their questions are re-tagged by the content files
+    retire_legacy_topics: [transformers-emf-equation-213, transformers-impedance-referral-291, transformers-magnetizing-self-inductance-353]
+
+  - slug: dc-machines
+    name: DC machines
+    sort: 2
+    description: Construction, EMF and torque equations, armature reaction and commutation, generator and motor characteristics, starting, speed control, braking, losses and efficiency.
+    legacy_topics: [dc-machines-armature-reaction-61, dc-machines-armature-winding-96, dc-machines-braking-66, dc-machines-emf-equation-99,
+                    dc-machines-generator-basics-62, dc-machines-losses-efficiency-361, dc-machines-motor-applications-63,
+                    dc-machines-motor-back-emf-current-139, dc-machines-motor-starting-97, dc-machines-motor-torque-speed-98,
+                    dc-machines-speed-direction-control-102]
+
+  - slug: single-phase-transformer
+    name: Single-phase transformer
+    sort: 3
+    description: The practical transformer, no-load and on-load phasor diagrams, equivalent circuit, OC and SC tests, regulation, losses and efficiency.
+    legacy_topics: [transformers-no-load-phasor-diagram-64, transformers-equivalent-circuit-262, transformers-equivalent-circuit-inductance-270,
+                    transformers-oc-sc-tests-65, transformers-voltage-regulation-177, transformers-losses-efficiency-100, transformers-kva-loading-322]
+
+  - slug: three-phase-transformers
+    name: Three-phase transformers and auto-transformer
+    sort: 4
+    description: Connections and vector groups, third harmonics, three-winding transformers, parallel operation, the auto-transformer.
+    legacy_topics: [transformers-3-phase-connections-vector-groups-146, transformers-third-harmonics-connections-223, transformers-three-winding-284,
+                    transformers-parallel-operation-140, transformers-autotransformer-141]
+
+  - slug: energy-conversion-windings
+    name: Energy conversion and AC windings
+    sort: 5
+    description: Electromechanical energy conversion, rotating magnetic field, pitch and distribution factors, machine construction details.
+    legacy_topics: [electromechanical-energy-conversion-138, windings-pitch-distribution-factor-105,
+                    machine-construction-damper-bars-skewing-compensating-winding-329]
+
+  - slug: induction-motor
+    name: Three-phase induction motor
+    sort: 6
+    description: Principle and types, slip and rotor frequency, power flow, equivalent circuit, torque-slip curve, no-load and blocked-rotor tests, induction generator.
+    legacy_topics: [induction-motor-slip-rotor-frequency-power-flow-67, induction-motor-air-gap-no-load-pf-143, induction-motor-crawling-cogging-142,
+                    induction-motor-double-cage-rotor-367, induction-motor-equivalent-circuit-314, induction-motor-equivalent-circuit-starting-current-224,
+                    induction-motor-equivalent-circuit-torque-252, induction-motor-leakage-flux-243, induction-motor-rotor-resistance-max-torque-285,
+                    induction-motor-space-harmonics-104, induction-motor-torque-slip-maximum-torque-197, induction-generator-255]
+
+  - slug: induction-motor-control
+    name: Starting and speed control; single-phase motors
+    sort: 7
+    description: Starting methods, speed control including V/f, single-phase induction motors, stepper motors.
+    legacy_topics: [induction-motor-starting-298, induction-motor-starting-methods-199, induction-motor-v-f-speed-control-106,
+                    single-phase-induction-motor-101, special-machines-stepper-motor-189]
+
+  - slug: synchronous-generator
+    name: Synchronous generators
+    sort: 8
+    description: Cylindrical and salient pole machines, induced EMF, armature reaction, OC and SC tests, regulation, two-reaction theory.
+    legacy_topics: [synchronous-machines-phasor-induced-emf-323, synchronous-machines-speed-poles-frequency-366, synchronous-machines-armature-reaction-103,
+                    synchronous-machines-oc-sc-test-regulation-188, synchronous-machines-voltage-regulation-305,
+                    synchronous-machines-salient-pole-two-reaction-296]
+
+  - slug: synchronous-machines-grid
+    name: Synchronous machines on the grid
+    sort: 9
+    description: Parallel operation and synchronising, infinite bus, power and load angle, excitation and V-curves, synchronous motor starting, hunting.
+    legacy_topics: [synchronous-machines-synchronization-parallel-operation-144, synchronous-machines-excitation-on-infinite-bus-145,
+                    synchronous-machines-load-torque-angle-60, synchronous-machines-power-torque-59, synchronous-machines-phasor-diagram-power-factor-359,
+                    synchronous-machines-hunting-damper-259]
