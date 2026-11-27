@@ -54,6 +54,12 @@ Patterns and best practices: `content/analysis/README.md`.
 - Every chapter keeps a fact list (one-line facts: uses, definitions, "which bridge measures what") in its notes or short note.
 - GATE EE 1991-2006 is not in the dump yet (only examside.com question lists were used): see DUMP.md.
 
+## GATE PYQ plan (27 Nov 2026)
+Plan and progress: `docs/pyq-plan.md`. Every GATE EE question 1992-2026 goes in once, tagged to chapter and topic, and shows both
+under its topic (Study) and in year / subject / chapter tests (Tests). Prepare and test mode; APSC style turns NAT and MSQ into
+single-answer MCQ. Self-mark (knew / guessed / didn't know) feeds the retest list (Mistakes). Papers are loaded one at a time,
+most APSC 2023 copies first. Second source: GATE EC (Signals, Control, Analog & Digital, Maths only).
+
 ## Portal features (Nov 2026)
 - Today (`/today`, home): next chapter per track, revisions due, open mistakes, mixed mocks below 85 %. API `/api/today`.
 - Mistake log (`/mistakes`): built from the attempt table (a question is open while its latest attempt is wrong); one-tap reason in

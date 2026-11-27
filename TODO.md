@@ -2,6 +2,10 @@
 
 Open items the owner has asked to keep. Newest first. Tick when done.
 
+- [ ] **GATE PYQ plan** (added 27 Nov 2026): practise every GATE EE paper 1992-2026 (prepare and test mode, retest list).
+  Plan and progress: `docs/pyq-plan.md`. Next: phase 1 (backend), then a UI mockup for the owner.
+- [ ] **Dump GATE EC papers** (added 27 Nov 2026, optional): second source after GATE EE (10 APSC 2023 questions, GATE EC 2002-2017,
+  Signals, Control, Analog & Digital, Maths). Without a dump they are read from examside.com.
 - [ ] **Dump GATE EE 1991-2006 papers** (added 27 Nov 2026): 43 APGCL 2023 questions are word-for-word from these years.
   With them in the dump, these PYQs can go into the portal and the 1991-2006 matches can be checked figure by figure.
 - [ ] **Finish tracing the untraced APSC 2023 questions** (added 27 Nov 2026): all 177 now have a verdict (second and third

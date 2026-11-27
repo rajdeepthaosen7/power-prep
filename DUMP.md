@@ -19,3 +19,4 @@ Every file the owner dumps (Google Drive `dump` / repo `dump/`), and whether it 
 |---|---|---|
 | GATE EE papers 1991-2006 (with figures and answer keys) | 43 APGCL 2023 questions are word-for-word from these years (Analysis 1-to-1) | Not dumped; only examside.com question lists used so far |
 | APSC 2023 answer keys (APGCL, APDCL, AEGCL) | Mark those questions as official | Not dumped (see TODO.md) |
+| GATE EC papers (any years; 2002-2017 matter most) | Second source after GATE EE: 10 APSC 2023 questions (docs/pyq-plan.md) | Not dumped; optional |
