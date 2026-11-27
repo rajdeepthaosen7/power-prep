@@ -243,3 +243,145 @@ questions:
          $f(x + T/2) = -f(x)$ that is not given.
 
       **Answer: (B).**
+  - n: 11
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    status: REVIEWED
+    key_note: "GATE gave marks to all (question judged defective)"
+    stem: |
+      A resistance and a coil are connected in series and supplied from a single phase, 100 V, 50 Hz ac source as shown in the figure
+      below. The rms values of plausible voltages across the resistance ($V_R$) and coil ($V_C$) respectively, in volts, are
+
+      ![Source VS feeding a resistance (voltage VR) in series with a coil, drawn as a resistance and an inductance inside a dashed box (voltage VC)](fig:q-gate2016-s2-q11)
+    options:
+      - {label: A, md: "65, 35"}
+      - {label: B, md: "50, 50"}
+      - {label: C, md: "60, 90"}
+      - {label: D, md: "60, 80", correct: true}
+    solution: |
+      **The official key gave marks to all four options**, because the question is not sharp enough. Here is how to test each pair;
+      (D) is the only one that works with a coil that really has inductance.
+
+      **Idea used:** the coil voltage $V_C$ has a resistive part $V_r$ (in phase with the current, like $V_R$) and a reactive part $V_X$
+      (at 90°). So $V_S^2 = (V_R + V_r)^2 + V_X^2$ and $V_C^2 = V_r^2 + V_X^2$. Subtracting:
+      $$V_r = \frac{V_S^2 - V_R^2 - V_C^2}{2V_R}$$
+      A real coil needs $0 \le V_r < V_C$ (some reactance).
+
+      | Pair | $V_r$ | Meaning |
+      |---|---|---|
+      | (A) 65, 35 | $\dfrac{10\,000 - 4225 - 1225}{130} = 35 = V_C$ | no reactance: the "coil" is a pure resistor |
+      | (B) 50, 50 | $\dfrac{10\,000 - 2500 - 2500}{100} = 50 = V_C$ | no reactance again |
+      | (C) 60, 90 | $\dfrac{10\,000 - 3600 - 8100}{120} < 0$ | impossible |
+      | (D) 60, 80 | $\dfrac{10\,000 - 3600 - 6400}{120} = 0$ | a pure inductance: $60^2 + 80^2 = 100^2$ |
+
+      **Without a calculator:** (A) and (B) add up to exactly 100 V, which can only happen if both voltages are in phase (no reactance).
+      (D) is the 3-4-5 triangle (60-80-100), the classic R-L answer.
+
+      **Answer: (D)** (the official key accepted every option).
+  - n: 12
+    marks: 1
+    type: NAT
+    nat: {min: 249, max: 251}
+    difficulty: 1
+    stem: |
+      The voltage (V) and current (A) across a load are as follows.
+      $v(t) = 100\sin(\omega t)$,
+      $i(t) = 10\sin(\omega t - 60^\circ) + 2\sin(3\omega t) + 5\sin(5\omega t)$.
+      The average power consumed by the load, in W, is___________.
+    options:
+      - {label: A, md: "500"}
+      - {label: B, md: "250", correct: true}
+      - {label: C, md: "433"}
+      - {label: D, md: "285"}
+    solution: |
+      **Idea used:** average power comes only from voltage and current harmonics **of the same frequency**:
+      $P = \sum \tfrac12 V_n I_n \cos\varphi_n$. The voltage has only the fundamental.
+
+      1. Fundamental: $V_1 = 100$, $I_1 = 10$, angle between them $60^\circ$.
+      2. $P = \tfrac12 \times 100 \times 10 \times \cos 60^\circ = 500 \times 0.5 = 250$ W.
+      3. The 3rd and 5th current harmonics meet no voltage of their frequency, so they add nothing.
+
+      **Without a calculator:** peaks need the $\tfrac12$ ($V_{rms} I_{rms} = \tfrac{V_m I_m}{2}$). Option A forgets $\cos 60^\circ$;
+      option C uses $\sin 60^\circ$.
+
+      **Answer: 250 W.**
+  - n: 13
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    stem: |
+      A power system with two generators is shown in the figure below. The system (generators, buses and transmission lines) is protected by
+      six overcurrent relays $R_1$ to $R_6$. Assuming a mix of directional and nondirectional relays at appropriate locations, the remote
+      backup relays for $R_4$ are
+
+      ![One-line diagram: generator S1 on bus 1; two parallel lines from bus 1 to bus 2, the upper with R1 (bus 1 end) and R2 (bus 2 end), the lower with R3 (bus 1 end) and R4 (bus 2 end); a line from bus 2 to bus 3 with R5 (bus 2 end) and R6 (bus 3 end); generator S2 on bus 3](fig:q-gate2016-s2-q13)
+    options:
+      - {label: A, md: "$R_1$, $R_2$"}
+      - {label: B, md: "$R_2$, $R_6$"}
+      - {label: C, md: "$R_2$, $R_5$"}
+      - {label: D, md: "$R_1$, $R_6$", correct: true}
+    solution: |
+      **Idea used:** a remote backup relay sits **one bus further back**, on a line that feeds current into the bus where the main
+      relay is. If the main relay fails, the backup trips its own line and stops that feed.
+
+      1. $R_4$ is at the bus 2 end of the lower line. It trips for a fault on the lower line, fed **from bus 2**.
+      2. Current reaches bus 2 (and so the fault) through two other lines:
+         - the upper line from bus 1: the relay at its far end, looking towards bus 2, is $R_1$;
+         - the line from bus 3 (S2): the relay at its far end is $R_6$.
+      3. So the remote backups for $R_4$ are $R_1$ and $R_6$.
+
+      **Why not $R_2$ or $R_5$:** they sit at bus 2 itself (local relays). Being directional, they look away from bus 2 into their own
+      lines, so they do not see a fault on the lower line.
+
+      **Answer: (D).**
+  - n: 14
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      A power system has 100 buses including 10 generator buses. For the load flow analysis using Newton-Raphson method in polar
+      coordinates, the size of the Jacobian is
+    options:
+      - {label: A, md: "189 x 189", correct: true}
+      - {label: B, md: "100 x 100"}
+      - {label: C, md: "90 x 90"}
+      - {label: D, md: "180 x 180"}
+    solution: |
+      **Idea used:** the Jacobian has one row and column for each unknown. Unknown angles: every bus except the slack. Unknown
+      magnitudes: every load (PQ) bus.
+
+      1. Of the 10 generator buses, one is the slack and 9 are PV. Load buses: $100 - 10 = 90$.
+      2. Unknown angles $= 100 - 1 = 99$.
+      3. Unknown magnitudes $= 90$.
+      4. Size $= 99 + 90 = 189$, so $189 \times 189$.
+
+      **Without a calculator:** $2N - N_g - 1 = 200 - 10 - 1 = 189$. Option D forgets that the slack is one of the 10 generators.
+
+      **Answer: (A).**
+  - n: 15
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    stem: |
+      The inductance and capacitance of a 400 kV, three-phase, 50 Hz lossless transmission line are 1.6 mH/km/phase and 10 nF/km/phase
+      respectively. The sending end voltage is maintained at 400 kV. To maintain a voltage of 400 kV at the receiving end, when the line
+      is delivering 300 MW load, the shunt compensation required is
+    options:
+      - {label: A, md: "capacitive"}
+      - {label: B, md: "inductive", correct: true}
+      - {label: C, md: "resistive"}
+      - {label: D, md: "zero"}
+    solution: |
+      **Idea used:** compare the load with the surge impedance loading (SIL). Below SIL the line makes more charging VAr than its
+      inductance uses, so the receiving-end voltage rises (Ferranti effect); to hold it down you **absorb** VAr with shunt reactors.
+
+      1. Surge impedance $Z_c = \sqrt{L/C} = \sqrt{\dfrac{1.6 \times 10^{-3}}{10 \times 10^{-9}}} = \sqrt{160\,000} = 400\ \Omega$.
+      2. SIL $= \dfrac{V^2}{Z_c} = \dfrac{400^2}{400}$ MW $= 400$ MW.
+      3. The load (300 MW) is **below** SIL, so the receiving voltage would rise above 400 kV.
+      4. To keep it at 400 kV, add **inductive** (reactor) shunt compensation.
+
+      **Without a calculator:** $L/C = 1.6 \times 10^{-3} / 10^{-8} = 1.6 \times 10^5$, and $\sqrt{16 \times 10^4} = 400$.
+      Then $400^2 / 400 = 400$ MW.
+
+      **Answer: (B).**

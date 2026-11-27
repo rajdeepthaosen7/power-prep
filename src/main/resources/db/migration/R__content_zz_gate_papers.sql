@@ -3833,3 +3833,330 @@ sine terms remain.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$f(x) = \sum_{k=0}^{\infty} a_{2k+1}\sin(2k+1)x$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   DELETE FROM question_mcq_option WHERE question_id = qid;
 END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q11';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q11')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q11: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A resistance and a coil are connected in series and supplied from a single phase, 100 V, 50 Hz ac source as shown in the figure below. The rms values of...', 'A resistance and a coil are connected in series and supplied from a single phase, 100 V, 50 Hz ac source as shown in the figure
+below. The rms values of plausible voltages across the resistance ($V_R$) and coil ($V_C$) respectively, in volts, are
+
+![Source VS feeding a resistance (voltage VR) in series with a coil, drawn as a resistance and an inductance inside a dashed box (voltage VC)](fig:q-gate2016-s2-q11)
+', '**The official key gave marks to all four options**, because the question is not sharp enough. Here is how to test each pair;
+(D) is the only one that works with a coil that really has inductance.
+
+**Idea used:** the coil voltage $V_C$ has a resistive part $V_r$ (in phase with the current, like $V_R$) and a reactive part $V_X$
+(at 90°). So $V_S^2 = (V_R + V_r)^2 + V_X^2$ and $V_C^2 = V_r^2 + V_X^2$. Subtracting:
+$$V_r = \frac{V_S^2 - V_R^2 - V_C^2}{2V_R}$$
+A real coil needs $0 \le V_r < V_C$ (some reactance).
+
+| Pair | $V_r$ | Meaning |
+|---|---|---|
+| (A) 65, 35 | $\dfrac{10\,000 - 4225 - 1225}{130} = 35 = V_C$ | no reactance: the "coil" is a pure resistor |
+| (B) 50, 50 | $\dfrac{10\,000 - 2500 - 2500}{100} = 50 = V_C$ | no reactance again |
+| (C) 60, 90 | $\dfrac{10\,000 - 3600 - 8100}{120} < 0$ | impossible |
+| (D) 60, 80 | $\dfrac{10\,000 - 3600 - 6400}{120} = 0$ | a pure inductance: $60^2 + 80^2 = 100^2$ |
+
+**Without a calculator:** (A) and (B) add up to exactly 100 V, which can only happen if both voltages are in phase (no reactance).
+(D) is the 3-4-5 triangle (60-80-100), the classic R-L answer.
+
+**Answer: (D)** (the official key accepted every option).
+', 'READY', 'MCQ', NULL, NULL, 2, 'REVIEWED', 'gate2016-s2-q11', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A resistance and a coil are connected in series and supplied from a single phase, 100 V, 50 Hz ac source as shown in the figure below. The rms values of...'), stem_md = 'A resistance and a coil are connected in series and supplied from a single phase, 100 V, 50 Hz ac source as shown in the figure
+below. The rms values of plausible voltages across the resistance ($V_R$) and coil ($V_C$) respectively, in volts, are
+
+![Source VS feeding a resistance (voltage VR) in series with a coil, drawn as a resistance and an inductance inside a dashed box (voltage VC)](fig:q-gate2016-s2-q11)
+', solution_md = '**The official key gave marks to all four options**, because the question is not sharp enough. Here is how to test each pair;
+(D) is the only one that works with a coil that really has inductance.
+
+**Idea used:** the coil voltage $V_C$ has a resistive part $V_r$ (in phase with the current, like $V_R$) and a reactive part $V_X$
+(at 90°). So $V_S^2 = (V_R + V_r)^2 + V_X^2$ and $V_C^2 = V_r^2 + V_X^2$. Subtracting:
+$$V_r = \frac{V_S^2 - V_R^2 - V_C^2}{2V_R}$$
+A real coil needs $0 \le V_r < V_C$ (some reactance).
+
+| Pair | $V_r$ | Meaning |
+|---|---|---|
+| (A) 65, 35 | $\dfrac{10\,000 - 4225 - 1225}{130} = 35 = V_C$ | no reactance: the "coil" is a pure resistor |
+| (B) 50, 50 | $\dfrac{10\,000 - 2500 - 2500}{100} = 50 = V_C$ | no reactance again |
+| (C) 60, 90 | $\dfrac{10\,000 - 3600 - 8100}{120} < 0$ | impossible |
+| (D) 60, 80 | $\dfrac{10\,000 - 3600 - 6400}{120} = 0$ | a pure inductance: $60^2 + 80^2 = 100^2$ |
+
+**Without a calculator:** (A) and (B) add up to exactly 100 V, which can only happen if both voltages are in phase (no reactance).
+(D) is the 3-4-5 triangle (60-80-100), the classic R-L answer.
+
+**Answer: (D)** (the official key accepted every option).
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'REVIEWED', content_key = 'gate2016-s2-q11', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q11', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '65, 35', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '50, 50', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '60, 90', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '60, 80', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q11', '<svg width="191" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -107.2 165.8 111.8"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 9.000000000000002,-46.800000000000004 L 8.25,-48.663 L 7.5,-50.4 L 6.75,-51.891 L 6,-53.035 L 5.25,-53.755 L 4.5,-54 L 3.75,-53.755 L 3,-53.035 L 2.25,-51.891 L 1.5,-50.4 L 0.75,-48.663 L 0,-46.8 L -0.75,-44.937 L -1.5,-43.2 L -2.25,-41.709 L -3,-40.565 L -3.75,-39.845 L -4.5,-39.6 L -5.25,-39.845 L -6,-40.565 L -6.75,-41.709 L -7.5,-43.2 L -8.25,-44.937 L -9,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 108,-93.6 L 122.4,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.4,-93.60000000000001 L 122.4,-88.2 L 131.4,-85.2 L 113.4,-79.2 L 131.4,-73.2 L 113.4,-67.2 L 131.4,-61.2 L 113.4,-55.2 L 122.4,-52.2 L 122.4,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.39999999999999,-46.80000000000001 L 122.4,-41.4 L 123.863,-41.367 L 125.364,-41.266 L 126.872,-41.096 L 128.355,-40.858 L 129.782,-40.554 L 131.122,-40.186 L 132.347,-39.76 L 133.433,-39.28 L 134.354,-38.755 L 135.093,-38.192 L 135.634,-37.6 L 135.965,-36.988 L 136.079,-36.366 L 135.974,-35.743 L 135.652,-35.131 L 135.12,-34.537 L 134.389,-33.973 L 133.475,-33.446 L 132.396,-32.965 L 131.176,-32.536 L 129.84,-32.166 L 128.416,-31.859 L 126.935,-31.618 L 125.427,-31.445 L 123.925,-31.341 L 122.46,-31.306 L 121.063,-31.335 L 119.763,-31.426 L 118.588,-31.574 L 117.562,-31.772 L 116.708,-32.012 L 116.043,-32.288 L 115.581,-32.589 L 115.332,-32.907 L 115.301,-33.231 L 115.489,-33.551 L 115.892,-33.858 L 116.501,-34.142 L 117.304,-34.394 L 118.283,-34.605 L 119.419,-34.767 L 120.686,-34.875 L 122.059,-34.922 L 123.508,-34.905 L 125.003,-34.82 L 126.512,-34.667 L 128.004,-34.445 L 129.447,-34.156 L 130.81,-33.803 L 132.066,-33.39 L 133.187,-32.923 L 134.149,-32.409 L 134.934,-31.854 L 135.523,-31.268 L 135.905,-30.66 L 136.071,-30.039 L 136.019,-29.416 L 135.749,-28.8 L 135.266,-28.201 L 134.581,-27.629 L 133.709,-27.092 L 132.668,-26.599 L 131.48,-26.157 L 130.169,-25.773 L 128.764,-25.45 L 127.293,-25.193 L 125.789,-25.004 L 124.283,-24.884 L 122.806,-24.832 L 121.39,-24.846 L 120.064,-24.923 L 118.857,-25.057 L 117.793,-25.244 L 116.896,-25.475 L 116.184,-25.743 L 115.673,-26.039 L 115.372,-26.354 L 115.289,-26.677 L 115.424,-26.999 L 115.776,-27.31 L 116.337,-27.6 L 117.095,-27.86 L 118.034,-28.082 L 119.134,-28.256 L 120.372,-28.378 L 121.722,-28.44 L 123.155,-28.438 L 124.642,-28.37 L 126.151,-28.233 L 127.65,-28.028 L 129.107,-27.755 L 130.492,-27.417 L 131.776,-27.018 L 132.932,-26.563 L 133.934,-26.059 L 134.763,-25.514 L 135.4,-24.934 L 135.833,-24.33 L 136.052,-23.712 L 136.052,-23.088 L 135.833,-22.47 L 135.4,-21.866 L 134.763,-21.286 L 133.934,-20.741 L 132.932,-20.237 L 131.776,-19.782 L 130.492,-19.383 L 129.107,-19.045 L 127.65,-18.772 L 126.151,-18.567 L 124.642,-18.43 L 123.155,-18.362 L 121.722,-18.36 L 120.372,-18.422 L 119.134,-18.544 L 118.034,-18.718 L 117.095,-18.94 L 116.337,-19.2 L 115.776,-19.49 L 115.424,-19.801 L 115.289,-20.123 L 115.372,-20.446 L 115.673,-20.761 L 116.184,-21.057 L 116.896,-21.325 L 117.793,-21.556 L 118.857,-21.743 L 120.064,-21.877 L 121.39,-21.954 L 122.806,-21.968 L 124.283,-21.916 L 125.789,-21.796 L 127.293,-21.607 L 128.764,-21.35 L 130.169,-21.027 L 131.48,-20.643 L 132.668,-20.201 L 133.709,-19.708 L 134.581,-19.171 L 135.266,-18.599 L 135.749,-18 L 136.019,-17.384 L 136.071,-16.761 L 135.905,-16.14 L 135.523,-15.532 L 134.934,-14.946 L 134.149,-14.391 L 133.187,-13.877 L 132.066,-13.41 L 130.81,-12.997 L 129.447,-12.644 L 128.004,-12.355 L 126.512,-12.133 L 125.003,-11.98 L 123.508,-11.895 L 122.059,-11.878 L 120.686,-11.925 L 119.419,-12.033 L 118.283,-12.195 L 117.304,-12.406 L 116.501,-12.658 L 115.892,-12.942 L 115.489,-13.249 L 115.301,-13.569 L 115.332,-13.893 L 115.581,-14.211 L 116.043,-14.512 L 116.708,-14.788 L 117.562,-15.028 L 118.588,-15.226 L 119.763,-15.374 L 121.063,-15.465 L 122.46,-15.494 L 123.925,-15.459 L 125.427,-15.355 L 126.935,-15.182 L 128.416,-14.941 L 129.84,-14.634 L 131.176,-14.264 L 132.396,-13.835 L 133.475,-13.354 L 134.389,-12.827 L 135.12,-12.263 L 135.652,-11.669 L 135.974,-11.057 L 136.079,-10.434 L 135.965,-9.812 L 135.634,-9.2 L 135.093,-8.608 L 134.354,-8.045 L 133.433,-7.52 L 132.347,-7.04 L 131.122,-6.614 L 129.782,-6.246 L 128.355,-5.942 L 126.872,-5.704 L 125.364,-5.534 L 123.863,-5.433 L 122.4,-5.4 L 122.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.40000000000009,-1.5987211554602254e-14 L 61.2,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 106.2,-91.80000000000001 L 122.4,-91.8 L 138.6,-91.8" style="stroke:currentColor;fill:none;stroke-width:1;stroke-dasharray:7.4,3.2;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 138.60000000000002,-91.80000000000001 L 138.6,-46.8 L 138.6,-1.8" style="stroke:currentColor;fill:none;stroke-width:1;stroke-dasharray:7.4,3.2;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 138.60000000000002,-1.800000000000016 L 122.4,-1.8 L 106.2,-1.8" style="stroke:currentColor;fill:none;stroke-width:1;stroke-dasharray:7.4,3.2;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 106.2,-1.800000000000016 L 106.2,-46.8 L 106.2,-91.8" style="stroke:currentColor;fill:none;stroke-width:1;stroke-dasharray:7.4,3.2;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">VS</tspan></text><text x="46.80000000000001" y="-94.0" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">VR</tspan></text><text x="90.00000000000001" y="-56.2" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="90.00000000000001" dy="13">VC</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q12';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q12')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q12: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'The voltage (V) and current (A) across a load are as follows. $v(t) = 100\sin(\omega t)$, $i(t) = 10\sin(\omega t - 60^\circ) + 2\sin(3\omega t) +...', 'The voltage (V) and current (A) across a load are as follows.
+$v(t) = 100\sin(\omega t)$,
+$i(t) = 10\sin(\omega t - 60^\circ) + 2\sin(3\omega t) + 5\sin(5\omega t)$.
+The average power consumed by the load, in W, is___________.
+', '**Idea used:** average power comes only from voltage and current harmonics **of the same frequency**:
+$P = \sum \tfrac12 V_n I_n \cos\varphi_n$. The voltage has only the fundamental.
+
+1. Fundamental: $V_1 = 100$, $I_1 = 10$, angle between them $60^\circ$.
+2. $P = \tfrac12 \times 100 \times 10 \times \cos 60^\circ = 500 \times 0.5 = 250$ W.
+3. The 3rd and 5th current harmonics meet no voltage of their frequency, so they add nothing.
+
+**Without a calculator:** peaks need the $\tfrac12$ ($V_{rms} I_{rms} = \tfrac{V_m I_m}{2}$). Option A forgets $\cos 60^\circ$;
+option C uses $\sin 60^\circ$.
+
+**Answer: 250 W.**
+', 'READY', 'NAT', 249, 251, 1, 'OFFICIAL_KEY', 'gate2016-s2-q12', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'The voltage (V) and current (A) across a load are as follows. $v(t) = 100\sin(\omega t)$, $i(t) = 10\sin(\omega t - 60^\circ) + 2\sin(3\omega t) +...'), stem_md = 'The voltage (V) and current (A) across a load are as follows.
+$v(t) = 100\sin(\omega t)$,
+$i(t) = 10\sin(\omega t - 60^\circ) + 2\sin(3\omega t) + 5\sin(5\omega t)$.
+The average power consumed by the load, in W, is___________.
+', solution_md = '**Idea used:** average power comes only from voltage and current harmonics **of the same frequency**:
+$P = \sum \tfrac12 V_n I_n \cos\varphi_n$. The voltage has only the fundamental.
+
+1. Fundamental: $V_1 = 100$, $I_1 = 10$, angle between them $60^\circ$.
+2. $P = \tfrac12 \times 100 \times 10 \times \cos 60^\circ = 500 \times 0.5 = 250$ W.
+3. The 3rd and 5th current harmonics meet no voltage of their frequency, so they add nothing.
+
+**Without a calculator:** peaks need the $\tfrac12$ ($V_{rms} I_{rms} = \tfrac{V_m I_m}{2}$). Option A forgets $\cos 60^\circ$;
+option C uses $\sin 60^\circ$.
+
+**Answer: 250 W.**
+', status = 'READY', answer_type = 'NAT', nat_min = 249, nat_max = 251, difficulty = 1, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q12', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q12', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '500', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '250', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '433', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '285', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q13';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q13')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q13: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A power system with two generators is shown in the figure below. The system (generators, buses and transmission lines) is protected by six overcurrent...', 'A power system with two generators is shown in the figure below. The system (generators, buses and transmission lines) is protected by
+six overcurrent relays $R_1$ to $R_6$. Assuming a mix of directional and nondirectional relays at appropriate locations, the remote
+backup relays for $R_4$ are
+
+![One-line diagram: generator S1 on bus 1; two parallel lines from bus 1 to bus 2, the upper with R1 (bus 1 end) and R2 (bus 2 end), the lower with R3 (bus 1 end) and R4 (bus 2 end); a line from bus 2 to bus 3 with R5 (bus 2 end) and R6 (bus 3 end); generator S2 on bus 3](fig:q-gate2016-s2-q13)
+', '**Idea used:** a remote backup relay sits **one bus further back**, on a line that feeds current into the bus where the main
+relay is. If the main relay fails, the backup trips its own line and stops that feed.
+
+1. $R_4$ is at the bus 2 end of the lower line. It trips for a fault on the lower line, fed **from bus 2**.
+2. Current reaches bus 2 (and so the fault) through two other lines:
+   - the upper line from bus 1: the relay at its far end, looking towards bus 2, is $R_1$;
+   - the line from bus 3 (S2): the relay at its far end is $R_6$.
+3. So the remote backups for $R_4$ are $R_1$ and $R_6$.
+
+**Why not $R_2$ or $R_5$:** they sit at bus 2 itself (local relays). Being directional, they look away from bus 2 into their own
+lines, so they do not see a fault on the lower line.
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate2016-s2-q13', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A power system with two generators is shown in the figure below. The system (generators, buses and transmission lines) is protected by six overcurrent...'), stem_md = 'A power system with two generators is shown in the figure below. The system (generators, buses and transmission lines) is protected by
+six overcurrent relays $R_1$ to $R_6$. Assuming a mix of directional and nondirectional relays at appropriate locations, the remote
+backup relays for $R_4$ are
+
+![One-line diagram: generator S1 on bus 1; two parallel lines from bus 1 to bus 2, the upper with R1 (bus 1 end) and R2 (bus 2 end), the lower with R3 (bus 1 end) and R4 (bus 2 end); a line from bus 2 to bus 3 with R5 (bus 2 end) and R6 (bus 3 end); generator S2 on bus 3](fig:q-gate2016-s2-q13)
+', solution_md = '**Idea used:** a remote backup relay sits **one bus further back**, on a line that feeds current into the bus where the main
+relay is. If the main relay fails, the backup trips its own line and stops that feed.
+
+1. $R_4$ is at the bus 2 end of the lower line. It trips for a fault on the lower line, fed **from bus 2**.
+2. Current reaches bus 2 (and so the fault) through two other lines:
+   - the upper line from bus 1: the relay at its far end, looking towards bus 2, is $R_1$;
+   - the line from bus 3 (S2): the relay at its far end is $R_6$.
+3. So the remote backups for $R_4$ are $R_1$ and $R_6$.
+
+**Why not $R_2$ or $R_5$:** they sit at bus 2 itself (local relays). Being directional, they look away from bus 2 into their own
+lines, so they do not see a fault on the lower line.
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q13', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q13', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$R_1$, $R_2$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$R_2$, $R_6$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$R_2$, $R_5$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$R_1$, $R_6$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q13', '<svg xmlns="http://www.w3.org/2000/svg" width="560" viewBox="0 0 560 150">
+<circle cx="40" cy="75" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<path d="M34,75 q3,-6 6,0 t6,0" fill="none" stroke="currentColor" stroke-width="1.4"/>
+<text x="40.0" y="55.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">S1</text>
+<line x1="51" y1="75" x2="110" y2="75" stroke="currentColor" stroke-width="1.6"/>
+<circle cx="520" cy="75" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<path d="M514,75 q3,-6 6,0 t6,0" fill="none" stroke="currentColor" stroke-width="1.4"/>
+<text x="520.0" y="55.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">S2</text>
+<line x1="470" y1="75" x2="509" y2="75" stroke="currentColor" stroke-width="1.6"/>
+<line x1="110" y1="35" x2="110" y2="115" stroke="currentColor" stroke-width="4"/>
+<line x1="290" y1="35" x2="290" y2="115" stroke="currentColor" stroke-width="4"/>
+<line x1="470" y1="35" x2="470" y2="115" stroke="currentColor" stroke-width="4"/>
+<text x="110.0" y="132.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">bus 1</text>
+<text x="290.0" y="132.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">bus 2</text>
+<text x="470.0" y="132.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">bus 3</text>
+<line x1="110" y1="55" x2="290" y2="55" stroke="currentColor" stroke-width="1.6"/>
+<line x1="110" y1="95" x2="290" y2="95" stroke="currentColor" stroke-width="1.6"/>
+<line x1="290" y1="75" x2="470" y2="75" stroke="currentColor" stroke-width="1.6"/>
+<rect x="131" y="49" width="28" height="12" fill="currentColor"/>
+<text x="145.0" y="41.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">R1</text>
+<rect x="241" y="49" width="28" height="12" fill="currentColor"/>
+<text x="255.0" y="41.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">R2</text>
+<rect x="131" y="89" width="28" height="12" fill="currentColor"/>
+<text x="145.0" y="81.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">R3</text>
+<rect x="241" y="89" width="28" height="12" fill="currentColor"/>
+<text x="255.0" y="81.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">R4</text>
+<rect x="311" y="69" width="28" height="12" fill="currentColor"/>
+<text x="325.0" y="61.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">R5</text>
+<rect x="421" y="69" width="28" height="12" fill="currentColor"/>
+<text x="435.0" y="61.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">R6</text>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q14';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q14')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q14: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A power system has 100 buses including 10 generator buses. For the load flow analysis using Newton-Raphson method in polar coordinates, the size of the...', 'A power system has 100 buses including 10 generator buses. For the load flow analysis using Newton-Raphson method in polar
+coordinates, the size of the Jacobian is
+', '**Idea used:** the Jacobian has one row and column for each unknown. Unknown angles: every bus except the slack. Unknown
+magnitudes: every load (PQ) bus.
+
+1. Of the 10 generator buses, one is the slack and 9 are PV. Load buses: $100 - 10 = 90$.
+2. Unknown angles $= 100 - 1 = 99$.
+3. Unknown magnitudes $= 90$.
+4. Size $= 99 + 90 = 189$, so $189 \times 189$.
+
+**Without a calculator:** $2N - N_g - 1 = 200 - 10 - 1 = 189$. Option D forgets that the slack is one of the 10 generators.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'OFFICIAL_KEY', 'gate2016-s2-q14', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A power system has 100 buses including 10 generator buses. For the load flow analysis using Newton-Raphson method in polar coordinates, the size of the...'), stem_md = 'A power system has 100 buses including 10 generator buses. For the load flow analysis using Newton-Raphson method in polar
+coordinates, the size of the Jacobian is
+', solution_md = '**Idea used:** the Jacobian has one row and column for each unknown. Unknown angles: every bus except the slack. Unknown
+magnitudes: every load (PQ) bus.
+
+1. Of the 10 generator buses, one is the slack and 9 are PV. Load buses: $100 - 10 = 90$.
+2. Unknown angles $= 100 - 1 = 99$.
+3. Unknown magnitudes $= 90$.
+4. Size $= 99 + 90 = 189$, so $189 \times 189$.
+
+**Without a calculator:** $2N - N_g - 1 = 200 - 10 - 1 = 189$. Option D forgets that the slack is one of the 10 generators.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q14', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q14', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '189 x 189', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '100 x 100', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '90 x 90', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '180 x 180', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q15';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q15')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q15: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'The inductance and capacitance of a 400 kV, three-phase, 50 Hz lossless transmission line are 1.6 mH/km/phase and 10 nF/km/phase respectively. The sending...', 'The inductance and capacitance of a 400 kV, three-phase, 50 Hz lossless transmission line are 1.6 mH/km/phase and 10 nF/km/phase
+respectively. The sending end voltage is maintained at 400 kV. To maintain a voltage of 400 kV at the receiving end, when the line
+is delivering 300 MW load, the shunt compensation required is
+', '**Idea used:** compare the load with the surge impedance loading (SIL). Below SIL the line makes more charging VAr than its
+inductance uses, so the receiving-end voltage rises (Ferranti effect); to hold it down you **absorb** VAr with shunt reactors.
+
+1. Surge impedance $Z_c = \sqrt{L/C} = \sqrt{\dfrac{1.6 \times 10^{-3}}{10 \times 10^{-9}}} = \sqrt{160\,000} = 400\ \Omega$.
+2. SIL $= \dfrac{V^2}{Z_c} = \dfrac{400^2}{400}$ MW $= 400$ MW.
+3. The load (300 MW) is **below** SIL, so the receiving voltage would rise above 400 kV.
+4. To keep it at 400 kV, add **inductive** (reactor) shunt compensation.
+
+**Without a calculator:** $L/C = 1.6 \times 10^{-3} / 10^{-8} = 1.6 \times 10^5$, and $\sqrt{16 \times 10^4} = 400$.
+Then $400^2 / 400 = 400$ MW.
+
+**Answer: (B).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate2016-s2-q15', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'The inductance and capacitance of a 400 kV, three-phase, 50 Hz lossless transmission line are 1.6 mH/km/phase and 10 nF/km/phase respectively. The sending...'), stem_md = 'The inductance and capacitance of a 400 kV, three-phase, 50 Hz lossless transmission line are 1.6 mH/km/phase and 10 nF/km/phase
+respectively. The sending end voltage is maintained at 400 kV. To maintain a voltage of 400 kV at the receiving end, when the line
+is delivering 300 MW load, the shunt compensation required is
+', solution_md = '**Idea used:** compare the load with the surge impedance loading (SIL). Below SIL the line makes more charging VAr than its
+inductance uses, so the receiving-end voltage rises (Ferranti effect); to hold it down you **absorb** VAr with shunt reactors.
+
+1. Surge impedance $Z_c = \sqrt{L/C} = \sqrt{\dfrac{1.6 \times 10^{-3}}{10 \times 10^{-9}}} = \sqrt{160\,000} = 400\ \Omega$.
+2. SIL $= \dfrac{V^2}{Z_c} = \dfrac{400^2}{400}$ MW $= 400$ MW.
+3. The load (300 MW) is **below** SIL, so the receiving voltage would rise above 400 kV.
+4. To keep it at 400 kV, add **inductive** (reactor) shunt compensation.
+
+**Without a calculator:** $L/C = 1.6 \times 10^{-3} / 10^{-8} = 1.6 \times 10^5$, and $\sqrt{16 \times 10^4} = 400$.
+Then $400^2 / 400 = 400$ MW.
+
+**Answer: (B).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q15', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q15', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'capacitive', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'inductive', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'resistive', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'zero', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;

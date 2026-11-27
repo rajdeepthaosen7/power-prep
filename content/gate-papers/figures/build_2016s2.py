@@ -66,7 +66,54 @@ def q3():
     save("q-gate2016-s2-q3", d)
 
 
+def q11():
+    """Source VS, series resistance (voltage VR) and a coil drawn as resistance + inductance inside a dashed box (voltage VC)."""
+    d = D()
+    d += (src := elm.SourceSin().up().label("VS", loc="bottom"))
+    d += elm.Resistor().right().label("VR", loc="bottom")
+    d += elm.Line().right().length(0.8)
+    d += (r := elm.Resistor().down().length(1.3))
+    d += (l := elm.Inductor2().down().length(1.3))
+    d += elm.Line().left().tox(src.start)
+    d += elm.Label().at((r.start[0] - 0.8, (r.start[1] + l.end[1]) / 2)).label("VC")
+    x = r.start[0]
+    for (a, b) in [((x - 0.45, r.start[1] - 0.05), (x + 0.45, r.start[1] - 0.05)), ((x + 0.45, r.start[1] - 0.05), (x + 0.45, l.end[1] + 0.05)),
+                   ((x + 0.45, l.end[1] + 0.05), (x - 0.45, l.end[1] + 0.05)), ((x - 0.45, l.end[1] + 0.05), (x - 0.45, r.start[1] - 0.05))]:
+        d += elm.Line().at(a).to(b).linestyle("--").linewidth(1)
+    save("q-gate2016-s2-q11", d)
+
+
+def q13():
+    """One-line: S1 on bus 1; two parallel lines to bus 2 (upper: R1 at bus 1, R2 at bus 2; lower: R3 at bus 1, R4 at bus 2);
+    bus 2 to bus 3 line with R5 at bus 2 and R6 at bus 3; S2 on bus 3."""
+    from svgkit import svg as _svg, text as _t
+    W, H = 560, 150
+    out = []
+    def line(x1, y1, x2, y2, w=1.6):
+        out.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="currentColor" stroke-width="{w}"/>')
+    def relay(x, y, name):
+        out.append(f'<rect x="{x - 14}" y="{y - 6}" width="28" height="12" fill="currentColor"/>')
+        out.append(_t(x, y - 14, name, size=13))
+    def gen(x, y, name):
+        out.append(f'<circle cx="{x}" cy="{y}" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/>')
+        out.append(f'<path d="M{x - 6},{y} q3,-6 6,0 t6,0" fill="none" stroke="currentColor" stroke-width="1.4"/>')
+        out.append(_t(x, y - 20, name, size=13))
+    y1, y2 = 55, 95
+    b1, b2, b3 = 110, 290, 470
+    gen(40, 75, "S1"); line(51, 75, b1, 75)
+    gen(520, 75, "S2"); line(b3, 75, 509, 75)
+    for x in (b1, b2, b3):
+        line(x, 35, x, 115, 4)
+    out.append(_t(b1, 132, "bus 1", size=12)); out.append(_t(b2, 132, "bus 2", size=12)); out.append(_t(b3, 132, "bus 3", size=12))
+    line(b1, y1, b2, y1); line(b1, y2, b2, y2); line(b2, 75, b3, 75)
+    relay(b1 + 35, y1, "R1"); relay(b2 - 35, y1, "R2"); relay(b1 + 35, y2, "R3"); relay(b2 - 35, y2, "R4")
+    relay(b2 + 35, 75, "R5"); relay(b3 - 35, 75, "R6")
+    write("q-gate2016-s2-q13", _svg(W, H, *out))
+
+
 if __name__ == "__main__":
+    q11()
+    q13()
     q2()
     q3()
     print("ok")
