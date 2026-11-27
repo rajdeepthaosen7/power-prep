@@ -163,7 +163,69 @@ def q25():
     save("q-gate2016-s1-q25", d)
 
 
+def q30():
+    """Asymptotic Bode magnitude: +20 dB/dec crossing 0 dB at 0.5 rad/s, flat 12 dB, then -40 dB/dec crossing 0 dB at 8 rad/s."""
+    import math
+    u = lambda w: math.log10(w) + 0.8          # shift so the axis sits left of 0.5 rad/s, as in the paper
+    pts = [(u(0.25), -6), (u(2), 12), (u(4), 12), (u(16), -12)]
+    g = plot([pts], xmin=0, xmax=u(20), ymin=-14, ymax=20, w=380, h=210, xlabel="ω (rad/s)", ylabel="magnitude (dB)",
+             xticks=[(u(0.5), "0.5"), (u(8), "8")], yticks=[(0, "0 dB")], label_origin=False,
+             notes=[(u(0.7), 9, "20 dB/dec", "end"), (u(2.8), 14.5, "12 dB", "middle"), (u(8.5), 7, "−40 dB/dec", "start")], left=50)
+    write("q-gate2016-s1-q30", svg(380, 210, g))
+
+
+def q34():
+    """Two real-valued spectra made of triangles; X2(w) is X1(-w)."""
+    t1 = [(-1.3, 0), (-1, 0), (-0.5, 0.3), (0, 0), (0.5, 1), (1, 0), (1.5, 0.5), (2, 0), (2.4, 0)]
+    t2 = [(-x, y) for x, y in reversed(t1)]
+    g1 = plot([t1], xmin=-1.3, xmax=2.4, ymin=0, ymax=1.2, w=260, h=170, xlabel="ω", ylabel="X1(jω)",
+              xticks=[(-1, "−1"), (1, "1"), (2, "2")], notes=[(-0.5, 0.42, "0.3", "middle"), (0.5, 1.08, "1", "middle"), (1.5, 0.62, "0.5", "middle")],
+              left=20)
+    g2 = plot([t2], xmin=-2.4, xmax=1.3, ymin=0, ymax=1.2, w=260, h=170, xlabel="ω", ylabel="X2(jω)",
+              xticks=[(-2, "−2"), (-1, "−1"), (1, "1")], notes=[(0.5, 0.42, "0.3", "middle"), (-0.5, 1.08, "1", "middle"), (-1.5, 0.62, "0.5", "middle")],
+              left=20, ox=280)
+    write("q-gate2016-s1-q34", svg(570, 170, g1, g2))
+
+
+def q36():
+    """Two JK flip-flops on one clock: FF A has J = K = 1 (5 V); FF B has J = K = Q-bar of A."""
+    d = D()
+    pins = [elm.IcPin(name="J", side="left", slot="3/3"), elm.IcPin(name=">", side="left", slot="2/3", anchorname="clk"),
+            elm.IcPin(name="K", side="left", slot="1/3"), elm.IcPin(name="Q", side="right", slot="2/2", anchorname="q"),
+            elm.IcPin(name="Q'", side="right", slot="1/2", anchorname="qb")]
+    d += (a := elm.Ic(pins=pins, size=(2, 3), label="A"))
+    d += (b := elm.Ic(pins=pins, size=(2, 3), label="B").at((a.q[0] + 3.6, a.J[1])).anchor("J"))
+    d += elm.Line().right().at(a.q).length(0.5).label("QA", loc="top")
+    d += elm.Line().right().at(b.q).length(0.6).label("QB", loc="right")
+    # FF A: J = K = 5 V
+    d += elm.Line().left().at(a.J).length(0.8)
+    d += (v := elm.Dot())
+    d += elm.Line().up().length(0.8).label("5 V", loc="right")
+    d += elm.Line().down().at(v.center).toy(a.K)
+    d += elm.Line().right().tox(a.K)
+    # FF B: J = K = Q-bar A
+    d += elm.Line().right().at(a.qb).length(1.7)
+    d += elm.Line().up().toy(b.J)
+    d += (j := elm.Dot())
+    d += elm.Line().right().tox(b.J)
+    d += elm.Line().down().at(j.center).toy(b.K)
+    d += elm.Line().right().tox(b.K)
+    # common clock
+    y = a.K[1] - 1.2
+    d += elm.Line().left().at(a.clk).length(1.4)
+    d += elm.Line().down().toy(y)
+    d += (c := elm.Dot())
+    d += elm.Line().left().length(0.8).label("CLK", loc="left")
+    d += elm.Line().right().at(c.center).tox(b.clk[0] - 1.0)
+    d += elm.Line().up().toy(b.clk)
+    d += elm.Line().right().tox(b.clk)
+    save("q-gate2016-s1-q36", d)
+
+
 if __name__ == "__main__":
+    q34()
+    q36()
+    q30()
     q25()
     q11()
     q12()

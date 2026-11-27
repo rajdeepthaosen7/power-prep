@@ -710,3 +710,207 @@ questions:
       2. So rank($A^TA$) = 2. ($A^TA$ is $3 \times 3$, but only rank 2.)
 
       **Answer: (B).**
+  - n: 30
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      Consider the following asymptotic Bode magnitude plot ($\omega$ is in rad/s).
+
+      ![Asymptotic Bode magnitude plot: rises at 20 dB/dec through 0 dB at 0.5 rad/s, flat at 12 dB, then falls at -40 dB/dec through 0 dB at 8 rad/s](fig:q-gate2016-s1-q30)
+
+      Which one of the following transfer functions is best represented by the above Bode magnitude plot?
+    options:
+      - {label: A, md: "$\\dfrac{2s}{(1 + 0.5s)(1 + 0.25s)^2}$", correct: true}
+      - {label: B, md: "$\\dfrac{4(1 + 0.5s)}{s(1 + 0.25s)}$"}
+      - {label: C, md: "$\\dfrac{2s}{(1 + 2s)(1 + 4s)}$"}
+      - {label: D, md: "$\\dfrac{4s}{(1 + 2s)(1 + 4s)^2}$"}
+    solution: |
+      **Idea used:** read the plot from left to right. Each change of slope is a corner; $-20$ dB/dec per pole, $+20$ per zero.
+      A factor $(1 + s/\omega_c)$ has its corner at $\omega_c$, so $(1 + 0.5s)$ is a corner at 2 rad/s and $(1 + 0.25s)$ at 4 rad/s.
+
+      1. **Start at +20 dB/dec through 0 dB at $\omega = 0.5$:** a term $Ks$ with $|K \times 0.5| = 1$, so $K = 2$: the numerator is $2s$.
+      2. **Where does it reach 12 dB?** $20\log_{10}(2\omega) = 12$ gives $2\omega \approx 4$, so $\omega \approx 2$. The slope becomes 0,
+         so one pole at 2 rad/s: $(1 + 0.5s)$.
+      3. **Flat until the slope becomes $-40$:** that needs two more poles at the same corner. From 12 dB, falling 40 dB/dec, it reaches
+         0 dB at 8 rad/s; $40\log_{10}(8/\omega_c) = 12$ gives $8/\omega_c \approx 2$, so $\omega_c = 4$: $(1 + 0.25s)^2$.
+      4. So $G(s) = \dfrac{2s}{(1 + 0.5s)(1 + 0.25s)^2}$.
+
+      **Without a calculator:** 12 dB is "×4" (6 dB per doubling, two doublings), and 40 dB/dec is 12 dB per octave (per doubling).
+      From 4 to 8 rad/s is one doubling: $12$ dB down. (C) and (D) have corners at 0.5 and 0.25 rad/s, far too low; (B) starts with
+      $-20$ dB/dec (a pole at the origin), not $+20$.
+
+      **Answer: (A).**
+  - n: 31
+    marks: 2
+    type: NAT
+    nat: {min: 5.9, max: 6.1}
+    difficulty: 1
+    stem: |
+      Consider the following state-space representation of a linear time-invariant system.
+      $$\dot{\mathbf{x}}(t) = \begin{bmatrix} 1 & 0 \\ 0 & 2 \end{bmatrix}\mathbf{x}(t),\quad y(t) = \mathbf{c}^{\mathrm T}\mathbf{x}(t),\quad
+      \mathbf{c} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}\ \text{and}\ \mathbf{x}(0) = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$$
+      The value of $y(t)$ for $t = \log_e 2$ is __________.
+    options:
+      - {label: A, md: "3"}
+      - {label: B, md: "4"}
+      - {label: C, md: "6", correct: true}
+      - {label: D, md: "8"}
+    solution: |
+      **Idea used:** the matrix is diagonal, so each state moves on its own: $\dot{x}_1 = x_1$ and $\dot{x}_2 = 2x_2$.
+
+      1. $x_1(t) = x_1(0)\,e^{t} = e^{t}$.
+      2. $x_2(t) = x_2(0)\,e^{2t} = e^{2t}$.
+      3. $y = x_1 + x_2 = e^{t} + e^{2t}$.
+      4. At $t = \ln 2$: $e^{\ln 2} = 2$ and $e^{2\ln 2} = (e^{\ln 2})^2 = 4$. So $y = 2 + 4 = 6$.
+
+      **Without a calculator:** $e^{\ln 2} = 2$ is the whole trick. Option A ($2 + 1$) and option B ($2 \times 2$) are the usual slips.
+
+      **Answer: 6.**
+  - n: 32
+    marks: 2
+    type: MCQ
+    difficulty: 3
+    stem: |
+      Loop transfer function of a feedback system is $G(s)H(s) = \dfrac{s + 3}{s^2(s - 3)}$. Take the Nyquist contour in the clockwise
+      direction. Then, the Nyquist plot of $G(s)H(s)$ encircles $-1 + j0$
+    options:
+      - {label: A, md: "once in clockwise direction", correct: true}
+      - {label: B, md: "twice in clockwise direction"}
+      - {label: C, md: "once in anticlockwise direction"}
+      - {label: D, md: "twice in anticlockwise direction"}
+    solution: |
+      **Idea used (Nyquist criterion):** with a clockwise contour, $N = Z - P$, where
+      $N$ = clockwise encirclements of $-1$, $P$ = open-loop poles in the right half plane, $Z$ = closed-loop poles in the right half plane.
+      $Z$ can be found from the characteristic equation without drawing the plot.
+
+      1. **P:** the open-loop pole at $s = +3$ is in the right half plane; the two poles at the origin are on the contour (indented around),
+         not inside. So $P = 1$.
+      2. **Characteristic equation:** $1 + GH = 0$ gives $s^2(s - 3) + (s + 3) = 0$, i.e. $s^3 - 3s^2 + s + 3 = 0$.
+      3. **Routh table:**
+
+         | | | |
+         |---|---|---|
+         | $s^3$ | 1 | 1 |
+         | $s^2$ | $-3$ | 3 |
+         | $s^1$ | $\dfrac{(-3)(1) - (1)(3)}{-3} = 2$ | |
+         | $s^0$ | 3 | |
+
+         First column: $1, -3, 2, 3$. Two sign changes, so $Z = 2$.
+      4. $N = Z - P = 2 - 1 = 1$: **one clockwise** encirclement.
+
+      **Without a calculator:** a negative coefficient ($-3s^2$) already tells you the closed loop is unstable ($Z \ge 1$), so the
+      plot cannot encircle anticlockwise enough to cancel $P$; the Routh table gives the exact count.
+
+      **Answer: (A).**
+  - n: 33
+    marks: 2
+    type: NAT
+    nat: {min: 2, max: 2}
+    difficulty: 2
+    stem: |
+      Given the following polynomial equation
+      $$s^3 + 5.5\,s^2 + 8.5\,s + 3 = 0,$$
+      the number of roots of the polynomial, which have real parts strictly less than $-1$, is ________ .
+    options:
+      - {label: A, md: "0"}
+      - {label: B, md: "1"}
+      - {label: C, md: "2", correct: true}
+      - {label: D, md: "3"}
+    solution: |
+      **Idea used:** shift the axis. Put $s = z - 1$; a root with real part less than $-1$ in $s$ is a root with negative real part in $z$.
+      Then count with Routh. (Here the roots can also be found directly.)
+
+      **Direct way:**
+      1. Try $s = -0.5$: $-0.125 + 5.5(0.25) - 8.5(0.5) + 3 = -0.125 + 1.375 - 4.25 + 3 = 0$. So $(s + 0.5)$ is a factor.
+      2. Divide: $s^3 + 5.5s^2 + 8.5s + 3 = (s + 0.5)(s^2 + 5s + 6) = (s + 0.5)(s + 2)(s + 3)$.
+      3. Roots: $-0.5,\ -2,\ -3$. Real part less than $-1$: $-2$ and $-3$. **Two** roots.
+
+      **Shift-and-Routh way:** with $s = z - 1$ the equation becomes $z^3 + 2.5z^2 + 0.5z - 1 = 0$. The first column of the Routh table ($1,\ 2.5,\ 0.9,\ -1$)
+      changes sign once, so one root has $z > 0$ (that is $s > -1$) and the other **two** have $s < -1$.
+
+      **Without a calculator:** the numbers 5.5, 8.5, 3 suggest a half: try $s = -\tfrac12$. Once it works, the quadratic
+      $s^2 + 5s + 6$ factors at sight.
+
+      **Answer: 2.**
+  - n: 34
+    marks: 2
+    type: MCQ
+    difficulty: 3
+    stem: |
+      Suppose $x_1(t)$ and $x_2(t)$ have the Fourier transforms as shown below.
+
+      ![X1(jw): triangles of height 0.3 on -1 to 0, 1 on 0 to 1, 0.5 on 1 to 2. X2(jw): the mirror image, 0.5 on -2 to -1, 1 on -1 to 0, 0.3 on 0 to 1](fig:q-gate2016-s1-q34)
+
+      Which one of the following statements is TRUE?
+    options:
+      - {label: A, md: "$x_1(t)$ and $x_2(t)$ are complex and $x_1(t)x_2(t)$ is also complex with nonzero imaginary part"}
+      - {label: B, md: "$x_1(t)$ and $x_2(t)$ are real and $x_1(t)x_2(t)$ is also real"}
+      - {label: C, md: "$x_1(t)$ and $x_2(t)$ are complex but $x_1(t)x_2(t)$ is real", correct: true}
+      - {label: D, md: "$x_1(t)$ and $x_2(t)$ are imaginary but $x_1(t)x_2(t)$ is real"}
+    solution: |
+      **Idea used:** a signal is real only if its spectrum is conjugate-symmetric: $X(-\omega) = X^*(\omega)$. For a real-valued plot like
+      these, that means the plot must be **mirror-symmetric** about $\omega = 0$.
+
+      1. $X_1$ is not mirror-symmetric (0.3 on the left, 1 and 0.5 on the right), so $x_1(t)$ is **complex**. Same for $X_2$, so $x_2(t)$ is complex.
+      2. But $X_2$ is exactly the mirror image of $X_1$: $X_2(\omega) = X_1(-\omega)$.
+      3. The conjugate signal $x_1^*(t)$ has spectrum $X_1^*(-\omega)$. Since $X_1$ is real-valued, that is $X_1(-\omega) = X_2(\omega)$.
+         So $x_2(t) = x_1^*(t)$.
+      4. Then $x_1(t)\,x_2(t) = x_1(t)\,x_1^*(t) = |x_1(t)|^2$, which is **real** (and never negative).
+
+      **Without a calculator:** "two complex signals whose product is real" is the pattern of a signal times its conjugate, and the
+      mirror-image spectra are the clue to it.
+
+      **Answer: (C).**
+  - n: 35
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      The output of a continuous-time, linear time-invariant system is denoted by $\boldsymbol{T}\{x(t)\}$ where $x(t)$ is the input signal.
+      A signal $z(t)$ is called eigen-signal of the system $\boldsymbol{T}$, when $\boldsymbol{T}\{z(t)\} = \gamma\,z(t)$, where $\gamma$ is a
+      complex number, in general, and is called an eigenvalue of $\boldsymbol{T}$. Suppose the impulse response of the system $\boldsymbol{T}$ is
+      real and even. Which of the following statements is TRUE?
+    options:
+      - {label: A, md: "$\\cos(t)$ is an eigen-signal but $\\sin(t)$ is not"}
+      - {label: B, md: "$\\cos(t)$ and $\\sin(t)$ are both eigen-signals but with different eigenvalues"}
+      - {label: C, md: "$\\sin(t)$ is an eigen-signal but $\\cos(t)$ is not"}
+      - {label: D, md: "$\\cos(t)$ and $\\sin(t)$ are both eigen-signals with identical eigenvalues", correct: true}
+    solution: |
+      **Idea used:** for an LTI system, $e^{j\omega t}$ goes in and $H(j\omega)e^{j\omega t}$ comes out. If $h(t)$ is **real and even**,
+      then $H(j\omega)$ is **real and even**: $H(-j\omega) = H(j\omega)$, a plain real number with no phase.
+
+      1. $\cos t = \tfrac12(e^{jt} + e^{-jt})$. Output: $\tfrac12\big(H(j1)e^{jt} + H(-j1)e^{-jt}\big) = H(j1)\cos t$.
+      2. $\sin t = \tfrac{1}{2j}(e^{jt} - e^{-jt})$. Output: $\tfrac{1}{2j}\big(H(j1)e^{jt} - H(-j1)e^{-jt}\big) = H(j1)\sin t$.
+      3. Both come out as themselves times the same real number $H(j1)$. Both are eigen-signals with the **same** eigenvalue.
+
+      **Without a calculator:** a real, even impulse response means zero phase shift. A sinusoid then comes out with only its size
+      changed and no shift, so $\cos$ stays $\cos$ and $\sin$ stays $\sin$, both scaled by the same gain.
+
+      **Answer: (D).**
+  - n: 36
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      The current state $Q_A\,Q_B$ of a two JK flip-flop system is 00. Assume that the clock rise-time is much smaller than the delay of
+      the JK flip-flop. The next state of the system is
+
+      ![Two JK flip-flops on a common clock CLK. Flip-flop A has J and K tied to 5 V. Flip-flop B has J and K both tied to Q' (Q-bar) of A](fig:q-gate2016-s1-q36)
+    options:
+      - {label: A, md: "00"}
+      - {label: B, md: "01"}
+      - {label: C, md: "11", correct: true}
+      - {label: D, md: "10"}
+    solution: |
+      **Idea used:** a JK flip-flop with $J = K = 1$ toggles; with $J = K = 0$ it holds. Both flip-flops see the clock at the same
+      instant, and because the flip-flop delay is longer than the clock edge, B reacts to the **old** value of $\overline{Q_A}$.
+
+      1. Flip-flop A: $J = K = 1$ (5 V), so it toggles: $Q_A$ goes $0 \to 1$.
+      2. Flip-flop B: $J = K = \overline{Q_A}$. Before the clock, $Q_A = 0$, so $\overline{Q_A} = 1$: B toggles, $Q_B$ goes $0 \to 1$.
+      3. Next state $Q_A Q_B = 11$.
+
+      **Trap:** using the *new* $Q_A = 1$ for B would make B hold and give 10 (option D). The note about the clock rise-time is there to
+      rule that out.
+
+      **Answer: (C) 11.**
