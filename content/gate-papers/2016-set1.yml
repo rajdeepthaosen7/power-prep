@@ -1,0 +1,466 @@
+# GATE EE 2016, Set 1 (2nd stage). Source: EE2016.pdf in the dump, with the official answer key at its end.
+# Q15 and Q17 are written in Circuits Ch2 (questions-2.yml, questions-1.yml), so they are not here.
+paper: {source: GATE-2016, q_prefix: "S1-Q", key_prefix: gate2016-s1, title: "GATE EE 2016, Set 1"}
+questions:
+  - n: 1
+    marks: 1
+    type: NAT
+    nat: {min: 0, max: 0}
+    difficulty: 1
+    stem: |
+      The maximum value attained by the function $f(x) = x(x-1)(x-2)$ in the interval $[1, 2]$ is ______.
+    options:
+      - {label: A, md: "$0$", correct: true}
+      - {label: B, md: "$0.385$"}
+      - {label: C, md: "$-0.385$"}
+      - {label: D, md: "$1$"}
+    solution: |
+      **Idea used:** on a closed interval, the largest value is at an end point or at a turning point *inside* the interval.
+
+      1. Ends: $f(1) = 1 \times 0 \times (-1) = 0$ and $f(2) = 2 \times 1 \times 0 = 0$.
+      2. Inside, take $x = 1.5$: $f(1.5) = 1.5 \times 0.5 \times (-0.5) = -0.375$. For every $x$ between 1 and 2,
+         $x > 0$, $(x-1) > 0$ and $(x-2) < 0$, so $f(x)$ is **negative** there.
+      3. So nothing inside beats the ends. The maximum is $0$.
+
+      **Trap:** $f'(x) = 3x^2 - 6x + 2 = 0$ gives $x = 1 \pm \tfrac{1}{\sqrt3}$. The local maximum ($f \approx 0.385$) is at
+      $x \approx 0.42$, which is **outside** $[1, 2]$. Option (B) is that value.
+
+      **Without a calculator:** just check the sign of the three brackets between 1 and 2: plus, plus, minus. The function is
+      never above zero there, and it is zero at both ends.
+
+      **Answer: 0.**
+  - n: 2
+    marks: 1
+    type: NAT
+    nat: {min: 3, max: 3}
+    difficulty: 1
+    stem: |
+      Consider a $3 \times 3$ matrix with every element being equal to 1. Its only non-zero eigenvalue is ____.
+    options:
+      - {label: A, md: "$1$"}
+      - {label: B, md: "$3$", correct: true}
+      - {label: C, md: "$9$"}
+      - {label: D, md: "$\\sqrt{3}$"}
+    solution: |
+      **Idea used:** the sum of the eigenvalues equals the trace (sum of the diagonal elements).
+
+      1. Every row is the same, so the rank is 1. A rank-1 matrix has only **one** non-zero eigenvalue; the other two are 0.
+      2. Trace $= 1 + 1 + 1 = 3$.
+      3. Sum of eigenvalues $= \lambda + 0 + 0 = 3$, so $\lambda = 3$.
+
+      **Check:** multiply the matrix by $[1, 1, 1]^T$: each row gives $1 + 1 + 1 = 3$, so the result is $3 \times [1, 1, 1]^T$. The eigenvalue is 3.
+
+      **Without a calculator:** an $n \times n$ matrix of all ones has eigenvalues $n, 0, 0, \dots$ Here $n = 3$.
+
+      **Answer: 3.**
+  - n: 3
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      The Laplace Transform of $f(t) = e^{2t}\sin(5t)\,u(t)$ is
+    options:
+      - {label: A, md: "$\\dfrac{5}{s^2 - 4s + 29}$", correct: true}
+      - {label: B, md: "$\\dfrac{5}{s^2 + 5}$"}
+      - {label: C, md: "$\\dfrac{s - 2}{s^2 - 4s + 29}$"}
+      - {label: D, md: "$\\dfrac{5}{s + 5}$"}
+    solution: |
+      **Idea used:** $\mathcal{L}\{\sin(\omega t)u(t)\} = \dfrac{\omega}{s^2 + \omega^2}$, and multiplying by $e^{at}$ replaces $s$ by $(s - a)$ (shifting in $s$).
+
+      1. $\mathcal{L}\{\sin 5t\} = \dfrac{5}{s^2 + 25}$.
+      2. With $e^{2t}$: replace $s$ by $s - 2$: $\dfrac{5}{(s-2)^2 + 25}$.
+      3. $(s-2)^2 + 25 = s^2 - 4s + 4 + 25 = s^2 - 4s + 29$.
+
+      So $F(s) = \dfrac{5}{s^2 - 4s + 29}$.
+
+      **Without a calculator:** a sine keeps its $\omega$ (here 5) on top, so (C) is out (that is the cosine form). The shift by 2 must
+      show up as $-4s$ in the bottom, so (B) and (D) are out.
+
+      **Answer: (A).**
+  - n: 4
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    stem: |
+      A function $y(t)$, such that $y(0) = 1$ and $y(1) = 3e^{-1}$, is a solution of the differential equation
+      $\dfrac{d^2y}{dt^2} + 2\dfrac{dy}{dt} + y = 0$. Then $y(2)$ is
+    options:
+      - {label: A, md: "$5e^{-1}$"}
+      - {label: B, md: "$5e^{-2}$", correct: true}
+      - {label: C, md: "$7e^{-1}$"}
+      - {label: D, md: "$7e^{-2}$"}
+    solution: |
+      **Idea used:** for $y'' + 2y' + y = 0$ the characteristic equation is $m^2 + 2m + 1 = 0$, i.e. $(m + 1)^2 = 0$.
+      A repeated root $m = -1$ gives $y = (C_1 + C_2 t)e^{-t}$.
+
+      1. $y(0) = (C_1 + 0) \times 1 = 1$, so $C_1 = 1$.
+      2. $y(1) = (1 + C_2)e^{-1} = 3e^{-1}$, so $1 + C_2 = 3$ and $C_2 = 2$.
+      3. $y(t) = (1 + 2t)e^{-t}$.
+      4. $y(2) = (1 + 2 \times 2)e^{-2} = 5e^{-2}$.
+
+      **Without a calculator:** the answer must carry $e^{-2}$ at $t = 2$ (the solution decays as $e^{-t}$), so only (B) or (D).
+      The bracket grows by 2 for each unit of $t$: $1, 3, 5$. So $5e^{-2}$.
+
+      **Answer: (B) $5e^{-2}$.**
+  - n: 5
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    stem: |
+      The value of the integral
+      $$\oint_C \frac{2z + 5}{\left(z - \tfrac{1}{2}\right)\left(z^2 - 4z + 5\right)}\,dz$$
+      over the contour $|z| = 1$, taken in the anti-clockwise direction, would be
+    options:
+      - {label: A, md: "$\\dfrac{24\\pi i}{13}$"}
+      - {label: B, md: "$\\dfrac{48\\pi i}{13}$", correct: true}
+      - {label: C, md: "$\\dfrac{24}{13}$"}
+      - {label: D, md: "$\\dfrac{12}{13}$"}
+    solution: |
+      **Idea used (residue theorem):** $\oint_C f(z)\,dz = 2\pi i \times$ (sum of the residues of the poles **inside** $C$).
+
+      1. Poles: $z = \tfrac12$, and the roots of $z^2 - 4z + 5 = 0$, which are $z = 2 \pm i$.
+      2. Inside the unit circle: $|\tfrac12| = 0.5 < 1$, yes. $|2 \pm i| = \sqrt{5} \approx 2.24 > 1$, no. Only $z = \tfrac12$ counts.
+      3. Residue at $z = \tfrac12$: put $z = \tfrac12$ in everything except the factor $(z - \tfrac12)$:
+         - top: $2 \times \tfrac12 + 5 = 6$
+         - bottom: $\tfrac14 - 2 + 5 = \tfrac{13}{4}$
+         - residue $= 6 \div \tfrac{13}{4} = \tfrac{24}{13}$.
+      4. Integral $= 2\pi i \times \tfrac{24}{13} = \tfrac{48\pi i}{13}$.
+
+      **Without a calculator:** a closed contour integral that encloses a pole always carries $2\pi i$, so (C) and (D) are out.
+      (A) is the common slip of forgetting the 2 in $2\pi i$.
+
+      **Answer: (B).**
+  - n: 6
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      The transfer function of a system is $\dfrac{Y(s)}{R(s)} = \dfrac{s}{s+2}$. The steady state output $y(t)$ is $A\cos(2t + \varphi)$ for
+      the input $\cos(2t)$. The values of $A$ and $\varphi$, respectively are
+    options:
+      - {label: A, md: "$\\dfrac{1}{\\sqrt2},\\ -45^\\circ$"}
+      - {label: B, md: "$\\dfrac{1}{\\sqrt2},\\ +45^\\circ$", correct: true}
+      - {label: C, md: "$\\sqrt2,\\ -45^\\circ$"}
+      - {label: D, md: "$\\sqrt2,\\ +45^\\circ$"}
+    solution: |
+      **Idea used:** for a sinusoidal input of frequency $\omega$, the steady-state output is the input scaled by $|G(j\omega)|$ and
+      shifted by $\angle G(j\omega)$.
+
+      1. Put $s = j2$: $G(j2) = \dfrac{j2}{2 + j2}$.
+      2. Size: $|j2| = 2$ and $|2 + j2| = \sqrt{4 + 4} = 2\sqrt2$, so $A = \dfrac{2}{2\sqrt2} = \dfrac{1}{\sqrt2}$.
+      3. Angle: top $= +90^\circ$, bottom $= \tan^{-1}(2/2) = 45^\circ$, so $\varphi = 90^\circ - 45^\circ = +45^\circ$.
+
+      **Without a calculator:** $s/(s+2)$ is a high-pass (lead) network: it can never amplify (so $A < 1$, out go C and D) and the $s$ on
+      top always adds phase (so $\varphi > 0$).
+
+      **Answer: (B).**
+  - n: 7
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      The phase cross-over frequency of the transfer function $G(s) = \dfrac{100}{(s+1)^3}$ in rad/s is
+    options:
+      - {label: A, md: "$\\sqrt3$", correct: true}
+      - {label: B, md: "$\\dfrac{1}{\\sqrt3}$"}
+      - {label: C, md: "$3$"}
+      - {label: D, md: "$3\\sqrt3$"}
+    solution: |
+      **Idea used:** the phase cross-over frequency $\omega_{pc}$ is where the phase of $G(j\omega)$ is $-180^\circ$. The gain (100) does not
+      change the phase.
+
+      1. Each $(s + 1)$ in the bottom gives $-\tan^{-1}\omega$. Three of them: $\angle G = -3\tan^{-1}\omega$.
+      2. Set $-3\tan^{-1}\omega = -180^\circ$, so $\tan^{-1}\omega = 60^\circ$.
+      3. $\omega = \tan 60^\circ = \sqrt3$ rad/s.
+
+      **Without a calculator:** three equal poles share the $180^\circ$ equally, $60^\circ$ each, and $\tan 60^\circ = \sqrt3$ is a value you know.
+
+      **Answer: (A) $\sqrt3$ rad/s.**
+  - n: 8
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      Consider a continuous-time system with input $x(t)$ and output $y(t)$ given by
+      $$y(t) = x(t)\cos(t)$$
+      This system is
+    options:
+      - {label: A, md: "linear and time-invariant"}
+      - {label: B, md: "non-linear and time-invariant"}
+      - {label: C, md: "linear and time-varying", correct: true}
+      - {label: D, md: "non-linear and time-varying"}
+    solution: |
+      **Idea used:** test the two properties one by one.
+
+      1. **Linear?** Feed $a x_1 + b x_2$: the output is $(a x_1 + b x_2)\cos t = a\,x_1\cos t + b\,x_2\cos t$, which is $a y_1 + b y_2$. Yes, linear.
+      2. **Time-invariant?** Delay the input by $T$: the output is $x(t - T)\cos t$. But the delayed output would be $y(t - T) = x(t - T)\cos(t - T)$.
+         These are not the same ($\cos t \ne \cos(t - T)$), so it is **time-varying**.
+
+      **Without a calculator:** multiplying the input by a fixed function of time (here $\cos t$, an AM modulator) is always linear,
+      and always time-varying, because the multiplier "knows" what time it is.
+
+      **Answer: (C).**
+  - n: 9
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    stem: |
+      The value of $\displaystyle\int_{-\infty}^{+\infty} e^{-t}\,\delta(2t - 2)\,dt$, where $\delta(t)$ is the Dirac delta function, is
+    options:
+      - {label: A, md: "$\\dfrac{1}{2e}$", correct: true}
+      - {label: B, md: "$\\dfrac{2}{e}$"}
+      - {label: C, md: "$\\dfrac{1}{e^2}$"}
+      - {label: D, md: "$\\dfrac{1}{2e^2}$"}
+    solution: |
+      **Idea used:** scaling of the delta function, $\delta(at) = \dfrac{1}{|a|}\delta(t)$, then the sifting property
+      $\int f(t)\,\delta(t - t_0)\,dt = f(t_0)$.
+
+      1. $\delta(2t - 2) = \delta\big(2(t - 1)\big) = \tfrac12\,\delta(t - 1)$.
+      2. The integral becomes $\tfrac12 \int e^{-t}\,\delta(t - 1)\,dt = \tfrac12\,e^{-1}$.
+
+      So the value is $\dfrac{1}{2e}$.
+
+      **Without a calculator:** the spike sits where $2t - 2 = 0$, i.e. $t = 1$, so the answer carries $e^{-1}$ (out go C and D).
+      Squeezing time by 2 makes the spike's area half, so $\tfrac12$, not 2.
+
+      **Answer: (A).**
+  - n: 10
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      A temperature in the range of $-40^\circ$C to $55^\circ$C is to be measured with a resolution of $0.1^\circ$C. The minimum
+      number of ADC bits required to get a matching dynamic range of the temperature sensor is
+    options:
+      - {label: A, md: "8"}
+      - {label: B, md: "10", correct: true}
+      - {label: C, md: "12"}
+      - {label: D, md: "14"}
+    solution: |
+      **Idea used:** an $n$-bit ADC gives $2^n$ levels. We need at least as many levels as there are $0.1^\circ$C steps in the range.
+
+      1. Range $= 55 - (-40) = 95^\circ$C.
+      2. Steps needed $= 95 \div 0.1 = 950$.
+      3. $2^9 = 512$ is too few; $2^{10} = 1024$ is enough. So **10 bits**.
+
+      **Without a calculator:** remember $2^{10} = 1024 \approx 1000$. 950 steps is just under 1000, so 10 bits.
+
+      **Answer: (B) 10.**
+  - n: 11
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      Consider the following circuit which uses a 2-to-1 multiplexer as shown in the figure below. The Boolean expression for output F in
+      terms of A and B is
+
+      ![2-to-1 multiplexer: input 0 is NOT A, input 1 is A, select is B](fig:q-gate2016-s1-q11)
+    options:
+      - {label: A, md: "$A \\oplus B$"}
+      - {label: B, md: "$\\overline{A + B}$"}
+      - {label: C, md: "$A + B$"}
+      - {label: D, md: "$\\overline{A \\oplus B}$", correct: true}
+    solution: |
+      **Idea used:** a 2-to-1 MUX gives $Y = \overline{S}\,I_0 + S\,I_1$: input 0 when the select is 0, input 1 when it is 1.
+
+      1. Here $I_0 = \overline{A}$, $I_1 = A$, $S = B$.
+      2. $F = \overline{B}\,\overline{A} + B\,A$.
+      3. $\overline{A}\,\overline{B} + AB$ is 1 when A and B are **equal**: that is XNOR, $\overline{A \oplus B}$.
+
+      **Check with a table:** B = 0 picks $\overline{A}$: (A, B) = (0, 0) gives 1, (1, 0) gives 0. B = 1 picks A: (0, 1) gives 0, (1, 1) gives 1.
+      Output 1 only for equal inputs: XNOR.
+
+      **Without a calculator:** try A = B = 0. The MUX picks input 0, which is $\overline{A} = 1$. Only (B) and (D) give 1 for (0, 0);
+      then try A = B = 1: input 1 = A = 1, and only (D) gives 1.
+
+      **Answer: (D).**
+  - n: 12
+    marks: 1
+    type: NAT
+    nat: {min: 18, max: 20}
+    difficulty: 2
+    stem: |
+      A transistor circuit is given below. The Zener diode breakdown voltage is 5.3 V as shown. Take base to emitter voltage drop to be
+      0.6 V. The value of the current gain $\beta$ is _________.
+
+      ![BJT with 220 ohm collector and 470 ohm emitter resistors; base held by a 5.3 V Zener fed from 10 V through 4.7 kilo-ohm; Zener current 0.5 mA](fig:q-gate2016-s1-q12)
+    options:
+      - {label: A, md: "9"}
+      - {label: B, md: "19", correct: true}
+      - {label: C, md: "22"}
+      - {label: D, md: "9.5"}
+    solution: |
+      **Idea used:** the Zener fixes the base voltage; from it get the emitter current, and from the 4.7 kΩ current get the base current.
+      Then $\beta = I_C / I_B$.
+
+      1. Base voltage $= 5.3$ V (the Zener holds it).
+      2. Emitter voltage $= 5.3 - 0.6 = 4.7$ V.
+      3. $I_E = 4.7 \text{ V} \div 470\ \Omega = 0.01$ A $= 10$ mA.
+      4. Current in the 4.7 kΩ: $(10 - 5.3) \text{ V} \div 4.7 \text{ k}\Omega = 4.7 \div 4.7 = 1$ mA.
+      5. At the base node this 1 mA splits: 0.5 mA goes into the Zener, so $I_B = 1 - 0.5 = 0.5$ mA.
+      6. $I_C = I_E - I_B = 10 - 0.5 = 9.5$ mA.
+      7. $\beta = 9.5 \div 0.5 = 19$.
+
+      **Check:** $I_E / I_B = 10 / 0.5 = 20 = \beta + 1$. ✔
+
+      **Without a calculator:** the numbers are set up to be easy: $4.7/470$ and $4.7/4.7$. Common slips: forgetting the 0.5 mA Zener
+      current (then $I_B = 1$ mA and $\beta = 9$), or forgetting the 0.6 V drop (then $\beta \approx 22$).
+
+      **Answer: 19** (GATE accepted 18 to 20).
+  - n: 13
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      In cylindrical coordinate system, the potential produced by a uniform ring charge is given by $\varphi = f(r, z)$, where $f$ is a
+      continuous function of $r$ and $z$. Let $\vec{E}$ be the resulting electric field. Then the magnitude of $\nabla \times \vec{E}$
+    options:
+      - {label: A, md: "increases with $r$."}
+      - {label: B, md: "is 0.", correct: true}
+      - {label: C, md: "is 3."}
+      - {label: D, md: "decreases with $z$."}
+    solution: |
+      **Idea used:** an electrostatic field comes from a potential, $\vec{E} = -\nabla\varphi$, and the curl of a gradient is always zero.
+
+      1. $\vec{E} = -\nabla f(r, z)$.
+      2. $\nabla \times \vec{E} = -\nabla \times (\nabla f) = 0$, for any smooth $f$.
+
+      So the electrostatic field is **conservative** (irrotational) everywhere, whatever the shape of the charge.
+
+      **Without a calculator:** "static charge" and "potential is given" are the two clues. Static electric fields have zero curl
+      (Faraday's law with no changing magnetic field: $\nabla \times \vec{E} = -\partial\vec{B}/\partial t = 0$).
+
+      **Answer: (B) 0.**
+  - n: 14
+    marks: 1
+    type: NAT
+    nat: {min: 99, max: 101}
+    difficulty: 2
+    stem: |
+      A soft-iron toroid is concentric with a long straight conductor carrying a direct current $I$. If the relative permeability
+      $\mu_r$ of soft-iron is 100, the ratio of the magnetic flux densities at two adjacent points located just inside and just outside
+      the toroid, is _______.
+    options:
+      - {label: A, md: "1"}
+      - {label: B, md: "0.01"}
+      - {label: C, md: "10"}
+      - {label: D, md: "100", correct: true}
+    solution: |
+      **Idea used:** around a long straight wire, $H$ goes round in circles with $H = \dfrac{I}{2\pi r}$ (Ampère's law), whatever the
+      material. Then $B = \mu H = \mu_0\mu_r H$.
+
+      1. The toroid is concentric with the wire, so $H$ is along the iron's surface (tangential). The tangential $H$ is the same just
+         inside and just outside (boundary condition, no surface current).
+      2. Inside the iron: $B_{in} = \mu_0 \times 100 \times H$. Just outside (air): $B_{out} = \mu_0 \times 1 \times H$.
+      3. Ratio $B_{in} / B_{out} = 100$.
+
+      **Without a calculator:** same $H$ on both sides of the boundary, so the flux densities differ only by $\mu_r$. Answer 100.
+      (Option B is the ratio upside down.)
+
+      **Answer: 100.**
+  - n: 16
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    stem: |
+      In a constant V/f induction motor drive, the slip at the maximum torque
+    options:
+      - {label: A, md: "is directly proportional to the synchronous speed."}
+      - {label: B, md: "remains constant with respect to the synchronous speed."}
+      - {label: C, md: "has an inverse relation with the synchronous speed.", correct: true}
+      - {label: D, md: "has no relation with the synchronous speed."}
+    solution: |
+      **Idea used:** slip at maximum torque $s_m = \dfrac{R_2}{X_2}$ (rotor resistance over rotor standstill reactance, stator impedance
+      neglected), and a reactance grows with frequency: $X_2 = 2\pi f L_2$.
+
+      1. Under V/f control the supply frequency $f$ is changed to change the speed. Synchronous speed $N_s = \dfrac{120f}{P}$, so $N_s \propto f$.
+      2. $R_2$ does not change with $f$, but $X_2 \propto f$.
+      3. So $s_m = \dfrac{R_2}{2\pi f L_2} \propto \dfrac{1}{f} \propto \dfrac{1}{N_s}$: an **inverse** relation.
+
+      **Good to know:** the maximum torque itself stays (nearly) constant under V/f control, and the *speed drop* at maximum torque,
+      $s_m N_s = \dfrac{R_2}{2\pi L_2} \times \dfrac{120}{P}$, is the same at every frequency. That is why the torque-speed curves just shift
+      sideways.
+
+      **Answer: (C).**
+  - n: 18
+    marks: 1
+    type: NAT
+    nat: {min: 0.5, max: 0.5}
+    difficulty: 2
+    stem: |
+      In the given circuit, the current supplied by the battery, in ampere, is _______.
+
+      ![1 V battery, 1 ohm carrying I1 to a node; from the node a dependent current source of value I2 to ground, and 1 ohm plus 1 ohm in series carrying I2](fig:q-gate2016-s1-q18)
+    options:
+      - {label: A, md: "0.25"}
+      - {label: B, md: "0.33"}
+      - {label: C, md: "0.5", correct: true}
+      - {label: D, md: "1"}
+    solution: |
+      **Idea used:** call the node voltage $V$ and write KCL at that node. The dependent source copies the current $I_2$ of the right branch.
+
+      1. Right branch: two 1 Ω in series, so $I_2 = \dfrac{V}{2}$.
+      2. KCL at the node: current in = current out, so $I_1 = I_2 + I_2 = 2I_2 = V$ (the dependent source takes another $I_2$).
+      3. Left branch: $I_1 = \dfrac{1 - V}{1} = 1 - V$.
+      4. So $V = 1 - V$, which gives $V = 0.5$ V and $I_1 = 0.5$ A.
+
+      **Check:** $I_2 = 0.25$ A in each path to ground, total $0.5$ A. ✔
+
+      **Without a calculator:** the dependent source makes the node "see" two equal paths of 2 Ω each, i.e. 1 Ω to ground.
+      With the 1 Ω in series that is 2 Ω across 1 V: $I_1 = 0.5$ A. Option B (0.33) is what you get if you forget the dependent source.
+
+      **Answer: 0.5 A.**
+  - n: 19
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      In a 100 bus power system, there are 10 generators. In a particular iteration of Newton Raphson load flow technique (in polar
+      coordinates), two of the PV buses are converted to PQ type. In this iteration,
+    options:
+      - {label: A, md: "the number of unknown voltage angles increases by two and the number of unknown voltage magnitudes increases by two."}
+      - {label: B, md: "the number of unknown voltage angles remains unchanged and the number of unknown voltage magnitudes increases by two.", correct: true}
+      - {label: C, md: "the number of unknown voltage angles increases by two and the number of unknown voltage magnitudes decreases by two."}
+      - {label: D, md: "the number of unknown voltage angles remains unchanged and the number of unknown voltage magnitudes decreases by two."}
+    solution: |
+      **Idea used:** what is known and unknown at each bus type.
+
+      | Bus type | Known | Unknown |
+      |---|---|---|
+      | Slack | $\lvert V\rvert$, $\delta$ | $P$, $Q$ |
+      | PV (generator) | $P$, $\lvert V\rvert$ | $Q$, $\delta$ |
+      | PQ (load) | $P$, $Q$ | $\lvert V\rvert$, $\delta$ |
+
+      1. The angle $\delta$ is unknown at **both** PV and PQ buses, so turning PV into PQ does not change the number of unknown angles.
+      2. $\lvert V\rvert$ is known at a PV bus but unknown at a PQ bus. Two PV buses become PQ (their $Q$ hit a limit), so **two more** unknown magnitudes.
+
+      **Answer: (B).**
+  - n: 20
+    marks: 1
+    type: NAT
+    nat: {min: 0.83, max: 0.85}
+    difficulty: 2
+    stem: |
+      The magnitude of three-phase fault currents at buses A and B of a power system are 10 pu and 8 pu, respectively. Neglect all
+      resistances in the system and consider the pre-fault system to be unloaded. The pre-fault voltage at all buses in the system is
+      1.0 pu. The voltage magnitude at bus B during a three-phase fault at bus A is 0.8 pu. The voltage magnitude at bus A during a
+      three-phase fault at bus B, in pu, is ________.
+    options:
+      - {label: A, md: "0.80"}
+      - {label: B, md: "0.84", correct: true}
+      - {label: C, md: "0.75"}
+      - {label: D, md: "0.16"}
+    solution: |
+      **Idea used (bus impedance matrix):** for a fault at bus $k$, the fault current is $I_f = \dfrac{V_{pre}}{Z_{kk}}$ and the voltage at any
+      other bus $j$ drops to $V_j = V_{pre} - Z_{jk} I_f$. The network is passive, so $Z_{jk} = Z_{kj}$.
+
+      1. Fault at A: $I_A = 10$, so $Z_{AA} = 1 / 10 = 0.1$ pu.
+      2. Fault at B: $I_B = 8$, so $Z_{BB} = 1 / 8 = 0.125$ pu.
+      3. Fault at A, voltage at B: $0.8 = 1 - Z_{BA} \times 10$, so $Z_{BA} \times 10 = 0.2$ and $Z_{BA} = 0.02$ pu.
+      4. Fault at B, voltage at A: $V_A = 1 - Z_{AB} \times 8 = 1 - 0.02 \times 8 = 1 - 0.16 = 0.84$ pu.
+
+      **Without a calculator:** the drop at the far bus is (transfer impedance) × (fault current). The transfer impedance is shared, so
+      the drop scales with the fault current: $0.2 \times \dfrac{8}{10} = 0.16$, and $1 - 0.16 = 0.84$.
+      Option D is the drop itself; option A forgets that the fault current is different.
+
+      **Answer: 0.84 pu.**
