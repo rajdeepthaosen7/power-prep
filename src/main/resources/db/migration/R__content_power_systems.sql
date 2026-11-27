@@ -2083,6 +2083,8 @@ BEGIN
 
 The formula has exactly three variables: the **head** $H$, the **discharge** $Q$ and the **efficiency** $\eta$. The type of dam, catchment or draft tube does not appear.
 
+**Asked before:** the same question, with the same options, was asked in UPSC ESE Electrical 2015 (objective Paper II).
+
 **Answer: (D).**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'aegcl-2023-27', 'PYQ') RETURNING id INTO qid;
   ELSE
@@ -2090,6 +2092,8 @@ The formula has exactly three variables: the **head** $H$, the **discharge** $Q$
 ', solution_md = '**Idea used:** $P = 9.81\,Q\,H\,\eta$ kW — see *Hydroelectric power plants → How much power?*
 
 The formula has exactly three variables: the **head** $H$, the **discharge** $Q$ and the **efficiency** $\eta$. The type of dam, catchment or draft tube does not appear.
+
+**Asked before:** the same question, with the same options, was asked in UPSC ESE Electrical 2015 (objective Paper II).
 
 **Answer: (D).**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'aegcl-2023-27', origin = 'PYQ', updated_at = now() WHERE id = qid;

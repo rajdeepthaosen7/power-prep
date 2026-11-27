@@ -683,3 +683,62 @@
     **Without a calculator:** $2070/7.2 = 20700/72 = 287.5$ (since $72\times287.5 = 20700$).
 
     **Answer: (D) $\dfrac{1}{287.5}$.**
+
+# Added 27 Nov 2026 from the APSC 2023 source analysis (content/analysis): Chapter 1 questions that were missing.
+- key: apdcl-2023-43
+  topic: ec1-mutual-inductance
+  sources: [{code: APDCL-2023, q: "43", marks: 1.5, primary: true}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The effective value of the inductances across $ab$ of the following circuit is
+
+    ![Figure](fig:q-apdcl2023-43)
+  options:
+    - {label: A, md: "2 H"}
+    - {label: B, md: "4 H", correct: true}
+    - {label: C, md: "7 H"}
+    - {label: D, md: "5 H"}
+  solution: |
+    **Idea used:** coupled coils in series, aiding or opposing — see *Mutual inductance → Two coupled coils in series*.
+
+    1. Look at the dots. The current $i$ **enters** the 2 H coil at its dotted end.
+    2. In the 4 H coil, the dot is at the right end, so the same current **leaves** by the dotted end (it enters at the undotted end).
+    3. One coil entered at the dot, the other at the undotted end: the fluxes **oppose**.
+    4. Series opposing: $L_{eq} = L_1 + L_2 - 2M = 2 + 4 - 2\times1 = 4$ H.
+
+    Trap: if you miss the dots, you get series aiding, $2 + 4 + 2 = 8$ H (not an option), or you forget the factor 2 and get $2 + 4 - 1 = 5$ H (option D).
+
+    The analysis found the same stem in GATE EE 1998 (2 marks); we could not see that paper's figure, so it is not listed as a source.
+
+    **Without a calculator:** $6 - 2 = 4$.
+
+    **Answer: (B) 4 H.**
+
+- key: aegcl-2023-84
+  topic: ec1-mutual-inductance
+  sources: [{code: AEGCL-2023, q: "84", marks: 1, primary: true}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The maximum value of mutual inductance of two inductively coupled coils with self-inductances $L_1 = 49$ mH and $L_2 = 64$ mH is
+  options:
+    - {label: A, md: "56 mH", correct: true}
+    - {label: B, md: "113 mH"}
+    - {label: C, md: "15 mH"}
+    - {label: D, md: "3136 mH"}
+  solution: |
+    **Idea used:** $M = k\sqrt{L_1L_2}$ with $0 \le k \le 1$ — see *Mutual inductance → How strong is the coupling?*.
+
+    1. $M$ is largest when the coupling is perfect, $k = 1$.
+    2. $M_{max} = \sqrt{L_1L_2} = \sqrt{49\times64} = 7\times8 = 56$ mH.
+
+    Traps: the sum $49 + 64 = 113$ (B), the difference $64 - 49 = 15$ (C) and the product $49\times64 = 3136$ (D, forgetting the square root) are all wrong.
+
+    **Without a calculator:** take the roots one by one: $\sqrt{49} = 7$, $\sqrt{64} = 8$, so $7\times8 = 56$.
+
+    **Answer: (A) 56 mH.**

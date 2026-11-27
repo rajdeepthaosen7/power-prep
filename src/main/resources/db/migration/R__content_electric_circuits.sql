@@ -4305,6 +4305,8 @@ Traps: 100 V forgets the inductance; 75 V forgets the resistance. Both parts act
 
 **Without a calculator:** $10 \times 10 = 100$, $15 \times 5 = 75$, total 175.
 
+**Asked before:** the same question (same coil, same rate of rise) was asked in UPSC ESE Electronics & Telecom 2019, with slightly different options.
+
 **Answer: (C) 175 V.**
 ', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'apdcl-2023-46', 'PYQ') RETURNING id INTO qid;
   ELSE
@@ -4318,6 +4320,8 @@ Traps: 100 V forgets the inductance; 75 V forgets the resistance. Both parts act
 Traps: 100 V forgets the inductance; 75 V forgets the resistance. Both parts act together at the same instant.
 
 **Without a calculator:** $10 \times 10 = 100$, $15 \times 5 = 75$, total 175.
+
+**Asked before:** the same question (same coil, same rate of rise) was asked in UPSC ESE Electronics & Telecom 2019, with slightly different options.
 
 **Answer: (C) 175 V.**
 ', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'apdcl-2023-46', origin = 'PYQ', updated_at = now() WHERE id = qid;
@@ -5987,6 +5991,120 @@ Trap: using 25 °C as the reference gives $\alpha_{25} = \dfrac{7.2}{50\times45}
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$\dfrac{1}{287.5}$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-resistor');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-mutual-inductance';
+  SELECT id INTO qid FROM question WHERE content_key = 'apdcl-2023-43';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('APDCL-2023', '43')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The effective value of the inductances across $ab$ of the following circuit is', 'The effective value of the inductances across $ab$ of the following circuit is
+
+![Figure](fig:q-apdcl2023-43)
+', '**Idea used:** coupled coils in series, aiding or opposing — see *Mutual inductance → Two coupled coils in series*.
+
+1. Look at the dots. The current $i$ **enters** the 2 H coil at its dotted end.
+2. In the 4 H coil, the dot is at the right end, so the same current **leaves** by the dotted end (it enters at the undotted end).
+3. One coil entered at the dot, the other at the undotted end: the fluxes **oppose**.
+4. Series opposing: $L_{eq} = L_1 + L_2 - 2M = 2 + 4 - 2\times1 = 4$ H.
+
+Trap: if you miss the dots, you get series aiding, $2 + 4 + 2 = 8$ H (not an option), or you forget the factor 2 and get $2 + 4 - 1 = 5$ H (option D).
+
+The analysis found the same stem in GATE EE 1998 (2 marks); we could not see that paper''s figure, so it is not listed as a source.
+
+**Without a calculator:** $6 - 2 = 4$.
+
+**Answer: (B) 4 H.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'apdcl-2023-43', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The effective value of the inductances across $ab$ of the following circuit is'), stem_md = 'The effective value of the inductances across $ab$ of the following circuit is
+
+![Figure](fig:q-apdcl2023-43)
+', solution_md = '**Idea used:** coupled coils in series, aiding or opposing — see *Mutual inductance → Two coupled coils in series*.
+
+1. Look at the dots. The current $i$ **enters** the 2 H coil at its dotted end.
+2. In the 4 H coil, the dot is at the right end, so the same current **leaves** by the dotted end (it enters at the undotted end).
+3. One coil entered at the dot, the other at the undotted end: the fluxes **oppose**.
+4. Series opposing: $L_{eq} = L_1 + L_2 - 2M = 2 + 4 - 2\times1 = 4$ H.
+
+Trap: if you miss the dots, you get series aiding, $2 + 4 + 2 = 8$ H (not an option), or you forget the factor 2 and get $2 + 4 - 1 = 5$ H (option D).
+
+The analysis found the same stem in GATE EE 1998 (2 marks); we could not see that paper''s figure, so it is not listed as a source.
+
+**Without a calculator:** $6 - 2 = 4$.
+
+**Answer: (B) 4 H.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'apdcl-2023-43', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'APDCL-2023'), '43', qid, 1.5, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2 H', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4 H', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '7 H', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '5 H', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-apdcl2023-43', '<svg width="408" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -75.90000000000005 354.8 104.21147052438944"><path d="M 86.487 -24.181 Q 154.8 -72 223.113 -24.181" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;" /><path d="M 84.438 -22.747 L 88.625 -28.973 L 91.721 -24.549 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 225.162 -22.747 L 217.879 -24.549 L 220.975 -28.973 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 0.0,-0.0 L 18,-0 L 36,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 36.0,-0.0 L 64.8,-0 L 64.833,-1.463 L 64.934,-2.964 L 65.104,-4.472 L 65.342,-5.955 L 65.646,-7.382 L 66.014,-8.722 L 66.44,-9.947 L 66.92,-11.033 L 67.445,-11.954 L 68.008,-12.693 L 68.6,-13.234 L 69.212,-13.565 L 69.834,-13.679 L 70.457,-13.574 L 71.069,-13.252 L 71.663,-12.72 L 72.227,-11.989 L 72.754,-11.075 L 73.235,-9.996 L 73.664,-8.776 L 74.034,-7.44 L 74.341,-6.016 L 74.582,-4.535 L 74.755,-3.027 L 74.859,-1.525 L 74.894,-0.06 L 74.865,1.337 L 74.774,2.637 L 74.626,3.812 L 74.428,4.838 L 74.188,5.692 L 73.912,6.357 L 73.611,6.819 L 73.293,7.068 L 72.969,7.099 L 72.649,6.911 L 72.342,6.508 L 72.058,5.899 L 71.806,5.096 L 71.595,4.117 L 71.433,2.981 L 71.325,1.714 L 71.278,0.341 L 71.295,-1.108 L 71.38,-2.603 L 71.533,-4.112 L 71.755,-5.604 L 72.044,-7.047 L 72.397,-8.41 L 72.81,-9.666 L 73.277,-10.787 L 73.791,-11.749 L 74.346,-12.534 L 74.932,-13.123 L 75.54,-13.505 L 76.161,-13.671 L 76.784,-13.619 L 77.4,-13.349 L 77.999,-12.866 L 78.571,-12.181 L 79.108,-11.309 L 79.601,-10.268 L 80.043,-9.08 L 80.427,-7.769 L 80.75,-6.364 L 81.007,-4.893 L 81.196,-3.389 L 81.316,-1.883 L 81.368,-0.406 L 81.354,1.01 L 81.277,2.336 L 81.143,3.543 L 80.956,4.607 L 80.725,5.504 L 80.457,6.216 L 80.161,6.727 L 79.846,7.028 L 79.523,7.111 L 79.201,6.976 L 78.89,6.624 L 78.6,6.063 L 78.34,5.305 L 78.118,4.366 L 77.944,3.266 L 77.822,2.028 L 77.76,0.678 L 77.762,-0.755 L 77.83,-2.242 L 77.967,-3.751 L 78.172,-5.25 L 78.445,-6.707 L 78.783,-8.092 L 79.182,-9.376 L 79.637,-10.532 L 80.141,-11.534 L 80.686,-12.363 L 81.266,-13 L 81.87,-13.433 L 82.488,-13.652 L 83.112,-13.652 L 83.73,-13.433 L 84.334,-13 L 84.914,-12.363 L 85.459,-11.534 L 85.963,-10.532 L 86.418,-9.376 L 86.817,-8.092 L 87.155,-6.707 L 87.428,-5.25 L 87.633,-3.751 L 87.77,-2.242 L 87.838,-0.755 L 87.84,0.678 L 87.778,2.028 L 87.656,3.266 L 87.482,4.366 L 87.26,5.305 L 87,6.063 L 86.71,6.624 L 86.399,6.976 L 86.077,7.111 L 85.754,7.028 L 85.439,6.727 L 85.143,6.216 L 84.875,5.504 L 84.644,4.607 L 84.457,3.543 L 84.323,2.336 L 84.246,1.01 L 84.232,-0.406 L 84.284,-1.883 L 84.404,-3.389 L 84.593,-4.893 L 84.85,-6.364 L 85.173,-7.769 L 85.557,-9.08 L 85.999,-10.268 L 86.492,-11.309 L 87.029,-12.181 L 87.601,-12.866 L 88.2,-13.349 L 88.816,-13.619 L 89.439,-13.671 L 90.06,-13.505 L 90.668,-13.123 L 91.254,-12.534 L 91.809,-11.749 L 92.323,-10.787 L 92.79,-9.666 L 93.203,-8.41 L 93.556,-7.047 L 93.845,-5.604 L 94.067,-4.112 L 94.22,-2.603 L 94.305,-1.108 L 94.322,0.341 L 94.275,1.714 L 94.167,2.981 L 94.005,4.117 L 93.794,5.096 L 93.542,5.899 L 93.258,6.508 L 92.951,6.911 L 92.631,7.099 L 92.307,7.068 L 91.989,6.819 L 91.688,6.357 L 91.412,5.692 L 91.172,4.838 L 90.974,3.812 L 90.826,2.637 L 90.735,1.337 L 90.706,-0.06 L 90.741,-1.525 L 90.845,-3.027 L 91.018,-4.535 L 91.259,-6.016 L 91.566,-7.44 L 91.936,-8.776 L 92.365,-9.996 L 92.846,-11.075 L 93.373,-11.989 L 93.937,-12.72 L 94.531,-13.252 L 95.143,-13.574 L 95.766,-13.679 L 96.388,-13.565 L 97,-13.234 L 97.592,-12.693 L 98.155,-11.954 L 98.68,-11.033 L 99.16,-9.947 L 99.586,-8.722 L 99.954,-7.382 L 100.258,-5.955 L 100.496,-4.472 L 100.666,-2.964 L 100.767,-1.463 L 100.8,-0 L 129.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.6,-9.909299459487064e-14 L 154.8,-0 L 180,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 180.0,-9.909299459487064e-14 L 208.8,-0 L 208.833,-1.463 L 208.934,-2.964 L 209.104,-4.472 L 209.342,-5.955 L 209.646,-7.382 L 210.014,-8.722 L 210.44,-9.947 L 210.92,-11.033 L 211.445,-11.954 L 212.008,-12.693 L 212.6,-13.234 L 213.212,-13.565 L 213.834,-13.679 L 214.457,-13.574 L 215.069,-13.252 L 215.663,-12.72 L 216.227,-11.989 L 216.754,-11.075 L 217.235,-9.996 L 217.664,-8.776 L 218.034,-7.44 L 218.341,-6.016 L 218.582,-4.535 L 218.755,-3.027 L 218.859,-1.525 L 218.894,-0.06 L 218.865,1.337 L 218.774,2.637 L 218.626,3.812 L 218.428,4.838 L 218.188,5.692 L 217.912,6.357 L 217.611,6.819 L 217.293,7.068 L 216.969,7.099 L 216.649,6.911 L 216.342,6.508 L 216.058,5.899 L 215.806,5.096 L 215.595,4.117 L 215.433,2.981 L 215.325,1.714 L 215.278,0.341 L 215.295,-1.108 L 215.38,-2.603 L 215.533,-4.112 L 215.755,-5.604 L 216.044,-7.047 L 216.397,-8.41 L 216.81,-9.666 L 217.277,-10.787 L 217.791,-11.749 L 218.346,-12.534 L 218.932,-13.123 L 219.54,-13.505 L 220.161,-13.671 L 220.784,-13.619 L 221.4,-13.349 L 221.999,-12.866 L 222.571,-12.181 L 223.108,-11.309 L 223.601,-10.268 L 224.043,-9.08 L 224.427,-7.769 L 224.75,-6.364 L 225.007,-4.893 L 225.196,-3.389 L 225.316,-1.883 L 225.368,-0.406 L 225.354,1.01 L 225.277,2.336 L 225.143,3.543 L 224.956,4.607 L 224.725,5.504 L 224.457,6.216 L 224.161,6.727 L 223.846,7.028 L 223.523,7.111 L 223.201,6.976 L 222.89,6.624 L 222.6,6.063 L 222.34,5.305 L 222.118,4.366 L 221.944,3.266 L 221.822,2.028 L 221.76,0.678 L 221.762,-0.755 L 221.83,-2.242 L 221.967,-3.751 L 222.172,-5.25 L 222.445,-6.707 L 222.783,-8.092 L 223.182,-9.376 L 223.637,-10.532 L 224.141,-11.534 L 224.686,-12.363 L 225.266,-13 L 225.87,-13.433 L 226.488,-13.652 L 227.112,-13.652 L 227.73,-13.433 L 228.334,-13 L 228.914,-12.363 L 229.459,-11.534 L 229.963,-10.532 L 230.418,-9.376 L 230.817,-8.092 L 231.155,-6.707 L 231.428,-5.25 L 231.633,-3.751 L 231.77,-2.242 L 231.838,-0.755 L 231.84,0.678 L 231.778,2.028 L 231.656,3.266 L 231.482,4.366 L 231.26,5.305 L 231,6.063 L 230.71,6.624 L 230.399,6.976 L 230.077,7.111 L 229.754,7.028 L 229.439,6.727 L 229.143,6.216 L 228.875,5.504 L 228.644,4.607 L 228.457,3.543 L 228.323,2.336 L 228.246,1.01 L 228.232,-0.406 L 228.284,-1.883 L 228.404,-3.389 L 228.593,-4.893 L 228.85,-6.364 L 229.173,-7.769 L 229.557,-9.08 L 229.999,-10.268 L 230.492,-11.309 L 231.029,-12.181 L 231.601,-12.866 L 232.2,-13.349 L 232.816,-13.619 L 233.439,-13.671 L 234.06,-13.505 L 234.668,-13.123 L 235.254,-12.534 L 235.809,-11.749 L 236.323,-10.787 L 236.79,-9.666 L 237.203,-8.41 L 237.556,-7.047 L 237.845,-5.604 L 238.067,-4.112 L 238.22,-2.603 L 238.305,-1.108 L 238.322,0.341 L 238.275,1.714 L 238.167,2.981 L 238.005,4.117 L 237.794,5.096 L 237.542,5.899 L 237.258,6.508 L 236.951,6.911 L 236.631,7.099 L 236.307,7.068 L 235.989,6.819 L 235.688,6.357 L 235.412,5.692 L 235.172,4.838 L 234.974,3.812 L 234.826,2.637 L 234.735,1.337 L 234.706,-0.06 L 234.741,-1.525 L 234.845,-3.027 L 235.018,-4.535 L 235.259,-6.016 L 235.566,-7.44 L 235.936,-8.776 L 236.365,-9.996 L 236.846,-11.075 L 237.373,-11.989 L 237.937,-12.72 L 238.531,-13.252 L 239.143,-13.574 L 239.766,-13.679 L 240.388,-13.565 L 241,-13.234 L 241.592,-12.693 L 242.155,-11.954 L 242.68,-11.033 L 243.16,-9.947 L 243.586,-8.722 L 243.954,-7.382 L 244.258,-5.955 L 244.496,-4.472 L 244.666,-2.964 L 244.767,-1.463 L 244.8,-0 L 273.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 273.59999999999997,-1.981859891897413e-13 L 291.6,-0 L 309.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -18.0,-5.3999999999999995 L 43.2,-5.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 52 -5.4 L 43.2 -1.8 L 43.2 -9 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 255.6,-5.4000000000001975 L 316.8,-5.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 325.6 -5.4 L 316.8 -1.8 L 316.8 -9 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><text x="82.8" y="-2.288529475610611" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="82.8" dy="13">2 H</tspan></text><text x="226.79999999999998" y="-2.2885294756107104" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="226.79999999999998" dy="13">4 H</tspan></text><text x="18.0" y="-29.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="18.0" dy="13">i</tspan></text><text x="291.59999999999997" y="-29.200000000000195" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="291.59999999999997" dy="13">i</tspan></text><text x="158.39999999999998" y="-77.80000000000005" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="158.39999999999998" dy="13">M = 1 H</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="-6.3" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-6.3" dy="13">a</tspan></text><circle cx="309.6" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="315.90000000000003" y="-13.000000000000199" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="315.90000000000003" dy="13">b</tspan></text><circle cx="40.32" cy="-16.2" r="2.52" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="269.28" cy="-16.2" r="2.52" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-mutual-inductance');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electric-circuits';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'ec1-mutual-inductance';
+  SELECT id INTO qid FROM question WHERE content_key = 'aegcl-2023-84';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('AEGCL-2023', '84')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The maximum value of mutual inductance of two inductively coupled coils with self-inductances $L1 = 49$ mH and $L2 = 64$ mH is', 'The maximum value of mutual inductance of two inductively coupled coils with self-inductances $L_1 = 49$ mH and $L_2 = 64$ mH is
+', '**Idea used:** $M = k\sqrt{L_1L_2}$ with $0 \le k \le 1$ — see *Mutual inductance → How strong is the coupling?*.
+
+1. $M$ is largest when the coupling is perfect, $k = 1$.
+2. $M_{max} = \sqrt{L_1L_2} = \sqrt{49\times64} = 7\times8 = 56$ mH.
+
+Traps: the sum $49 + 64 = 113$ (B), the difference $64 - 49 = 15$ (C) and the product $49\times64 = 3136$ (D, forgetting the square root) are all wrong.
+
+**Without a calculator:** take the roots one by one: $\sqrt{49} = 7$, $\sqrt{64} = 8$, so $7\times8 = 56$.
+
+**Answer: (A) 56 mH.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'aegcl-2023-84', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The maximum value of mutual inductance of two inductively coupled coils with self-inductances $L1 = 49$ mH and $L2 = 64$ mH is'), stem_md = 'The maximum value of mutual inductance of two inductively coupled coils with self-inductances $L_1 = 49$ mH and $L_2 = 64$ mH is
+', solution_md = '**Idea used:** $M = k\sqrt{L_1L_2}$ with $0 \le k \le 1$ — see *Mutual inductance → How strong is the coupling?*.
+
+1. $M$ is largest when the coupling is perfect, $k = 1$.
+2. $M_{max} = \sqrt{L_1L_2} = \sqrt{49\times64} = 7\times8 = 56$ mH.
+
+Traps: the sum $49 + 64 = 113$ (B), the difference $64 - 49 = 15$ (C) and the product $49\times64 = 3136$ (D, forgetting the square root) are all wrong.
+
+**Without a calculator:** take the roots one by one: $\sqrt{49} = 7$, $\sqrt{64} = 8$, so $7\times8 = 56$.
+
+**Answer: (A) 56 mH.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'aegcl-2023-84', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'AEGCL-2023'), '84', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '56 mH', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '113 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '15 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '3136 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ec1-mutual-inductance');
 END $ppimport$;
 DO $ppimport$
 DECLARE qid int; subj int; tid int;
@@ -13752,9 +13870,9 @@ The real input is 10 V (twice), so the last shunt carries 2 A.
 END $ppimport$;
 
 -- mock tests
-INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch1-mock-pyq', 'Chapter 1 mock: PYQs only', 'CHAPTER', 77, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'PYQ', 'All Chapter 1 exam questions (GATE, ESE, APSC 2023), asked the APSC way.', 1) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
+INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch1-mock-pyq', 'Chapter 1 mock: PYQs only', 'CHAPTER', 80, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'PYQ', 'All Chapter 1 exam questions (GATE, ESE, APSC 2023), asked the APSC way.', 1) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
 DELETE FROM test_question WHERE test_id = (SELECT id FROM test WHERE code = 'ec-ch1-mock-pyq');
-INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch1-mock-pyq'), v.pos, qq.id, NULL FROM (VALUES (1, 'gate-2007-64'), (2, 'gate-2015-s1-28'), (3, 'ese-2018-126'), (4, 'ese-2017-56'), (5, 'ese-2020-28'), (6, 'gate-2024-13'), (7, 'ese-2021-8'), (8, 'ese-2024-87'), (9, 'gate-2003-inductor-energy'), (10, 'gate-2010-7'), (11, 'gate-1997-nonlinear-battery'), (12, 'gate-2001-bulbs'), (13, 'aegcl-2023-83'), (14, 'gate-1999-r-sources'), (15, 'ese-2025-29'), (16, 'gate-2014-s1-6'), (17, 'ese-2026-101'), (18, 'ese-2019-25'), (19, 'ese-2018-19'), (20, 'gate-1998-impulse'), (21, 'ese-2017-38'), (22, 'gate-2003-segment'), (23, 'gate-2012-17'), (24, 'gate-2000-inductor-current'), (25, 'ese-2026-105'), (26, 'gate-2009-10'), (27, 'ese-2020-25'), (28, 'gate-2009-22'), (29, 'ese-2018-16'), (30, 'gate-1997-cap-energy-cycle'), (31, 'gate-1999-capacitance-by'), (32, 'gate-2014-s1-29'), (33, 'gate-2014-s1-30'), (34, 'ese-2018-37'), (35, 'gate-2017-s2-22'), (36, 'apdcl-2023-46'), (37, 'ese-2019-149'), (38, 'gate-2017-s1-18'), (39, 'gate-2008-76'), (40, 'ese-2025-36'), (41, 'gate-2026-25'), (42, 'ese-2025-26'), (43, 'ese-2022-41'), (44, 'ese-2024-60'), (45, 'ese-2020-35'), (46, 'gate-2020-32'), (47, 'ese-2022-44'), (48, 'gate-2013-30'), (49, 'gate-2008-23'), (50, 'gate-2016-s2-23'), (51, 'gate-2021-15'), (52, 'ese-2019-36'), (53, 'apgcl-2023-2'), (54, 'gate-2025-18'), (55, 'ese-2018-24'), (56, 'ese-2025-27'), (57, 'ese-2021-10'), (58, 'gate-2026-23'), (59, 'gate-1999-rc-triangular'), (60, 'gate-2014-s1-8'), (61, 'gate-2025-19'), (62, 'ese-2020-27'), (63, 'ese-2021-65'), (64, 'ese-2021-72')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
+INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch1-mock-pyq'), v.pos, qq.id, NULL FROM (VALUES (1, 'gate-2007-64'), (2, 'gate-2015-s1-28'), (3, 'ese-2018-126'), (4, 'ese-2017-56'), (5, 'ese-2020-28'), (6, 'gate-2024-13'), (7, 'ese-2021-8'), (8, 'ese-2024-87'), (9, 'gate-2003-inductor-energy'), (10, 'gate-2010-7'), (11, 'gate-1997-nonlinear-battery'), (12, 'gate-2001-bulbs'), (13, 'aegcl-2023-83'), (14, 'gate-1999-r-sources'), (15, 'ese-2025-29'), (16, 'gate-2014-s1-6'), (17, 'ese-2026-101'), (18, 'ese-2019-25'), (19, 'ese-2018-19'), (20, 'gate-1998-impulse'), (21, 'ese-2017-38'), (22, 'apdcl-2023-43'), (23, 'gate-2003-segment'), (24, 'gate-2012-17'), (25, 'gate-2000-inductor-current'), (26, 'ese-2026-105'), (27, 'gate-2009-10'), (28, 'ese-2020-25'), (29, 'gate-2009-22'), (30, 'ese-2018-16'), (31, 'gate-1997-cap-energy-cycle'), (32, 'gate-1999-capacitance-by'), (33, 'gate-2014-s1-29'), (34, 'gate-2014-s1-30'), (35, 'ese-2018-37'), (36, 'gate-2017-s2-22'), (37, 'apdcl-2023-46'), (38, 'ese-2019-149'), (39, 'gate-2017-s1-18'), (40, 'gate-2008-76'), (41, 'ese-2025-36'), (42, 'gate-2026-25'), (43, 'ese-2025-26'), (44, 'aegcl-2023-84'), (45, 'ese-2022-41'), (46, 'ese-2024-60'), (47, 'ese-2020-35'), (48, 'gate-2020-32'), (49, 'ese-2022-44'), (50, 'gate-2013-30'), (51, 'gate-2008-23'), (52, 'gate-2016-s2-23'), (53, 'gate-2021-15'), (54, 'ese-2019-36'), (55, 'apgcl-2023-2'), (56, 'gate-2025-18'), (57, 'ese-2018-24'), (58, 'ese-2025-27'), (59, 'ese-2021-10'), (60, 'gate-2026-23'), (61, 'gate-1999-rc-triangular'), (62, 'gate-2014-s1-8'), (63, 'gate-2025-19'), (64, 'ese-2020-27'), (65, 'ese-2021-65'), (66, 'ese-2021-72')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;
 INSERT INTO test(code, title, kind, duration_min, marks_correct, marks_wrong, status, subject_id, chapter_id, variant, description, sort_order) VALUES ('ec-ch1-mock-fresh', 'Chapter 1 mock: fresh questions', 'CHAPTER', 76, 1, 0.25, 'PUBLISHED', (SELECT id FROM subject WHERE slug = 'electric-circuits'), (SELECT id FROM chapter WHERE subject_id = (SELECT id FROM subject WHERE slug = 'electric-circuits') AND slug = 'circuit-elements'), 'FRESH', 'New APSC-style questions only, at least one on every Chapter 1 concept. None of them appear in Study.', 2) ON CONFLICT (code) DO UPDATE SET title = EXCLUDED.title, kind = EXCLUDED.kind, duration_min = EXCLUDED.duration_min, marks_correct = EXCLUDED.marks_correct, marks_wrong = EXCLUDED.marks_wrong, status = EXCLUDED.status, subject_id = EXCLUDED.subject_id, chapter_id = EXCLUDED.chapter_id, variant = EXCLUDED.variant, description = EXCLUDED.description, sort_order = EXCLUDED.sort_order, updated_at = now();
 DELETE FROM test_question WHERE test_id = (SELECT id FROM test WHERE code = 'ec-ch1-mock-fresh');
 INSERT INTO test_question(test_id, position, question_id, section) SELECT (SELECT id FROM test WHERE code = 'ec-ch1-mock-fresh'), v.pos, qq.id, NULL FROM (VALUES (1, 'ec1-p-022'), (2, 'ec1-p-032'), (3, 'ec1-p-021'), (4, 'ec1-p-047'), (5, 'ec1-p-009'), (6, 'ec1-p-048'), (7, 'ec1-p-042'), (8, 'ec1-p-053'), (9, 'ec1-p-027'), (10, 'ec1-p-051'), (11, 'ec1-p-014'), (12, 'ec1-p-018'), (13, 'ec1-p-059'), (14, 'ec1-p-023'), (15, 'ec1-p-054'), (16, 'ec1-p-016'), (17, 'ec1-p-043'), (18, 'ec1-p-028'), (19, 'ec1-p-017'), (20, 'ec1-p-058'), (21, 'ec1-p-019'), (22, 'ec1-p-024'), (23, 'ec1-p-061'), (24, 'ec1-p-015'), (25, 'ec1-p-025'), (26, 'ec1-p-049'), (27, 'ec1-p-044'), (28, 'ec1-p-008'), (29, 'ec1-p-037'), (30, 'ec1-p-046'), (31, 'ec1-p-002'), (32, 'ec1-p-004'), (33, 'ec1-p-005'), (34, 'ec1-p-034'), (35, 'ec1-p-001'), (36, 'ec1-p-011'), (37, 'ec1-p-045'), (38, 'ec1-p-026'), (39, 'ec1-p-039'), (40, 'ec1-p-003'), (41, 'ec1-p-035'), (42, 'ec1-p-006'), (43, 'ec1-p-010'), (44, 'ec1-p-020'), (45, 'ec1-p-057'), (46, 'ec1-p-007'), (47, 'ec1-p-052'), (48, 'ec1-p-040'), (49, 'ec1-p-041'), (50, 'ec1-p-031'), (51, 'ec1-p-062'), (52, 'ec1-p-012'), (53, 'ec1-p-013'), (54, 'ec1-p-038'), (55, 'ec1-p-060'), (56, 'ec1-p-033'), (57, 'ec1-p-063'), (58, 'ec1-p-030'), (59, 'ec1-p-050'), (60, 'ec1-p-055'), (61, 'ec1-p-036'), (62, 'ec1-p-056'), (63, 'ec1-p-029')) AS v(pos, k) JOIN question qq ON qq.content_key = v.k;

@@ -9,6 +9,7 @@ Open items the owner has asked to keep. Newest first. Tick when done.
   figure questions and 10 have unreadable scan text: re-read those pages from the scanned PDFs (better OCR or by eye), then
   search again. AEGCL Q96 is not searched yet. 19 basic textbook facts are marked "Classic textbook fact" without a search.
   Method: content/analysis/README.md. Reading testbook pages found outside web search needs the owner's OK in chat.
+  GATE marks not found on examside for APGCL Q32 and Q75 and APDCL Q6; APGCL Q10 is "2 (unsure)" (check when 1991-2006 is dumped).
 - [ ] **APGCL Paper II: General Studies & General English** (added 26 Nov 2026).
   APSC No.25PSC/CON/Exam-13/2026-2027 (14 Aug 2026): 100 MCQs, 2 h, full marks 100. Parts: General English
   (sentence completion/improvement, word order, spotting errors, synonyms/antonyms, idioms, fill in the blanks, comprehension...),

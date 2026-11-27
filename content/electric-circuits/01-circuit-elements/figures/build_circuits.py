@@ -394,10 +394,31 @@ def ese2026_101():
     save("q-ese2026-101", d)
 
 
+def apdcl2023_43():
+    """APDCL 2023 Q43: 2 H and 4 H in series, M = 1 H. Dot at the left end of the 2 H coil and at the right end of the 4 H coil
+    (current enters one dot and leaves the other: series opposing), as printed in the paper."""
+    d = D()
+    d += elm.Dot(open=True).label("a", loc="left")
+    d += (w1 := elm.Line().right().length(1.0))
+    d += (l1 := elm.Inductor2().right().label("2 H", loc="bottom"))
+    d += elm.Line().right().length(1.4)
+    d += (l2 := elm.Inductor2().right().label("4 H", loc="bottom"))
+    d += (w2 := elm.Line().right().length(1.0))
+    d += elm.Dot(open=True).label("b", loc="right")
+    # marks added after the chain, so they do not move the drawing position
+    d += elm.CurrentLabel(top=True, ofst=0.15).at(w1).label("i")
+    d += elm.CurrentLabel(top=True, ofst=0.15).at(w2).label("i")
+    d += elm.Dot(radius=0.07).at((l1.start[0] + 0.12, l1.start[1] + 0.45))
+    d += elm.Dot(radius=0.07).at((l2.end[0] - 0.12, l2.end[1] + 0.45))
+    d += elm.Arc2(arrow="<->", k=0.35).at((l1.center[0], l1.center[1] + 0.6)).to((l2.center[0], l2.center[1] + 0.6))
+    d += elm.Label().at(((l1.center[0] + l2.center[0]) / 2, l1.center[1] + 1.7)).label("M = 1 H")
+    save("q-apdcl2023-43", d)
+
+
 for f in [passive_sign, lc_symbols, source_symbols, gate2014_s1_6, gate2026_23, ese2021_8, gate2014_s1_30,
           gate2013_30, gate1999_cap_by, gate2012_17, gate2009_22, gate2017_s2_22, gate1998_impulse, gate2010_7,
           gate2025_18, gate2026_25, gate2016_s2_23, gate2008_23, gate2015_s1_28, gate2017_s1_18, gate2024_13,
-          gate2003_segment, gate2014_s1_8, ese2026_101]:
+          gate2003_segment, gate2014_s1_8, ese2026_101, apdcl2023_43]:
     try:
         f()
     except Exception as ex:  # report and continue so one bad figure does not hide the rest

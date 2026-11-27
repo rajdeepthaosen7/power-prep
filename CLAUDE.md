@@ -37,14 +37,18 @@ Full doc: https://claude.ai/artifact/BjEpYbj8eGATVTrSGrfNmJ
 
 ## Where APSC questions come from (Analysis 1-to-1, 27 Nov 2026)
 Doc: https://claude.ai/artifact/6okvjysxivqE27LCp5rjZz. Data: `content/analysis/apsc-2023-sources.csv` (one row per question,
-300 rows: paper, q, subject, topic, type, source, match, note). Patterns and best practices: `content/analysis/README.md`.
-- APGCL 2023: 74 of 100 are word-for-word GATE EE (43 of them from GATE 1992-2006). APDCL and AEGCL 2023: about two thirds are
-  one-line theory facts and short textbook numericals; only 10 each are word-for-word GATE EE. Second and third pass (27 Nov):
-  41 more are JE/AE/PSU or GATE EC PYQs (ISRO TA, DSSSB, PSPCL, BSNL TTA, MPSC, UPPCL, UPPSC, UPRVUNL, SSC JE, TSPSC, HPCL,
-  DFCCIL, ESE 2013-2015; GATE EC 2007-2017 for Signals and Control), found on testbook.com with the exam name. When a chapter
-  has such a PYQ, add it with that exam as its source. Totals now: traced APGCL 95, APDCL 67, AEGCL 72 of 100.
-- When writing a chapter: give every APSC 2023 question in it its earlier source from the CSV as an extra `sources` entry
-  (e.g. APGCL 2023 Q36 + GATE 2005), and write any traced GATE PYQ that is not in the portal yet.
+with `gate_marks`) and `content/analysis/chapter-map.csv` (every question placed in a portal chapter, with `in_portal`).
+Patterns and best practices: `content/analysis/README.md`.
+- APGCL 2023: 74 of 100 are word-for-word GATE EE (43 of them from GATE 1992-2006). APDCL and AEGCL 2023: only 10 each are
+  word-for-word GATE EE; 41 more (between them) are JE/AE/PSU, ESE or GATE EC PYQs (GATE EC for Signals and Control); most of
+  the rest are one-line facts in question-bank wording. Traced: APGCL 95, APDCL 67, AEGCL 72 of 100.
+- APSC takes GATE 1-mark and 2-mark questions alike (51 vs 47 of the 101 copied), never the old 5-mark descriptive ones.
+  So chapters include 2-mark GATE PYQs too, with a calculator-free way.
+- When writing a chapter: start from its rows in `chapter-map.csv`. Every APSC 2023 question in it goes in. Its earlier
+  source goes in as an extra `sources` entry when it is GATE EE or ESE EE (e.g. APGCL 2023 Q36 + GATE 2005); for other exams
+  (ESE E&T, JE/AE/PSU, GATE EC) add an "**Asked before:**" line in the solution, because build_sql.py only knows GATE/ESE EE
+  titles. Write any traced GATE EE PYQ that is not in the portal yet. Then set `in_portal` in the map.
+- Coupled-coil questions APDCL Q43 and AEGCL Q84 live in Circuits Ch1; Ch9 (coupled circuits) links to them, no copies.
 - PYQ mock: draw on all GATE EE years, old ones (1991-2006) included. Fresh mock: APDCL/AEGCL style (one-line facts and
   hand-worked textbook numericals). Mixed mock: about half each, as before.
 - Every chapter keeps a fact list (one-line facts: uses, definitions, "which bridge measures what") in its notes or short note.
