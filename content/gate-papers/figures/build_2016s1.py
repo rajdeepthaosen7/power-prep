@@ -320,7 +320,58 @@ def q42():
     save("q-gate2016-s1-q42", d)
 
 
+def q44():
+    """(a) half-bridge: two Vdc/2 = 250 V sources in series on the left, T1 / T2 (IGBT + anti-parallel diode) on the right,
+    load XL = 16 ohm at 100 Hz and R = 12 ohm between the midpoints, current iL. (b) carrier and modulating signal."""
+    import math
+    d = D()
+    d += (v1 := elm.Battery().up().reverse().label("Vdc/2 = 250 V", loc="bottom"))
+    d += (v2 := elm.Battery().down().reverse().at(v1.start).label("Vdc/2 = 250 V", loc="bottom"))
+    d += (ml := elm.Dot().at(v1.start))
+    ytop, ybot, ym = v1.end[1] + 0.3, v2.end[1] - 0.3, v1.start[1]
+    x0, xr = v1.start[0], 7.0
+    d += elm.Line().at(v1.end).to((x0, ytop))
+    d += elm.Line().to((xr, ytop))
+    d += elm.Line().at(v2.end).to((x0, ybot))
+    d += elm.Line().to((xr, ybot))
+    for y_hi, y_lo, name in [(ytop, ym, "T1"), (ym, ybot, "T2")]:
+        q = elm.IgbtN().theta(0).anchor("collector").at((xr, y_hi - 0.5)).label(name, loc="left")
+        d += q
+        d += elm.Line().at((xr, y_hi)).to(q.collector)
+        d += elm.Line().at(q.emitter).to((xr, y_lo))
+        d += elm.Line().at((xr, y_hi)).to((xr + 1.0, y_hi))
+        d += elm.Diode().at((xr + 1.0, y_lo)).to((xr + 1.0, y_hi))
+        d += elm.Line().at((xr + 1.0, y_lo)).to((xr, y_lo))
+    d += elm.Dot().at((xr, ym))
+    d += elm.Line().at(ml.center).to((x0 + 0.8, ym))
+    d += elm.Inductor2().right().label("XL = 16 Ω at 100 Hz", loc="bottom")
+    d += elm.Resistor().right().label("R = 12 Ω", loc="bottom")
+    d += elm.Line().right().tox(xr)
+    d += elm.Arrow().at((x0 + 4.8, ym + 0.8)).to((x0 + 3.6, ym + 0.8)).label("iL", loc="top")
+    save("q-gate2016-s1-q44a", d)
+    fc, fm = 2500.0, 100.0          # carrier drawn at half its real rate so the cycles can be seen
+    tri = [(k / (2 * fc) * 1000, 1.0 if k % 2 == 0 else -1.0) for k in range(int(2 * fc / fm) + 1)]
+    sine = [(i / 400 * 10, 0.8 * math.sin(2 * math.pi * fm * (i / 400 * 0.010))) for i in range(401)]
+    g = plot([tri, sine], xmax=10.2, ymin=-1.2, ymax=1.3, w=420, h=200, xlabel="t (ms)", ylabel="", lw=1.1,
+             yticks=[(1, "1"), (0.8, "0.8"), (-1, "−1")], xticks=[(10, "10")], left=40)
+    write("q-gate2016-s1-q44b", svg(420, 200, g))
+
+
+def q45():
+    """Turn-on: vs stays 600 V for T1 = 1 us while is rises 0 -> 150 A (100 A + 50 A recovery peak);
+    then vs falls 600 -> 0 V over T2 = 1 us while is = 100 A."""
+    gv = plot([[(0, 600), (2, 600), (3, 0), (3.6, 0)]], xmax=3.8, ymin=0, ymax=700, w=360, h=130, ylabel="vs",
+              yticks=[(600, "600 V")], guides=[((1, 0), (1, 700)), ((2, 0), (2, 700)), ((3, 0), (3, 700))], left=60)
+    gi = plot([[(0, 0), (1, 0), (2, 150), (2, 100), (3.6, 100)]], xmax=3.8, ymin=0, ymax=170, w=360, h=150, ylabel="is",
+              yticks=[(150, "150 A"), (100, "100 A")], xticks=[(1, "0"), (2, "1 μs"), (3, "2 μs")],
+              guides=[((1, 0), (1, 170)), ((2, 0), (2, 170)), ((3, 0), (3, 170))], oy=130, left=60,
+              notes=[(1.5, 20, "T1 = 1 μs", "middle"), (2.5, 20, "T2 = 1 μs", "middle")])
+    write("q-gate2016-s1-q45", svg(360, 280, gv, gi))
+
+
 if __name__ == "__main__":
+    q44()
+    q45()
     q42()
     q37()
     q39()

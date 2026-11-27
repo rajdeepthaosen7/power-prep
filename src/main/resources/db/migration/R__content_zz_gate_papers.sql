@@ -2551,3 +2551,537 @@ the 230 V and the 10 A are not needed.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.45', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   DELETE FROM question_mcq_option WHERE question_id = qid;
 END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q44';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q44')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q44: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'The switches T1 and T2 in Figure (a) are switched in a complementary fashion with sinusoidal pulse width modulation technique. The modulating voltage $vm(t)...', 'The switches T1 and T2 in Figure (a) are switched in a complementary fashion with sinusoidal pulse width modulation technique. The
+modulating voltage $v_m(t) = 0.8\sin(200\pi t)$ V and the triangular carrier voltage ($v_c$) are as shown in Figure (b). The carrier
+frequency is 5 kHz. The peak value of the 100 Hz component of the load current ($i_L$), in ampere, is ________ .
+
+![Figure (a): half-bridge inverter. Two 250 V sources (Vdc/2 each) in series; switches T1 and T2 with anti-parallel diodes; load of XL = 16 ohm at 100 Hz and R = 12 ohm between the two midpoints, current iL](fig:q-gate2016-s1-q44a)
+
+![Figure (b): triangular carrier of peak 1 and sine modulating signal of peak 0.8 (carrier drawn with fewer cycles than 5 kHz so they can be seen)](fig:q-gate2016-s1-q44b)
+', '**Idea used:** in sine PWM (linear range), the fundamental of the output voltage has peak $m_a \times$ (dc voltage the output swings
+about). For a half bridge that is $V_{dc}/2$. Then divide by the load impedance at that frequency.
+
+1. Modulation index $m_a = \dfrac{\text{peak of } v_m}{\text{peak of } v_c} = \dfrac{0.8}{1} = 0.8$.
+2. Output (pole to midpoint) swings between $+250$ V and $-250$ V. Fundamental peak $= 0.8 \times 250 = 200$ V.
+3. Its frequency: $200\pi t = 2\pi \times 100\,t$, so 100 Hz.
+4. Load at 100 Hz: $Z = 12 + j16$, $|Z| = \sqrt{12^2 + 16^2} = \sqrt{400} = 20\ \Omega$.
+5. Peak current $= 200 \div 20 = 10$ A.
+
+**Without a calculator:** 12-16-20 is the 3-4-5 triangle times 4. Slips: using 16 Ω or 12 Ω alone (12.5 A, 16.7 A), or using
+$m_a \times V_{dc} = 400$ V (20 A).
+
+**Answer: 10 A.**
+', 'READY', 'NAT', 9.9, 10.1, 2, 'OFFICIAL_KEY', 'gate2016-s1-q44', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'The switches T1 and T2 in Figure (a) are switched in a complementary fashion with sinusoidal pulse width modulation technique. The modulating voltage $vm(t)...'), stem_md = 'The switches T1 and T2 in Figure (a) are switched in a complementary fashion with sinusoidal pulse width modulation technique. The
+modulating voltage $v_m(t) = 0.8\sin(200\pi t)$ V and the triangular carrier voltage ($v_c$) are as shown in Figure (b). The carrier
+frequency is 5 kHz. The peak value of the 100 Hz component of the load current ($i_L$), in ampere, is ________ .
+
+![Figure (a): half-bridge inverter. Two 250 V sources (Vdc/2 each) in series; switches T1 and T2 with anti-parallel diodes; load of XL = 16 ohm at 100 Hz and R = 12 ohm between the two midpoints, current iL](fig:q-gate2016-s1-q44a)
+
+![Figure (b): triangular carrier of peak 1 and sine modulating signal of peak 0.8 (carrier drawn with fewer cycles than 5 kHz so they can be seen)](fig:q-gate2016-s1-q44b)
+', solution_md = '**Idea used:** in sine PWM (linear range), the fundamental of the output voltage has peak $m_a \times$ (dc voltage the output swings
+about). For a half bridge that is $V_{dc}/2$. Then divide by the load impedance at that frequency.
+
+1. Modulation index $m_a = \dfrac{\text{peak of } v_m}{\text{peak of } v_c} = \dfrac{0.8}{1} = 0.8$.
+2. Output (pole to midpoint) swings between $+250$ V and $-250$ V. Fundamental peak $= 0.8 \times 250 = 200$ V.
+3. Its frequency: $200\pi t = 2\pi \times 100\,t$, so 100 Hz.
+4. Load at 100 Hz: $Z = 12 + j16$, $|Z| = \sqrt{12^2 + 16^2} = \sqrt{400} = 20\ \Omega$.
+5. Peak current $= 200 \div 20 = 10$ A.
+
+**Without a calculator:** 12-16-20 is the 3-4-5 triangle times 4. Slips: using 16 Ω or 12 Ω alone (12.5 A, 16.7 A), or using
+$m_a \times V_{dc} = 400$ V (20 A).
+
+**Answer: 10 A.**
+', status = 'READY', answer_type = 'NAT', nat_min = 9.9, nat_max = 10.1, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q44', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q44', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '12.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '20', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '16.7', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s1-q44a', '<svg width="368" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-18.10000000000001 -109.0 319.70000000000005 218.0"><polygon points="279,-45.9 288,-58.5 297,-45.9 " style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><polygon points="279,58.5 288,45.9 297,58.5 " style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 0,-36.675 M 0,-56.925 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 13.500000000000004,-56.925000000000004 L -13.5,-56.925" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 6.750000000000003,-50.175000000000004 L -6.75,-50.175" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 13.500000000000002,-43.425000000000004 L -13.5,-43.425" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 6.750000000000002,-36.675000000000004 L -6.75,-36.675" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L -0,36.675 M -0,56.925 L -0,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -13.50000000000001,56.925000000000004 L 13.5,56.925" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -6.750000000000009,50.175000000000004 L 6.75,50.175" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -13.500000000000007,43.425000000000004 L 13.5,43.425" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -6.750000000000007,36.675000000000004 L 6.75,36.675" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 0,-99 L -0,-104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -3.199670641212163e-15,-104.39999999999999 L 126,-104.4 L 252,-104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -1.719404106002884e-14,93.60000000000001 L -0,99 L 0,104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 2.538403438430871e-16,104.39999999999999 L 126,104.4 L 252,104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 238.14000000000001,-74.52 L 238.14,-48.12" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 238.14000000000001,-67.92 L 252,-79.8 L 252,-86.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 238.14000000000001,-54.72 L 252,-42.84 L 252,-36.24" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 238.14000000000001,-54.72 L 245.167,-48.697" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 250.481 -44.142 L 242.824 -45.964 L 247.51 -51.43 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 232.74,-71.82 L 232.74,-50.82 L 227.34,-50.82" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252.0,-104.39999999999999 L 252,-95.4 L 252,-86.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252.0,-36.239999999999995 L 252,-18.12 L 252,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252.0,-104.39999999999999 L 270,-104.4 L 288,-104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 288.0,-0.0 L 288,-45.9 M 279,-58.5 L 297,-58.5 M 288,-58.5 L 288,-104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 288.0,-0.0 L 270,-0 L 252,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 238.14000000000001,29.880000000000003 L 238.14,56.28" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 238.14000000000001,36.48 L 252,24.6 L 252,18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 238.14000000000001,49.67999999999999 L 252,61.56 L 252,68.16" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 238.14000000000001,49.67999999999999 L 245.167,55.703" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 250.481 60.258 L 242.824 58.436 L 247.51 52.97 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 232.74,32.58 L 232.74,53.58 L 227.34,53.58" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252.0,-0.0 L 252,9 L 252,18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252.0,68.16 L 252,86.28 L 252,104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 252.0,-0.0 L 270,-0 L 288,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 288.0,104.39999999999999 L 288,58.5 M 279,45.9 L 297,45.9 M 288,45.9 L 288,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 288.0,104.39999999999999 L 270,104.4 L 252,104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 14.4,-0 L 28.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 28.8,-0.0 L 57.6,-0 L 57.633,-1.463 L 57.734,-2.964 L 57.904,-4.472 L 58.142,-5.955 L 58.446,-7.382 L 58.814,-8.722 L 59.24,-9.947 L 59.72,-11.033 L 60.245,-11.954 L 60.808,-12.693 L 61.4,-13.234 L 62.012,-13.565 L 62.634,-13.679 L 63.257,-13.574 L 63.869,-13.252 L 64.463,-12.72 L 65.027,-11.989 L 65.554,-11.075 L 66.035,-9.996 L 66.464,-8.776 L 66.834,-7.44 L 67.141,-6.016 L 67.382,-4.535 L 67.555,-3.027 L 67.659,-1.525 L 67.694,-0.06 L 67.665,1.337 L 67.574,2.637 L 67.426,3.812 L 67.228,4.838 L 66.988,5.692 L 66.712,6.357 L 66.411,6.819 L 66.093,7.068 L 65.769,7.099 L 65.449,6.911 L 65.142,6.508 L 64.858,5.899 L 64.606,5.096 L 64.395,4.117 L 64.233,2.981 L 64.125,1.714 L 64.078,0.341 L 64.095,-1.108 L 64.18,-2.603 L 64.333,-4.112 L 64.555,-5.604 L 64.844,-7.047 L 65.197,-8.41 L 65.61,-9.666 L 66.077,-10.787 L 66.591,-11.749 L 67.146,-12.534 L 67.732,-13.123 L 68.34,-13.505 L 68.961,-13.671 L 69.584,-13.619 L 70.2,-13.349 L 70.799,-12.866 L 71.371,-12.181 L 71.908,-11.309 L 72.401,-10.268 L 72.843,-9.08 L 73.227,-7.769 L 73.55,-6.364 L 73.807,-4.893 L 73.996,-3.389 L 74.116,-1.883 L 74.168,-0.406 L 74.154,1.01 L 74.077,2.336 L 73.943,3.543 L 73.756,4.607 L 73.525,5.504 L 73.257,6.216 L 72.961,6.727 L 72.646,7.028 L 72.323,7.111 L 72.001,6.976 L 71.69,6.624 L 71.4,6.063 L 71.14,5.305 L 70.918,4.366 L 70.744,3.266 L 70.622,2.028 L 70.56,0.678 L 70.562,-0.755 L 70.63,-2.242 L 70.767,-3.751 L 70.972,-5.25 L 71.245,-6.707 L 71.583,-8.092 L 71.982,-9.376 L 72.437,-10.532 L 72.941,-11.534 L 73.486,-12.363 L 74.066,-13 L 74.67,-13.433 L 75.288,-13.652 L 75.912,-13.652 L 76.53,-13.433 L 77.134,-13 L 77.714,-12.363 L 78.259,-11.534 L 78.763,-10.532 L 79.218,-9.376 L 79.617,-8.092 L 79.955,-6.707 L 80.228,-5.25 L 80.433,-3.751 L 80.57,-2.242 L 80.638,-0.755 L 80.64,0.678 L 80.578,2.028 L 80.456,3.266 L 80.282,4.366 L 80.06,5.305 L 79.8,6.063 L 79.51,6.624 L 79.199,6.976 L 78.877,7.111 L 78.554,7.028 L 78.239,6.727 L 77.943,6.216 L 77.675,5.504 L 77.444,4.607 L 77.257,3.543 L 77.123,2.336 L 77.046,1.01 L 77.032,-0.406 L 77.084,-1.883 L 77.204,-3.389 L 77.393,-4.893 L 77.65,-6.364 L 77.973,-7.769 L 78.357,-9.08 L 78.799,-10.268 L 79.292,-11.309 L 79.829,-12.181 L 80.401,-12.866 L 81,-13.349 L 81.616,-13.619 L 82.239,-13.671 L 82.86,-13.505 L 83.468,-13.123 L 84.054,-12.534 L 84.609,-11.749 L 85.123,-10.787 L 85.59,-9.666 L 86.003,-8.41 L 86.356,-7.047 L 86.645,-5.604 L 86.867,-4.112 L 87.02,-2.603 L 87.105,-1.108 L 87.122,0.341 L 87.075,1.714 L 86.967,2.981 L 86.805,4.117 L 86.594,5.096 L 86.342,5.899 L 86.058,6.508 L 85.751,6.911 L 85.431,7.099 L 85.107,7.068 L 84.789,6.819 L 84.488,6.357 L 84.212,5.692 L 83.972,4.838 L 83.774,3.812 L 83.626,2.637 L 83.535,1.337 L 83.506,-0.06 L 83.541,-1.525 L 83.645,-3.027 L 83.818,-4.535 L 84.059,-6.016 L 84.366,-7.44 L 84.736,-8.776 L 85.165,-9.996 L 85.646,-11.075 L 86.173,-11.989 L 86.737,-12.72 L 87.331,-13.252 L 87.943,-13.574 L 88.566,-13.679 L 89.188,-13.565 L 89.8,-13.234 L 90.392,-12.693 L 90.955,-11.954 L 91.48,-11.033 L 91.96,-9.947 L 92.386,-8.722 L 92.754,-7.382 L 93.058,-5.955 L 93.296,-4.472 L 93.466,-2.964 L 93.567,-1.463 L 93.6,-0 L 122.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.4,-9.909299459487064e-14 L 151.2,-0 L 154.2,-9 L 160.2,9 L 166.2,-9 L 172.2,9 L 178.2,-9 L 184.2,9 L 187.2,-0 L 216,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 216.0,-9.909299459487064e-14 L 234,-0 L 252,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 172.79999999999998,-28.8 L 151.2,-28.8 L 138.6,-28.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 131.6 -28.8 L 138.6 -31.5 L 138.6 -26.1 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><text x="17.1" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="17.1" dy="13">Vdc/2 = 250 V</tspan></text><text x="17.09999999999999" y="33.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="17.09999999999999" dy="13">Vdc/2 = 250 V</tspan></text><text x="223.74" y="-74.02" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="223.74" dy="13">T1</tspan></text><text x="223.74" y="30.380000000000003" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="223.74" dy="13">T2</tspan></text><text x="75.60000000000001" y="-2.288529475610611" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="75.60000000000001" dy="13">XL = 16 Ω at 100 Hz</tspan></text><text x="169.20000000000002" y="-0.4000000000001016" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="169.20000000000002" dy="13">R = 12 Ω</tspan></text><text x="151.20000000000002" y="-50.800000000000004" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="151.20000000000002" dy="13">iL</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="252" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s1-q44b', '<svg xmlns="http://www.w3.org/2000/svg" width="420" viewBox="0 0 420 200">
+<line x1="40.0" y1="99.1" x2="373.0" y2="99.1" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="375.0,99.1 369.0,96.1 369.0,102.1" fill="currentColor"/>
+<line x1="40.0" y1="178.0" x2="40.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="40.0,6.0 37.0,12.0 43.0,12.0" fill="currentColor"/>
+<text x="381.0" y="99.1" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t (ms)</text>
+<text x="33.0" y="110.1" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="352.7" y1="96.1" x2="352.7" y2="102.1" stroke="currentColor" stroke-width="1.2"/>
+<text x="352.7" y="112.1" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">10</text>
+<line x1="37.0" y1="36.7" x2="43.0" y2="36.7" stroke="currentColor" stroke-width="1.2"/>
+<text x="34.0" y="36.7" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">1</text>
+<line x1="37.0" y1="49.2" x2="43.0" y2="49.2" stroke="currentColor" stroke-width="1.2"/>
+<text x="34.0" y="49.2" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">0.8</text>
+<line x1="37.0" y1="161.5" x2="43.0" y2="161.5" stroke="currentColor" stroke-width="1.2"/>
+<text x="34.0" y="161.5" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">−1</text>
+<polyline points="40.0,36.7 46.3,161.5 52.5,36.7 58.8,161.5 65.0,36.7 71.3,161.5 77.5,36.7 83.8,161.5 90.0,36.7 96.3,161.5 102.5,36.7 108.8,161.5 115.1,36.7 121.3,161.5 127.6,36.7 133.8,161.5 140.1,36.7 146.3,161.5 152.6,36.7 158.8,161.5 165.1,36.7 171.4,161.5 177.6,36.7 183.9,161.5 190.1,36.7 196.4,161.5 202.6,36.7 208.9,161.5 215.1,36.7 221.4,161.5 227.6,36.7 233.9,161.5 240.2,36.7 246.4,161.5 252.7,36.7 258.9,161.5 265.2,36.7 271.4,161.5 277.7,36.7 283.9,161.5 290.2,36.7 296.5,161.5 302.7,36.7 309.0,161.5 315.2,36.7 321.5,161.5 327.7,36.7 334.0,161.5 340.2,36.7 346.5,161.5 352.7,36.7" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+<polyline points="40.0,99.1 40.8,98.3 41.6,97.6 42.3,96.8 43.1,96.0 43.9,95.2 44.7,94.4 45.5,93.6 46.3,92.9 47.0,92.1 47.8,91.3 48.6,90.5 49.4,89.8 50.2,89.0 50.9,88.2 51.7,87.5 52.5,86.7 53.3,85.9 54.1,85.2 54.9,84.4 55.6,83.7 56.4,83.0 57.2,82.2 58.0,81.5 58.8,80.7 59.5,80.0 60.3,79.3 61.1,78.6 61.9,77.9 62.7,77.2 63.5,76.5 64.2,75.8 65.0,75.1 65.8,74.4 66.6,73.7 67.4,73.0 68.1,72.4 68.9,71.7 69.7,71.1 70.5,70.4 71.3,69.8 72.1,69.1 72.8,68.5 73.6,67.9 74.4,67.3 75.2,66.7 76.0,66.1 76.7,65.5 77.5,64.9 78.3,64.4 79.1,63.8 79.9,63.3 80.7,62.7 81.4,62.2 82.2,61.7 83.0,61.2 83.8,60.7 84.6,60.2 85.3,59.7 86.1,59.2 86.9,58.7 87.7,58.3 88.5,57.8 89.3,57.4 90.0,57.0 90.8,56.6 91.6,56.2 92.4,55.8 93.2,55.4 93.9,55.0 94.7,54.6 95.5,54.3 96.3,54.0 97.1,53.6 97.9,53.3 98.6,53.0 99.4,52.7 100.2,52.4 101.0,52.2 101.8,51.9 102.5,51.6 103.3,51.4 104.1,51.2 104.9,51.0 105.7,50.8 106.5,50.6 107.2,50.4 108.0,50.2 108.8,50.1 109.6,49.9 110.4,49.8 111.1,49.7 111.9,49.6 112.7,49.5 113.5,49.4 114.3,49.4 115.1,49.3 115.8,49.3 116.6,49.2 117.4,49.2 118.2,49.2 119.0,49.2 119.8,49.2 120.5,49.3 121.3,49.3 122.1,49.4 122.9,49.4 123.7,49.5 124.4,49.6 125.2,49.7 126.0,49.8 126.8,49.9 127.6,50.1 128.4,50.2 129.1,50.4 129.9,50.6 130.7,50.8 131.5,51.0 132.3,51.2 133.0,51.4 133.8,51.6 134.6,51.9 135.4,52.2 136.2,52.4 137.0,52.7 137.7,53.0 138.5,53.3 139.3,53.6 140.1,54.0 140.9,54.3 141.6,54.6 142.4,55.0 143.2,55.4 144.0,55.8 144.8,56.2 145.6,56.6 146.3,57.0 147.1,57.4 147.9,57.8 148.7,58.3 149.5,58.7 150.2,59.2 151.0,59.7 151.8,60.2 152.6,60.7 153.4,61.2 154.2,61.7 154.9,62.2 155.7,62.7 156.5,63.3 157.3,63.8 158.1,64.4 158.8,64.9 159.6,65.5 160.4,66.1 161.2,66.7 162.0,67.3 162.8,67.9 163.5,68.5 164.3,69.1 165.1,69.8 165.9,70.4 166.7,71.1 167.4,71.7 168.2,72.4 169.0,73.0 169.8,73.7 170.6,74.4 171.4,75.1 172.1,75.8 172.9,76.5 173.7,77.2 174.5,77.9 175.3,78.6 176.0,79.3 176.8,80.0 177.6,80.7 178.4,81.5 179.2,82.2 180.0,83.0 180.7,83.7 181.5,84.4 182.3,85.2 183.1,85.9 183.9,86.7 184.6,87.5 185.4,88.2 186.2,89.0 187.0,89.8 187.8,90.5 188.6,91.3 189.3,92.1 190.1,92.9 190.9,93.6 191.7,94.4 192.5,95.2 193.2,96.0 194.0,96.8 194.8,97.6 195.6,98.3 196.4,99.1 197.2,99.9 197.9,100.7 198.7,101.5 199.5,102.3 200.3,103.0 201.1,103.8 201.8,104.6 202.6,105.4 203.4,106.2 204.2,106.9 205.0,107.7 205.8,108.5 206.5,109.2 207.3,110.0 208.1,110.8 208.9,111.5 209.7,112.3 210.4,113.0 211.2,113.8 212.0,114.5 212.8,115.3 213.6,116.0 214.4,116.8 215.1,117.5 215.9,118.2 216.7,118.9 217.5,119.7 218.3,120.4 219.0,121.1 219.8,121.8 220.6,122.5 221.4,123.2 222.2,123.9 223.0,124.5 223.7,125.2 224.5,125.9 225.3,126.5 226.1,127.2 226.9,127.8 227.6,128.5 228.4,129.1 229.2,129.7 230.0,130.3 230.8,130.9 231.6,131.5 232.3,132.1 233.1,132.7 233.9,133.3 234.7,133.9 235.5,134.4 236.2,135.0 237.0,135.5 237.8,136.0 238.6,136.6 239.4,137.1 240.2,137.6 240.9,138.1 241.7,138.6 242.5,139.0 243.3,139.5 244.1,140.0 244.8,140.4 245.6,140.8 246.4,141.3 247.2,141.7 248.0,142.1 248.8,142.5 249.5,142.9 250.3,143.2 251.1,143.6 251.9,143.9 252.7,144.3 253.4,144.6 254.2,144.9 255.0,145.2 255.8,145.5 256.6,145.8 257.4,146.1 258.1,146.3 258.9,146.6 259.7,146.8 260.5,147.1 261.3,147.3 262.0,147.5 262.8,147.7 263.6,147.8 264.4,148.0 265.2,148.2 266.0,148.3 266.7,148.4 267.5,148.5 268.3,148.6 269.1,148.7 269.9,148.8 270.6,148.9 271.4,148.9 272.2,149.0 273.0,149.0 273.8,149.0 274.6,149.0 275.3,149.0 276.1,149.0 276.9,149.0 277.7,148.9 278.5,148.9 279.2,148.8 280.0,148.7 280.8,148.6 281.6,148.5 282.4,148.4 283.2,148.3 283.9,148.2 284.7,148.0 285.5,147.8 286.3,147.7 287.1,147.5 287.9,147.3 288.6,147.1 289.4,146.8 290.2,146.6 291.0,146.3 291.8,146.1 292.5,145.8 293.3,145.5 294.1,145.2 294.9,144.9 295.7,144.6 296.5,144.3 297.2,143.9 298.0,143.6 298.8,143.2 299.6,142.9 300.4,142.5 301.1,142.1 301.9,141.7 302.7,141.3 303.5,140.8 304.3,140.4 305.1,140.0 305.8,139.5 306.6,139.0 307.4,138.6 308.2,138.1 309.0,137.6 309.7,137.1 310.5,136.6 311.3,136.0 312.1,135.5 312.9,135.0 313.7,134.4 314.4,133.9 315.2,133.3 316.0,132.7 316.8,132.1 317.6,131.5 318.3,130.9 319.1,130.3 319.9,129.7 320.7,129.1 321.5,128.5 322.3,127.8 323.0,127.2 323.8,126.5 324.6,125.9 325.4,125.2 326.2,124.5 326.9,123.9 327.7,123.2 328.5,122.5 329.3,121.8 330.1,121.1 330.9,120.4 331.6,119.7 332.4,118.9 333.2,118.2 334.0,117.5 334.8,116.8 335.5,116.0 336.3,115.3 337.1,114.5 337.9,113.8 338.7,113.0 339.5,112.3 340.2,111.5 341.0,110.8 341.8,110.0 342.6,109.2 343.4,108.5 344.1,107.7 344.9,106.9 345.7,106.2 346.5,105.4 347.3,104.6 348.1,103.8 348.8,103.0 349.6,102.3 350.4,101.5 351.2,100.7 352.0,99.9 352.7,99.1" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+</svg>
+', 2) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q45';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q45')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q45: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'The voltage ($vs$) across and the current ($is$) through a semiconductor switch during a turn-ON transition are shown in figure. The energy dissipated...', 'The voltage ($v_s$) across and the current ($i_s$) through a semiconductor switch during a turn-ON transition are shown in figure. The
+energy dissipated during the turn-ON transition, in mJ, is _______.
+
+![vs stays at 600 V for T1 = 1 microsecond while is rises from 0 to 150 A (100 A plus a 50 A overshoot); then vs falls from 600 V to 0 over T2 = 1 microsecond while is stays 100 A](fig:q-gate2016-s1-q45)
+', '**Idea used:** energy $= \int v\,i\,dt$. Split the transition into the two intervals and use average values where one quantity is
+constant and the other changes in a straight line.
+
+1. **Interval T1** (1 μs): $v_s = 600$ V constant; $i_s$ rises in a straight line from 0 to 150 A (the 100 A load current plus the
+   50 A overshoot), average 75 A.
+   $E_1 = 600 \times 75 \times 1\ \mu\text{s} = 45\,000\ \mu\text{J} = 45$ mJ.
+2. **Interval T2** (1 μs): $i_s = 100$ A constant; $v_s$ falls in a straight line from 600 V to 0, average 300 V.
+   $E_2 = 300 \times 100 \times 1\ \mu\text{s} = 30$ mJ.
+3. Total $= 45 + 30 = 75$ mJ.
+
+**Without a calculator:** watts × microseconds = microjoules. Slips: forgetting the 50 A overshoot (peak 100 A gives
+$E_1 = 30$ mJ and 60 mJ total), or taking only T1 (45 mJ).
+
+**Answer: 75 mJ.**
+', 'READY', 'NAT', 74, 76, 2, 'OFFICIAL_KEY', 'gate2016-s1-q45', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'The voltage ($vs$) across and the current ($is$) through a semiconductor switch during a turn-ON transition are shown in figure. The energy dissipated...'), stem_md = 'The voltage ($v_s$) across and the current ($i_s$) through a semiconductor switch during a turn-ON transition are shown in figure. The
+energy dissipated during the turn-ON transition, in mJ, is _______.
+
+![vs stays at 600 V for T1 = 1 microsecond while is rises from 0 to 150 A (100 A plus a 50 A overshoot); then vs falls from 600 V to 0 over T2 = 1 microsecond while is stays 100 A](fig:q-gate2016-s1-q45)
+', solution_md = '**Idea used:** energy $= \int v\,i\,dt$. Split the transition into the two intervals and use average values where one quantity is
+constant and the other changes in a straight line.
+
+1. **Interval T1** (1 μs): $v_s = 600$ V constant; $i_s$ rises in a straight line from 0 to 150 A (the 100 A load current plus the
+   50 A overshoot), average 75 A.
+   $E_1 = 600 \times 75 \times 1\ \mu\text{s} = 45\,000\ \mu\text{J} = 45$ mJ.
+2. **Interval T2** (1 μs): $i_s = 100$ A constant; $v_s$ falls in a straight line from 600 V to 0, average 300 V.
+   $E_2 = 300 \times 100 \times 1\ \mu\text{s} = 30$ mJ.
+3. Total $= 45 + 30 = 75$ mJ.
+
+**Without a calculator:** watts × microseconds = microjoules. Slips: forgetting the 50 A overshoot (peak 100 A gives
+$E_1 = 30$ mJ and 60 mJ total), or taking only T1 (45 mJ).
+
+**Answer: 75 mJ.**
+', status = 'READY', answer_type = 'NAT', nat_min = 74, nat_max = 76, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q45', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q45', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '45', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '60', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '75', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '90', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s1-q45', '<svg xmlns="http://www.w3.org/2000/svg" width="360" viewBox="0 0 360 280">
+<line x1="60.0" y1="104.0" x2="345.5" y2="104.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="347.5,104.0 341.5,101.0 341.5,107.0" fill="currentColor"/>
+<line x1="60.0" y1="108.0" x2="60.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="60.0,6.0 57.0,12.0 63.0,12.0" fill="currentColor"/>
+<text x="353.5" y="104.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t</text>
+<text x="66.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">vs</text>
+<text x="53.0" y="115.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="57.0" y1="30.3" x2="63.0" y2="30.3" stroke="currentColor" stroke-width="1.2"/>
+<text x="54.0" y="30.3" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">600 V</text>
+<line x1="131.4" y1="104.0" x2="131.4" y2="18.0" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="202.9" y1="104.0" x2="202.9" y2="18.0" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="274.3" y1="104.0" x2="274.3" y2="18.0" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<polyline points="60.0,30.3 202.9,30.3 274.3,104.0 317.2,104.0" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+<line x1="60.0" y1="254.0" x2="345.5" y2="254.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="347.5,254.0 341.5,251.0 341.5,257.0" fill="currentColor"/>
+<line x1="60.0" y1="258.0" x2="60.0" y2="138.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="60.0,136.0 57.0,142.0 63.0,142.0" fill="currentColor"/>
+<text x="353.5" y="254.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t</text>
+<text x="66.0" y="138.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">is</text>
+<text x="53.0" y="265.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="131.4" y1="251.0" x2="131.4" y2="257.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="131.4" y="267.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="202.9" y1="251.0" x2="202.9" y2="257.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="202.9" y="267.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">1 μs</text>
+<line x1="274.3" y1="251.0" x2="274.3" y2="257.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="274.3" y="267.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2 μs</text>
+<line x1="57.0" y1="160.5" x2="63.0" y2="160.5" stroke="currentColor" stroke-width="1.2"/>
+<text x="54.0" y="160.5" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">150 A</text>
+<line x1="57.0" y1="191.6" x2="63.0" y2="191.6" stroke="currentColor" stroke-width="1.2"/>
+<text x="54.0" y="191.6" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">100 A</text>
+<line x1="131.4" y1="254.0" x2="131.4" y2="148.0" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="202.9" y1="254.0" x2="202.9" y2="148.0" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="274.3" y1="254.0" x2="274.3" y2="148.0" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<polyline points="60.0,254.0 131.4,254.0 202.9,160.5 202.9,191.6 317.2,191.6" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+<text x="167.2" y="241.5" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">T1 = 1 μs</text>
+<text x="238.6" y="241.5" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">T2 = 1 μs</text>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q46';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q46')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q46: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A single-phase 400 V, 50 Hz transformer has an iron loss of 5000 W at the rated condition. When operated at 200 V, 25 Hz, the iron loss is 2000 W. When...', 'A single-phase 400 V, 50 Hz transformer has an iron loss of 5000 W at the rated condition. When operated at 200 V, 25 Hz, the iron
+loss is 2000 W. When operated at 416 V, 52 Hz, the value of the hysteresis loss divided by the eddy current loss is ______.
+', '**Idea used:** at constant $V/f$ the flux density is constant, so hysteresis loss $P_h = Af$ and eddy current loss $P_e = Bf^2$
+(A and B are constants). All three conditions have $V/f = 8$, so this holds for all of them.
+
+1. At 50 Hz: $50A + 2500B = 5000$.
+2. At 25 Hz: $25A + 625B = 2000$. Double it: $50A + 1250B = 4000$.
+3. Subtract: $1250B = 1000$, so $B = 0.8$. Then $50A = 5000 - 2000 = 3000$, so $A = 60$.
+4. At 52 Hz: $P_h = 60 \times 52 = 3120$ W; $P_e = 0.8 \times 52^2 = 0.8 \times 2704 = 2163$ W.
+5. Ratio $= 3120 \div 2163 \approx 1.44$.
+
+**Check:** at 50 Hz, $P_h = 3000$ and $P_e = 2000$, total 5000 W. ✔
+
+**Without a calculator:** the ratio $P_h/P_e = \dfrac{A}{Bf} = \dfrac{60}{0.8 f} = \dfrac{75}{f}$. At 52 Hz: $75/52 \approx 1.44$.
+Option B is the ratio at 50 Hz; option C is the inverse.
+
+**Answer: about 1.44.**
+', 'READY', 'NAT', 1.4, 1.5, 2, 'OFFICIAL_KEY', 'gate2016-s1-q46', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A single-phase 400 V, 50 Hz transformer has an iron loss of 5000 W at the rated condition. When operated at 200 V, 25 Hz, the iron loss is 2000 W. When...'), stem_md = 'A single-phase 400 V, 50 Hz transformer has an iron loss of 5000 W at the rated condition. When operated at 200 V, 25 Hz, the iron
+loss is 2000 W. When operated at 416 V, 52 Hz, the value of the hysteresis loss divided by the eddy current loss is ______.
+', solution_md = '**Idea used:** at constant $V/f$ the flux density is constant, so hysteresis loss $P_h = Af$ and eddy current loss $P_e = Bf^2$
+(A and B are constants). All three conditions have $V/f = 8$, so this holds for all of them.
+
+1. At 50 Hz: $50A + 2500B = 5000$.
+2. At 25 Hz: $25A + 625B = 2000$. Double it: $50A + 1250B = 4000$.
+3. Subtract: $1250B = 1000$, so $B = 0.8$. Then $50A = 5000 - 2000 = 3000$, so $A = 60$.
+4. At 52 Hz: $P_h = 60 \times 52 = 3120$ W; $P_e = 0.8 \times 52^2 = 0.8 \times 2704 = 2163$ W.
+5. Ratio $= 3120 \div 2163 \approx 1.44$.
+
+**Check:** at 50 Hz, $P_h = 3000$ and $P_e = 2000$, total 5000 W. ✔
+
+**Without a calculator:** the ratio $P_h/P_e = \dfrac{A}{Bf} = \dfrac{60}{0.8 f} = \dfrac{75}{f}$. At 52 Hz: $75/52 \approx 1.44$.
+Option B is the ratio at 50 Hz; option C is the inverse.
+
+**Answer: about 1.44.**
+', status = 'READY', answer_type = 'NAT', nat_min = 1.4, nat_max = 1.5, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q46', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q46', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1.44', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.69', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.31', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q47';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q47')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q47: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A DC shunt generator delivers 45 A at a terminal voltage of 220 V. The armature and the shunt field resistances are 0.01 Ω and 44 Ω respectively. The stray...', 'A DC shunt generator delivers 45 A at a terminal voltage of 220 V. The armature and the shunt field resistances are 0.01 Ω and 44 Ω
+respectively. The stray losses are 375 W. The percentage efficiency of the DC generator is ____________.
+', '**Idea used:** efficiency $= \dfrac{\text{output}}{\text{output} + \text{losses}}$. In a shunt generator the armature supplies the load
+**and** the field.
+
+1. Field current $I_{sh} = 220 \div 44 = 5$ A. Armature current $I_a = 45 + 5 = 50$ A.
+2. Armature copper loss $= 50^2 \times 0.01 = 25$ W.
+3. Field copper loss $= 220 \times 5 = 1100$ W.
+4. Stray loss $= 375$ W. Total loss $= 25 + 1100 + 375 = 1500$ W.
+5. Output $= 220 \times 45 = 9900$ W.
+6. Efficiency $= \dfrac{9900}{9900 + 1500} = \dfrac{9900}{11\,400} \approx 86.8\%$.
+
+**Without a calculator:** $\dfrac{9900}{11\,400} = \dfrac{99}{114} \approx 0.87$. The big loss is the field (1100 W); forgetting it gives
+about 96% (option B).
+
+**Answer: about 86.8%.**
+', 'READY', 'NAT', 86, 88, 2, 'OFFICIAL_KEY', 'gate2016-s1-q47', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A DC shunt generator delivers 45 A at a terminal voltage of 220 V. The armature and the shunt field resistances are 0.01 Ω and 44 Ω respectively. The stray...'), stem_md = 'A DC shunt generator delivers 45 A at a terminal voltage of 220 V. The armature and the shunt field resistances are 0.01 Ω and 44 Ω
+respectively. The stray losses are 375 W. The percentage efficiency of the DC generator is ____________.
+', solution_md = '**Idea used:** efficiency $= \dfrac{\text{output}}{\text{output} + \text{losses}}$. In a shunt generator the armature supplies the load
+**and** the field.
+
+1. Field current $I_{sh} = 220 \div 44 = 5$ A. Armature current $I_a = 45 + 5 = 50$ A.
+2. Armature copper loss $= 50^2 \times 0.01 = 25$ W.
+3. Field copper loss $= 220 \times 5 = 1100$ W.
+4. Stray loss $= 375$ W. Total loss $= 25 + 1100 + 375 = 1500$ W.
+5. Output $= 220 \times 45 = 9900$ W.
+6. Efficiency $= \dfrac{9900}{9900 + 1500} = \dfrac{9900}{11\,400} \approx 86.8\%$.
+
+**Without a calculator:** $\dfrac{9900}{11\,400} = \dfrac{99}{114} \approx 0.87$. The big loss is the field (1100 W); forgetting it gives
+about 96% (option B).
+
+**Answer: about 86.8%.**
+', status = 'READY', answer_type = 'NAT', nat_min = 86, nat_max = 88, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q47', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q47', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '86.8', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '96.1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '89.8', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '84.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q48';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q48')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q48: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A three-phase, 50 Hz salient-pole synchronous motor has a per-phase direct-axis reactance ($Xd$) of 0.8 pu and a per-phase quadrature-axis reactance ($Xq$)...', 'A three-phase, 50 Hz salient-pole synchronous motor has a per-phase direct-axis reactance ($X_d$) of 0.8 pu and a per-phase
+quadrature-axis reactance ($X_q$) of 0.6 pu. Resistance of the machine is negligible. It is drawing full-load current at 0.8 pf
+(leading). When the terminal voltage is 1 pu, per-phase induced voltage, in pu, is _________.
+', '**Idea used (two-reaction theory):** first find the direction of the q-axis using $X_q$; then add the extra drop due to the d-axis
+current.
+
+Motor (resistance neglected): $\bar{E} = \bar{V} - jX_q\bar{I} - j(X_d - X_q)\bar{I}_d$.
+
+1. $\bar{V} = 1\angle 0^\circ$, $\bar{I} = 1\angle{+36.87^\circ} = 0.8 + j0.6$ (leading, full load).
+2. Step on the q-axis: $\bar{E}'' = \bar{V} - jX_q\bar{I} = 1 - j0.6(0.8 + j0.6) = 1 - j0.48 + 0.36 = 1.36 - j0.48$.
+   $|\bar{E}''| = \sqrt{1.36^2 + 0.48^2} \approx 1.442$, angle $\delta \approx -19.4^\circ$.
+3. Angle between $\bar{I}$ and the q-axis: $36.87^\circ + 19.44^\circ = 56.3^\circ$. So $I_d = 1 \times \sin 56.3^\circ \approx 0.832$ pu.
+4. $E = |\bar{E}''| + (X_d - X_q)I_d = 1.442 + 0.2 \times 0.832 \approx 1.61$ pu.
+
+**Without a calculator:** $1.36^2 + 0.48^2 = 1.85 + 0.23 = 2.08$, and $\sqrt{2.08} \approx 1.44$. The d-axis correction is small
+($0.2 \times$ about 0.83). Option A stops after step 2. Option C comes from the generator sign ($\bar{V} + jX_q\bar{I}$),
+which is wrong for a motor. (Here the cylindrical-rotor shortcut with $X_d$ happens to give about 1.61 too, but that is a
+coincidence of these numbers, not a method.)
+
+**Answer: about 1.61 pu.**
+', 'READY', 'NAT', 1.58, 1.62, 3, 'OFFICIAL_KEY', 'gate2016-s1-q48', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A three-phase, 50 Hz salient-pole synchronous motor has a per-phase direct-axis reactance ($Xd$) of 0.8 pu and a per-phase quadrature-axis reactance ($Xq$)...'), stem_md = 'A three-phase, 50 Hz salient-pole synchronous motor has a per-phase direct-axis reactance ($X_d$) of 0.8 pu and a per-phase
+quadrature-axis reactance ($X_q$) of 0.6 pu. Resistance of the machine is negligible. It is drawing full-load current at 0.8 pf
+(leading). When the terminal voltage is 1 pu, per-phase induced voltage, in pu, is _________.
+', solution_md = '**Idea used (two-reaction theory):** first find the direction of the q-axis using $X_q$; then add the extra drop due to the d-axis
+current.
+
+Motor (resistance neglected): $\bar{E} = \bar{V} - jX_q\bar{I} - j(X_d - X_q)\bar{I}_d$.
+
+1. $\bar{V} = 1\angle 0^\circ$, $\bar{I} = 1\angle{+36.87^\circ} = 0.8 + j0.6$ (leading, full load).
+2. Step on the q-axis: $\bar{E}'' = \bar{V} - jX_q\bar{I} = 1 - j0.6(0.8 + j0.6) = 1 - j0.48 + 0.36 = 1.36 - j0.48$.
+   $|\bar{E}''| = \sqrt{1.36^2 + 0.48^2} \approx 1.442$, angle $\delta \approx -19.4^\circ$.
+3. Angle between $\bar{I}$ and the q-axis: $36.87^\circ + 19.44^\circ = 56.3^\circ$. So $I_d = 1 \times \sin 56.3^\circ \approx 0.832$ pu.
+4. $E = |\bar{E}''| + (X_d - X_q)I_d = 1.442 + 0.2 \times 0.832 \approx 1.61$ pu.
+
+**Without a calculator:** $1.36^2 + 0.48^2 = 1.85 + 0.23 = 2.08$, and $\sqrt{2.08} \approx 1.44$. The d-axis correction is small
+($0.2 \times$ about 0.83). Option A stops after step 2. Option C comes from the generator sign ($\bar{V} + jX_q\bar{I}$),
+which is wrong for a motor. (Here the cylindrical-rotor shortcut with $X_d$ happens to give about 1.61 too, but that is a
+coincidence of these numbers, not a method.)
+
+**Answer: about 1.61 pu.**
+', status = 'READY', answer_type = 'NAT', nat_min = 1.58, nat_max = 1.62, difficulty = 3, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q48', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q48', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1.44', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.61', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.80', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1.30', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q49';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q49')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q49: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A single-phase, 22 kVA, 2200 V/ 220 V, 50 Hz, distribution transformer is to be connected as an auto-transformer to get an output voltage of 2420 V. Its...', 'A single-phase, 22 kVA, 2200 V/ 220 V, 50 Hz, distribution transformer is to be connected as an auto-transformer to get an output
+voltage of 2420 V. Its maximum kVA rating as an auto-transformer is
+', '**Idea used:** in the auto-transformer connection each winding still carries no more than its rated current. The 220 V winding is
+put in series (adding) with the 2200 V winding, so the output side carries the 220 V winding''s rated current.
+
+1. Rated currents: HV winding $= 22\,000 \div 2200 = 10$ A; LV winding $= 22\,000 \div 220 = 100$ A.
+2. Connection: input 2200 V across the HV winding; output 2200 + 220 = 2420 V taken across both windings in series.
+3. The output current flows through the LV (220 V) winding, so it can be at most 100 A.
+4. Rating $= 2420 \times 100 = 242\,000$ VA $= 242$ kVA.
+
+**Check:** input current $= 242\,000 \div 2200 = 110$ A; the common (HV) winding carries $110 - 100 = 10$ A, its rated value. ✔
+
+**Without a calculator:** auto-transformer kVA $=$ two-winding kVA $\times \dfrac{V_{high}}{V_{series\ winding}} = 22 \times \dfrac{2420}{220} = 22 \times 11$.
+
+**Answer: (C) 242 kVA.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate2016-s1-q49', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A single-phase, 22 kVA, 2200 V/ 220 V, 50 Hz, distribution transformer is to be connected as an auto-transformer to get an output voltage of 2420 V. Its...'), stem_md = 'A single-phase, 22 kVA, 2200 V/ 220 V, 50 Hz, distribution transformer is to be connected as an auto-transformer to get an output
+voltage of 2420 V. Its maximum kVA rating as an auto-transformer is
+', solution_md = '**Idea used:** in the auto-transformer connection each winding still carries no more than its rated current. The 220 V winding is
+put in series (adding) with the 2200 V winding, so the output side carries the 220 V winding''s rated current.
+
+1. Rated currents: HV winding $= 22\,000 \div 2200 = 10$ A; LV winding $= 22\,000 \div 220 = 100$ A.
+2. Connection: input 2200 V across the HV winding; output 2200 + 220 = 2420 V taken across both windings in series.
+3. The output current flows through the LV (220 V) winding, so it can be at most 100 A.
+4. Rating $= 2420 \times 100 = 242\,000$ VA $= 242$ kVA.
+
+**Check:** input current $= 242\,000 \div 2200 = 110$ A; the common (HV) winding carries $110 - 100 = 10$ A, its rated value. ✔
+
+**Without a calculator:** auto-transformer kVA $=$ two-winding kVA $\times \dfrac{V_{high}}{V_{series\ winding}} = 22 \times \dfrac{2420}{220} = 22 \times 11$.
+
+**Answer: (C) 242 kVA.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q49', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q49', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '22', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '24.2', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '242', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2420', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q50';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q50')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q50: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A single-phase full-bridge voltage source inverter (VSI) is fed from a 300 V battery. A pulse of 120° duration is used to trigger the appropriate devices in...', 'A single-phase full-bridge voltage source inverter (VSI) is fed from a 300 V battery. A pulse of 120° duration is used to trigger the
+appropriate devices in each half-cycle. The rms value of the fundamental component of the output voltage, in volts, is
+', '**Idea used:** a quasi-square wave of height $V_{dc}$ and pulse width $2d$ (centred in each half-cycle) has a fundamental of peak
+$\dfrac{4V_{dc}}{\pi}\sin d$.
+
+1. Pulse width $2d = 120^\circ$, so $d = 60^\circ$ and $\sin 60^\circ \approx 0.866$.
+2. Fundamental peak $= \dfrac{4 \times 300}{\pi} \times 0.866 \approx 382 \times 0.866 \approx 331$ V.
+3. rms $= 331 \div \sqrt2 \approx 234$ V.
+
+**Without a calculator:** a full square wave has fundamental rms $0.9V_{dc} = 270$ V. Narrowing it to 120° multiplies by
+$\sin 60^\circ \approx 0.866$: $270 \times 0.866 \approx 234$ V. Option D is the peak, not the rms.
+
+**Answer: (A) 234 V.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate2016-s1-q50', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A single-phase full-bridge voltage source inverter (VSI) is fed from a 300 V battery. A pulse of 120° duration is used to trigger the appropriate devices in...'), stem_md = 'A single-phase full-bridge voltage source inverter (VSI) is fed from a 300 V battery. A pulse of 120° duration is used to trigger the
+appropriate devices in each half-cycle. The rms value of the fundamental component of the output voltage, in volts, is
+', solution_md = '**Idea used:** a quasi-square wave of height $V_{dc}$ and pulse width $2d$ (centred in each half-cycle) has a fundamental of peak
+$\dfrac{4V_{dc}}{\pi}\sin d$.
+
+1. Pulse width $2d = 120^\circ$, so $d = 60^\circ$ and $\sin 60^\circ \approx 0.866$.
+2. Fundamental peak $= \dfrac{4 \times 300}{\pi} \times 0.866 \approx 382 \times 0.866 \approx 331$ V.
+3. rms $= 331 \div \sqrt2 \approx 234$ V.
+
+**Without a calculator:** a full square wave has fundamental rms $0.9V_{dc} = 270$ V. Narrowing it to 120° multiplies by
+$\sin 60^\circ \approx 0.866$: $270 \times 0.866 \approx 234$ V. Option D is the peak, not the rms.
+
+**Answer: (A) 234 V.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q50', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q50', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '234', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '245', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '300', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '331', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q51';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q51')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q51: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A single-phase transmission line has two conductors each of 10 mm radius. These are fixed at a center-to-center distance of 1 m in a horizontal plane. This...', 'A single-phase transmission line has two conductors each of 10 mm radius. These are fixed at a center-to-center distance of 1 m in a
+horizontal plane. This is now converted to a three-phase transmission line by introducing a third conductor of the same radius.
+This conductor is fixed at an equal distance D from the two single-phase conductors. The three-phase line is fully transposed. The
+positive sequence inductance per phase of the three-phase system is to be 5% more than that of the inductance per conductor of the
+single-phase system. The distance D, in meters, is _______.
+', '**Idea used:** inductance per conductor (per phase) $= 2 \times 10^{-7}\ln\dfrac{D_m}{r''}$ H/m, with $r'' = 0.7788r$ and $D_m$ the mutual
+distance: 1 m for the single-phase line, the geometric mean distance $\sqrt[3]{1 \cdot D \cdot D}$ for the transposed three-phase line.
+
+1. $r'' = 0.7788 \times 0.01 = 0.007788$ m, and $\ln\dfrac{1}{0.007788} \approx 4.855$.
+2. Condition: $\ln\dfrac{GMD}{r''} = 1.05 \times \ln\dfrac{1}{r''}$.
+3. Write $\ln\dfrac{GMD}{r''} = \ln GMD + \ln\dfrac{1}{r''}$. So $\ln GMD = 0.05 \times 4.855 \approx 0.243$.
+4. $GMD = e^{0.243} \approx 1.275$ m.
+5. $GMD^3 = D^2$ (since $1 \times D \times D$), so $D^2 = 1.275^3 \approx 2.07$ and $D \approx 1.44$ m.
+
+**Without a calculator:** $\ln(1/0.0078) \approx \ln 128 = 7\ln 2 \approx 4.85$. Then $e^{0.24} \approx 1.27$, and
+$D = GMD^{1.5} = 1.275 \times \sqrt{1.275} \approx 1.275 \times 1.13 \approx 1.44$. Option B is the GMD itself and option D is $D^2$.
+
+**Answer: about 1.44 m.**
+', 'READY', 'NAT', 1.41, 1.47, 3, 'OFFICIAL_KEY', 'gate2016-s1-q51', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A single-phase transmission line has two conductors each of 10 mm radius. These are fixed at a center-to-center distance of 1 m in a horizontal plane. This...'), stem_md = 'A single-phase transmission line has two conductors each of 10 mm radius. These are fixed at a center-to-center distance of 1 m in a
+horizontal plane. This is now converted to a three-phase transmission line by introducing a third conductor of the same radius.
+This conductor is fixed at an equal distance D from the two single-phase conductors. The three-phase line is fully transposed. The
+positive sequence inductance per phase of the three-phase system is to be 5% more than that of the inductance per conductor of the
+single-phase system. The distance D, in meters, is _______.
+', solution_md = '**Idea used:** inductance per conductor (per phase) $= 2 \times 10^{-7}\ln\dfrac{D_m}{r''}$ H/m, with $r'' = 0.7788r$ and $D_m$ the mutual
+distance: 1 m for the single-phase line, the geometric mean distance $\sqrt[3]{1 \cdot D \cdot D}$ for the transposed three-phase line.
+
+1. $r'' = 0.7788 \times 0.01 = 0.007788$ m, and $\ln\dfrac{1}{0.007788} \approx 4.855$.
+2. Condition: $\ln\dfrac{GMD}{r''} = 1.05 \times \ln\dfrac{1}{r''}$.
+3. Write $\ln\dfrac{GMD}{r''} = \ln GMD + \ln\dfrac{1}{r''}$. So $\ln GMD = 0.05 \times 4.855 \approx 0.243$.
+4. $GMD = e^{0.243} \approx 1.275$ m.
+5. $GMD^3 = D^2$ (since $1 \times D \times D$), so $D^2 = 1.275^3 \approx 2.07$ and $D \approx 1.44$ m.
+
+**Without a calculator:** $\ln(1/0.0078) \approx \ln 128 = 7\ln 2 \approx 4.85$. Then $e^{0.24} \approx 1.27$, and
+$D = GMD^{1.5} = 1.275 \times \sqrt{1.275} \approx 1.275 \times 1.13 \approx 1.44$. Option B is the GMD itself and option D is $D^2$.
+
+**Answer: about 1.44 m.**
+', status = 'READY', answer_type = 'NAT', nat_min = 1.41, nat_max = 1.47, difficulty = 3, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q51', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q51', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1.05', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.27', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1.44', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.07', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
