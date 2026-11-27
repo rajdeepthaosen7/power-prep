@@ -8,20 +8,20 @@ Use it when writing a chapter: give each APSC 2023 question its earlier sources 
 
 ## In one line
 
-**APGCL copies GATE EE.** 74 of its 100 questions are word-for-word GATE EE questions (same numbers, same options), and more than half of those are from GATE 1992–2006. **APDCL and AEGCL are different:** only about 20 of 100 come from GATE or ESE; the rest are standard one-line theory facts and textbook-type numericals.
+**APGCL copies GATE EE.** 74 of its 100 questions are word-for-word GATE EE questions (same numbers, same options), and more than half of those are from GATE 1992–2006. **APDCL and AEGCL are different:** about a third come from earlier papers (GATE, ESE, and JE/AE/PSU papers such as ISRO Technical Assistant, DSSSB, PSPCL, BSNL, UPPCL) or question banks; the rest are standard one-line theory facts and textbook-type numericals.
 
 ## What I checked
 
 | Paper | Questions | Traced to an earlier exam or bank | Word-for-word GATE EE | From GATE 1992–2006 | Not traced |
 |---|---|---|---|---|---|
-| APGCL 2023 (15 Oct, Series A) | 100 | 83 | 74 | 43 | 17 |
-| APDCL 2023 (10 Sep, Series B) | 100 | 20 | 10 | 7 | 80 |
-| AEGCL 2023 (18 Nov, Series D) | 100 | 20 | 10 | 7 | 80 |
+| APGCL 2023 (15 Oct, Series A) | 100 | 85 | 74 | 43 | 15 |
+| APDCL 2023 (10 Sep, Series B) | 100 | 31 | 10 | 7 | 69 |
+| AEGCL 2023 (18 Nov, Series D) | 100 | 36 | 10 | 7 | 64 |
 
 How each question was matched:
 - **GATE EE 2007–2026 and ESE EE 2017–2026:** full text of every question, compared word by word (from our own dump).
 - **GATE EE 1991–2006:** the question lists on examside.com, compared stem by stem. Figures and numbers are not shown there, so a few of these matches are from the stem alone (marked in the CSV).
-- **Others:** web search for exact phrases (ISRO, SSC-JE, question-bank sites).
+- **Others:** web search for exact phrases (ISRO, SSC-JE, question-bank sites). Second pass (27 Nov 2026): 43 of the 177 untraced questions searched on testbook.com, byjus.com, sarthaks.com and DuckDuckGo; 29 more sources found. testbook names the exam a question was asked in.
 - **Match levels:** *Same* = same question and numbers; *Numbers changed* = same template, new values; *Same idea* = same fact asked differently; *In a bank* = found on a question-bank site, exam not named; *Not traced* = no earlier source found.
 
 ## The patterns
@@ -31,6 +31,7 @@ How each question was matched:
 3. **APDCL and AEGCL = theory facts + textbook numericals.** About 80 questions in each are one-line facts ("Schering bridge is used for…", "DC series motors are used where…") or short textbook numericals (transformer efficiency, induction-motor slip, rotor frequency). They follow the wording of J.B. Gupta / V.K. Mehta / Theraja-type objective books.
 4. **APSC repeats itself.** Four questions appear in two of the three 2023 papers: APGCL 46 = AEGCL 35 (Jacobian size), APGCL 61 = APDCL 93 (lead/lag compensators), APGCL 81 ≈ APDCL 16 (SAR ADC), APDCL 3 = AEGCL 59 (energy meter).
 5. **Subject differences:** Power Systems is the most traceable (26 of 47). Signals and Machines theory are the least (most are standard facts). Engineering maths: 10 questions in APDCL, none in APGCL or AEGCL. 8085: 2 questions in APGCL.
+6. **APDCL and AEGCL also copy JE/AE/PSU papers.** The second pass found their questions in ISRO Technical Assistant (2016, 2017, 2020), DSSSB JE 2019, PSPCL JE 2012, BSNL TTA 2016, MPSC AE 2018, UPPCL AE 2019, DFCCIL 2021, HPCL 2022, UGC NET Electronic Science and ESE 2013/2014. Almost all are on testbook.com's solved-PYQ pages. APDCL Q22 is P.S. Bimbhra's worked Example 4.6 (latching current, 200 V, 0.2 H).
 
 ## Best practices (what to do with this)
 
@@ -38,5 +39,6 @@ How each question was matched:
 2. **Learn the question, not just the answer.** APGCL copies GATE word for word, so knowing each PYQ's exact answer gets marks directly. Re-solve them in revision until they are instant.
 3. **Build a fact bank for APDCL/AEGCL-style questions.** For each chapter, keep a short list of one-line facts (uses, definitions, "which bridge measures what", "which relay protects what"). These are cheap marks and they cannot be calculated, only remembered.
 4. **Practise textbook numericals without a calculator.** Transformer efficiency, slip/rotor frequency, DC machine EMF, SIL, demand factor, string efficiency: small numbers, one formula each.
+4a. **Solve JE/AE/PSU PYQs too, for APDCL/AEGCL.** ISRO Technical Assistant, DSSSB/PSPCL/UPPCL JE-AE, BSNL TTA, MPSC AE, HPCL and DFCCIL papers: 14 APDCL/AEGCL questions were found in them word for word or with new numbers. testbook.com lists these by topic with the exam name.
 5. **Revise all three 2023 APSC papers fully.** APSC reused 4 of its own questions within 2023; expect some 2023 questions again in 2026.
 6. **Mocks will follow this mix:** APGCL-style mocks about 75 % GATE EE PYQs (spread over all years) + 25 % theory facts; APDCL/AEGCL-style mocks about 25 % GATE/ESE + 75 % facts and textbook numericals.
