@@ -1,0 +1,301 @@
+paper,q,subject,topic,type,source,source_family,source_year,match,note
+APGCL-2023,1,Electric Circuits,Three-phase circuits (unbalanced),Numerical,BYJU'S question bank (exam not named),Question bank,,Found in a question bank (exam not named),same figure and options on byjus.com; original exam not found
+APGCL-2023,2,Electric Circuits,Transients (RC / ideal elements),Theory,"Common objective bank (transtutors, textbooks)",Question bank,,Found in a question bank (exam not named),classic one-liner; original exam not found
+APGCL-2023,3,Electric Circuits,Balanced polyphase currents,Theory,GATE-EE 2012 Q11,GATE EE,2012,Same question,local text
+APGCL-2023,4,Electric Circuits,Nodal / mesh / KCL-KVL,Numerical,GATE-EE 2004 Q32,GATE EE,2004,Same question,"earlier, in DB"
+APGCL-2023,5,Signals & Systems,RMS / average of periodic waveform,Numerical,GATE-EE 2004,GATE EE,2004,Same question,examside GATE EE 2004 list: rms of 10 A dc + 20 A peak sinusoid
+APGCL-2023,6,Signals & Systems,RMS / average of periodic waveform,Numerical,GATE-EE 1999,GATE EE,1999,Same question,examside 1999: value of half-wave rectified symmetrical square wave current
+APGCL-2023,7,Electric Circuits,AC power - P Q pf / complex power,Numerical,GATE-EE 2012 Q16,GATE EE,2012,Same question,local text
+APGCL-2023,8,Electric Circuits,Ideal sources,Numerical,GATE-EE 2016 Set-2 Q23,GATE EE,2016,Same question,local text
+APGCL-2023,9,Electric Circuits,Network graph theory,Theory,GATE-EE 2002,GATE EE,2002,Same question,"examside 2002: graph with N nodes, B branches, number of links for a tree (ESE-EE 2017 Q39 asks the same)"
+APGCL-2023,10,Signals & Systems,RMS / average of periodic waveform,Numerical,GATE-EE 2004,GATE EE,2004,Same question,examside GATE EE 2004 list: rms value of the periodic waveform in figure
+APGCL-2023,11,Signals & Systems,System properties (linear / time-invariant),Theory,GATE-EE 2009 Q11,GATE EE,2009,Same question,earlier match
+APGCL-2023,12,Signals & Systems,Causality and stability,Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,13,Signals & Systems,Frequency response (DTFT),Theory,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APGCL-2023,14,Signals & Systems,Energy and power signals,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,15,Signals & Systems,LTI system response (Laplace),Numerical,GATE-EE 2008 Q64,GATE EE,2008,Same question,local text
+APGCL-2023,16,Analog & Digital,Logic families (TTL / open collector),Theory,GATE-EE 1998,GATE EE,1998,Same question,examside 1998: in standard TTL gates the totem-pole output stage is used to
+APGCL-2023,17,Signals & Systems,Z-transform,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APGCL-2023,18,Signals & Systems,Region of convergence (ROC),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,19,Signals & Systems,Fourier series (symmetry / periodicity),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,20,Signals & Systems,Laplace transform (incl. final value theorem),Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APGCL-2023,21,Electrical Machines,DC machines - armature winding,Theory,"SSC-JE EE 2018 (24 Jan, shift 2) Q155",Other exam (ISRO / SSC-JE / GATE EC),,Same question,cracku.in question page (exam re-use; older origin not found)
+APGCL-2023,22,Electrical Machines,DC machines - motor starting,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,23,Electrical Machines,DC machines - braking,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,24,Electrical Machines,DC machines - motor torque/speed,Numerical,GATE-EE 1998,GATE EE,1998,Same question,"examside 1998: 240 V DC shunt motor, Ra 0.5, 40 A, stalling/full-load torque with 1 ohm"
+APGCL-2023,25,Electrical Machines,DC machines - EMF equation,Numerical,GATE-EE 1996,GATE EE,1996,Same question,examside 1996: flux per pole of a 4-pole wave-wound dynamo from EMF and speed
+APGCL-2023,26,Electrical Machines,Transformers - losses / efficiency,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,27,Electrical Machines,Transformers - no-load / phasor diagram,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,28,Electrical Machines,Single-phase induction motor,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,29,Electrical Machines,DC machines - speed / direction control,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,30,Electrical Machines,Synchronous machines - armature reaction,Theory,ISRO Scientist/Engineer EE 2018 Q38,Other exam (ISRO / SSC-JE / GATE EC),,Same question,cracku.in question page
+APGCL-2023,31,Electrical Machines,DC machines - generator basics,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,32,Electrical Machines,Induction motor - space harmonics,Numerical,GATE-EE 2004,GATE EE,2004,Same question,examside: synchronous speed of seventh space harmonic
+APGCL-2023,33,Electrical Machines,Windings - pitch / distribution factor,Numerical,GATE-EE 2001,GATE EE,2001,Same question,examside 2001: short-pitch angle to eliminate 5th harmonic
+APGCL-2023,34,Electrical Machines,Induction motor - V/f speed control,Theory,GATE-EE 2002,GATE EE,2002,Same question,"examside 2002: 400 V 50 Hz star cage motor run at 400 V 75 Hz, torque at rated current"
+APGCL-2023,35,Electrical Machines,Synchronous machines - armature reaction,Theory,GATE-EE 2006,GATE EE,2006,Same question,"examside 2006: synchronous generator, zero pf lagging, armature reaction"
+APGCL-2023,36,Power Systems,Symmetrical components / sequence impedance,Numerical,GATE-EE 2005,GATE EE,2005,Same question,"examside 2005: transposed line, positive and zero sequence reactances"
+APGCL-2023,37,Power Systems,Transmission line - propagation / wavelength,Numerical,GATE-EE 2008 Q15 (also ESE-EE 2018 P2 Q107),GATE EE,2008,Same question,local text
+APGCL-2023,38,Power Systems,Reactive power compensation,Numerical,GATE-EE 2005,GATE EE,2005,Same question,"examside 2005: industrial substation capacitor out of service, new pf"
+APGCL-2023,39,Power Systems,Voltage control - shunt reactor,Numerical,GATE-EE 1994,GATE EE,1994,Same question,"examside 1994: kV recorded at a kV bus, reactive power of shunt reactor (1998 has a similar one)"
+APGCL-2023,40,Power Systems,Stability - transient stability,Theory,GATE-EE 1993,GATE EE,1993,Same question,examside 1993: transient stability can be effectively improved by
+APGCL-2023,41,Power Systems,Travelling waves / cable parameters,Numerical,GATE-EE 1998,GATE EE,1998,Same question,"examside 1998: cable characteristics, velocity of wave propagation"
+APGCL-2023,42,Power Systems,Power transfer capability,Numerical,BYJU'S question bank (exam not named),Question bank,,Found in a question bank (exam not named),same stem and numbers on byjus.com
+APGCL-2023,43,Power Systems,Economic load dispatch,Numerical,GATE-EE 2021 Q10,GATE EE,2021,"Same question, numbers changed","same template (two generators, incremental cost, economic split); values changed"
+APGCL-2023,44,Power Systems,"Circuit breakers (ratings, SF6)",Numerical,GATE-EE 2010 Q18,GATE EE,2010,Same question,local text
+APGCL-2023,45,Power Systems,Protection - relays and zones,Numerical,GATE-EE 2000,GATE EE,2000,Same question,"examside 2000: negative-sequence relay plug setting, CT ratio, minimum L-L fault current"
+APGCL-2023,46,Power Systems,Load flow - Newton-Raphson,Numerical,GATE-EE 2016 Set-2 Q14,GATE EE,2016,Same question,local text
+APGCL-2023,47,Power Systems,Generation - hydro plants,Theory,GATE-EE 2004 (Kaplan turbine),GATE EE,2004,Same question,earlier web check
+APGCL-2023,48,Power Systems,Power flow between two buses,Numerical,GATE-EE 2010 Q17,GATE EE,2010,Same question,local text
+APGCL-2023,49,Power Systems,Protection - relays and zones,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,50,Power Systems,Overhead insulators,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,51,Control Systems,Block diagram / signal flow graph,Numerical,GATE-EE 1992,GATE EE,1992,Same question,examside 1992: overall transfer function of the system in figure (to confirm figure)
+APGCL-2023,52,Control Systems,"Second-order system (damping, overshoot)",Numerical,GATE-EE 2000,GATE EE,2000,Same question,"examside 2000: unity feedback, approximate peak overshoot"
+APGCL-2023,53,Control Systems,Routh-Hurwitz stability,Numerical,GATE-EE 2003,GATE EE,2003,Same question,examside 2003: loop gain for which the closed loop just becomes unstable (numbers not visible on list)
+APGCL-2023,54,Control Systems,"Second-order system (damping, overshoot)",Numerical,GATE-EE 2008 Q68,GATE EE,2008,Same question,local text
+APGCL-2023,55,Measurements,Power measurement - Blondel / two-wattmeter,Theory,GATE-EE 2001,GATE EE,2001,Same question,examside 2001: minimum wattmeters for 3-phase 3-wire balanced or unbalanced
+APGCL-2023,56,Control Systems,Routh-Hurwitz stability,Numerical,GATE-EE 2017 Set-2 Q35,GATE EE,2017,Same question,local text
+APGCL-2023,57,Control Systems,Routh-Hurwitz stability,Numerical,GATE-EE 2012 Q43,GATE EE,2012,Same question,local text
+APGCL-2023,58,Control Systems,Root locus,Numerical,GATE-EE 2017 Set-2 Q34,GATE EE,2017,Same question,local text
+APGCL-2023,59,Control Systems,Frequency response (sinusoidal steady state),Numerical,GATE-EE 2004,GATE EE,2004,Same question,"examside: input sin t, steady-state response (TF 1/(1+s))"
+APGCL-2023,60,Control Systems,Lead / lag compensators,Numerical,GATE-EE 2000,GATE EE,2000,Same question,examside 2000: maximum phase lead of the compensator
+APGCL-2023,61,Control Systems,Lead / lag compensators,Theory,GATE-EE 2008 Q65,GATE EE,2008,Same question,local text
+APGCL-2023,62,Control Systems,State space,Theory,GATE-EE 2016 Set-2 Q49,GATE EE,2016,Same question,local text
+APGCL-2023,63,Control Systems,State space,Numerical,GATE-EE 1994,GATE EE,1994,Same idea,examside 1994: eigenvalues of the matrix (to confirm)
+APGCL-2023,64,Measurements,Errors / tolerance,Numerical,GATE-EE 2001,GATE EE,2001,Same question,"examside 2001: nominal values and tolerances, range of parallel combination"
+APGCL-2023,65,Measurements,Instrument types (MI / PMMC / dynamometer / thermocouple),Theory,GATE-EE 1994,GATE EE,1994,Same question,"examside 1994: PMMC ammeter reading, bottom control spring snaps"
+APGCL-2023,66,Measurements,Transducers (strain gauge / LVDT),Numerical,GATE-EE 1993,GATE EE,1993,Same question,"examside 1993: metal strain gauge, gauge factor two, change of resistance"
+APGCL-2023,67,Measurements,Instrument types (MI / PMMC / dynamometer / thermocouple),Numerical,GATE-EE 2004,GATE EE,2004,Same question,"examside: moving coil torque (100 turns, 10 x 20 mm, 200 mT, 50 mA)"
+APGCL-2023,68,Measurements,DC potentiometer,Numerical,GATE-EE 1994,GATE EE,1994,Same question,"examside 1994: DC potentiometer, slide wire, standard cell and test cell balance"
+APGCL-2023,69,Measurements,Power measurement - Blondel / two-wattmeter,Numerical,GATE-EE 2014 Set-1 Q19,GATE EE,2014,Same question,local text
+APGCL-2023,70,Measurements,Range extension - shunt / multiplier,Numerical,GATE-EE 2005,GATE EE,2005,Same question,examside 2005: DC ammeter shunt to extend range
+APGCL-2023,71,Measurements,Wattmeter connections / errors,Theory,GATE-EE 2009 Q1,GATE EE,2009,Same question,local text
+APGCL-2023,72,Measurements,CRO,Theory,GATE-EE 2014 Set-1 Q20,GATE EE,2014,Same question,local text (options reordered)
+APGCL-2023,73,Control Systems,Analogous systems,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APGCL-2023,74,Analog & Digital,Op-amp active filters,Theory,GATE-EE 2011 Q11,GATE EE,2011,Same question,local text
+APGCL-2023,75,Analog & Digital,"Op-amp basics (ideal, GBW, instrumentation amp)",Numerical,GATE-EE 2001,GATE EE,2001,Same question,"examside 2001: op-amp open-loop gain and cut-off, new cut-off at closed-loop gain"
+APGCL-2023,76,Power Electronics,Power devices - selection (MOSFET / IGBT / SCR),Theory,GATE-EE 2022 Q22,GATE EE,2022,Same question,"lightly reworded, same numbers and options"
+APGCL-2023,77,Analog & Digital,Boolean algebra / K-map,Numerical,GATE-EE 2004,GATE EE,2004,Same question,examside: simplified form of the Boolean expression
+APGCL-2023,78,Analog & Digital,Boolean algebra / K-map,Theory,GATE-EE 1999,GATE EE,1999,Same question,examside 1999: the logic function f = ... is the same as
+APGCL-2023,79,Analog & Digital,Boolean algebra / K-map,Numerical,GATE-EE 2012 Q7,GATE EE,2012,Same question,earlier match
+APGCL-2023,80,Analog & Digital,Combinational logic (comparator),Numerical,GATE-EE 2012 Q19,GATE EE,2012,Same question,local text
+APGCL-2023,81,Analog & Digital,A/D converter (SAR),Numerical,GATE-EE 2015 Set-1 Q50,GATE EE,2015,Same question,local text
+APGCL-2023,82,Analog & Digital,Logic families (TTL / open collector),Theory,GATE-EE 1998,GATE EE,1998,Same question,examside 1998: open-collector outputs of two 2-input gates with common pull-up
+APGCL-2023,83,8085 Microprocessor (not in APGCL syllabus),8085 instructions,Theory,GATE-EE 2005,GATE EE,2005,Same question,examside 2005: 8085 instruction storing H and L into two memory locations (SHLD)
+APGCL-2023,84,8085 Microprocessor (not in APGCL syllabus),8085 instructions / flags,Theory,GATE-EE 1995,GATE EE,1995,Same question,"examside 1995: 8085, after execution of XRA A instruction"
+APGCL-2023,85,Power Electronics,Diode rectifiers with L load,Theory,GATE-EE 2007 Q59,GATE EE,2007,Same question,"ideal diode feeding pure inductor from AC source: diode conduction angle (earlier match, local GATE 2007 text)"
+APGCL-2023,86,Power Electronics,"Controlled rectifiers (output V, pf, overlap)",Numerical,GATE-EE 2007 Q13,GATE EE,2007,Same question,local text
+APGCL-2023,87,Power Electronics,"SCR: characteristics, triggering, commutation",Theory,GATE-EE 2011 Q25,GATE EE,2011,Same question,local text (options C/D swapped)
+APGCL-2023,88,Power Electronics,"Controlled rectifiers (output V, pf, overlap)",Numerical,GATE-EE 2010 Q25,GATE EE,2010,Same question,local text
+APGCL-2023,89,Power Electronics,"Controlled rectifiers (output V, pf, overlap)",Numerical,GATE-EE 2016 Set-1 Q43,GATE EE,2016,Same question,local text
+APGCL-2023,90,Power Electronics,DC-DC choppers (buck / boost),Theory,GATE-EE 2002,GATE EE,2002,Same question,"examside 2002: step-down chopper CCM, ratio of output to input voltage"
+APGCL-2023,91,Power Electronics,Inverters,Numerical,GATE-EE 2016 Set-1 Q50,GATE EE,2016,Same question,local text
+APGCL-2023,92,Power Electronics,Inverters,Theory,GATE-EE 2005,GATE EE,2005,Same question,examside GATE EE 2005: output of 3-phase square-wave inverter contains
+APGCL-2023,93,Electromagnetic Fields,Capacitance / stored energy / breakdown,Numerical,GATE-EE 2003,GATE EE,2003,Same question,examside 2003: charge and stored energy in an air-dielectric parallel-plate capacitor (numbers not visible)
+APGCL-2023,94,Power Electronics,Drives - motor-load dynamics,Numerical,Testbook / ISRO-type bank,Question bank,,Found in a question bank (exam not named),same stem and numbers on testbook.com and transtutors; original exam not named
+APGCL-2023,95,Electromagnetic Fields,Capacitance / stored energy / breakdown,Numerical,GATE-EE 2011 Q40,GATE EE,2011,Same question,local text
+APGCL-2023,96,Power Systems,Travelling waves / cable parameters,Theory,GATE-EE 2010 Q16,GATE EE,2010,Same question,local text
+APGCL-2023,97,Electromagnetic Fields,Divergence of B (solenoidal field),Numerical,GATE-EE 2013 Q10,GATE EE,2013,Same question,local text
+APGCL-2023,98,Power Systems,Transmission line - inductance,Numerical,GATE-EE 2001,GATE EE,2001,Same question,examside 2001: inductance of single-phase two-wire copper line
+APGCL-2023,99,Power Electronics,Drives - converter-fed DC motor,Theory,Objective bank (instrumentationtools),Question bank,,Found in a question bank (exam not named),same stem on ask.instrumentationtools.com; original exam not named
+APGCL-2023,100,Electromagnetic Fields,Inductance (solenoid),Numerical,GATE-EE 2004,GATE EE,2004,Same question,examside: inductance of a long solenoid on paper tube
+APDCL-2023,1,Measurements,DC potentiometer,Theory,GATE-EE 1992,GATE EE,1992,Same question,examside 1992: potentiometer second reading after reversing polarities
+APDCL-2023,2,Measurements,Wattmeter calibration - phantom loading,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,3,Measurements,Energy meter constant (rev/kWh),Numerical,GATE-EE 2016 Set-2 Q54,GATE EE,2016,"Same question, numbers changed",same meter constant 1200 rev/kWh; revolutions and time changed
+APDCL-2023,4,Measurements,AC bridges - which bridge measures what,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,5,Measurements,AC bridge balance condition,Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,6,Measurements,CRO,Numerical,GATE-EE 1993,GATE EE,1993,Same question,"examside 1993: CRO screen with ten horizontal divisions, cycles displayed"
+APDCL-2023,7,Analog & Digital,Diode circuits,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,8,Analog & Digital,BJT biasing / region of operation,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,9,Analog & Digital,Op-amp active filters,Theory,GATE-EE 2016 Set-2 Q2,GATE EE,2016,Same question,local text
+APDCL-2023,10,Analog & Digital,"Op-amp basics (ideal, GBW, instrumentation amp)",Theory,GATE-EE 2015 Set-1 Q17,GATE EE,2015,Same question,"local text (P,Q,R,S -> I-IV)"
+APDCL-2023,11,Analog & Digital,BJT small-signal amplifier,Numerical,IndiaBix ECE exam-paper set (GATE EC type),Other exam (ISRO / SSC-JE / GATE EC),,Same question,"indiabix.com ECE exam question papers: same stem, beta 150, hie 3k"
+APDCL-2023,12,Analog & Digital,Boolean algebra / K-map,Numerical,GATE-EE 2014 Set-2 Q50,GATE EE,2014,Same question,local text
+APDCL-2023,13,Analog & Digital,Combinational logic (adders),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,14,Analog & Digital,Multiplexer,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,15,Analog & Digital,Flip-flops / sequential circuits,Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,16,Analog & Digital,A/D converter (SAR),Numerical,GATE-EE 2015 Set-1 Q50,GATE EE,2015,Same question,local text; two options changed
+APDCL-2023,17,Power Electronics,"SCR: characteristics, triggering, commutation",Theory,GATE-EE 2009 Q16,GATE EE,2009,Same question,earlier match
+APDCL-2023,18,Power Electronics,"SCR: characteristics, triggering, commutation",Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,19,Power Electronics,"Controlled rectifiers (output V, pf, overlap)",Theory,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,20,Power Electronics,DC-DC choppers (buck / boost),Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,21,Power Electronics,Dual converter / four-quadrant,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,22,Power Electronics,"SCR: characteristics, triggering, commutation",Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,23,Power Electronics,Inverters,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,24,Power Electronics,DC-DC choppers (buck / boost),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,25,Power Electronics,Inverters,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,26,Power Electronics,Static VAR compensation (TCR/TSC),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,27,Engineering Maths (not in APGCL syllabus),Matrices - Cayley-Hamilton,Numerical,,Not traced,,Not traced,engineering-maths question in GATE style (APGCL asks none)
+APDCL-2023,28,Engineering Maths (not in APGCL syllabus),Matrices - singular matrix,Numerical,,Not traced,,Not traced,engineering-maths question in GATE style (APGCL asks none)
+APDCL-2023,29,Engineering Maths (not in APGCL syllabus),Calculus - definite integral,Numerical,,Not traced,,Not traced,engineering-maths question in GATE style (APGCL asks none)
+APDCL-2023,30,Engineering Maths (not in APGCL syllabus),Vector calculus - line integral,Numerical,,Not traced,,Not traced,engineering-maths question in GATE style (APGCL asks none)
+APDCL-2023,31,Engineering Maths (not in APGCL syllabus),Differential equations,Numerical,,Not traced,,Not traced,engineering-maths question in GATE style (APGCL asks none)
+APDCL-2023,32,Engineering Maths (not in APGCL syllabus),Calculus - chain rule,Numerical,,Not traced,,Not traced,engineering-maths question in GATE style (APGCL asks none)
+APDCL-2023,33,Engineering Maths (not in APGCL syllabus),Complex variables - analytic functions,Theory,,Not traced,,Not traced,engineering-maths question in GATE style (APGCL asks none)
+APDCL-2023,34,Engineering Maths (not in APGCL syllabus),Complex variables - residue,Numerical,,Not traced,,Not traced,engineering-maths question in GATE style (APGCL asks none)
+APDCL-2023,35,Engineering Maths (not in APGCL syllabus),Probability,Numerical,,Not traced,,Not traced,engineering-maths question in GATE style (APGCL asks none)
+APDCL-2023,36,Engineering Maths (not in APGCL syllabus),Probability - binomial,Numerical,,Not traced,,Not traced,engineering-maths question in GATE style (APGCL asks none)
+APDCL-2023,37,Electric Circuits,Equivalent resistance / network reduction,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,38,Electric Circuits,AC power - P Q pf / complex power,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,39,Electric Circuits,AC phasor circuits / impedance,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,40,Electric Circuits,Thevenin / Norton,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,41,Electric Circuits,Two-port parameters,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,42,Electric Circuits,Nodal / mesh / KCL-KVL,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,43,Electric Circuits,Inductors in series-parallel / coupled coils,Numerical,GATE-EE 1998,GATE EE,1998,Same question,examside 1998: effective inductance across the terminals (figure; to confirm)
+APDCL-2023,44,Electric Circuits,Maximum power transfer,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,45,Electric Circuits,Balanced 3-phase circuits,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,46,Electric Circuits,R-L-C element relations (v = Ri + L di/dt),Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,47,Electromagnetic Fields,Maxwell's equations / displacement current,Theory,GATE-EE 1992,GATE EE,1992,Same idea,examside 1992: Gauss law in homogeneous isotropic medium (APSC: Maxwell divergence equation)
+APDCL-2023,48,Electromagnetic Fields,Magnetic vector potential,Theory,GATE-EE 1993,GATE EE,1993,Same idea,examside 1993: line integral of vector potential (APSC: curl of A = B)
+APDCL-2023,49,Electromagnetic Fields,Conservative fields / curl-divergence,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,50,Electromagnetic Fields,Maxwell's equations / displacement current,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,51,Electromagnetic Fields,Maxwell's equations / displacement current,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,52,Electromagnetic Fields,Gauss's law and applications,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,53,Electromagnetic Fields,Poisson / Laplace equations,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,54,Electromagnetic Fields,Units of field quantities,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,55,Electromagnetic Fields,Biot-Savart / Ampere's law,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,56,Electromagnetic Fields,Gauss's law and applications,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,57,Signals & Systems,System properties (linear / time-invariant),Theory,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,58,Signals & Systems,Fourier transform properties,Theory,GATE-EE 2014 Set-1 Q35,GATE EE,2014,Same question,local text
+APDCL-2023,59,Signals & Systems,LTI system response (Laplace),Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,60,Signals & Systems,Z-transform,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,61,Signals & Systems,Energy and power signals,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,62,Signals & Systems,Z-transform,Theory,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,63,Signals & Systems,Fourier series (symmetry / periodicity),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,64,Signals & Systems,Sampling theorem / Nyquist rate,Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,65,Signals & Systems,RMS / average of periodic waveform,Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,66,Signals & Systems,Laplace transform (incl. final value theorem),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,67,Electrical Machines,Synchronous machines - power/torque,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,68,Electrical Machines,Synchronous machines - load/torque angle,Theory,GATE-EE 1992,GATE EE,1992,Same idea,examside 1992: torque angle defined as angle between ...
+APDCL-2023,69,Electrical Machines,DC machines - armature reaction,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,70,Electrical Machines,DC machines - generator basics,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,71,Electrical Machines,DC machines - motor applications,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,72,Electrical Machines,Transformers - no-load / phasor diagram,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,73,Electrical Machines,Transformers - OC/SC tests,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,74,Electrical Machines,DC machines - motor applications,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,75,Electrical Machines,DC machines - braking,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,76,Electrical Machines,Induction motor - slip / rotor frequency / power flow,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,77,Power Systems,Underground cables,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,78,Power Systems,Protection - relays and zones,Theory,GATE-EE 2022 Q13,GATE EE,2022,Same idea,"same fact (offset mho relay for loss of excitation), reworded"
+APDCL-2023,79,Power Systems,Load frequency control,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,80,Power Systems,Stability - equal area criterion,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,81,Power Systems,Generation - hydro plants,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,82,Power Systems,Neutral grounding,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,83,Power Systems,Load flow - Newton-Raphson,Numerical,GATE-EE 2014 Set-3 Q16,GATE EE,2014,"Same question, numbers changed","same template, values changed (200 bus, 160 PQ)"
+APDCL-2023,84,Power Systems,Load frequency control,Numerical,"Hadi Saadat textbook example (single area, two units, speed regulation)",Textbook,,"Same question, numbers changed",textbook template; values changed
+APDCL-2023,85,Power Systems,Stability - inertia constant H,Numerical,ESE-EE 2022 P2 Q95,ESE EE,2022,"Same question, numbers changed","same machine, 20 MVA instead of 30 MVA"
+APDCL-2023,86,Power Systems,Load flow - bus classification,Theory,GATE-EE 1992,GATE EE,1992,Same idea,examside 1992: quantities specified at a voltage-controlled bus (APSC asks the unknown)
+APDCL-2023,87,Control Systems,Root locus,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,88,Control Systems,"Bode plot (slopes, margins)",Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,89,Control Systems,"Second-order system (damping, overshoot)",Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,90,Control Systems,First-order system - time constant,Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,91,Control Systems,Transfer function basics (type / order),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,92,Control Systems,State space,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,93,Control Systems,Lead / lag compensators,Theory,GATE-EE 2008 Q65,GATE EE,2008,Same question,local text
+APDCL-2023,94,Control Systems,P / PI / PD / PID controllers,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,95,Control Systems,State space,Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,96,Control Systems,"Bode plot (slopes, margins)",Theory,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+APDCL-2023,97,Measurements,Instrument types (MI / PMMC / dynamometer / thermocouple),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,98,Measurements,Wattmeter connections / errors,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,99,Measurements,Instrument types (MI / PMMC / dynamometer / thermocouple),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+APDCL-2023,100,Measurements,AC bridges - which bridge measures what,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,1,Signals & Systems,Causality and stability,Theory,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,2,Signals & Systems,Frequency response (DTFT),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,3,Signals & Systems,Fourier series (symmetry / periodicity),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,4,Signals & Systems,Impulse / step functions and response,Numerical,GATE-EE 2013 Q41,GATE EE,2013,Same question,local text
+AEGCL-2023,5,Signals & Systems,Region of convergence (ROC),Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,6,Signals & Systems,Sampling theorem / Nyquist rate,Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,7,Signals & Systems,Fourier transform properties,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,8,Electrical Machines,Electromechanical energy conversion,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,9,Electrical Machines,DC machines - motor back EMF / current,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,10,Electrical Machines,DC machines - speed / direction control,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,11,Electrical Machines,DC machines - braking,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,12,Electrical Machines,DC machines - motor starting,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,13,Electrical Machines,Transformers - losses / efficiency,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,14,Electrical Machines,Transformers - OC/SC tests,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,15,Electrical Machines,Transformers - losses / efficiency,Numerical,GATE-EE 2004,GATE EE,2004,"Same question, numbers changed","same idea, values changed (GATE: 500 kVA, 300 W iron, 600 W Cu)"
+AEGCL-2023,16,Electrical Machines,Transformers - losses / efficiency,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,17,Electrical Machines,Transformers - parallel operation,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,18,Electrical Machines,Transformers - autotransformer,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,19,Electrical Machines,Induction motor - slip / rotor frequency / power flow,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,20,Electrical Machines,Induction motor - crawling / cogging,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,21,Electrical Machines,Induction motor - air gap / no-load pf,Theory,GATE-EE 1996,GATE EE,1996,Same idea,examside 1996: effect on an induction motor when air gap is increased
+AEGCL-2023,22,Electrical Machines,Synchronous machines - synchronization / parallel operation,Theory,,Not traced,,Not traced,ESE (IES) objective style: numbered statements with answer code
+AEGCL-2023,23,Electrical Machines,Synchronous machines - excitation on infinite bus,Theory,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,24,Electrical Machines,Synchronous machines - power/torque,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,25,Electrical Machines,Transformers - 3-phase connections / vector groups,Theory,GATE-EE 2005,GATE EE,2005,Same question,examside 2005: 3-phase transformer connection giving 30 deg shift
+AEGCL-2023,26,Power Systems,Generation - load / demand factors,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,27,Power Systems,Generation - hydro plants,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,28,Power Systems,Transmission line - SIL / surge impedance,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,29,Power Systems,Stability - inertia constant H,Numerical,GATE-EE 1998,GATE EE,1998,"Same question, numbers changed",examside 1998: equivalent inertia of two generators on 100 MVA base; ratings changed
+AEGCL-2023,30,Power Systems,Transmission line - voltage regulation,Theory,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,31,Power Systems,Transmission line - Ferranti effect,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,32,Power Systems,Reactive power compensation,Theory,GATE-EE 1998,GATE EE,1998,Same idea,examside 1998: series capacitive compensation is used to (asked for distribution lines)
+AEGCL-2023,33,Power Systems,Overhead insulators,Numerical,GATE-EE 1994,GATE EE,1994,Same idea,"examside 1994: two-disc insulator string, voltage across bottom disc (APSC asks string efficiency)"
+AEGCL-2023,34,Power Systems,Bus admittance matrix (Ybus),Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,35,Power Systems,Load flow - Newton-Raphson,Numerical,GATE-EE 2016 Set-2 Q14,GATE EE,2016,Same question,local text
+AEGCL-2023,36,Power Systems,Protection - relays and zones,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,37,Power Systems,Protection - relays and zones,Theory,GATE-EE 1995,GATE EE,1995,Same idea,examside 1995: distance relay with inherent directional property (mho)
+AEGCL-2023,38,Power Systems,Stability - equal area criterion,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,39,Power Systems,Transmission line - propagation / wavelength,Numerical,GATE-EE 2007 Q27,GATE EE,2007,Same question,local text
+AEGCL-2023,40,Power Systems,"Circuit breakers (ratings, SF6)",Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,41,Power Systems,Economic load dispatch,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,42,Power Systems,Generation - thermal plants,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,43,Power Systems,Per-unit system,Theory,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,44,Power Systems,Transmission line - losses / efficiency,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,45,Power Systems,HVDC transmission,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,46,Control Systems,Feedback - effects of negative feedback,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,47,Control Systems,Closed-loop poles,Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,48,Control Systems,"Second-order system (damping, overshoot)",Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,49,Control Systems,Routh-Hurwitz stability,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,50,Control Systems,Root locus,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,51,Control Systems,"Bode plot (slopes, margins)",Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,52,Control Systems,State space,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,53,Control Systems,Lead / lag compensators,Theory,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,54,Measurements,Range extension - shunt / multiplier,Numerical,GATE-EE 2010 Q9,GATE EE,2010,Same question,local text
+AEGCL-2023,55,Measurements,Errors / tolerance,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,56,Measurements,AC bridges - which bridge measures what,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,57,Measurements,Instrument types (MI / PMMC / dynamometer / thermocouple),Theory,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,58,Measurements,Power measurement - Blondel / two-wattmeter,Numerical,GATE-EE 2018 Q5,GATE EE,2018,Same question,reworded (ratio 2:1 = one reads half the other)
+AEGCL-2023,59,Measurements,Energy meter constant (rev/kWh),Numerical,GATE-EE 2016 Set-2 Q54,GATE EE,2016,"Same question, numbers changed",same as APDCL 2023 Q3; revolutions and time changed from GATE
+AEGCL-2023,60,Measurements,Wattmeter connections / errors,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,61,Measurements,Transducers (strain gauge / LVDT),Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,62,Analog & Digital,"Op-amp basics (ideal, GBW, instrumentation amp)",Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,63,Analog & Digital,Amplifier gain in dB,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,64,Analog & Digital,Number systems,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,65,Analog & Digital,Boolean algebra / K-map,Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,66,Analog & Digital,Multiplexer,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,67,Analog & Digital,Combinational logic (adders),Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,68,Analog & Digital,Diode rectifiers / peak inverse voltage,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,69,Power Electronics,Power devices - switch quadrants / characteristics,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,70,Analog & Digital,Zener regulator,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,71,Power Electronics,DC-DC choppers (buck / boost),Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,72,Power Electronics,Power devices - selection (MOSFET / IGBT / SCR),Theory,GATE-EE 2024 Q27,GATE EE,2024,Same idea,"same fact (MOSFET fastest), options changed"
+AEGCL-2023,73,Power Electronics,"Controlled rectifiers (output V, pf, overlap)",Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,74,Power Electronics,"SCR: characteristics, triggering, commutation",Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,75,Analog & Digital,Diode circuits,Numerical,GATE-EE 2012 Q18,GATE EE,2012,Same question,earlier match
+AEGCL-2023,76,Power Electronics,"Controlled rectifiers (output V, pf, overlap)",Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,77,Power Electronics,"SCR: characteristics, triggering, commutation",Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,78,Electric Circuits,Series circuits / voltage division,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,79,Electric Circuits,Superposition,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,80,Electric Circuits,Maximum power transfer,Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,81,Electric Circuits,Power in resistive loads (lamps),Numerical,GATE-EE 2009 Q10,GATE EE,2009,Same question,"earlier match, in DB"
+AEGCL-2023,82,Electric Circuits,Thevenin / Norton,Numerical,GATE-EE 2017 Set-2 Q41,GATE EE,2017,"Same question, numbers changed","same network shape, source values changed"
+AEGCL-2023,83,Electric Circuits,R-L-C element relations (v = Ri + L di/dt),Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,84,Electric Circuits,Inductors in series-parallel / coupled coils,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,85,Electric Circuits,AC power - P Q pf / complex power,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,86,Electric Circuits,AC power - P Q pf / complex power,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,87,Electric Circuits,Maximum power transfer,Theory,GATE-EE 2014 Set-3 Q24,GATE EE,2014,Same question,local text
+AEGCL-2023,88,Electromagnetic Fields,Coulomb's law (charges / magnetic poles),Theory,ESE-EE 2020 P2 Q32,ESE EE,2020,Same question,local text
+AEGCL-2023,89,Electromagnetic Fields,Electric field and potential,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,90,Electromagnetic Fields,Force on current-carrying conductor,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,91,Electromagnetic Fields,Gauss's law and applications,Theory,GATE-EE 2007 Q25,GATE EE,2007,Same question,local text
+AEGCL-2023,92,Electromagnetic Fields,Vector algebra,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,93,Electromagnetic Fields,Coulomb's law (charges / magnetic poles),Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,94,Electromagnetic Fields,Divergence of B (solenoidal field),Numerical,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,95,Electromagnetic Fields,Biot-Savart / Ampere's law,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,96,Electromagnetic Fields,Curl / Ampere's law (current density),Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,97,Electromagnetic Fields,Magnetic circuits - reluctance,Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,98,Signals & Systems,Laplace transform (incl. final value theorem),Numerical,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)
+AEGCL-2023,99,Signals & Systems,Impulse / step functions and response,Theory,,Not traced,,Not traced,standard one-line theory question (J.B. Gupta / V.K. Mehta / SSC-JE / ISRO bank style)
+AEGCL-2023,100,Signals & Systems,Laplace transform (incl. final value theorem),Theory,,Not traced,,Not traced,textbook-type numerical (Theraja / Kothari-Nagrath / Bakshi style)

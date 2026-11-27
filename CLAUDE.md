@@ -35,6 +35,18 @@ Full doc: https://claude.ai/artifact/BjEpYbj8eGATVTrSGrfNmJ
   shorter exam-focused notes for light ones (EMF, Measurements). Every chapter keeps its 3 mocks.
 - The owner's time goes to studying, not building: build only what the loop needs, keep it simple.
 
+## Where APSC questions come from (Analysis 1-to-1, 27 Nov 2026)
+Doc: https://claude.ai/artifact/6okvjysxivqE27LCp5rjZz. Data: `content/analysis/apsc-2023-sources.csv` (one row per question,
+300 rows: paper, q, subject, topic, type, source, match, note). Patterns and best practices: `content/analysis/README.md`.
+- APGCL 2023: 74 of 100 are word-for-word GATE EE (43 of them from GATE 1992-2006). APDCL and AEGCL 2023: about 80 of 100 are
+  one-line theory facts and short textbook numericals; only 10 each are word-for-word GATE EE.
+- When writing a chapter: give every APSC 2023 question in it its earlier source from the CSV as an extra `sources` entry
+  (e.g. APGCL 2023 Q36 + GATE 2005), and write any traced GATE PYQ that is not in the portal yet.
+- PYQ mock: draw on all GATE EE years, old ones (1991-2006) included. Fresh mock: APDCL/AEGCL style (one-line facts and
+  hand-worked textbook numericals). Mixed mock: about half each, as before.
+- Every chapter keeps a fact list (one-line facts: uses, definitions, "which bridge measures what") in its notes or short note.
+- GATE EE 1991-2006 is not in the dump yet (only examside.com question lists were used): see DUMP.md.
+
 ## Portal features (Nov 2026)
 - Today (`/today`, home): next chapter per track, revisions due, open mistakes, mixed mocks below 85 %. API `/api/today`.
 - Mistake log (`/mistakes`): built from the attempt table (a question is open while its latest attempt is wrong); one-tap reason in
