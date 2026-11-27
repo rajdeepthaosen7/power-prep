@@ -1,6 +1,7 @@
 package com.rajdeep.powerprep.today;
 
 import com.rajdeep.powerprep.common.jdbc.Rows;
+import com.rajdeep.powerprep.mistakes.RetestRule;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.jdbc.core.simple.JdbcClient;
@@ -44,25 +45,25 @@ class JdbcTodayRepository implements TodayRepository {
                 SELECT cp.*, c.slug AS chapter_slug, c.name AS chapter_name, c.sort_order AS chapter_sort,
                        s.slug AS subject_slug, s.name AS subject_name,
                        (SELECT t.slug FROM topic t WHERE t.chapter_id = c.id AND t.slug LIKE '%-chapter-summary' LIMIT 1) AS summary_topic,
-                       (SELECT count(*) FROM attempt a JOIN question q ON q.id = a.question_id JOIN topic t ON t.id = q.topic_id
-                         WHERE t.chapter_id = c.id AND a.user_id = cp.user_id AND a.is_correct = FALSE
-                           AND NOT EXISTS (SELECT 1 FROM attempt b WHERE b.user_id = a.user_id AND b.question_id = a.question_id
-                                           AND b.attempted_at > a.attempted_at)) AS open_mistakes
+                       (SELECT count(*) FROM retest_state rs JOIN question q ON q.id = rs.question_id JOIN topic t ON t.id = q.topic_id
+                         WHERE t.chapter_id = c.id AND rs.user_id = cp.user_id AND q.stem_md IS NOT NULL
+                           AND rs.sure_days < :clear) AS open_mistakes
                 FROM chapter_progress cp JOIN chapter c ON c.id = cp.chapter_id JOIN subject s ON s.id = c.subject_id
                 WHERE cp.user_id = :uid""")
-            .param("uid", userId).query(Rows.of(RevisionRow.class)).list();
+            .param("uid", userId).param("clear", RetestRule.SURE_DAYS_TO_CLEAR).query(Rows.of(RevisionRow.class)).list();
     }
 
     @Override
     public TodayPlan.MistakeCounts mistakeCounts(long userId) {
         return jdbc.sql("""
-                WITH last AS (SELECT DISTINCT ON (question_id) question_id, is_correct FROM attempt WHERE user_id = :uid
-                              ORDER BY question_id, attempted_at DESC, id DESC)
-                SELECT count(*) FILTER (WHERE NOT l.is_correct) AS open,
-                       count(*) FILTER (WHERE NOT l.is_correct AND mn.reason IS NULL) AS untagged
-                FROM last l JOIN question q ON q.id = l.question_id AND q.stem_md IS NOT NULL
-                LEFT JOIN mistake_note mn ON mn.user_id = :uid AND mn.question_id = l.question_id""")
-            .param("uid", userId).query(Rows.of(TodayPlan.MistakeCounts.class)).single();
+                SELECT count(*) AS open,
+                       count(*) FILTER (WHERE mn.reason IS NULL AND EXISTS (SELECT 1 FROM attempt w WHERE w.user_id = :uid
+                                         AND w.question_id = rs.question_id AND w.is_correct = FALSE)) AS untagged
+                FROM retest_state rs JOIN question q ON q.id = rs.question_id AND q.stem_md IS NOT NULL
+                LEFT JOIN mistake_note mn ON mn.user_id = :uid AND mn.question_id = rs.question_id
+                WHERE rs.user_id = :uid AND rs.sure_days < :clear   -- on the retest list (RetestRule)""")
+            .param("uid", userId).param("clear", RetestRule.SURE_DAYS_TO_CLEAR)
+            .query(Rows.of(TodayPlan.MistakeCounts.class)).single();
     }
 
     @Override

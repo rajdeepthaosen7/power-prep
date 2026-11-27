@@ -19,26 +19,18 @@ class JdbcMistakeRepository implements MistakeRepository {
                          row_number() OVER (PARTITION BY question_id ORDER BY attempted_at DESC, id DESC) AS rn,
                          count(*) FILTER (WHERE is_correct = FALSE) OVER (PARTITION BY question_id) AS wrong,
                          count(*) FILTER (WHERE self_mark IN ('GUESSED', 'DONT_KNOW')) OVER (PARTITION BY question_id) AS unsure,
-                         max(attempted_at) FILTER (WHERE is_correct = FALSE) OVER (PARTITION BY question_id) AS last_wrong_at,
-                         max(attempted_at) FILTER (WHERE is_correct = FALSE OR self_mark IN ('GUESSED', 'DONT_KNOW'))
-                           OVER (PARTITION BY question_id) AS last_bad_at
-                  FROM attempt WHERE user_id = :uid),
-                sure AS (   -- days (India time) with a right, sure answer after the last bad one: RetestRule
-                  SELECT x.question_id, count(DISTINCT (x.attempted_at AT TIME ZONE 'Asia/Kolkata')::date) AS sure_days
-                  FROM attempt x JOIN a ON a.question_id = x.question_id AND a.rn = 1
-                  WHERE x.user_id = :uid AND x.is_correct AND (x.self_mark IS NULL OR x.self_mark = 'KNEW')
-                    AND x.attempted_at > a.last_bad_at
-                  GROUP BY x.question_id)
+                         max(attempted_at) FILTER (WHERE is_correct = FALSE) OVER (PARTITION BY question_id) AS last_wrong_at
+                  FROM attempt WHERE user_id = :uid)
                 SELECT q.id, q.stem_md, q.answer_type, q.origin, q.difficulty, q.solution_md, q.answer_status, q.nat_min, q.nat_max,
                        t.name AS topic, c.slug AS chapter_slug, c.name AS chapter_name, c.sort_order AS chapter_sort,
                        s.slug AS subject_slug, s.name AS subject_name,
                        a.is_correct AS last_correct, a.chosen_labels AS last_chosen, a.nat_value AS last_nat, a.mode AS last_mode,
                        a.attempted_at AS last_at, a.wrong, a.last_wrong_at, mn.reason,
-                       a.self_mark AS last_self_mark, COALESCE(sure.sure_days, 0) AS sure_days
+                       a.self_mark AS last_self_mark, COALESCE(rs.sure_days, 0) AS sure_days
                 FROM a JOIN question q ON q.id = a.question_id JOIN topic t ON t.id = q.topic_id JOIN subject s ON s.id = q.subject_id
                 LEFT JOIN chapter c ON c.id = t.chapter_id
                 LEFT JOIN mistake_note mn ON mn.user_id = :uid AND mn.question_id = q.id
-                LEFT JOIN sure ON sure.question_id = q.id
+                LEFT JOIN retest_state rs ON rs.user_id = :uid AND rs.question_id = q.id   -- RetestRule data (V10)
                 WHERE a.rn = 1 AND (a.wrong > 0 OR a.unsure > 0) AND q.stem_md IS NOT NULL
                 ORDER BY a.is_correct, a.last_wrong_at DESC""")
             .param("uid", userId).query(Rows.of(MistakeRow.class)).list();

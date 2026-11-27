@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Mistake log: every question the user got wrong (Study or Tests), with a one-tap reason.
- * A mistake stays open until the user's latest attempt at it is right.
+ * A mistake stays open (on the retest list) until RetestRule clears it: right and sure on two different days.
  */
 @Service
 public class MistakeService {
@@ -41,7 +41,8 @@ public class MistakeService {
         long untagged = 0;
         for (MistakeRow r : rows) {
             if (!r.isOpen()) continue;
-            if (r.reason() == null) untagged++; else byReason.merge(r.reason(), 1L, Long::sum);
+            if (r.reason() != null) byReason.merge(r.reason(), 1L, Long::sum);
+            else if (r.wrong() > 0) untagged++;   // a reason is asked only for wrong answers, not for guesses
         }
         return new MistakeLog(questions, byReason, untagged, bank.figuresOfQuestions(ids));
     }

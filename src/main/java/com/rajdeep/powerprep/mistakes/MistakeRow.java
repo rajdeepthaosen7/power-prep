@@ -19,6 +19,7 @@ public record MistakeRow(int id, String stemMd, String answerType, String origin
     @JsonProperty("retest")
     public boolean retest() { return RetestRule.isOpen(true, sureDays); }
 
+    /** On the retest list: the same as {@link #retest()}. */
     @JsonIgnore
-    public boolean isOpen() { return !Boolean.TRUE.equals(lastCorrect); }
+    public boolean isOpen() { return retest(); }
 }
