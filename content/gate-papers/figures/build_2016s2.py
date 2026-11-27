@@ -309,7 +309,214 @@ def q37():
     save("q-gate2016-s2-q37", d)
 
 
+def q38():
+    """Single line diagram: generator (internal bus) - j0.2 - HV bus; two parallel paths, each a transformer j0.1 and a line j0.5,
+    to the infinite bus (Line 1 on top, Line 2 below)."""
+    L = 'stroke="currentColor" fill="none" stroke-width="1.5"'
+    o = []
+    o += [f'<line x1="70" y1="30" x2="70" y2="170" {L}/>', text(8, 22, "Generator internal bus", size=12, anchor="start"),
+          f'<circle cx="40" cy="100" r="15" {L}/>', '<path d="M30,100 q5,-9 10,0 t10,0" stroke="currentColor" fill="none" stroke-width="1.4"/>',
+          f'<line x1="55" y1="100" x2="70" y2="100" {L}/>', f'<line x1="70" y1="100" x2="105" y2="100" {L}/>']
+    coil = "".join(f"a6,6 0 0 1 12,0 " for _ in range(4))
+    o += [f'<path d="M105,100 {coil}" {L}/>', text(129, 88, "j0.2", size=12), f'<line x1="153" y1="100" x2="190" y2="100" {L}/>',
+          '<line x1="190" y1="30" x2="190" y2="170" stroke="currentColor" stroke-width="4"/>']
+    for y, nm in ((60, "Line 1"), (140, "Line 2")):
+        o += [f'<line x1="190" y1="{y}" x2="215" y2="{y}" {L}/>', f'<circle cx="227" cy="{y}" r="12" {L}/>',
+              f'<circle cx="243" cy="{y}" r="12" {L}/>', text(235, y - 18 if y < 100 else y + 28, "j0.1", size=12),
+              f'<line x1="255" y1="{y}" x2="400" y2="{y}" {L}/>', text(328, y - 7, "j0.5", size=12), text(328, y + 16, nm, size=12)]
+    o += [f'<line x1="400" y1="30" x2="400" y2="170" stroke="currentColor" stroke-width="3"/>', text(432, 22, "Infinite bus", size=12, anchor="end")]
+    o += [f'<line x1="400" y1="{y}" x2="410" y2="{y-8}" stroke="currentColor" stroke-width="1"/>' for y in range(38, 175, 10)]
+    write("q-gate2016-s2-q38", svg(440, 185, *o))
+
+
+def q45():
+    """Single-phase full thyristor bridge: left leg T1 (top) / T4 (bottom), right leg T3 (top) / T2 (bottom), source vm between the
+    leg midpoints. Output: top rail through L, R = 20 ohm and E = 800 V (minus at the top, plus at the bottom) back to the bottom
+    rail; IL flows from the top rail into the load."""
+    d = D()
+    xl, xr, yt, yb = 0.0, 3.0, 4.0, 0.0
+    ym = (yt + yb) / 2
+    for x, lo, hi in ((xl, "T4", "T1"), (xr, "T2", "T3")):
+        d += elm.SCR().endpoints((x, yb), (x, ym)).label(lo, loc="top" if x == xl else "bottom")
+        d += elm.SCR().endpoints((x, ym), (x, yt)).label(hi, loc="top" if x == xl else "bottom")
+        d += elm.Dot().at((x, ym))
+    d += elm.Line().endpoints((xl, yt), (xr, yt))
+    d += elm.Line().endpoints((xl, yb), (xr, yb))
+    d += elm.SourceSin().endpoints((xl, ym), (xr, ym)).label("vm", loc="top")
+    d += elm.Dot().at((xr, yt))
+    d += elm.Dot().at((xr, yb))
+    d += elm.Line().endpoints((xr, yt), (xr, yt + 1.0))
+    d += elm.Line().right().length(3.4)
+    d += elm.Inductor2().down().length(1.6).label("L", loc="bottom")
+    d += elm.Resistor().down().length(2.0).label("R = 20 Ω", loc="bottom")
+    d += elm.Battery().down().reverse().length(1.4).label("E = 800 V", loc="bottom").label(("−", "", "+"), loc="top")
+    d += elm.Line().down().toy(yb - 1.0)
+    d += elm.Line().left().tox(xr)
+    d += elm.Line().up().toy(yb)
+    d += elm.Arrow().at((xr + 0.9, yt + 1.4)).to((xr + 2.3, yt + 1.4)).label("IL", loc="top")
+    save("q-gate2016-s2-q45", d)
+
+
+def q46():
+    """Three-phase VSI: 600 V battery, three legs of IGBT + anti-parallel diode (upper and lower); the leg midpoints a, b, c feed a
+    delta of three 30 ohm resistors."""
+    d = D()
+    yt, yb = 5.2, 0.0
+    ym = (yt + yb) / 2
+    d += elm.Battery().up().at((0, yb)).to((0, yt)).reverse().label("600 V", loc="bottom")
+    legs = (2.2, 5.0, 7.8)
+    d += elm.Line().at((0, yt)).to((legs[-1] + 1.0, yt))
+    d += elm.Line().at((0, yb)).to((legs[-1] + 1.0, yb))
+    for x in legs:
+        for y_hi, y_lo in ((yt, ym), (ym, yb)):
+            q = elm.IgbtN().theta(0).anchor("collector").at((x, y_hi - 0.5))
+            d += q
+            d += elm.Line().at((x, y_hi)).to(q.collector)
+            d += elm.Line().at(q.emitter).to((x, y_lo))
+            d += elm.Line().at((x, y_hi)).to((x + 1.0, y_hi))
+            d += elm.Diode().at((x + 1.0, y_lo)).to((x + 1.0, y_hi))
+            d += elm.Line().at((x + 1.0, y_lo)).to((x, y_lo))
+        d += elm.Dot().at((x, ym))
+    xa, xb, xc = legs
+    p1, p2, p3 = (14.4, ym + 2.4), (12.4, ym - 0.9), (16.4, ym - 0.9)
+    d += elm.Line().at((xa, ym)).to((xa, ym + 0.35))
+    d += elm.Line().at((xa, ym + 0.35)).to((10.4, ym + 0.35))
+    d += elm.Line().to((10.4, p1[1]))
+    d += elm.Line().to(p1)
+    d += elm.Line().at((xb, ym)).to((p2[0], ym))
+    d += elm.Line().to(p2)
+    d += elm.Line().at((xc, ym)).to((xc, ym - 0.35))
+    d += elm.Line().at((xc, ym - 0.35)).to((11.0, ym - 0.35))
+    d += elm.Line().to((11.0, ym - 2.4))
+    d += elm.Line().to((p3[0], ym - 2.4))
+    d += elm.Line().to(p3)
+    d += elm.Resistor().endpoints(p2, p1).label("30 Ω", loc="top")
+    d += elm.Resistor().endpoints(p1, p3).label("30 Ω", loc="top")
+    d += elm.Resistor().endpoints(p3, p2).label("30 Ω", loc="top")
+    for p_ in (p1, p2, p3):
+        d += elm.Dot().at(p_)
+    save("q-gate2016-s2-q46", d)
+
+
+def _sw(d, x, y_hi, y_lo, name=None):
+    """IGBT with anti-parallel diode between (x, y_hi) and (x, y_lo)."""
+    q = elm.IgbtN().theta(0).anchor("collector").at((x, y_hi - 0.5))
+    if name:
+        q = q.label(name, loc="left")
+    d += q
+    d += elm.Line().at((x, y_hi)).to(q.collector)
+    d += elm.Line().at(q.emitter).to((x, y_lo))
+    d += elm.Line().at((x, y_hi)).to((x + 1.0, y_hi))
+    d += elm.Diode().at((x + 1.0, y_lo)).to((x + 1.0, y_hi))
+    d += elm.Line().at((x + 1.0, y_lo)).to((x, y_lo))
+
+
+def q47():
+    """Boost: 360 V source, 10 mH inductor, switch S (IGBT + anti-parallel diode) to ground, diode, 1 mF capacitor, load 400 V."""
+    d = D()
+    yt, yb = 3.0, 0.0
+    d += elm.Battery().endpoints((0, yb), (0, yt)).reverse().label("360 V", loc="bottom")
+    d += elm.Inductor2().endpoints((0, yt), (2.6, yt)).label("10 mH", loc="top")
+    d += elm.Dot().at((2.6, yt))
+    _sw(d, 2.6, yt, yb, "S")
+    d += elm.Diode().endpoints((2.6, yt), (5.6, yt))
+    d += elm.Capacitor().endpoints((5.6, yt), (5.6, yb)).label("1 mF", loc="bottom")
+    d += elm.Dot().at((5.6, yt))
+    d += elm.Line().endpoints((5.6, yt), (7.4, yt))
+    d += elm.Resistor().endpoints((7.4, yt), (7.4, yb)).label("Load 400 V", loc="bottom").label(("+", "", "−"), loc="top")
+    d += elm.Line().endpoints((7.4, yb), (0, yb))
+    d += elm.Dot().at((2.6, yb))
+    d += elm.Dot().at((5.6, yb))
+    save("q-gate2016-s2-q47", d)
+
+
+def q48():
+    """Single-phase VSC: 220 V ac source, 5 mH (Xs) inductor, current Is; full bridge of four IGBTs with anti-parallel diodes;
+    dc side 1 mF capacitor and a 400 V battery. Beside it, the phasor diagram: Is along Vs, IsXs drawn down from the tip of Vs,
+    VC1 from the origin to the tip of IsXs, angle delta between Vs and VC1."""
+    d = D()
+    yt, yb = 5.2, 0.0
+    ym = (yt + yb) / 2
+    xa, xb = 3.0, 5.6
+    for x in (xa, xb):
+        _sw(d, x, yt, ym)
+        _sw(d, x, ym, yb)
+        d += elm.Dot().at((x, ym))
+    d += elm.Line().endpoints((xa, yt), (9.6, yt))
+    d += elm.Line().endpoints((xa, yb), (9.6, yb))
+    d += elm.Capacitor().endpoints((7.4, yt), (7.4, yb)).label("1 mF", loc="bottom")
+    d += elm.Battery().endpoints((9.6, yb), (9.6, yt)).reverse().label("400 V", loc="bottom")
+    d += elm.SourceSin().endpoints((-1.6, ym - 1.6), (-1.6, ym + 0.6)).label("220 V ac", loc="top")
+    d += elm.Line().endpoints((-1.6, ym + 0.6), (-1.6, ym + 1.0))
+    d += (w := elm.Line().endpoints((-1.6, ym + 1.0), (-0.4, ym + 1.0)))
+    d += elm.CurrentLabelInline(direction="in", ofst=-0.2).at(w).label("Is")
+    d += elm.Inductor2().endpoints((-0.4, ym + 1.0), (1.8, ym + 1.0)).label("5 mH (Xs)", loc="top")
+    d += elm.Line().endpoints((1.8, ym + 1.0), (1.8, ym))
+    d += elm.Line().endpoints((1.8, ym), (xa, ym))
+    d += elm.Line().endpoints((-1.6, ym - 1.6), (-1.6, ym - 2.0))
+    d += elm.Line().endpoints((-1.6, ym - 2.0), (4.2, ym - 2.0))
+    d += elm.Line().endpoints((4.2, ym - 2.0), (4.2, ym - 0.35))
+    d += elm.Line().endpoints((4.2, ym - 0.35), (xb, ym - 0.35))
+    d += elm.Line().endpoints((xb, ym - 0.35), (xb, ym))
+    save("q-gate2016-s2-q48a", d)
+    L = 'stroke="currentColor" fill="none" stroke-width="1.6"'
+    from svgkit import arrow_head as ah
+    o = [f'<line x1="20" y1="40" x2="250" y2="40" {L}/>', ah(250, 40, "right"), text(258, 45, "Vs", size=15, anchor="start"),
+         f'<line x1="20" y1="40" x2="120" y2="40" stroke="currentColor" stroke-width="3"/>', ah(124, 40, "right", size=9),
+         text(110, 30, "Is", size=15),
+         f'<line x1="250" y1="40" x2="250" y2="100" {L}/>', ah(250, 100, "down"), text(258, 80, "IsXs", size=15, anchor="start"),
+         f'<line x1="20" y1="40" x2="250" y2="100" {L}/>', ah(250, 100, "right"), text(130, 100, "VC1", size=15),
+         '<path d="M75,40 A55,55 0 0 1 73.2,54" stroke="currentColor" fill="none" stroke-width="1"/>', text(88, 56, "δ", size=14)]
+    write("q-gate2016-s2-q48b", svg(310, 115, *o))
+
+
+def q53():
+    """Two generators in parallel on one bus: the upper one star-connected with its neutral not grounded, the lower one star with
+    its neutral grounded."""
+    L = 'stroke="currentColor" fill="none" stroke-width="1.6"'
+    o = []
+    for y, grounded in ((52, False), (122, True)):
+        o += [f'<path d="M30,{y-14} L40,{y-2} L50,{y-14} M40,{y-2} V{y+12}" {L}/>',
+              f'<circle cx="90" cy="{y}" r="20" {L}/>', f'<path d="M77,{y} q6.5,-12 13,0 t13,0" {L}/>',
+              f'<line x1="110" y1="{y}" x2="190" y2="{y}" {L}/>']
+        if grounded:
+            o += [f'<path d="M40,{y+12} V{y+22} M31,{y+22} H49 M34,{y+26} H46 M37,{y+30} H43" {L}/>']
+    o += [f'<line x1="190" y1="28" x2="190" y2="150" stroke="currentColor" stroke-width="2.5"/>',
+          text(62, 20, "neutral not grounded", size=11, anchor="start"), text(62, 166, "neutral grounded", size=11, anchor="start")]
+    write("q-gate2016-s2-q53", svg(260, 175, *o))
+
+
+def q55():
+    """Radial field B = 1 T pointing outward from the z-axis (shown as two dotted rings of outward arrows); a 1 m conductor parallel
+    to the z-axis at 1 m from it."""
+    import math
+    L = 'stroke="currentColor" fill="none" stroke-width="1.4"'
+    from svgkit import arrow_head as ah
+    o = [f'<line x1="160" y1="210" x2="160" y2="18" {L}/>', ah(160, 14, "up"), text(172, 20, "z", size=14, anchor="start")]
+    for cy in (75, 160):
+        o.append(f'<ellipse cx="160" cy="{cy}" rx="110" ry="28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3"/>')
+        for k in range(8):
+            a = 2 * math.pi * k / 8 + math.pi / 8
+            x1, y1 = 160 + 45 * math.cos(a), cy + 11 * math.sin(a)
+            x2, y2 = 160 + 85 * math.cos(a), cy + 21 * math.sin(a)
+            o.append(f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" {L} marker-end="url(#ar)"/>')
+    o.insert(0, '<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">'
+                '<path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>')
+    o += [text(175, 72, "B", size=15, anchor="start"),
+          '<line x1="262" y1="88" x2="262" y2="170" stroke="currentColor" stroke-width="5"/>',
+          f'<line x1="160" y1="170" x2="258" y2="170" {L}/>', text(210, 188, "1 m", size=13),
+          f'<line x1="285" y1="88" x2="285" y2="170" {L}/>', ah(285, 88, "up"), ah(285, 170, "down"), text(292, 134, "1 m", size=13, anchor="start")]
+    write("q-gate2016-s2-q55", svg(330, 220, *o))
+
+
 if __name__ == "__main__":
+    q53()
+    q55()
+    q47()
+    q48()
+    q45()
+    q46()
+    q38()
     q35()
     q36()
     q37()

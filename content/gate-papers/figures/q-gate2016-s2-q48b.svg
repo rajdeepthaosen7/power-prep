@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="310" viewBox="0 0 310 115">
+<line x1="20" y1="40" x2="250" y2="40" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="250.0,40.0 244.0,37.0 244.0,43.0" fill="currentColor"/>
+<text x="258.0" y="45.0" font-size="15" text-anchor="start" dominant-baseline="middle" fill="currentColor">Vs</text>
+<line x1="20" y1="40" x2="120" y2="40" stroke="currentColor" stroke-width="3"/>
+<polygon points="124.0,40.0 115.0,35.5 115.0,44.5" fill="currentColor"/>
+<text x="110.0" y="30.0" font-size="15" text-anchor="middle" dominant-baseline="middle" fill="currentColor">Is</text>
+<line x1="250" y1="40" x2="250" y2="100" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="250.0,100.0 247.0,94.0 253.0,94.0" fill="currentColor"/>
+<text x="258.0" y="80.0" font-size="15" text-anchor="start" dominant-baseline="middle" fill="currentColor">IsXs</text>
+<line x1="20" y1="40" x2="250" y2="100" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="250.0,100.0 244.0,97.0 244.0,103.0" fill="currentColor"/>
+<text x="130.0" y="100.0" font-size="15" text-anchor="middle" dominant-baseline="middle" fill="currentColor">VC1</text>
+<path d="M75,40 A55,55 0 0 1 73.2,54" stroke="currentColor" fill="none" stroke-width="1"/>
+<text x="88.0" y="56.0" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="currentColor">δ</text>
+</svg>

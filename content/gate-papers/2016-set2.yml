@@ -948,3 +948,496 @@ questions:
       forgets the bit still left at 100 µs; 12.6 µC is the charge lost in the **first** 25 µs.
 
       **Answer: about 7.0 µC.**
+  - n: 38
+    marks: 2
+    type: NAT
+    nat: {min: 2.20, max: 2.35}
+    difficulty: 3
+    stem: |
+      The single line diagram of a balanced power system is shown in the figure. The voltage magnitude at the generator internal bus is
+      constant and 1.0 p.u. The p.u. reactances of different components in the system are also shown in the figure. The infinite bus
+      voltage magnitude is 1.0 p.u. A three phase fault occurs at the middle of line 2.
+
+      The ratio of the maximum real power that can be transferred during the pre-fault condition to the maximum real power that can be
+      transferred under the faulted condition is _________.
+
+      ![Generator internal bus, then j0.2 to a bus; from the bus two parallel paths to the infinite bus, each a transformer j0.1 and a line j0.5 (Line 1 and Line 2)](fig:q-gate2016-s2-q38)
+    options:
+      - {label: A, md: "2.29", correct: true}
+      - {label: B, md: "1.60"}
+      - {label: C, md: "2.00"}
+      - {label: D, md: "1.14"}
+    solution: |
+      **Idea used:** $P_{max} = \dfrac{EV}{X}$, where $X$ is the **transfer** reactance between the generator and the infinite bus.
+      During the fault, find it with a star-delta step.
+
+      1. Pre-fault: each path is $0.1 + 0.5 = 0.6$; two in parallel give $0.3$. $X = 0.2 + 0.3 = 0.5$, so $P_{max} = 1/0.5 = 2$.
+      2. Fault at the middle of line 2: from the bus (call it M) to the fault point F is $0.1 + 0.25 = 0.35$, and F is now at ground.
+         (The other half, F to the infinite bus, is just a shunt on an ideal source; it does not change the transfer.)
+      3. Around M we have a star: generator arm $0.2$, ground arm $0.35$, infinite-bus arm $0.6$ (line 1 path).
+      4. Transfer reactance (generator to infinite bus) $= \dfrac{0.2 \times 0.35 + 0.35 \times 0.6 + 0.6 \times 0.2}{0.35}
+         = \dfrac{0.07 + 0.21 + 0.12}{0.35} = \dfrac{0.40}{0.35} \approx 1.143$.
+      5. Faulted $P_{max} = 1/1.143 = 0.875$. Ratio $= 2/0.875 \approx 2.29$.
+
+      **Without a calculator:** ratio $= \dfrac{1.143}{0.5} = \dfrac{0.40/0.35}{0.5} = \dfrac{8}{3.5} = \dfrac{16}{7} \approx 2.29$.
+      Slips: 1.60 treats line 2 as simply switched off ($X = 0.8$); 1.14 is the faulted reactance, not the ratio.
+
+      **Answer: 2.29.**
+  - n: 39
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      The open loop transfer function of a unity feedback control system is given by
+
+      $$G(s) = \frac{K(s + 1)}{s(1 + Ts)(1 + 2s)}, \qquad K > 0,\ T > 0.$$
+
+      The closed loop system will be stable if,
+    options:
+      - {label: A, md: "$0 < T < \\dfrac{4(K + 1)}{K - 1}$"}
+      - {label: B, md: "$0 < K < \\dfrac{4(T + 2)}{T - 2}$"}
+      - {label: C, md: "$0 < K < \\dfrac{T + 2}{T - 2}$", correct: true}
+      - {label: D, md: "$0 < T < \\dfrac{8(K + 1)}{K - 1}$"}
+    solution: |
+      **Idea used:** for a cubic $a_3s^3 + a_2s^2 + a_1s + a_0$, Routh says it is stable when all coefficients are positive and
+      $a_2 a_1 > a_3 a_0$.
+
+      1. $1 + G(s) = 0$: $s(1 + Ts)(1 + 2s) + K(s + 1) = 0$.
+      2. Expand: $2Ts^3 + (T + 2)s^2 + (1 + K)s + K = 0$.
+      3. Condition: $(T + 2)(1 + K) > 2T \cdot K$.
+      4. $T + 2 + TK + 2K > 2TK$, so $T + 2 > K(T - 2)$.
+      5. For $T > 2$: $K < \dfrac{T + 2}{T - 2}$. (For $T \le 2$ it is stable for every $K > 0$.)
+
+      **Without a calculator:** "middle two beat outer two": $(T+2)(1+K) > 2TK$. Option B has an extra factor 4 that comes from a
+      wrong expansion.
+
+      **Answer: (C).**
+  - n: 40
+    marks: 2
+    type: NAT
+    nat: {min: 294, max: 298}
+    difficulty: 2
+    stem: |
+      At no load condition, a 3-phase, 50 Hz, lossless power transmission line has sending-end and receiving-end voltages of 400 kV and
+      420 kV respectively. Assuming the velocity of traveling wave to be the velocity of light, the length of the line, in km, is
+      ____________.
+    options:
+      - {label: A, md: "296", correct: true}
+      - {label: B, md: "45.5"}
+      - {label: C, md: "150"}
+      - {label: D, md: "592"}
+    solution: |
+      **Idea used (Ferranti effect):** for a lossless line at no load, $V_S = V_R\cos\beta l$, with $\beta = \dfrac{\omega}{v}$.
+
+      1. $\cos\beta l = \dfrac{400}{420} = 0.952$.
+      2. $\beta l = \cos^{-1}(0.952) \approx 0.310$ rad.
+      3. $\beta = \dfrac{2\pi \times 50}{3 \times 10^5\ \text{km/s}} = \dfrac{\pi}{3000} \approx 1.047 \times 10^{-3}$ rad/km.
+      4. $l = \dfrac{0.310}{1.047 \times 10^{-3}} \approx 296$ km.
+
+      **Without a calculator:** use $\cos x \approx 1 - \dfrac{x^2}{2}$: $\dfrac{x^2}{2} = 1 - 0.952 = 0.048$, so $x^2 \approx 0.095$,
+      $x \approx 0.31$. Then $l = 0.31 \times \dfrac{3000}{\pi} \approx 0.31 \times 955 \approx 296$. Slip: 45.5 km takes
+      $x = 0.048$ (forgets the square).
+
+      **Answer: about 296 km.**
+  - n: 41
+    marks: 2
+    type: NAT
+    nat: {min: 0.31, max: 0.33}
+    difficulty: 1
+    stem: |
+      The power consumption of an industry is 500 kVA, at 0.8 p.f. lagging. A synchronous motor is added to raise the power factor of the
+      industry to unity. If the power intake of the motor is 100 kW, the p.f. of the motor is _____________
+    options:
+      - {label: A, md: "0.316", correct: true}
+      - {label: B, md: "0.8"}
+      - {label: C, md: "0.6"}
+      - {label: D, md: "0.447"}
+    solution: |
+      **Idea used:** for unity p.f., the motor must supply (as leading kVAr) all the lagging kVAr of the industry.
+
+      1. Industry: $P = 500 \times 0.8 = 400$ kW, $Q = 500 \times 0.6 = 300$ kVAr lagging.
+      2. Motor: $P = 100$ kW, $Q = 300$ kVAr leading.
+      3. Motor kVA $= \sqrt{100^2 + 300^2} = \sqrt{100\,000} \approx 316$.
+      4. Motor p.f. $= 100/316 \approx 0.316$ (leading).
+
+      **Without a calculator:** p.f. $= \dfrac{1}{\sqrt{1 + 3^2}} = \dfrac{1}{\sqrt{10}} \approx 0.316$. Slip: 0.447 ($1/\sqrt 5$)
+      comes from taking $Q = 200$ kVAr.
+
+      **Answer: 0.316 (leading).**
+  - n: 42
+    marks: 2
+    type: NAT
+    nat: {min: 186, max: 190}
+    difficulty: 3
+    stem: |
+      The flux linkage ($\lambda$) and current ($i$) relation for an electromagnetic system is $\lambda = (\sqrt{i})/g$. When $i = 2$ A and
+      $g$ (air-gap length) $= 10$ cm, the magnitude of mechanical force on the moving part, in N, is ________.
+    options:
+      - {label: A, md: "188.6", correct: true}
+      - {label: B, md: "282.8"}
+      - {label: C, md: "94.3"}
+      - {label: D, md: "0.019"}
+    solution: |
+      **Idea used:** for a **non-linear** $\lambda$-$i$ relation, use co-energy $W' = \displaystyle\int_0^i \lambda\,di$ and
+      $F = \dfrac{\partial W'}{\partial g}$ at constant current. (Do not use $\tfrac12 Li^2$; that is only for linear systems.)
+
+      1. $W' = \displaystyle\int_0^i \frac{\sqrt{i}}{g}\,di = \frac{2}{3}\,\frac{i^{3/2}}{g}$.
+      2. $F = \dfrac{\partial W'}{\partial g} = -\dfrac{2}{3}\,\dfrac{i^{3/2}}{g^2}$ (the minus sign means it pulls to close the gap).
+      3. $i^{3/2} = 2\sqrt 2 \approx 2.828$; $g = 0.1$ m, $g^2 = 0.01$.
+      4. $|F| = \dfrac{2}{3} \times \dfrac{2.828}{0.01} \approx 188.6$ N.
+
+      **Without a calculator:** $\dfrac{2}{3} \times 282.8 \approx 188.6$. Slips: 282.8 N forgets the $2/3$; 94.3 N uses a linear-style
+      factor $1/2$ on top; 0.019 N keeps $g = 10$ (cm) instead of 0.1 m.
+
+      **Answer: about 188.6 N.**
+  - n: 43
+    marks: 2
+    type: NAT
+    nat: {min: 31, max: 33}
+    difficulty: 1
+    stem: |
+      The starting line current of a 415 V, 3-phase, delta connected induction motor is 120 A, when the rated voltage is applied to its
+      stator winding. The starting line current at a reduced voltage of 110 V, in ampere, is _________.
+    options:
+      - {label: A, md: "31.8", correct: true}
+      - {label: B, md: "8.4"}
+      - {label: C, md: "18.4"}
+      - {label: D, md: "55.1"}
+    solution: |
+      **Idea used:** at start the rotor is still ($s = 1$), so the motor is just a fixed impedance. Current is proportional to voltage.
+      (It is the **torque** that goes with $V^2$.)
+
+      1. $I \propto V$, so $I_2 = 120 \times \dfrac{110}{415}$.
+      2. $= \dfrac{13\,200}{415} \approx 31.8$ A.
+
+      **Without a calculator:** $415 \times 32 = 13\,280$, a little more than 13 200, so the answer is just under 32. Slips: 8.4 A
+      uses $V^2$; 18.4 A and 55.1 A bring in a $\sqrt 3$ that is not needed (both currents are line currents of the same delta).
+
+      **Answer: about 31.8 A.**
+  - n: 44
+    marks: 2
+    type: NAT
+    nat: {min: 5.9, max: 6.1}
+    difficulty: 2
+    stem: |
+      A single-phase, 2 kVA, 100/200 V transformer is reconnected as an auto-transformer such that its kVA rating is maximum. The new
+      rating, in kVA, is ______.
+    options:
+      - {label: A, md: "6", correct: true}
+      - {label: B, md: "3"}
+      - {label: C, md: "4"}
+      - {label: D, md: "2"}
+    solution: |
+      **Idea used:** as an auto-transformer, each winding still carries only its own rated current. Connect the two windings in series
+      (additive). The output side carries the current of the **series** winding.
+
+      1. Rated currents: 100 V winding $= 2000/100 = 20$ A; 200 V winding $= 2000/200 = 10$ A.
+      2. Best choice: the 100 V winding is the series part (carries 20 A), the 200 V winding is common. That gives 200/300 V.
+      3. Rating $= 300\ \text{V} \times 20\ \text{A} = 6$ kVA.
+      4. The other way (100 V common, 200 V series): $300 \times 10 = 3$ kVA. Smaller.
+
+      **Without a calculator:** auto rating $= \text{two-winding rating} \times \dfrac{V_{HV}}{V_{series}} = 2 \times \dfrac{300}{100} = 6$.
+      Option B is the other connection.
+
+      **Answer: 6 kVA.**
+  - n: 45
+    marks: 2
+    type: NAT
+    nat: {min: 5.9, max: 6.1}
+    difficulty: 3
+    stem: |
+      A full-bridge converter supplying an RLE load is shown in figure. The firing angle of the bridge converter is 120°. The supply
+      voltage $v_m(t) = 200\pi\sin(100\pi t)$ V, R = 20 Ω, E = 800 V. The inductor L is large enough to make the output current I$_L$ a
+      smooth dc current. Switches are lossless. The real power fed back to the source, in kW, is __________.
+
+      ![Single-phase full thyristor bridge (T1, T4 on the left leg, T3, T2 on the right leg) fed from vm; its output goes through L, R = 20 ohm and a battery E = 800 V whose minus end is at the top; IL flows from the bridge into the load](fig:q-gate2016-s2-q45)
+    options:
+      - {label: A, md: "6", correct: true}
+      - {label: B, md: "18"}
+      - {label: C, md: "24"}
+      - {label: D, md: "3.5"}
+    solution: |
+      **Idea used:** above $90°$ the bridge works as an **inverter**: its average output voltage turns negative, and the battery
+      (connected the other way round) drives current and pushes power back to the ac side.
+
+      1. Average output: $V_o = \dfrac{2V_m}{\pi}\cos\alpha = \dfrac{2 \times 200\pi}{\pi}\cos 120° = 400 \times (-0.5) = -200$ V.
+      2. Loop: $V_o = I_L R - E$ (the battery's minus end is at the top). So $-200 = 20I_L - 800$, giving $I_L = 30$ A.
+      3. Power fed back $= |V_o| \times I_L = 200 \times 30 = 6000$ W $= 6$ kW.
+
+      **Check (energy balance):** the battery gives $800 \times 30 = 24$ kW; the resistor uses $30^2 \times 20 = 18$ kW;
+      the rest, $24 - 18 = 6$ kW, goes back to the source.
+
+      **Without a calculator:** $V_m = 200\pi$ is chosen so the $\pi$ cancels. Slips: 24 kW is the battery's power, 18 kW is the loss
+      in R, and 3.5 kW uses the half-wave formula $V_m/\pi$.
+
+      **Answer: 6 kW.**
+  - n: 46
+    marks: 2
+    type: NAT
+    nat: {min: 23, max: 25}
+    difficulty: 2
+    stem: |
+      A three-phase Voltage Source Inverter (VSI) as shown in the figure is feeding a delta connected resistive load of 30 Ω/phase. If it
+      is fed from a 600 V battery, with 180° conduction of solid-state devices, the power consumed by the load, in kW, is __________.
+
+      ![Three-phase bridge inverter: a 600 V battery feeds three legs, each with an upper and a lower IGBT with anti-parallel diode; the three leg midpoints feed a delta of three 30 ohm resistors](fig:q-gate2016-s2-q46)
+    options:
+      - {label: A, md: "24", correct: true}
+      - {label: B, md: "8"}
+      - {label: C, md: "36"}
+      - {label: D, md: "18"}
+    solution: |
+      **Idea used:** in 180° mode the line voltage is a quasi-square wave: $+V_{dc}$ for $120°$, $0$ for $60°$, $-V_{dc}$ for $120°$,
+      $0$ for $60°$. Its rms value is $V_L = \sqrt{\tfrac{2}{3}}\,V_{dc}$. In a delta load, each resistor sees a line voltage.
+
+      1. $V_L^2 = \dfrac{2}{3} \times 600^2 = \dfrac{2}{3} \times 360\,000 = 240\,000\ \text{V}^2$.
+      2. Power in one resistor $= \dfrac{V_L^2}{R} = \dfrac{240\,000}{30} = 8000$ W.
+      3. Three resistors: $3 \times 8 = 24$ kW.
+
+      **Without a calculator:** work with $V^2$ and skip the square root: $\tfrac{2}{3} \times 360\,000 = 240\,000$. Slips: 8 kW is
+      one resistor only (or uses the star phase voltage $\tfrac{\sqrt2}{3}V_{dc}$); 36 kW puts the full 600 V on each resistor;
+      18 kW uses the 120° mode value $V_{dc}/\sqrt 2$.
+
+      **Answer: 24 kW.**
+  - n: 47
+    marks: 2
+    type: NAT
+    nat: {min: 3.0, max: 4.0}
+    difficulty: 2
+    stem: |
+      A DC-DC boost converter, as shown in the figure below, is used to boost 360 V to 400 V, at a power of 4 kW. All devices are ideal.
+      Considering continuous inductor current, the rms current in the solid state switch (S), in ampere, is _________.
+
+      ![Boost converter: 360 V source, 10 mH inductor, switch S (IGBT with anti-parallel diode) to ground, a diode to the output, 1 mF capacitor and a 400 V load](fig:q-gate2016-s2-q47)
+    options:
+      - {label: A, md: "3.51", correct: true}
+      - {label: B, md: "11.1"}
+      - {label: C, md: "1.11"}
+      - {label: D, md: "10.5"}
+    solution: |
+      **Idea used:** with a large inductor the input current is nearly flat at $I_{in}$. The switch carries it only during the ON part
+      $D$ of each cycle. A current that is $I$ for a fraction $D$ of the time has rms $I\sqrt D$.
+
+      1. Boost: $V_o = \dfrac{V_{in}}{1 - D}$, so $1 - D = \dfrac{360}{400} = 0.9$, $D = 0.1$.
+      2. $I_{in} = \dfrac{4000}{360} \approx 11.1$ A.
+      3. Switch rms $= 11.1 \times \sqrt{0.1} \approx 11.1 \times 0.316 \approx 3.51$ A.
+
+      **Without a calculator:** $\sqrt{0.1} = 1/\sqrt{10} \approx 0.316$, and $11.1 \times 0.316 \approx 3.5$. (The switching
+      frequency is not given, so the ripple is taken as small.) Slips: 11.1 A is the inductor current; 1.11 A is the switch's
+      **average**; 10.5 A ($11.1\sqrt{0.9}$) is the **diode** rms.
+
+      **Answer: about 3.5 A.**
+  - n: 48
+    marks: 2
+    type: NAT
+    nat: {min: 9.1, max: 9.3}
+    difficulty: 2
+    stem: |
+      A single-phase bi-directional voltage source converter (VSC) is shown in the figure below. All devices are ideal. It is used to
+      charge a battery at 400 V with power of 5 kW from a source $V_s$ = 220 V (rms), 50 Hz sinusoidal AC mains at unity p.f. If its AC
+      side interfacing inductor is 5 mH and the switches are operated at 20 kHz, then the phase shift ($\delta$) between AC mains voltage
+      ($V_s$) and fundamental AC rms VSC voltage ($V_{C1}$), in degree, is _________.
+
+      ![Single-phase VSC: 220 V ac source, current Is through a 5 mH (Xs) inductor into a full bridge of four IGBTs with anti-parallel diodes; dc side has a 1 mF capacitor and a 400 V battery](fig:q-gate2016-s2-q48a)
+
+      ![Phasor diagram: Is along Vs; IsXs drawn downward from the tip of Vs; VC1 from the origin to the tip of IsXs; delta is the angle between Vs and VC1](fig:q-gate2016-s2-q48b)
+    options:
+      - {label: A, md: "9.22", correct: true}
+      - {label: B, md: "6.55"}
+      - {label: C, md: "0"}
+      - {label: D, md: "80.8"}
+    solution: |
+      **Idea used:** at unity p.f., $I_s$ is in phase with $V_s$. The inductor drop $I_sX_s$ is at $90°$ to it. So $V_s$, $I_sX_s$ and
+      $V_{C1}$ form a right-angled triangle, and $\tan\delta = \dfrac{I_sX_s}{V_s}$.
+
+      1. $I_s = \dfrac{5000}{220} \approx 22.7$ A.
+      2. $X_s = 2\pi \times 50 \times 0.005 = 0.5\pi \approx 1.571\ \Omega$.
+      3. $I_sX_s \approx 22.7 \times 1.571 \approx 35.7$ V.
+      4. $\tan\delta = \dfrac{35.7}{220} \approx 0.162$, so $\delta \approx 9.2°$.
+
+      **Without a calculator:** for small angles $\delta \approx 0.162$ rad $\times 57.3 \approx 9.3°$, and the true value is just
+      under that ($\tan$ grows a bit faster than the angle). The 20 kHz and 1 mF are not needed. Slips: 6.55° uses the peak
+      voltage 311 V; 80.8° is the other angle of the triangle.
+
+      **Answer: about 9.2°.**
+  - n: 49
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      Consider a linear time invariant system $\dot x = Ax$, with initial condition $x(0)$ at $t = 0$. Suppose $\alpha$ and $\beta$ are
+      eigenvectors of (2 x 2) matrix $A$ corresponding to distinct eigenvalues $\lambda_1$ and $\lambda_2$ respectively. Then the
+      response $x(t)$ of the system due to initial condition $x(0) = \alpha$ is
+    options:
+      - {label: A, md: "$e^{\\lambda_1 t}\\alpha$", correct: true}
+      - {label: B, md: "$e^{\\lambda_2 t}\\beta$"}
+      - {label: C, md: "$e^{\\lambda_2 t}\\alpha$"}
+      - {label: D, md: "$e^{\\lambda_1 t}\\alpha + e^{\\lambda_2 t}\\beta$"}
+    solution: |
+      **Idea used:** if the state starts on an eigenvector, it stays on that line and only grows or decays at its own eigenvalue.
+
+      1. Try $x(t) = e^{\lambda_1 t}\alpha$. Then $\dot x = \lambda_1 e^{\lambda_1 t}\alpha$.
+      2. $Ax = e^{\lambda_1 t}A\alpha = e^{\lambda_1 t}\lambda_1\alpha$ (because $A\alpha = \lambda_1\alpha$). So $\dot x = Ax$. ✓
+      3. At $t = 0$: $x(0) = \alpha$. ✓ Both conditions hold, and the solution is unique.
+
+      **Without a calculator:** "start on a mode, stay on that mode." Option D would need $x(0) = \alpha + \beta$.
+
+      **Answer: (A).**
+  - n: 50
+    marks: 2
+    type: MCQ
+    difficulty: 1
+    stem: |
+      A second-order real system has the following properties:
+
+      a) the damping ratio $\zeta = 0.5$ and undamped natural frequency $\omega_n = 10$ rad/s,
+
+      b) the steady state value of the output, to a unit step input, is 1.02.
+
+      The transfer function of the system is
+    options:
+      - {label: A, md: "$\\dfrac{1.02}{s^2 + 5s + 100}$"}
+      - {label: B, md: "$\\dfrac{102}{s^2 + 10s + 100}$", correct: true}
+      - {label: C, md: "$\\dfrac{100}{s^2 + 10s + 100}$"}
+      - {label: D, md: "$\\dfrac{102}{s^2 + 5s + 100}$"}
+    solution: |
+      **Idea used:** standard form $G(s) = \dfrac{K\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}$. The step response settles at
+      $G(0) = K$.
+
+      1. $2\zeta\omega_n = 2 \times 0.5 \times 10 = 10$ and $\omega_n^2 = 100$. Denominator: $s^2 + 10s + 100$.
+      2. Steady state $= G(0) = \dfrac{\text{numerator}}{100} = 1.02$, so numerator $= 102$.
+
+      **Without a calculator:** check the middle term first ($10s$ removes A and D), then $G(0)$ ($102/100 = 1.02$ removes C).
+
+      **Answer: (B).**
+  - n: 51
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      Three single-phase transformers are connected to form a delta-star three-phase transformer of 110 kV/11 kV. The transformer supplies
+      at 11 kV a load of 8 MW at 0.8 p.f. lagging to a nearby plant. Neglect the transformer losses. The ratio of phase currents in delta
+      side to star side is
+    options:
+      - {label: A, md: "$1 : 10\\sqrt3$", correct: true}
+      - {label: B, md: "$10\\sqrt3 : 1$"}
+      - {label: C, md: "$1 : 10$"}
+      - {label: D, md: "$\\sqrt3 : 10$"}
+    solution: |
+      **Idea used:** each single-phase unit sees its own **phase** voltage on each side. Its currents are in the inverse ratio of those
+      voltages. The load details (8 MW, 0.8 p.f.) are not needed.
+
+      1. Delta side: phase voltage = line voltage = 110 kV.
+      2. Star side: phase voltage $= \dfrac{11}{\sqrt3}$ kV.
+      3. Turns ratio per unit $= \dfrac{110}{11/\sqrt3} = 10\sqrt3$.
+      4. Currents go the other way: $I_{\Delta\,ph} : I_{Y\,ph} = 1 : 10\sqrt3$.
+
+      **Without a calculator:** high voltage side, low current. Option C uses the line-voltage ratio (10) and forgets the delta-star
+      $\sqrt3$; option B turns the ratio upside down.
+
+      **Answer: (A).**
+  - n: 52
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      The gain at the breakaway point of the root locus of a unity feedback system with open loop transfer function
+      $G(s) = \dfrac{Ks}{(s - 1)(s - 4)}$ is
+    options:
+      - {label: A, md: "1", correct: true}
+      - {label: B, md: "2"}
+      - {label: C, md: "5"}
+      - {label: D, md: "9"}
+    solution: |
+      **Idea used:** on the real axis write $K$ as a function of $s$; breakaway and break-in points are where $dK/ds = 0$.
+
+      1. $1 + G = 0$ gives $K = -\dfrac{(s - 1)(s - 4)}{s} = -\left(s - 5 + \dfrac{4}{s}\right)$.
+      2. $\dfrac{dK}{ds} = -\left(1 - \dfrac{4}{s^2}\right) = 0$, so $s = \pm 2$.
+      3. Root locus on the real axis: between the poles 1 and 4, and to the left of the zero at 0. Two poles meet and **break away** at
+         $s = 2$; the branches come back and **break in** at $s = -2$.
+      4. Gain at $s = 2$: $K = -\dfrac{(1)(-2)}{2} = 1$. (At $s = -2$: $K = 9$, the break-in gain.)
+
+      **Without a calculator:** breakaway lies between the two poles, so only $s = 2$ qualifies. Option D is the break-in gain.
+
+      **Answer: (A).**
+  - n: 53
+    marks: 2
+    type: NAT
+    nat: {min: 5.5, max: 6.5}
+    difficulty: 2
+    stem: |
+      Two identical unloaded generators are connected in parallel as shown in the figure. Both the generators are having positive,
+      negative and zero sequence impedances of j0.4 p.u., j0.3 p.u. and j0.15 p.u., respectively. If the pre-fault voltage is 1 p.u., for a
+      line-to-ground (L-G) fault at the terminals of the generators, the fault current, in p.u., is ___________.
+
+      ![Two generators on one bus: the upper one star-connected with its neutral not grounded, the lower one star-connected with its neutral grounded](fig:q-gate2016-s2-q53)
+    options:
+      - {label: A, md: "6", correct: true}
+      - {label: B, md: "7.06"}
+      - {label: C, md: "3.53"}
+      - {label: D, md: "2"}
+    solution: |
+      **Idea used:** for an L-G fault, $I_f = \dfrac{3E}{Z_1 + Z_2 + Z_0}$. Zero-sequence current can flow only through a **grounded**
+      neutral, so the ungrounded generator drops out of $Z_0$.
+
+      1. $Z_1$: two generators in parallel, $\dfrac{0.4}{2} = 0.2$.
+      2. $Z_2$: $\dfrac{0.3}{2} = 0.15$.
+      3. $Z_0$: only the grounded generator, $0.15$.
+      4. $I_f = \dfrac{3 \times 1}{0.2 + 0.15 + 0.15} = \dfrac{3}{0.5} = 6$ p.u.
+
+      **Without a calculator:** the sum is a neat 0.5. Slips: 7.06 halves $Z_0$ too (as if both were grounded); 3.53 uses one
+      generator only; 2 forgets the 3 in $3E$.
+
+      **Answer: 6 p.u.**
+  - n: 54
+    marks: 2
+    type: NAT
+    nat: {min: 1.9, max: 2.1}
+    difficulty: 1
+    stem: |
+      An energy meter, having meter constant of 1200 revolutions/kWh, makes 20 revolutions in 30 seconds for a constant load. The load,
+      in kW, is _____________.
+    options:
+      - {label: A, md: "2", correct: true}
+      - {label: B, md: "0.5"}
+      - {label: C, md: "1"}
+      - {label: D, md: "4"}
+    solution: |
+      **Idea used:** energy $= \dfrac{\text{revolutions}}{\text{meter constant}}$; power $=$ energy $\div$ time (in hours).
+
+      1. Energy in 30 s $= \dfrac{20}{1200} = \dfrac{1}{60}$ kWh.
+      2. 30 s $= \dfrac{1}{120}$ h.
+      3. Power $= \dfrac{1/60}{1/120} = 2$ kW.
+
+      **Another way:** in one hour the disc would turn $20 \times 120 = 2400$ times, which is $2400/1200 = 2$ kWh per hour, so 2 kW.
+
+      **Without a calculator:** two steps of easy division. Slip: 1 kW takes 30 s as 1/60 h.
+
+      **Answer: 2 kW.**
+  - n: 55
+    marks: 2
+    type: NAT
+    nat: {min: 9.4, max: 9.7}
+    difficulty: 2
+    stem: |
+      A rotating conductor of 1 m length is placed in a radially outward (about the z-axis) magnetic flux density (B) of 1 Tesla as shown in
+      figure below. Conductor is parallel to and at 1 m distance from the z-axis. The speed of the conductor in r.p.m. required to induce a
+      voltage of 1 V across it, should be __________.
+
+      ![A radial magnetic field of 1 T pointing outward from the z-axis, and a 1 m long conductor parallel to the z-axis at 1 m from it](fig:q-gate2016-s2-q55)
+    options:
+      - {label: A, md: "9.55", correct: true}
+      - {label: B, md: "1"}
+      - {label: C, md: "60"}
+      - {label: D, md: "0.159"}
+    solution: |
+      **Idea used:** $e = Blv$. The conductor moves round the z-axis, so its speed is $v = \omega r$, which is at right angles to both
+      the radial $B$ and the vertical conductor.
+
+      1. $e = B l \omega r$: $1 = 1 \times 1 \times \omega \times 1$, so $\omega = 1$ rad/s.
+      2. rpm $= \dfrac{60\omega}{2\pi} = \dfrac{60}{2\pi} \approx 9.55$.
+
+      **Without a calculator:** $60/6.28 \approx 9.55$. Slips: 1 is the answer in rad/s, not rpm; 0.159 is revolutions per second;
+      60 forgets the $2\pi$.
+
+      **Answer: about 9.55 rpm.**

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" viewBox="0 0 440 185">
+<line x1="70" y1="30" x2="70" y2="170" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<text x="8.0" y="22.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">Generator internal bus</text>
+<circle cx="40" cy="100" r="15" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<path d="M30,100 q5,-9 10,0 t10,0" stroke="currentColor" fill="none" stroke-width="1.4"/>
+<line x1="55" y1="100" x2="70" y2="100" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<line x1="70" y1="100" x2="105" y2="100" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<path d="M105,100 a6,6 0 0 1 12,0 a6,6 0 0 1 12,0 a6,6 0 0 1 12,0 a6,6 0 0 1 12,0 " stroke="currentColor" fill="none" stroke-width="1.5"/>
+<text x="129.0" y="88.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">j0.2</text>
+<line x1="153" y1="100" x2="190" y2="100" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<line x1="190" y1="30" x2="190" y2="170" stroke="currentColor" stroke-width="4"/>
+<line x1="190" y1="60" x2="215" y2="60" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<circle cx="227" cy="60" r="12" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<circle cx="243" cy="60" r="12" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<text x="235.0" y="42.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">j0.1</text>
+<line x1="255" y1="60" x2="400" y2="60" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<text x="328.0" y="53.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">j0.5</text>
+<text x="328.0" y="76.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">Line 1</text>
+<line x1="190" y1="140" x2="215" y2="140" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<circle cx="227" cy="140" r="12" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<circle cx="243" cy="140" r="12" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<text x="235.0" y="168.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">j0.1</text>
+<line x1="255" y1="140" x2="400" y2="140" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<text x="328.0" y="133.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">j0.5</text>
+<text x="328.0" y="156.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">Line 2</text>
+<line x1="400" y1="30" x2="400" y2="170" stroke="currentColor" stroke-width="3"/>
+<text x="432.0" y="22.0" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">Infinite bus</text>
+<line x1="400" y1="38" x2="410" y2="30" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="48" x2="410" y2="40" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="58" x2="410" y2="50" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="68" x2="410" y2="60" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="78" x2="410" y2="70" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="88" x2="410" y2="80" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="98" x2="410" y2="90" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="108" x2="410" y2="100" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="118" x2="410" y2="110" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="128" x2="410" y2="120" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="138" x2="410" y2="130" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="148" x2="410" y2="140" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="158" x2="410" y2="150" stroke="currentColor" stroke-width="1"/>
+<line x1="400" y1="168" x2="410" y2="160" stroke="currentColor" stroke-width="1"/>
+</svg>

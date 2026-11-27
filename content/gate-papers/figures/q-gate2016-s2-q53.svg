@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" viewBox="0 0 260 175">
+<path d="M30,38 L40,50 L50,38 M40,50 V64" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="90" cy="52" r="20" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M77,52 q6.5,-12 13,0 t13,0" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="110" y1="52" x2="190" y2="52" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M30,108 L40,120 L50,108 M40,120 V134" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="90" cy="122" r="20" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M77,122 q6.5,-12 13,0 t13,0" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="110" y1="122" x2="190" y2="122" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M40,134 V144 M31,144 H49 M34,148 H46 M37,152 H43" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="190" y1="28" x2="190" y2="150" stroke="currentColor" stroke-width="2.5"/>
+<text x="62.0" y="20.0" font-size="11" text-anchor="start" dominant-baseline="middle" fill="currentColor">neutral not grounded</text>
+<text x="62.0" y="166.0" font-size="11" text-anchor="start" dominant-baseline="middle" fill="currentColor">neutral grounded</text>
+</svg>

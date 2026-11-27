@@ -64,7 +64,7 @@ Tick each paper when it is complete in the portal.
 |---|---|
 | 1. Backend | done 27 Nov 2026 (API below) |
 | 2. UI mockup, then UI | done 27 Nov 2026: mockup https://claude.ai/artifact/7bh3YuzxmTZjv1cnewn1dN approved; built on the frontend `preview` branch |
-| 3. GATE EE papers | 1 of about 45 (counting sets): GATE 2016 Set 1 complete, 27 Nov 2026 (`content/gate-papers/2016-set1.yml` + Circuits Ch2 Q15, Q17) |
+| 3. GATE EE papers | 2 of about 45 (counting sets): GATE 2016 Set 1 and Set 2 complete, 27 Nov 2026 (`content/gate-papers/2016-set1.yml` + Circuits Ch2 Q15, Q17; `2016-set2.yml` + Circuits Ch1 Q23) |
 | 4. GATE EC (4 subjects) | not started |
 | 5. JE/AE Machines set | not started |
 
@@ -92,6 +92,6 @@ Tick each paper when it is complete in the portal.
   Rules in `content/gate-papers/README.md`. Questions of written chapters stay in the chapter files.
 - Source for 2007-2026: the dump PDFs (Drive `EE<year>.pdf`, which carry the official answer key at the end). Pre-2007 has no
   PDF in the dump yet; examside.com has no figures and no paper order, so a PDF dump of 1991-2006 is still needed for those papers.
-- Order: the plan's order puts 2004 first, but 2004 needs that dump; 2016 (next most copied) was done first. Next: GATE 2016 Set 2,
-  then 2012, 2014 (three sets), 2008, 2010.
+- Order: the plan's order puts 2004 first, but 2004 needs that dump; 2016 (next most copied) was done first (both sets). Next: 2012,
+  then 2014 (three sets), 2008, 2010.
 
