@@ -385,3 +385,242 @@ questions:
       Then $400^2 / 400 = 400$ MW.
 
       **Answer: (B).**
+  - n: 16
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      A parallel plate capacitor filled with two dielectrics is shown in the figure below. If the electric field in the region A is
+      4 kV/cm, the electric field in the region B, in kV/cm, is
+
+      ![Two parallel plates 2 cm apart; the space between them is split side by side into region A (relative permittivity 1) and region B (relative permittivity 4)](fig:q-gate2016-s2-q16)
+    options:
+      - {label: A, md: "1"}
+      - {label: B, md: "2"}
+      - {label: C, md: "4", correct: true}
+      - {label: D, md: "16"}
+    solution: |
+      **Idea used:** here the two dielectrics sit **side by side**, both touching both plates. So both see the same voltage across the
+      same gap, and $E = V/d$ is the same in both.
+
+      1. Voltage across A = voltage across B = $V$ (both are connected plate to plate).
+      2. Gap is 2 cm for both, so $E_A = E_B = V/d$.
+      3. $E_B = E_A = 4$ kV/cm.
+
+      **Without a calculator:** no working needed. The permittivity changes $D = \varepsilon E$ (so $D$ in B is 4 times bigger), not $E$.
+      Option A (1) is the slip of using the "layers one above the other" rule, where $D$ is equal and $E$ divides by $\varepsilon_r$.
+
+      **Answer: (C).**
+  - n: 17
+    marks: 1
+    type: NAT
+    nat: {min: 4.9, max: 5.1}
+    difficulty: 1
+    stem: |
+      A 50 MVA, 10 kV, 50 Hz, star-connected, unloaded three-phase alternator has a synchronous reactance of 1 p.u. and a sub-transient
+      reactance of 0.2 p.u. If a 3-phase short circuit occurs close to the generator terminals, the ratio of initial and final values of
+      the sinusoidal component of the short circuit current is ________.
+    options:
+      - {label: A, md: "5", correct: true}
+      - {label: B, md: "0.2"}
+      - {label: C, md: "25"}
+      - {label: D, md: "2.5"}
+    solution: |
+      **Idea used:** right after the fault the current is limited by the sub-transient reactance $X_d''$. In steady state (final value)
+      it is limited by the synchronous reactance $X_d$. The voltage behind them is the same (unloaded machine, $E = 1$ p.u.).
+
+      1. Initial current $= E / X_d'' = 1 / 0.2 = 5$ p.u.
+      2. Final current $= E / X_d = 1 / 1 = 1$ p.u.
+      3. Ratio $= 5 / 1 = 5$.
+
+      **Without a calculator:** ratio $= X_d / X_d'' = 1 / 0.2 = 5$. The MVA and kV figures are not needed. Option B (0.2) is the
+      ratio turned upside down; option C (25) squares it.
+
+      **Answer: 5.**
+  - n: 18
+    marks: 1
+    type: NAT
+    nat: {min: 0.69, max: 0.72}
+    difficulty: 1
+    stem: |
+      Consider a linear time-invariant system with transfer function
+
+      $$H(s) = \frac{1}{s + 1}$$
+
+      If the input is $\cos(t)$ and the steady state output is $A\cos(t + \alpha)$, then the value of $A$ is _________.
+    options:
+      - {label: A, md: "0.707", correct: true}
+      - {label: B, md: "1"}
+      - {label: C, md: "0.5"}
+      - {label: D, md: "1.414"}
+    solution: |
+      **Idea used:** for a sinusoid input of frequency $\omega$, the steady-state output amplitude is input amplitude $\times |H(j\omega)|$.
+
+      1. Here $\omega = 1$ rad/s, so put $s = j1$: $H(j1) = \dfrac{1}{1 + j}$.
+      2. $|H(j1)| = \dfrac{1}{\sqrt{1^2 + 1^2}} = \dfrac{1}{\sqrt 2}$.
+      3. $A = 1 \times \dfrac{1}{\sqrt 2} \approx 0.707$. (The phase is $\alpha = -45°$.)
+
+      **Without a calculator:** $1/\sqrt 2 = \sqrt 2 / 2 \approx 1.414 / 2 = 0.707$. At $\omega = 1$ this system is exactly at its corner
+      frequency, the familiar "3 dB down" point. Option C (0.5) forgets the square root.
+
+      **Answer: 0.707.**
+  - n: 19
+    marks: 1
+    type: NAT
+    nat: {min: 57, max: 58}
+    difficulty: 2
+    stem: |
+      A three-phase diode bridge rectifier is feeding a constant DC current of 100 A to a highly inductive load. If three-phase, 415 V,
+      50 Hz AC source is supplying to this bridge rectifier then the rms value of the current in each diode, in ampere, is _____________.
+    options:
+      - {label: A, md: "57.7", correct: true}
+      - {label: B, md: "33.3"}
+      - {label: C, md: "81.6"}
+      - {label: D, md: "100"}
+    solution: |
+      **Idea used:** in a 3-phase bridge each diode carries the full load current for $120°$ out of every $360°$, that is one third of
+      the time, and zero for the rest.
+
+      1. Diode current: 100 A for 1/3 of the cycle, 0 otherwise.
+      2. RMS $= \sqrt{\dfrac{1}{3} \times 100^2} = \dfrac{100}{\sqrt 3}$.
+      3. $= 57.7$ A.
+
+      **Without a calculator:** $100/\sqrt 3 = 100\sqrt 3 / 3 \approx 173.2 / 3 \approx 57.7$. The 415 V and 50 Hz are not needed.
+      Slips: 33.3 A is the **average** diode current; 81.6 A ($100\sqrt{2/3}$) is the rms **line** current, which flows through two
+      diodes (one each half).
+
+      **Answer: 57.7 A.**
+  - n: 20
+    marks: 1
+    type: NAT
+    nat: {min: 59.5, max: 60.5}
+    difficulty: 2
+    stem: |
+      A buck-boost DC-DC converter, shown in the figure below, is used to convert 24 V battery voltage to 36 V DC voltage to feed a load
+      of 72 W. It is operated at 20 kHz with an inductor of 2 mH and output capacitor of 1000 µF. All devices are considered to be ideal.
+      The peak voltage across the solid-state switch (S), in volt, is ____________.
+
+      ![Buck-boost converter: 24 V battery, switch S, a 2 mH inductor from the switch side to ground, diode D pointing back towards the inductor, 1000 microfarad capacitor and 36 V, 72 W load with the positive end at the bottom](fig:q-gate2016-s2-q20)
+    options:
+      - {label: A, md: "60", correct: true}
+      - {label: B, md: "36"}
+      - {label: C, md: "24"}
+      - {label: D, md: "12"}
+    solution: |
+      **Idea used:** in a buck-boost converter, when the switch is OFF the diode conducts and the inductor is clamped to the output.
+      The switch then has the input on one side and the (reversed) output on the other, so it blocks $V_{in} + V_o$.
+
+      1. Switch OFF: the inductor node sits at $-V_o = -36$ V (the output is reversed in a buck-boost).
+      2. The other end of the switch is at $+24$ V.
+      3. Voltage across S $= 24 - (-36) = 60$ V.
+      4. Check the ripple: $I_o = 72/36 = 2$ A, duty $D = \dfrac{36}{24 + 36} = 0.6$, ripple
+         $\Delta V = \dfrac{I_o D}{f C} = \dfrac{2 \times 0.6}{20\,000 \times 10^{-3}} = 0.06$ V. Too small to matter, so the peak is
+         about 60 V.
+
+      **Without a calculator:** just add: $24 + 36 = 60$. The inductor, capacitor and frequency only matter for the tiny ripple.
+      Option D (12) subtracts instead of adding; options B and C pick one side only.
+
+      **Answer: 60 V.**
+  - n: 21
+    marks: 1
+    type: NAT
+    nat: {min: 0.30, max: 0.33}
+    difficulty: 2
+    stem: |
+      For the network shown in the figure below, the frequency (in rad/s) at which the maximum phase lag occurs is, ___________.
+
+      ![Lag network: input vin, a 9 ohm resistor in series, then a shunt branch of 1 ohm in series with 1 F across the output vo](fig:q-gate2016-s2-q21)
+    options:
+      - {label: A, md: "0.316", correct: true}
+      - {label: B, md: "1"}
+      - {label: C, md: "0.1"}
+      - {label: D, md: "3.16"}
+    solution: |
+      **Idea used:** this is a lag network. For $\dfrac{1 + sT}{1 + s\beta T}$ the largest phase lag comes at the
+      **geometric mean** of the two corner frequencies: $\omega_m = \dfrac{1}{T\sqrt{\beta}}$.
+
+      1. Voltage divider: $\dfrac{V_o}{V_{in}} = \dfrac{1 + \frac{1}{s}}{9 + 1 + \frac{1}{s}} = \dfrac{1 + s}{1 + 10s}$.
+      2. So $T = 1$ s and $\beta = 10$. Corners at $\omega = 1$ (zero) and $\omega = 0.1$ (pole).
+      3. $\omega_m = \sqrt{1 \times 0.1} = \dfrac{1}{\sqrt{10}} \approx 0.316$ rad/s.
+
+      **Check:** phase $= \tan^{-1}\omega - \tan^{-1}10\omega$. At $\omega = 0.316$: $17.5° - 72.5° = -55°$, the largest lag.
+
+      **Without a calculator:** $\sqrt{10} \approx 3.16$, so $1/3.16 \approx 0.316$. Slips: picking one corner (1 or 0.1) instead
+      of their geometric mean, or $\sqrt{10}$ itself (3.16).
+
+      **Answer: 0.316 rad/s.**
+  - n: 22
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      The direction of rotation of a single-phase capacitor run induction motor is reversed by
+    options:
+      - {label: A, md: "interchanging the terminals of the AC supply."}
+      - {label: B, md: "interchanging the terminals of the capacitor."}
+      - {label: C, md: "interchanging the terminals of the auxiliary winding.", correct: true}
+      - {label: D, md: "interchanging the terminals of both the windings."}
+    solution: |
+      **Idea used:** the motor turns from the winding whose current **leads** towards the one that lags. To reverse it, reverse the
+      current in **only one** winding, so the order of the two fields flips.
+
+      1. Swap the auxiliary winding terminals: its current turns by $180°$ relative to the main winding, so the rotating field (and the
+         rotor) reverses. This is the usual way.
+      2. Swapping the supply terminals reverses **both** winding currents together, so the order does not change. No reversal.
+      3. Swapping both windings: same thing, both flip, no reversal.
+      4. The run capacitor is non-polar; turning it round changes nothing.
+
+      **Without a calculator:** "reverse one, not both." Swapping the main winding alone would also work, but that option is not
+      given.
+
+      **Answer: (C).**
+  - n: 24
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      The graph associated with an electrical network has 7 branches and 5 nodes. The number of independent KCL equations and the number
+      of independent KVL equations, respectively, are
+    options:
+      - {label: A, md: "2 and 5"}
+      - {label: B, md: "5 and 2"}
+      - {label: C, md: "3 and 4"}
+      - {label: D, md: "4 and 3", correct: true}
+    solution: |
+      **Idea used:** independent KCL equations $= n - 1$ (one per node except the reference). Independent KVL equations
+      $= b - n + 1$ (one per loop, that is, per link of a tree).
+
+      1. KCL: $n - 1 = 5 - 1 = 4$.
+      2. KVL: $b - n + 1 = 7 - 5 + 1 = 3$.
+      3. Check: $4 + 3 = 7$, the number of branches. It always adds up.
+
+      **Without a calculator:** KCL + KVL = branches. Option B uses $n$ (5) for KCL, forgetting the reference node.
+
+      **Answer: (D).**
+  - n: 25
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    stem: |
+      Two electrodes, whose cross-sectional view is shown in the figure below, are at the same potential. The maximum electric field will
+      be at the point
+
+      ![Two elliptical electrodes side by side. On the left electrode: A at its far-left tip, C at its right tip facing the other electrode, B at the bottom of the flat side, D at the centre inside](fig:q-gate2016-s2-q25)
+    options:
+      - {label: A, md: "A", correct: true}
+      - {label: B, md: "B"}
+      - {label: C, md: "C"}
+      - {label: D, md: "D"}
+    solution: |
+      **Idea used:** on a conductor, charge crowds where the surface is **most sharply curved**, so the field is largest there. Inside
+      a conductor the field is zero.
+
+      1. D is inside the electrode: field $= 0$.
+      2. B is on the flat (long) side: low curvature, low field.
+      3. A and C are both sharp tips. But C faces the other electrode, which is at the **same** potential. Between them there is little
+      potential difference, so the field near C is pushed down.
+      4. A is a sharp tip facing open space (towards lower potential far away). So A has the largest field.
+
+      **Without a calculator:** "sharpest point, facing away from the twin." Same idea as corona at sharp points of a conductor.
+
+      **Answer: (A).**

@@ -4160,3 +4160,529 @@ Then $400^2 / 400 = 400$ MW.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'zero', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   DELETE FROM question_mcq_option WHERE question_id = qid;
 END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q16';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q16')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q16: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A parallel plate capacitor filled with two dielectrics is shown in the figure below. If the electric field in the region A is 4 kV/cm, the electric field in...', 'A parallel plate capacitor filled with two dielectrics is shown in the figure below. If the electric field in the region A is
+4 kV/cm, the electric field in the region B, in kV/cm, is
+
+![Two parallel plates 2 cm apart; the space between them is split side by side into region A (relative permittivity 1) and region B (relative permittivity 4)](fig:q-gate2016-s2-q16)
+', '**Idea used:** here the two dielectrics sit **side by side**, both touching both plates. So both see the same voltage across the
+same gap, and $E = V/d$ is the same in both.
+
+1. Voltage across A = voltage across B = $V$ (both are connected plate to plate).
+2. Gap is 2 cm for both, so $E_A = E_B = V/d$.
+3. $E_B = E_A = 4$ kV/cm.
+
+**Without a calculator:** no working needed. The permittivity changes $D = \varepsilon E$ (so $D$ in B is 4 times bigger), not $E$.
+Option A (1) is the slip of using the "layers one above the other" rule, where $D$ is equal and $E$ divides by $\varepsilon_r$.
+
+**Answer: (C).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'OFFICIAL_KEY', 'gate2016-s2-q16', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A parallel plate capacitor filled with two dielectrics is shown in the figure below. If the electric field in the region A is 4 kV/cm, the electric field in...'), stem_md = 'A parallel plate capacitor filled with two dielectrics is shown in the figure below. If the electric field in the region A is
+4 kV/cm, the electric field in the region B, in kV/cm, is
+
+![Two parallel plates 2 cm apart; the space between them is split side by side into region A (relative permittivity 1) and region B (relative permittivity 4)](fig:q-gate2016-s2-q16)
+', solution_md = '**Idea used:** here the two dielectrics sit **side by side**, both touching both plates. So both see the same voltage across the
+same gap, and $E = V/d$ is the same in both.
+
+1. Voltage across A = voltage across B = $V$ (both are connected plate to plate).
+2. Gap is 2 cm for both, so $E_A = E_B = V/d$.
+3. $E_B = E_A = 4$ kV/cm.
+
+**Without a calculator:** no working needed. The permittivity changes $D = \varepsilon E$ (so $D$ in B is 4 times bigger), not $E$.
+Option A (1) is the slip of using the "layers one above the other" rule, where $D$ is equal and $E$ divides by $\varepsilon_r$.
+
+**Answer: (C).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q16', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q16', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '4', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '16', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q16', '<svg xmlns="http://www.w3.org/2000/svg" width="310" viewBox="0 0 310 120">
+<line x1="20" y1="20" x2="220" y2="20" stroke="currentColor" stroke-width="2"/>
+<line x1="20" y1="100" x2="220" y2="100" stroke="currentColor" stroke-width="2"/>
+<rect x="120" y="21" width="100" height="78" fill="currentColor" opacity="0.25"/>
+<line x1="120" y1="20" x2="120" y2="100" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="70.0" y="45.0" font-size="15" text-anchor="middle" dominant-baseline="middle" fill="currentColor">A</text>
+<text x="70.0" y="72.0" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="currentColor">εr = 1</text>
+<text x="170.0" y="45.0" font-size="15" text-anchor="middle" dominant-baseline="middle" fill="currentColor">B</text>
+<text x="170.0" y="72.0" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="currentColor">εr = 4</text>
+<line x1="245" y1="22" x2="245" y2="98" stroke="currentColor" stroke-width="1.2"/>
+<path d="M245,20 l-4,8 h8 z M245,100 l-4,-8 h8 z" fill="currentColor"/>
+<text x="275.0" y="62.0" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2 cm</text>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q17';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q17')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q17: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A 50 MVA, 10 kV, 50 Hz, star-connected, unloaded three-phase alternator has a synchronous reactance of 1 p.u. and a sub-transient reactance of 0.2 p.u. If a...', 'A 50 MVA, 10 kV, 50 Hz, star-connected, unloaded three-phase alternator has a synchronous reactance of 1 p.u. and a sub-transient
+reactance of 0.2 p.u. If a 3-phase short circuit occurs close to the generator terminals, the ratio of initial and final values of
+the sinusoidal component of the short circuit current is ________.
+', '**Idea used:** right after the fault the current is limited by the sub-transient reactance $X_d''''$. In steady state (final value)
+it is limited by the synchronous reactance $X_d$. The voltage behind them is the same (unloaded machine, $E = 1$ p.u.).
+
+1. Initial current $= E / X_d'''' = 1 / 0.2 = 5$ p.u.
+2. Final current $= E / X_d = 1 / 1 = 1$ p.u.
+3. Ratio $= 5 / 1 = 5$.
+
+**Without a calculator:** ratio $= X_d / X_d'''' = 1 / 0.2 = 5$. The MVA and kV figures are not needed. Option B (0.2) is the
+ratio turned upside down; option C (25) squares it.
+
+**Answer: 5.**
+', 'READY', 'NAT', 4.9, 5.1, 1, 'OFFICIAL_KEY', 'gate2016-s2-q17', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A 50 MVA, 10 kV, 50 Hz, star-connected, unloaded three-phase alternator has a synchronous reactance of 1 p.u. and a sub-transient reactance of 0.2 p.u. If a...'), stem_md = 'A 50 MVA, 10 kV, 50 Hz, star-connected, unloaded three-phase alternator has a synchronous reactance of 1 p.u. and a sub-transient
+reactance of 0.2 p.u. If a 3-phase short circuit occurs close to the generator terminals, the ratio of initial and final values of
+the sinusoidal component of the short circuit current is ________.
+', solution_md = '**Idea used:** right after the fault the current is limited by the sub-transient reactance $X_d''''$. In steady state (final value)
+it is limited by the synchronous reactance $X_d$. The voltage behind them is the same (unloaded machine, $E = 1$ p.u.).
+
+1. Initial current $= E / X_d'''' = 1 / 0.2 = 5$ p.u.
+2. Final current $= E / X_d = 1 / 1 = 1$ p.u.
+3. Ratio $= 5 / 1 = 5$.
+
+**Without a calculator:** ratio $= X_d / X_d'''' = 1 / 0.2 = 5$. The MVA and kV figures are not needed. Option B (0.2) is the
+ratio turned upside down; option C (25) squares it.
+
+**Answer: 5.**
+', status = 'READY', answer_type = 'NAT', nat_min = 4.9, nat_max = 5.1, difficulty = 1, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q17', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q17', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '5', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.2', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '25', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q18';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q18')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q18: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'Consider a linear time-invariant system with transfer function $$H(s) = \frac{1}{s + 1}$$ If the input is $\cos(t)$ and the steady state output is $A\cos(t...', 'Consider a linear time-invariant system with transfer function
+
+$$H(s) = \frac{1}{s + 1}$$
+
+If the input is $\cos(t)$ and the steady state output is $A\cos(t + \alpha)$, then the value of $A$ is _________.
+', '**Idea used:** for a sinusoid input of frequency $\omega$, the steady-state output amplitude is input amplitude $\times |H(j\omega)|$.
+
+1. Here $\omega = 1$ rad/s, so put $s = j1$: $H(j1) = \dfrac{1}{1 + j}$.
+2. $|H(j1)| = \dfrac{1}{\sqrt{1^2 + 1^2}} = \dfrac{1}{\sqrt 2}$.
+3. $A = 1 \times \dfrac{1}{\sqrt 2} \approx 0.707$. (The phase is $\alpha = -45°$.)
+
+**Without a calculator:** $1/\sqrt 2 = \sqrt 2 / 2 \approx 1.414 / 2 = 0.707$. At $\omega = 1$ this system is exactly at its corner
+frequency, the familiar "3 dB down" point. Option C (0.5) forgets the square root.
+
+**Answer: 0.707.**
+', 'READY', 'NAT', 0.69, 0.72, 1, 'OFFICIAL_KEY', 'gate2016-s2-q18', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'Consider a linear time-invariant system with transfer function $$H(s) = \frac{1}{s + 1}$$ If the input is $\cos(t)$ and the steady state output is $A\cos(t...'), stem_md = 'Consider a linear time-invariant system with transfer function
+
+$$H(s) = \frac{1}{s + 1}$$
+
+If the input is $\cos(t)$ and the steady state output is $A\cos(t + \alpha)$, then the value of $A$ is _________.
+', solution_md = '**Idea used:** for a sinusoid input of frequency $\omega$, the steady-state output amplitude is input amplitude $\times |H(j\omega)|$.
+
+1. Here $\omega = 1$ rad/s, so put $s = j1$: $H(j1) = \dfrac{1}{1 + j}$.
+2. $|H(j1)| = \dfrac{1}{\sqrt{1^2 + 1^2}} = \dfrac{1}{\sqrt 2}$.
+3. $A = 1 \times \dfrac{1}{\sqrt 2} \approx 0.707$. (The phase is $\alpha = -45°$.)
+
+**Without a calculator:** $1/\sqrt 2 = \sqrt 2 / 2 \approx 1.414 / 2 = 0.707$. At $\omega = 1$ this system is exactly at its corner
+frequency, the familiar "3 dB down" point. Option C (0.5) forgets the square root.
+
+**Answer: 0.707.**
+', status = 'READY', answer_type = 'NAT', nat_min = 0.69, nat_max = 0.72, difficulty = 1, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q18', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q18', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.707', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1.414', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q19';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q19')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q19: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A three-phase diode bridge rectifier is feeding a constant DC current of 100 A to a highly inductive load. If three-phase, 415 V, 50 Hz AC source is...', 'A three-phase diode bridge rectifier is feeding a constant DC current of 100 A to a highly inductive load. If three-phase, 415 V,
+50 Hz AC source is supplying to this bridge rectifier then the rms value of the current in each diode, in ampere, is _____________.
+', '**Idea used:** in a 3-phase bridge each diode carries the full load current for $120°$ out of every $360°$, that is one third of
+the time, and zero for the rest.
+
+1. Diode current: 100 A for 1/3 of the cycle, 0 otherwise.
+2. RMS $= \sqrt{\dfrac{1}{3} \times 100^2} = \dfrac{100}{\sqrt 3}$.
+3. $= 57.7$ A.
+
+**Without a calculator:** $100/\sqrt 3 = 100\sqrt 3 / 3 \approx 173.2 / 3 \approx 57.7$. The 415 V and 50 Hz are not needed.
+Slips: 33.3 A is the **average** diode current; 81.6 A ($100\sqrt{2/3}$) is the rms **line** current, which flows through two
+diodes (one each half).
+
+**Answer: 57.7 A.**
+', 'READY', 'NAT', 57, 58, 2, 'OFFICIAL_KEY', 'gate2016-s2-q19', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A three-phase diode bridge rectifier is feeding a constant DC current of 100 A to a highly inductive load. If three-phase, 415 V, 50 Hz AC source is...'), stem_md = 'A three-phase diode bridge rectifier is feeding a constant DC current of 100 A to a highly inductive load. If three-phase, 415 V,
+50 Hz AC source is supplying to this bridge rectifier then the rms value of the current in each diode, in ampere, is _____________.
+', solution_md = '**Idea used:** in a 3-phase bridge each diode carries the full load current for $120°$ out of every $360°$, that is one third of
+the time, and zero for the rest.
+
+1. Diode current: 100 A for 1/3 of the cycle, 0 otherwise.
+2. RMS $= \sqrt{\dfrac{1}{3} \times 100^2} = \dfrac{100}{\sqrt 3}$.
+3. $= 57.7$ A.
+
+**Without a calculator:** $100/\sqrt 3 = 100\sqrt 3 / 3 \approx 173.2 / 3 \approx 57.7$. The 415 V and 50 Hz are not needed.
+Slips: 33.3 A is the **average** diode current; 81.6 A ($100\sqrt{2/3}$) is the rms **line** current, which flows through two
+diodes (one each half).
+
+**Answer: 57.7 A.**
+', status = 'READY', answer_type = 'NAT', nat_min = 57, nat_max = 58, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q19', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q19', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '57.7', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '33.3', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '81.6', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '100', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q20';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q20')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q20: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A buck-boost DC-DC converter, shown in the figure below, is used to convert 24 V battery voltage to 36 V DC voltage to feed a load of 72 W. It is operated...', 'A buck-boost DC-DC converter, shown in the figure below, is used to convert 24 V battery voltage to 36 V DC voltage to feed a load
+of 72 W. It is operated at 20 kHz with an inductor of 2 mH and output capacitor of 1000 µF. All devices are considered to be ideal.
+The peak voltage across the solid-state switch (S), in volt, is ____________.
+
+![Buck-boost converter: 24 V battery, switch S, a 2 mH inductor from the switch side to ground, diode D pointing back towards the inductor, 1000 microfarad capacitor and 36 V, 72 W load with the positive end at the bottom](fig:q-gate2016-s2-q20)
+', '**Idea used:** in a buck-boost converter, when the switch is OFF the diode conducts and the inductor is clamped to the output.
+The switch then has the input on one side and the (reversed) output on the other, so it blocks $V_{in} + V_o$.
+
+1. Switch OFF: the inductor node sits at $-V_o = -36$ V (the output is reversed in a buck-boost).
+2. The other end of the switch is at $+24$ V.
+3. Voltage across S $= 24 - (-36) = 60$ V.
+4. Check the ripple: $I_o = 72/36 = 2$ A, duty $D = \dfrac{36}{24 + 36} = 0.6$, ripple
+   $\Delta V = \dfrac{I_o D}{f C} = \dfrac{2 \times 0.6}{20\,000 \times 10^{-3}} = 0.06$ V. Too small to matter, so the peak is
+   about 60 V.
+
+**Without a calculator:** just add: $24 + 36 = 60$. The inductor, capacitor and frequency only matter for the tiny ripple.
+Option D (12) subtracts instead of adding; options B and C pick one side only.
+
+**Answer: 60 V.**
+', 'READY', 'NAT', 59.5, 60.5, 2, 'OFFICIAL_KEY', 'gate2016-s2-q20', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A buck-boost DC-DC converter, shown in the figure below, is used to convert 24 V battery voltage to 36 V DC voltage to feed a load of 72 W. It is operated...'), stem_md = 'A buck-boost DC-DC converter, shown in the figure below, is used to convert 24 V battery voltage to 36 V DC voltage to feed a load
+of 72 W. It is operated at 20 kHz with an inductor of 2 mH and output capacitor of 1000 µF. All devices are considered to be ideal.
+The peak voltage across the solid-state switch (S), in volt, is ____________.
+
+![Buck-boost converter: 24 V battery, switch S, a 2 mH inductor from the switch side to ground, diode D pointing back towards the inductor, 1000 microfarad capacitor and 36 V, 72 W load with the positive end at the bottom](fig:q-gate2016-s2-q20)
+', solution_md = '**Idea used:** in a buck-boost converter, when the switch is OFF the diode conducts and the inductor is clamped to the output.
+The switch then has the input on one side and the (reversed) output on the other, so it blocks $V_{in} + V_o$.
+
+1. Switch OFF: the inductor node sits at $-V_o = -36$ V (the output is reversed in a buck-boost).
+2. The other end of the switch is at $+24$ V.
+3. Voltage across S $= 24 - (-36) = 60$ V.
+4. Check the ripple: $I_o = 72/36 = 2$ A, duty $D = \dfrac{36}{24 + 36} = 0.6$, ripple
+   $\Delta V = \dfrac{I_o D}{f C} = \dfrac{2 \times 0.6}{20\,000 \times 10^{-3}} = 0.06$ V. Too small to matter, so the peak is
+   about 60 V.
+
+**Without a calculator:** just add: $24 + 36 = 60$. The inductor, capacitor and frequency only matter for the tiny ripple.
+Option D (12) subtracts instead of adding; options B and C pick one side only.
+
+**Answer: 60 V.**
+', status = 'READY', answer_type = 'NAT', nat_min = 59.5, nat_max = 60.5, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q20', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q20', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '60', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '36', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '24', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '12', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q20', '<svg width="465" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-18.1 -141.8 404.45 149.1"><polygon points="146.7,-95.4 134.1,-104.4 146.7,-113.4 " style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 0,-36.675 M 0,-56.925 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 13.500000000000004,-56.925000000000004 L -13.5,-56.925" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 6.750000000000003,-50.175000000000004 L -6.75,-50.175" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 13.500000000000002,-43.425000000000004 L -13.5,-43.425" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 6.750000000000002,-36.675000000000004 L -6.75,-36.675" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 0,-99 L 0,-104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 6.392656291549185e-15,-104.39999999999999 L 28.8,-104.4 M 37.44,-108 L 57.6,-120.6 M 64.8,-104.4 L 93.6,-104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-104.39999999999999 L 134.1,-104.4 M 134.1,-95.4 L 134.1,-113.4 M 146.7,-104.4 L 187.2,-104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-104.39999999999999 L 230.4,-104.4 L 273.6,-104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 273.59999999999997,-104.39999999999999 L 273.6,-52.2 L 273.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 273.59999999999997,-0.0 L 136.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-104.39999999999999 L 93.6,-70.2 L 95.063,-70.167 L 96.564,-70.066 L 98.072,-69.896 L 99.555,-69.658 L 100.982,-69.354 L 102.322,-68.986 L 103.547,-68.56 L 104.633,-68.08 L 105.554,-67.555 L 106.293,-66.992 L 106.834,-66.4 L 107.165,-65.788 L 107.279,-65.166 L 107.174,-64.543 L 106.852,-63.931 L 106.32,-63.337 L 105.589,-62.773 L 104.675,-62.246 L 103.596,-61.765 L 102.376,-61.336 L 101.04,-60.966 L 99.616,-60.659 L 98.135,-60.418 L 96.627,-60.245 L 95.125,-60.141 L 93.66,-60.106 L 92.263,-60.135 L 90.963,-60.226 L 89.788,-60.374 L 88.762,-60.572 L 87.908,-60.812 L 87.243,-61.088 L 86.781,-61.389 L 86.532,-61.707 L 86.501,-62.031 L 86.689,-62.351 L 87.092,-62.658 L 87.701,-62.942 L 88.504,-63.194 L 89.483,-63.405 L 90.619,-63.567 L 91.886,-63.675 L 93.259,-63.722 L 94.708,-63.705 L 96.203,-63.62 L 97.712,-63.467 L 99.204,-63.245 L 100.647,-62.956 L 102.01,-62.603 L 103.266,-62.19 L 104.387,-61.723 L 105.349,-61.209 L 106.134,-60.654 L 106.723,-60.068 L 107.105,-59.46 L 107.271,-58.839 L 107.219,-58.216 L 106.949,-57.6 L 106.466,-57.001 L 105.781,-56.429 L 104.909,-55.892 L 103.868,-55.399 L 102.68,-54.957 L 101.369,-54.573 L 99.964,-54.25 L 98.493,-53.993 L 96.989,-53.804 L 95.483,-53.684 L 94.006,-53.632 L 92.59,-53.646 L 91.264,-53.723 L 90.057,-53.857 L 88.993,-54.044 L 88.096,-54.275 L 87.384,-54.543 L 86.873,-54.839 L 86.572,-55.154 L 86.489,-55.477 L 86.624,-55.799 L 86.976,-56.11 L 87.537,-56.4 L 88.295,-56.66 L 89.234,-56.882 L 90.334,-57.056 L 91.572,-57.178 L 92.922,-57.24 L 94.355,-57.238 L 95.842,-57.17 L 97.351,-57.033 L 98.85,-56.828 L 100.307,-56.555 L 101.692,-56.217 L 102.976,-55.818 L 104.132,-55.363 L 105.134,-54.859 L 105.963,-54.314 L 106.6,-53.734 L 107.033,-53.13 L 107.252,-52.512 L 107.252,-51.888 L 107.033,-51.27 L 106.6,-50.666 L 105.963,-50.086 L 105.134,-49.541 L 104.132,-49.037 L 102.976,-48.582 L 101.692,-48.183 L 100.307,-47.845 L 98.85,-47.572 L 97.351,-47.367 L 95.842,-47.23 L 94.355,-47.162 L 92.922,-47.16 L 91.572,-47.222 L 90.334,-47.344 L 89.234,-47.518 L 88.295,-47.74 L 87.537,-48 L 86.976,-48.29 L 86.624,-48.601 L 86.489,-48.923 L 86.572,-49.246 L 86.873,-49.561 L 87.384,-49.857 L 88.096,-50.125 L 88.993,-50.356 L 90.057,-50.543 L 91.264,-50.677 L 92.59,-50.754 L 94.006,-50.768 L 95.483,-50.716 L 96.989,-50.596 L 98.493,-50.407 L 99.964,-50.15 L 101.369,-49.827 L 102.68,-49.443 L 103.868,-49.001 L 104.909,-48.508 L 105.781,-47.971 L 106.466,-47.399 L 106.949,-46.8 L 107.219,-46.184 L 107.271,-45.561 L 107.105,-44.94 L 106.723,-44.332 L 106.134,-43.746 L 105.349,-43.191 L 104.387,-42.677 L 103.266,-42.21 L 102.01,-41.797 L 100.647,-41.444 L 99.204,-41.155 L 97.712,-40.933 L 96.203,-40.78 L 94.708,-40.695 L 93.259,-40.678 L 91.886,-40.725 L 90.619,-40.833 L 89.483,-40.995 L 88.504,-41.206 L 87.701,-41.458 L 87.092,-41.742 L 86.689,-42.049 L 86.501,-42.369 L 86.532,-42.693 L 86.781,-43.011 L 87.243,-43.312 L 87.908,-43.588 L 88.762,-43.828 L 89.788,-44.026 L 90.963,-44.174 L 92.263,-44.265 L 93.66,-44.294 L 95.125,-44.259 L 96.627,-44.155 L 98.135,-43.982 L 99.616,-43.741 L 101.04,-43.434 L 102.376,-43.064 L 103.596,-42.635 L 104.675,-42.154 L 105.589,-41.627 L 106.32,-41.063 L 106.852,-40.469 L 107.174,-39.857 L 107.279,-39.234 L 107.165,-38.612 L 106.834,-38 L 106.293,-37.408 L 105.554,-36.845 L 104.633,-36.32 L 103.547,-35.84 L 102.322,-35.414 L 100.982,-35.046 L 99.555,-34.742 L 98.072,-34.504 L 96.564,-34.334 L 95.063,-34.233 L 93.6,-34.2 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-0.0 L 187.2,-48.96 M 178.2,-48.96 L 196.2,-48.96 M 178.2,-55.44 L 196.2,-55.44 M 187.2,-55.44 L 187.2,-104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 273.59999999999997,-104.39999999999999 L 273.6,-70.2 L 282.6,-67.2 L 264.6,-61.2 L 282.6,-55.2 L 264.6,-49.2 L 282.6,-43.2 L 264.6,-37.2 L 273.6,-34.2 L 273.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="17.1" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="17.1" dy="13">24 V</tspan></text><circle cx="33.12" cy="-104.4" r="4.32" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="60.48" cy="-104.4" r="4.32" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="46.80000000000001" y="-137.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">S</tspan></text><text x="140.4" y="-130.0" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="140.4" dy="13">D</tspan></text><text x="110.87888446931107" y="-65.19999999999999" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="110.87888446931107" dy="13">2 mH</tspan></text><text x="180.72000000000003" y="-55.184" dominant-baseline="central" fill="currentColor" font-size="14" font-family="sans" text-anchor="middle"><tspan x="180.72000000000003" dy="14">+</tspan></text><text x="199.8" y="-65.19999999999999" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="199.8" dy="13">1000 μF</tspan></text><text x="286.2" y="-65.19999999999999" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="286.2" dy="13">Load 36 V, 72 W</tspan></text><text x="261.0" y="-91.3" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="261.0" dy="13">−</tspan></text><text x="260.99999999999994" y="-39.1" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="260.99999999999994" dy="13">+</tspan></text><circle cx="93.6" cy="-104.4" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="187.2" cy="-104.4" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="93.6" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="187.2" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q21';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q21')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q21: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'For the network shown in the figure below, the frequency (in rad/s) at which the maximum phase lag occurs is, .', 'For the network shown in the figure below, the frequency (in rad/s) at which the maximum phase lag occurs is, ___________.
+
+![Lag network: input vin, a 9 ohm resistor in series, then a shunt branch of 1 ohm in series with 1 F across the output vo](fig:q-gate2016-s2-q21)
+', '**Idea used:** this is a lag network. For $\dfrac{1 + sT}{1 + s\beta T}$ the largest phase lag comes at the
+**geometric mean** of the two corner frequencies: $\omega_m = \dfrac{1}{T\sqrt{\beta}}$.
+
+1. Voltage divider: $\dfrac{V_o}{V_{in}} = \dfrac{1 + \frac{1}{s}}{9 + 1 + \frac{1}{s}} = \dfrac{1 + s}{1 + 10s}$.
+2. So $T = 1$ s and $\beta = 10$. Corners at $\omega = 1$ (zero) and $\omega = 0.1$ (pole).
+3. $\omega_m = \sqrt{1 \times 0.1} = \dfrac{1}{\sqrt{10}} \approx 0.316$ rad/s.
+
+**Check:** phase $= \tan^{-1}\omega - \tan^{-1}10\omega$. At $\omega = 0.316$: $17.5° - 72.5° = -55°$, the largest lag.
+
+**Without a calculator:** $\sqrt{10} \approx 3.16$, so $1/3.16 \approx 0.316$. Slips: picking one corner (1 or 0.1) instead
+of their geometric mean, or $\sqrt{10}$ itself (3.16).
+
+**Answer: 0.316 rad/s.**
+', 'READY', 'NAT', 0.3, 0.33, 2, 'OFFICIAL_KEY', 'gate2016-s2-q21', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'For the network shown in the figure below, the frequency (in rad/s) at which the maximum phase lag occurs is, .'), stem_md = 'For the network shown in the figure below, the frequency (in rad/s) at which the maximum phase lag occurs is, ___________.
+
+![Lag network: input vin, a 9 ohm resistor in series, then a shunt branch of 1 ohm in series with 1 F across the output vo](fig:q-gate2016-s2-q21)
+', solution_md = '**Idea used:** this is a lag network. For $\dfrac{1 + sT}{1 + s\beta T}$ the largest phase lag comes at the
+**geometric mean** of the two corner frequencies: $\omega_m = \dfrac{1}{T\sqrt{\beta}}$.
+
+1. Voltage divider: $\dfrac{V_o}{V_{in}} = \dfrac{1 + \frac{1}{s}}{9 + 1 + \frac{1}{s}} = \dfrac{1 + s}{1 + 10s}$.
+2. So $T = 1$ s and $\beta = 10$. Corners at $\omega = 1$ (zero) and $\omega = 0.1$ (pole).
+3. $\omega_m = \sqrt{1 \times 0.1} = \dfrac{1}{\sqrt{10}} \approx 0.316$ rad/s.
+
+**Check:** phase $= \tan^{-1}\omega - \tan^{-1}10\omega$. At $\omega = 0.316$: $17.5° - 72.5° = -55°$, the largest lag.
+
+**Without a calculator:** $\sqrt{10} \approx 3.16$, so $1/3.16 \approx 0.316$. Slips: picking one corner (1 or 0.1) instead
+of their geometric mean, or $\sqrt{10}$ itself (3.16).
+
+**Answer: 0.316 rad/s.**
+', status = 'READY', answer_type = 'NAT', nat_min = 0.3, nat_max = 0.33, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q21', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q21', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.316', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '3.16', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q21', '<svg width="198" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-13.063000000000015 -30.199999999999996 172.283 224.69999999999996"><path d="M 0.0,-0.0 L 28.8,-0 L 31.8,-9 L 37.8,9 L 43.8,-9 L 49.8,9 L 55.8,-9 L 61.8,9 L 64.8,-0 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-0.0 L 120.6,-0 L 147.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-0.0 L 93.6,28.8 L 102.6,31.8 L 84.6,37.8 L 102.6,43.8 L 84.6,49.8 L 102.6,55.8 L 84.6,61.8 L 93.6,64.8 L 93.6,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.6,93.60000000000001 L 93.6,137.16 M 102.6,137.16 L 84.6,137.16 M 102.6,143.64 L 84.6,143.64 M 93.6,143.64 L 93.6,187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.59999999999997,187.2 L 46.8,187.2 L 0,187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.59999999999997,187.2 L 120.6,187.2 L 147.6,187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="46.800000000000004" y="-25.6" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.800000000000004" dy="13">9 Ω</tspan></text><text x="106.19999999999999" y="33.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999999" dy="13">1 Ω</tspan></text><text x="106.19999999999997" y="127.4" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999997" dy="13">1 F</tspan></text><text x="-8.597020530014418e-15" y="33.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-8.597020530014418e-15" dy="13">+</tspan></text><text x="-1.7194041060028836e-14" y="80.6" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-1.7194041060028836e-14" dy="13">vin</tspan></text><text x="-2.579106159004325e-14" y="127.39999999999998" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-2.579106159004325e-14" dy="13">−</tspan></text><text x="147.6" y="33.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="147.6" dy="13">+</tspan></text><text x="147.59999999999997" y="80.6" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="147.59999999999997" dy="13">vo</tspan></text><text x="147.59999999999997" y="127.39999999999998" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="147.59999999999997" dy="13">−</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="93.6" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="147.6" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="93.6" cy="187.2" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="0" cy="187.2" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="147.6" cy="187.2" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q22';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q22')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q22: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'The direction of rotation of a single-phase capacitor run induction motor is reversed by', 'The direction of rotation of a single-phase capacitor run induction motor is reversed by
+', '**Idea used:** the motor turns from the winding whose current **leads** towards the one that lags. To reverse it, reverse the
+current in **only one** winding, so the order of the two fields flips.
+
+1. Swap the auxiliary winding terminals: its current turns by $180°$ relative to the main winding, so the rotating field (and the
+   rotor) reverses. This is the usual way.
+2. Swapping the supply terminals reverses **both** winding currents together, so the order does not change. No reversal.
+3. Swapping both windings: same thing, both flip, no reversal.
+4. The run capacitor is non-polar; turning it round changes nothing.
+
+**Without a calculator:** "reverse one, not both." Swapping the main winding alone would also work, but that option is not
+given.
+
+**Answer: (C).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'OFFICIAL_KEY', 'gate2016-s2-q22', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'The direction of rotation of a single-phase capacitor run induction motor is reversed by'), stem_md = 'The direction of rotation of a single-phase capacitor run induction motor is reversed by
+', solution_md = '**Idea used:** the motor turns from the winding whose current **leads** towards the one that lags. To reverse it, reverse the
+current in **only one** winding, so the order of the two fields flips.
+
+1. Swap the auxiliary winding terminals: its current turns by $180°$ relative to the main winding, so the rotating field (and the
+   rotor) reverses. This is the usual way.
+2. Swapping the supply terminals reverses **both** winding currents together, so the order does not change. No reversal.
+3. Swapping both windings: same thing, both flip, no reversal.
+4. The run capacitor is non-polar; turning it round changes nothing.
+
+**Without a calculator:** "reverse one, not both." Swapping the main winding alone would also work, but that option is not
+given.
+
+**Answer: (C).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q22', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q22', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'interchanging the terminals of the AC supply.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'interchanging the terminals of the capacitor.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'interchanging the terminals of the auxiliary winding.', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'interchanging the terminals of both the windings.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q24';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q24')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q24: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'The graph associated with an electrical network has 7 branches and 5 nodes. The number of independent KCL equations and the number of independent KVL...', 'The graph associated with an electrical network has 7 branches and 5 nodes. The number of independent KCL equations and the number
+of independent KVL equations, respectively, are
+', '**Idea used:** independent KCL equations $= n - 1$ (one per node except the reference). Independent KVL equations
+$= b - n + 1$ (one per loop, that is, per link of a tree).
+
+1. KCL: $n - 1 = 5 - 1 = 4$.
+2. KVL: $b - n + 1 = 7 - 5 + 1 = 3$.
+3. Check: $4 + 3 = 7$, the number of branches. It always adds up.
+
+**Without a calculator:** KCL + KVL = branches. Option B uses $n$ (5) for KCL, forgetting the reference node.
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'OFFICIAL_KEY', 'gate2016-s2-q24', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'The graph associated with an electrical network has 7 branches and 5 nodes. The number of independent KCL equations and the number of independent KVL...'), stem_md = 'The graph associated with an electrical network has 7 branches and 5 nodes. The number of independent KCL equations and the number
+of independent KVL equations, respectively, are
+', solution_md = '**Idea used:** independent KCL equations $= n - 1$ (one per node except the reference). Independent KVL equations
+$= b - n + 1$ (one per loop, that is, per link of a tree).
+
+1. KCL: $n - 1 = 5 - 1 = 4$.
+2. KVL: $b - n + 1 = 7 - 5 + 1 = 3$.
+3. Check: $4 + 3 = 7$, the number of branches. It always adds up.
+
+**Without a calculator:** KCL + KVL = branches. Option B uses $n$ (5) for KCL, forgetting the reference node.
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q24', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q24', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2 and 5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '5 and 2', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3 and 4', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4 and 3', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q25';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q25')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q25: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'Two electrodes, whose cross-sectional view is shown in the figure below, are at the same potential. The maximum electric field will be at the point', 'Two electrodes, whose cross-sectional view is shown in the figure below, are at the same potential. The maximum electric field will
+be at the point
+
+![Two elliptical electrodes side by side. On the left electrode: A at its far-left tip, C at its right tip facing the other electrode, B at the bottom of the flat side, D at the centre inside](fig:q-gate2016-s2-q25)
+', '**Idea used:** on a conductor, charge crowds where the surface is **most sharply curved**, so the field is largest there. Inside
+a conductor the field is zero.
+
+1. D is inside the electrode: field $= 0$.
+2. B is on the flat (long) side: low curvature, low field.
+3. A and C are both sharp tips. But C faces the other electrode, which is at the **same** potential. Between them there is little
+potential difference, so the field near C is pushed down.
+4. A is a sharp tip facing open space (towards lower potential far away). So A has the largest field.
+
+**Without a calculator:** "sharpest point, facing away from the twin." Same idea as corona at sharp points of a conductor.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate2016-s2-q25', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'Two electrodes, whose cross-sectional view is shown in the figure below, are at the same potential. The maximum electric field will be at the point'), stem_md = 'Two electrodes, whose cross-sectional view is shown in the figure below, are at the same potential. The maximum electric field will
+be at the point
+
+![Two elliptical electrodes side by side. On the left electrode: A at its far-left tip, C at its right tip facing the other electrode, B at the bottom of the flat side, D at the centre inside](fig:q-gate2016-s2-q25)
+', solution_md = '**Idea used:** on a conductor, charge crowds where the surface is **most sharply curved**, so the field is largest there. Inside
+a conductor the field is zero.
+
+1. D is inside the electrode: field $= 0$.
+2. B is on the flat (long) side: low curvature, low field.
+3. A and C are both sharp tips. But C faces the other electrode, which is at the **same** potential. Between them there is little
+potential difference, so the field near C is pushed down.
+4. A is a sharp tip facing open space (towards lower potential far away). So A has the largest field.
+
+**Without a calculator:** "sharpest point, facing away from the twin." Same idea as corona at sharp points of a conductor.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q25', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q25', qid, 1, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'B', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'C', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'D', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q25', '<svg xmlns="http://www.w3.org/2000/svg" width="390" viewBox="0 0 390 130">
+<ellipse cx="110" cy="60" rx="85" ry="40" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<ellipse cx="300" cy="60" rx="80" ry="40" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<circle cx="25" cy="60" r="3.2" fill="currentColor"/>
+<circle cx="195" cy="60" r="3.2" fill="currentColor"/>
+<circle cx="110" cy="100" r="3.2" fill="currentColor"/>
+<circle cx="110" cy="60" r="3.2" fill="currentColor"/>
+<text x="14.0" y="65.0" font-size="14" text-anchor="end" dominant-baseline="middle" fill="currentColor">A</text>
+<text x="205.0" y="50.0" font-size="14" text-anchor="start" dominant-baseline="middle" fill="currentColor">C</text>
+<text x="110.0" y="120.0" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="currentColor">B</text>
+<text x="122.0" y="65.0" font-size="14" text-anchor="start" dominant-baseline="middle" fill="currentColor">D</text>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;

@@ -111,7 +111,78 @@ def q13():
     write("q-gate2016-s2-q13", _svg(W, H, *out))
 
 
+def q16():
+    """Parallel plates 2 cm apart; the gap is split side by side into region A (er = 1) and region B (er = 4)."""
+    from svgkit import svg as _svg, text as _t
+    out = ['<line x1="20" y1="20" x2="220" y2="20" stroke="currentColor" stroke-width="2"/>',
+           '<line x1="20" y1="100" x2="220" y2="100" stroke="currentColor" stroke-width="2"/>',
+           '<rect x="120" y="21" width="100" height="78" fill="currentColor" opacity="0.25"/>',
+           '<line x1="120" y1="20" x2="120" y2="100" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>',
+           _t(70, 45, "A", size=15), _t(70, 72, "εr = 1", size=14), _t(170, 45, "B", size=15), _t(170, 72, "εr = 4", size=14),
+           '<line x1="245" y1="22" x2="245" y2="98" stroke="currentColor" stroke-width="1.2"/>',
+           '<path d="M245,20 l-4,8 h8 z M245,100 l-4,-8 h8 z" fill="currentColor"/>', _t(275, 62, "2 cm", size=14)]
+    write("q-gate2016-s2-q16", _svg(310, 120, *out))
+
+
+def q20():
+    """Buck-boost: 24 V battery, switch S, 2 mH inductor to ground, diode (pointing back to the switch node) to the output;
+    1000 uF capacitor and 36 V load, output + at the bottom."""
+    d = D()
+    d += (b := elm.Battery().up().reverse().label("24 V", loc="bottom"))
+    d += elm.Line().up().length(0.3)
+    d += elm.Switch().right().label("S", loc="top")
+    d += (n := elm.Dot())
+    d += elm.Diode().right().reverse().label("D", loc="top")
+    d += (o := elm.Dot())
+    d += elm.Line().right().length(2.4)
+    d += elm.Line().down().toy(b.start)
+    d += elm.Line().left().tox(b.start)
+    d += elm.Inductor2().down().at(n.center).toy(b.start).label("2 mH", loc="bottom")
+    d += elm.Capacitor(polar=True).up().at((o.center[0], b.start[1])).toy(o.center).label("1000 μF", loc="bottom")
+    d += elm.Dot().at((n.center[0], b.start[1]))
+    d += elm.Dot().at((o.center[0], b.start[1]))
+    d += elm.Resistor().down().at((o.center[0] + 2.4, o.center[1])).toy(b.start).label("Load 36 V, 72 W", loc="bottom").label(("−", "", "+"), loc="top")
+    save("q-gate2016-s2-q20", d)
+
+
+def q21():
+    """Lag network: 9 ohm series; shunt branch of 1 ohm in series with 1 F; vin on the left, vo on the right."""
+    d = D()
+    d += (a := elm.Dot(open=True))
+    d += elm.Resistor().right().label("9 Ω", loc="top")
+    d += (m := elm.Dot())
+    d += elm.Line().right().length(1.5)
+    d += (o := elm.Dot(open=True))
+    d += elm.Resistor().down().at(m.center).label("1 Ω", loc="bottom")
+    d += elm.Capacitor().down().label("1 F", loc="bottom")
+    d += (g := elm.Dot())
+    d += elm.Line().left().at(g.center).tox(a.center)
+    d += (b := elm.Dot(open=True))
+    d += elm.Line().right().at(g.center).tox(o.center)
+    d += (c := elm.Dot(open=True))
+    d += elm.Gap().down().at(a.center).to(b.center).label(("+", "vin", "−"), loc="top")
+    d += elm.Gap().down().at(o.center).to(c.center).label(("+", "vo", "−"), loc="bottom")
+    save("q-gate2016-s2-q21", d)
+
+
+def q25():
+    """Two elliptical electrodes side by side. On the left one: A at the far-left tip, C at the right tip (facing the other
+    electrode), B at the bottom, D at the centre (inside)."""
+    from svgkit import svg as _svg, text as _t
+    out = ['<ellipse cx="110" cy="60" rx="85" ry="40" fill="none" stroke="currentColor" stroke-width="1.6"/>',
+           '<ellipse cx="300" cy="60" rx="80" ry="40" fill="none" stroke="currentColor" stroke-width="1.6"/>']
+    for x, y in [(25, 60), (195, 60), (110, 100), (110, 60)]:
+        out.append(f'<circle cx="{x}" cy="{y}" r="3.2" fill="currentColor"/>')
+    out += [_t(14, 65, "A", size=14, anchor="end"), _t(205, 50, "C", size=14, anchor="start"),
+            _t(110, 120, "B", size=14), _t(122, 65, "D", size=14, anchor="start")]
+    write("q-gate2016-s2-q25", _svg(390, 130, *out))
+
+
 if __name__ == "__main__":
+    q21()
+    q25()
+    q16()
+    q20()
     q11()
     q13()
     q2()
