@@ -28,6 +28,7 @@ File shape:
         difficulty: 2
         topic: some-topic-slug          # optional (required without a skeleton row)
         also: [{code: APGCL-2023, q: "36", marks: 1}]   # the same question in other papers
+        key_note: "GATE accepted A or D"   # when the official key is unusual (two answers, marks to all)
 """
 import glob
 import os
@@ -76,7 +77,9 @@ def main():
             if typ in ("MCQ", "MSQ"):
                 assert len(opts) >= 2 and any(o.get("correct") for o in opts), "no correct option in " + key
             if typ == "MCQ":
-                assert sum(bool(o.get("correct")) for o in opts) == 1, "MCQ needs exactly one correct option: " + key
+                n_right = sum(bool(o.get("correct")) for o in opts)
+                # an MCQ may have two correct options only when the official key accepted both (say so in key_note)
+                assert n_right == 1 or (n_right > 1 and it.get("key_note")), "MCQ needs exactly one correct option: " + key
             if typ == "NAT":
                 assert nat.get("min") is not None and nat.get("max") is not None, "NAT without range: " + key
                 assert len(opts) == 4 and sum(bool(o.get("correct")) for o in opts) == 1, "NAT needs 4 APSC-style options, one correct: " + key

@@ -1,0 +1,245 @@
+# GATE EE 2016, Set 2 (2nd stage). Source: EE2016.pdf in the dump (pages 24-35), with the official answer key at its end.
+# Q23 is written in Circuits Ch1 (questions-3.yml), so it is not here.
+paper: {source: GATE-2016, q_prefix: "S2-Q", key_prefix: gate2016-s2, title: "GATE EE 2016, Set 2"}
+questions:
+  - n: 1
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      The output expression for the Karnaugh map shown below is
+
+      | A \ BC | 00 | 01 | 11 | 10 |
+      |---|---|---|---|---|
+      | **0** | 1 | 0 | 0 | 1 |
+      | **1** | 1 | 1 | 1 | 1 |
+    options:
+      - {label: A, md: "$A + \\bar{B}$"}
+      - {label: B, md: "$A + \\bar{C}$", correct: true}
+      - {label: C, md: "$\\bar{A} + \\bar{C}$"}
+      - {label: D, md: "$\\bar{A} + C$"}
+    solution: |
+      **Idea used:** make the largest groups of 1s (in powers of 2), remembering that the left and right columns are neighbours.
+
+      1. The whole row $A = 1$ is 1: one group of four, giving $A$.
+      2. In row $A = 0$, the 1s are at BC = 00 and BC = 10. These two columns wrap around, so they pair with the row below to make a
+         group of four: $BC = 00, 10$ for both rows. In both columns $C = 0$, so this group is $\bar{C}$.
+      3. $F = A + \bar{C}$.
+
+      **Check:** $A = 0, B = 0, C = 1$ (column 01): $0 + 0 = 0$. ✔ The map has 0 there.
+
+      **Without a calculator:** only two 0s, both with $A = 0$ and $C = 1$. So $F = 0$ exactly when $\bar{A}C = 1$, i.e.
+      $F = \overline{\bar{A}C} = A + \bar{C}$.
+
+      **Answer: (B).**
+  - n: 2
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      The circuit shown below is an example of a
+
+      ![Inverting op-amp: R1 from Vin to the inverting input; R2 in parallel with C from the output back to the inverting input; non-inverting input grounded](fig:q-gate2016-s2-q2)
+    options:
+      - {label: A, md: "low pass filter.", correct: true}
+      - {label: B, md: "band pass filter."}
+      - {label: C, md: "high pass filter."}
+      - {label: D, md: "notch filter."}
+    solution: |
+      **Idea used:** check the gain at very low and very high frequency. Inverting amplifier gain $= -\dfrac{Z_f}{R_1}$, with
+      $Z_f = R_2 \parallel \dfrac{1}{j\omega C}$.
+
+      1. Low frequency: the capacitor is open, $Z_f = R_2$, gain $= -R_2/R_1$ (a finite, flat gain).
+      2. High frequency: the capacitor is a short, $Z_f \to 0$, gain $\to 0$.
+      3. Passes low frequencies, blocks high ones: a **low pass filter** (first-order, corner at $\omega = 1/(R_2C)$). It is also called a
+         lossy integrator.
+
+      **Answer: (A).**
+  - n: 3
+    marks: 1
+    type: NAT
+    nat: {min: 9.5, max: 10.5}
+    difficulty: 2
+    stem: |
+      The following figure shows the connection of an ideal transformer with primary to secondary turns ratio of 1:100. The applied
+      primary voltage is 100 V (rms), 50 Hz, AC. The rms value of the current $I$, in ampere, is __________.
+
+      ![100 V source and XL = 10 ohm (current I) on the primary of an ideal 1:100 transformer; secondary load R = 80 kilo-ohm in series with XC = 40 kilo-ohm](fig:q-gate2016-s2-q3)
+    options:
+      - {label: A, md: "10", correct: true}
+      - {label: B, md: "12.5"}
+      - {label: C, md: "7.8"}
+      - {label: D, md: "0.1"}
+    solution: |
+      **Idea used:** move the secondary load to the primary side by dividing by (turns ratio)$^2$, then solve one series circuit.
+
+      1. Secondary load: $Z_2 = 80 - j40$ kΩ.
+      2. Referred to the primary: $\dfrac{Z_2}{100^2} = \dfrac{80\,000 - j40\,000}{10\,000} = 8 - j4\ \Omega$.
+      3. Total: $j10 + 8 - j4 = 8 + j6\ \Omega$, so $|Z| = \sqrt{64 + 36} = 10\ \Omega$.
+      4. $I = 100 \div 10 = 10$ A.
+
+      **Without a calculator:** 6-8-10 is the 3-4-5 triangle. Slips: ignoring the capacitor ($|8 + j10| \approx 12.8$, about 7.8 A), or
+      referring by 100 instead of $100^2$, or mixing up the side the current is on (0.1 A is the secondary current).
+
+      **Answer: 10 A.**
+  - n: 4
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    stem: |
+      Consider a causal LTI system characterized by differential equation $\dfrac{dy(t)}{dt} + \dfrac16 y(t) = 3x(t)$. The response of the system
+      to the input $x(t) = 3e^{-\frac{t}{3}}u(t)$, where $u(t)$ denotes the unit step function, is
+    options:
+      - {label: A, md: "$9e^{-\\frac{t}{3}}u(t)$."}
+      - {label: B, md: "$9e^{-\\frac{t}{6}}u(t)$."}
+      - {label: C, md: "$9e^{-\\frac{t}{3}}u(t) - 6e^{-\\frac{t}{6}}u(t)$."}
+      - {label: D, md: "$54e^{-\\frac{t}{6}}u(t) - 54e^{-\\frac{t}{3}}u(t)$.", correct: true}
+    solution: |
+      **Idea used:** Laplace transform (zero initial state, since the system is causal and at rest), then partial fractions.
+
+      1. $sY + \tfrac16 Y = 3X$, so $Y = \dfrac{3X}{s + \frac16}$.
+      2. $X = \dfrac{3}{s + \frac13}$, so $Y = \dfrac{9}{(s + \frac16)(s + \frac13)}$.
+      3. Partial fractions: $\dfrac{a}{s + \frac16} + \dfrac{b}{s + \frac13}$ with
+         $a = \dfrac{9}{\frac13 - \frac16} = \dfrac{9}{1/6} = 54$ and $b = \dfrac{9}{-\frac13 + \frac16} = -54$.
+      4. $y(t) = 54e^{-t/6} - 54e^{-t/3}$ for $t \ge 0$.
+
+      **Check:** $y(0) = 54 - 54 = 0$, as it must be for a first-order system starting at rest. Only (D) gives $y(0) = 0$.
+
+      **Without a calculator:** that $y(0) = 0$ check alone picks (D): (A) and (B) start at 9, (C) at 3.
+
+      **Answer: (D).**
+  - n: 5
+    marks: 1
+    type: NAT
+    nat: {min: 6, max: 6}
+    difficulty: 1
+    stem: |
+      Suppose the maximum frequency in a band-limited signal $x(t)$ is 5 kHz. Then, the maximum frequency in $x(t)\cos(2000\pi t)$, in kHz,
+      is ________.
+    options:
+      - {label: A, md: "5"}
+      - {label: B, md: "6", correct: true}
+      - {label: C, md: "4"}
+      - {label: D, md: "7"}
+    solution: |
+      **Idea used (modulation):** multiplying by $\cos(2\pi f_c t)$ shifts the spectrum up and down by $f_c$.
+
+      1. $\cos(2000\pi t) = \cos(2\pi \times 1000\,t)$, so $f_c = 1$ kHz.
+      2. The spectrum of $x(t)$ covers $-5$ to $+5$ kHz. Shifted by $\pm 1$ kHz it covers $-6$ to $+6$ kHz.
+      3. Highest frequency $= 5 + 1 = 6$ kHz.
+
+      **Answer: 6 kHz.**
+  - n: 6
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    stem: |
+      Consider the function $f(z) = z + z^*$ where $z$ is a complex variable and $z^*$ denotes its complex conjugate. Which one of the
+      following is TRUE?
+    options:
+      - {label: A, md: "$f(z)$ is both continuous and analytic"}
+      - {label: B, md: "$f(z)$ is continuous but not analytic", correct: true}
+      - {label: C, md: "$f(z)$ is not continuous but is analytic"}
+      - {label: D, md: "$f(z)$ is neither continuous nor analytic"}
+    solution: |
+      **Idea used:** write $z = x + jy$ and test the Cauchy-Riemann equations $u_x = v_y$, $u_y = -v_x$.
+
+      1. $f = (x + jy) + (x - jy) = 2x$. So $u = 2x$ and $v = 0$.
+      2. $2x$ is a polynomial, so $f$ is **continuous** everywhere.
+      3. $u_x = 2$ but $v_y = 0$. Cauchy-Riemann fails everywhere, so $f$ is **not analytic** anywhere.
+
+      **Without a calculator:** any function that contains $z^*$ in an essential way (here it does not cancel) is not analytic.
+      And sums of continuous functions are continuous.
+
+      **Answer: (B).**
+  - n: 7
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    key_note: "GATE accepted A or D"
+    stem: |
+      A $3 \times 3$ matrix $P$ is such that, $P^3 = P$. Then the eigenvalues of $P$ are
+    options:
+      - {label: A, md: "$1, 1, -1$", correct: true}
+      - {label: B, md: "$1,\\ 0.5 + j0.866,\\ 0.5 - j0.866$"}
+      - {label: C, md: "$1,\\ -0.5 + j0.866,\\ -0.5 - j0.866$"}
+      - {label: D, md: "$0, 1, -1$", correct: true}
+    solution: |
+      **Idea used:** if $Px = \lambda x$, then $P^3x = \lambda^3 x$. Since $P^3 = P$, every eigenvalue satisfies $\lambda^3 = \lambda$.
+
+      1. $\lambda^3 - \lambda = 0$ gives $\lambda(\lambda - 1)(\lambda + 1) = 0$.
+      2. So each eigenvalue is one of $0, 1, -1$.
+      3. (B) and (C) have complex values (cube roots of $\pm 1$), which do not satisfy $\lambda^3 = \lambda$. Out.
+      4. Both (A) $1, 1, -1$ and (D) $0, 1, -1$ use only allowed values. Either can happen: for example
+         $\mathrm{diag}(1, 1, -1)$ and $\mathrm{diag}(0, 1, -1)$ both satisfy $P^3 = P$.
+
+      **Note:** the question does not give enough to choose between (A) and (D), so the official key accepted **both**. Either is marked
+      right here.
+
+      **Answer: (A) or (D).**
+  - n: 8
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      The solution of the differential equation, for $t > 0$, $y''(t) + 2y'(t) + y(t) = 0$ with initial conditions $y(0) = 0$ and $y'(0) = 1$,
+      is ($u(t)$ denotes the unit step function),
+    options:
+      - {label: A, md: "$te^{-t}u(t)$", correct: true}
+      - {label: B, md: "$(e^{-t} - te^{-t})u(t)$"}
+      - {label: C, md: "$(-e^{-t} + te^{-t})u(t)$"}
+      - {label: D, md: "$e^{-t}u(t)$"}
+    solution: |
+      **Idea used:** the characteristic equation $m^2 + 2m + 1 = (m + 1)^2 = 0$ has a repeated root $-1$, so $y = (C_1 + C_2t)e^{-t}$.
+
+      1. $y(0) = C_1 = 0$.
+      2. $y = C_2 t e^{-t}$, so $y' = C_2(1 - t)e^{-t}$ and $y'(0) = C_2 = 1$.
+      3. $y = te^{-t}$ for $t > 0$.
+
+      **Without a calculator:** only (A) starts at 0 ($y(0) = 0$); (B) and (D) start at 1 and (C) at $-1$.
+
+      **Answer: (A).**
+  - n: 9
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    stem: |
+      The value of the line integral
+      $$\int_C \left(2xy^2\,dx + 2x^2y\,dy + dz\right)$$
+      along a path joining the origin (0, 0, 0) and the point (1, 1, 1) is
+    options:
+      - {label: A, md: "0"}
+      - {label: B, md: "2", correct: true}
+      - {label: C, md: "4"}
+      - {label: D, md: "6"}
+    solution: |
+      **Idea used:** if the integrand is an exact differential $d\phi$, the line integral depends only on the end points:
+      $\phi(\text{end}) - \phi(\text{start})$, whatever the path.
+
+      1. $2xy^2\,dx + 2x^2y\,dy = d(x^2y^2)$ (check: $\partial(x^2y^2)/\partial x = 2xy^2$, $\partial/\partial y = 2x^2y$).
+      2. $dz = d(z)$. So the integrand is $d\phi$ with $\phi = x^2y^2 + z$.
+      3. Value $= \phi(1, 1, 1) - \phi(0, 0, 0) = (1 + 1) - 0 = 2$.
+
+      **Without a calculator:** "a path" without saying which one is the hint that the field is conservative.
+
+      **Answer: (B) 2.**
+  - n: 10
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      Let $f(x)$ be a real, periodic function satisfying $f(-x) = -f(x)$. The general form of its Fourier series representation would be
+    options:
+      - {label: A, md: "$f(x) = a_0 + \\sum_{k=1}^{\\infty} a_k\\cos(kx)$"}
+      - {label: B, md: "$f(x) = \\sum_{k=1}^{\\infty} b_k\\sin(kx)$", correct: true}
+      - {label: C, md: "$f(x) = a_0 + \\sum_{k=1}^{\\infty} a_{2k}\\cos(kx)$"}
+      - {label: D, md: "$f(x) = \\sum_{k=0}^{\\infty} a_{2k+1}\\sin(2k+1)x$"}
+    solution: |
+      **Idea used:** $f(-x) = -f(x)$ means $f$ is **odd**. An odd function has no dc term and no cosine terms (they are even); only
+      sine terms remain.
+
+      1. $a_0 = 0$ and all $a_k = 0$: (A) and (C) are out.
+      2. All sine harmonics may be present in general. (D) keeps only odd harmonics, which needs the extra half-wave symmetry
+         $f(x + T/2) = -f(x)$ that is not given.
+
+      **Answer: (B).**
