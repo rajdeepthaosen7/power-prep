@@ -1,0 +1,409 @@
+# Electrical Machines Chapter 1 PYQs, part 1: magnetic field and materials, the magnetic circuit, B-H curve and hysteresis.
+# Exam questions keep their original wording. "status": OFFICIAL_KEY | TWO_SOURCES | UNVERIFIED (solved by us).
+
+- key: ese-2018-13
+  topic: em1-magnetic-field
+  sources: [{code: ESE-2018, q: "13", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The magnetic susceptibility of aluminium is $2.1 \times 10^{-5}$. The permeability and relative permeability are, respectively
+  options:
+    - {label: A, md: '$12.6 \times 10^{-7}$ and 1.0021'}
+    - {label: B, md: '$1.26 \times 10^{-7}$ and 1.0021'}
+    - {label: C, md: '$12.6 \times 10^{-7}$ and 1.000021', correct: true}
+    - {label: D, md: '$1.26 \times 10^{-7}$ and 1.000021'}
+  solution: |
+    **Idea used:** $\mu_r = 1 + \chi$ and $\mu = \mu_0 \mu_r$ (see *Magnetic field, flux and permeability → Kinds of magnetic materials*).
+
+    ```example Working
+    :::given $\chi = \given{2.1 \times 10^{-5}}$, $\mu_0 = 4\pi \times 10^{-7}$ H/m
+    :::find $\mu_r$ and $\mu$
+    :::step Relative permeability. $\fx{\mu_r = 1 + \chi}$
+    $2.1 \times 10^{-5} = 0.000021$
+    $\mu_r = 1 + 0.000021 = 1.000021$
+    :::step Permeability. $\fx{\mu = \mu_0 \mu_r}$
+    $\mu_0 = 4\pi \times 10^{-7} = 12.566 \times 10^{-7}$
+    $\mu = 12.566 \times 10^{-7} \times 1.000021 \approx 12.57 \times 10^{-7}$ H/m
+    :::answer $\ans{\mu \approx 12.6 \times 10^{-7}\ \text{H/m},\ \mu_r = 1.000021}$
+    ```
+
+    **Option elimination:** $\mu$ can never be smaller than $\mu_0 = 12.6 \times 10^{-7}$ for a paramagnetic material, so B and D are out. $10^{-5}$ is 0.00001, so $\mu_r = 1.000021$, not 1.0021.
+
+    **Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2021-145
+  topic: em1-magnetic-field
+  sources: [{code: ESE-2021, q: "145", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    **Statement (I):** Ferromagnetic properties are confined almost entirely to iron, nickel and cobalt and their alloys.
+
+    **Statement (II):** By substituting the basic ferrite of magnetite with other divalent oxides, a wide range of ferrimagnetic compounds with useful properties can be produced, which have high electrical resistivity to minimize eddy currents at high frequencies.
+  options:
+    - {label: A, md: "Both Statement (I) and Statement (II) are individually true and Statement (II) is the correct explanation of Statement (I)"}
+    - {label: B, md: "Both Statement (I) and Statement (II) are individually true but Statement (II) is not the correct explanation of Statement (I)", correct: true}
+    - {label: C, md: "Statement (I) is true but Statement (II) is false"}
+    - {label: D, md: "Statement (I) is false but Statement (II) is true"}
+  solution: |
+    **Idea used:** kinds of magnetic materials and ferrites (see *Magnetic field, flux and permeability → Kinds of magnetic materials* and *B-H curve, saturation and hysteresis → Ferrites*).
+
+    **Statement (I):** true. Strong (ferro-)magnetism is found almost only in iron, nickel, cobalt and their alloys.
+
+    **Statement (II):** true. Ferrites are iron-oxide ceramics mixed with other metal oxides (manganese, zinc, nickel...). They are ferrimagnetic and have very high resistivity, so they are used as cores at high frequency.
+
+    **Is (II) the reason for (I)?** No. (II) is about ferrites (ferrimagnetic ceramics), not about why ferromagnetism is limited to Fe, Ni and Co.
+
+    **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2022-47
+  topic: em1-magnetic-field
+  sources: [{code: ESE-2022, q: "47", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Choke coils are made of iron core, because
+  options:
+    - {label: A, md: "it has less loss in iron cores"}
+    - {label: B, md: "large-valued flux densities can be produced in iron cores", correct: true}
+    - {label: C, md: "it is easily available in the market"}
+    - {label: D, md: "it has laminated core with high resistance"}
+  solution: |
+    **Idea used:** iron has a very high permeability (see *Magnetic field, flux and permeability → Why machine cores are made of iron*).
+
+    A choke coil must have a large inductance. $L = \mu_0\mu_r N^2 A/l$, so an iron core ($\mu_r$ in the thousands) gives a large flux, a large flux density and so a large inductance in a small size.
+
+    - (A) is wrong: an iron core adds core loss; an air core has none.
+    - (C) is not an engineering reason.
+    - (D) laminations reduce eddy loss, but they are not why iron is used in the first place.
+
+    **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+
+- key: aegcl-2023-97
+  topic: em1-magnetic-circuit
+  sources: [{code: AEGCL-2023, q: "97"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Calculate the reluctance of a magnetic coil which is wounded uniformly on an iron core provided that the relative permeability of the iron core is 1400. Also, the length of the magnetic circuit is 70 cm and the cross-sectional area of the core is 5 cm².
+  options:
+    - {label: A, md: '$3.6 \times 10^{5}$ AT/Wb'}
+    - {label: B, md: '$7.9 \times 10^{5}$ AT/Wb', correct: true}
+    - {label: C, md: '$7.9 \times 10^{8}$ AT/Wb'}
+    - {label: D, md: '$4.6 \times 10^{8}$ AT/Wb'}
+  solution: |
+    **Idea used:** $S = \dfrac{l}{\mu_0 \mu_r A}$ (see *The magnetic circuit and reluctance → Reluctance*).
+
+    ```example Working
+    :::given $\mu_r = \given{1400}$, $l = \given{70\ \text{cm}}$, $A = \given{5\ \text{cm}^2}$
+    :::find reluctance $S$
+    :::step Change to SI units.
+    $l = 70\ \text{cm} = 0.7\ \text{m}$
+    $A = 5\ \text{cm}^2 = 5 \times 10^{-4}\ \text{m}^2$
+    :::step Bottom of the formula. $\fx{\mu_0 \mu_r A}$
+    $\mu_0 \mu_r = 12.566 \times 10^{-7} \times 1400 = 17\,592 \times 10^{-7} = 1.759 \times 10^{-3}$
+    $\mu_0 \mu_r A = 1.759 \times 10^{-3} \times 5 \times 10^{-4} = 8.796 \times 10^{-7}$
+    :::step Divide. $\fx{S = l \div (\mu_0\mu_r A)}$
+    $S = 0.7 \div (8.796 \times 10^{-7})$
+    $= (0.7 \div 8.796) \times 10^{7}$
+    $0.7 \div 8.796 = 0.0796$
+    $S = 0.0796 \times 10^{7} = 7.96 \times 10^{5}\ \text{AT/Wb}$
+    :::answer $\ans{S \approx 7.9 \times 10^{5}\ \text{AT/Wb}}$
+    ```
+
+    **Without a calculator:** $4\pi \times 1400 \approx 12.6 \times 1400 \approx 17\,600$, so the bottom is about $1.76 \times 10^{-3} \times 5 \times 10^{-4} \approx 8.8 \times 10^{-7}$. $0.7 \div 8.8 \approx 0.08$, giving $8 \times 10^{5}$. Only (B) is near. Options C and D come from forgetting to change cm or cm² to m.
+
+    **Asked before:** UPRVUNL JE (Electrical) 2014, with the same numbers and options.
+
+    **Answer: (B).** *(Our solution; APSC key not yet in the dump.)*
+
+- key: gate-2007-76
+  topic: em1-magnetic-circuit
+  sources: [{code: GATE-2007, q: "76", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    **Statement for Linked Answer Questions 76 & 77:** An inductor designed with 400 turns coil wound on an iron core of 16 cm² cross sectional area and with a cut of an air gap length of 1 mm. The coil is connected to a 230 V, 50 Hz ac supply. Neglect coil resistance, core loss, iron reluctance and leakage inductance. ($\mu_0 = 4\pi \times 10^{-7}$ H/m)
+
+    The current in the inductor is
+  options:
+    - {label: A, md: "18.08 A"}
+    - {label: B, md: "9.04 A"}
+    - {label: C, md: "4.56 A"}
+    - {label: D, md: "2.28 A", correct: true}
+  solution: |
+    **Idea used:** with the iron reluctance neglected, only the air gap counts: $L = \dfrac{N^2}{S_g} = \dfrac{\mu_0 N^2 A}{l_g}$ (see *The magnetic circuit and reluctance → The air gap needs most of the MMF* and *Induced EMF and inductance → Inductance from the magnetic circuit*). Then $I = V / (\omega L)$.
+
+    ```example Working
+    :::given $N = \given{400}$, $A = \given{16\ \text{cm}^2}$, $l_g = \given{1\ \text{mm}}$, $V = \given{230\ \text{V}}$, $f = \given{50\ \text{Hz}}$
+    :::find current $I$
+    :::step SI units.
+    $A = 16 \times 10^{-4}\ \text{m}^2$, $l_g = 10^{-3}\ \text{m}$
+    :::step Inductance. $\fx{L = \mu_0 N^2 A / l_g}$
+    $N^2 = 400^2 = 160\,000 = 1.6 \times 10^{5}$
+    $\mu_0 N^2 A = 4\pi \times 10^{-7} \times 1.6 \times 10^{5} \times 16 \times 10^{-4}$
+    $1.6 \times 16 = 25.6$, and $10^{-7} \times 10^{5} \times 10^{-4} = 10^{-6}$
+    $\mu_0 N^2 A = 4\pi \times 25.6 \times 10^{-6} = 321.7 \times 10^{-6}$
+    $L = 321.7 \times 10^{-6} \div 10^{-3} = 0.3217\ \text{H}$
+    :::step Reactance. $\fx{X = 2\pi f L}$
+    $X = 314.16 \times 0.3217 = 101.1\ \Omega$
+    :::step Current. $\fx{I = V / X}$
+    $I = 230 \div 101.1 = 2.28\ \text{A}$
+    :::answer $\ans{I \approx 2.28\ \text{A}}$
+    ```
+
+    **Without a calculator:** $X = 2\pi f \times 4\pi \times 25.6 \times 10^{-3} = 8\pi^2 \times 50 \times 25.6 \times 10^{-3} \approx 79 \times 1.28 \approx 101\ \Omega$. Then $230/101 \approx 2.3$ A. The other options are 2, 4 and 8 times bigger (slips with the gap or with $2\pi$).
+
+    **Answer: (D).** *(Our solution.)*
+
+- key: gate-2009-14
+  topic: em1-magnetic-circuit
+  sources: [{code: GATE-2009, q: "14", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The single phase, 50 Hz, iron core transformer in the circuit has both the vertical arms of cross sectional area 20 cm² and both the horizontal arms of cross sectional area 10 cm². If the two windings shown were wound instead on opposite horizontal arms, the mutual inductance will
+
+    ![A single-window iron core; one winding on each of the two vertical arms](fig:q-gate2009-q14)
+  options:
+    - {label: A, md: "double"}
+    - {label: B, md: "remain same", correct: true}
+    - {label: C, md: "be halved"}
+    - {label: D, md: "become one quarter"}
+  solution: |
+    **Idea used:** for two coils on one closed core (no leakage), $M = \dfrac{N_1 N_2}{S}$, where $S$ is the reluctance of the **whole** flux path (see *Induced EMF and inductance → Mutual inductance*).
+
+    1. The core has one window, so the flux has only one path: round all four arms in series.
+    2. The total reluctance $S = S_{vertical} + S_{vertical} + S_{horizontal} + S_{horizontal}$ is the same wherever the coils sit on that path.
+    3. Moving both coils to the horizontal arms changes neither $N_1$, $N_2$ nor $S$.
+    4. So $M$ stays the same.
+
+    **Trap:** the smaller area of the horizontal arms tempts you to say "halved", but the flux passes through both kinds of arm in either case.
+
+    **Answer: (B).** *(Our solution.)*
+
+- key: gate-2019-44
+  topic: em1-magnetic-circuit
+  sources: [{code: GATE-2019, q: "44", marks: 2}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  nat: {min: 0.83, max: 0.84}
+  stem: |
+    The magnetic circuit shown below has uniform cross-sectional area and air gap of 0.2 cm. The mean path length of the core is 40 cm. Assume that leakage and fringing fluxes are negligible. When the core relative permeability is assumed to be infinite, the magnetic flux density computed in the air gap is 1 tesla. With same Ampere-turns, if the core relative permeability is assumed to be 1000 (linear), the flux density in tesla (round off to three decimal places) calculated in the air gap is ______.
+
+    ![A square core 10 cm by 10 cm (mean path 40 cm) with a coil carrying I on the left limb and an air gap of 0.2 cm in the right limb](fig:q-gate2019-q44)
+  options:
+    - {label: A, md: "0.833", correct: true}
+    - {label: B, md: "1.000"}
+    - {label: C, md: "0.995"}
+    - {label: D, md: "0.167"}
+  solution: |
+    **Idea used:** same MMF, so $B$ falls in the ratio of the total "air length" $l_g + l_i/\mu_r$ (see *The magnetic circuit and reluctance → Worked example 4*).
+
+    ```example Working
+    :::given $l_g = \given{0.2\ \text{cm}}$, $l_i = \given{40\ \text{cm}}$, $B_{\infty} = \given{1\ \text{T}}$, $\mu_r = \given{1000}$
+    :::find new gap flux density $B$
+    :::step Iron's equivalent air length. $\fx{l_i / \mu_r}$
+    $40 \div 1000 = 0.04\ \text{cm}$
+    :::step Total air length with real iron.
+    $0.2 + 0.04 = 0.24\ \text{cm}$
+    :::step Same MMF, so $B$ is inversely proportional to the air length.
+    $B = 1 \times 0.2 \div 0.24$
+    $= 20 \div 24 = 5 \div 6$
+    $= 0.833\ \text{T}$
+    :::answer $\ans{B \approx 0.833\ \text{T}}$
+    ```
+
+    (Taking the iron path as 40 − 0.2 = 39.8 cm gives 0.8340 T; both round to about 0.833 to 0.834.) Option C comes from adding the iron as $l_i/\mu_r$ in metres but the gap in cm; D is $1 - 0.833$.
+
+    **Answer: 0.833 T.** *(Our solution.)*
+
+- key: ese-2017-15
+  topic: em1-bh-hysteresis
+  sources: [{code: ESE-2017, q: "15", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Soft magnetic materials should have
+  options:
+    - {label: A, md: "Large saturation magnetization and large permeability", correct: true}
+    - {label: B, md: "Low saturation magnetization and large permeability"}
+    - {label: C, md: "Large saturation magnetization and low permeability"}
+    - {label: D, md: "Low saturation magnetization and low permeability"}
+  solution: |
+    **Idea used:** soft materials are for cores (see *B-H curve, saturation and hysteresis → Soft and hard magnetic materials*).
+
+    A core must carry a lot of flux (large saturation flux density, i.e. large saturation magnetisation) from a small current (large permeability), with a narrow loop (low loss).
+
+    **Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2019-150
+  topic: em1-bh-hysteresis
+  sources: [{code: ESE-2019, q: "150", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    **Statement (I):** Soft magnetic materials, both metallic and ceramic are used for making transformers core, whereas, hard magnetic materials both metallic and ceramic are used for making permanent magnets.
+
+    **Statement (II):** Magnetic materials, both metallic and ceramic are classified as soft or hard according to the magnetic hysteresis loop being narrow or broad.
+  options:
+    - {label: A, md: "Both Statement (I) and Statement (II) are individually true and Statement (II) is the correct explanation of Statement (I)", correct: true}
+    - {label: B, md: "Both Statement (I) and Statement (II) are individually true but Statement (II) is not the correct explanation of Statement (I)"}
+    - {label: C, md: "Statement (I) is true but Statement (II) is false"}
+    - {label: D, md: "Statement (I) is false but Statement (II) is true"}
+  solution: |
+    **Idea used:** the shape of the hysteresis loop decides the use (see *B-H curve, saturation and hysteresis → Soft and hard magnetic materials*).
+
+    **Statement (I):** true. Soft materials (silicon steel, soft ferrites) make cores; hard ones (alnico, hard ferrites) make permanent magnets.
+
+    **Statement (II):** true. Narrow loop = soft, broad loop = hard.
+
+    **Is (II) the reason for (I)?** Yes. A narrow loop means low hysteresis loss and easy magnetising/demagnetising: right for a core that is magnetised 50 times a second. A broad loop means high retentivity and coercivity: right for a magnet that must keep its magnetism.
+
+    **Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2024-31
+  topic: em1-bh-hysteresis
+  sources: [{code: ESE-2024, q: "31", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    What are the important characteristics that must be satisfied for the materials used to build permanent magnets?
+  options:
+    - {label: A, md: "Low permeability, high coercive force and high Curie temperature", correct: true}
+    - {label: B, md: "Low permeability, high coercive force and low Curie temperature"}
+    - {label: C, md: "High permeability, high coercive force and high Curie temperature"}
+    - {label: D, md: "High permeability, low coercive force and low Curie temperature"}
+  solution: |
+    **Idea used:** hard magnetic materials (see *B-H curve, saturation and hysteresis → Soft and hard magnetic materials* and *Curie temperature*).
+
+    A permanent magnet must resist being demagnetised (**high coercive force**) and must keep its magnetism when warm (**high Curie temperature**). Hard materials have a broad loop and **low** permeability.
+
+    **Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2024-32
+  topic: em1-bh-hysteresis
+  sources: [{code: ESE-2024, q: "32", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    What are the important characteristics that must be satisfied for the materials used to build core of the transformer?
+  options:
+    - {label: A, md: "High permeability, low hysteresis and high eddy current losses"}
+    - {label: B, md: "High permeability, low hysteresis and eddy current losses", correct: true}
+    - {label: C, md: "High permeability, high hysteresis and eddy current losses"}
+    - {label: D, md: "Low permeability, low coercive force and low Curie temperature"}
+  solution: |
+    **Idea used:** what a transformer core material needs (see *B-H curve, saturation and hysteresis → Soft and hard magnetic materials*).
+
+    High permeability (small magnetising current) and **low** core losses (both hysteresis and eddy current). Any option with a "high" loss is wrong.
+
+    **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2017-32
+  topic: em1-bh-hysteresis
+  sources: [{code: ESE-2017, q: "32", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The phenomenon of magnetostriction occurs when a ferromagnetic substance is magnetized resulting in
+  options:
+    - {label: A, md: "Heating"}
+    - {label: B, md: "Small changes in its dimensions", correct: true}
+    - {label: C, md: "Small changes in its crystal structure"}
+    - {label: D, md: "Some change in its mechanical properties"}
+  solution: |
+    **Idea used:** definition of magnetostriction (see *B-H curve, saturation and hysteresis → Magnetostriction*).
+
+    Magnetostriction is the small change in the dimensions (length) of a ferromagnetic material when it is magnetised. It is the cause of transformer hum.
+
+    **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2025-19
+  topic: em1-bh-hysteresis
+  sources: [{code: ESE-2025, q: "19", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    When a ferromagnetic substance is magnetized, there are small changes in its dimensions. The phenomenon is known as
+  options:
+    - {label: A, md: "deformation"}
+    - {label: B, md: "polarization"}
+    - {label: C, md: "magnetostriction", correct: true}
+    - {label: D, md: "magnetization"}
+  solution: |
+    **Idea used:** see *B-H curve, saturation and hysteresis → Magnetostriction*. "Magneto" (magnetic) + "striction" (squeezing): change of size on magnetising.
+
+    **Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2020-109
+  topic: em1-bh-hysteresis
+  sources: [{code: ESE-2020, q: "109", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The degree of humming level of the noise caused in the transformers may be reduced by
+  options:
+    - {label: A, md: "Magnetostriction"}
+    - {label: B, md: "High flux density in core"}
+    - {label: C, md: "Tightening of core by clamps", correct: true}
+    - {label: D, md: "Quality of transformer oil"}
+  solution: |
+    **Idea used:** hum comes from magnetostriction; reduce it by lower flux density and tight clamping (see *B-H curve, saturation and hysteresis → Magnetostriction: why transformers hum*).
+
+    - (A) magnetostriction is the **cause** of hum, not the cure.
+    - (B) a higher flux density makes the hum **louder**.
+    - (D) oil quality does not affect the vibration of the core.
+    - (C) tight clamps stop the laminations from vibrating and rattling.
+
+    **Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2023-87
+  topic: em1-bh-hysteresis
+  sources: [{code: ESE-2023, q: "87", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The objectionable audible humming sound in the core of the transformer due to magnetostriction is minimized by
+  options:
+    - {label: A, md: "decreasing flux density", correct: true}
+    - {label: B, md: "increasing flux density"}
+    - {label: C, md: "use of stacking laminations"}
+    - {label: D, md: "use of silicon-steel sheets"}
+  solution: |
+    **Idea used:** magnetostriction grows with the flux density (see *B-H curve, saturation and hysteresis → Magnetostriction: why transformers hum*).
+
+    Working the core at a lower flux density means less stretching and shrinking in each cycle, so less hum. Stacked laminations and silicon steel are there to cut core loss, not hum.
+
+    **Answer: (A).** *(Our solution; check with the UPSC key when available.)*

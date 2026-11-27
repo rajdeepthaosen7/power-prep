@@ -83,9 +83,10 @@ Marks 2, but its link says marks-1.
 | Circuits Ch1: Circuit elements and sources | 7 | Written. All 7 in the portal (APDCL Q43 and AEGCL Q84 added 27 Nov) |
 | Circuits Ch2: KCL, KVL and network reduction | 4 | Written. All 4 in the portal |
 | Power Systems Ch1: Generation and economics | 5 | Written. All 5 in the portal |
+| Electrical Machines Ch1: Magnetic circuits and transformer basics | 6 | Written. All 6 in the portal (AEGCL Q90, Q97 and APGCL Q100 moved here from EMF: magnetic circuits are taught in Machines Ch1) |
 | Circuits Ch3–11 | 16 | Not written yet; listed in the map |
-| Power Systems Ch2–17 | 42 | Not written yet; listed in the map |
-| Other subjects | 226 | Chapters not planned yet; listed in the map by subject and topic |
+| Power Systems Ch2–17 | 42 | Not written yet; listed in the map (chapter numbers follow the 27 Nov 2026 reorder) |
+| Other subjects | 220 | Chapters not planned yet; listed in the map by subject and topic |
 
 The coupled-coil questions (APDCL Q43, AEGCL Q84) sit in Circuits Ch1 ("Mutual inductance: a first look"); when Ch9
 (Magnetically coupled circuits) is written, link to them rather than adding them again.

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="350" viewBox="0 0 350 160">
+<g transform="translate(30,0)">
+<rect x="40" y="20" width="200" height="130" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<rect x="66" y="46" width="148" height="78" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M40,48 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 " stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M240,48 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 " stroke="currentColor" fill="none" stroke-width="1.6"/>
+<text x="85.0" y="90.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">100</text>
+<text x="195.0" y="90.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">200</text>
+<line x1="10" y1="48" x2="40" y2="48" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="10" y1="118" x2="40" y2="118" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="240" y1="48" x2="270" y2="48" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="240" y1="118" x2="270" y2="118" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="50" cy="40" r="3" fill="currentColor"/>
+<circle cx="230" cy="40" r="3" fill="currentColor"/>
+<text x="8.0" y="40.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-style="italic">p</text>
+<text x="8.0" y="132.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-style="italic">q</text>
+<text x="274.0" y="40.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">r</text>
+<text x="274.0" y="132.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">s</text>
+<text x="4.0" y="86.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">e_pq</text>
+<text x="278.0" y="86.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">e_rs</text>
+<line x1="120" y1="12" x2="160" y2="12" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="164.0,12.0 158.0,9.0 158.0,15.0" fill="currentColor"/>
+<text x="172.0" y="16.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">φ</text>
+</g>
+</svg>

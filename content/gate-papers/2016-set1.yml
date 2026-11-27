@@ -1,5 +1,6 @@
 # GATE EE 2016, Set 1 (2nd stage). Source: EE2016.pdf in the dump, with the official answer key at its end.
 # Q15 and Q17 are written in Circuits Ch2 (questions-2.yml, questions-1.yml), so they are not here.
+# Q25 and Q46 are written in Electrical Machines Ch1 (questions-*.yml), so they are not here.
 paper: {source: GATE-2016, q_prefix: "S1-Q", key_prefix: gate2016-s1, title: "GATE EE 2016, Set 1"}
 questions:
   - n: 1
@@ -585,32 +586,6 @@ questions:
       nearly rectangular shape.
 
       **Answer: (C).**
-  - n: 25
-    marks: 1
-    type: MCQ
-    difficulty: 1
-    stem: |
-      If an ideal transformer has an inductive load element at port 2 as shown in the figure below, the equivalent inductance at port 1 is
-
-      ![Ideal transformer with turns ratio n:1; port 1 on the n side, an inductor L across port 2](fig:q-gate2016-s1-q25)
-    options:
-      - {label: A, md: "$nL$"}
-      - {label: B, md: "$n^2L$", correct: true}
-      - {label: C, md: "$\\dfrac{n}{L}$"}
-      - {label: D, md: "$\\dfrac{n^2}{L}$"}
-    solution: |
-      **Idea used:** an ideal transformer with ratio $n : 1$ makes any impedance on the "1" side look $n^2$ times larger from the "$n$" side.
-
-      1. On port 2 the impedance is $Z_2 = j\omega L$.
-      2. Seen from port 1: $Z_1 = n^2 Z_2 = j\omega (n^2 L)$.
-      3. That is an inductor of value $n^2 L$.
-
-      **Why $n^2$:** voltage goes up $n$ times and current goes down $n$ times, so $V/I$ goes up $n \times n$.
-
-      **Without a calculator:** (C) and (D) are not even inductances (wrong units). Between (A) and (B), impedance always scales with
-      the **square** of the turns ratio.
-
-      **Answer: (B) $n^2L$.**
   - n: 26
     marks: 2
     type: NAT
@@ -1197,35 +1172,6 @@ questions:
       $E_1 = 30$ mJ and 60 mJ total), or taking only T1 (45 mJ).
 
       **Answer: 75 mJ.**
-  - n: 46
-    marks: 2
-    type: NAT
-    nat: {min: 1.4, max: 1.5}
-    difficulty: 2
-    stem: |
-      A single-phase 400 V, 50 Hz transformer has an iron loss of 5000 W at the rated condition. When operated at 200 V, 25 Hz, the iron
-      loss is 2000 W. When operated at 416 V, 52 Hz, the value of the hysteresis loss divided by the eddy current loss is ______.
-    options:
-      - {label: A, md: "1.44", correct: true}
-      - {label: B, md: "1.5"}
-      - {label: C, md: "0.69"}
-      - {label: D, md: "2.31"}
-    solution: |
-      **Idea used:** at constant $V/f$ the flux density is constant, so hysteresis loss $P_h = Af$ and eddy current loss $P_e = Bf^2$
-      (A and B are constants). All three conditions have $V/f = 8$, so this holds for all of them.
-
-      1. At 50 Hz: $50A + 2500B = 5000$.
-      2. At 25 Hz: $25A + 625B = 2000$. Double it: $50A + 1250B = 4000$.
-      3. Subtract: $1250B = 1000$, so $B = 0.8$. Then $50A = 5000 - 2000 = 3000$, so $A = 60$.
-      4. At 52 Hz: $P_h = 60 \times 52 = 3120$ W; $P_e = 0.8 \times 52^2 = 0.8 \times 2704 = 2163$ W.
-      5. Ratio $= 3120 \div 2163 \approx 1.44$.
-
-      **Check:** at 50 Hz, $P_h = 3000$ and $P_e = 2000$, total 5000 W. ✔
-
-      **Without a calculator:** the ratio $P_h/P_e = \dfrac{A}{Bf} = \dfrac{60}{0.8 f} = \dfrac{75}{f}$. At 52 Hz: $75/52 \approx 1.44$.
-      Option B is the ratio at 50 Hz; option C is the inverse.
-
-      **Answer: about 1.44.**
   - n: 47
     marks: 2
     type: NAT

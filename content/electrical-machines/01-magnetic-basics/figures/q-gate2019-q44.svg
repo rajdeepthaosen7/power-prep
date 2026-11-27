@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="330" viewBox="0 0 330 245">
+<path d="M60,30 H250 V118 M250,128 V230 H60 V30" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M90,60 H220 V118 M220,128 V200 H90 V60" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="220" y1="118" x2="250" y2="118" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="220" y1="128" x2="250" y2="128" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M75,45 H235 V215 H75 Z" stroke="currentColor" fill="none" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<path d="M60,80 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 " stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="30" y1="80" x2="60" y2="80" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="30" y1="170" x2="60" y2="170" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="52.0,80.0 46.0,77.0 46.0,83.0" fill="currentColor"/>
+<text x="36.0" y="72.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-style="italic">I</text>
+<text x="272.0" y="127.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">0.2 cm</text>
+<text x="155.0" y="18.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">10 cm (mean)</text>
+<text x="26.0" y="135.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">10 cm</text>
+</svg>

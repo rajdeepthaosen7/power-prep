@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" viewBox="0 0 400 235">
+<circle cx="200" cy="120" r="95" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="200" cy="120" r="55" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="200" cy="120" r="75" stroke="currentColor" fill="none" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="200" y1="120" x2="253" y2="67" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="256.0,64.0 253.0,70.0 259.0,70.0" fill="currentColor"/>
+<text x="236.0" y="100.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-style="italic">R</text>
+<circle cx="200" cy="45" r="14" stroke="currentColor" fill="none" stroke-width="1.2"/>
+<text x="222.0" y="40.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">r</text>
+<line x1="151.1" y1="137.8" x2="107.9" y2="153.5" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="248.9" y1="102.2" x2="292.1" y2="86.5" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="149.1" y1="130.8" x2="104.1" y2="140.4" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="250.9" y1="109.2" x2="295.9" y2="99.6" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="148.1" y1="123.6" x2="102.2" y2="126.8" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="251.9" y1="116.4" x2="297.8" y2="113.2" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="148.1" y1="116.4" x2="102.2" y2="113.2" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="251.9" y1="123.6" x2="297.8" y2="126.8" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="149.1" y1="109.2" x2="104.1" y2="99.6" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="250.9" y1="130.8" x2="295.9" y2="140.4" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="151.1" y1="102.2" x2="107.9" y2="86.5" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="248.9" y1="137.8" x2="292.1" y2="153.5" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M107,95 H40 V185 H107" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="40" cy="140" r="13" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M31,140 q4.5,-8 9,0 t9,0" stroke="currentColor" fill="none" stroke-width="1.4"/>
+<text x="4.0" y="80.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">i_P = I sin ωt →</text>
+<text x="4.0" y="222.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">v_P = V cos ωt</text>
+<text x="30.0" y="100.0" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="currentColor">+</text>
+<text x="30.0" y="196.0" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="currentColor">−</text>
+<text x="112.0" y="222.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">N_P</text>
+<path d="M293,95 H360 M293,170 H360" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<text x="300.0" y="82.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">i_S = 0</text>
+<text x="366.0" y="100.0" font-size="14" text-anchor="start" dominant-baseline="middle" fill="currentColor">+</text>
+<text x="366.0" y="176.0" font-size="14" text-anchor="start" dominant-baseline="middle" fill="currentColor">−</text>
+<text x="362.0" y="138.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">v_S</text>
+<text x="288.0" y="222.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">N_S</text>
+</svg>

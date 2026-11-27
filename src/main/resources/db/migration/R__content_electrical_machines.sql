@@ -2,6 +2,39 @@
 -- Repeatable migration: upserts chapters, topics, notes, figures and questions by natural keys.
 
 -- sources
+INSERT INTO source(code, kind, exam, year, title) VALUES ('AEGCL-2023', 'STATE', 'AEGCL', 2023, NULL) ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('APGCL-2023', 'STATE', 'APGCL', 2023, NULL) ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('ESE-2017', 'ESE', 'ESE', 2017, 'UPSC ESE Prelims 2017, Paper II (Electrical)') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('ESE-2018', 'ESE', 'ESE', 2018, 'UPSC ESE Prelims 2018, Paper II (Electrical)') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('ESE-2019', 'ESE', 'ESE', 2019, 'UPSC ESE Prelims 2019, Paper II (Electrical)') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('ESE-2020', 'ESE', 'ESE', 2020, 'UPSC ESE Prelims 2020, Paper II (Electrical)') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('ESE-2021', 'ESE', 'ESE', 2021, 'UPSC ESE Prelims 2021, Paper II (Electrical)') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('ESE-2022', 'ESE', 'ESE', 2022, 'UPSC ESE Prelims 2022, Paper II (Electrical)') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('ESE-2023', 'ESE', 'ESE', 2023, 'UPSC ESE Prelims 2023, Paper II (Electrical)') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('ESE-2024', 'ESE', 'ESE', 2024, 'UPSC ESE Prelims 2024, Paper II (Electrical)') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('ESE-2025', 'ESE', 'ESE', 2025, 'UPSC ESE Prelims 2025, Paper II (Electrical)') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('ESE-2026', 'ESE', 'ESE', 2026, 'UPSC ESE Prelims 2026, Paper II (Electrical)') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-1996', 'GATE', 'GATE', 1996, 'GATE EE 1996') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-1997', 'GATE', 'GATE', 1997, 'GATE EE 1997') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-1998', 'GATE', 'GATE', 1998, 'GATE EE 1998') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2001', 'GATE', 'GATE', 2001, 'GATE EE 2001') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2002', 'GATE', 'GATE', 2002, 'GATE EE 2002') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2004', 'GATE', 'GATE', 2004, 'GATE EE 2004') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2007', 'GATE', 'GATE', 2007, 'GATE EE 2007') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2008', 'GATE', 'GATE', 2008, 'GATE EE 2008') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2009', 'GATE', 'GATE', 2009, 'GATE EE 2009') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2011', 'GATE', 'GATE', 2011, 'GATE EE 2011') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2013', 'GATE', 'GATE', 2013, 'GATE EE 2013') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2014', 'GATE', 'GATE', 2014, 'GATE EE 2014') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2015', 'GATE', 'GATE', 2015, 'GATE EE 2015') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2016', 'GATE', 'GATE', 2016, 'GATE EE 2016') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2018', 'GATE', 'GATE', 2018, 'GATE EE 2018') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2019', 'GATE', 'GATE', 2019, 'GATE EE 2019') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2020', 'GATE', 'GATE', 2020, 'GATE EE 2020') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2021', 'GATE', 'GATE', 2021, 'GATE EE 2021') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2023', 'GATE', 'GATE', 2023, 'GATE EE 2023') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2024', 'GATE', 'GATE', 2024, 'GATE EE 2024') ON CONFLICT (code) DO NOTHING;
+INSERT INTO source(code, kind, exam, year, title) VALUES ('GATE-2026', 'GATE', 'GATE', 2026, 'GATE EE 2026') ON CONFLICT (code) DO NOTHING;
 
 -- chapters
 INSERT INTO chapter(subject_id, name, slug, sort_order, description) VALUES ((SELECT id FROM subject WHERE slug = 'electrical-machines'), 'Magnetic circuits and transformer basics', 'magnetic-basics', 1, 'Flux, flux density and permeability; the magnetic circuit and reluctance; B-H curve and hysteresis; induced EMF and inductance; force and energy; the transformer and its EMF equation; core losses; the ideal transformer.') ON CONFLICT (subject_id, slug) DO UPDATE SET name = EXCLUDED.name, sort_order = EXCLUDED.sort_order, description = EXCLUDED.description, updated_at = now();
@@ -1602,6 +1635,4474 @@ INSERT INTO concept_section(topic_id, sort_order, title, body_md, status, slug) 
 ', 'PUBLISHED', 'main') ON CONFLICT (topic_id, slug) DO UPDATE SET title = EXCLUDED.title, body_md = EXCLUDED.body_md, status = EXCLUDED.status, version = concept_section.version + 1, updated_at = now() WHERE concept_section.body_md IS DISTINCT FROM EXCLUDED.body_md OR concept_section.title IS DISTINCT FROM EXCLUDED.title;
 
 -- questions
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-magnetic-field';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2018-13';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2018', '13')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The magnetic susceptibility of aluminium is $2.1 \times 10^{-5}$. The permeability and relative permeability are, respectively', 'The magnetic susceptibility of aluminium is $2.1 \times 10^{-5}$. The permeability and relative permeability are, respectively
+', '**Idea used:** $\mu_r = 1 + \chi$ and $\mu = \mu_0 \mu_r$ (see *Magnetic field, flux and permeability → Kinds of magnetic materials*).
+
+```example Working
+:::given $\chi = \given{2.1 \times 10^{-5}}$, $\mu_0 = 4\pi \times 10^{-7}$ H/m
+:::find $\mu_r$ and $\mu$
+:::step Relative permeability. $\fx{\mu_r = 1 + \chi}$
+$2.1 \times 10^{-5} = 0.000021$
+$\mu_r = 1 + 0.000021 = 1.000021$
+:::step Permeability. $\fx{\mu = \mu_0 \mu_r}$
+$\mu_0 = 4\pi \times 10^{-7} = 12.566 \times 10^{-7}$
+$\mu = 12.566 \times 10^{-7} \times 1.000021 \approx 12.57 \times 10^{-7}$ H/m
+:::answer $\ans{\mu \approx 12.6 \times 10^{-7}\ \text{H/m},\ \mu_r = 1.000021}$
+```
+
+**Option elimination:** $\mu$ can never be smaller than $\mu_0 = 12.6 \times 10^{-7}$ for a paramagnetic material, so B and D are out. $10^{-5}$ is 0.00001, so $\mu_r = 1.000021$, not 1.0021.
+
+**Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2018-13', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The magnetic susceptibility of aluminium is $2.1 \times 10^{-5}$. The permeability and relative permeability are, respectively'), stem_md = 'The magnetic susceptibility of aluminium is $2.1 \times 10^{-5}$. The permeability and relative permeability are, respectively
+', solution_md = '**Idea used:** $\mu_r = 1 + \chi$ and $\mu = \mu_0 \mu_r$ (see *Magnetic field, flux and permeability → Kinds of magnetic materials*).
+
+```example Working
+:::given $\chi = \given{2.1 \times 10^{-5}}$, $\mu_0 = 4\pi \times 10^{-7}$ H/m
+:::find $\mu_r$ and $\mu$
+:::step Relative permeability. $\fx{\mu_r = 1 + \chi}$
+$2.1 \times 10^{-5} = 0.000021$
+$\mu_r = 1 + 0.000021 = 1.000021$
+:::step Permeability. $\fx{\mu = \mu_0 \mu_r}$
+$\mu_0 = 4\pi \times 10^{-7} = 12.566 \times 10^{-7}$
+$\mu = 12.566 \times 10^{-7} \times 1.000021 \approx 12.57 \times 10^{-7}$ H/m
+:::answer $\ans{\mu \approx 12.6 \times 10^{-7}\ \text{H/m},\ \mu_r = 1.000021}$
+```
+
+**Option elimination:** $\mu$ can never be smaller than $\mu_0 = 12.6 \times 10^{-7}$ for a paramagnetic material, so B and D are out. $10^{-5}$ is 0.00001, so $\mu_r = 1.000021$, not 1.0021.
+
+**Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2018-13', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2018'), '13', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$12.6 \times 10^{-7}$ and 1.0021', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$1.26 \times 10^{-7}$ and 1.0021', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$12.6 \times 10^{-7}$ and 1.000021', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$1.26 \times 10^{-7}$ and 1.000021', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-magnetic-field');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-magnetic-field';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2021-145';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2021', '145')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Statement (I): Ferromagnetic properties are confined almost entirely to iron, nickel and cobalt and their alloys. Statement (II): By substituting the basic...', '**Statement (I):** Ferromagnetic properties are confined almost entirely to iron, nickel and cobalt and their alloys.
+
+**Statement (II):** By substituting the basic ferrite of magnetite with other divalent oxides, a wide range of ferrimagnetic compounds with useful properties can be produced, which have high electrical resistivity to minimize eddy currents at high frequencies.
+', '**Idea used:** kinds of magnetic materials and ferrites (see *Magnetic field, flux and permeability → Kinds of magnetic materials* and *B-H curve, saturation and hysteresis → Ferrites*).
+
+**Statement (I):** true. Strong (ferro-)magnetism is found almost only in iron, nickel, cobalt and their alloys.
+
+**Statement (II):** true. Ferrites are iron-oxide ceramics mixed with other metal oxides (manganese, zinc, nickel...). They are ferrimagnetic and have very high resistivity, so they are used as cores at high frequency.
+
+**Is (II) the reason for (I)?** No. (II) is about ferrites (ferrimagnetic ceramics), not about why ferromagnetism is limited to Fe, Ni and Co.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2021-145', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Statement (I): Ferromagnetic properties are confined almost entirely to iron, nickel and cobalt and their alloys. Statement (II): By substituting the basic...'), stem_md = '**Statement (I):** Ferromagnetic properties are confined almost entirely to iron, nickel and cobalt and their alloys.
+
+**Statement (II):** By substituting the basic ferrite of magnetite with other divalent oxides, a wide range of ferrimagnetic compounds with useful properties can be produced, which have high electrical resistivity to minimize eddy currents at high frequencies.
+', solution_md = '**Idea used:** kinds of magnetic materials and ferrites (see *Magnetic field, flux and permeability → Kinds of magnetic materials* and *B-H curve, saturation and hysteresis → Ferrites*).
+
+**Statement (I):** true. Strong (ferro-)magnetism is found almost only in iron, nickel, cobalt and their alloys.
+
+**Statement (II):** true. Ferrites are iron-oxide ceramics mixed with other metal oxides (manganese, zinc, nickel...). They are ferrimagnetic and have very high resistivity, so they are used as cores at high frequency.
+
+**Is (II) the reason for (I)?** No. (II) is about ferrites (ferrimagnetic ceramics), not about why ferromagnetism is limited to Fe, Ni and Co.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2021-145', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2021'), '145', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'Both Statement (I) and Statement (II) are individually true and Statement (II) is the correct explanation of Statement (I)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Both Statement (I) and Statement (II) are individually true but Statement (II) is not the correct explanation of Statement (I)', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Statement (I) is true but Statement (II) is false', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Statement (I) is false but Statement (II) is true', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-magnetic-field');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-magnetic-field';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2022-47';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2022', '47')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Choke coils are made of iron core, because', 'Choke coils are made of iron core, because
+', '**Idea used:** iron has a very high permeability (see *Magnetic field, flux and permeability → Why machine cores are made of iron*).
+
+A choke coil must have a large inductance. $L = \mu_0\mu_r N^2 A/l$, so an iron core ($\mu_r$ in the thousands) gives a large flux, a large flux density and so a large inductance in a small size.
+
+- (A) is wrong: an iron core adds core loss; an air core has none.
+- (C) is not an engineering reason.
+- (D) laminations reduce eddy loss, but they are not why iron is used in the first place.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2022-47', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Choke coils are made of iron core, because'), stem_md = 'Choke coils are made of iron core, because
+', solution_md = '**Idea used:** iron has a very high permeability (see *Magnetic field, flux and permeability → Why machine cores are made of iron*).
+
+A choke coil must have a large inductance. $L = \mu_0\mu_r N^2 A/l$, so an iron core ($\mu_r$ in the thousands) gives a large flux, a large flux density and so a large inductance in a small size.
+
+- (A) is wrong: an iron core adds core loss; an air core has none.
+- (C) is not an engineering reason.
+- (D) laminations reduce eddy loss, but they are not why iron is used in the first place.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2022-47', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2022'), '47', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'it has less loss in iron cores', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'large-valued flux densities can be produced in iron cores', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'it is easily available in the market', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'it has laminated core with high resistance', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-magnetic-field');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-magnetic-circuit';
+  SELECT id INTO qid FROM question WHERE content_key = 'aegcl-2023-97';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('AEGCL-2023', '97')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Calculate the reluctance of a magnetic coil which is wounded uniformly on an iron core provided that the relative permeability of the iron core is 1400....', 'Calculate the reluctance of a magnetic coil which is wounded uniformly on an iron core provided that the relative permeability of the iron core is 1400. Also, the length of the magnetic circuit is 70 cm and the cross-sectional area of the core is 5 cm².
+', '**Idea used:** $S = \dfrac{l}{\mu_0 \mu_r A}$ (see *The magnetic circuit and reluctance → Reluctance*).
+
+```example Working
+:::given $\mu_r = \given{1400}$, $l = \given{70\ \text{cm}}$, $A = \given{5\ \text{cm}^2}$
+:::find reluctance $S$
+:::step Change to SI units.
+$l = 70\ \text{cm} = 0.7\ \text{m}$
+$A = 5\ \text{cm}^2 = 5 \times 10^{-4}\ \text{m}^2$
+:::step Bottom of the formula. $\fx{\mu_0 \mu_r A}$
+$\mu_0 \mu_r = 12.566 \times 10^{-7} \times 1400 = 17\,592 \times 10^{-7} = 1.759 \times 10^{-3}$
+$\mu_0 \mu_r A = 1.759 \times 10^{-3} \times 5 \times 10^{-4} = 8.796 \times 10^{-7}$
+:::step Divide. $\fx{S = l \div (\mu_0\mu_r A)}$
+$S = 0.7 \div (8.796 \times 10^{-7})$
+$= (0.7 \div 8.796) \times 10^{7}$
+$0.7 \div 8.796 = 0.0796$
+$S = 0.0796 \times 10^{7} = 7.96 \times 10^{5}\ \text{AT/Wb}$
+:::answer $\ans{S \approx 7.9 \times 10^{5}\ \text{AT/Wb}}$
+```
+
+**Without a calculator:** $4\pi \times 1400 \approx 12.6 \times 1400 \approx 17\,600$, so the bottom is about $1.76 \times 10^{-3} \times 5 \times 10^{-4} \approx 8.8 \times 10^{-7}$. $0.7 \div 8.8 \approx 0.08$, giving $8 \times 10^{5}$. Only (B) is near. Options C and D come from forgetting to change cm or cm² to m.
+
+**Asked before:** UPRVUNL JE (Electrical) 2014, with the same numbers and options.
+
+**Answer: (B).** *(Our solution; APSC key not yet in the dump.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'aegcl-2023-97', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Calculate the reluctance of a magnetic coil which is wounded uniformly on an iron core provided that the relative permeability of the iron core is 1400....'), stem_md = 'Calculate the reluctance of a magnetic coil which is wounded uniformly on an iron core provided that the relative permeability of the iron core is 1400. Also, the length of the magnetic circuit is 70 cm and the cross-sectional area of the core is 5 cm².
+', solution_md = '**Idea used:** $S = \dfrac{l}{\mu_0 \mu_r A}$ (see *The magnetic circuit and reluctance → Reluctance*).
+
+```example Working
+:::given $\mu_r = \given{1400}$, $l = \given{70\ \text{cm}}$, $A = \given{5\ \text{cm}^2}$
+:::find reluctance $S$
+:::step Change to SI units.
+$l = 70\ \text{cm} = 0.7\ \text{m}$
+$A = 5\ \text{cm}^2 = 5 \times 10^{-4}\ \text{m}^2$
+:::step Bottom of the formula. $\fx{\mu_0 \mu_r A}$
+$\mu_0 \mu_r = 12.566 \times 10^{-7} \times 1400 = 17\,592 \times 10^{-7} = 1.759 \times 10^{-3}$
+$\mu_0 \mu_r A = 1.759 \times 10^{-3} \times 5 \times 10^{-4} = 8.796 \times 10^{-7}$
+:::step Divide. $\fx{S = l \div (\mu_0\mu_r A)}$
+$S = 0.7 \div (8.796 \times 10^{-7})$
+$= (0.7 \div 8.796) \times 10^{7}$
+$0.7 \div 8.796 = 0.0796$
+$S = 0.0796 \times 10^{7} = 7.96 \times 10^{5}\ \text{AT/Wb}$
+:::answer $\ans{S \approx 7.9 \times 10^{5}\ \text{AT/Wb}}$
+```
+
+**Without a calculator:** $4\pi \times 1400 \approx 12.6 \times 1400 \approx 17\,600$, so the bottom is about $1.76 \times 10^{-3} \times 5 \times 10^{-4} \approx 8.8 \times 10^{-7}$. $0.7 \div 8.8 \approx 0.08$, giving $8 \times 10^{5}$. Only (B) is near. Options C and D come from forgetting to change cm or cm² to m.
+
+**Asked before:** UPRVUNL JE (Electrical) 2014, with the same numbers and options.
+
+**Answer: (B).** *(Our solution; APSC key not yet in the dump.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'aegcl-2023-97', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'AEGCL-2023'), '97', qid, NULL, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$3.6 \times 10^{5}$ AT/Wb', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$7.9 \times 10^{5}$ AT/Wb', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$7.9 \times 10^{8}$ AT/Wb', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$4.6 \times 10^{8}$ AT/Wb', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-magnetic-circuit');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-magnetic-circuit';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2007-76';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2007', '76')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Statement for Linked Answer Questions 76 & 77: An inductor designed with 400 turns coil wound on an iron core of 16 cm² cross sectional area and with a cut...', '**Statement for Linked Answer Questions 76 & 77:** An inductor designed with 400 turns coil wound on an iron core of 16 cm² cross sectional area and with a cut of an air gap length of 1 mm. The coil is connected to a 230 V, 50 Hz ac supply. Neglect coil resistance, core loss, iron reluctance and leakage inductance. ($\mu_0 = 4\pi \times 10^{-7}$ H/m)
+
+The current in the inductor is
+', '**Idea used:** with the iron reluctance neglected, only the air gap counts: $L = \dfrac{N^2}{S_g} = \dfrac{\mu_0 N^2 A}{l_g}$ (see *The magnetic circuit and reluctance → The air gap needs most of the MMF* and *Induced EMF and inductance → Inductance from the magnetic circuit*). Then $I = V / (\omega L)$.
+
+```example Working
+:::given $N = \given{400}$, $A = \given{16\ \text{cm}^2}$, $l_g = \given{1\ \text{mm}}$, $V = \given{230\ \text{V}}$, $f = \given{50\ \text{Hz}}$
+:::find current $I$
+:::step SI units.
+$A = 16 \times 10^{-4}\ \text{m}^2$, $l_g = 10^{-3}\ \text{m}$
+:::step Inductance. $\fx{L = \mu_0 N^2 A / l_g}$
+$N^2 = 400^2 = 160\,000 = 1.6 \times 10^{5}$
+$\mu_0 N^2 A = 4\pi \times 10^{-7} \times 1.6 \times 10^{5} \times 16 \times 10^{-4}$
+$1.6 \times 16 = 25.6$, and $10^{-7} \times 10^{5} \times 10^{-4} = 10^{-6}$
+$\mu_0 N^2 A = 4\pi \times 25.6 \times 10^{-6} = 321.7 \times 10^{-6}$
+$L = 321.7 \times 10^{-6} \div 10^{-3} = 0.3217\ \text{H}$
+:::step Reactance. $\fx{X = 2\pi f L}$
+$X = 314.16 \times 0.3217 = 101.1\ \Omega$
+:::step Current. $\fx{I = V / X}$
+$I = 230 \div 101.1 = 2.28\ \text{A}$
+:::answer $\ans{I \approx 2.28\ \text{A}}$
+```
+
+**Without a calculator:** $X = 2\pi f \times 4\pi \times 25.6 \times 10^{-3} = 8\pi^2 \times 50 \times 25.6 \times 10^{-3} \approx 79 \times 1.28 \approx 101\ \Omega$. Then $230/101 \approx 2.3$ A. The other options are 2, 4 and 8 times bigger (slips with the gap or with $2\pi$).
+
+**Answer: (D).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2007-76', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Statement for Linked Answer Questions 76 & 77: An inductor designed with 400 turns coil wound on an iron core of 16 cm² cross sectional area and with a cut...'), stem_md = '**Statement for Linked Answer Questions 76 & 77:** An inductor designed with 400 turns coil wound on an iron core of 16 cm² cross sectional area and with a cut of an air gap length of 1 mm. The coil is connected to a 230 V, 50 Hz ac supply. Neglect coil resistance, core loss, iron reluctance and leakage inductance. ($\mu_0 = 4\pi \times 10^{-7}$ H/m)
+
+The current in the inductor is
+', solution_md = '**Idea used:** with the iron reluctance neglected, only the air gap counts: $L = \dfrac{N^2}{S_g} = \dfrac{\mu_0 N^2 A}{l_g}$ (see *The magnetic circuit and reluctance → The air gap needs most of the MMF* and *Induced EMF and inductance → Inductance from the magnetic circuit*). Then $I = V / (\omega L)$.
+
+```example Working
+:::given $N = \given{400}$, $A = \given{16\ \text{cm}^2}$, $l_g = \given{1\ \text{mm}}$, $V = \given{230\ \text{V}}$, $f = \given{50\ \text{Hz}}$
+:::find current $I$
+:::step SI units.
+$A = 16 \times 10^{-4}\ \text{m}^2$, $l_g = 10^{-3}\ \text{m}$
+:::step Inductance. $\fx{L = \mu_0 N^2 A / l_g}$
+$N^2 = 400^2 = 160\,000 = 1.6 \times 10^{5}$
+$\mu_0 N^2 A = 4\pi \times 10^{-7} \times 1.6 \times 10^{5} \times 16 \times 10^{-4}$
+$1.6 \times 16 = 25.6$, and $10^{-7} \times 10^{5} \times 10^{-4} = 10^{-6}$
+$\mu_0 N^2 A = 4\pi \times 25.6 \times 10^{-6} = 321.7 \times 10^{-6}$
+$L = 321.7 \times 10^{-6} \div 10^{-3} = 0.3217\ \text{H}$
+:::step Reactance. $\fx{X = 2\pi f L}$
+$X = 314.16 \times 0.3217 = 101.1\ \Omega$
+:::step Current. $\fx{I = V / X}$
+$I = 230 \div 101.1 = 2.28\ \text{A}$
+:::answer $\ans{I \approx 2.28\ \text{A}}$
+```
+
+**Without a calculator:** $X = 2\pi f \times 4\pi \times 25.6 \times 10^{-3} = 8\pi^2 \times 50 \times 25.6 \times 10^{-3} \approx 79 \times 1.28 \approx 101\ \Omega$. Then $230/101 \approx 2.3$ A. The other options are 2, 4 and 8 times bigger (slips with the gap or with $2\pi$).
+
+**Answer: (D).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2007-76', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2007'), '76', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '18.08 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '9.04 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '4.56 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.28 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-magnetic-circuit');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-magnetic-circuit';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2009-14';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2009', '14')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'The single phase, 50 Hz, iron core transformer in the circuit has both the vertical arms of cross sectional area 20 cm² and both the horizontal arms of...', 'The single phase, 50 Hz, iron core transformer in the circuit has both the vertical arms of cross sectional area 20 cm² and both the horizontal arms of cross sectional area 10 cm². If the two windings shown were wound instead on opposite horizontal arms, the mutual inductance will
+
+![A single-window iron core; one winding on each of the two vertical arms](fig:q-gate2009-q14)
+', '**Idea used:** for two coils on one closed core (no leakage), $M = \dfrac{N_1 N_2}{S}$, where $S$ is the reluctance of the **whole** flux path (see *Induced EMF and inductance → Mutual inductance*).
+
+1. The core has one window, so the flux has only one path: round all four arms in series.
+2. The total reluctance $S = S_{vertical} + S_{vertical} + S_{horizontal} + S_{horizontal}$ is the same wherever the coils sit on that path.
+3. Moving both coils to the horizontal arms changes neither $N_1$, $N_2$ nor $S$.
+4. So $M$ stays the same.
+
+**Trap:** the smaller area of the horizontal arms tempts you to say "halved", but the flux passes through both kinds of arm in either case.
+
+**Answer: (B).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2009-14', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The single phase, 50 Hz, iron core transformer in the circuit has both the vertical arms of cross sectional area 20 cm² and both the horizontal arms of...'), stem_md = 'The single phase, 50 Hz, iron core transformer in the circuit has both the vertical arms of cross sectional area 20 cm² and both the horizontal arms of cross sectional area 10 cm². If the two windings shown were wound instead on opposite horizontal arms, the mutual inductance will
+
+![A single-window iron core; one winding on each of the two vertical arms](fig:q-gate2009-q14)
+', solution_md = '**Idea used:** for two coils on one closed core (no leakage), $M = \dfrac{N_1 N_2}{S}$, where $S$ is the reluctance of the **whole** flux path (see *Induced EMF and inductance → Mutual inductance*).
+
+1. The core has one window, so the flux has only one path: round all four arms in series.
+2. The total reluctance $S = S_{vertical} + S_{vertical} + S_{horizontal} + S_{horizontal}$ is the same wherever the coils sit on that path.
+3. Moving both coils to the horizontal arms changes neither $N_1$, $N_2$ nor $S$.
+4. So $M$ stays the same.
+
+**Trap:** the smaller area of the horizontal arms tempts you to say "halved", but the flux passes through both kinds of arm in either case.
+
+**Answer: (B).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2009-14', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2009'), '14', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'double', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'remain same', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'be halved', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'become one quarter', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2009-q14', '<svg xmlns="http://www.w3.org/2000/svg" width="280" viewBox="0 0 280 160">
+<rect x="40" y="20" width="200" height="120" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<rect x="64" y="44" width="152" height="72" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M40,45 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 " stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M240,45 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 " stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="10" y1="45" x2="40" y2="45" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="10" y1="115" x2="40" y2="115" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="240" y1="45" x2="270" y2="45" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="240" y1="115" x2="270" y2="115" stroke="currentColor" fill="none" stroke-width="1.6"/>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-magnetic-circuit');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-magnetic-circuit';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2019-44';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2019', '44')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The magnetic circuit shown below has uniform cross-sectional area and air gap of 0.2 cm. The mean path length of the core is 40 cm. Assume that leakage and...', 'The magnetic circuit shown below has uniform cross-sectional area and air gap of 0.2 cm. The mean path length of the core is 40 cm. Assume that leakage and fringing fluxes are negligible. When the core relative permeability is assumed to be infinite, the magnetic flux density computed in the air gap is 1 tesla. With same Ampere-turns, if the core relative permeability is assumed to be 1000 (linear), the flux density in tesla (round off to three decimal places) calculated in the air gap is ______.
+
+![A square core 10 cm by 10 cm (mean path 40 cm) with a coil carrying I on the left limb and an air gap of 0.2 cm in the right limb](fig:q-gate2019-q44)
+', '**Idea used:** same MMF, so $B$ falls in the ratio of the total "air length" $l_g + l_i/\mu_r$ (see *The magnetic circuit and reluctance → Worked example 4*).
+
+```example Working
+:::given $l_g = \given{0.2\ \text{cm}}$, $l_i = \given{40\ \text{cm}}$, $B_{\infty} = \given{1\ \text{T}}$, $\mu_r = \given{1000}$
+:::find new gap flux density $B$
+:::step Iron''s equivalent air length. $\fx{l_i / \mu_r}$
+$40 \div 1000 = 0.04\ \text{cm}$
+:::step Total air length with real iron.
+$0.2 + 0.04 = 0.24\ \text{cm}$
+:::step Same MMF, so $B$ is inversely proportional to the air length.
+$B = 1 \times 0.2 \div 0.24$
+$= 20 \div 24 = 5 \div 6$
+$= 0.833\ \text{T}$
+:::answer $\ans{B \approx 0.833\ \text{T}}$
+```
+
+(Taking the iron path as 40 − 0.2 = 39.8 cm gives 0.8340 T; both round to about 0.833 to 0.834.) Option C comes from adding the iron as $l_i/\mu_r$ in metres but the gap in cm; D is $1 - 0.833$.
+
+**Answer: 0.833 T.** *(Our solution.)*
+', 'READY', 'NAT', 0.83, 0.84, 2, 'UNVERIFIED', 'gate-2019-44', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The magnetic circuit shown below has uniform cross-sectional area and air gap of 0.2 cm. The mean path length of the core is 40 cm. Assume that leakage and...'), stem_md = 'The magnetic circuit shown below has uniform cross-sectional area and air gap of 0.2 cm. The mean path length of the core is 40 cm. Assume that leakage and fringing fluxes are negligible. When the core relative permeability is assumed to be infinite, the magnetic flux density computed in the air gap is 1 tesla. With same Ampere-turns, if the core relative permeability is assumed to be 1000 (linear), the flux density in tesla (round off to three decimal places) calculated in the air gap is ______.
+
+![A square core 10 cm by 10 cm (mean path 40 cm) with a coil carrying I on the left limb and an air gap of 0.2 cm in the right limb](fig:q-gate2019-q44)
+', solution_md = '**Idea used:** same MMF, so $B$ falls in the ratio of the total "air length" $l_g + l_i/\mu_r$ (see *The magnetic circuit and reluctance → Worked example 4*).
+
+```example Working
+:::given $l_g = \given{0.2\ \text{cm}}$, $l_i = \given{40\ \text{cm}}$, $B_{\infty} = \given{1\ \text{T}}$, $\mu_r = \given{1000}$
+:::find new gap flux density $B$
+:::step Iron''s equivalent air length. $\fx{l_i / \mu_r}$
+$40 \div 1000 = 0.04\ \text{cm}$
+:::step Total air length with real iron.
+$0.2 + 0.04 = 0.24\ \text{cm}$
+:::step Same MMF, so $B$ is inversely proportional to the air length.
+$B = 1 \times 0.2 \div 0.24$
+$= 20 \div 24 = 5 \div 6$
+$= 0.833\ \text{T}$
+:::answer $\ans{B \approx 0.833\ \text{T}}$
+```
+
+(Taking the iron path as 40 − 0.2 = 39.8 cm gives 0.8340 T; both round to about 0.833 to 0.834.) Option C comes from adding the iron as $l_i/\mu_r$ in metres but the gap in cm; D is $1 - 0.833$.
+
+**Answer: 0.833 T.** *(Our solution.)*
+', status = 'READY', answer_type = 'NAT', nat_min = 0.83, nat_max = 0.84, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2019-44', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2019'), '44', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.833', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.000', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.995', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.167', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2019-q44', '<svg xmlns="http://www.w3.org/2000/svg" width="330" viewBox="0 0 330 245">
+<path d="M60,30 H250 V118 M250,128 V230 H60 V30" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M90,60 H220 V118 M220,128 V200 H90 V60" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="220" y1="118" x2="250" y2="118" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="220" y1="128" x2="250" y2="128" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M75,45 H235 V215 H75 Z" stroke="currentColor" fill="none" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<path d="M60,80 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 " stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="30" y1="80" x2="60" y2="80" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="30" y1="170" x2="60" y2="170" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="52.0,80.0 46.0,77.0 46.0,83.0" fill="currentColor"/>
+<text x="36.0" y="72.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-style="italic">I</text>
+<text x="272.0" y="127.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">0.2 cm</text>
+<text x="155.0" y="18.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">10 cm (mean)</text>
+<text x="26.0" y="135.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">10 cm</text>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-magnetic-circuit');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-bh-hysteresis';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2017-15';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2017', '15')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Soft magnetic materials should have', 'Soft magnetic materials should have
+', '**Idea used:** soft materials are for cores (see *B-H curve, saturation and hysteresis → Soft and hard magnetic materials*).
+
+A core must carry a lot of flux (large saturation flux density, i.e. large saturation magnetisation) from a small current (large permeability), with a narrow loop (low loss).
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2017-15', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Soft magnetic materials should have'), stem_md = 'Soft magnetic materials should have
+', solution_md = '**Idea used:** soft materials are for cores (see *B-H curve, saturation and hysteresis → Soft and hard magnetic materials*).
+
+A core must carry a lot of flux (large saturation flux density, i.e. large saturation magnetisation) from a small current (large permeability), with a narrow loop (low loss).
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2017-15', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2017'), '15', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'Large saturation magnetization and large permeability', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Low saturation magnetization and large permeability', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Large saturation magnetization and low permeability', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Low saturation magnetization and low permeability', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-bh-hysteresis');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-bh-hysteresis';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2019-150';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2019', '150')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Statement (I): Soft magnetic materials, both metallic and ceramic are used for making transformers core, whereas, hard magnetic materials both metallic and...', '**Statement (I):** Soft magnetic materials, both metallic and ceramic are used for making transformers core, whereas, hard magnetic materials both metallic and ceramic are used for making permanent magnets.
+
+**Statement (II):** Magnetic materials, both metallic and ceramic are classified as soft or hard according to the magnetic hysteresis loop being narrow or broad.
+', '**Idea used:** the shape of the hysteresis loop decides the use (see *B-H curve, saturation and hysteresis → Soft and hard magnetic materials*).
+
+**Statement (I):** true. Soft materials (silicon steel, soft ferrites) make cores; hard ones (alnico, hard ferrites) make permanent magnets.
+
+**Statement (II):** true. Narrow loop = soft, broad loop = hard.
+
+**Is (II) the reason for (I)?** Yes. A narrow loop means low hysteresis loss and easy magnetising/demagnetising: right for a core that is magnetised 50 times a second. A broad loop means high retentivity and coercivity: right for a magnet that must keep its magnetism.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2019-150', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Statement (I): Soft magnetic materials, both metallic and ceramic are used for making transformers core, whereas, hard magnetic materials both metallic and...'), stem_md = '**Statement (I):** Soft magnetic materials, both metallic and ceramic are used for making transformers core, whereas, hard magnetic materials both metallic and ceramic are used for making permanent magnets.
+
+**Statement (II):** Magnetic materials, both metallic and ceramic are classified as soft or hard according to the magnetic hysteresis loop being narrow or broad.
+', solution_md = '**Idea used:** the shape of the hysteresis loop decides the use (see *B-H curve, saturation and hysteresis → Soft and hard magnetic materials*).
+
+**Statement (I):** true. Soft materials (silicon steel, soft ferrites) make cores; hard ones (alnico, hard ferrites) make permanent magnets.
+
+**Statement (II):** true. Narrow loop = soft, broad loop = hard.
+
+**Is (II) the reason for (I)?** Yes. A narrow loop means low hysteresis loss and easy magnetising/demagnetising: right for a core that is magnetised 50 times a second. A broad loop means high retentivity and coercivity: right for a magnet that must keep its magnetism.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2019-150', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2019'), '150', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'Both Statement (I) and Statement (II) are individually true and Statement (II) is the correct explanation of Statement (I)', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Both Statement (I) and Statement (II) are individually true but Statement (II) is not the correct explanation of Statement (I)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Statement (I) is true but Statement (II) is false', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Statement (I) is false but Statement (II) is true', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-bh-hysteresis');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-bh-hysteresis';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2024-31';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2024', '31')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'What are the important characteristics that must be satisfied for the materials used to build permanent magnets?', 'What are the important characteristics that must be satisfied for the materials used to build permanent magnets?
+', '**Idea used:** hard magnetic materials (see *B-H curve, saturation and hysteresis → Soft and hard magnetic materials* and *Curie temperature*).
+
+A permanent magnet must resist being demagnetised (**high coercive force**) and must keep its magnetism when warm (**high Curie temperature**). Hard materials have a broad loop and **low** permeability.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2024-31', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'What are the important characteristics that must be satisfied for the materials used to build permanent magnets?'), stem_md = 'What are the important characteristics that must be satisfied for the materials used to build permanent magnets?
+', solution_md = '**Idea used:** hard magnetic materials (see *B-H curve, saturation and hysteresis → Soft and hard magnetic materials* and *Curie temperature*).
+
+A permanent magnet must resist being demagnetised (**high coercive force**) and must keep its magnetism when warm (**high Curie temperature**). Hard materials have a broad loop and **low** permeability.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2024-31', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2024'), '31', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'Low permeability, high coercive force and high Curie temperature', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Low permeability, high coercive force and low Curie temperature', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'High permeability, high coercive force and high Curie temperature', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'High permeability, low coercive force and low Curie temperature', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-bh-hysteresis');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-bh-hysteresis';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2024-32';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2024', '32')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'What are the important characteristics that must be satisfied for the materials used to build core of the transformer?', 'What are the important characteristics that must be satisfied for the materials used to build core of the transformer?
+', '**Idea used:** what a transformer core material needs (see *B-H curve, saturation and hysteresis → Soft and hard magnetic materials*).
+
+High permeability (small magnetising current) and **low** core losses (both hysteresis and eddy current). Any option with a "high" loss is wrong.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2024-32', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'What are the important characteristics that must be satisfied for the materials used to build core of the transformer?'), stem_md = 'What are the important characteristics that must be satisfied for the materials used to build core of the transformer?
+', solution_md = '**Idea used:** what a transformer core material needs (see *B-H curve, saturation and hysteresis → Soft and hard magnetic materials*).
+
+High permeability (small magnetising current) and **low** core losses (both hysteresis and eddy current). Any option with a "high" loss is wrong.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2024-32', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2024'), '32', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'High permeability, low hysteresis and high eddy current losses', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'High permeability, low hysteresis and eddy current losses', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'High permeability, high hysteresis and eddy current losses', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Low permeability, low coercive force and low Curie temperature', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-bh-hysteresis');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-bh-hysteresis';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2017-32';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2017', '32')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'The phenomenon of magnetostriction occurs when a ferromagnetic substance is magnetized resulting in', 'The phenomenon of magnetostriction occurs when a ferromagnetic substance is magnetized resulting in
+', '**Idea used:** definition of magnetostriction (see *B-H curve, saturation and hysteresis → Magnetostriction*).
+
+Magnetostriction is the small change in the dimensions (length) of a ferromagnetic material when it is magnetised. It is the cause of transformer hum.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2017-32', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The phenomenon of magnetostriction occurs when a ferromagnetic substance is magnetized resulting in'), stem_md = 'The phenomenon of magnetostriction occurs when a ferromagnetic substance is magnetized resulting in
+', solution_md = '**Idea used:** definition of magnetostriction (see *B-H curve, saturation and hysteresis → Magnetostriction*).
+
+Magnetostriction is the small change in the dimensions (length) of a ferromagnetic material when it is magnetised. It is the cause of transformer hum.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2017-32', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2017'), '32', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'Heating', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Small changes in its dimensions', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Small changes in its crystal structure', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Some change in its mechanical properties', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-bh-hysteresis');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-bh-hysteresis';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2025-19';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2025', '19')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'When a ferromagnetic substance is magnetized, there are small changes in its dimensions. The phenomenon is known as', 'When a ferromagnetic substance is magnetized, there are small changes in its dimensions. The phenomenon is known as
+', '**Idea used:** see *B-H curve, saturation and hysteresis → Magnetostriction*. "Magneto" (magnetic) + "striction" (squeezing): change of size on magnetising.
+
+**Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2025-19', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'When a ferromagnetic substance is magnetized, there are small changes in its dimensions. The phenomenon is known as'), stem_md = 'When a ferromagnetic substance is magnetized, there are small changes in its dimensions. The phenomenon is known as
+', solution_md = '**Idea used:** see *B-H curve, saturation and hysteresis → Magnetostriction*. "Magneto" (magnetic) + "striction" (squeezing): change of size on magnetising.
+
+**Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2025-19', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2025'), '19', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'deformation', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'polarization', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'magnetostriction', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'magnetization', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-bh-hysteresis');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-bh-hysteresis';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2020-109';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2020', '109')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'The degree of humming level of the noise caused in the transformers may be reduced by', 'The degree of humming level of the noise caused in the transformers may be reduced by
+', '**Idea used:** hum comes from magnetostriction; reduce it by lower flux density and tight clamping (see *B-H curve, saturation and hysteresis → Magnetostriction: why transformers hum*).
+
+- (A) magnetostriction is the **cause** of hum, not the cure.
+- (B) a higher flux density makes the hum **louder**.
+- (D) oil quality does not affect the vibration of the core.
+- (C) tight clamps stop the laminations from vibrating and rattling.
+
+**Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2020-109', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The degree of humming level of the noise caused in the transformers may be reduced by'), stem_md = 'The degree of humming level of the noise caused in the transformers may be reduced by
+', solution_md = '**Idea used:** hum comes from magnetostriction; reduce it by lower flux density and tight clamping (see *B-H curve, saturation and hysteresis → Magnetostriction: why transformers hum*).
+
+- (A) magnetostriction is the **cause** of hum, not the cure.
+- (B) a higher flux density makes the hum **louder**.
+- (D) oil quality does not affect the vibration of the core.
+- (C) tight clamps stop the laminations from vibrating and rattling.
+
+**Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2020-109', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2020'), '109', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'Magnetostriction', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'High flux density in core', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Tightening of core by clamps', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Quality of transformer oil', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-bh-hysteresis');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-bh-hysteresis';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2023-87';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2023', '87')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'The objectionable audible humming sound in the core of the transformer due to magnetostriction is minimized by', 'The objectionable audible humming sound in the core of the transformer due to magnetostriction is minimized by
+', '**Idea used:** magnetostriction grows with the flux density (see *B-H curve, saturation and hysteresis → Magnetostriction: why transformers hum*).
+
+Working the core at a lower flux density means less stretching and shrinking in each cycle, so less hum. Stacked laminations and silicon steel are there to cut core loss, not hum.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2023-87', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The objectionable audible humming sound in the core of the transformer due to magnetostriction is minimized by'), stem_md = 'The objectionable audible humming sound in the core of the transformer due to magnetostriction is minimized by
+', solution_md = '**Idea used:** magnetostriction grows with the flux density (see *B-H curve, saturation and hysteresis → Magnetostriction: why transformers hum*).
+
+Working the core at a lower flux density means less stretching and shrinking in each cycle, so less hum. Stacked laminations and silicon steel are there to cut core loss, not hum.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2023-87', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2023'), '87', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'decreasing flux density', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'increasing flux density', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'use of stacking laminations', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'use of silicon-steel sheets', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-bh-hysteresis');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-induced-emf';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-1998-faraday-lenz';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-1998', '~faraday-lenz')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'The laws of electromagnetic induction (Faraday''s and Lenz''s law) are summarized in the following equation:', 'The laws of electromagnetic induction (Faraday''s and Lenz''s law) are summarized in the following equation:
+', '**Idea used:** Faraday''s second law with Lenz''s minus sign (see *Induced EMF and inductance → Faraday''s laws and Lenz''s law*).
+
+The EMF equals the rate of change of flux linkage $\lambda = N\phi$ (Faraday); the minus sign says it opposes the change (Lenz): $e = -\dfrac{d\lambda}{dt} = -N\dfrac{d\phi}{dt}$.
+
+*The examside page shows only the stem of this 1998 question, without its options. The four options here are ours, written around the standard answer.*
+
+**Answer: (A).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-1998-faraday-lenz', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The laws of electromagnetic induction (Faraday''s and Lenz''s law) are summarized in the following equation:'), stem_md = 'The laws of electromagnetic induction (Faraday''s and Lenz''s law) are summarized in the following equation:
+', solution_md = '**Idea used:** Faraday''s second law with Lenz''s minus sign (see *Induced EMF and inductance → Faraday''s laws and Lenz''s law*).
+
+The EMF equals the rate of change of flux linkage $\lambda = N\phi$ (Faraday); the minus sign says it opposes the change (Lenz): $e = -\dfrac{d\lambda}{dt} = -N\dfrac{d\phi}{dt}$.
+
+*The examside page shows only the stem of this 1998 question, without its options. The four options here are ours, written around the standard answer.*
+
+**Answer: (A).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-1998-faraday-lenz', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-1998'), '~faraday-lenz', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/the-laws-of-electromagnetic-induction-faradays-and-lenzs-law-gate-ee-1998-marks-1-5a9d8c26726a4.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$e = -\dfrac{d\lambda}{dt}$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$e = \lambda\,\dfrac{di}{dt}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$e = -\dfrac{d\phi}{d\lambda}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$e = \dfrac{1}{\lambda}\,\dfrac{d\phi}{dt}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-induced-emf');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-induced-emf';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2008-25';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2008', '25')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A coil of 300 turns is wound on a non-magnetic core having a mean circumference of 300 mm and a cross-sectional area of 300 mm². The inductance of the coil...', 'A coil of 300 turns is wound on a non-magnetic core having a mean circumference of 300 mm and a cross-sectional area of 300 mm². The inductance of the coil corresponding to a magnetizing current of 3 A will be (Given that $\mu_0 = 4\pi \times 10^{-7}$ H/m)
+', '**Idea used:** $L = \dfrac{\mu_0 N^2 A}{l}$ for a non-magnetic core; it does not depend on the current (see *Induced EMF and inductance → Inductance from the magnetic circuit*, Worked example 5).
+
+```example Working
+:::given $N = \given{300}$, $l = \given{300\ \text{mm}}$, $A = \given{300\ \text{mm}^2}$, $\mu_r = 1$
+:::find inductance $L$
+:::step SI units.
+$l = 0.3\ \text{m}$, $A = 300 \times 10^{-6} = 3 \times 10^{-4}\ \text{m}^2$
+:::step $N^2$.
+$300^2 = 90\,000 = 9 \times 10^{4}$
+:::step $\fx{L = \mu_0 N^2 A / l}$
+$N^2 A / l = 9 \times 10^{4} \times 3 \times 10^{-4} \div 0.3$
+$= 27 \div 0.3 = 90$
+$L = 4\pi \times 10^{-7} \times 90 = 360\pi \times 10^{-7}$
+$360 \times 3.14 = 1130.4$
+$L = 1130.4 \times 10^{-7} = 113.04 \times 10^{-6}\ \text{H}$
+:::answer $\ans{L = 113.04\ \mu\text{H}}$
+```
+
+The 3 A is not needed: with a non-magnetic core, $L$ is the same at every current. (The options use $\pi = 3.14$.) Option A forgets one factor of 3; C and D are a thousand times too big.
+
+**Answer: (B).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2008-25', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A coil of 300 turns is wound on a non-magnetic core having a mean circumference of 300 mm and a cross-sectional area of 300 mm². The inductance of the coil...'), stem_md = 'A coil of 300 turns is wound on a non-magnetic core having a mean circumference of 300 mm and a cross-sectional area of 300 mm². The inductance of the coil corresponding to a magnetizing current of 3 A will be (Given that $\mu_0 = 4\pi \times 10^{-7}$ H/m)
+', solution_md = '**Idea used:** $L = \dfrac{\mu_0 N^2 A}{l}$ for a non-magnetic core; it does not depend on the current (see *Induced EMF and inductance → Inductance from the magnetic circuit*, Worked example 5).
+
+```example Working
+:::given $N = \given{300}$, $l = \given{300\ \text{mm}}$, $A = \given{300\ \text{mm}^2}$, $\mu_r = 1$
+:::find inductance $L$
+:::step SI units.
+$l = 0.3\ \text{m}$, $A = 300 \times 10^{-6} = 3 \times 10^{-4}\ \text{m}^2$
+:::step $N^2$.
+$300^2 = 90\,000 = 9 \times 10^{4}$
+:::step $\fx{L = \mu_0 N^2 A / l}$
+$N^2 A / l = 9 \times 10^{4} \times 3 \times 10^{-4} \div 0.3$
+$= 27 \div 0.3 = 90$
+$L = 4\pi \times 10^{-7} \times 90 = 360\pi \times 10^{-7}$
+$360 \times 3.14 = 1130.4$
+$L = 1130.4 \times 10^{-7} = 113.04 \times 10^{-6}\ \text{H}$
+:::answer $\ans{L = 113.04\ \mu\text{H}}$
+```
+
+The 3 A is not needed: with a non-magnetic core, $L$ is the same at every current. (The options use $\pi = 3.14$.) Option A forgets one factor of 3; C and D are a thousand times too big.
+
+**Answer: (B).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2008-25', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2008'), '25', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '37.68 μH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '113.04 μH', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '37.68 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '113.04 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-induced-emf');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-induced-emf';
+  SELECT id INTO qid FROM question WHERE content_key = 'apgcl-2023-100';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('APGCL-2023', '100'), ('GATE-2004', '~long-solenoid')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The inductance of a long solenoid of length 1000 mm wound uniformly with 3000 turns on a cylindrical paper tube of 60 mm diameter is', 'The inductance of a long solenoid of length 1000 mm wound uniformly with 3000 turns on a cylindrical paper tube of 60 mm diameter is
+', '**Idea used:** long solenoid in air: $L = \dfrac{\mu_0 N^2 A}{l}$, $A = \dfrac{\pi d^2}{4}$ (a paper tube is non-magnetic) (see *Induced EMF and inductance → Inductance from the magnetic circuit*).
+
+```example Working
+:::given $l = \given{1000\ \text{mm}}$, $N = \given{3000}$, $d = \given{60\ \text{mm}}$
+:::find inductance $L$
+:::step SI units and area.
+$l = 1\ \text{m}$, $d = 0.06\ \text{m}$, radius $r = 0.03\ \text{m}$
+$A = \pi r^2 = \pi \times 0.0009 = 9\pi \times 10^{-4}\ \text{m}^2$
+:::step $N^2$.
+$3000^2 = 9 \times 10^{6}$
+:::step $\fx{L = \mu_0 N^2 A / l}$
+$L = 4\pi \times 10^{-7} \times 9 \times 10^{6} \times 9\pi \times 10^{-4} \div 1$
+$4 \times 9 \times 9 = 324$, and $\pi \times \pi = 9.87$
+$10^{-7} \times 10^{6} \times 10^{-4} = 10^{-5}$
+$L = 324 \times 9.87 \times 10^{-5} = 3198 \times 10^{-5}$
+$= 0.032\ \text{H} = 32\ \text{mH}$
+:::answer $\ans{L \approx 32\ \text{mH}}$
+```
+
+**Without a calculator:** $L = 324\pi^2 \times 10^{-5} \approx 324 \times 10 \times 10^{-5} \approx 0.032$ H. The options differ by factors of 10, so a rough value is enough.
+
+**Asked before:** GATE EE 2004 (1 mark), the same question.
+
+**Answer: (C).** *(Our solution; APSC key not yet in the dump.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'apgcl-2023-100', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The inductance of a long solenoid of length 1000 mm wound uniformly with 3000 turns on a cylindrical paper tube of 60 mm diameter is'), stem_md = 'The inductance of a long solenoid of length 1000 mm wound uniformly with 3000 turns on a cylindrical paper tube of 60 mm diameter is
+', solution_md = '**Idea used:** long solenoid in air: $L = \dfrac{\mu_0 N^2 A}{l}$, $A = \dfrac{\pi d^2}{4}$ (a paper tube is non-magnetic) (see *Induced EMF and inductance → Inductance from the magnetic circuit*).
+
+```example Working
+:::given $l = \given{1000\ \text{mm}}$, $N = \given{3000}$, $d = \given{60\ \text{mm}}$
+:::find inductance $L$
+:::step SI units and area.
+$l = 1\ \text{m}$, $d = 0.06\ \text{m}$, radius $r = 0.03\ \text{m}$
+$A = \pi r^2 = \pi \times 0.0009 = 9\pi \times 10^{-4}\ \text{m}^2$
+:::step $N^2$.
+$3000^2 = 9 \times 10^{6}$
+:::step $\fx{L = \mu_0 N^2 A / l}$
+$L = 4\pi \times 10^{-7} \times 9 \times 10^{6} \times 9\pi \times 10^{-4} \div 1$
+$4 \times 9 \times 9 = 324$, and $\pi \times \pi = 9.87$
+$10^{-7} \times 10^{6} \times 10^{-4} = 10^{-5}$
+$L = 324 \times 9.87 \times 10^{-5} = 3198 \times 10^{-5}$
+$= 0.032\ \text{H} = 32\ \text{mH}$
+:::answer $\ans{L \approx 32\ \text{mH}}$
+```
+
+**Without a calculator:** $L = 324\pi^2 \times 10^{-5} \approx 324 \times 10 \times 10^{-5} \approx 0.032$ H. The options differ by factors of 10, so a rough value is enough.
+
+**Asked before:** GATE EE 2004 (1 mark), the same question.
+
+**Answer: (C).** *(Our solution; APSC key not yet in the dump.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'apgcl-2023-100', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'APGCL-2023'), '100', qid, NULL, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2004'), '~long-solenoid', qid, 1, FALSE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3.2 μH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3.2 mH', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '32.0 mH', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '3.2 H', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-induced-emf');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-induced-emf';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2015-s2-q20';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2015', 'S2-Q20')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A circular turn of radius 1 m revolves at 60 rpm about its diameter aligned with the x-axis as shown in the figure. The value of $\mu0$ is $4\pi \times...', 'A circular turn of radius 1 m revolves at 60 rpm about its diameter aligned with the x-axis as shown in the figure. The value of $\mu_0$ is $4\pi \times 10^{-7}$ in SI unit. If a uniform magnetic field intensity $\vec{H} = 10^{7}\,\hat{z}$ A/m is applied, then the peak value of the induced voltage, $V_{turn}$ (in Volts), is ______.
+
+![A circular turn of radius 1 m turning about the x-axis (its diameter); uniform field H along z; output V_turn at the ends of the turn](fig:q-gate2015-s2-q20)
+', '**Idea used:** a coil turning in a uniform field: $E_m = NBA\omega$ (see *Induced EMF and inductance → A coil turning in a uniform field gives a sine wave*, Worked example 4).
+
+```example Working
+:::given $N = 1$, $r = \given{1\ \text{m}}$, speed $= \given{60\ \text{rpm}}$, $H = \given{10^{7}\ \text{A/m}}$
+:::find peak voltage $V_{turn}$
+:::step Field is given as H, in air: change to B. $\fx{B = \mu_0 H}$
+$B = 4\pi \times 10^{-7} \times 10^{7} = 4\pi\ \text{T}$
+:::step Area of the turn. $\fx{A = \pi r^2}$
+$A = \pi \times 1^2 = \pi\ \text{m}^2$
+:::step Angular speed.
+$60\ \text{rpm} = 1\ \text{rev/s}$, so $\omega = 2\pi\ \text{rad/s}$
+:::step Peak EMF. $\fx{E_m = NBA\omega}$
+$E_m = 1 \times 4\pi \times \pi \times 2\pi = 8\pi^3$
+$\pi^3 = 31.0$
+$E_m = 8 \times 31.0 = 248\ \text{V}$
+:::answer $\ans{V_{turn} \approx 248\ \text{V}}$
+```
+
+Option B forgets $\omega$ (divides by $2\pi$); D uses the diameter-swept area twice.
+
+**Answer: 248 V.**
+', 'READY', 'NAT', 246, 250, 2, 'OFFICIAL_KEY', 'gate-2015-s2-q20', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A circular turn of radius 1 m revolves at 60 rpm about its diameter aligned with the x-axis as shown in the figure. The value of $\mu0$ is $4\pi \times...'), stem_md = 'A circular turn of radius 1 m revolves at 60 rpm about its diameter aligned with the x-axis as shown in the figure. The value of $\mu_0$ is $4\pi \times 10^{-7}$ in SI unit. If a uniform magnetic field intensity $\vec{H} = 10^{7}\,\hat{z}$ A/m is applied, then the peak value of the induced voltage, $V_{turn}$ (in Volts), is ______.
+
+![A circular turn of radius 1 m turning about the x-axis (its diameter); uniform field H along z; output V_turn at the ends of the turn](fig:q-gate2015-s2-q20)
+', solution_md = '**Idea used:** a coil turning in a uniform field: $E_m = NBA\omega$ (see *Induced EMF and inductance → A coil turning in a uniform field gives a sine wave*, Worked example 4).
+
+```example Working
+:::given $N = 1$, $r = \given{1\ \text{m}}$, speed $= \given{60\ \text{rpm}}$, $H = \given{10^{7}\ \text{A/m}}$
+:::find peak voltage $V_{turn}$
+:::step Field is given as H, in air: change to B. $\fx{B = \mu_0 H}$
+$B = 4\pi \times 10^{-7} \times 10^{7} = 4\pi\ \text{T}$
+:::step Area of the turn. $\fx{A = \pi r^2}$
+$A = \pi \times 1^2 = \pi\ \text{m}^2$
+:::step Angular speed.
+$60\ \text{rpm} = 1\ \text{rev/s}$, so $\omega = 2\pi\ \text{rad/s}$
+:::step Peak EMF. $\fx{E_m = NBA\omega}$
+$E_m = 1 \times 4\pi \times \pi \times 2\pi = 8\pi^3$
+$\pi^3 = 31.0$
+$E_m = 8 \times 31.0 = 248\ \text{V}$
+:::answer $\ans{V_{turn} \approx 248\ \text{V}}$
+```
+
+Option B forgets $\omega$ (divides by $2\pi$); D uses the diameter-swept area twice.
+
+**Answer: 248 V.**
+', status = 'READY', answer_type = 'NAT', nat_min = 246, nat_max = 250, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate-2015-s2-q20', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2015'), 'S2-Q20', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '248', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '39.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '24.8', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '496', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2015-s2-q20', '<svg xmlns="http://www.w3.org/2000/svg" width="330" viewBox="0 0 330 260">
+<line x1="40" y1="150" x2="300" y2="150" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="304.0,150.0 298.0,147.0 298.0,153.0" fill="currentColor"/>
+<text x="300.0" y="136.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-style="italic">x</text>
+<line x1="70" y1="250" x2="70" y2="20" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="70.0,16.0 67.0,22.0 73.0,22.0" fill="currentColor"/>
+<text x="56.0" y="22.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-style="italic">z</text>
+<ellipse cx="170" cy="150" rx="58" ry="90" stroke="currentColor" fill="none" stroke-width="2"/>
+<line x1="228" y1="146" x2="250" y2="146" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="228" y1="156" x2="250" y2="156" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="252" cy="146" r="2.5" fill="currentColor"/>
+<circle cx="252" cy="156" r="2.5" fill="currentColor"/>
+<text x="258.0" y="132.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">Vturn</text>
+<line x1="170" y1="50" x2="170" y2="22" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="170.0,18.0 167.0,24.0 173.0,24.0" fill="currentColor"/>
+<text x="182.0" y="28.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">H</text>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-induced-emf');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-induced-emf';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2018-26';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2018', '26')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A transformer with toroidal core of permeability $\mu$ is shown in the figure. Assuming uniform flux density across the circular core cross-section of...', 'A transformer with toroidal core of permeability $\mu$ is shown in the figure. Assuming uniform flux density across the circular core cross-section of radius $r \ll R$, and neglecting any leakage flux, the best estimate for the mean radius $R$ is
+
+![Toroidal core of mean radius R and cross-section radius r; primary of N_P turns fed by v_P = V cos ωt draws i_P = I sin ωt; secondary of N_S turns is open (i_S = 0)](fig:q-gate2018-q26)
+', '**Idea used:** with the secondary open, the primary is just an inductor: $L = \dfrac{\mu N_P^2 A}{l}$, and the current amplitude is $I = V/(\omega L)$ (see *Induced EMF and inductance → Inductance from the magnetic circuit*).
+
+```example Working
+:::given toroid: mean path $l = 2\pi R$, area $A = \pi r^2$; $v_P = V\cos\omega t$, $i_P = I\sin\omega t$
+:::find mean radius $R$
+:::step Inductance of the primary. $\fx{L = \mu N_P^2 A / l}$
+$L = \mu N_P^2 \pi r^2 \div (2\pi R) = \dfrac{\mu N_P^2 r^2}{2R}$
+:::step For an inductor, $v = L\,di/dt$. With $i = I\sin\omega t$:
+$v = L I \omega \cos\omega t$, so $V = \omega L I$
+$L = \dfrac{V}{\omega I}$
+:::step Equate the two expressions for $L$.
+$\dfrac{\mu N_P^2 r^2}{2R} = \dfrac{V}{\omega I}$
+:::step Solve for $R$.
+$R = \dfrac{\mu N_P^2 r^2 \omega I}{2V}$
+:::answer $\ans{R = \dfrac{\mu I r^2 N_P^2 \omega}{2V}}$
+```
+
+**Check by units / limits:** a bigger current for the same voltage means a smaller inductance, i.e. a longer path (bigger $R$): $R \propto I/V$. Only B and D have $I$ on top, and B has $N_S$, which cannot matter with the secondary open.
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 3, 'OFFICIAL_KEY', 'gate-2018-26', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A transformer with toroidal core of permeability $\mu$ is shown in the figure. Assuming uniform flux density across the circular core cross-section of...'), stem_md = 'A transformer with toroidal core of permeability $\mu$ is shown in the figure. Assuming uniform flux density across the circular core cross-section of radius $r \ll R$, and neglecting any leakage flux, the best estimate for the mean radius $R$ is
+
+![Toroidal core of mean radius R and cross-section radius r; primary of N_P turns fed by v_P = V cos ωt draws i_P = I sin ωt; secondary of N_S turns is open (i_S = 0)](fig:q-gate2018-q26)
+', solution_md = '**Idea used:** with the secondary open, the primary is just an inductor: $L = \dfrac{\mu N_P^2 A}{l}$, and the current amplitude is $I = V/(\omega L)$ (see *Induced EMF and inductance → Inductance from the magnetic circuit*).
+
+```example Working
+:::given toroid: mean path $l = 2\pi R$, area $A = \pi r^2$; $v_P = V\cos\omega t$, $i_P = I\sin\omega t$
+:::find mean radius $R$
+:::step Inductance of the primary. $\fx{L = \mu N_P^2 A / l}$
+$L = \mu N_P^2 \pi r^2 \div (2\pi R) = \dfrac{\mu N_P^2 r^2}{2R}$
+:::step For an inductor, $v = L\,di/dt$. With $i = I\sin\omega t$:
+$v = L I \omega \cos\omega t$, so $V = \omega L I$
+$L = \dfrac{V}{\omega I}$
+:::step Equate the two expressions for $L$.
+$\dfrac{\mu N_P^2 r^2}{2R} = \dfrac{V}{\omega I}$
+:::step Solve for $R$.
+$R = \dfrac{\mu N_P^2 r^2 \omega I}{2V}$
+:::answer $\ans{R = \dfrac{\mu I r^2 N_P^2 \omega}{2V}}$
+```
+
+**Check by units / limits:** a bigger current for the same voltage means a smaller inductance, i.e. a longer path (bigger $R$): $R \propto I/V$. Only B and D have $I$ on top, and B has $N_S$, which cannot matter with the secondary open.
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'OFFICIAL_KEY', content_key = 'gate-2018-26', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2018'), '26', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$\dfrac{\mu V r^2 N_P^2\,\omega}{I}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$\dfrac{\mu I r^2 N_P N_S\,\omega}{V}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$\dfrac{\mu V r^2 N_P^2\,\omega}{2I}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$\dfrac{\mu I r^2 N_P^2\,\omega}{2V}$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2018-q26', '<svg xmlns="http://www.w3.org/2000/svg" width="400" viewBox="0 0 400 235">
+<circle cx="200" cy="120" r="95" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="200" cy="120" r="55" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="200" cy="120" r="75" stroke="currentColor" fill="none" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="200" y1="120" x2="253" y2="67" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="256.0,64.0 253.0,70.0 259.0,70.0" fill="currentColor"/>
+<text x="236.0" y="100.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-style="italic">R</text>
+<circle cx="200" cy="45" r="14" stroke="currentColor" fill="none" stroke-width="1.2"/>
+<text x="222.0" y="40.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">r</text>
+<line x1="151.1" y1="137.8" x2="107.9" y2="153.5" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="248.9" y1="102.2" x2="292.1" y2="86.5" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="149.1" y1="130.8" x2="104.1" y2="140.4" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="250.9" y1="109.2" x2="295.9" y2="99.6" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="148.1" y1="123.6" x2="102.2" y2="126.8" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="251.9" y1="116.4" x2="297.8" y2="113.2" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="148.1" y1="116.4" x2="102.2" y2="113.2" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="251.9" y1="123.6" x2="297.8" y2="126.8" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="149.1" y1="109.2" x2="104.1" y2="99.6" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="250.9" y1="130.8" x2="295.9" y2="140.4" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="151.1" y1="102.2" x2="107.9" y2="86.5" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="248.9" y1="137.8" x2="292.1" y2="153.5" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M107,95 H40 V185 H107" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="40" cy="140" r="13" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M31,140 q4.5,-8 9,0 t9,0" stroke="currentColor" fill="none" stroke-width="1.4"/>
+<text x="4.0" y="80.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">i_P = I sin ωt →</text>
+<text x="4.0" y="222.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">v_P = V cos ωt</text>
+<text x="30.0" y="100.0" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="currentColor">+</text>
+<text x="30.0" y="196.0" font-size="14" text-anchor="middle" dominant-baseline="middle" fill="currentColor">−</text>
+<text x="112.0" y="222.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">N_P</text>
+<path d="M293,95 H360 M293,170 H360" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<text x="300.0" y="82.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">i_S = 0</text>
+<text x="366.0" y="100.0" font-size="14" text-anchor="start" dominant-baseline="middle" fill="currentColor">+</text>
+<text x="366.0" y="176.0" font-size="14" text-anchor="start" dominant-baseline="middle" fill="currentColor">−</text>
+<text x="362.0" y="138.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">v_S</text>
+<text x="288.0" y="222.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">N_S</text>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-induced-emf');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-induced-emf';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2023-53';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2023', '53')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'When the winding c-d of the single-phase, 50 Hz, two winding transformer is supplied from an AC current source of frequency 50 Hz, the rated voltage of 200...', 'When the winding c-d of the single-phase, 50 Hz, two winding transformer is supplied from an AC current source of frequency 50 Hz, the rated voltage of 200 V (rms), 50 Hz is obtained at the open-circuited terminals a-b. The cross sectional area of the core is 5000 mm² and the average core length traversed by the mutual flux is 500 mm. The maximum allowable flux density in the core is $B_{max} = 1$ Wb/m² and the relative permeability of the core material is 5000. The leakage impedance of the winding a-b and winding c-d at 50 Hz are $(5 + j100\pi \times 0.16)\ \Omega$ and $(11.25 + j100\pi \times 0.36)\ \Omega$, respectively. Considering the magnetizing characteristics to be linear and neglecting core loss, the self-inductance of the winding a-b in millihenry is ______ (Round off to 1 decimal place).
+
+![Two-winding transformer: winding a-b on the left limb, open, giving 200 V at 50 Hz; winding c-d on the right limb fed by a 50 Hz AC current source](fig:q-gate2023-q53)
+', '**Idea used:** self-inductance of a winding = its share of the mutual (core) flux, $N^2/S$, **plus** its own leakage inductance (see *Induced EMF and inductance → Inductance from the magnetic circuit* and *EMF equation of a transformer*).
+
+```example Working
+:::given $V_{ab} = \given{200\ \text{V}}$ at $\given{50\ \text{Hz}}$, $A = \given{5000\ \text{mm}^2}$, $l = \given{500\ \text{mm}}$, $B_{max} = \given{1\ \text{T}}$, $\mu_r = \given{5000}$, leakage of a-b $= 0.16$ H
+:::find self-inductance of winding a-b
+:::step Rated voltage at the rated (maximum) flux density gives the turns. $\fx{E = 4.44 f N B_m A}$
+$A = 5000 \times 10^{-6} = 5 \times 10^{-3}\ \text{m}^2$
+$\Phi_m = 1 \times 5 \times 10^{-3} = 5 \times 10^{-3}\ \text{Wb}$
+$4.44 \times 50 \times 5 \times 10^{-3} = 1.11\ \text{V per turn}$
+$N_{ab} = 200 \div 1.11 = 180.2$
+:::step Reluctance of the core. $\fx{S = l / (\mu_0 \mu_r A)}$
+$\mu_0 \mu_r A = 4\pi \times 10^{-7} \times 5000 \times 5 \times 10^{-3} = \pi \times 10^{-5} = 3.1416 \times 10^{-5}$
+$S = 0.5 \div (3.1416 \times 10^{-5}) = 15\,915\ \text{AT/Wb}$
+:::step Magnetising (mutual-flux) inductance seen from a-b. $\fx{L_m = N^2 / S}$
+$N_{ab}^2 = 180.2^2 = 32\,465$
+$L_m = 32\,465 \div 15\,915 = 2.0399\ \text{H}$
+:::step Add the leakage inductance of a-b ($j100\pi \times 0.16$ means $\omega L_{leak}$ with $L_{leak} = 0.16$ H).
+$L_{ab} = 2.0399 + 0.16 = 2.1999\ \text{H}$
+:::answer $\ans{L_{ab} \approx 2199.9\ \text{mH}}$ (about 2200 mH)
+```
+
+Option B leaves out the leakage inductance; C adds the leakage of the **other** winding; D is the leakage alone. The current source on c-d and its leakage do not change the self-inductance of a-b.
+
+**Answer: about 2200 mH.** *(Our solution; the official range is not in our dump.)*
+', 'READY', 'NAT', 2195, 2205, 3, 'UNVERIFIED', 'gate-2023-53', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'When the winding c-d of the single-phase, 50 Hz, two winding transformer is supplied from an AC current source of frequency 50 Hz, the rated voltage of 200...'), stem_md = 'When the winding c-d of the single-phase, 50 Hz, two winding transformer is supplied from an AC current source of frequency 50 Hz, the rated voltage of 200 V (rms), 50 Hz is obtained at the open-circuited terminals a-b. The cross sectional area of the core is 5000 mm² and the average core length traversed by the mutual flux is 500 mm. The maximum allowable flux density in the core is $B_{max} = 1$ Wb/m² and the relative permeability of the core material is 5000. The leakage impedance of the winding a-b and winding c-d at 50 Hz are $(5 + j100\pi \times 0.16)\ \Omega$ and $(11.25 + j100\pi \times 0.36)\ \Omega$, respectively. Considering the magnetizing characteristics to be linear and neglecting core loss, the self-inductance of the winding a-b in millihenry is ______ (Round off to 1 decimal place).
+
+![Two-winding transformer: winding a-b on the left limb, open, giving 200 V at 50 Hz; winding c-d on the right limb fed by a 50 Hz AC current source](fig:q-gate2023-q53)
+', solution_md = '**Idea used:** self-inductance of a winding = its share of the mutual (core) flux, $N^2/S$, **plus** its own leakage inductance (see *Induced EMF and inductance → Inductance from the magnetic circuit* and *EMF equation of a transformer*).
+
+```example Working
+:::given $V_{ab} = \given{200\ \text{V}}$ at $\given{50\ \text{Hz}}$, $A = \given{5000\ \text{mm}^2}$, $l = \given{500\ \text{mm}}$, $B_{max} = \given{1\ \text{T}}$, $\mu_r = \given{5000}$, leakage of a-b $= 0.16$ H
+:::find self-inductance of winding a-b
+:::step Rated voltage at the rated (maximum) flux density gives the turns. $\fx{E = 4.44 f N B_m A}$
+$A = 5000 \times 10^{-6} = 5 \times 10^{-3}\ \text{m}^2$
+$\Phi_m = 1 \times 5 \times 10^{-3} = 5 \times 10^{-3}\ \text{Wb}$
+$4.44 \times 50 \times 5 \times 10^{-3} = 1.11\ \text{V per turn}$
+$N_{ab} = 200 \div 1.11 = 180.2$
+:::step Reluctance of the core. $\fx{S = l / (\mu_0 \mu_r A)}$
+$\mu_0 \mu_r A = 4\pi \times 10^{-7} \times 5000 \times 5 \times 10^{-3} = \pi \times 10^{-5} = 3.1416 \times 10^{-5}$
+$S = 0.5 \div (3.1416 \times 10^{-5}) = 15\,915\ \text{AT/Wb}$
+:::step Magnetising (mutual-flux) inductance seen from a-b. $\fx{L_m = N^2 / S}$
+$N_{ab}^2 = 180.2^2 = 32\,465$
+$L_m = 32\,465 \div 15\,915 = 2.0399\ \text{H}$
+:::step Add the leakage inductance of a-b ($j100\pi \times 0.16$ means $\omega L_{leak}$ with $L_{leak} = 0.16$ H).
+$L_{ab} = 2.0399 + 0.16 = 2.1999\ \text{H}$
+:::answer $\ans{L_{ab} \approx 2199.9\ \text{mH}}$ (about 2200 mH)
+```
+
+Option B leaves out the leakage inductance; C adds the leakage of the **other** winding; D is the leakage alone. The current source on c-d and its leakage do not change the self-inductance of a-b.
+
+**Answer: about 2200 mH.** *(Our solution; the official range is not in our dump.)*
+', status = 'READY', answer_type = 'NAT', nat_min = 2195, nat_max = 2205, difficulty = 3, answer_status = 'UNVERIFIED', content_key = 'gate-2023-53', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2023'), '53', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2199.8', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2039.8', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2359.8', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '160.0', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2023-q53', '<svg xmlns="http://www.w3.org/2000/svg" width="470" viewBox="0 0 470 185">
+<rect x="60" y="20" width="200" height="140" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<rect x="88" y="48" width="144" height="84" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M88,50 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 " stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M232,50 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 " stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="30" y1="50" x2="88" y2="50" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="30" y1="130" x2="88" y2="130" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="30" cy="50" r="3" fill="none" stroke="currentColor"/>
+<circle cx="30" cy="130" r="3" fill="none" stroke="currentColor"/>
+<text x="22.0" y="46.0" font-size="13" text-anchor="end" dominant-baseline="middle" fill="currentColor" font-style="italic">a</text>
+<text x="22.0" y="136.0" font-size="13" text-anchor="end" dominant-baseline="middle" fill="currentColor" font-style="italic">b</text>
+<text x="4.0" y="176.0" font-size="11" text-anchor="start" dominant-baseline="middle" fill="currentColor">Vab = 200 V, 50 Hz (open circuit)</text>
+<path d="M232,50 H300 V72 M300,108 V130 H232" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="300" cy="90" r="18" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="300" y1="102" x2="300" y2="80" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="300.0,77.0 297.0,83.0 303.0,83.0" fill="currentColor"/>
+<text x="305.0" y="44.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">c</text>
+<text x="305.0" y="144.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">d</text>
+<text x="324.0" y="90.0" font-size="11" text-anchor="start" dominant-baseline="middle" fill="currentColor">50 Hz, AC current source</text>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-induced-emf');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-induced-emf';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2009-53';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2009', '53')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Common Data for Questions 53 and 54: The circuit diagram shows a two-winding, lossless transformer with no leakage flux, excited from a current source,...', '**Common Data for Questions 53 and 54:** The circuit diagram shows a two-winding, lossless transformer with no leakage flux, excited from a current source, $i(t)$, whose waveform is also shown. The transformer has a magnetizing inductance of $400/\pi$ mH.
+
+![Current source i(t) on the primary of a 1:1 lossless transformer; the secondary goes to terminal A, a switch S and a 30 ohm resistor, and back to terminal B](fig:q-gate2009-q53a)
+
+![i(t): a triangular wave rising from 0 at t = 0 to +10 A at 5 ms, falling to −10 A at 15 ms, rising to +10 A at 25 ms](fig:q-gate2009-q53b)
+
+The peak voltage across A and B, with S open is
+', '**Idea used:** with S open the secondary carries no current, so all of $i(t)$ flows in the magnetising inductance: $v = L_m\,\dfrac{di}{dt}$; a 1:1 ratio puts the same voltage across A-B (see *Induced EMF and inductance → Self-inductance*).
+
+```example Working
+:::given $L_m = \given{400/\pi\ \text{mH}}$; $i$ changes by 10 A every 5 ms; ratio 1 : 1
+:::find peak voltage across A-B
+:::step Slope of the current (it is a straight line, so $di/dt$ is constant on each side).
+$di/dt = 10\ \text{A} \div 5\ \text{ms} = 10 \div 0.005 = 2000\ \text{A/s}$
+:::step Voltage across the magnetising inductance. $\fx{v = L\,di/dt}$
+$L_m = 400/\pi \times 10^{-3} = 0.4/\pi\ \text{H}$
+$v = (0.4/\pi) \times 2000 = 800/\pi\ \text{V}$
+:::step 1 : 1 transformer: same voltage on the secondary.
+$v_{AB} = 800/\pi\ \text{V}$ (a square wave of $\pm 800/\pi$ V)
+:::answer $\ans{v_{AB,peak} = 800/\pi\ \text{V}}$
+```
+
+**Trap:** the peak of the **current** (10 A) does not decide the voltage; the **slope** does.
+
+**Answer: (D).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2009-53', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Common Data for Questions 53 and 54: The circuit diagram shows a two-winding, lossless transformer with no leakage flux, excited from a current source,...'), stem_md = '**Common Data for Questions 53 and 54:** The circuit diagram shows a two-winding, lossless transformer with no leakage flux, excited from a current source, $i(t)$, whose waveform is also shown. The transformer has a magnetizing inductance of $400/\pi$ mH.
+
+![Current source i(t) on the primary of a 1:1 lossless transformer; the secondary goes to terminal A, a switch S and a 30 ohm resistor, and back to terminal B](fig:q-gate2009-q53a)
+
+![i(t): a triangular wave rising from 0 at t = 0 to +10 A at 5 ms, falling to −10 A at 15 ms, rising to +10 A at 25 ms](fig:q-gate2009-q53b)
+
+The peak voltage across A and B, with S open is
+', solution_md = '**Idea used:** with S open the secondary carries no current, so all of $i(t)$ flows in the magnetising inductance: $v = L_m\,\dfrac{di}{dt}$; a 1:1 ratio puts the same voltage across A-B (see *Induced EMF and inductance → Self-inductance*).
+
+```example Working
+:::given $L_m = \given{400/\pi\ \text{mH}}$; $i$ changes by 10 A every 5 ms; ratio 1 : 1
+:::find peak voltage across A-B
+:::step Slope of the current (it is a straight line, so $di/dt$ is constant on each side).
+$di/dt = 10\ \text{A} \div 5\ \text{ms} = 10 \div 0.005 = 2000\ \text{A/s}$
+:::step Voltage across the magnetising inductance. $\fx{v = L\,di/dt}$
+$L_m = 400/\pi \times 10^{-3} = 0.4/\pi\ \text{H}$
+$v = (0.4/\pi) \times 2000 = 800/\pi\ \text{V}$
+:::step 1 : 1 transformer: same voltage on the secondary.
+$v_{AB} = 800/\pi\ \text{V}$ (a square wave of $\pm 800/\pi$ V)
+:::answer $\ans{v_{AB,peak} = 800/\pi\ \text{V}}$
+```
+
+**Trap:** the peak of the **current** (10 A) does not decide the voltage; the **slope** does.
+
+**Answer: (D).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2009-53', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2009'), '53', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$400/\pi$ V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '800 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$4000/\pi$ V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$800/\pi$ V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2009-q53a', '<svg width="288" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-42.34599999999999 -117.5 250.17199999999997 141.4"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 2.3145824503884976e-15,-37.800000000000004 L 0,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0 -53.8 L 2.7 -46.8 L -2.7 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 18,-93.6 L 36,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 36.00000000000001,-93.60000000000001 L 36,-46.8 L 36,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 35.99999999999999,-0.0 L 18,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 54.00000000000001,-93.60000000000001 L 54,-64.8 L 52.537,-64.767 L 51.036,-64.666 L 49.528,-64.496 L 48.045,-64.258 L 46.618,-63.954 L 45.278,-63.586 L 44.053,-63.16 L 42.967,-62.68 L 42.046,-62.155 L 41.307,-61.592 L 40.766,-61 L 40.435,-60.388 L 40.321,-59.766 L 40.426,-59.143 L 40.748,-58.531 L 41.28,-57.937 L 42.011,-57.373 L 42.925,-56.846 L 44.004,-56.365 L 45.224,-55.936 L 46.56,-55.566 L 47.984,-55.259 L 49.465,-55.018 L 50.973,-54.845 L 52.475,-54.741 L 53.94,-54.706 L 55.337,-54.735 L 56.637,-54.826 L 57.812,-54.974 L 58.838,-55.172 L 59.692,-55.412 L 60.357,-55.688 L 60.819,-55.989 L 61.068,-56.307 L 61.099,-56.631 L 60.911,-56.951 L 60.508,-57.258 L 59.899,-57.542 L 59.096,-57.794 L 58.117,-58.005 L 56.981,-58.167 L 55.714,-58.275 L 54.341,-58.322 L 52.892,-58.305 L 51.397,-58.22 L 49.888,-58.067 L 48.396,-57.845 L 46.953,-57.556 L 45.59,-57.203 L 44.334,-56.79 L 43.213,-56.323 L 42.251,-55.809 L 41.466,-55.254 L 40.877,-54.668 L 40.495,-54.06 L 40.329,-53.439 L 40.381,-52.816 L 40.651,-52.2 L 41.134,-51.601 L 41.819,-51.029 L 42.691,-50.492 L 43.732,-49.999 L 44.92,-49.557 L 46.231,-49.173 L 47.636,-48.85 L 49.107,-48.593 L 50.611,-48.404 L 52.117,-48.284 L 53.594,-48.232 L 55.01,-48.246 L 56.336,-48.323 L 57.543,-48.457 L 58.607,-48.644 L 59.504,-48.875 L 60.216,-49.143 L 60.727,-49.439 L 61.028,-49.754 L 61.111,-50.077 L 60.976,-50.399 L 60.624,-50.71 L 60.063,-51 L 59.305,-51.26 L 58.366,-51.482 L 57.266,-51.656 L 56.028,-51.778 L 54.678,-51.84 L 53.245,-51.838 L 51.758,-51.77 L 50.249,-51.633 L 48.75,-51.428 L 47.293,-51.155 L 45.908,-50.817 L 44.624,-50.418 L 43.468,-49.963 L 42.466,-49.459 L 41.637,-48.914 L 41,-48.334 L 40.567,-47.73 L 40.348,-47.112 L 40.348,-46.488 L 40.567,-45.87 L 41,-45.266 L 41.637,-44.686 L 42.466,-44.141 L 43.468,-43.637 L 44.624,-43.182 L 45.908,-42.783 L 47.293,-42.445 L 48.75,-42.172 L 50.249,-41.967 L 51.758,-41.83 L 53.245,-41.762 L 54.678,-41.76 L 56.028,-41.822 L 57.266,-41.944 L 58.366,-42.118 L 59.305,-42.34 L 60.063,-42.6 L 60.624,-42.89 L 60.976,-43.201 L 61.111,-43.523 L 61.028,-43.846 L 60.727,-44.161 L 60.216,-44.457 L 59.504,-44.725 L 58.607,-44.956 L 57.543,-45.143 L 56.336,-45.277 L 55.01,-45.354 L 53.594,-45.368 L 52.117,-45.316 L 50.611,-45.196 L 49.107,-45.007 L 47.636,-44.75 L 46.231,-44.427 L 44.92,-44.043 L 43.732,-43.601 L 42.691,-43.108 L 41.819,-42.571 L 41.134,-41.999 L 40.651,-41.4 L 40.381,-40.784 L 40.329,-40.161 L 40.495,-39.54 L 40.877,-38.932 L 41.466,-38.346 L 42.251,-37.791 L 43.213,-37.277 L 44.334,-36.81 L 45.59,-36.397 L 46.953,-36.044 L 48.396,-35.755 L 49.888,-35.533 L 51.397,-35.38 L 52.892,-35.295 L 54.341,-35.278 L 55.714,-35.325 L 56.981,-35.433 L 58.117,-35.595 L 59.096,-35.806 L 59.899,-36.058 L 60.508,-36.342 L 60.911,-36.649 L 61.099,-36.969 L 61.068,-37.293 L 60.819,-37.611 L 60.357,-37.912 L 59.692,-38.188 L 58.838,-38.428 L 57.812,-38.626 L 56.637,-38.774 L 55.337,-38.865 L 53.94,-38.894 L 52.475,-38.859 L 50.973,-38.755 L 49.465,-38.582 L 47.984,-38.341 L 46.56,-38.034 L 45.224,-37.664 L 44.004,-37.235 L 42.925,-36.754 L 42.011,-36.227 L 41.28,-35.663 L 40.748,-35.069 L 40.426,-34.457 L 40.321,-33.834 L 40.435,-33.212 L 40.766,-32.6 L 41.307,-32.008 L 42.046,-31.445 L 42.967,-30.92 L 44.053,-30.44 L 45.278,-30.014 L 46.618,-29.646 L 48.045,-29.342 L 49.528,-29.104 L 51.036,-28.934 L 52.537,-28.833 L 54,-28.8 L 54,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 75.60000000000002,-93.60000000000001 L 75.6,-64.8 L 77.063,-64.767 L 78.564,-64.666 L 80.072,-64.496 L 81.555,-64.258 L 82.982,-63.954 L 84.322,-63.586 L 85.547,-63.16 L 86.633,-62.68 L 87.554,-62.155 L 88.293,-61.592 L 88.834,-61 L 89.165,-60.388 L 89.279,-59.766 L 89.174,-59.143 L 88.852,-58.531 L 88.32,-57.937 L 87.589,-57.373 L 86.675,-56.846 L 85.596,-56.365 L 84.376,-55.936 L 83.04,-55.566 L 81.616,-55.259 L 80.135,-55.018 L 78.627,-54.845 L 77.125,-54.741 L 75.66,-54.706 L 74.263,-54.735 L 72.963,-54.826 L 71.788,-54.974 L 70.762,-55.172 L 69.908,-55.412 L 69.243,-55.688 L 68.781,-55.989 L 68.532,-56.307 L 68.501,-56.631 L 68.689,-56.951 L 69.092,-57.258 L 69.701,-57.542 L 70.504,-57.794 L 71.483,-58.005 L 72.619,-58.167 L 73.886,-58.275 L 75.259,-58.322 L 76.708,-58.305 L 78.203,-58.22 L 79.712,-58.067 L 81.204,-57.845 L 82.647,-57.556 L 84.01,-57.203 L 85.266,-56.79 L 86.387,-56.323 L 87.349,-55.809 L 88.134,-55.254 L 88.723,-54.668 L 89.105,-54.06 L 89.271,-53.439 L 89.219,-52.816 L 88.949,-52.2 L 88.466,-51.601 L 87.781,-51.029 L 86.909,-50.492 L 85.868,-49.999 L 84.68,-49.557 L 83.369,-49.173 L 81.964,-48.85 L 80.493,-48.593 L 78.989,-48.404 L 77.483,-48.284 L 76.006,-48.232 L 74.59,-48.246 L 73.264,-48.323 L 72.057,-48.457 L 70.993,-48.644 L 70.096,-48.875 L 69.384,-49.143 L 68.873,-49.439 L 68.572,-49.754 L 68.489,-50.077 L 68.624,-50.399 L 68.976,-50.71 L 69.537,-51 L 70.295,-51.26 L 71.234,-51.482 L 72.334,-51.656 L 73.572,-51.778 L 74.922,-51.84 L 76.355,-51.838 L 77.842,-51.77 L 79.351,-51.633 L 80.85,-51.428 L 82.307,-51.155 L 83.692,-50.817 L 84.976,-50.418 L 86.132,-49.963 L 87.134,-49.459 L 87.963,-48.914 L 88.6,-48.334 L 89.033,-47.73 L 89.252,-47.112 L 89.252,-46.488 L 89.033,-45.87 L 88.6,-45.266 L 87.963,-44.686 L 87.134,-44.141 L 86.132,-43.637 L 84.976,-43.182 L 83.692,-42.783 L 82.307,-42.445 L 80.85,-42.172 L 79.351,-41.967 L 77.842,-41.83 L 76.355,-41.762 L 74.922,-41.76 L 73.572,-41.822 L 72.334,-41.944 L 71.234,-42.118 L 70.295,-42.34 L 69.537,-42.6 L 68.976,-42.89 L 68.624,-43.201 L 68.489,-43.523 L 68.572,-43.846 L 68.873,-44.161 L 69.384,-44.457 L 70.096,-44.725 L 70.993,-44.956 L 72.057,-45.143 L 73.264,-45.277 L 74.59,-45.354 L 76.006,-45.368 L 77.483,-45.316 L 78.989,-45.196 L 80.493,-45.007 L 81.964,-44.75 L 83.369,-44.427 L 84.68,-44.043 L 85.868,-43.601 L 86.909,-43.108 L 87.781,-42.571 L 88.466,-41.999 L 88.949,-41.4 L 89.219,-40.784 L 89.271,-40.161 L 89.105,-39.54 L 88.723,-38.932 L 88.134,-38.346 L 87.349,-37.791 L 86.387,-37.277 L 85.266,-36.81 L 84.01,-36.397 L 82.647,-36.044 L 81.204,-35.755 L 79.712,-35.533 L 78.203,-35.38 L 76.708,-35.295 L 75.259,-35.278 L 73.886,-35.325 L 72.619,-35.433 L 71.483,-35.595 L 70.504,-35.806 L 69.701,-36.058 L 69.092,-36.342 L 68.689,-36.649 L 68.501,-36.969 L 68.532,-37.293 L 68.781,-37.611 L 69.243,-37.912 L 69.908,-38.188 L 70.762,-38.428 L 71.788,-38.626 L 72.963,-38.774 L 74.263,-38.865 L 75.66,-38.894 L 77.125,-38.859 L 78.627,-38.755 L 80.135,-38.582 L 81.616,-38.341 L 83.04,-38.034 L 84.376,-37.664 L 85.596,-37.235 L 86.675,-36.754 L 87.589,-36.227 L 88.32,-35.663 L 88.852,-35.069 L 89.174,-34.457 L 89.279,-33.834 L 89.165,-33.212 L 88.834,-32.6 L 88.293,-32.008 L 87.554,-31.445 L 86.633,-30.92 L 85.547,-30.44 L 84.322,-30.014 L 82.982,-29.646 L 81.555,-29.342 L 80.072,-29.104 L 78.564,-28.934 L 77.063,-28.833 L 75.6,-28.8 L 75.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 75.60000000000002,-93.60000000000001 L 100.8,-93.6 L 126,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 126.00000000000001,-93.60000000000001 L 144,-93.6 L 162,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 162.0,-93.60000000000001 L 162,-90 M 165.6,-81.36 L 178.2,-61.2 M 162,-54 L 162,-50.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 162.0,-50.4 L 162,-43.2 L 171,-40.2 L 153,-34.2 L 171,-28.2 L 153,-22.2 L 171,-16.2 L 153,-10.2 L 162,-7.2 L 162,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 162.0,-0.0 L 118.8,-0 L 75.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="-21.599999999999994" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-21.599999999999994" dy="13">i(t)</tspan></text><text x="68.4" y="-117.39999999999999" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="68.4" dy="13">1 : 1</tspan></text><circle cx="162" cy="-85.68" r="4.32" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="162" cy="-58.32" r="4.32" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="181.79999999999998" y="-85.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="181.79999999999998" dy="13">S</tspan></text><text x="174.6" y="-38.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="174.6" dy="13">30 Ω</tspan></text><circle cx="126" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="126.00000000000001" y="-112.89999999999999" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="126.00000000000001" dy="13">A</tspan></text><circle cx="126" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><text x="126.00000000000001" y="-6.7" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="126.00000000000001" dy="13">B</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2009-q53b', '<svg xmlns="http://www.w3.org/2000/svg" width="380" viewBox="0 0 380 170">
+<line x1="46.0" y1="81.0" x2="333.0" y2="81.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="335.0,81.0 329.0,78.0 329.0,84.0" fill="currentColor"/>
+<line x1="46.0" y1="148.0" x2="46.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="46.0,6.0 43.0,12.0 49.0,12.0" fill="currentColor"/>
+<text x="341.0" y="81.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t (ms)</text>
+<text x="52.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">i(t) (A)</text>
+<text x="39.0" y="92.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="87.4" y1="78.0" x2="87.4" y2="84.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="87.4" y="94.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">5</text>
+<line x1="128.7" y1="78.0" x2="128.7" y2="84.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="128.7" y="94.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">10</text>
+<line x1="170.1" y1="78.0" x2="170.1" y2="84.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="170.1" y="94.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">15</text>
+<line x1="211.5" y1="78.0" x2="211.5" y2="84.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="211.5" y="94.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">20</text>
+<line x1="252.8" y1="78.0" x2="252.8" y2="84.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="252.8" y="94.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">25</text>
+<line x1="294.2" y1="78.0" x2="294.2" y2="84.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="294.2" y="94.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">30</text>
+<line x1="43.0" y1="28.5" x2="49.0" y2="28.5" stroke="currentColor" stroke-width="1.2"/>
+<text x="40.0" y="28.5" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">10</text>
+<line x1="43.0" y1="133.5" x2="49.0" y2="133.5" stroke="currentColor" stroke-width="1.2"/>
+<text x="40.0" y="133.5" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">−10</text>
+<line x1="87.4" y1="81.0" x2="87.4" y2="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="170.1" y1="81.0" x2="170.1" y2="133.5" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="252.8" y1="81.0" x2="252.8" y2="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<polyline points="46.0,81.0 87.4,28.5 170.1,133.5 252.8,28.5 310.7,102.0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>
+', 2) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-induced-emf');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-force-energy';
+  SELECT id INTO qid FROM question WHERE content_key = 'aegcl-2023-90';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('AEGCL-2023', '90')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'The force experienced by a conductor of length $L$ carrying a current of $i$ amp which is lying parallel to a magnetic field $B$ is', 'The force experienced by a conductor of length $L$ carrying a current of $i$ amp which is lying parallel to a magnetic field $B$ is
+', '**Idea used:** $F = BiL\sin\theta$, where θ is the angle between the conductor and the field (see *Force, torque and stored energy → Force on a current-carrying conductor*).
+
+Lying **parallel** to the field means $\theta = 0$, and $\sin 0 = 0$, so $F = 0$.
+
+**Answer: (A).** *(Our solution; APSC key not yet in the dump.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'aegcl-2023-90', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The force experienced by a conductor of length $L$ carrying a current of $i$ amp which is lying parallel to a magnetic field $B$ is'), stem_md = 'The force experienced by a conductor of length $L$ carrying a current of $i$ amp which is lying parallel to a magnetic field $B$ is
+', solution_md = '**Idea used:** $F = BiL\sin\theta$, where θ is the angle between the conductor and the field (see *Force, torque and stored energy → Force on a current-carrying conductor*).
+
+Lying **parallel** to the field means $\theta = 0$, and $\sin 0 = 0$, so $F = 0$.
+
+**Answer: (A).** *(Our solution; APSC key not yet in the dump.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'aegcl-2023-90', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'AEGCL-2023'), '90', qid, NULL, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'zero', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$BiL$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$BiL\sin\theta$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$BiL\cos\theta$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-force-energy');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-force-energy';
+  SELECT id INTO qid FROM question WHERE content_key = 'aegcl-2023-8';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('AEGCL-2023', '8')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'In an electromechanical energy conversion device, the developed torque depends upon', 'In an electromechanical energy conversion device, the developed torque depends upon
+', '**Idea used:** $T \propto F_s F_r \sin\delta$ (see *Force, torque and stored energy → Electromechanical energy conversion*).
+
+The torque needs both fields and the angle between them. Take away any one (no stator field, no rotor field, or δ = 0) and the torque is zero. Only (C) names all three.
+
+**Asked before:** UPRVUNL JE (Electrical) 2014, with the same four options.
+
+**Answer: (C).** *(Our solution; APSC key not yet in the dump.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'aegcl-2023-8', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'In an electromechanical energy conversion device, the developed torque depends upon'), stem_md = 'In an electromechanical energy conversion device, the developed torque depends upon
+', solution_md = '**Idea used:** $T \propto F_s F_r \sin\delta$ (see *Force, torque and stored energy → Electromechanical energy conversion*).
+
+The torque needs both fields and the angle between them. Take away any one (no stator field, no rotor field, or δ = 0) and the torque is zero. Only (C) names all three.
+
+**Asked before:** UPRVUNL JE (Electrical) 2014, with the same four options.
+
+**Answer: (C).** *(Our solution; APSC key not yet in the dump.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'aegcl-2023-8', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'AEGCL-2023'), '8', qid, NULL, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'stator field strength and torque angle', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'stator field strength and rotor field strength', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'stator field strength, rotor field strength and torque angle', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'stator field strength only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-force-energy');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-force-energy';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2007-77';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2007', '77')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Statement for Linked Answer Questions 76 & 77: An inductor designed with 400 turns coil wound on an iron core of 16 cm² cross sectional area and with a cut...', '**Statement for Linked Answer Questions 76 & 77:** An inductor designed with 400 turns coil wound on an iron core of 16 cm² cross sectional area and with a cut of an air gap length of 1 mm. The coil is connected to a 230 V, 50 Hz ac supply. Neglect coil resistance, core loss, iron reluctance and leakage inductance. ($\mu_0 = 4\pi \times 10^{-7}$ H/m)
+
+The average force on the core to reduce the air gap will be
+', '**Idea used:** pull across an air gap $F = \dfrac{B^2 A}{2\mu_0}$; with AC the **average** force is half the peak: $\dfrac{B_m^2 A}{4\mu_0}$ (see *Force, torque and stored energy → The pull of an electromagnet*). $B_m$ comes from the EMF equation.
+
+```example Working
+:::given $N = \given{400}$, $A = \given{16\ \text{cm}^2}$, $V = \given{230\ \text{V}}$, $f = \given{50\ \text{Hz}}$
+:::find average force $F$
+:::step Peak flux from the supply. $\fx{\Phi_m = V / (4.44 f N)}$
+$4.44 \times 50 \times 400 = 88\,800$
+$\Phi_m = 230 \div 88\,800 = 2.59 \times 10^{-3}\ \text{Wb}$
+:::step Peak flux density. $\fx{B_m = \Phi_m / A}$
+$B_m = 2.59 \times 10^{-3} \div (16 \times 10^{-4}) = 1.619\ \text{T}$
+:::step Average force. $\fx{F = B_m^2 A / (4\mu_0)}$
+$B_m^2 = 1.619^2 = 2.621$
+$B_m^2 A = 2.621 \times 16 \times 10^{-4} = 4.194 \times 10^{-3}$
+$4\mu_0 = 4 \times 12.566 \times 10^{-7} = 5.027 \times 10^{-6}$
+$F = 4.194 \times 10^{-3} \div (5.027 \times 10^{-6}) = 834\ \text{N}$
+:::answer $\ans{F \approx 832\ \text{N}}$ (834 with these roundings)
+```
+
+**Second way (co-energy):** $F = \tfrac12 I_{rms}^2 \dfrac{L}{l_g}$ with $L = 0.3217$ H and $I = 2.28$ A from Q.76: $0.5 \times 5.18 \times 321.7 \approx 833$ N.
+
+**Trap:** using the peak $B_m^2/(2\mu_0)$ without halving gives 1666 N (option B).
+
+**Answer: (A).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 3, 'UNVERIFIED', 'gate-2007-77', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Statement for Linked Answer Questions 76 & 77: An inductor designed with 400 turns coil wound on an iron core of 16 cm² cross sectional area and with a cut...'), stem_md = '**Statement for Linked Answer Questions 76 & 77:** An inductor designed with 400 turns coil wound on an iron core of 16 cm² cross sectional area and with a cut of an air gap length of 1 mm. The coil is connected to a 230 V, 50 Hz ac supply. Neglect coil resistance, core loss, iron reluctance and leakage inductance. ($\mu_0 = 4\pi \times 10^{-7}$ H/m)
+
+The average force on the core to reduce the air gap will be
+', solution_md = '**Idea used:** pull across an air gap $F = \dfrac{B^2 A}{2\mu_0}$; with AC the **average** force is half the peak: $\dfrac{B_m^2 A}{4\mu_0}$ (see *Force, torque and stored energy → The pull of an electromagnet*). $B_m$ comes from the EMF equation.
+
+```example Working
+:::given $N = \given{400}$, $A = \given{16\ \text{cm}^2}$, $V = \given{230\ \text{V}}$, $f = \given{50\ \text{Hz}}$
+:::find average force $F$
+:::step Peak flux from the supply. $\fx{\Phi_m = V / (4.44 f N)}$
+$4.44 \times 50 \times 400 = 88\,800$
+$\Phi_m = 230 \div 88\,800 = 2.59 \times 10^{-3}\ \text{Wb}$
+:::step Peak flux density. $\fx{B_m = \Phi_m / A}$
+$B_m = 2.59 \times 10^{-3} \div (16 \times 10^{-4}) = 1.619\ \text{T}$
+:::step Average force. $\fx{F = B_m^2 A / (4\mu_0)}$
+$B_m^2 = 1.619^2 = 2.621$
+$B_m^2 A = 2.621 \times 16 \times 10^{-4} = 4.194 \times 10^{-3}$
+$4\mu_0 = 4 \times 12.566 \times 10^{-7} = 5.027 \times 10^{-6}$
+$F = 4.194 \times 10^{-3} \div (5.027 \times 10^{-6}) = 834\ \text{N}$
+:::answer $\ans{F \approx 832\ \text{N}}$ (834 with these roundings)
+```
+
+**Second way (co-energy):** $F = \tfrac12 I_{rms}^2 \dfrac{L}{l_g}$ with $L = 0.3217$ H and $I = 2.28$ A from Q.76: $0.5 \times 5.18 \times 321.7 \approx 833$ N.
+
+**Trap:** using the peak $B_m^2/(2\mu_0)$ without halving gives 1666 N (option B).
+
+**Answer: (A).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'UNVERIFIED', content_key = 'gate-2007-77', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2007'), '77', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '832.29 N', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1666.22 N', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3332.47 N', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '6664.84 N', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-force-energy');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-force-energy';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2022-98';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2022', '98')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'If the magnetic core has a constant permeability by making air as media for a coil current and the resultant flux linkage, then', 'If the magnetic core has a constant permeability by making air as media for a coil current and the resultant flux linkage, then
+', '**Idea used:** constant permeability means a straight-line λ-i graph (see *Force, torque and stored energy → Energy and co-energy*).
+
+For a straight line through the origin, the area to the λ-axis (energy) and the area to the i-axis (co-energy) are two equal triangles: both are $\tfrac12 \lambda i = \tfrac12 L i^2$.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2022-98', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'If the magnetic core has a constant permeability by making air as media for a coil current and the resultant flux linkage, then'), stem_md = 'If the magnetic core has a constant permeability by making air as media for a coil current and the resultant flux linkage, then
+', solution_md = '**Idea used:** constant permeability means a straight-line λ-i graph (see *Force, torque and stored energy → Energy and co-energy*).
+
+For a straight line through the origin, the area to the λ-axis (energy) and the area to the i-axis (co-energy) are two equal triangles: both are $\tfrac12 \lambda i = \tfrac12 L i^2$.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2022-98', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2022'), '98', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'the energy and coenergy are equal', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'the energy is greater than the coenergy', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'the energy is less than the coenergy', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'the coenergy is not developed', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-force-energy');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-force-energy';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2025-18';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2025', '18')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The magnetic flux density on the surface of an iron face is 1.6 T, which is a typical saturation level value for ferromagnetic material. If the value of...', 'The magnetic flux density on the surface of an iron face is 1.6 T, which is a typical saturation level value for ferromagnetic material. If the value of $\mu_0$ is $4\pi \times 10^{-7}$ H/m, the force density on the iron face will be nearly
+', '**Idea used:** force per m² on an iron face $= \dfrac{B^2}{2\mu_0}$ (see *Force, torque and stored energy → The pull of an electromagnet*, Worked example 2).
+
+```example Working
+:::given $B = \given{1.6\ \text{T}}$
+:::find force density
+:::step Square B.
+$1.6^2 = 2.56$
+:::step $\fx{2\mu_0}$
+$2 \times 4\pi \times 10^{-7} = 8\pi \times 10^{-7} = 25.13 \times 10^{-7}$
+:::step Divide.
+$2.56 \div (25.13 \times 10^{-7}) = (2.56 \div 25.13) \times 10^{7}$
+$2.56 \div 25.13 = 0.102$
+$= 0.102 \times 10^{7} = 1.02 \times 10^{6}\ \text{N/m}^2$
+:::answer $\ans{\approx 1.0 \times 10^{6}\ \text{N/m}^2}$
+```
+
+**Without a calculator:** $25.13 \approx 10 \times 2.56$, so the answer is almost exactly $10^{-1} \times 10^{7} = 10^{6}$. Option C forgets the 2 in $2\mu_0$.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2025-18', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The magnetic flux density on the surface of an iron face is 1.6 T, which is a typical saturation level value for ferromagnetic material. If the value of...'), stem_md = 'The magnetic flux density on the surface of an iron face is 1.6 T, which is a typical saturation level value for ferromagnetic material. If the value of $\mu_0$ is $4\pi \times 10^{-7}$ H/m, the force density on the iron face will be nearly
+', solution_md = '**Idea used:** force per m² on an iron face $= \dfrac{B^2}{2\mu_0}$ (see *Force, torque and stored energy → The pull of an electromagnet*, Worked example 2).
+
+```example Working
+:::given $B = \given{1.6\ \text{T}}$
+:::find force density
+:::step Square B.
+$1.6^2 = 2.56$
+:::step $\fx{2\mu_0}$
+$2 \times 4\pi \times 10^{-7} = 8\pi \times 10^{-7} = 25.13 \times 10^{-7}$
+:::step Divide.
+$2.56 \div (25.13 \times 10^{-7}) = (2.56 \div 25.13) \times 10^{7}$
+$2.56 \div 25.13 = 0.102$
+$= 0.102 \times 10^{7} = 1.02 \times 10^{6}\ \text{N/m}^2$
+:::answer $\ans{\approx 1.0 \times 10^{6}\ \text{N/m}^2}$
+```
+
+**Without a calculator:** $25.13 \approx 10 \times 2.56$, so the answer is almost exactly $10^{-1} \times 10^{7} = 10^{6}$. Option C forgets the 2 in $2\mu_0$.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2025-18', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2025'), '18', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$0.25 \times 10^{6}$ N/m²', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$1.0 \times 10^{6}$ N/m²', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$2.0 \times 10^{6}$ N/m²', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$4.0 \times 10^{6}$ N/m²', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-force-energy');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-force-energy';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2026-43';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2026', '43')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The magnetic flux density on the surface of an iron face is 1.6 T, which is a typical saturation level value for ferromagnetic material. What is the force...', 'The magnetic flux density on the surface of an iron face is 1.6 T, which is a typical saturation level value for ferromagnetic material. What is the force density on the iron face?
+', '**Idea used:** force density $= \dfrac{B^2}{2\mu_0}$ (see *Force, torque and stored energy → The pull of an electromagnet*). The same numbers as ESE 2025 Q18.
+
+$\dfrac{1.6^2}{2 \times 4\pi \times 10^{-7}} = \dfrac{2.56}{25.13 \times 10^{-7}} \approx 1.02 \times 10^{6}$ N/m².
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2026-43', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The magnetic flux density on the surface of an iron face is 1.6 T, which is a typical saturation level value for ferromagnetic material. What is the force...'), stem_md = 'The magnetic flux density on the surface of an iron face is 1.6 T, which is a typical saturation level value for ferromagnetic material. What is the force density on the iron face?
+', solution_md = '**Idea used:** force density $= \dfrac{B^2}{2\mu_0}$ (see *Force, torque and stored energy → The pull of an electromagnet*). The same numbers as ESE 2025 Q18.
+
+$\dfrac{1.6^2}{2 \times 4\pi \times 10^{-7}} = \dfrac{2.56}{25.13 \times 10^{-7}} \approx 1.02 \times 10^{6}$ N/m².
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2026-43', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2026'), '43', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$1.6 \times 10^{6}$ N/m²', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$1.02 \times 10^{6}$ N/m²', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$1.02 \times 10^{7}$ N/m²', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$1.6 \times 10^{7}$ N/m²', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-force-energy');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-force-energy';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q42';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q42')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The flux linkage ($\lambda$) and current ($i$) relation for an electromagnetic system is $\lambda = (\sqrt{i})/g$. When $i = 2$ A and $g$ (air-gap length)...', 'The flux linkage ($\lambda$) and current ($i$) relation for an electromagnetic system is $\lambda = (\sqrt{i})/g$. When $i = 2$ A and
+$g$ (air-gap length) $= 10$ cm, the magnitude of mechanical force on the moving part, in N, is ________.
+', '**Idea used:** for a **non-linear** $\lambda$-$i$ relation, use co-energy $W'' = \displaystyle\int_0^i \lambda\,di$ and
+$F = \dfrac{\partial W''}{\partial g}$ at constant current. (Do not use $\tfrac12 Li^2$; that is only for linear systems.)
+
+1. $W'' = \displaystyle\int_0^i \frac{\sqrt{i}}{g}\,di = \frac{2}{3}\,\frac{i^{3/2}}{g}$.
+2. $F = \dfrac{\partial W''}{\partial g} = -\dfrac{2}{3}\,\dfrac{i^{3/2}}{g^2}$ (the minus sign means it pulls to close the gap).
+3. $i^{3/2} = 2\sqrt 2 \approx 2.828$; $g = 0.1$ m, $g^2 = 0.01$.
+4. $|F| = \dfrac{2}{3} \times \dfrac{2.828}{0.01} \approx 188.6$ N.
+
+**Without a calculator:** $\dfrac{2}{3} \times 282.8 \approx 188.6$. Slips: 282.8 N forgets the $2/3$; 94.3 N uses a linear-style
+factor $1/2$ on top; 0.019 N keeps $g = 10$ (cm) instead of 0.1 m.
+
+**Answer: about 188.6 N.**
+', 'READY', 'NAT', 186, 190, 3, 'OFFICIAL_KEY', 'gate2016-s2-q42', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The flux linkage ($\lambda$) and current ($i$) relation for an electromagnetic system is $\lambda = (\sqrt{i})/g$. When $i = 2$ A and $g$ (air-gap length)...'), stem_md = 'The flux linkage ($\lambda$) and current ($i$) relation for an electromagnetic system is $\lambda = (\sqrt{i})/g$. When $i = 2$ A and
+$g$ (air-gap length) $= 10$ cm, the magnitude of mechanical force on the moving part, in N, is ________.
+', solution_md = '**Idea used:** for a **non-linear** $\lambda$-$i$ relation, use co-energy $W'' = \displaystyle\int_0^i \lambda\,di$ and
+$F = \dfrac{\partial W''}{\partial g}$ at constant current. (Do not use $\tfrac12 Li^2$; that is only for linear systems.)
+
+1. $W'' = \displaystyle\int_0^i \frac{\sqrt{i}}{g}\,di = \frac{2}{3}\,\frac{i^{3/2}}{g}$.
+2. $F = \dfrac{\partial W''}{\partial g} = -\dfrac{2}{3}\,\dfrac{i^{3/2}}{g^2}$ (the minus sign means it pulls to close the gap).
+3. $i^{3/2} = 2\sqrt 2 \approx 2.828$; $g = 0.1$ m, $g^2 = 0.01$.
+4. $|F| = \dfrac{2}{3} \times \dfrac{2.828}{0.01} \approx 188.6$ N.
+
+**Without a calculator:** $\dfrac{2}{3} \times 282.8 \approx 188.6$. Slips: 282.8 N forgets the $2/3$; 94.3 N uses a linear-style
+factor $1/2$ on top; 0.019 N keeps $g = 10$ (cm) instead of 0.1 m.
+
+**Answer: about 188.6 N.**
+', status = 'READY', answer_type = 'NAT', nat_min = 186, nat_max = 190, difficulty = 3, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q42', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q42', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '188.6', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '282.8', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '94.3', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.019', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-force-energy');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-induced-emf';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q55';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q55')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A rotating conductor of 1 m length is placed in a radially outward (about the z-axis) magnetic flux density (B) of 1 Tesla as shown in figure below....', 'A rotating conductor of 1 m length is placed in a radially outward (about the z-axis) magnetic flux density (B) of 1 Tesla as shown in
+figure below. Conductor is parallel to and at 1 m distance from the z-axis. The speed of the conductor in r.p.m. required to induce a
+voltage of 1 V across it, should be __________.
+
+![A radial magnetic field of 1 T pointing outward from the z-axis, and a 1 m long conductor parallel to the z-axis at 1 m from it](fig:q-gate2016-s2-q55)
+', '**Idea used:** $e = Blv$. The conductor moves round the z-axis, so its speed is $v = \omega r$, which is at right angles to both
+the radial $B$ and the vertical conductor.
+
+1. $e = B l \omega r$: $1 = 1 \times 1 \times \omega \times 1$, so $\omega = 1$ rad/s.
+2. rpm $= \dfrac{60\omega}{2\pi} = \dfrac{60}{2\pi} \approx 9.55$.
+
+**Without a calculator:** $60/6.28 \approx 9.55$. Slips: 1 is the answer in rad/s, not rpm; 0.159 is revolutions per second;
+60 forgets the $2\pi$.
+
+**Answer: about 9.55 rpm.**
+', 'READY', 'NAT', 9.4, 9.7, 2, 'OFFICIAL_KEY', 'gate2016-s2-q55', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A rotating conductor of 1 m length is placed in a radially outward (about the z-axis) magnetic flux density (B) of 1 Tesla as shown in figure below....'), stem_md = 'A rotating conductor of 1 m length is placed in a radially outward (about the z-axis) magnetic flux density (B) of 1 Tesla as shown in
+figure below. Conductor is parallel to and at 1 m distance from the z-axis. The speed of the conductor in r.p.m. required to induce a
+voltage of 1 V across it, should be __________.
+
+![A radial magnetic field of 1 T pointing outward from the z-axis, and a 1 m long conductor parallel to the z-axis at 1 m from it](fig:q-gate2016-s2-q55)
+', solution_md = '**Idea used:** $e = Blv$. The conductor moves round the z-axis, so its speed is $v = \omega r$, which is at right angles to both
+the radial $B$ and the vertical conductor.
+
+1. $e = B l \omega r$: $1 = 1 \times 1 \times \omega \times 1$, so $\omega = 1$ rad/s.
+2. rpm $= \dfrac{60\omega}{2\pi} = \dfrac{60}{2\pi} \approx 9.55$.
+
+**Without a calculator:** $60/6.28 \approx 9.55$. Slips: 1 is the answer in rad/s, not rpm; 0.159 is revolutions per second;
+60 forgets the $2\pi$.
+
+**Answer: about 9.55 rpm.**
+', status = 'READY', answer_type = 'NAT', nat_min = 9.4, nat_max = 9.7, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q55', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q55', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '9.55', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '60', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.159', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q55', '<svg xmlns="http://www.w3.org/2000/svg" width="330" viewBox="0 0 330 220">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<line x1="160" y1="210" x2="160" y2="18" stroke="currentColor" fill="none" stroke-width="1.4"/>
+<polygon points="160.0,14.0 157.0,20.0 163.0,20.0" fill="currentColor"/>
+<text x="172.0" y="20.0" font-size="14" text-anchor="start" dominant-baseline="middle" fill="currentColor">z</text>
+<ellipse cx="160" cy="75" rx="110" ry="28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3"/>
+<line x1="201.6" y1="79.2" x2="238.5" y2="83.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="177.2" y1="85.2" x2="192.5" y2="94.4" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="142.8" y1="85.2" x2="127.5" y2="94.4" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="118.4" y1="79.2" x2="81.5" y2="83.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="118.4" y1="70.8" x2="81.5" y2="67.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="142.8" y1="64.8" x2="127.5" y2="55.6" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="177.2" y1="64.8" x2="192.5" y2="55.6" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="201.6" y1="70.8" x2="238.5" y2="67.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<ellipse cx="160" cy="160" rx="110" ry="28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3"/>
+<line x1="201.6" y1="164.2" x2="238.5" y2="168.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="177.2" y1="170.2" x2="192.5" y2="179.4" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="142.8" y1="170.2" x2="127.5" y2="179.4" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="118.4" y1="164.2" x2="81.5" y2="168.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="118.4" y1="155.8" x2="81.5" y2="152.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="142.8" y1="149.8" x2="127.5" y2="140.6" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="177.2" y1="149.8" x2="192.5" y2="140.6" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="201.6" y1="155.8" x2="238.5" y2="152.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<text x="175.0" y="72.0" font-size="15" text-anchor="start" dominant-baseline="middle" fill="currentColor">B</text>
+<line x1="262" y1="88" x2="262" y2="170" stroke="currentColor" stroke-width="5"/>
+<line x1="160" y1="170" x2="258" y2="170" stroke="currentColor" fill="none" stroke-width="1.4"/>
+<text x="210.0" y="188.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">1 m</text>
+<line x1="285" y1="88" x2="285" y2="170" stroke="currentColor" fill="none" stroke-width="1.4"/>
+<polygon points="285.0,88.0 282.0,94.0 288.0,94.0" fill="currentColor"/>
+<polygon points="285.0,170.0 282.0,164.0 288.0,164.0" fill="currentColor"/>
+<text x="292.0" y="134.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor">1 m</text>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-induced-emf');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-transformer-principle';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-1996-transformer-oil';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-1996', '~transformer-oil')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'The function of oil in a transformer is', 'The function of oil in a transformer is
+', '**Idea used:** parts of a transformer (see *The transformer: principle and construction → Parts of a transformer*).
+
+Transformer oil does two jobs: it **insulates** the windings from each other and from the tank and core, and it **cools** them by carrying heat to the tank walls and radiators. There is nothing to lubricate in a static machine.
+
+*The examside page shows only the stem of this 1996 question, without its options. The four options here are ours, written around the standard answer.*
+
+**Answer: (C).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-1996-transformer-oil', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The function of oil in a transformer is'), stem_md = 'The function of oil in a transformer is
+', solution_md = '**Idea used:** parts of a transformer (see *The transformer: principle and construction → Parts of a transformer*).
+
+Transformer oil does two jobs: it **insulates** the windings from each other and from the tank and core, and it **cools** them by carrying heat to the tank walls and radiators. There is nothing to lubricate in a static machine.
+
+*The examside page shows only the stem of this 1996 question, without its options. The four options here are ours, written around the standard answer.*
+
+**Answer: (C).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-1996-transformer-oil', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-1996'), '~transformer-oil', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/the-function-of-oil-in-a-transformer-is-1996-marks-1-pqw2uxi19sbdtrip.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'to provide insulation only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'to provide cooling only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'to provide insulation and cooling', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'to lubricate the core and the windings', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-transformer-principle');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-transformer-principle';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2018-88';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2018', '88')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'In a core-type single-phase transformer the steel-core is assembled by staggering butt-joints in adjacent layers of laminations. The purpose served is said...', 'In a core-type single-phase transformer the steel-core is assembled by staggering butt-joints in adjacent layers of laminations. The purpose served is said to be
+
+1. Avoiding continuous air-gap
+2. Preventing loss of mechanical strength
+3. Reducing eddy-current loss
+
+Which of the above statements are true?
+', '**Idea used:** joints in the core (see *The transformer: principle and construction → Joints in the core*).
+
+1. True: if all joints lined up, there would be one continuous air gap across the core, raising the reluctance and the magnetising current.
+2. True: overlapping (staggered) joints bind the layers together, so the core stays strong.
+3. False: eddy loss is cut by thin, insulated laminations and silicon steel, not by where the joints sit.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2018-88', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'In a core-type single-phase transformer the steel-core is assembled by staggering butt-joints in adjacent layers of laminations. The purpose served is said...'), stem_md = 'In a core-type single-phase transformer the steel-core is assembled by staggering butt-joints in adjacent layers of laminations. The purpose served is said to be
+
+1. Avoiding continuous air-gap
+2. Preventing loss of mechanical strength
+3. Reducing eddy-current loss
+
+Which of the above statements are true?
+', solution_md = '**Idea used:** joints in the core (see *The transformer: principle and construction → Joints in the core*).
+
+1. True: if all joints lined up, there would be one continuous air gap across the core, raising the reluctance and the magnetising current.
+2. True: overlapping (staggered) joints bind the layers together, so the core stays strong.
+3. False: eddy loss is cut by thin, insulated laminations and silicon steel, not by where the joints sit.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2018-88', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2018'), '88', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1 and 2 only', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1 and 3 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 and 3 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1, 2 and 3', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-transformer-principle');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-transformer-principle';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2023-91';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2023', '91')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'The magnetic cores of large transformers are built in stepped cores to', 'The magnetic cores of large transformers are built in stepped cores to
+', '**Idea used:** stepped core (see *The transformer: principle and construction → Stepped core*).
+
+A stepped core fills the round coil better than a square one. For the same iron area, the coil diameter (and so the mean length of each turn) is smaller: less copper, less copper loss. The core losses are not what it aims at.
+
+**Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2023-91', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The magnetic cores of large transformers are built in stepped cores to'), stem_md = 'The magnetic cores of large transformers are built in stepped cores to
+', solution_md = '**Idea used:** stepped core (see *The transformer: principle and construction → Stepped core*).
+
+A stepped core fills the round coil better than a square one. For the same iron area, the coil diameter (and so the mean length of each turn) is smaller: less copper, less copper loss. The core losses are not what it aims at.
+
+**Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2023-91', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2023'), '91', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'minimize the hysteresis loss', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'minimize the magnetizing loss', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'minimize the use of copper and decrease copper loss', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'minimize the eddy current loss', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-transformer-principle');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-emf-equation';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2021-89';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2021', '89')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A sinusoidal flux 0.02 Wb links with 55 turns of a transformer secondary. What is the rms value of the induced emf in the secondary, if the supply frequency...', 'A sinusoidal flux 0.02 Wb links with 55 turns of a transformer secondary. What is the rms value of the induced emf in the secondary, if the supply frequency is 50 Hz?
+', '**Idea used:** $E = 4.44 f N \Phi_m$ (see *EMF equation of a transformer*, Worked example 1).
+
+```example Working
+:::given $\Phi_m = \given{0.02\ \text{Wb}}$, $N = \given{55}$, $f = \given{50\ \text{Hz}}$
+:::find rms EMF $E$
+:::step $\fx{E = 4.44 f N \Phi_m}$. First $f \times \Phi_m$.
+$50 \times 0.02 = 1$
+:::step Multiply by 4.44 and by N.
+$E = 4.44 \times 55 = 244.2\ \text{V}$
+:::answer $\ans{E = 244.2\ \text{V}}$
+```
+
+**Without a calculator:** $50 \times 0.02 = 1$, so $E = 4.44 \times 55 = 222 + 22.2 = 244.2$ V.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2021-89', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A sinusoidal flux 0.02 Wb links with 55 turns of a transformer secondary. What is the rms value of the induced emf in the secondary, if the supply frequency...'), stem_md = 'A sinusoidal flux 0.02 Wb links with 55 turns of a transformer secondary. What is the rms value of the induced emf in the secondary, if the supply frequency is 50 Hz?
+', solution_md = '**Idea used:** $E = 4.44 f N \Phi_m$ (see *EMF equation of a transformer*, Worked example 1).
+
+```example Working
+:::given $\Phi_m = \given{0.02\ \text{Wb}}$, $N = \given{55}$, $f = \given{50\ \text{Hz}}$
+:::find rms EMF $E$
+:::step $\fx{E = 4.44 f N \Phi_m}$. First $f \times \Phi_m$.
+$50 \times 0.02 = 1$
+:::step Multiply by 4.44 and by N.
+$E = 4.44 \times 55 = 244.2\ \text{V}$
+:::answer $\ans{E = 244.2\ \text{V}}$
+```
+
+**Without a calculator:** $50 \times 0.02 = 1$, so $E = 4.44 \times 55 = 222 + 22.2 = 244.2$ V.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2021-89', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2021'), '89', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '244.2 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '334.2 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '414.2 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '504.2 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-emf-equation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-emf-equation';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2008-49';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2008', '49')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The core of a two-winding transformer is subjected to a magnetic flux variation as indicated in the figure. The induced emf ($e{rs}$) in the secondary...', 'The core of a two-winding transformer is subjected to a magnetic flux variation as indicated in the figure.
+
+![Core with a 100-turn winding (terminals p, q, dot at p) and a 200-turn winding (terminals r, s, dot at r)](fig:q-gate2008-q49)
+
+![Flux: rises in a straight line from 0 to 0.12 Wb in 1 s, stays at 0.12 Wb up to 2 s, falls to 0 at 2.5 s](fig:q-gate2008-q49-flux)
+
+The induced emf ($e_{rs}$) in the secondary winding as a function of time will be of the form
+', '**Idea used:** EMF = N × slope of the flux (see *EMF equation of a transformer → When the flux is not a sine wave*, Worked example 3).
+
+```example Working
+:::given $N_2 = \given{200}$; flux 0 → 0.12 Wb in 0–1 s; flat 1–2 s; 0.12 → 0 Wb in 2–2.5 s
+:::find $e_{rs}$ in each part
+:::step 0 to 1 s: slope of the flux.
+$0.12 \div 1 = 0.12\ \text{Wb/s}$
+$e = 200 \times 0.12 = 24\ \text{V}$
+:::step 1 to 2 s: flux constant.
+$e = 0$
+:::step 2 to 2.5 s: slope of the flux.
+$-0.12 \div 0.5 = -0.24\ \text{Wb/s}$
+$e = 200 \times (-0.24) = -48\ \text{V}$
+:::answer $\ans{+24\ \text{V},\ 0,\ -48\ \text{V}}$
+```
+
+**Sign:** the dotted end r has the same polarity as the dotted primary end p; a rising flux makes the dotted ends positive, so $e_{rs}$ is positive while the flux rises. Only (A) has +24 V and then −48 V. (C) forgets that a falling flux reverses the EMF.
+
+**Answer: (A).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2008-49', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The core of a two-winding transformer is subjected to a magnetic flux variation as indicated in the figure. The induced emf ($e{rs}$) in the secondary...'), stem_md = 'The core of a two-winding transformer is subjected to a magnetic flux variation as indicated in the figure.
+
+![Core with a 100-turn winding (terminals p, q, dot at p) and a 200-turn winding (terminals r, s, dot at r)](fig:q-gate2008-q49)
+
+![Flux: rises in a straight line from 0 to 0.12 Wb in 1 s, stays at 0.12 Wb up to 2 s, falls to 0 at 2.5 s](fig:q-gate2008-q49-flux)
+
+The induced emf ($e_{rs}$) in the secondary winding as a function of time will be of the form
+', solution_md = '**Idea used:** EMF = N × slope of the flux (see *EMF equation of a transformer → When the flux is not a sine wave*, Worked example 3).
+
+```example Working
+:::given $N_2 = \given{200}$; flux 0 → 0.12 Wb in 0–1 s; flat 1–2 s; 0.12 → 0 Wb in 2–2.5 s
+:::find $e_{rs}$ in each part
+:::step 0 to 1 s: slope of the flux.
+$0.12 \div 1 = 0.12\ \text{Wb/s}$
+$e = 200 \times 0.12 = 24\ \text{V}$
+:::step 1 to 2 s: flux constant.
+$e = 0$
+:::step 2 to 2.5 s: slope of the flux.
+$-0.12 \div 0.5 = -0.24\ \text{Wb/s}$
+$e = 200 \times (-0.24) = -48\ \text{V}$
+:::answer $\ans{+24\ \text{V},\ 0,\ -48\ \text{V}}$
+```
+
+**Sign:** the dotted end r has the same polarity as the dotted primary end p; a rising flux makes the dotted ends positive, so $e_{rs}$ is positive while the flux rises. Only (A) has +24 V and then −48 V. (C) forgets that a falling flux reverses the EMF.
+
+**Answer: (A).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2008-49', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2008'), '49', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '![24 V from 0 to 1 s, 0 from 1 to 2 s, −48 V from 2 to 2.5 s](fig:q-gate2008-q49-a)', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '![−24 V from 0 to 1 s, 0 from 1 to 2 s, +48 V from 2 to 2.5 s](fig:q-gate2008-q49-b)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '![24 V from 0 to 1 s, 0 from 1 to 2 s, +48 V from 2 to 2.5 s](fig:q-gate2008-q49-c)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '![−24 V from 0 to 1 s, 0 from 1 to 2 s, −48 V from 2 to 2.5 s](fig:q-gate2008-q49-d)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2008-q49', '<svg xmlns="http://www.w3.org/2000/svg" width="350" viewBox="0 0 350 160">
+<g transform="translate(30,0)">
+<rect x="40" y="20" width="200" height="130" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<rect x="66" y="46" width="148" height="78" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M40,48 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 a7,5.0 0 0 0 0,10 " stroke="currentColor" fill="none" stroke-width="1.6"/>
+<path d="M240,48 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 a7,5.0 0 0 1 0,10 " stroke="currentColor" fill="none" stroke-width="1.6"/>
+<text x="85.0" y="90.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">100</text>
+<text x="195.0" y="90.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">200</text>
+<line x1="10" y1="48" x2="40" y2="48" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="10" y1="118" x2="40" y2="118" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="240" y1="48" x2="270" y2="48" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<line x1="240" y1="118" x2="270" y2="118" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<circle cx="50" cy="40" r="3" fill="currentColor"/>
+<circle cx="230" cy="40" r="3" fill="currentColor"/>
+<text x="8.0" y="40.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-style="italic">p</text>
+<text x="8.0" y="132.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-style="italic">q</text>
+<text x="274.0" y="40.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">r</text>
+<text x="274.0" y="132.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">s</text>
+<text x="4.0" y="86.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">e_pq</text>
+<text x="278.0" y="86.0" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">e_rs</text>
+<line x1="120" y1="12" x2="160" y2="12" stroke="currentColor" fill="none" stroke-width="1.6"/>
+<polygon points="164.0,12.0 158.0,9.0 158.0,15.0" fill="currentColor"/>
+<text x="172.0" y="16.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">φ</text>
+</g>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2008-q49-flux', '<svg xmlns="http://www.w3.org/2000/svg" width="300" viewBox="0 0 300 150">
+<line x1="46.0" y1="124.0" x2="259.5" y2="124.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="261.5,124.0 255.5,121.0 255.5,127.0" fill="currentColor"/>
+<line x1="46.0" y1="128.0" x2="46.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="46.0,6.0 43.0,12.0 49.0,12.0" fill="currentColor"/>
+<text x="267.5" y="124.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t (s)</text>
+<text x="52.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">φ (Wb)</text>
+<text x="39.0" y="135.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="114.8" y1="121.0" x2="114.8" y2="127.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="114.8" y="137.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">1</text>
+<line x1="183.6" y1="121.0" x2="183.6" y2="127.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="183.6" y="137.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2</text>
+<line x1="218.0" y1="121.0" x2="218.0" y2="127.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="218.0" y="137.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2.5</text>
+<line x1="43.0" y1="39.2" x2="49.0" y2="39.2" stroke="currentColor" stroke-width="1.2"/>
+<text x="40.0" y="39.2" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">0.12</text>
+<line x1="46.0" y1="39.2" x2="114.8" y2="39.2" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="114.8" y1="124.0" x2="114.8" y2="39.2" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="183.6" y1="124.0" x2="183.6" y2="39.2" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<polyline points="46.0,124.0 114.8,39.2 183.6,39.2 218.0,124.0" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+</svg>
+', 2) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2008-q49-a', '<svg xmlns="http://www.w3.org/2000/svg" width="260" viewBox="0 0 260 140">
+<line x1="54.0" y1="65.6" x2="219.5" y2="65.6" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="221.5,65.6 215.5,62.6 215.5,68.6" fill="currentColor"/>
+<line x1="54.0" y1="118.0" x2="54.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="54.0,6.0 51.0,12.0 57.0,12.0" fill="currentColor"/>
+<text x="227.5" y="65.6" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t (s)</text>
+<text x="60.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">e_rs</text>
+<text x="47.0" y="76.6" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="106.2" y1="62.6" x2="106.2" y2="68.6" stroke="currentColor" stroke-width="1.2"/>
+<text x="106.2" y="78.6" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">1</text>
+<line x1="158.5" y1="62.6" x2="158.5" y2="68.6" stroke="currentColor" stroke-width="1.2"/>
+<text x="158.5" y="78.6" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2</text>
+<line x1="184.6" y1="62.6" x2="184.6" y2="68.6" stroke="currentColor" stroke-width="1.2"/>
+<text x="184.6" y="78.6" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2.5</text>
+<line x1="51.0" y1="107.1" x2="57.0" y2="107.1" stroke="currentColor" stroke-width="1.2"/>
+<text x="48.0" y="107.1" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">-48 V</text>
+<line x1="51.0" y1="44.8" x2="57.0" y2="44.8" stroke="currentColor" stroke-width="1.2"/>
+<text x="48.0" y="44.8" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">24 V</text>
+<polyline points="54.0,44.8 106.2,44.8 106.2,65.6 158.5,65.6 158.5,107.1 184.6,107.1 184.6,65.6 200.3,65.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>
+', 3) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2008-q49-b', '<svg xmlns="http://www.w3.org/2000/svg" width="260" viewBox="0 0 260 140">
+<line x1="54.0" y1="66.4" x2="219.5" y2="66.4" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="221.5,66.4 215.5,63.4 215.5,69.4" fill="currentColor"/>
+<line x1="54.0" y1="118.0" x2="54.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="54.0,6.0 51.0,12.0 57.0,12.0" fill="currentColor"/>
+<text x="227.5" y="66.4" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t (s)</text>
+<text x="60.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">e_rs</text>
+<text x="47.0" y="77.4" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="106.2" y1="63.4" x2="106.2" y2="69.4" stroke="currentColor" stroke-width="1.2"/>
+<text x="106.2" y="79.4" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">1</text>
+<line x1="158.5" y1="63.4" x2="158.5" y2="69.4" stroke="currentColor" stroke-width="1.2"/>
+<text x="158.5" y="79.4" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2</text>
+<line x1="184.6" y1="63.4" x2="184.6" y2="69.4" stroke="currentColor" stroke-width="1.2"/>
+<text x="184.6" y="79.4" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2.5</text>
+<line x1="51.0" y1="87.2" x2="57.0" y2="87.2" stroke="currentColor" stroke-width="1.2"/>
+<text x="48.0" y="87.2" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">-24 V</text>
+<line x1="51.0" y1="24.9" x2="57.0" y2="24.9" stroke="currentColor" stroke-width="1.2"/>
+<text x="48.0" y="24.9" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">48 V</text>
+<polyline points="54.0,87.2 106.2,87.2 106.2,66.4 158.5,66.4 158.5,24.9 184.6,24.9 184.6,66.4 200.3,66.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>
+', 4) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2008-q49-c', '<svg xmlns="http://www.w3.org/2000/svg" width="260" viewBox="0 0 260 140">
+<line x1="54.0" y1="66.4" x2="219.5" y2="66.4" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="221.5,66.4 215.5,63.4 215.5,69.4" fill="currentColor"/>
+<line x1="54.0" y1="118.0" x2="54.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="54.0,6.0 51.0,12.0 57.0,12.0" fill="currentColor"/>
+<text x="227.5" y="66.4" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t (s)</text>
+<text x="60.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">e_rs</text>
+<text x="47.0" y="77.4" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="106.2" y1="63.4" x2="106.2" y2="69.4" stroke="currentColor" stroke-width="1.2"/>
+<text x="106.2" y="79.4" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">1</text>
+<line x1="158.5" y1="63.4" x2="158.5" y2="69.4" stroke="currentColor" stroke-width="1.2"/>
+<text x="158.5" y="79.4" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2</text>
+<line x1="184.6" y1="63.4" x2="184.6" y2="69.4" stroke="currentColor" stroke-width="1.2"/>
+<text x="184.6" y="79.4" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2.5</text>
+<line x1="51.0" y1="45.7" x2="57.0" y2="45.7" stroke="currentColor" stroke-width="1.2"/>
+<text x="48.0" y="45.7" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">24 V</text>
+<line x1="51.0" y1="24.9" x2="57.0" y2="24.9" stroke="currentColor" stroke-width="1.2"/>
+<text x="48.0" y="24.9" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">48 V</text>
+<polyline points="54.0,45.7 106.2,45.7 106.2,66.4 158.5,66.4 158.5,24.9 184.6,24.9 184.6,66.4 200.3,66.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>
+', 5) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2008-q49-d', '<svg xmlns="http://www.w3.org/2000/svg" width="260" viewBox="0 0 260 140">
+<line x1="54.0" y1="65.6" x2="219.5" y2="65.6" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="221.5,65.6 215.5,62.6 215.5,68.6" fill="currentColor"/>
+<line x1="54.0" y1="118.0" x2="54.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="54.0,6.0 51.0,12.0 57.0,12.0" fill="currentColor"/>
+<text x="227.5" y="65.6" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t (s)</text>
+<text x="60.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">e_rs</text>
+<text x="47.0" y="76.6" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="106.2" y1="62.6" x2="106.2" y2="68.6" stroke="currentColor" stroke-width="1.2"/>
+<text x="106.2" y="78.6" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">1</text>
+<line x1="158.5" y1="62.6" x2="158.5" y2="68.6" stroke="currentColor" stroke-width="1.2"/>
+<text x="158.5" y="78.6" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2</text>
+<line x1="184.6" y1="62.6" x2="184.6" y2="68.6" stroke="currentColor" stroke-width="1.2"/>
+<text x="184.6" y="78.6" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">2.5</text>
+<line x1="51.0" y1="107.1" x2="57.0" y2="107.1" stroke="currentColor" stroke-width="1.2"/>
+<text x="48.0" y="107.1" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">-48 V</text>
+<line x1="51.0" y1="86.3" x2="57.0" y2="86.3" stroke="currentColor" stroke-width="1.2"/>
+<text x="48.0" y="86.3" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">-24 V</text>
+<polyline points="54.0,86.3 106.2,86.3 106.2,65.6 158.5,65.6 158.5,107.1 184.6,107.1 184.6,65.6 200.3,65.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>
+', 6) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-emf-equation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-emf-equation';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-1997-half-frequency';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-1997', '~half-frequency')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The low voltage winding of a 400/230 V, 1-phase, 50 Hz transformer is to be connected to a 25 Hz supply. In order to keep the magnetization current at the...', 'The low voltage winding of a 400/230 V, 1-phase, 50 Hz transformer is to be connected to a 25 Hz supply. In order to keep the magnetization current at the same level as that for normal operation at 50 Hz, the supply voltage should be
+', '**Idea used:** $B_m \propto V/f$; to keep the flux (and so the magnetising current) the same, keep V/f constant (see *EMF equation of a transformer → The core flux is set by the supply*).
+
+```example Working
+:::given LV winding: 230 V at 50 Hz; new frequency 25 Hz
+:::find voltage for the same flux
+:::step V/f at rated condition.
+$230 \div 50 = 4.6\ \text{V/Hz}$
+:::step Same V/f at 25 Hz.
+$V = 4.6 \times 25 = 115\ \text{V}$
+:::answer $\ans{115\ \text{V}}$
+```
+
+Applying the full 230 V at 25 Hz would double the flux density, push the core deep into saturation and draw a very large magnetising current.
+
+*The examside page shows this 1997 stem only up to "the supply voltage should be", without its options. The last words of the stem ("In order to keep the magnetization current ...") and the four options are ours, written around the standard answer.*
+
+**Answer: (B).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-1997-half-frequency', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The low voltage winding of a 400/230 V, 1-phase, 50 Hz transformer is to be connected to a 25 Hz supply. In order to keep the magnetization current at the...'), stem_md = 'The low voltage winding of a 400/230 V, 1-phase, 50 Hz transformer is to be connected to a 25 Hz supply. In order to keep the magnetization current at the same level as that for normal operation at 50 Hz, the supply voltage should be
+', solution_md = '**Idea used:** $B_m \propto V/f$; to keep the flux (and so the magnetising current) the same, keep V/f constant (see *EMF equation of a transformer → The core flux is set by the supply*).
+
+```example Working
+:::given LV winding: 230 V at 50 Hz; new frequency 25 Hz
+:::find voltage for the same flux
+:::step V/f at rated condition.
+$230 \div 50 = 4.6\ \text{V/Hz}$
+:::step Same V/f at 25 Hz.
+$V = 4.6 \times 25 = 115\ \text{V}$
+:::answer $\ans{115\ \text{V}}$
+```
+
+Applying the full 230 V at 25 Hz would double the flux density, push the core deep into saturation and draw a very large magnetising current.
+
+*The examside page shows this 1997 stem only up to "the supply voltage should be", without its options. The last words of the stem ("In order to keep the magnetization current ...") and the four options are ours, written around the standard answer.*
+
+**Answer: (B).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-1997-half-frequency', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-1997'), '~half-frequency', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/the-low-voltage-winding-of-a-400230v-1-phase-50-1997-marks-1-p3fiz0xujmaibcjo.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '230 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '115 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '460 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '200 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-emf-equation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-emf-equation';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2001-core-flux-load';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2001', '~core-flux-resistive-load')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'The core flux of a practical transformer with a resistive load', 'The core flux of a practical transformer with a resistive load
+', '**Idea used:** the core flux is set by $E_1 \approx V_1$; in a **practical** transformer the load current causes a small drop in the primary winding, so $E_1$ and the flux fall slightly (see *EMF equation of a transformer → The core flux is set by the supply, not by the load*).
+
+$\Phi_m = \dfrac{E_1}{4.44 f N_1}$ and $E_1 = V_1 - (\text{drop in primary resistance and leakage reactance})$. More load → more primary current → more drop → slightly smaller $E_1$ → slightly smaller flux.
+
+"Strictly constant" (A) is true only of an **ideal** transformer. The flux never rises with load (B, C).
+
+**Answer: (D).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2001-core-flux-load', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The core flux of a practical transformer with a resistive load'), stem_md = 'The core flux of a practical transformer with a resistive load
+', solution_md = '**Idea used:** the core flux is set by $E_1 \approx V_1$; in a **practical** transformer the load current causes a small drop in the primary winding, so $E_1$ and the flux fall slightly (see *EMF equation of a transformer → The core flux is set by the supply, not by the load*).
+
+$\Phi_m = \dfrac{E_1}{4.44 f N_1}$ and $E_1 = V_1 - (\text{drop in primary resistance and leakage reactance})$. More load → more primary current → more drop → slightly smaller $E_1$ → slightly smaller flux.
+
+"Strictly constant" (A) is true only of an **ideal** transformer. The flux never rises with load (B, C).
+
+**Answer: (D).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2001-core-flux-load', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2001'), '~core-flux-resistive-load', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/the-core-flux-of-a-practical-transformer-with-a-resistive-lo-gate-ee-2001-marks-1-5a9dc686b955d.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'is strictly constant with load changes', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'increases linearly with load', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'increases as the square root of the load', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'decreases with increased load', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-emf-equation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-emf-equation';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2014-s1-q12';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2014', 'S1-Q12')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'For a specified input voltage and frequency, if the equivalent radius of the core of a transformer is reduced by half, the factor by which the number of...', 'For a specified input voltage and frequency, if the equivalent radius of the core of a transformer is reduced by half, the factor by which the number of turns in the primary should change to maintain the same no load current is
+', '**Idea used:** flux from the supply, $\Phi_m = \dfrac{V}{4.44 f N}$; magnetising current from the magnetic circuit, $I = \dfrac{\Phi_m S}{N}$, with $S = \dfrac{l}{\mu A}$ (see *EMF equation of a transformer* and *The magnetic circuit and reluctance*).
+
+```example Working
+:::given V and f fixed; core radius halved, so area $A$ becomes $A/4$ (path length unchanged); turns change by a factor $k$
+:::find $k$ for the same no-load (magnetising) current
+:::step Write the current in terms of N and A.
+$\Phi_m = V/(4.44 f N) \propto 1/N$
+$S = l/(\mu A) \propto 1/A$
+$I = \Phi_m S / N \propto \dfrac{1}{N} \times \dfrac{1}{A} \times \dfrac{1}{N} = \dfrac{1}{N^2 A}$
+:::step Keep $N^2 A$ the same.
+New $A = A/4$, new $N = kN$
+$(kN)^2 \times A/4 = N^2 A$
+$k^2 / 4 = 1$, so $k^2 = 4$
+$k = 2$
+:::answer $\ans{\text{turns} \times 2}$
+```
+
+**Sense check:** $I \propto 1/(N^2 A)$ is the same as saying the magnetising inductance $L = N^2/S \propto N^2 A$ must stay the same (the same voltage across the same inductance draws the same current).
+
+**Answer: (C).**
+', 'READY', 'MCQ', NULL, NULL, 3, 'OFFICIAL_KEY', 'gate-2014-s1-q12', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'For a specified input voltage and frequency, if the equivalent radius of the core of a transformer is reduced by half, the factor by which the number of...'), stem_md = 'For a specified input voltage and frequency, if the equivalent radius of the core of a transformer is reduced by half, the factor by which the number of turns in the primary should change to maintain the same no load current is
+', solution_md = '**Idea used:** flux from the supply, $\Phi_m = \dfrac{V}{4.44 f N}$; magnetising current from the magnetic circuit, $I = \dfrac{\Phi_m S}{N}$, with $S = \dfrac{l}{\mu A}$ (see *EMF equation of a transformer* and *The magnetic circuit and reluctance*).
+
+```example Working
+:::given V and f fixed; core radius halved, so area $A$ becomes $A/4$ (path length unchanged); turns change by a factor $k$
+:::find $k$ for the same no-load (magnetising) current
+:::step Write the current in terms of N and A.
+$\Phi_m = V/(4.44 f N) \propto 1/N$
+$S = l/(\mu A) \propto 1/A$
+$I = \Phi_m S / N \propto \dfrac{1}{N} \times \dfrac{1}{A} \times \dfrac{1}{N} = \dfrac{1}{N^2 A}$
+:::step Keep $N^2 A$ the same.
+New $A = A/4$, new $N = kN$
+$(kN)^2 \times A/4 = N^2 A$
+$k^2 / 4 = 1$, so $k^2 = 4$
+$k = 2$
+:::answer $\ans{\text{turns} \times 2}$
+```
+
+**Sense check:** $I \propto 1/(N^2 A)$ is the same as saying the magnetising inductance $L = N^2/S \propto N^2 A$ must stay the same (the same voltage across the same inductance draws the same current).
+
+**Answer: (C).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'OFFICIAL_KEY', content_key = 'gate-2014-s1-q12', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2014'), 'S1-Q12', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1/4', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1/2', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-emf-equation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-emf-equation';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-1998-magnetising-harmonic';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-1998', '~magnetising-current-harmonic')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'The magnetizing current in a transformer is rich in', 'The magnetizing current in a transformer is rich in
+', '**Idea used:** saturation makes the magnetising current peaky (see *EMF equation of a transformer → Why the magnetising current is not a sine wave*).
+
+To make a sinusoidal flux in iron that saturates near the peaks, the current must be peaky. A peaky, half-wave-symmetric wave contains odd harmonics, and the biggest of them by far is the third.
+
+**Answer: (A).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-1998-magnetising-harmonic', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'The magnetizing current in a transformer is rich in'), stem_md = 'The magnetizing current in a transformer is rich in
+', solution_md = '**Idea used:** saturation makes the magnetising current peaky (see *EMF equation of a transformer → Why the magnetising current is not a sine wave*).
+
+To make a sinusoidal flux in iron that saturates near the peaks, the current must be peaky. A peaky, half-wave-symmetric wave contains odd harmonics, and the biggest of them by far is the third.
+
+**Answer: (A).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-1998-magnetising-harmonic', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-1998'), '~magnetising-current-harmonic', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/the-magnetizing-current-in-a-transformer-is-rich-in-gate-ee-1998-marks-1-5a9d8de2c4f81.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3rd harmonic', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '5th harmonic', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '7th harmonic', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '13th harmonic', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-emf-equation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-emf-equation';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2002-saturation-waveform';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2002', '~saturation-not-sinusoidal')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A 1 kVA, 230 V/100 V, single phase, 50 Hz transformer having negligible winding resistance and leakage inductance is operating under saturation, while 250...', 'A 1 kVA, 230 V/100 V, single phase, 50 Hz transformer having negligible winding resistance and leakage inductance is operating under saturation, while 250 V, 50 Hz sinusoidal supply is connected to the high voltage winding. A resistive load is connected to the low voltage winding which draws rated current. Which one of the following quantities will not be sinusoidal?
+', '**Idea used:** a sinusoidal voltage forces a sinusoidal flux; saturation distorts only the magnetising current (see *EMF equation of a transformer → Why the magnetising current is not a sine wave*).
+
+1. No winding resistance or leakage: the induced voltage equals the sinusoidal supply, so the **flux** (its integral) is sinusoidal. (B) is sinusoidal.
+2. The LV induced voltage is proportional to the flux''s rate of change: sinusoidal. (A) is sinusoidal.
+3. A resistor on a sinusoidal voltage draws a sinusoidal **load current**. (C) is sinusoidal.
+4. The source current = (load current referred to the primary) + (magnetising current). Under saturation the magnetising current is peaky, so the **source current** is not sinusoidal.
+
+**Answer: (D).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2002-saturation-waveform', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A 1 kVA, 230 V/100 V, single phase, 50 Hz transformer having negligible winding resistance and leakage inductance is operating under saturation, while 250...'), stem_md = 'A 1 kVA, 230 V/100 V, single phase, 50 Hz transformer having negligible winding resistance and leakage inductance is operating under saturation, while 250 V, 50 Hz sinusoidal supply is connected to the high voltage winding. A resistive load is connected to the low voltage winding which draws rated current. Which one of the following quantities will not be sinusoidal?
+', solution_md = '**Idea used:** a sinusoidal voltage forces a sinusoidal flux; saturation distorts only the magnetising current (see *EMF equation of a transformer → Why the magnetising current is not a sine wave*).
+
+1. No winding resistance or leakage: the induced voltage equals the sinusoidal supply, so the **flux** (its integral) is sinusoidal. (B) is sinusoidal.
+2. The LV induced voltage is proportional to the flux''s rate of change: sinusoidal. (A) is sinusoidal.
+3. A resistor on a sinusoidal voltage draws a sinusoidal **load current**. (C) is sinusoidal.
+4. The source current = (load current referred to the primary) + (magnetising current). Under saturation the magnetising current is peaky, so the **source current** is not sinusoidal.
+
+**Answer: (D).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2002-saturation-waveform', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2002'), '~saturation-not-sinusoidal', qid, 1, TRUE, 'https://questions.examside.com/past-years/gate/question/a-1-kva-230v100v-single-phase-50-hz-transformer-having-negli-gate-ee-2002-marks-1-5a9dc70a2aaa0.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'Voltage induced across the low voltage winding', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Core flux', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Load current', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Current drawn from the source', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-emf-equation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-emf-equation';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2011-18';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2011', '18')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A single-phase air core transformer, fed from a rated sinusoidal supply, is operating at no load. The steady state magnetizing current drawn by the...', 'A single-phase air core transformer, fed from a rated sinusoidal supply, is operating at no load. The steady state magnetizing current drawn by the transformer from the supply will have the waveform
+', '**Idea used:** an air core has a straight-line B-H graph: no saturation, no hysteresis (see *EMF equation of a transformer → Why the magnetising current is not a sine wave*).
+
+With $B \propto H$, the current is simply proportional to the flux. A sinusoidal supply gives a sinusoidal flux, so the magnetising current is a pure sine wave (C). The peaky (D) and tilted (A, B) shapes belong to an iron core that saturates and has hysteresis.
+
+**Answer: (C).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2011-18', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A single-phase air core transformer, fed from a rated sinusoidal supply, is operating at no load. The steady state magnetizing current drawn by the...'), stem_md = 'A single-phase air core transformer, fed from a rated sinusoidal supply, is operating at no load. The steady state magnetizing current drawn by the transformer from the supply will have the waveform
+', solution_md = '**Idea used:** an air core has a straight-line B-H graph: no saturation, no hysteresis (see *EMF equation of a transformer → Why the magnetising current is not a sine wave*).
+
+With $B \propto H$, the current is simply proportional to the flux. A sinusoidal supply gives a sinusoidal flux, so the magnetising current is a pure sine wave (C). The peaky (D) and tilted (A, B) shapes belong to an iron core that saturates and has hysteresis.
+
+**Answer: (C).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2011-18', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2011'), '18', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '![A distorted, unsymmetrical wave](fig:q-gate2011-q18-a)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '![Another distorted wave with flat parts near zero](fig:q-gate2011-q18-b)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '![A pure sine wave](fig:q-gate2011-q18-c)', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '![A peaky wave](fig:q-gate2011-q18-d)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2011-q18-a', '<svg xmlns="http://www.w3.org/2000/svg" width="230" viewBox="0 0 230 120">
+<line x1="40.0" y1="56.0" x2="215.5" y2="56.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="217.5,56.0 211.5,53.0 211.5,59.0" fill="currentColor"/>
+<line x1="40.0" y1="98.0" x2="40.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="40.0,6.0 37.0,12.0 43.0,12.0" fill="currentColor"/>
+<text x="223.5" y="56.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t</text>
+<text x="46.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">i</text>
+<polyline points="40.0,48.7 40.6,48.8 41.3,48.9 41.9,48.9 42.6,49.0 43.2,49.1 43.9,49.1 44.5,49.1 45.1,49.1 45.8,49.1 46.4,49.1 47.1,49.0 47.7,48.9 48.3,48.8 49.0,48.6 49.6,48.4 50.3,48.2 50.9,47.9 51.6,47.5 52.2,47.2 52.8,46.7 53.5,46.3 54.1,45.8 54.8,45.3 55.4,44.7 56.1,44.1 56.7,43.4 57.3,42.7 58.0,42.0 58.6,41.3 59.3,40.5 59.9,39.7 60.6,38.9 61.2,38.1 61.8,37.2 62.5,36.4 63.1,35.5 63.8,34.6 64.4,33.8 65.0,32.9 65.7,32.1 66.3,31.3 67.0,30.5 67.6,29.7 68.3,29.0 68.9,28.2 69.5,27.6 70.2,26.9 70.8,26.3 71.5,25.8 72.1,25.3 72.8,24.9 73.4,24.5 74.0,24.2 74.7,23.9 75.3,23.8 76.0,23.6 76.6,23.6 77.3,23.6 77.9,23.7 78.5,23.8 79.2,24.1 79.8,24.4 80.5,24.7 81.1,25.2 81.7,25.7 82.4,26.2 83.0,26.9 83.7,27.6 84.3,28.3 85.0,29.1 85.6,30.0 86.2,30.9 86.9,31.8 87.5,32.8 88.2,33.8 88.8,34.9 89.5,36.0 90.1,37.1 90.7,38.2 91.4,39.4 92.0,40.6 92.7,41.7 93.3,42.9 93.9,44.1 94.6,45.3 95.2,46.4 95.9,47.5 96.5,48.7 97.2,49.8 97.8,50.8 98.4,51.9 99.1,52.9 99.7,53.8 100.4,54.8 101.0,55.7 101.7,56.5 102.3,57.3 102.9,58.1 103.6,58.8 104.2,59.4 104.9,60.0 105.5,60.6 106.2,61.1 106.8,61.5 107.4,61.9 108.1,62.3 108.7,62.6 109.4,62.8 110.0,63.0 110.6,63.2 111.3,63.3 111.9,63.4 112.6,63.5 113.2,63.5 113.9,63.5 114.5,63.5 115.1,63.5 115.8,63.4 116.4,63.4 117.1,63.3 117.7,57.4 118.4,57.3 119.0,57.2 119.6,57.2 120.3,57.1 120.9,57.1 121.6,57.1 122.2,57.1 122.9,57.2 123.5,57.3 124.1,57.4 124.8,57.5 125.4,57.7 126.1,57.9 126.7,58.2 127.3,58.5 128.0,58.9 128.6,59.3 129.3,59.7 129.9,60.2 130.6,60.7 131.2,61.3 131.8,61.9 132.5,62.6 133.1,63.3 133.8,64.0 134.4,64.8 135.1,65.6 135.7,66.5 136.3,67.4 137.0,68.3 137.6,69.2 138.3,70.1 138.9,71.1 139.5,72.1 140.2,73.1 140.8,74.1 141.5,75.0 142.1,76.0 142.8,77.0 143.4,77.9 144.0,78.9 144.7,79.8 145.3,80.7 146.0,81.5 146.6,82.3 147.3,83.1 147.9,83.8 148.5,84.5 149.2,85.2 149.8,85.7 150.5,86.3 151.1,86.7 151.8,87.1 152.4,87.5 153.0,87.7 153.7,88.0 154.3,88.1 155.0,88.2 155.6,88.2 156.2,88.1 156.9,87.9 157.5,87.7 158.2,87.4 158.8,87.1 159.5,86.7 160.1,86.2 160.7,85.7 161.4,85.1 162.0,84.4 162.7,83.7 163.3,82.9 164.0,82.1 164.6,81.3 165.2,80.4 165.9,79.5 166.5,78.5 167.2,77.5 167.8,76.5 168.5,75.5 169.1,74.5 169.7,73.4 170.4,72.4 171.0,71.3 171.7,70.3 172.3,69.3 172.9,68.3 173.6,67.2 174.2,66.3 174.9,65.3 175.5,64.4 176.2,63.5 176.8,62.6 177.4,61.8 178.1,61.0 178.7,60.2 179.4,59.5 180.0,58.8 180.7,58.2 181.3,57.7 181.9,57.1 182.6,56.7 183.2,56.2 183.9,55.8 184.5,55.5 185.1,55.2 185.8,55.0 186.4,54.7 187.1,54.6 187.7,54.4 188.4,54.3 189.0,54.3 189.6,54.2 190.3,54.2 190.9,54.2 191.6,54.3 192.2,54.3 192.9,54.4 193.5,54.5 194.1,54.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2011-q18-b', '<svg xmlns="http://www.w3.org/2000/svg" width="230" viewBox="0 0 230 120">
+<line x1="40.0" y1="56.0" x2="215.5" y2="56.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="217.5,56.0 211.5,53.0 211.5,59.0" fill="currentColor"/>
+<line x1="40.0" y1="98.0" x2="40.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="40.0,6.0 37.0,12.0 43.0,12.0" fill="currentColor"/>
+<text x="223.5" y="56.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t</text>
+<text x="46.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">i</text>
+<polyline points="40.0,53.0 40.6,52.8 41.3,52.7 41.9,52.6 42.6,52.5 43.2,52.5 43.9,52.5 44.5,52.5 45.1,52.6 45.8,52.6 46.4,52.7 47.1,52.8 47.7,52.9 48.3,53.0 49.0,53.1 49.6,53.3 50.3,53.4 50.9,53.5 51.6,53.5 52.2,53.6 52.8,53.7 53.5,53.7 54.1,53.7 54.8,53.6 55.4,53.6 56.1,53.4 56.7,53.3 57.3,53.1 58.0,52.9 58.6,52.6 59.3,52.3 59.9,51.9 60.6,51.5 61.2,51.1 61.8,50.6 62.5,50.0 63.1,49.4 63.8,48.8 64.4,48.1 65.0,47.4 65.7,46.6 66.3,45.8 67.0,45.0 67.6,44.1 68.3,43.2 68.9,42.3 69.5,41.3 70.2,40.4 70.8,39.4 71.5,38.4 72.1,37.4 72.8,36.4 73.4,35.4 74.0,34.5 74.7,33.5 75.3,32.5 76.0,31.6 76.6,30.7 77.3,29.8 77.9,28.9 78.5,28.1 79.2,27.3 79.8,26.6 80.5,25.9 81.1,25.3 81.7,24.7 82.4,24.2 83.0,23.8 83.7,23.4 84.3,23.0 85.0,22.8 85.6,22.6 86.2,22.4 86.9,22.4 87.5,22.4 88.2,22.5 88.8,22.6 89.5,22.8 90.1,23.1 90.7,23.5 91.4,23.9 92.0,24.3 92.7,24.9 93.3,25.5 93.9,26.1 94.6,26.8 95.2,27.5 95.9,28.3 96.5,29.2 97.2,30.0 97.8,30.9 98.4,31.8 99.1,32.8 99.7,33.7 100.4,34.7 101.0,35.7 101.7,36.7 102.3,37.7 102.9,38.7 103.6,39.7 104.2,40.6 104.9,41.6 105.5,42.5 106.2,43.4 106.8,44.3 107.4,45.2 108.1,46.0 108.7,46.8 109.4,47.6 110.0,48.3 110.6,48.9 111.3,49.6 111.9,50.2 112.6,50.7 113.2,51.2 113.9,51.6 114.5,52.0 115.1,52.4 115.8,52.7 116.4,52.9 117.1,53.2 117.7,53.3 118.4,53.5 119.0,53.6 119.6,53.6 120.3,53.7 120.9,53.7 121.6,53.6 122.2,53.6 122.9,53.5 123.5,53.4 124.1,53.3 124.8,53.2 125.4,53.1 126.1,53.0 126.7,52.9 127.3,52.8 128.0,52.7 128.6,52.6 129.3,52.5 129.9,52.5 130.6,52.5 131.2,52.5 131.8,52.5 132.5,52.6 133.1,52.7 133.8,52.9 134.4,53.0 135.1,53.3 135.7,53.5 136.3,53.9 137.0,54.2 137.6,54.6 138.3,55.1 138.9,55.6 139.5,56.1 140.2,56.7 140.8,57.4 141.5,58.1 142.1,58.8 142.8,59.5 143.4,60.3 144.0,61.2 144.7,62.1 145.3,62.9 146.0,63.9 146.6,64.8 147.3,65.8 147.9,66.8 148.5,67.7 149.2,68.7 149.8,69.7 150.5,70.7 151.1,71.7 151.8,72.7 152.4,73.6 153.0,74.6 153.7,75.5 154.3,76.4 155.0,77.2 155.6,78.0 156.2,78.8 156.9,79.5 157.5,80.2 158.2,80.8 158.8,81.4 159.5,81.9 160.1,82.4 160.7,82.8 161.4,83.1 162.0,83.4 162.7,83.6 163.3,83.7 164.0,83.8 164.6,83.8 165.2,83.7 165.9,83.5 166.5,83.3 167.2,83.0 167.8,82.7 168.5,82.3 169.1,81.8 169.7,81.3 170.4,80.7 171.0,80.0 171.7,79.3 172.3,78.6 172.9,77.8 173.6,77.0 174.2,76.1 174.9,75.2 175.5,74.3 176.2,73.4 176.8,72.4 177.4,71.4 178.1,70.5 178.7,69.5 179.4,68.5 180.0,67.5 180.7,66.5 181.3,65.5 181.9,64.6 182.6,63.6 183.2,62.7 183.9,61.8 184.5,61.0 185.1,60.1 185.8,59.3 186.4,58.6 187.1,57.9 187.7,57.2 188.4,56.6 189.0,56.0 189.6,55.5 190.3,55.0 190.9,54.5 191.6,54.1 192.2,53.8 192.9,53.5 193.5,53.2 194.1,53.0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>
+', 2) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2011-q18-c', '<svg xmlns="http://www.w3.org/2000/svg" width="230" viewBox="0 0 230 120">
+<line x1="40.0" y1="56.0" x2="215.5" y2="56.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="217.5,56.0 211.5,53.0 211.5,59.0" fill="currentColor"/>
+<line x1="40.0" y1="98.0" x2="40.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="40.0,6.0 37.0,12.0 43.0,12.0" fill="currentColor"/>
+<text x="223.5" y="56.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t</text>
+<text x="46.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">i</text>
+<polyline points="40.0,56.0 40.6,55.2 41.3,54.5 41.9,53.7 42.6,52.9 43.2,52.2 43.9,51.4 44.5,50.7 45.1,49.9 45.8,49.2 46.4,48.4 47.1,47.7 47.7,47.0 48.3,46.2 49.0,45.5 49.6,44.8 50.3,44.1 50.9,43.4 51.6,42.7 52.2,42.1 52.8,41.4 53.5,40.7 54.1,40.1 54.8,39.4 55.4,38.8 56.1,38.2 56.7,37.6 57.3,37.0 58.0,36.4 58.6,35.9 59.3,35.3 59.9,34.8 60.6,34.3 61.2,33.8 61.8,33.3 62.5,32.8 63.1,32.4 63.8,31.9 64.4,31.5 65.0,31.1 65.7,30.7 66.3,30.3 67.0,30.0 67.6,29.6 68.3,29.3 68.9,29.0 69.5,28.7 70.2,28.4 70.8,28.2 71.5,28.0 72.1,27.8 72.8,27.6 73.4,27.4 74.0,27.3 74.7,27.1 75.3,27.0 76.0,26.9 76.6,26.9 77.3,26.8 77.9,26.8 78.5,26.8 79.2,26.8 79.8,26.8 80.5,26.9 81.1,26.9 81.7,27.0 82.4,27.1 83.0,27.3 83.7,27.4 84.3,27.6 85.0,27.8 85.6,28.0 86.2,28.2 86.9,28.4 87.5,28.7 88.2,29.0 88.8,29.3 89.5,29.6 90.1,30.0 90.7,30.3 91.4,30.7 92.0,31.1 92.7,31.5 93.3,31.9 93.9,32.4 94.6,32.8 95.2,33.3 95.9,33.8 96.5,34.3 97.2,34.8 97.8,35.3 98.4,35.9 99.1,36.4 99.7,37.0 100.4,37.6 101.0,38.2 101.7,38.8 102.3,39.4 102.9,40.1 103.6,40.7 104.2,41.4 104.9,42.1 105.5,42.7 106.2,43.4 106.8,44.1 107.4,44.8 108.1,45.5 108.7,46.2 109.4,47.0 110.0,47.7 110.6,48.4 111.3,49.2 111.9,49.9 112.6,50.7 113.2,51.4 113.9,52.2 114.5,52.9 115.1,53.7 115.8,54.5 116.4,55.2 117.1,56.0 117.7,56.8 118.4,57.5 119.0,58.3 119.6,59.1 120.3,59.8 120.9,60.6 121.6,61.3 122.2,62.1 122.9,62.8 123.5,63.6 124.1,64.3 124.8,65.0 125.4,65.8 126.1,66.5 126.7,67.2 127.3,67.9 128.0,68.6 128.6,69.3 129.3,69.9 129.9,70.6 130.6,71.3 131.2,71.9 131.8,72.6 132.5,73.2 133.1,73.8 133.8,74.4 134.4,75.0 135.1,75.6 135.7,76.1 136.3,76.7 137.0,77.2 137.6,77.7 138.3,78.2 138.9,78.7 139.5,79.2 140.2,79.6 140.8,80.1 141.5,80.5 142.1,80.9 142.8,81.3 143.4,81.7 144.0,82.0 144.7,82.4 145.3,82.7 146.0,83.0 146.6,83.3 147.3,83.6 147.9,83.8 148.5,84.0 149.2,84.2 149.8,84.4 150.5,84.6 151.1,84.7 151.8,84.9 152.4,85.0 153.0,85.1 153.7,85.1 154.3,85.2 155.0,85.2 155.6,85.2 156.2,85.2 156.9,85.2 157.5,85.1 158.2,85.1 158.8,85.0 159.5,84.9 160.1,84.7 160.7,84.6 161.4,84.4 162.0,84.2 162.7,84.0 163.3,83.8 164.0,83.6 164.6,83.3 165.2,83.0 165.9,82.7 166.5,82.4 167.2,82.0 167.8,81.7 168.5,81.3 169.1,80.9 169.7,80.5 170.4,80.1 171.0,79.6 171.7,79.2 172.3,78.7 172.9,78.2 173.6,77.7 174.2,77.2 174.9,76.7 175.5,76.1 176.2,75.6 176.8,75.0 177.4,74.4 178.1,73.8 178.7,73.2 179.4,72.6 180.0,71.9 180.7,71.3 181.3,70.6 181.9,69.9 182.6,69.3 183.2,68.6 183.9,67.9 184.5,67.2 185.1,66.5 185.8,65.8 186.4,65.0 187.1,64.3 187.7,63.6 188.4,62.8 189.0,62.1 189.6,61.3 190.3,60.6 190.9,59.8 191.6,59.1 192.2,58.3 192.9,57.5 193.5,56.8 194.1,56.0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>
+', 3) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2011-q18-d', '<svg xmlns="http://www.w3.org/2000/svg" width="230" viewBox="0 0 230 120">
+<line x1="40.0" y1="56.0" x2="215.5" y2="56.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="217.5,56.0 211.5,53.0 211.5,59.0" fill="currentColor"/>
+<line x1="40.0" y1="98.0" x2="40.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="40.0,6.0 37.0,12.0 43.0,12.0" fill="currentColor"/>
+<text x="223.5" y="56.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t</text>
+<text x="46.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">i</text>
+<polyline points="40.0,56.0 40.6,55.8 41.3,55.5 41.9,55.3 42.6,55.1 43.2,54.9 43.9,54.6 44.5,54.4 45.1,54.2 45.8,54.0 46.4,53.7 47.1,53.5 47.7,53.3 48.3,53.1 49.0,52.8 49.6,52.6 50.3,52.4 50.9,52.2 51.6,51.9 52.2,51.7 52.8,51.5 53.5,51.2 54.1,50.9 54.8,50.7 55.4,50.3 56.1,50.0 56.7,49.7 57.3,49.3 58.0,48.9 58.6,48.5 59.3,48.0 59.9,47.5 60.6,46.9 61.2,46.3 61.8,45.7 62.5,45.0 63.1,44.3 63.8,43.5 64.4,42.7 65.0,41.8 65.7,40.9 66.3,40.0 67.0,39.1 67.6,38.1 68.3,37.1 68.9,36.1 69.5,35.2 70.2,34.2 70.8,33.3 71.5,32.3 72.1,31.5 72.8,30.7 73.4,29.9 74.0,29.2 74.7,28.6 75.3,28.0 76.0,27.6 76.6,27.2 77.3,27.0 77.9,26.8 78.5,26.8 79.2,26.8 79.8,27.0 80.5,27.2 81.1,27.6 81.7,28.0 82.4,28.6 83.0,29.2 83.7,29.9 84.3,30.7 85.0,31.5 85.6,32.3 86.2,33.3 86.9,34.2 87.5,35.2 88.2,36.1 88.8,37.1 89.5,38.1 90.1,39.1 90.7,40.0 91.4,40.9 92.0,41.8 92.7,42.7 93.3,43.5 93.9,44.3 94.6,45.0 95.2,45.7 95.9,46.3 96.5,46.9 97.2,47.5 97.8,48.0 98.4,48.5 99.1,48.9 99.7,49.3 100.4,49.7 101.0,50.0 101.7,50.3 102.3,50.7 102.9,50.9 103.6,51.2 104.2,51.5 104.9,51.7 105.5,51.9 106.2,52.2 106.8,52.4 107.4,52.6 108.1,52.8 108.7,53.1 109.4,53.3 110.0,53.5 110.6,53.7 111.3,54.0 111.9,54.2 112.6,54.4 113.2,54.6 113.9,54.9 114.5,55.1 115.1,55.3 115.8,55.5 116.4,55.8 117.1,56.0 117.7,56.2 118.4,56.5 119.0,56.7 119.6,56.9 120.3,57.1 120.9,57.4 121.6,57.6 122.2,57.8 122.9,58.0 123.5,58.3 124.1,58.5 124.8,58.7 125.4,58.9 126.1,59.2 126.7,59.4 127.3,59.6 128.0,59.8 128.6,60.1 129.3,60.3 129.9,60.5 130.6,60.8 131.2,61.1 131.8,61.3 132.5,61.7 133.1,62.0 133.8,62.3 134.4,62.7 135.1,63.1 135.7,63.5 136.3,64.0 137.0,64.5 137.6,65.1 138.3,65.7 138.9,66.3 139.5,67.0 140.2,67.7 140.8,68.5 141.5,69.3 142.1,70.2 142.8,71.1 143.4,72.0 144.0,72.9 144.7,73.9 145.3,74.9 146.0,75.9 146.6,76.8 147.3,77.8 147.9,78.7 148.5,79.7 149.2,80.5 149.8,81.3 150.5,82.1 151.1,82.8 151.8,83.4 152.4,84.0 153.0,84.4 153.7,84.8 154.3,85.0 155.0,85.2 155.6,85.2 156.2,85.2 156.9,85.0 157.5,84.8 158.2,84.4 158.8,84.0 159.5,83.4 160.1,82.8 160.7,82.1 161.4,81.3 162.0,80.5 162.7,79.7 163.3,78.7 164.0,77.8 164.6,76.8 165.2,75.9 165.9,74.9 166.5,73.9 167.2,72.9 167.8,72.0 168.5,71.1 169.1,70.2 169.7,69.3 170.4,68.5 171.0,67.7 171.7,67.0 172.3,66.3 172.9,65.7 173.6,65.1 174.2,64.5 174.9,64.0 175.5,63.5 176.2,63.1 176.8,62.7 177.4,62.3 178.1,62.0 178.7,61.7 179.4,61.3 180.0,61.1 180.7,60.8 181.3,60.5 181.9,60.3 182.6,60.1 183.2,59.8 183.9,59.6 184.5,59.4 185.1,59.2 185.8,58.9 186.4,58.7 187.1,58.5 187.7,58.3 188.4,58.0 189.0,57.8 189.6,57.6 190.3,57.4 190.9,57.1 191.6,56.9 192.2,56.7 192.9,56.5 193.5,56.2 194.1,56.0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>
+', 4) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-emf-equation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-emf-equation';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2023-150';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2023', '150')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Statement (I): Transformers take advantage of the high magnetic energy density of ferromagnetic material to allow economical device design, however, the...', '**Statement (I):** Transformers take advantage of the high magnetic energy density of ferromagnetic material to allow economical device design, however, the non-linear nature of ferromagnetic material leads to introduction of harmonics in current or voltage.
+
+**Statement (II):** The non-linear nature of the transformer magnetizing inductance can lead to a transient inrush current significantly greater than the rated value of current upon energizing a transformer.
+', '**Idea used:** saturation causes harmonics (steady state) and inrush (switching on) (see *EMF equation of a transformer → Why the magnetising current is not a sine wave* and *Inrush current when switching on*).
+
+**Statement (I):** true: iron makes a compact transformer, and its non-linear B-H curve puts harmonics (mainly the third) into the magnetising current.
+
+**Statement (II):** true: at switching on, the flux can swing to about $2\Phi_m$, the core saturates and a large inrush current flows.
+
+**Is (II) the reason for (I)?** No. Both come from the same non-linearity, but inrush (a switching transient) does not explain the harmonics of normal running.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2023-150', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Statement (I): Transformers take advantage of the high magnetic energy density of ferromagnetic material to allow economical device design, however, the...'), stem_md = '**Statement (I):** Transformers take advantage of the high magnetic energy density of ferromagnetic material to allow economical device design, however, the non-linear nature of ferromagnetic material leads to introduction of harmonics in current or voltage.
+
+**Statement (II):** The non-linear nature of the transformer magnetizing inductance can lead to a transient inrush current significantly greater than the rated value of current upon energizing a transformer.
+', solution_md = '**Idea used:** saturation causes harmonics (steady state) and inrush (switching on) (see *EMF equation of a transformer → Why the magnetising current is not a sine wave* and *Inrush current when switching on*).
+
+**Statement (I):** true: iron makes a compact transformer, and its non-linear B-H curve puts harmonics (mainly the third) into the magnetising current.
+
+**Statement (II):** true: at switching on, the flux can swing to about $2\Phi_m$, the core saturates and a large inrush current flows.
+
+**Is (II) the reason for (I)?** No. Both come from the same non-linearity, but inrush (a switching transient) does not explain the harmonics of normal running.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2023-150', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2023'), '150', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'Both Statement (I) and Statement (II) are individually true and Statement (II) is the correct explanation of Statement (I)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Both Statement (I) and Statement (II) are individually true but Statement (II) is not the correct explanation of Statement (I)', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Statement (I) is true but Statement (II) is false', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Statement (I) is false but Statement (II) is true', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-emf-equation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-emf-equation';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2026-31';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2026', '31')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'A 220V/12V single-phase transformer is designed for use in India and rated 100 VA at 50 Hz. Later, this unit is shipped to the USA where it is used as a...', 'A 220V/12V single-phase transformer is designed for use in India and rated 100 VA at 50 Hz. Later, this unit is shipped to the USA where it is used as a 110V/6V transformer at 60 Hz.
+
+Which of the following statements is/are correct?
+', '**Idea used:** $B_m \propto V/f$; eddy loss $\propto V^2$ (see *EMF equation of a transformer → The core flux is set by the supply* and *Core losses → How the core loss changes with voltage and frequency*).
+
+```example Working
+:::given India: 220 V, 50 Hz. USA: 110 V, 60 Hz. Same transformer.
+:::find which statements are true
+:::step Ratio of flux densities. $\fx{B_m \propto V/f}$
+India: $220 \div 50 = 4.4$
+USA: $110 \div 60 = 1.83$
+$B_{USA} \div B_{India} = 1.83 \div 4.4 = 0.42$
+:::step (C): $B_m$ is lower in the USA, not higher.
+(C) false
+:::step (A): lower flux density needs less magnetising current.
+(A) true
+:::step (D): eddy loss $\propto V^2$.
+$(110 \div 220)^2 = 0.25$: the eddy loss falls to a quarter
+(D) false
+:::step (B): same load current, so the same copper loss; the core loss is lower.
+total losses lower, (B) false
+:::answer $\ans{\text{only (A) is correct}}$
+```
+
+**Trap in (D):** 44 % is $1.2^2 - 1$, the change for the frequency alone (60/50 = 1.2) at **constant** flux density. Here the voltage halves too.
+
+**Answer: (A) only.** *(Our solution; the official key is not in our dump.)*
+', 'READY', 'MSQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2026-31', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'A 220V/12V single-phase transformer is designed for use in India and rated 100 VA at 50 Hz. Later, this unit is shipped to the USA where it is used as a...'), stem_md = 'A 220V/12V single-phase transformer is designed for use in India and rated 100 VA at 50 Hz. Later, this unit is shipped to the USA where it is used as a 110V/6V transformer at 60 Hz.
+
+Which of the following statements is/are correct?
+', solution_md = '**Idea used:** $B_m \propto V/f$; eddy loss $\propto V^2$ (see *EMF equation of a transformer → The core flux is set by the supply* and *Core losses → How the core loss changes with voltage and frequency*).
+
+```example Working
+:::given India: 220 V, 50 Hz. USA: 110 V, 60 Hz. Same transformer.
+:::find which statements are true
+:::step Ratio of flux densities. $\fx{B_m \propto V/f}$
+India: $220 \div 50 = 4.4$
+USA: $110 \div 60 = 1.83$
+$B_{USA} \div B_{India} = 1.83 \div 4.4 = 0.42$
+:::step (C): $B_m$ is lower in the USA, not higher.
+(C) false
+:::step (A): lower flux density needs less magnetising current.
+(A) true
+:::step (D): eddy loss $\propto V^2$.
+$(110 \div 220)^2 = 0.25$: the eddy loss falls to a quarter
+(D) false
+:::step (B): same load current, so the same copper loss; the core loss is lower.
+total losses lower, (B) false
+:::answer $\ans{\text{only (A) is correct}}$
+```
+
+**Trap in (D):** 44 % is $1.2^2 - 1$, the change for the frequency alone (60/50 = 1.2) at **constant** flux density. Here the voltage halves too.
+
+**Answer: (A) only.** *(Our solution; the official key is not in our dump.)*
+', status = 'READY', answer_type = 'MSQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2026-31', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2026'), '31', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'No-load current drawn would be smaller for operation in the USA compared to that in India', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'For the same load current, the losses would be higher in the USA compared to that in India', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'The peak magnetic flux density in the core would be higher while operating in the USA compared to that in India', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'The eddy current losses in the core would be approximately 44% higher while operating in the USA compared to that in India', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO question_mcq_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '(A) only', TRUE);
+  INSERT INTO question_mcq_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '(A) and (C) only', FALSE);
+  INSERT INTO question_mcq_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '(B) and (D) only', FALSE);
+  INSERT INTO question_mcq_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '(A) and (D) only', FALSE);
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-emf-equation');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2001-hysteresis-loop';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2001', '~hysteresis-loop-5cm2')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The hysteresis loop of a magnetic material has an area of 5 cm² with the scales given as 1 cm = 2 AT and 1 cm = 50 mWb. At 50 Hz, the total hysteresis loss is', 'The hysteresis loop of a magnetic material has an area of 5 cm² with the scales given as 1 cm = 2 AT and 1 cm = 50 mWb. At 50 Hz, the total hysteresis loss is
+', '**Idea used:** loop area on Φ-MMF axes = joule per cycle for the whole core (see *Core losses: hysteresis and eddy current → Worked example 2*).
+
+```example Working
+:::given area $= \given{5\ \text{cm}^2}$; 1 cm = 2 AT; 1 cm = 50 mWb; $f = \given{50\ \text{Hz}}$
+:::find hysteresis loss
+:::step Value of 1 cm².
+$2\ \text{AT} \times 0.05\ \text{Wb} = 0.1\ \text{J}$
+:::step Energy per cycle.
+$5 \times 0.1 = 0.5\ \text{J}$
+:::step Power.
+$0.5 \times 50 = 25\ \text{W}$
+:::answer $\ans{25\ \text{W}}$
+```
+
+**Answer: (C).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'gate-2001-hysteresis-loop', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The hysteresis loop of a magnetic material has an area of 5 cm² with the scales given as 1 cm = 2 AT and 1 cm = 50 mWb. At 50 Hz, the total hysteresis loss is'), stem_md = 'The hysteresis loop of a magnetic material has an area of 5 cm² with the scales given as 1 cm = 2 AT and 1 cm = 50 mWb. At 50 Hz, the total hysteresis loss is
+', solution_md = '**Idea used:** loop area on Φ-MMF axes = joule per cycle for the whole core (see *Core losses: hysteresis and eddy current → Worked example 2*).
+
+```example Working
+:::given area $= \given{5\ \text{cm}^2}$; 1 cm = 2 AT; 1 cm = 50 mWb; $f = \given{50\ \text{Hz}}$
+:::find hysteresis loss
+:::step Value of 1 cm².
+$2\ \text{AT} \times 0.05\ \text{Wb} = 0.1\ \text{J}$
+:::step Energy per cycle.
+$5 \times 0.1 = 0.5\ \text{J}$
+:::step Power.
+$0.5 \times 50 = 25\ \text{W}$
+:::answer $\ans{25\ \text{W}}$
+```
+
+**Answer: (C).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'gate-2001-hysteresis-loop', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2001'), '~hysteresis-loop-5cm2', qid, 2, TRUE, 'https://questions.examside.com/past-years/gate/question/the-hysteresis-loop-of-a-magnetic-material-has-an-area-of-5-gate-ee-2001-marks-2-5aa060ec343c1.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '15 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '20 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '25 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '50 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2020-16';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2020', '16')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A transformer core is wound with a coil carrying an alternating current at a frequency of 50 Hz. The hysteresis loop has an area of 60,000 units when the...', 'A transformer core is wound with a coil carrying an alternating current at a frequency of 50 Hz. The hysteresis loop has an area of 60,000 units when the axes are drawn in units of $10^{-4}$ Wb m⁻² and $10^{2}$ A m⁻¹. If the magnetization is uniform throughout the core volume of 0.01 m³, the power loss due to hysteresis will be
+', '**Idea used:** loop area on B-H axes = J/m³ per cycle (see *Core losses: hysteresis and eddy current → Worked example 1*).
+
+```example Working
+:::given area $= 60\,000$ units; 1 unit $= 10^{-4}\ \text{T} \times 10^{2}\ \text{A/m}$; $V = 0.01\ \text{m}^3$; $f = 50\ \text{Hz}$
+:::find hysteresis loss
+:::step Value of one unit.
+$10^{-4} \times 10^{2} = 10^{-2}\ \text{J/m}^3$
+:::step Energy per m³ per cycle.
+$60\,000 \times 0.01 = 600\ \text{J/m}^3$
+:::step Whole core, per cycle.
+$600 \times 0.01 = 6\ \text{J}$
+:::step Power.
+$6 \times 50 = 300\ \text{W}$
+:::answer $\ans{300\ \text{W}}$
+```
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2020-16', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A transformer core is wound with a coil carrying an alternating current at a frequency of 50 Hz. The hysteresis loop has an area of 60,000 units when the...'), stem_md = 'A transformer core is wound with a coil carrying an alternating current at a frequency of 50 Hz. The hysteresis loop has an area of 60,000 units when the axes are drawn in units of $10^{-4}$ Wb m⁻² and $10^{2}$ A m⁻¹. If the magnetization is uniform throughout the core volume of 0.01 m³, the power loss due to hysteresis will be
+', solution_md = '**Idea used:** loop area on B-H axes = J/m³ per cycle (see *Core losses: hysteresis and eddy current → Worked example 1*).
+
+```example Working
+:::given area $= 60\,000$ units; 1 unit $= 10^{-4}\ \text{T} \times 10^{2}\ \text{A/m}$; $V = 0.01\ \text{m}^3$; $f = 50\ \text{Hz}$
+:::find hysteresis loss
+:::step Value of one unit.
+$10^{-4} \times 10^{2} = 10^{-2}\ \text{J/m}^3$
+:::step Energy per m³ per cycle.
+$60\,000 \times 0.01 = 600\ \text{J/m}^3$
+:::step Whole core, per cycle.
+$600 \times 0.01 = 6\ \text{J}$
+:::step Power.
+$6 \times 50 = 300\ \text{W}$
+:::answer $\ans{300\ \text{W}}$
+```
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2020-16', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2020'), '16', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '300 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '350 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '400 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '450 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2026-95';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2026', '95')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A transformer core is wound with a coil carrying an alternating current at a frequency of 50 Hz. The hysteresis loop has an area of 70000 units, when the...', 'A transformer core is wound with a coil carrying an alternating current at a frequency of 50 Hz. The hysteresis loop has an area of 70000 units, when the axes are drawn in units of $10^{-4}$ Wb-m⁻² and $10^{2}$ A-m⁻¹. What is the hysteresis loss by assuming the magnetization to be uniform throughout the core volume of 0.02 m³?
+', '**Idea used:** the same as ESE 2020 Q16 (see *Core losses: hysteresis and eddy current → Worked example 1*).
+
+One unit $= 10^{-4} \times 10^{2} = 0.01$ J/m³. Loop $= 70\,000 \times 0.01 = 700$ J/m³ per cycle. Core: $700 \times 0.02 = 14$ J per cycle. Power: $14 \times 50 = 700$ W.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2026-95', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A transformer core is wound with a coil carrying an alternating current at a frequency of 50 Hz. The hysteresis loop has an area of 70000 units, when the...'), stem_md = 'A transformer core is wound with a coil carrying an alternating current at a frequency of 50 Hz. The hysteresis loop has an area of 70000 units, when the axes are drawn in units of $10^{-4}$ Wb-m⁻² and $10^{2}$ A-m⁻¹. What is the hysteresis loss by assuming the magnetization to be uniform throughout the core volume of 0.02 m³?
+', solution_md = '**Idea used:** the same as ESE 2020 Q16 (see *Core losses: hysteresis and eddy current → Worked example 1*).
+
+One unit $= 10^{-4} \times 10^{2} = 0.01$ J/m³. Loop $= 70\,000 \times 0.01 = 700$ J/m³ per cycle. Core: $700 \times 0.02 = 14$ J per cycle. Power: $14 \times 50 = 700$ W.
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2026-95', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2026'), '95', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '350 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '700 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3500 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '7000 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2021-64';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2021', '64')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'What is the loss of energy per hour in a ferromagnetic specimen when it is subjected to 50 Hz magnetisation, if the specimen weighs 50 kg, area of...', 'What is the loss of energy per hour in a ferromagnetic specimen when it is subjected to 50 Hz magnetisation, if the specimen weighs 50 kg, area of hysteresis loop is 200 joules per m³ and density of iron is 7500 kg/m³?
+', '**Idea used:** volume = mass ÷ density; energy = loop area × volume × cycles (see *Core losses: hysteresis and eddy current → Worked example 3*).
+
+```example Working
+:::given $m = \given{50\ \text{kg}}$, density $= \given{7500\ \text{kg/m}^3}$, loop $= \given{200\ \text{J/m}^3}$, $f = \given{50\ \text{Hz}}$, time 1 h
+:::find energy lost in one hour
+:::step Volume.
+$50 \div 7500 = 1 \div 150\ \text{m}^3$
+:::step Energy per cycle.
+$200 \div 150 = 4/3\ \text{J}$
+:::step Cycles in one hour.
+$50 \times 3600 = 180\,000$
+:::step Energy per hour.
+$(4/3) \times 180\,000 = 240\,000\ \text{J}$
+:::answer $\ans{2.4 \times 10^{5}\ \text{J}}$
+```
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2021-64', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'What is the loss of energy per hour in a ferromagnetic specimen when it is subjected to 50 Hz magnetisation, if the specimen weighs 50 kg, area of...'), stem_md = 'What is the loss of energy per hour in a ferromagnetic specimen when it is subjected to 50 Hz magnetisation, if the specimen weighs 50 kg, area of hysteresis loop is 200 joules per m³ and density of iron is 7500 kg/m³?
+', solution_md = '**Idea used:** volume = mass ÷ density; energy = loop area × volume × cycles (see *Core losses: hysteresis and eddy current → Worked example 3*).
+
+```example Working
+:::given $m = \given{50\ \text{kg}}$, density $= \given{7500\ \text{kg/m}^3}$, loop $= \given{200\ \text{J/m}^3}$, $f = \given{50\ \text{Hz}}$, time 1 h
+:::find energy lost in one hour
+:::step Volume.
+$50 \div 7500 = 1 \div 150\ \text{m}^3$
+:::step Energy per cycle.
+$200 \div 150 = 4/3\ \text{J}$
+:::step Cycles in one hour.
+$50 \times 3600 = 180\,000$
+:::step Energy per hour.
+$(4/3) \times 180\,000 = 240\,000\ \text{J}$
+:::answer $\ans{2.4 \times 10^{5}\ \text{J}}$
+```
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2021-64', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2021'), '64', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$2.4 \times 10^{5}$ J', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$3.9 \times 10^{4}$ J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$2.9 \times 10^{4}$ J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$4.5 \times 10^{5}$ J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2022-57';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2022', '57')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'What is the energy lost per hour in a specimen of iron subjected to magnetization at 50 c/s, if the specimen weighs 50 kg and the hysteresis loop is...', 'What is the energy lost per hour in a specimen of iron subjected to magnetization at 50 c/s, if the specimen weighs 50 kg and the hysteresis loop is equivalent in area to 250 J/m³ and the density of iron is 7500 kg/m³?
+', '**Idea used:** as in ESE 2021 Q64 (see *Core losses: hysteresis and eddy current → Worked example 3*).
+
+Volume $= 50/7500 = 1/150$ m³. Energy per cycle $= 250/150 = 5/3$ J. Cycles per hour $= 50 \times 3600 = 180\,000$. Energy per hour $= (5/3) \times 180\,000 = 300\,000$ J.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2022-57', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'What is the energy lost per hour in a specimen of iron subjected to magnetization at 50 c/s, if the specimen weighs 50 kg and the hysteresis loop is...'), stem_md = 'What is the energy lost per hour in a specimen of iron subjected to magnetization at 50 c/s, if the specimen weighs 50 kg and the hysteresis loop is equivalent in area to 250 J/m³ and the density of iron is 7500 kg/m³?
+', solution_md = '**Idea used:** as in ESE 2021 Q64 (see *Core losses: hysteresis and eddy current → Worked example 3*).
+
+Volume $= 50/7500 = 1/150$ m³. Energy per cycle $= 250/150 = 5/3$ J. Cycles per hour $= 50 \times 3600 = 180\,000$. Energy per hour $= (5/3) \times 180\,000 = 300\,000$ J.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2022-57', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2022'), '57', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$3 \times 10^{5}$ J', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$4 \times 10^{5}$ J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$5 \times 10^{5}$ J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$6 \times 10^{5}$ J', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2021-69';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2021', '69')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'In a ferromagnetic material, the losses due to hysteresis are', 'In a ferromagnetic material, the losses due to hysteresis are
+', '**Idea used:** $P_h = \eta B_m^{1.6} f V$ (see *Core losses: hysteresis and eddy current → Steinmetz''s formula*).
+
+The same loop is traced $f$ times a second, so at a given flux density the hysteresis loss is proportional to $f$. (Proportional to $f^2$ is the **eddy** loss.)
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2021-69', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'In a ferromagnetic material, the losses due to hysteresis are'), stem_md = 'In a ferromagnetic material, the losses due to hysteresis are
+', solution_md = '**Idea used:** $P_h = \eta B_m^{1.6} f V$ (see *Core losses: hysteresis and eddy current → Steinmetz''s formula*).
+
+The same loop is traced $f$ times a second, so at a given flux density the hysteresis loss is proportional to $f$. (Proportional to $f^2$ is the **eddy** loss.)
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2021-69', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2021'), '69', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'directly proportional to the supply frequency.', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'inversely proportional to the supply frequency.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'inversely proportional to square of the supply frequency.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'directly proportional to square of the supply frequency.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2017-31';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2017', '31')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Eddy current losses in transformer cores can be reduced by the use of 1. Solid cores 2. Laminated cores 3. Ferrites Select the correct answer using the...', 'Eddy current losses in transformer cores can be reduced by the use of
+
+1. Solid cores
+2. Laminated cores
+3. Ferrites
+
+Select the correct answer using the codes given below:
+', '**Idea used:** how to reduce eddy loss (see *Core losses: hysteresis and eddy current → 2. Eddy current loss*).
+
+Laminations break up the eddy paths; ferrites have very high resistivity. A **solid** core gives the **largest** eddy loss, so statement 1 is out.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2017-31', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Eddy current losses in transformer cores can be reduced by the use of 1. Solid cores 2. Laminated cores 3. Ferrites Select the correct answer using the...'), stem_md = 'Eddy current losses in transformer cores can be reduced by the use of
+
+1. Solid cores
+2. Laminated cores
+3. Ferrites
+
+Select the correct answer using the codes given below:
+', solution_md = '**Idea used:** how to reduce eddy loss (see *Core losses: hysteresis and eddy current → 2. Eddy current loss*).
+
+Laminations break up the eddy paths; ferrites have very high resistivity. A **solid** core gives the **largest** eddy loss, so statement 1 is out.
+
+**Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2017-31', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2017'), '31', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '2 and 3 only', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1 and 2 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1 and 3 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1, 2 and 3', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'aegcl-2023-13';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('AEGCL-2023', '13')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A single-phase transformer when supplied from 220 V, 50 Hz has eddy current loss of 50 W. If the transformer is connected to a voltage source of 330 V, 50...', 'A single-phase transformer when supplied from 220 V, 50 Hz has eddy current loss of 50 W. If the transformer is connected to a voltage source of 330 V, 50 Hz, then the eddy current loss will be
+', '**Idea used:** eddy current loss $\propto V^2$ (see *Core losses: hysteresis and eddy current → How the core loss changes with voltage and frequency*, Worked example 4).
+
+```example Working
+:::given $P_e = \given{50\ \text{W}}$ at $\given{220\ \text{V}}$; new voltage $\given{330\ \text{V}}$; same 50 Hz
+:::find new eddy loss
+:::step Voltage ratio.
+$330 \div 220 = 1.5$
+:::step Square it.
+$1.5^2 = 2.25$
+:::step New loss.
+$50 \times 2.25 = 112.5\ \text{W}$
+:::answer $\ans{112.5\ \text{W}}$
+```
+
+Option C uses the voltage ratio without squaring; A uses the cube.
+
+**Asked before:** ISRO (VSSC) Technical Assistant (Electrical) 2017, with the same numbers.
+
+**Answer: (B).** *(Our solution; APSC key not yet in the dump.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'aegcl-2023-13', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A single-phase transformer when supplied from 220 V, 50 Hz has eddy current loss of 50 W. If the transformer is connected to a voltage source of 330 V, 50...'), stem_md = 'A single-phase transformer when supplied from 220 V, 50 Hz has eddy current loss of 50 W. If the transformer is connected to a voltage source of 330 V, 50 Hz, then the eddy current loss will be
+', solution_md = '**Idea used:** eddy current loss $\propto V^2$ (see *Core losses: hysteresis and eddy current → How the core loss changes with voltage and frequency*, Worked example 4).
+
+```example Working
+:::given $P_e = \given{50\ \text{W}}$ at $\given{220\ \text{V}}$; new voltage $\given{330\ \text{V}}$; same 50 Hz
+:::find new eddy loss
+:::step Voltage ratio.
+$330 \div 220 = 1.5$
+:::step Square it.
+$1.5^2 = 2.25$
+:::step New loss.
+$50 \times 2.25 = 112.5\ \text{W}$
+:::answer $\ans{112.5\ \text{W}}$
+```
+
+Option C uses the voltage ratio without squaring; A uses the cube.
+
+**Asked before:** ISRO (VSSC) Technical Assistant (Electrical) 2017, with the same numbers.
+
+**Answer: (B).** *(Our solution; APSC key not yet in the dump.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'aegcl-2023-13', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'AEGCL-2023'), '13', qid, NULL, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '168.75 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '112.5 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '75 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '50 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'apgcl-2023-26';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('APGCL-2023', '26')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'When load on a transformer is increased, eddy current loss', 'When load on a transformer is increased, eddy current loss
+', '**Idea used:** core loss is a constant loss (see *Core losses: hysteresis and eddy current → Where the iron wastes energy*).
+
+The core flux is set by the supply voltage and frequency, not by the load, so the eddy current loss (and the hysteresis loss) stays the same from no load to full load. It is the copper loss that rises with load.
+
+**Answer: (B).** *(Our solution; APSC key not yet in the dump.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'apgcl-2023-26', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'When load on a transformer is increased, eddy current loss'), stem_md = 'When load on a transformer is increased, eddy current loss
+', solution_md = '**Idea used:** core loss is a constant loss (see *Core losses: hysteresis and eddy current → Where the iron wastes energy*).
+
+The core flux is set by the supply voltage and frequency, not by the load, so the eddy current loss (and the hysteresis loss) stays the same from no load to full load. It is the copper loss that rises with load.
+
+**Answer: (B).** *(Our solution; APSC key not yet in the dump.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'apgcl-2023-26', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'APGCL-2023'), '26', qid, NULL, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'is increased', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'remains unchanged', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'is decreased', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'None of the above', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-1998-45hz-90pc';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-1998', '~core-loss-45hz')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A 50 Hz transformer having equal hysteresis and eddy current losses at rated excitation is operated at 45 Hz at 90% of its rated voltage. Compared to rated...', 'A 50 Hz transformer having equal hysteresis and eddy current losses at rated excitation is operated at 45 Hz at 90% of its rated voltage. Compared to rated operating point, the core losses under this condition:
+', '**Idea used:** V/f unchanged means $B_m$ unchanged; then $P_h \propto f$ and $P_e \propto f^2$ (see *Core losses: hysteresis and eddy current → How the core loss changes*).
+
+```example Working
+:::given $P_h = P_e$ at rated; new $V = 0.9 V_r$, new $f = 45\ \text{Hz} = 0.9 f_r$
+:::find change in core loss
+:::step V/f.
+$0.9 \div 0.9 = 1$: $B_m$ unchanged
+:::step Take each loss as 1 unit at rated (total 2 units). Hysteresis $\propto f$:
+$P_h = 1 \times 0.9 = 0.9$
+:::step Eddy $\propto f^2$:
+$P_e = 1 \times 0.9^2 = 0.81$
+:::step New total and change.
+$0.9 + 0.81 = 1.71$ units (was 2)
+$1.71 \div 2 = 0.855$: a fall of 14.5 %
+:::answer $\ans{\text{reduce by } 14.5\,\%}$
+```
+
+Option A is the hysteresis change alone, B the eddy change alone.
+
+**Answer: (C).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-1998-45hz-90pc', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A 50 Hz transformer having equal hysteresis and eddy current losses at rated excitation is operated at 45 Hz at 90% of its rated voltage. Compared to rated...'), stem_md = 'A 50 Hz transformer having equal hysteresis and eddy current losses at rated excitation is operated at 45 Hz at 90% of its rated voltage. Compared to rated operating point, the core losses under this condition:
+', solution_md = '**Idea used:** V/f unchanged means $B_m$ unchanged; then $P_h \propto f$ and $P_e \propto f^2$ (see *Core losses: hysteresis and eddy current → How the core loss changes*).
+
+```example Working
+:::given $P_h = P_e$ at rated; new $V = 0.9 V_r$, new $f = 45\ \text{Hz} = 0.9 f_r$
+:::find change in core loss
+:::step V/f.
+$0.9 \div 0.9 = 1$: $B_m$ unchanged
+:::step Take each loss as 1 unit at rated (total 2 units). Hysteresis $\propto f$:
+$P_h = 1 \times 0.9 = 0.9$
+:::step Eddy $\propto f^2$:
+$P_e = 1 \times 0.9^2 = 0.81$
+:::step New total and change.
+$0.9 + 0.81 = 1.71$ units (was 2)
+$1.71 \div 2 = 0.855$: a fall of 14.5 %
+:::answer $\ans{\text{reduce by } 14.5\,\%}$
+```
+
+Option A is the hysteresis change alone, B the eddy change alone.
+
+**Answer: (C).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-1998-45hz-90pc', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-1998'), '~core-loss-45hz', qid, 2, TRUE, 'https://questions.examside.com/past-years/gate/question/a-50-hz-transformer-having-equal-hysteresis-and-eddy-current-gate-ee-1998-marks-2-5aa26184c156c.htm') ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'reduce by 10%', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'reduce by 19%', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'reduce by 14.5%', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'remain unchanged', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2014-s1-q36';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2014', 'S1-Q36')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The core loss of a single phase, 230/115 V, 50 Hz power transformer is measured from 230 V side by feeding the primary (230 V side) from a variable voltage...', 'The core loss of a single phase, 230/115 V, 50 Hz power transformer is measured from 230 V side by feeding the primary (230 V side) from a variable voltage variable frequency source while keeping the secondary open circuited. The core loss is measured to be 1050 W for 230 V, 50 Hz input. The core loss is again measured to be 500 W for 138 V, 30 Hz input. The hysteresis and eddy current losses of the transformer for 230 V, 50 Hz input are respectively,
+', '**Idea used:** separation of losses at constant V/f: $P_i/f = A + Bf$ (see *Core losses: hysteresis and eddy current → Separating the two losses*, Worked example 6).
+
+```example Working
+:::given 1050 W at 230 V, 50 Hz; 500 W at 138 V, 30 Hz
+:::find $P_h$ and $P_e$ at 50 Hz
+:::step Check V/f.
+$230 \div 50 = 4.6$ and $138 \div 30 = 4.6$: constant, so $B_m$ is the same
+:::step Divide each loss by its frequency.
+$1050 \div 50 = 21$, so $21 = A + 50B$
+$500 \div 30 = 16.667$, so $16.667 = A + 30B$
+:::step Subtract.
+$21 - 16.667 = 20B$
+$4.333 = 20B$, so $B = 0.2167$
+:::step Find A.
+$A = 21 - 50 \times 0.2167 = 21 - 10.833 = 10.167$
+:::step Losses at 50 Hz.
+$P_h = A f = 10.167 \times 50 = 508\ \text{W}$
+$P_e = B f^2 = 0.2167 \times 2500 = 542\ \text{W}$
+:::answer $\ans{P_h = 508\ \text{W},\ P_e = 542\ \text{W}}$
+```
+
+**Without a calculator:** all four options add up to 1050 W, so find only the eddy part: $B = \dfrac{21 - 16\tfrac23}{20} = \dfrac{13}{60}$, and $P_e = \dfrac{13}{60} \times 2500 \approx 542$ W.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate-2014-s1-q36', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The core loss of a single phase, 230/115 V, 50 Hz power transformer is measured from 230 V side by feeding the primary (230 V side) from a variable voltage...'), stem_md = 'The core loss of a single phase, 230/115 V, 50 Hz power transformer is measured from 230 V side by feeding the primary (230 V side) from a variable voltage variable frequency source while keeping the secondary open circuited. The core loss is measured to be 1050 W for 230 V, 50 Hz input. The core loss is again measured to be 500 W for 138 V, 30 Hz input. The hysteresis and eddy current losses of the transformer for 230 V, 50 Hz input are respectively,
+', solution_md = '**Idea used:** separation of losses at constant V/f: $P_i/f = A + Bf$ (see *Core losses: hysteresis and eddy current → Separating the two losses*, Worked example 6).
+
+```example Working
+:::given 1050 W at 230 V, 50 Hz; 500 W at 138 V, 30 Hz
+:::find $P_h$ and $P_e$ at 50 Hz
+:::step Check V/f.
+$230 \div 50 = 4.6$ and $138 \div 30 = 4.6$: constant, so $B_m$ is the same
+:::step Divide each loss by its frequency.
+$1050 \div 50 = 21$, so $21 = A + 50B$
+$500 \div 30 = 16.667$, so $16.667 = A + 30B$
+:::step Subtract.
+$21 - 16.667 = 20B$
+$4.333 = 20B$, so $B = 0.2167$
+:::step Find A.
+$A = 21 - 50 \times 0.2167 = 21 - 10.833 = 10.167$
+:::step Losses at 50 Hz.
+$P_h = A f = 10.167 \times 50 = 508\ \text{W}$
+$P_e = B f^2 = 0.2167 \times 2500 = 542\ \text{W}$
+:::answer $\ans{P_h = 508\ \text{W},\ P_e = 542\ \text{W}}$
+```
+
+**Without a calculator:** all four options add up to 1050 W, so find only the eddy part: $B = \dfrac{21 - 16\tfrac23}{20} = \dfrac{13}{60}$, and $P_e = \dfrac{13}{60} \times 2500 \approx 542$ W.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate-2014-s1-q36', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2014'), 'S1-Q36', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '508 W and 542 W.', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '468 W and 582 W.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '498 W and 552 W.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '488 W and 562 W.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2014-s2-q39';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2014', 'S2-Q39')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'For a single phase, two winding transformer, the supply frequency and voltage are both increased by 10%. The percentage changes in the hysteresis loss and...', 'For a single phase, two winding transformer, the supply frequency and voltage are both increased by 10%. The percentage changes in the hysteresis loss and eddy current loss, respectively, are
+', '**Idea used:** V/f constant → $B_m$ constant → $P_h \propto f$, $P_e \propto f^2$ (see *Core losses: hysteresis and eddy current → Worked example 5*).
+
+$P_h$: × 1.1 → +10 %. $P_e$: × $1.1^2 = 1.21$ → +21 %.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'OFFICIAL_KEY', 'gate-2014-s2-q39', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'For a single phase, two winding transformer, the supply frequency and voltage are both increased by 10%. The percentage changes in the hysteresis loss and...'), stem_md = 'For a single phase, two winding transformer, the supply frequency and voltage are both increased by 10%. The percentage changes in the hysteresis loss and eddy current loss, respectively, are
+', solution_md = '**Idea used:** V/f constant → $B_m$ constant → $P_h \propto f$, $P_e \propto f^2$ (see *Core losses: hysteresis and eddy current → Worked example 5*).
+
+$P_h$: × 1.1 → +10 %. $P_e$: × $1.1^2 = 1.21$ → +21 %.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'OFFICIAL_KEY', content_key = 'gate-2014-s2-q39', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2014'), 'S2-Q39', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10 and 21', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '−10 and 21', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '21 and 10', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '−21 and 10', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2014-s3-q36';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2014', 'S3-Q36')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'An open circuit test is performed on 50 Hz transformer, using variable frequency source and keeping V/f ratio constant, to separate its eddy current and...', 'An open circuit test is performed on 50 Hz transformer, using variable frequency source and keeping V/f ratio constant, to separate its eddy current and hysteresis losses. The variation of core loss/frequency as function of frequency is shown in the figure
+
+![Graph of Pc/f (W/Hz) against f (Hz): a straight line from 10 W/Hz at f = 0 to 15 W/Hz at 50 Hz](fig:q-gate2014-s3-q36)
+
+The hysteresis and eddy current losses of the transformer at 25 Hz respectively are
+', '**Idea used:** $P_c/f = A + Bf$: the intercept is $A$, the slope is $B$ (see *Core losses: hysteresis and eddy current → Separating the two losses*).
+
+```example Working
+:::given line: 10 W/Hz at $f = 0$, 15 W/Hz at 50 Hz
+:::find $P_h$ and $P_e$ at 25 Hz
+:::step Intercept and slope.
+$A = 10\ \text{W/Hz}$
+$B = (15 - 10) \div 50 = 0.1\ \text{W/Hz}^2$
+:::step Hysteresis at 25 Hz. $\fx{P_h = Af}$
+$P_h = 10 \times 25 = 250\ \text{W}$
+:::step Eddy at 25 Hz. $\fx{P_e = Bf^2}$
+$P_e = 0.1 \times 625 = 62.5\ \text{W}$
+:::answer $\ans{250\ \text{W and } 62.5\ \text{W}}$
+```
+
+**Check:** $P_c/f$ at 25 Hz $= (250 + 62.5)/25 = 12.5$, which is on the line. Option C puts the whole 312.5 W as hysteresis.
+
+**Answer: (B).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate-2014-s3-q36', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An open circuit test is performed on 50 Hz transformer, using variable frequency source and keeping V/f ratio constant, to separate its eddy current and...'), stem_md = 'An open circuit test is performed on 50 Hz transformer, using variable frequency source and keeping V/f ratio constant, to separate its eddy current and hysteresis losses. The variation of core loss/frequency as function of frequency is shown in the figure
+
+![Graph of Pc/f (W/Hz) against f (Hz): a straight line from 10 W/Hz at f = 0 to 15 W/Hz at 50 Hz](fig:q-gate2014-s3-q36)
+
+The hysteresis and eddy current losses of the transformer at 25 Hz respectively are
+', solution_md = '**Idea used:** $P_c/f = A + Bf$: the intercept is $A$, the slope is $B$ (see *Core losses: hysteresis and eddy current → Separating the two losses*).
+
+```example Working
+:::given line: 10 W/Hz at $f = 0$, 15 W/Hz at 50 Hz
+:::find $P_h$ and $P_e$ at 25 Hz
+:::step Intercept and slope.
+$A = 10\ \text{W/Hz}$
+$B = (15 - 10) \div 50 = 0.1\ \text{W/Hz}^2$
+:::step Hysteresis at 25 Hz. $\fx{P_h = Af}$
+$P_h = 10 \times 25 = 250\ \text{W}$
+:::step Eddy at 25 Hz. $\fx{P_e = Bf^2}$
+$P_e = 0.1 \times 625 = 62.5\ \text{W}$
+:::answer $\ans{250\ \text{W and } 62.5\ \text{W}}$
+```
+
+**Check:** $P_c/f$ at 25 Hz $= (250 + 62.5)/25 = 12.5$, which is on the line. Option C puts the whole 312.5 W as hysteresis.
+
+**Answer: (B).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate-2014-s3-q36', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2014'), 'S3-Q36', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '250 W and 2.5 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '250 W and 62.5 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '312.5 W and 62.5 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '312.5 W and 250 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2014-s3-q36', '<svg xmlns="http://www.w3.org/2000/svg" width="320" viewBox="0 0 320 180">
+<line x1="46.0" y1="154.0" x2="273.0" y2="154.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="275.0,154.0 269.0,151.0 269.0,157.0" fill="currentColor"/>
+<line x1="46.0" y1="158.0" x2="46.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="46.0,6.0 43.0,12.0 49.0,12.0" fill="currentColor"/>
+<text x="281.0" y="154.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">f (Hz)</text>
+<text x="52.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">Pc/f (W/Hz)</text>
+<text x="39.0" y="165.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="141.1" y1="151.0" x2="141.1" y2="157.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="141.1" y="167.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">25</text>
+<line x1="236.2" y1="151.0" x2="236.2" y2="157.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="236.2" y="167.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">50</text>
+<line x1="43.0" y1="114.0" x2="49.0" y2="114.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="40.0" y="114.0" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">5</text>
+<line x1="43.0" y1="74.0" x2="49.0" y2="74.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="40.0" y="74.0" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">10</text>
+<line x1="43.0" y1="34.0" x2="49.0" y2="34.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="40.0" y="34.0" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">15</text>
+<line x1="46.0" y1="34.0" x2="236.2" y2="34.0" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="236.2" y1="154.0" x2="236.2" y2="34.0" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="141.1" y1="154.0" x2="141.1" y2="54.0" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="46.0" y1="54.0" x2="141.1" y2="54.0" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<polyline points="46.0,74.0 236.2,34.0" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2020-21';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2020', '21')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A single-phase, 4 kVA, 200 V/100 V, 50 Hz transformer with laminated CRGO steel core has rated no-load loss of 450 W. When the high-voltage winding is...', 'A single-phase, 4 kVA, 200 V/100 V, 50 Hz transformer with laminated CRGO steel core has rated no-load loss of 450 W. When the high-voltage winding is excited with 160 V, 40 Hz sinusoidal ac supply, the no-load losses are found to be 320 W. When the high-voltage winding of the same transformer is supplied from a 100 V, 25 Hz sinusoidal ac source, the no-load losses will be ______ W (rounded off to 2 decimal places).
+', '**Idea used:** all three tests have V/f = 4, so $P = Af + Bf^2$ (see *Core losses: hysteresis and eddy current → Separating the two losses*).
+
+```example Working
+:::given 450 W at 200 V, 50 Hz; 320 W at 160 V, 40 Hz; find loss at 100 V, 25 Hz
+:::find no-load loss at 25 Hz
+:::step Check V/f.
+$200/50 = 160/40 = 100/25 = 4$: $B_m$ the same in all three
+:::step Divide by f.
+$450 \div 50 = 9$, so $9 = A + 50B$
+$320 \div 40 = 8$, so $8 = A + 40B$
+:::step Subtract.
+$1 = 10B$, so $B = 0.1$
+$A = 9 - 5 = 4$
+:::step Loss at 25 Hz.
+$P = 4 \times 25 + 0.1 \times 625$
+$= 100 + 62.5 = 162.5\ \text{W}$
+:::answer $\ans{162.50\ \text{W}}$
+```
+
+Option B scales the whole loss in proportion to $f$ ($450 \times 25/50$); D scales it as $f^2$ ($450 \times (25/50)^2$). Neither is right: the two parts change differently.
+
+**Answer: 162.50 W.** *(Our solution.)*
+', 'READY', 'NAT', 162.4, 162.6, 2, 'UNVERIFIED', 'gate-2020-21', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A single-phase, 4 kVA, 200 V/100 V, 50 Hz transformer with laminated CRGO steel core has rated no-load loss of 450 W. When the high-voltage winding is...'), stem_md = 'A single-phase, 4 kVA, 200 V/100 V, 50 Hz transformer with laminated CRGO steel core has rated no-load loss of 450 W. When the high-voltage winding is excited with 160 V, 40 Hz sinusoidal ac supply, the no-load losses are found to be 320 W. When the high-voltage winding of the same transformer is supplied from a 100 V, 25 Hz sinusoidal ac source, the no-load losses will be ______ W (rounded off to 2 decimal places).
+', solution_md = '**Idea used:** all three tests have V/f = 4, so $P = Af + Bf^2$ (see *Core losses: hysteresis and eddy current → Separating the two losses*).
+
+```example Working
+:::given 450 W at 200 V, 50 Hz; 320 W at 160 V, 40 Hz; find loss at 100 V, 25 Hz
+:::find no-load loss at 25 Hz
+:::step Check V/f.
+$200/50 = 160/40 = 100/25 = 4$: $B_m$ the same in all three
+:::step Divide by f.
+$450 \div 50 = 9$, so $9 = A + 50B$
+$320 \div 40 = 8$, so $8 = A + 40B$
+:::step Subtract.
+$1 = 10B$, so $B = 0.1$
+$A = 9 - 5 = 4$
+:::step Loss at 25 Hz.
+$P = 4 \times 25 + 0.1 \times 625$
+$= 100 + 62.5 = 162.5\ \text{W}$
+:::answer $\ans{162.50\ \text{W}}$
+```
+
+Option B scales the whole loss in proportion to $f$ ($450 \times 25/50$); D scales it as $f^2$ ($450 \times (25/50)^2$). Neither is right: the two parts change differently.
+
+**Answer: 162.50 W.** *(Our solution.)*
+', status = 'READY', answer_type = 'NAT', nat_min = 162.4, nat_max = 162.6, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2020-21', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2020'), '21', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '162.50', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '225.00', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '200.00', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '112.50', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2021-33';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2021', '33')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'In a single-phase transformer, the total iron loss is 2500 W at nominal voltage of 440 V and frequency 50 Hz. The total iron loss is 850 W at 220 V and 25...', 'In a single-phase transformer, the total iron loss is 2500 W at nominal voltage of 440 V and frequency 50 Hz. The total iron loss is 850 W at 220 V and 25 Hz. Then, at nominal voltage and frequency, the hysteresis loss and eddy current loss respectively are
+', '**Idea used:** V/f constant (440/50 = 220/25 = 8.8): $P_i/f = A + Bf$ (see *Core losses: hysteresis and eddy current → Separating the two losses*).
+
+```example Working
+:::given 2500 W at 440 V, 50 Hz; 850 W at 220 V, 25 Hz
+:::find $P_h$ and $P_e$ at 50 Hz
+:::step Divide by f.
+$2500 \div 50 = 50$, so $50 = A + 50B$
+$850 \div 25 = 34$, so $34 = A + 25B$
+:::step Subtract.
+$16 = 25B$, so $B = 0.64$
+$A = 34 - 25 \times 0.64 = 34 - 16 = 18$
+:::step Losses at 50 Hz.
+$P_h = 18 \times 50 = 900\ \text{W}$
+$P_e = 0.64 \times 2500 = 1600\ \text{W}$
+:::answer $\ans{900\ \text{W and } 1600\ \text{W}}$
+```
+
+Options C and D are the 25 Hz values (or mixed up); A swaps the two.
+
+**Answer: (B).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2021-33', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'In a single-phase transformer, the total iron loss is 2500 W at nominal voltage of 440 V and frequency 50 Hz. The total iron loss is 850 W at 220 V and 25...'), stem_md = 'In a single-phase transformer, the total iron loss is 2500 W at nominal voltage of 440 V and frequency 50 Hz. The total iron loss is 850 W at 220 V and 25 Hz. Then, at nominal voltage and frequency, the hysteresis loss and eddy current loss respectively are
+', solution_md = '**Idea used:** V/f constant (440/50 = 220/25 = 8.8): $P_i/f = A + Bf$ (see *Core losses: hysteresis and eddy current → Separating the two losses*).
+
+```example Working
+:::given 2500 W at 440 V, 50 Hz; 850 W at 220 V, 25 Hz
+:::find $P_h$ and $P_e$ at 50 Hz
+:::step Divide by f.
+$2500 \div 50 = 50$, so $50 = A + 50B$
+$850 \div 25 = 34$, so $34 = A + 25B$
+:::step Subtract.
+$16 = 25B$, so $B = 0.64$
+$A = 34 - 25 \times 0.64 = 34 - 16 = 18$
+:::step Losses at 50 Hz.
+$P_h = 18 \times 50 = 900\ \text{W}$
+$P_e = 0.64 \times 2500 = 1600\ \text{W}$
+:::answer $\ans{900\ \text{W and } 1600\ \text{W}}$
+```
+
+Options C and D are the 25 Hz values (or mixed up); A swaps the two.
+
+**Answer: (B).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2021-33', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2021'), '33', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1600 W and 900 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '900 W and 1600 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '250 W and 600 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '600 W and 250 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2025-15';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2025', '15')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The total core loss of a specimen of silicon steel is found to be 1500 W at 50 Hz. Keeping the flux density constant, the loss becomes 3000 W, when the...', 'The total core loss of a specimen of silicon steel is found to be 1500 W at 50 Hz. Keeping the flux density constant, the loss becomes 3000 W, when the frequency is raised to 75 Hz. The eddy current loss at 75 Hz will be
+', '**Idea used:** constant flux density → $P = Af + Bf^2$ (see *Core losses: hysteresis and eddy current → Separating the two losses*).
+
+```example Working
+:::given 1500 W at 50 Hz; 3000 W at 75 Hz; $B_m$ constant
+:::find eddy loss at 75 Hz
+:::step Divide by f.
+$1500 \div 50 = 30$, so $30 = A + 50B$
+$3000 \div 75 = 40$, so $40 = A + 75B$
+:::step Subtract.
+$10 = 25B$, so $B = 0.4$
+:::step Eddy loss at 75 Hz. $\fx{P_e = Bf^2}$
+$0.4 \times 75^2 = 0.4 \times 5625 = 2250\ \text{W}$
+:::answer $\ans{2.25\ \text{kW}}$
+```
+
+**Check:** $A = 30 - 20 = 10$; hysteresis at 75 Hz $= 750$ W; $750 + 2250 = 3000$ W ✓.
+
+**Answer: (D).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2025-15', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The total core loss of a specimen of silicon steel is found to be 1500 W at 50 Hz. Keeping the flux density constant, the loss becomes 3000 W, when the...'), stem_md = 'The total core loss of a specimen of silicon steel is found to be 1500 W at 50 Hz. Keeping the flux density constant, the loss becomes 3000 W, when the frequency is raised to 75 Hz. The eddy current loss at 75 Hz will be
+', solution_md = '**Idea used:** constant flux density → $P = Af + Bf^2$ (see *Core losses: hysteresis and eddy current → Separating the two losses*).
+
+```example Working
+:::given 1500 W at 50 Hz; 3000 W at 75 Hz; $B_m$ constant
+:::find eddy loss at 75 Hz
+:::step Divide by f.
+$1500 \div 50 = 30$, so $30 = A + 50B$
+$3000 \div 75 = 40$, so $40 = A + 75B$
+:::step Subtract.
+$10 = 25B$, so $B = 0.4$
+:::step Eddy loss at 75 Hz. $\fx{P_e = Bf^2}$
+$0.4 \times 75^2 = 0.4 \times 5625 = 2250\ \text{W}$
+:::answer $\ans{2.25\ \text{kW}}$
+```
+
+**Check:** $A = 30 - 20 = 10$; hysteresis at 75 Hz $= 750$ W; $750 + 2250 = 3000$ W ✓.
+
+**Answer: (D).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2025-15', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2025'), '15', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1.25 kW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.50 kW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1.75 kW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.25 kW', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2024-88';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2024', '88')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'If a 50 Hz, 220/400 V, 50 kVA, single-phase transformer operates on 220 V, 40 Hz supply with secondary winding, then what about the core losses of the...', 'If a 50 Hz, 220/400 V, 50 kVA, single-phase transformer operates on 220 V, 40 Hz supply with secondary winding, then what about the core losses of the transformer?
+', '**Idea used:** voltage fixed, frequency lowered: $B_m \propto V/f$ rises; $P_h \propto B_m^{1.6} f$; $P_e \propto V^2$ (see *Core losses: hysteresis and eddy current → How the core loss changes with voltage and frequency*).
+
+1. $B_m$ rises by $50/40 = 1.25$.
+2. Hysteresis: $1.25^{1.6} \times 0.8 \approx 1.43 \times 0.8 \approx 1.14$: it **increases** (about 14 %).
+3. Eddy: depends only on the voltage, which is unchanged: it **stays the same**.
+
+**Asked before:** GATE EE 1993 (2 marks) asked about the same transformer on 220 V, 40 Hz.
+
+**Answer: (D).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'ese-2024-88', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'If a 50 Hz, 220/400 V, 50 kVA, single-phase transformer operates on 220 V, 40 Hz supply with secondary winding, then what about the core losses of the...'), stem_md = 'If a 50 Hz, 220/400 V, 50 kVA, single-phase transformer operates on 220 V, 40 Hz supply with secondary winding, then what about the core losses of the transformer?
+', solution_md = '**Idea used:** voltage fixed, frequency lowered: $B_m \propto V/f$ rises; $P_h \propto B_m^{1.6} f$; $P_e \propto V^2$ (see *Core losses: hysteresis and eddy current → How the core loss changes with voltage and frequency*).
+
+1. $B_m$ rises by $50/40 = 1.25$.
+2. Hysteresis: $1.25^{1.6} \times 0.8 \approx 1.43 \times 0.8 \approx 1.14$: it **increases** (about 14 %).
+3. Eddy: depends only on the voltage, which is unchanged: it **stays the same**.
+
+**Asked before:** GATE EE 1993 (2 marks) asked about the same transformer on 220 V, 40 Hz.
+
+**Answer: (D).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'ese-2024-88', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2024'), '88', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'The hysteresis losses and the eddy current losses of the transformer increase', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'The hysteresis losses and the eddy current losses of the transformer decrease', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'The hysteresis losses remain same whereas the eddy current losses decrease', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'The hysteresis losses increase whereas the eddy current losses remain same', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-ideal-transformer';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2018-86';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2018', '86')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'An ideal transformer is having 150 turns primary and 750 turns secondary. The primary coil is connected to a 240 V, 50 Hz source. The secondary winding...', 'An ideal transformer is having 150 turns primary and 750 turns secondary. The primary coil is connected to a 240 V, 50 Hz source. The secondary winding supplies a load of 4 A at lagging power factor of 0.8. What is the power supplied by the transformer to the load?
+', '**Idea used:** $V_2 = V_1 N_2/N_1$; $P = V_2 I_2 \cos\phi$ (see *The ideal transformer*, Worked example 1).
+
+```example Working
+:::given $N_1 = 150$, $N_2 = 750$, $V_1 = 240\ \text{V}$, $I_2 = 4\ \text{A}$, pf $= 0.8$
+:::find power to the load
+:::step Secondary voltage.
+$750 \div 150 = 5$
+$V_2 = 240 \times 5 = 1200\ \text{V}$
+:::step Power. $\fx{P = V_2 I_2 \cos\phi}$
+$1200 \times 4 = 4800\ \text{VA}$
+$4800 \times 0.8 = 3840\ \text{W}$
+:::answer $\ans{3840\ \text{W}}$
+```
+
+Option D is half the answer (a slip of using a turns ratio of 2.5 instead of 5).
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2018-86', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'An ideal transformer is having 150 turns primary and 750 turns secondary. The primary coil is connected to a 240 V, 50 Hz source. The secondary winding...'), stem_md = 'An ideal transformer is having 150 turns primary and 750 turns secondary. The primary coil is connected to a 240 V, 50 Hz source. The secondary winding supplies a load of 4 A at lagging power factor of 0.8. What is the power supplied by the transformer to the load?
+', solution_md = '**Idea used:** $V_2 = V_1 N_2/N_1$; $P = V_2 I_2 \cos\phi$ (see *The ideal transformer*, Worked example 1).
+
+```example Working
+:::given $N_1 = 150$, $N_2 = 750$, $V_1 = 240\ \text{V}$, $I_2 = 4\ \text{A}$, pf $= 0.8$
+:::find power to the load
+:::step Secondary voltage.
+$750 \div 150 = 5$
+$V_2 = 240 \times 5 = 1200\ \text{V}$
+:::step Power. $\fx{P = V_2 I_2 \cos\phi}$
+$1200 \times 4 = 4800\ \text{VA}$
+$4800 \times 0.8 = 3840\ \text{W}$
+:::answer $\ans{3840\ \text{W}}$
+```
+
+Option D is half the answer (a slip of using a turns ratio of 2.5 instead of 5).
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2018-86', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2018'), '86', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '4200 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3840 W', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2100 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1920 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-ideal-transformer');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-ideal-transformer';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2018-89';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2018', '89')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Which of the following would refer to an ideal transformer? 1. Winding-resistances are negligible 2. Leakage-fluxes are included 3. Core-losses are...', 'Which of the following would refer to an ideal transformer?
+
+1. Winding-resistances are negligible
+2. Leakage-fluxes are included
+3. Core-losses are negligible
+4. Magnetization characteristic is linear
+', '**Idea used:** the assumptions of an ideal transformer (see *The ideal transformer → Why study an "ideal" transformer*).
+
+An ideal transformer has no winding resistance (1 ✓), **no** leakage flux (2 ✗), no core loss (3 ✓) and a linear magnetisation characteristic with infinite permeability (4 ✓).
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2018-89', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Which of the following would refer to an ideal transformer? 1. Winding-resistances are negligible 2. Leakage-fluxes are included 3. Core-losses are...'), stem_md = 'Which of the following would refer to an ideal transformer?
+
+1. Winding-resistances are negligible
+2. Leakage-fluxes are included
+3. Core-losses are negligible
+4. Magnetization characteristic is linear
+', solution_md = '**Idea used:** the assumptions of an ideal transformer (see *The ideal transformer → Why study an "ideal" transformer*).
+
+An ideal transformer has no winding resistance (1 ✓), **no** leakage flux (2 ✗), no core loss (3 ✓) and a linear magnetisation characteristic with infinite permeability (4 ✓).
+
+**Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2018-89', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2018'), '89', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1, 2 and 3 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1, 3 and 4 only', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1, 2 and 4 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2, 3 and 4 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-ideal-transformer');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-ideal-transformer';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2024-100';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2024', '100')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Consider the following statements regarding ideal transformer: 1. The winding resistances of the primary and secondary of the transformer are zero. 2. The...', 'Consider the following statements regarding ideal transformer:
+
+1. The winding resistances of the primary and secondary of the transformer are zero.
+2. The eddy current loss of the transformer is zero.
+3. The core of the transformer is having a finite permeability.
+
+Which of the above statements is/are not correct?
+', '**Idea used:** the ideal transformer (see *The ideal transformer*).
+
+1 is correct (zero resistance). 2 is correct (no core loss at all). 3 is **not** correct: an ideal core has **infinite** permeability (zero reluctance, zero magnetising current).
+
+Read the question carefully: it asks for the statement that is **not** correct.
+
+**Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2024-100', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Consider the following statements regarding ideal transformer: 1. The winding resistances of the primary and secondary of the transformer are zero. 2. The...'), stem_md = 'Consider the following statements regarding ideal transformer:
+
+1. The winding resistances of the primary and secondary of the transformer are zero.
+2. The eddy current loss of the transformer is zero.
+3. The core of the transformer is having a finite permeability.
+
+Which of the above statements is/are not correct?
+', solution_md = '**Idea used:** the ideal transformer (see *The ideal transformer*).
+
+1 is correct (zero resistance). 2 is correct (no core loss at all). 3 is **not** correct: an ideal core has **infinite** permeability (zero reluctance, zero magnetising current).
+
+Read the question carefully: it asks for the statement that is **not** correct.
+
+**Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2024-100', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2024'), '100', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1 and 3', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3 only', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1 and 2', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-ideal-transformer');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-ideal-transformer';
+  SELECT id INTO qid FROM question WHERE content_key = 'ese-2020-110';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('ESE-2020', '110')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A transformer with a 10 : 1 ratio and rated at 50 kVA, 2400/240 V, 50 Hz is used to step down the voltage of a distribution system. The low tension voltage...', 'A transformer with a 10 : 1 ratio and rated at 50 kVA, 2400/240 V, 50 Hz is used to step down the voltage of a distribution system. The low tension voltage is to be kept constant at 240 V. If the transformer is fully loaded at 0.8 power factor (lag), the load impedance connected to low-tension side will be nearly
+', '**Idea used:** rated-load impedance $= V^2/S$ on that side, whatever the power factor (see *The ideal transformer → Load impedance from the rating*).
+
+```example Working
+:::given $S = \given{50\ \text{kVA}}$, $V_2 = \given{240\ \text{V}}$
+:::find load impedance on the LT side
+:::step Rated LT current.
+$I_2 = 50\,000 \div 240 = 208.3\ \text{A}$
+:::step Impedance.
+$Z = 240 \div 208.3 = 1.152\ \Omega$
+:::answer $\ans{Z \approx 1.15\ \Omega}$
+```
+
+**Without a calculator:** $240^2 = 57\,600$; $57\,600 \div 50\,000 = 1.152$. The 0.8 pf is not needed for the **size** of the impedance.
+
+**Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+', 'READY', 'MCQ', NULL, NULL, 1, 'UNVERIFIED', 'ese-2020-110', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A transformer with a 10 : 1 ratio and rated at 50 kVA, 2400/240 V, 50 Hz is used to step down the voltage of a distribution system. The low tension voltage...'), stem_md = 'A transformer with a 10 : 1 ratio and rated at 50 kVA, 2400/240 V, 50 Hz is used to step down the voltage of a distribution system. The low tension voltage is to be kept constant at 240 V. If the transformer is fully loaded at 0.8 power factor (lag), the load impedance connected to low-tension side will be nearly
+', solution_md = '**Idea used:** rated-load impedance $= V^2/S$ on that side, whatever the power factor (see *The ideal transformer → Load impedance from the rating*).
+
+```example Working
+:::given $S = \given{50\ \text{kVA}}$, $V_2 = \given{240\ \text{V}}$
+:::find load impedance on the LT side
+:::step Rated LT current.
+$I_2 = 50\,000 \div 240 = 208.3\ \text{A}$
+:::step Impedance.
+$Z = 240 \div 208.3 = 1.152\ \Omega$
+:::answer $\ans{Z \approx 1.15\ \Omega}$
+```
+
+**Without a calculator:** $240^2 = 57\,600$; $57\,600 \div 50\,000 = 1.152$. The 0.8 pf is not needed for the **size** of the impedance.
+
+**Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'UNVERIFIED', content_key = 'ese-2020-110', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'ESE-2020'), '110', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3.15 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2.60 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1.15 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.60 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-ideal-transformer');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-ideal-transformer';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2013-43';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2013', '43')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The following arrangement consists of an ideal transformer and an attenuator which attenuates by a factor of 0.8. An ac voltage $V{WX1} = 100$ V is applied...', 'The following arrangement consists of an ideal transformer and an attenuator which attenuates by a factor of 0.8. An ac voltage $V_{WX1} = 100$ V is applied across WX to get an open circuit voltage $V_{YZ1}$ across YZ. Next, an ac voltage $V_{YZ2} = 100$ V is applied across YZ to get an open circuit voltage $V_{WX2}$ across WX. Then, $V_{YZ1}/V_{WX1}$, $V_{WX2}/V_{YZ2}$ are respectively,
+
+![W-X is the primary of an ideal 1:1.25 transformer; its secondary is across a potentiometer; Y is the wiper and Z the bottom end](fig:q-gate2013-q43)
+', '**Idea used:** an ideal transformer works the same both ways; a potentiometer divides only when the source is across the **whole** of it (see *The ideal transformer → Voltage ratio*).
+
+```example Working
+:::given ratio $N_1 : N_2 = 1 : 1.25$; attenuator ratio 0.8
+:::find $V_{YZ1}/V_{WX1}$ and $V_{WX2}/V_{YZ2}$
+:::step Forward: 100 V on W-X.
+secondary $= 100 \times 1.25 = 125\ \text{V}$ across the whole pot
+wiper takes 0.8 of it: $V_{YZ1} = 125 \times 0.8 = 100\ \text{V}$
+ratio $= 100/100$
+:::step Reverse: 100 V on Y-Z (wiper and bottom).
+W-X is open, so the ideal transformer draws no current; no current flows in the top part of the pot either
+no drop in the top part: the whole secondary is at 100 V
+$V_{WX2} = 100 \div 1.25 = 80\ \text{V}$
+ratio $= 80/100$
+:::answer $\ans{100/100\ \text{and}\ 80/100}$
+```
+
+**Trap:** the pot does not "attenuate" in the reverse direction (no current, no divider action), so the answer is not 80/100 × 80/100.
+
+**Answer: (B).** *(Our solution.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2013-43', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The following arrangement consists of an ideal transformer and an attenuator which attenuates by a factor of 0.8. An ac voltage $V{WX1} = 100$ V is applied...'), stem_md = 'The following arrangement consists of an ideal transformer and an attenuator which attenuates by a factor of 0.8. An ac voltage $V_{WX1} = 100$ V is applied across WX to get an open circuit voltage $V_{YZ1}$ across YZ. Next, an ac voltage $V_{YZ2} = 100$ V is applied across YZ to get an open circuit voltage $V_{WX2}$ across WX. Then, $V_{YZ1}/V_{WX1}$, $V_{WX2}/V_{YZ2}$ are respectively,
+
+![W-X is the primary of an ideal 1:1.25 transformer; its secondary is across a potentiometer; Y is the wiper and Z the bottom end](fig:q-gate2013-q43)
+', solution_md = '**Idea used:** an ideal transformer works the same both ways; a potentiometer divides only when the source is across the **whole** of it (see *The ideal transformer → Voltage ratio*).
+
+```example Working
+:::given ratio $N_1 : N_2 = 1 : 1.25$; attenuator ratio 0.8
+:::find $V_{YZ1}/V_{WX1}$ and $V_{WX2}/V_{YZ2}$
+:::step Forward: 100 V on W-X.
+secondary $= 100 \times 1.25 = 125\ \text{V}$ across the whole pot
+wiper takes 0.8 of it: $V_{YZ1} = 125 \times 0.8 = 100\ \text{V}$
+ratio $= 100/100$
+:::step Reverse: 100 V on Y-Z (wiper and bottom).
+W-X is open, so the ideal transformer draws no current; no current flows in the top part of the pot either
+no drop in the top part: the whole secondary is at 100 V
+$V_{WX2} = 100 \div 1.25 = 80\ \text{V}$
+ratio $= 80/100$
+:::answer $\ans{100/100\ \text{and}\ 80/100}$
+```
+
+**Trap:** the pot does not "attenuate" in the reverse direction (no current, no divider action), so the answer is not 80/100 × 80/100.
+
+**Answer: (B).** *(Our solution.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2013-43', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2013'), '43', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '125/100 and 80/100', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '100/100 and 80/100', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '100/100 and 100/100', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '80/100 and 80/100', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2013-q43', '<svg width="240" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.989999999999995 -21.9 208.946 112.2"><path d="M 0.0,-0.0 L 14.4,-0 L 28.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 28.8,-0.0 L 28.8,21.6 L 27.337,21.633 L 25.836,21.734 L 24.328,21.904 L 22.845,22.142 L 21.418,22.446 L 20.078,22.814 L 18.853,23.24 L 17.767,23.72 L 16.846,24.245 L 16.107,24.808 L 15.566,25.4 L 15.235,26.012 L 15.121,26.634 L 15.226,27.257 L 15.548,27.869 L 16.08,28.463 L 16.811,29.027 L 17.725,29.554 L 18.804,30.035 L 20.024,30.464 L 21.36,30.834 L 22.784,31.141 L 24.265,31.382 L 25.773,31.555 L 27.275,31.659 L 28.74,31.694 L 30.137,31.665 L 31.437,31.574 L 32.612,31.426 L 33.638,31.228 L 34.492,30.988 L 35.157,30.712 L 35.619,30.411 L 35.868,30.093 L 35.899,29.769 L 35.711,29.449 L 35.308,29.142 L 34.699,28.858 L 33.896,28.606 L 32.917,28.395 L 31.781,28.233 L 30.514,28.125 L 29.141,28.078 L 27.692,28.095 L 26.197,28.18 L 24.688,28.333 L 23.196,28.555 L 21.753,28.844 L 20.39,29.197 L 19.134,29.61 L 18.013,30.077 L 17.051,30.591 L 16.266,31.146 L 15.677,31.732 L 15.295,32.34 L 15.129,32.961 L 15.181,33.584 L 15.451,34.2 L 15.934,34.799 L 16.619,35.371 L 17.491,35.908 L 18.532,36.401 L 19.72,36.843 L 21.031,37.227 L 22.436,37.55 L 23.907,37.807 L 25.411,37.996 L 26.917,38.116 L 28.394,38.168 L 29.81,38.154 L 31.136,38.077 L 32.343,37.943 L 33.407,37.756 L 34.304,37.525 L 35.016,37.257 L 35.527,36.961 L 35.828,36.646 L 35.911,36.323 L 35.776,36.001 L 35.424,35.69 L 34.863,35.4 L 34.105,35.14 L 33.166,34.918 L 32.066,34.744 L 30.828,34.622 L 29.478,34.56 L 28.045,34.562 L 26.558,34.63 L 25.049,34.767 L 23.55,34.972 L 22.093,35.245 L 20.708,35.583 L 19.424,35.982 L 18.268,36.437 L 17.266,36.941 L 16.437,37.486 L 15.8,38.066 L 15.367,38.67 L 15.148,39.288 L 15.148,39.912 L 15.367,40.53 L 15.8,41.134 L 16.437,41.714 L 17.266,42.259 L 18.268,42.763 L 19.424,43.218 L 20.708,43.617 L 22.093,43.955 L 23.55,44.228 L 25.049,44.433 L 26.558,44.57 L 28.045,44.638 L 29.478,44.64 L 30.828,44.578 L 32.066,44.456 L 33.166,44.282 L 34.105,44.06 L 34.863,43.8 L 35.424,43.51 L 35.776,43.199 L 35.911,42.877 L 35.828,42.554 L 35.527,42.239 L 35.016,41.943 L 34.304,41.675 L 33.407,41.444 L 32.343,41.257 L 31.136,41.123 L 29.81,41.046 L 28.394,41.032 L 26.917,41.084 L 25.411,41.204 L 23.907,41.393 L 22.436,41.65 L 21.031,41.973 L 19.72,42.357 L 18.532,42.799 L 17.491,43.292 L 16.619,43.829 L 15.934,44.401 L 15.451,45 L 15.181,45.616 L 15.129,46.239 L 15.295,46.86 L 15.677,47.468 L 16.266,48.054 L 17.051,48.609 L 18.013,49.123 L 19.134,49.59 L 20.39,50.003 L 21.753,50.356 L 23.196,50.645 L 24.688,50.867 L 26.197,51.02 L 27.692,51.105 L 29.141,51.122 L 30.514,51.075 L 31.781,50.967 L 32.917,50.805 L 33.896,50.594 L 34.699,50.342 L 35.308,50.058 L 35.711,49.751 L 35.899,49.431 L 35.868,49.107 L 35.619,48.789 L 35.157,48.488 L 34.492,48.212 L 33.638,47.972 L 32.612,47.774 L 31.437,47.626 L 30.137,47.535 L 28.74,47.506 L 27.275,47.541 L 25.773,47.645 L 24.265,47.818 L 22.784,48.059 L 21.36,48.366 L 20.024,48.736 L 18.804,49.165 L 17.725,49.646 L 16.811,50.173 L 16.08,50.737 L 15.548,51.331 L 15.226,51.943 L 15.121,52.566 L 15.235,53.188 L 15.566,53.8 L 16.107,54.392 L 16.846,54.955 L 17.767,55.48 L 18.853,55.96 L 20.078,56.386 L 21.418,56.754 L 22.845,57.058 L 24.328,57.296 L 25.836,57.466 L 27.337,57.567 L 28.8,57.6 L 28.8,79.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 28.79999999999989,79.2 L 14.4,79.2 L -0,79.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 50.4,-0.0 L 50.4,21.6 L 51.863,21.633 L 53.364,21.734 L 54.872,21.904 L 56.355,22.142 L 57.782,22.446 L 59.122,22.814 L 60.347,23.24 L 61.433,23.72 L 62.354,24.245 L 63.093,24.808 L 63.634,25.4 L 63.965,26.012 L 64.079,26.634 L 63.974,27.257 L 63.652,27.869 L 63.12,28.463 L 62.389,29.027 L 61.475,29.554 L 60.396,30.035 L 59.176,30.464 L 57.84,30.834 L 56.416,31.141 L 54.935,31.382 L 53.427,31.555 L 51.925,31.659 L 50.46,31.694 L 49.063,31.665 L 47.763,31.574 L 46.588,31.426 L 45.562,31.228 L 44.708,30.988 L 44.043,30.712 L 43.581,30.411 L 43.332,30.093 L 43.301,29.769 L 43.489,29.449 L 43.892,29.142 L 44.501,28.858 L 45.304,28.606 L 46.283,28.395 L 47.419,28.233 L 48.686,28.125 L 50.059,28.078 L 51.508,28.095 L 53.003,28.18 L 54.512,28.333 L 56.004,28.555 L 57.447,28.844 L 58.81,29.197 L 60.066,29.61 L 61.187,30.077 L 62.149,30.591 L 62.934,31.146 L 63.523,31.732 L 63.905,32.34 L 64.071,32.961 L 64.019,33.584 L 63.749,34.2 L 63.266,34.799 L 62.581,35.371 L 61.709,35.908 L 60.668,36.401 L 59.48,36.843 L 58.169,37.227 L 56.764,37.55 L 55.293,37.807 L 53.789,37.996 L 52.283,38.116 L 50.806,38.168 L 49.39,38.154 L 48.064,38.077 L 46.857,37.943 L 45.793,37.756 L 44.896,37.525 L 44.184,37.257 L 43.673,36.961 L 43.372,36.646 L 43.289,36.323 L 43.424,36.001 L 43.776,35.69 L 44.337,35.4 L 45.095,35.14 L 46.034,34.918 L 47.134,34.744 L 48.372,34.622 L 49.722,34.56 L 51.155,34.562 L 52.642,34.63 L 54.151,34.767 L 55.65,34.972 L 57.107,35.245 L 58.492,35.583 L 59.776,35.982 L 60.932,36.437 L 61.934,36.941 L 62.763,37.486 L 63.4,38.066 L 63.833,38.67 L 64.052,39.288 L 64.052,39.912 L 63.833,40.53 L 63.4,41.134 L 62.763,41.714 L 61.934,42.259 L 60.932,42.763 L 59.776,43.218 L 58.492,43.617 L 57.107,43.955 L 55.65,44.228 L 54.151,44.433 L 52.642,44.57 L 51.155,44.638 L 49.722,44.64 L 48.372,44.578 L 47.134,44.456 L 46.034,44.282 L 45.095,44.06 L 44.337,43.8 L 43.776,43.51 L 43.424,43.199 L 43.289,42.877 L 43.372,42.554 L 43.673,42.239 L 44.184,41.943 L 44.896,41.675 L 45.793,41.444 L 46.857,41.257 L 48.064,41.123 L 49.39,41.046 L 50.806,41.032 L 52.283,41.084 L 53.789,41.204 L 55.293,41.393 L 56.764,41.65 L 58.169,41.973 L 59.48,42.357 L 60.668,42.799 L 61.709,43.292 L 62.581,43.829 L 63.266,44.401 L 63.749,45 L 64.019,45.616 L 64.071,46.239 L 63.905,46.86 L 63.523,47.468 L 62.934,48.054 L 62.149,48.609 L 61.187,49.123 L 60.066,49.59 L 58.81,50.003 L 57.447,50.356 L 56.004,50.645 L 54.512,50.867 L 53.003,51.02 L 51.508,51.105 L 50.059,51.122 L 48.686,51.075 L 47.419,50.967 L 46.283,50.805 L 45.304,50.594 L 44.501,50.342 L 43.892,50.058 L 43.489,49.751 L 43.301,49.431 L 43.332,49.107 L 43.581,48.789 L 44.043,48.488 L 44.708,48.212 L 45.562,47.972 L 46.588,47.774 L 47.763,47.626 L 49.063,47.535 L 50.46,47.506 L 51.925,47.541 L 53.427,47.645 L 54.935,47.818 L 56.416,48.059 L 57.84,48.366 L 59.176,48.736 L 60.396,49.165 L 61.475,49.646 L 62.389,50.173 L 63.12,50.737 L 63.652,51.331 L 63.974,51.943 L 64.079,52.566 L 63.965,53.188 L 63.634,53.8 L 63.093,54.392 L 62.354,54.955 L 61.433,55.48 L 60.347,55.96 L 59.122,56.386 L 57.782,56.754 L 56.355,57.058 L 54.872,57.296 L 53.364,57.466 L 51.863,57.567 L 50.4,57.6 L 50.4,79.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 50.4,-0.0 L 73.8,-0 L 97.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 97.2,-0.0 L 97.2,21.6 L 106.2,24.6 L 88.2,30.6 L 106.2,36.6 L 88.2,42.6 L 106.2,48.6 L 88.2,54.6 L 97.2,57.6 L 97.2,79.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 123.12,39.60000000000001 L 115.2,39.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 108.2 39.6 L 115.2 36.9 L 115.2 42.3 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 97.19999999999999,79.2 L 73.8,79.2 L 50.4,79.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 123.12,39.60000000000001 L 144.72,39.6 L 166.32,39.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 97.19999999999999,79.2 L 118.8,79.2 L 140.4,79.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="43.2" y="-23.799999999999997" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="43.2" dy="13">1 : 1.25</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="-6.3" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-6.3" dy="13">W</tspan></text><circle cx="-0" cy="79.2" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="-6.300000000000112" y="66.2" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-6.300000000000112" dy="13">X</tspan></text><circle cx="166.32" cy="39.6" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="172.62" y="26.60000000000001" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="172.62" dy="13">Y</tspan></text><circle cx="140.4" cy="79.2" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="146.7" y="66.2" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="146.7" dy="13">Z</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-ideal-transformer');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-ideal-transformer';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2014-s2-q11';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2014', 'S2-Q11')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'Assuming an ideal transformer, the Thevenin''s equivalent voltage and impedance as seen from the terminals x and y for the circuit in figure are', 'Assuming an ideal transformer, the Thevenin''s equivalent voltage and impedance as seen from the terminals x and y for the circuit in figure are
+
+![A source sin(ωt) with 1 ohm in series on the primary of an ideal 1:2 transformer; terminals x and y on the secondary](fig:q-gate2014-s2-q11)
+', '**Idea used:** voltage moves across with the turns ratio, impedance with its square (see *The ideal transformer*, Worked example 3).
+
+1. Open-circuit voltage: $1 \times 2 = 2\sin(\omega t)$.
+2. Impedance seen from the secondary: $1\ \Omega \times 2^2 = 4\ \Omega$.
+
+Option D divides by the square instead of multiplying.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'OFFICIAL_KEY', 'gate-2014-s2-q11', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'Assuming an ideal transformer, the Thevenin''s equivalent voltage and impedance as seen from the terminals x and y for the circuit in figure are'), stem_md = 'Assuming an ideal transformer, the Thevenin''s equivalent voltage and impedance as seen from the terminals x and y for the circuit in figure are
+
+![A source sin(ωt) with 1 ohm in series on the primary of an ideal 1:2 transformer; terminals x and y on the secondary](fig:q-gate2014-s2-q11)
+', solution_md = '**Idea used:** voltage moves across with the turns ratio, impedance with its square (see *The ideal transformer*, Worked example 3).
+
+1. Open-circuit voltage: $1 \times 2 = 2\sin(\omega t)$.
+2. Impedance seen from the secondary: $1\ \Omega \times 2^2 = 4\ \Omega$.
+
+Option D divides by the square instead of multiplying.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'OFFICIAL_KEY', content_key = 'gate-2014-s2-q11', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2014'), 'S2-Q11', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$2\sin(\omega t)$, 4 Ω', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$1\sin(\omega t)$, 1 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$1\sin(\omega t)$, 2 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$2\sin(\omega t)$, 0.5 Ω', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2014-s2-q11', '<svg width="245" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -123.80000000000001 212.93 152.9"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 9.000000000000002,-46.800000000000004 L 8.25,-48.663 L 7.5,-50.4 L 6.75,-51.891 L 6,-53.035 L 5.25,-53.755 L 4.5,-54 L 3.75,-53.755 L 3,-53.035 L 2.25,-51.891 L 1.5,-50.4 L 0.75,-48.663 L 0,-46.8 L -0.75,-44.937 L -1.5,-43.2 L -2.25,-41.709 L -3,-40.565 L -3.75,-39.845 L -4.5,-39.6 L -5.25,-39.845 L -6,-40.565 L -6.75,-41.709 L -7.5,-43.2 L -8.25,-44.937 L -9,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 100.8,-93.6 L 108,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 108.0,-93.60000000000001 L 108,-64.8 L 106.537,-64.767 L 105.036,-64.666 L 103.528,-64.496 L 102.045,-64.258 L 100.618,-63.954 L 99.278,-63.586 L 98.053,-63.16 L 96.967,-62.68 L 96.046,-62.155 L 95.307,-61.592 L 94.766,-61 L 94.435,-60.388 L 94.321,-59.766 L 94.426,-59.143 L 94.748,-58.531 L 95.28,-57.937 L 96.011,-57.373 L 96.925,-56.846 L 98.004,-56.365 L 99.224,-55.936 L 100.56,-55.566 L 101.984,-55.259 L 103.465,-55.018 L 104.973,-54.845 L 106.475,-54.741 L 107.94,-54.706 L 109.337,-54.735 L 110.637,-54.826 L 111.812,-54.974 L 112.838,-55.172 L 113.692,-55.412 L 114.357,-55.688 L 114.819,-55.989 L 115.068,-56.307 L 115.099,-56.631 L 114.911,-56.951 L 114.508,-57.258 L 113.899,-57.542 L 113.096,-57.794 L 112.117,-58.005 L 110.981,-58.167 L 109.714,-58.275 L 108.341,-58.322 L 106.892,-58.305 L 105.397,-58.22 L 103.888,-58.067 L 102.396,-57.845 L 100.953,-57.556 L 99.59,-57.203 L 98.334,-56.79 L 97.213,-56.323 L 96.251,-55.809 L 95.466,-55.254 L 94.877,-54.668 L 94.495,-54.06 L 94.329,-53.439 L 94.381,-52.816 L 94.651,-52.2 L 95.134,-51.601 L 95.819,-51.029 L 96.691,-50.492 L 97.732,-49.999 L 98.92,-49.557 L 100.231,-49.173 L 101.636,-48.85 L 103.107,-48.593 L 104.611,-48.404 L 106.117,-48.284 L 107.594,-48.232 L 109.01,-48.246 L 110.336,-48.323 L 111.543,-48.457 L 112.607,-48.644 L 113.504,-48.875 L 114.216,-49.143 L 114.727,-49.439 L 115.028,-49.754 L 115.111,-50.077 L 114.976,-50.399 L 114.624,-50.71 L 114.063,-51 L 113.305,-51.26 L 112.366,-51.482 L 111.266,-51.656 L 110.028,-51.778 L 108.678,-51.84 L 107.245,-51.838 L 105.758,-51.77 L 104.249,-51.633 L 102.75,-51.428 L 101.293,-51.155 L 99.908,-50.817 L 98.624,-50.418 L 97.468,-49.963 L 96.466,-49.459 L 95.637,-48.914 L 95,-48.334 L 94.567,-47.73 L 94.348,-47.112 L 94.348,-46.488 L 94.567,-45.87 L 95,-45.266 L 95.637,-44.686 L 96.466,-44.141 L 97.468,-43.637 L 98.624,-43.182 L 99.908,-42.783 L 101.293,-42.445 L 102.75,-42.172 L 104.249,-41.967 L 105.758,-41.83 L 107.245,-41.762 L 108.678,-41.76 L 110.028,-41.822 L 111.266,-41.944 L 112.366,-42.118 L 113.305,-42.34 L 114.063,-42.6 L 114.624,-42.89 L 114.976,-43.201 L 115.111,-43.523 L 115.028,-43.846 L 114.727,-44.161 L 114.216,-44.457 L 113.504,-44.725 L 112.607,-44.956 L 111.543,-45.143 L 110.336,-45.277 L 109.01,-45.354 L 107.594,-45.368 L 106.117,-45.316 L 104.611,-45.196 L 103.107,-45.007 L 101.636,-44.75 L 100.231,-44.427 L 98.92,-44.043 L 97.732,-43.601 L 96.691,-43.108 L 95.819,-42.571 L 95.134,-41.999 L 94.651,-41.4 L 94.381,-40.784 L 94.329,-40.161 L 94.495,-39.54 L 94.877,-38.932 L 95.466,-38.346 L 96.251,-37.791 L 97.213,-37.277 L 98.334,-36.81 L 99.59,-36.397 L 100.953,-36.044 L 102.396,-35.755 L 103.888,-35.533 L 105.397,-35.38 L 106.892,-35.295 L 108.341,-35.278 L 109.714,-35.325 L 110.981,-35.433 L 112.117,-35.595 L 113.096,-35.806 L 113.899,-36.058 L 114.508,-36.342 L 114.911,-36.649 L 115.099,-36.969 L 115.068,-37.293 L 114.819,-37.611 L 114.357,-37.912 L 113.692,-38.188 L 112.838,-38.428 L 111.812,-38.626 L 110.637,-38.774 L 109.337,-38.865 L 107.94,-38.894 L 106.475,-38.859 L 104.973,-38.755 L 103.465,-38.582 L 101.984,-38.341 L 100.56,-38.034 L 99.224,-37.664 L 98.004,-37.235 L 96.925,-36.754 L 96.011,-36.227 L 95.28,-35.663 L 94.748,-35.069 L 94.426,-34.457 L 94.321,-33.834 L 94.435,-33.212 L 94.766,-32.6 L 95.307,-32.008 L 96.046,-31.445 L 96.967,-30.92 L 98.053,-30.44 L 99.278,-30.014 L 100.618,-29.646 L 102.045,-29.342 L 103.528,-29.104 L 105.036,-28.934 L 106.537,-28.833 L 108,-28.8 L 108,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 107.99999999999989,-0.0 L 54,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.6,-93.60000000000001 L 129.6,-64.8 L 131.063,-64.767 L 132.564,-64.666 L 134.072,-64.496 L 135.555,-64.258 L 136.982,-63.954 L 138.322,-63.586 L 139.547,-63.16 L 140.633,-62.68 L 141.554,-62.155 L 142.293,-61.592 L 142.834,-61 L 143.165,-60.388 L 143.279,-59.766 L 143.174,-59.143 L 142.852,-58.531 L 142.32,-57.937 L 141.589,-57.373 L 140.675,-56.846 L 139.596,-56.365 L 138.376,-55.936 L 137.04,-55.566 L 135.616,-55.259 L 134.135,-55.018 L 132.627,-54.845 L 131.125,-54.741 L 129.66,-54.706 L 128.263,-54.735 L 126.963,-54.826 L 125.788,-54.974 L 124.762,-55.172 L 123.908,-55.412 L 123.243,-55.688 L 122.781,-55.989 L 122.532,-56.307 L 122.501,-56.631 L 122.689,-56.951 L 123.092,-57.258 L 123.701,-57.542 L 124.504,-57.794 L 125.483,-58.005 L 126.619,-58.167 L 127.886,-58.275 L 129.259,-58.322 L 130.708,-58.305 L 132.203,-58.22 L 133.712,-58.067 L 135.204,-57.845 L 136.647,-57.556 L 138.01,-57.203 L 139.266,-56.79 L 140.387,-56.323 L 141.349,-55.809 L 142.134,-55.254 L 142.723,-54.668 L 143.105,-54.06 L 143.271,-53.439 L 143.219,-52.816 L 142.949,-52.2 L 142.466,-51.601 L 141.781,-51.029 L 140.909,-50.492 L 139.868,-49.999 L 138.68,-49.557 L 137.369,-49.173 L 135.964,-48.85 L 134.493,-48.593 L 132.989,-48.404 L 131.483,-48.284 L 130.006,-48.232 L 128.59,-48.246 L 127.264,-48.323 L 126.057,-48.457 L 124.993,-48.644 L 124.096,-48.875 L 123.384,-49.143 L 122.873,-49.439 L 122.572,-49.754 L 122.489,-50.077 L 122.624,-50.399 L 122.976,-50.71 L 123.537,-51 L 124.295,-51.26 L 125.234,-51.482 L 126.334,-51.656 L 127.572,-51.778 L 128.922,-51.84 L 130.355,-51.838 L 131.842,-51.77 L 133.351,-51.633 L 134.85,-51.428 L 136.307,-51.155 L 137.692,-50.817 L 138.976,-50.418 L 140.132,-49.963 L 141.134,-49.459 L 141.963,-48.914 L 142.6,-48.334 L 143.033,-47.73 L 143.252,-47.112 L 143.252,-46.488 L 143.033,-45.87 L 142.6,-45.266 L 141.963,-44.686 L 141.134,-44.141 L 140.132,-43.637 L 138.976,-43.182 L 137.692,-42.783 L 136.307,-42.445 L 134.85,-42.172 L 133.351,-41.967 L 131.842,-41.83 L 130.355,-41.762 L 128.922,-41.76 L 127.572,-41.822 L 126.334,-41.944 L 125.234,-42.118 L 124.295,-42.34 L 123.537,-42.6 L 122.976,-42.89 L 122.624,-43.201 L 122.489,-43.523 L 122.572,-43.846 L 122.873,-44.161 L 123.384,-44.457 L 124.096,-44.725 L 124.993,-44.956 L 126.057,-45.143 L 127.264,-45.277 L 128.59,-45.354 L 130.006,-45.368 L 131.483,-45.316 L 132.989,-45.196 L 134.493,-45.007 L 135.964,-44.75 L 137.369,-44.427 L 138.68,-44.043 L 139.868,-43.601 L 140.909,-43.108 L 141.781,-42.571 L 142.466,-41.999 L 142.949,-41.4 L 143.219,-40.784 L 143.271,-40.161 L 143.105,-39.54 L 142.723,-38.932 L 142.134,-38.346 L 141.349,-37.791 L 140.387,-37.277 L 139.266,-36.81 L 138.01,-36.397 L 136.647,-36.044 L 135.204,-35.755 L 133.712,-35.533 L 132.203,-35.38 L 130.708,-35.295 L 129.259,-35.278 L 127.886,-35.325 L 126.619,-35.433 L 125.483,-35.595 L 124.504,-35.806 L 123.701,-36.058 L 123.092,-36.342 L 122.689,-36.649 L 122.501,-36.969 L 122.532,-37.293 L 122.781,-37.611 L 123.243,-37.912 L 123.908,-38.188 L 124.762,-38.428 L 125.788,-38.626 L 126.963,-38.774 L 128.263,-38.865 L 129.66,-38.894 L 131.125,-38.859 L 132.627,-38.755 L 134.135,-38.582 L 135.616,-38.341 L 137.04,-38.034 L 138.376,-37.664 L 139.596,-37.235 L 140.675,-36.754 L 141.589,-36.227 L 142.32,-35.663 L 142.852,-35.069 L 143.174,-34.457 L 143.279,-33.834 L 143.165,-33.212 L 142.834,-32.6 L 142.293,-32.008 L 141.554,-31.445 L 140.633,-30.92 L 139.547,-30.44 L 138.322,-30.014 L 136.982,-29.646 L 135.555,-29.342 L 134.072,-29.104 L 132.564,-28.934 L 131.063,-28.833 L 129.6,-28.8 L 129.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.6,-93.60000000000001 L 151.2,-93.6 L 172.8,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.6,-0.0 L 151.2,-0 L 172.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">sin(ωt)</tspan></text><text x="46.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">1 Ω</tspan></text><text x="122.39999999999999" y="5.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="122.39999999999999" dy="13">1 : 2</tspan></text><circle cx="172.8" cy="-93.6" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="179.1" y="-106.60000000000001" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="179.1" dy="13">x</tspan></text><circle cx="172.8" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="179.1" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="179.1" dy="13">y</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-ideal-transformer');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-ideal-transformer';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate-2024-18';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2024', '18')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'THEORY', 'Which one of the following options represents possible voltage polarities in a single phase two winding transformer? Here, $Vp$ is the applied primary...', 'Which one of the following options represents possible voltage polarities in a single phase two winding transformer? Here, $V_p$ is the applied primary voltage, $E_p$ is the induced primary voltage, $V_s$ is the open circuit secondary voltage, and $E_s$ is the induced secondary voltage.
+
+In every option the primary is on the left with its **dot at the bottom terminal**, and the secondary is on the right with its **dot at the top terminal**. The options differ only in the polarity marks (the original paper shows them as four figures):
+
+| Option | $V_p$ | $E_p$ | $E_s$ | $V_s$ |
+|---|---|---|---|---|
+| (A) | + top, − bottom | + top, − bottom | + top, − bottom | + top, − bottom |
+| (B) | − top, + bottom | − top, + bottom | + top, − bottom | + top, − bottom |
+| (C) | + top, − bottom | − top, + bottom | − top, + bottom | + top, − bottom |
+| (D) | + top, − bottom | − top, + bottom | − top, + bottom | − top, + bottom |
+', '**Idea used:** dotted ends have the same polarity at the same instant; the induced EMF of the primary has the same terminal polarity as the applied voltage (it is a back EMF equal to it); on open circuit $V_s = E_s$ (see *The ideal transformer → Polarity and the dot convention*).
+
+Check each option against three rules:
+
+1. $E_p$ marked the same way as $V_p$: (A) ✓, (B) ✓, (C) ✗, (D) ✗.
+2. $V_s$ marked the same way as $E_s$: (A) ✓, (B) ✓.
+3. Dots: the primary''s **dotted (bottom)** end and the secondary''s **dotted (top)** end must be positive together.
+   - (A): primary bottom is − but secondary top is + ✗.
+   - (B): primary bottom is + and secondary top is + ✓.
+
+**Answer: (B).** *(Our solution; the official key is not in our dump.)*
+', 'READY', 'MCQ', NULL, NULL, 2, 'UNVERIFIED', 'gate-2024-18', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'THEORY', summary = COALESCE(NULLIF(summary, ''), 'Which one of the following options represents possible voltage polarities in a single phase two winding transformer? Here, $Vp$ is the applied primary...'), stem_md = 'Which one of the following options represents possible voltage polarities in a single phase two winding transformer? Here, $V_p$ is the applied primary voltage, $E_p$ is the induced primary voltage, $V_s$ is the open circuit secondary voltage, and $E_s$ is the induced secondary voltage.
+
+In every option the primary is on the left with its **dot at the bottom terminal**, and the secondary is on the right with its **dot at the top terminal**. The options differ only in the polarity marks (the original paper shows them as four figures):
+
+| Option | $V_p$ | $E_p$ | $E_s$ | $V_s$ |
+|---|---|---|---|---|
+| (A) | + top, − bottom | + top, − bottom | + top, − bottom | + top, − bottom |
+| (B) | − top, + bottom | − top, + bottom | + top, − bottom | + top, − bottom |
+| (C) | + top, − bottom | − top, + bottom | − top, + bottom | + top, − bottom |
+| (D) | + top, − bottom | − top, + bottom | − top, + bottom | − top, + bottom |
+', solution_md = '**Idea used:** dotted ends have the same polarity at the same instant; the induced EMF of the primary has the same terminal polarity as the applied voltage (it is a back EMF equal to it); on open circuit $V_s = E_s$ (see *The ideal transformer → Polarity and the dot convention*).
+
+Check each option against three rules:
+
+1. $E_p$ marked the same way as $V_p$: (A) ✓, (B) ✓, (C) ✗, (D) ✗.
+2. $V_s$ marked the same way as $E_s$: (A) ✓, (B) ✓.
+3. Dots: the primary''s **dotted (bottom)** end and the secondary''s **dotted (top)** end must be positive together.
+   - (A): primary bottom is − but secondary top is + ✗.
+   - (B): primary bottom is + and secondary top is + ✓.
+
+**Answer: (B).** *(Our solution; the official key is not in our dump.)*
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'UNVERIFIED', content_key = 'gate-2024-18', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2024'), '18', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '(A)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '(B)', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '(C)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '(D)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-ideal-transformer');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-ideal-transformer';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q25';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q25')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'If an ideal transformer has an inductive load element at port 2 as shown in the figure below, the equivalent inductance at port 1 is', 'If an ideal transformer has an inductive load element at port 2 as shown in the figure below, the equivalent inductance at port 1 is
+
+![Ideal transformer with turns ratio n:1; port 1 on the n side, an inductor L across port 2](fig:q-gate2016-s1-q25)
+', '**Idea used:** an ideal transformer with ratio $n : 1$ makes any impedance on the "1" side look $n^2$ times larger from the "$n$" side.
+
+1. On port 2 the impedance is $Z_2 = j\omega L$.
+2. Seen from port 1: $Z_1 = n^2 Z_2 = j\omega (n^2 L)$.
+3. That is an inductor of value $n^2 L$.
+
+**Why $n^2$:** voltage goes up $n$ times and current goes down $n$ times, so $V/I$ goes up $n \times n$.
+
+**Without a calculator:** (C) and (D) are not even inductances (wrong units). Between (A) and (B), impedance always scales with
+the **square** of the turns ratio.
+
+**Answer: (B) $n^2L$.**
+', 'READY', 'MCQ', NULL, NULL, 1, 'OFFICIAL_KEY', 'gate2016-s1-q25', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'If an ideal transformer has an inductive load element at port 2 as shown in the figure below, the equivalent inductance at port 1 is'), stem_md = 'If an ideal transformer has an inductive load element at port 2 as shown in the figure below, the equivalent inductance at port 1 is
+
+![Ideal transformer with turns ratio n:1; port 1 on the n side, an inductor L across port 2](fig:q-gate2016-s1-q25)
+', solution_md = '**Idea used:** an ideal transformer with ratio $n : 1$ makes any impedance on the "1" side look $n^2$ times larger from the "$n$" side.
+
+1. On port 2 the impedance is $Z_2 = j\omega L$.
+2. Seen from port 1: $Z_1 = n^2 Z_2 = j\omega (n^2 L)$.
+3. That is an inductor of value $n^2 L$.
+
+**Why $n^2$:** voltage goes up $n$ times and current goes down $n$ times, so $V/I$ goes up $n \times n$.
+
+**Without a calculator:** (C) and (D) are not even inductances (wrong units). Between (A) and (B), impedance always scales with
+the **square** of the turns ratio.
+
+**Answer: (B) $n^2L$.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q25', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q25', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$nL$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$n^2L$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$\dfrac{n}{L}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$\dfrac{n^2}{L}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s1-q25', '<svg width="270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-83.311 -78.80000000000001 234.99988446931107 86.1"><path d="M 0 -14.4 a 7.2 7.2 0 1 1 -0 14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0 -28.8 a 7.2 7.2 0 1 1 -0 14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0 -43.2 a 7.2 7.2 0 1 1 -0 14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0 -57.6 a 7.2 7.2 0 1 1 -0 14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 36 0 a 7.2 7.2 0 1 1 0 -14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 36 -14.4 a 7.2 7.2 0 1 1 0 -14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 36 -28.8 a 7.2 7.2 0 1 1 0 -14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 36 -43.2 a 7.2 7.2 0 1 1 0 -14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 14.4,-57.6 L 14.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 21.599999999999998,-57.6 L 21.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-57.6 L -25.2,-57.6 L -50.4,-57.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L -25.2,-0 L -50.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 36.0,-57.6 L 79.2,-57.6 L 122.4,-57.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.39999999999999,-57.6 L 122.4,-46.8 L 123.863,-46.767 L 125.364,-46.666 L 126.872,-46.496 L 128.355,-46.258 L 129.782,-45.954 L 131.122,-45.586 L 132.347,-45.16 L 133.433,-44.68 L 134.354,-44.155 L 135.093,-43.592 L 135.634,-43 L 135.965,-42.388 L 136.079,-41.766 L 135.974,-41.143 L 135.652,-40.531 L 135.12,-39.937 L 134.389,-39.373 L 133.475,-38.846 L 132.396,-38.365 L 131.176,-37.936 L 129.84,-37.566 L 128.416,-37.259 L 126.935,-37.018 L 125.427,-36.845 L 123.925,-36.741 L 122.46,-36.706 L 121.063,-36.735 L 119.763,-36.826 L 118.588,-36.974 L 117.562,-37.172 L 116.708,-37.412 L 116.043,-37.688 L 115.581,-37.989 L 115.332,-38.307 L 115.301,-38.631 L 115.489,-38.951 L 115.892,-39.258 L 116.501,-39.542 L 117.304,-39.794 L 118.283,-40.005 L 119.419,-40.167 L 120.686,-40.275 L 122.059,-40.322 L 123.508,-40.305 L 125.003,-40.22 L 126.512,-40.067 L 128.004,-39.845 L 129.447,-39.556 L 130.81,-39.203 L 132.066,-38.79 L 133.187,-38.323 L 134.149,-37.809 L 134.934,-37.254 L 135.523,-36.668 L 135.905,-36.06 L 136.071,-35.439 L 136.019,-34.816 L 135.749,-34.2 L 135.266,-33.601 L 134.581,-33.029 L 133.709,-32.492 L 132.668,-31.999 L 131.48,-31.557 L 130.169,-31.173 L 128.764,-30.85 L 127.293,-30.593 L 125.789,-30.404 L 124.283,-30.284 L 122.806,-30.232 L 121.39,-30.246 L 120.064,-30.323 L 118.857,-30.457 L 117.793,-30.644 L 116.896,-30.875 L 116.184,-31.143 L 115.673,-31.439 L 115.372,-31.754 L 115.289,-32.077 L 115.424,-32.399 L 115.776,-32.71 L 116.337,-33 L 117.095,-33.26 L 118.034,-33.482 L 119.134,-33.656 L 120.372,-33.778 L 121.722,-33.84 L 123.155,-33.838 L 124.642,-33.77 L 126.151,-33.633 L 127.65,-33.428 L 129.107,-33.155 L 130.492,-32.817 L 131.776,-32.418 L 132.932,-31.963 L 133.934,-31.459 L 134.763,-30.914 L 135.4,-30.334 L 135.833,-29.73 L 136.052,-29.112 L 136.052,-28.488 L 135.833,-27.87 L 135.4,-27.266 L 134.763,-26.686 L 133.934,-26.141 L 132.932,-25.637 L 131.776,-25.182 L 130.492,-24.783 L 129.107,-24.445 L 127.65,-24.172 L 126.151,-23.967 L 124.642,-23.83 L 123.155,-23.762 L 121.722,-23.76 L 120.372,-23.822 L 119.134,-23.944 L 118.034,-24.118 L 117.095,-24.34 L 116.337,-24.6 L 115.776,-24.89 L 115.424,-25.201 L 115.289,-25.523 L 115.372,-25.846 L 115.673,-26.161 L 116.184,-26.457 L 116.896,-26.725 L 117.793,-26.956 L 118.857,-27.143 L 120.064,-27.277 L 121.39,-27.354 L 122.806,-27.368 L 124.283,-27.316 L 125.789,-27.196 L 127.293,-27.007 L 128.764,-26.75 L 130.169,-26.427 L 131.48,-26.043 L 132.668,-25.601 L 133.709,-25.108 L 134.581,-24.571 L 135.266,-23.999 L 135.749,-23.4 L 136.019,-22.784 L 136.071,-22.161 L 135.905,-21.54 L 135.523,-20.932 L 134.934,-20.346 L 134.149,-19.791 L 133.187,-19.277 L 132.066,-18.81 L 130.81,-18.397 L 129.447,-18.044 L 128.004,-17.755 L 126.512,-17.533 L 125.003,-17.38 L 123.508,-17.295 L 122.059,-17.278 L 120.686,-17.325 L 119.419,-17.433 L 118.283,-17.595 L 117.304,-17.806 L 116.501,-18.058 L 115.892,-18.342 L 115.489,-18.649 L 115.301,-18.969 L 115.332,-19.293 L 115.581,-19.611 L 116.043,-19.912 L 116.708,-20.188 L 117.562,-20.428 L 118.588,-20.626 L 119.763,-20.774 L 121.063,-20.865 L 122.46,-20.894 L 123.925,-20.859 L 125.427,-20.755 L 126.935,-20.582 L 128.416,-20.341 L 129.84,-20.034 L 131.176,-19.664 L 132.396,-19.235 L 133.475,-18.754 L 134.389,-18.227 L 135.12,-17.663 L 135.652,-17.069 L 135.974,-16.457 L 136.079,-15.834 L 135.965,-15.212 L 135.634,-14.6 L 135.093,-14.008 L 134.354,-13.445 L 133.433,-12.92 L 132.347,-12.44 L 131.122,-12.014 L 129.782,-11.646 L 128.355,-11.342 L 126.872,-11.104 L 125.364,-10.934 L 123.863,-10.833 L 122.4,-10.8 L 122.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.40000000000009,-0.0 L 79.2,-0 L 36,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="18.0" y="-74.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="18.0" dy="13">n : 1</tspan></text><text x="-61.2" y="-38.2" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-61.2" dy="13">Port 1</tspan></text><text x="139.67888446931107" y="-41.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="139.67888446931107" dy="13">L</tspan></text><text x="70.19999999999999" y="-38.2" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="70.19999999999999" dy="13">Port 2</tspan></text><circle cx="-50.4" cy="-57.6" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="-50.4" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-ideal-transformer');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-ideal-transformer';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q3';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q3')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'The following figure shows the connection of an ideal transformer with primary to secondary turns ratio of 1:100. The applied primary voltage is 100 V...', 'The following figure shows the connection of an ideal transformer with primary to secondary turns ratio of 1:100. The applied
+primary voltage is 100 V (rms), 50 Hz, AC. The rms value of the current $I$, in ampere, is __________.
+
+![100 V source and XL = 10 ohm (current I) on the primary of an ideal 1:100 transformer; secondary load R = 80 kilo-ohm in series with XC = 40 kilo-ohm](fig:q-gate2016-s2-q3)
+', '**Idea used:** move the secondary load to the primary side by dividing by (turns ratio)$^2$, then solve one series circuit.
+
+1. Secondary load: $Z_2 = 80 - j40$ kΩ.
+2. Referred to the primary: $\dfrac{Z_2}{100^2} = \dfrac{80\,000 - j40\,000}{10\,000} = 8 - j4\ \Omega$.
+3. Total: $j10 + 8 - j4 = 8 + j6\ \Omega$, so $|Z| = \sqrt{64 + 36} = 10\ \Omega$.
+4. $I = 100 \div 10 = 10$ A.
+
+**Without a calculator:** 6-8-10 is the 3-4-5 triangle. Slips: ignoring the capacitor ($|8 + j10| \approx 12.8$, about 7.8 A), or
+referring by 100 instead of $100^2$, or mixing up the side the current is on (0.1 A is the secondary current).
+
+**Answer: 10 A.**
+', 'READY', 'NAT', 9.5, 10.5, 2, 'OFFICIAL_KEY', 'gate2016-s2-q3', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'The following figure shows the connection of an ideal transformer with primary to secondary turns ratio of 1:100. The applied primary voltage is 100 V...'), stem_md = 'The following figure shows the connection of an ideal transformer with primary to secondary turns ratio of 1:100. The applied
+primary voltage is 100 V (rms), 50 Hz, AC. The rms value of the current $I$, in ampere, is __________.
+
+![100 V source and XL = 10 ohm (current I) on the primary of an ideal 1:100 transformer; secondary load R = 80 kilo-ohm in series with XC = 40 kilo-ohm](fig:q-gate2016-s2-q3)
+', solution_md = '**Idea used:** move the secondary load to the primary side by dividing by (turns ratio)$^2$, then solve one series circuit.
+
+1. Secondary load: $Z_2 = 80 - j40$ kΩ.
+2. Referred to the primary: $\dfrac{Z_2}{100^2} = \dfrac{80\,000 - j40\,000}{10\,000} = 8 - j4\ \Omega$.
+3. Total: $j10 + 8 - j4 = 8 + j6\ \Omega$, so $|Z| = \sqrt{64 + 36} = 10\ \Omega$.
+4. $I = 100 \div 10 = 10$ A.
+
+**Without a calculator:** 6-8-10 is the 3-4-5 triangle. Slips: ignoring the capacitor ($|8 + j10| \approx 12.8$, about 7.8 A), or
+referring by 100 instead of $100^2$, or mixing up the side the current is on (0.1 A is the secondary current).
+
+**Answer: 10 A.**
+', status = 'READY', answer_type = 'NAT', nat_min = 9.5, nat_max = 10.5, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q3', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q3', qid, 1, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '10', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '12.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '7.8', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q3', '<svg width="378" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -92.4788844693111 328.91 97.07888446931109"><circle cx="0" cy="-28.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 93.6 -14.4 a 7.2 7.2 0 1 1 0 14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 93.6 -28.8 a 7.2 7.2 0 1 1 0 14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 93.6 -43.2 a 7.2 7.2 0 1 1 0 14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 93.6 -57.6 a 7.2 7.2 0 1 1 0 14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 129.6 -0 a 7.2 7.2 0 1 1 0 -14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 129.6 -14.4 a 7.2 7.2 0 1 1 0 -14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 129.6 -28.8 a 7.2 7.2 0 1 1 0 -14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 129.6 -43.2 a 7.2 7.2 0 1 1 0 -14.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-10.8 L 0,-10.8 M 0,-46.8 L 0,-46.8 L 0,-57.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 9.000000000000002,-28.8 L 8.25,-30.663 L 7.5,-32.4 L 6.75,-33.891 L 6,-35.035 L 5.25,-35.755 L 4.5,-36 L 3.75,-35.755 L 3,-35.035 L 2.25,-33.891 L 1.5,-32.4 L 0.75,-30.663 L 0,-28.8 L -0.75,-26.937 L -1.5,-25.2 L -2.25,-23.709 L -3,-22.565 L -3.75,-21.845 L -4.5,-21.6 L -5.25,-21.845 L -6,-22.565 L -6.75,-23.709 L -7.5,-25.2 L -8.25,-26.937 L -9,-28.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.5269827815443773e-15,-57.6 L 28.8,-57.6 L 28.833,-59.063 L 28.934,-60.564 L 29.104,-62.072 L 29.342,-63.555 L 29.646,-64.982 L 30.014,-66.322 L 30.44,-67.547 L 30.92,-68.633 L 31.445,-69.554 L 32.008,-70.293 L 32.6,-70.834 L 33.212,-71.165 L 33.834,-71.279 L 34.457,-71.174 L 35.069,-70.852 L 35.663,-70.32 L 36.227,-69.589 L 36.754,-68.675 L 37.235,-67.596 L 37.664,-66.376 L 38.034,-65.04 L 38.341,-63.616 L 38.582,-62.135 L 38.755,-60.627 L 38.859,-59.125 L 38.894,-57.66 L 38.865,-56.263 L 38.774,-54.963 L 38.626,-53.788 L 38.428,-52.762 L 38.188,-51.908 L 37.912,-51.243 L 37.611,-50.781 L 37.293,-50.532 L 36.969,-50.501 L 36.649,-50.689 L 36.342,-51.092 L 36.058,-51.701 L 35.806,-52.504 L 35.595,-53.483 L 35.433,-54.619 L 35.325,-55.886 L 35.278,-57.259 L 35.295,-58.708 L 35.38,-60.203 L 35.533,-61.712 L 35.755,-63.204 L 36.044,-64.647 L 36.397,-66.01 L 36.81,-67.266 L 37.277,-68.387 L 37.791,-69.349 L 38.346,-70.134 L 38.932,-70.723 L 39.54,-71.105 L 40.161,-71.271 L 40.784,-71.219 L 41.4,-70.949 L 41.999,-70.466 L 42.571,-69.781 L 43.108,-68.909 L 43.601,-67.868 L 44.043,-66.68 L 44.427,-65.369 L 44.75,-63.964 L 45.007,-62.493 L 45.196,-60.989 L 45.316,-59.483 L 45.368,-58.006 L 45.354,-56.59 L 45.277,-55.264 L 45.143,-54.057 L 44.956,-52.993 L 44.725,-52.096 L 44.457,-51.384 L 44.161,-50.873 L 43.846,-50.572 L 43.523,-50.489 L 43.201,-50.624 L 42.89,-50.976 L 42.6,-51.537 L 42.34,-52.295 L 42.118,-53.234 L 41.944,-54.334 L 41.822,-55.572 L 41.76,-56.922 L 41.762,-58.355 L 41.83,-59.842 L 41.967,-61.351 L 42.172,-62.85 L 42.445,-64.307 L 42.783,-65.692 L 43.182,-66.976 L 43.637,-68.132 L 44.141,-69.134 L 44.686,-69.963 L 45.266,-70.6 L 45.87,-71.033 L 46.488,-71.252 L 47.112,-71.252 L 47.73,-71.033 L 48.334,-70.6 L 48.914,-69.963 L 49.459,-69.134 L 49.963,-68.132 L 50.418,-66.976 L 50.817,-65.692 L 51.155,-64.307 L 51.428,-62.85 L 51.633,-61.351 L 51.77,-59.842 L 51.838,-58.355 L 51.84,-56.922 L 51.778,-55.572 L 51.656,-54.334 L 51.482,-53.234 L 51.26,-52.295 L 51,-51.537 L 50.71,-50.976 L 50.399,-50.624 L 50.077,-50.489 L 49.754,-50.572 L 49.439,-50.873 L 49.143,-51.384 L 48.875,-52.096 L 48.644,-52.993 L 48.457,-54.057 L 48.323,-55.264 L 48.246,-56.59 L 48.232,-58.006 L 48.284,-59.483 L 48.404,-60.989 L 48.593,-62.493 L 48.85,-63.964 L 49.173,-65.369 L 49.557,-66.68 L 49.999,-67.868 L 50.492,-68.909 L 51.029,-69.781 L 51.601,-70.466 L 52.2,-70.949 L 52.816,-71.219 L 53.439,-71.271 L 54.06,-71.105 L 54.668,-70.723 L 55.254,-70.134 L 55.809,-69.349 L 56.323,-68.387 L 56.79,-67.266 L 57.203,-66.01 L 57.556,-64.647 L 57.845,-63.204 L 58.067,-61.712 L 58.22,-60.203 L 58.305,-58.708 L 58.322,-57.259 L 58.275,-55.886 L 58.167,-54.619 L 58.005,-53.483 L 57.794,-52.504 L 57.542,-51.701 L 57.258,-51.092 L 56.951,-50.689 L 56.631,-50.501 L 56.307,-50.532 L 55.989,-50.781 L 55.688,-51.243 L 55.412,-51.908 L 55.172,-52.762 L 54.974,-53.788 L 54.826,-54.963 L 54.735,-56.263 L 54.706,-57.66 L 54.741,-59.125 L 54.845,-60.627 L 55.018,-62.135 L 55.259,-63.616 L 55.566,-65.04 L 55.936,-66.376 L 56.365,-67.596 L 56.846,-68.675 L 57.373,-69.589 L 57.937,-70.32 L 58.531,-70.852 L 59.143,-71.174 L 59.766,-71.279 L 60.388,-71.165 L 61,-70.834 L 61.592,-70.293 L 62.155,-69.554 L 62.68,-68.633 L 63.16,-67.547 L 63.586,-66.322 L 63.954,-64.982 L 64.258,-63.555 L 64.496,-62.072 L 64.666,-60.564 L 64.767,-59.063 L 64.8,-57.6 L 93.6,-57.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 108.0,-57.6000000000001 L 108,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 115.2,-57.6000000000001 L 115.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-9.592326932761353e-14 L 46.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.6,-57.6000000000001 L 158.4,-57.6 L 161.4,-66.6 L 167.4,-48.6 L 173.4,-66.6 L 179.4,-48.6 L 185.4,-66.6 L 191.4,-48.6 L 194.4,-57.6 L 223.2,-57.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,-57.6000000000001 L 223.2,-32.04 M 232.2,-32.04 L 214.2,-32.04 M 232.2,-25.56 L 214.2,-25.56 M 223.2,-25.56 L 223.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,-9.592326932761353e-14 L 176.4,-0 L 129.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.599999999999998" y="-41.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.599999999999998" dy="13">100 V</tspan></text><text x="46.800000000000004" y="-87.87888446931109" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.800000000000004" dy="13">XL = 10 Ω</tspan></text><text x="19.8" y="-61.6" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="19.8" dy="13">I</tspan></text><text x="111.60000000000001" y="-74.2000000000001" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="111.60000000000001" dy="13">1 : 100</tspan></text><text x="176.4" y="-83.2000000000001" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="176.4" dy="13">R = 80 kΩ</tspan></text><text x="235.79999999999998" y="-41.8000000000001" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="235.79999999999998" dy="13">XC = 40 kΩ</tspan></text><path d="M 7.199999999999998,-57.60000000000005 L 7.2,-57.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 16 -57.6 L 7.2 -52.2 L 7.2 -63 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-ideal-transformer');
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; subj int; tid int;
+BEGIN
+  SELECT id INTO subj FROM subject WHERE slug = 'electrical-machines';
+  SELECT id INTO tid FROM topic WHERE subject_id = subj AND slug = 'em1-core-losses';
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q46';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q46')) AND x.content_key IS NULL
+      ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    INSERT INTO question(subject_id, topic_id, nature, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'NUMERICAL', 'A single-phase 400 V, 50 Hz transformer has an iron loss of 5000 W at the rated condition. When operated at 200 V, 25 Hz, the iron loss is 2000 W. When...', 'A single-phase 400 V, 50 Hz transformer has an iron loss of 5000 W at the rated condition. When operated at 200 V, 25 Hz, the iron
+loss is 2000 W. When operated at 416 V, 52 Hz, the value of the hysteresis loss divided by the eddy current loss is ______.
+', '**Idea used:** at constant $V/f$ the flux density is constant, so hysteresis loss $P_h = Af$ and eddy current loss $P_e = Bf^2$
+(A and B are constants). All three conditions have $V/f = 8$, so this holds for all of them.
+
+1. At 50 Hz: $50A + 2500B = 5000$.
+2. At 25 Hz: $25A + 625B = 2000$. Double it: $50A + 1250B = 4000$.
+3. Subtract: $1250B = 1000$, so $B = 0.8$. Then $50A = 5000 - 2000 = 3000$, so $A = 60$.
+4. At 52 Hz: $P_h = 60 \times 52 = 3120$ W; $P_e = 0.8 \times 52^2 = 0.8 \times 2704 = 2163$ W.
+5. Ratio $= 3120 \div 2163 \approx 1.44$.
+
+**Check:** at 50 Hz, $P_h = 3000$ and $P_e = 2000$, total 5000 W. ✔
+
+**Without a calculator:** the ratio $P_h/P_e = \dfrac{A}{Bf} = \dfrac{60}{0.8 f} = \dfrac{75}{f}$. At 52 Hz: $75/52 \approx 1.44$.
+Option B is the ratio at 50 Hz; option C is the inverse.
+
+**Answer: about 1.44.**
+', 'READY', 'NAT', 1.4, 1.5, 2, 'OFFICIAL_KEY', 'gate2016-s1-q46', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET subject_id = subj, topic_id = tid, nature = 'NUMERICAL', summary = COALESCE(NULLIF(summary, ''), 'A single-phase 400 V, 50 Hz transformer has an iron loss of 5000 W at the rated condition. When operated at 200 V, 25 Hz, the iron loss is 2000 W. When...'), stem_md = 'A single-phase 400 V, 50 Hz transformer has an iron loss of 5000 W at the rated condition. When operated at 200 V, 25 Hz, the iron
+loss is 2000 W. When operated at 416 V, 52 Hz, the value of the hysteresis loss divided by the eddy current loss is ______.
+', solution_md = '**Idea used:** at constant $V/f$ the flux density is constant, so hysteresis loss $P_h = Af$ and eddy current loss $P_e = Bf^2$
+(A and B are constants). All three conditions have $V/f = 8$, so this holds for all of them.
+
+1. At 50 Hz: $50A + 2500B = 5000$.
+2. At 25 Hz: $25A + 625B = 2000$. Double it: $50A + 1250B = 4000$.
+3. Subtract: $1250B = 1000$, so $B = 0.8$. Then $50A = 5000 - 2000 = 3000$, so $A = 60$.
+4. At 52 Hz: $P_h = 60 \times 52 = 3120$ W; $P_e = 0.8 \times 52^2 = 0.8 \times 2704 = 2163$ W.
+5. Ratio $= 3120 \div 2163 \approx 1.44$.
+
+**Check:** at 50 Hz, $P_h = 3000$ and $P_e = 2000$, total 5000 W. ✔
+
+**Without a calculator:** the ratio $P_h/P_e = \dfrac{A}{Bf} = \dfrac{60}{0.8 f} = \dfrac{75}{f}$. At 52 Hz: $75/52 \approx 1.44$.
+Option B is the ratio at 50 Hz; option C is the inverse.
+
+**Answer: about 1.44.**
+', status = 'READY', answer_type = 'NAT', nat_min = 1.4, nat_max = 1.5, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q46', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary, source_url) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q46', qid, 2, TRUE, NULL) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary, source_url = EXCLUDED.source_url;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1.44', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.69', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.31', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  DELETE FROM question_concept WHERE question_id = qid;
+  INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('em1-core-losses');
+END $ppimport$;
 
 -- mock tests
 

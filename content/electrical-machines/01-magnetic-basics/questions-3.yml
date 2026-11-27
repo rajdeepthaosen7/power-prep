@@ -1,0 +1,1204 @@
+# Electrical Machines Chapter 1 PYQs, part 3: transformer principle and construction, EMF equation, magnetising current.
+# Exam questions keep their original wording. "status": OFFICIAL_KEY | TWO_SOURCES | UNVERIFIED (solved by us).
+
+- key: gate-1996-transformer-oil
+  topic: em1-transformer-principle
+  sources: [{code: GATE-1996, q: "~transformer-oil", marks: 1, url: "https://questions.examside.com/past-years/gate/question/the-function-of-oil-in-a-transformer-is-1996-marks-1-pqw2uxi19sbdtrip.htm"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The function of oil in a transformer is
+  options:
+    - {label: A, md: "to provide insulation only"}
+    - {label: B, md: "to provide cooling only"}
+    - {label: C, md: "to provide insulation and cooling", correct: true}
+    - {label: D, md: "to lubricate the core and the windings"}
+  solution: |
+    **Idea used:** parts of a transformer (see *The transformer: principle and construction → Parts of a transformer*).
+
+    Transformer oil does two jobs: it **insulates** the windings from each other and from the tank and core, and it **cools** them by carrying heat to the tank walls and radiators. There is nothing to lubricate in a static machine.
+
+    *The examside page shows only the stem of this 1996 question, without its options. The four options here are ours, written around the standard answer.*
+
+    **Answer: (C).** *(Our solution.)*
+
+- key: ese-2018-88
+  topic: em1-transformer-principle
+  sources: [{code: ESE-2018, q: "88", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    In a core-type single-phase transformer the steel-core is assembled by staggering butt-joints in adjacent layers of laminations. The purpose served is said to be
+
+    1. Avoiding continuous air-gap
+    2. Preventing loss of mechanical strength
+    3. Reducing eddy-current loss
+
+    Which of the above statements are true?
+  options:
+    - {label: A, md: "1 and 2 only", correct: true}
+    - {label: B, md: "1 and 3 only"}
+    - {label: C, md: "2 and 3 only"}
+    - {label: D, md: "1, 2 and 3"}
+  solution: |
+    **Idea used:** joints in the core (see *The transformer: principle and construction → Joints in the core*).
+
+    1. True: if all joints lined up, there would be one continuous air gap across the core, raising the reluctance and the magnetising current.
+    2. True: overlapping (staggered) joints bind the layers together, so the core stays strong.
+    3. False: eddy loss is cut by thin, insulated laminations and silicon steel, not by where the joints sit.
+
+    **Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2023-91
+  topic: em1-transformer-principle
+  sources: [{code: ESE-2023, q: "91", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The magnetic cores of large transformers are built in stepped cores to
+  options:
+    - {label: A, md: "minimize the hysteresis loss"}
+    - {label: B, md: "minimize the magnetizing loss"}
+    - {label: C, md: "minimize the use of copper and decrease copper loss", correct: true}
+    - {label: D, md: "minimize the eddy current loss"}
+  solution: |
+    **Idea used:** stepped core (see *The transformer: principle and construction → Stepped core*).
+
+    A stepped core fills the round coil better than a square one. For the same iron area, the coil diameter (and so the mean length of each turn) is smaller: less copper, less copper loss. The core losses are not what it aims at.
+
+    **Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2021-89
+  topic: em1-emf-equation
+  sources: [{code: ESE-2021, q: "89", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A sinusoidal flux 0.02 Wb links with 55 turns of a transformer secondary. What is the rms value of the induced emf in the secondary, if the supply frequency is 50 Hz?
+  options:
+    - {label: A, md: "244.2 V", correct: true}
+    - {label: B, md: "334.2 V"}
+    - {label: C, md: "414.2 V"}
+    - {label: D, md: "504.2 V"}
+  solution: |
+    **Idea used:** $E = 4.44 f N \Phi_m$ (see *EMF equation of a transformer*, Worked example 1).
+
+    ```example Working
+    :::given $\Phi_m = \given{0.02\ \text{Wb}}$, $N = \given{55}$, $f = \given{50\ \text{Hz}}$
+    :::find rms EMF $E$
+    :::step $\fx{E = 4.44 f N \Phi_m}$. First $f \times \Phi_m$.
+    $50 \times 0.02 = 1$
+    :::step Multiply by 4.44 and by N.
+    $E = 4.44 \times 55 = 244.2\ \text{V}$
+    :::answer $\ans{E = 244.2\ \text{V}}$
+    ```
+
+    **Without a calculator:** $50 \times 0.02 = 1$, so $E = 4.44 \times 55 = 222 + 22.2 = 244.2$ V.
+
+    **Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+
+- key: gate-2008-49
+  topic: em1-emf-equation
+  sources: [{code: GATE-2008, q: "49", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The core of a two-winding transformer is subjected to a magnetic flux variation as indicated in the figure.
+
+    ![Core with a 100-turn winding (terminals p, q, dot at p) and a 200-turn winding (terminals r, s, dot at r)](fig:q-gate2008-q49)
+
+    ![Flux: rises in a straight line from 0 to 0.12 Wb in 1 s, stays at 0.12 Wb up to 2 s, falls to 0 at 2.5 s](fig:q-gate2008-q49-flux)
+
+    The induced emf ($e_{rs}$) in the secondary winding as a function of time will be of the form
+  options:
+    - {label: A, md: "![24 V from 0 to 1 s, 0 from 1 to 2 s, −48 V from 2 to 2.5 s](fig:q-gate2008-q49-a)", correct: true}
+    - {label: B, md: "![−24 V from 0 to 1 s, 0 from 1 to 2 s, +48 V from 2 to 2.5 s](fig:q-gate2008-q49-b)"}
+    - {label: C, md: "![24 V from 0 to 1 s, 0 from 1 to 2 s, +48 V from 2 to 2.5 s](fig:q-gate2008-q49-c)"}
+    - {label: D, md: "![−24 V from 0 to 1 s, 0 from 1 to 2 s, −48 V from 2 to 2.5 s](fig:q-gate2008-q49-d)"}
+  solution: |
+    **Idea used:** EMF = N × slope of the flux (see *EMF equation of a transformer → When the flux is not a sine wave*, Worked example 3).
+
+    ```example Working
+    :::given $N_2 = \given{200}$; flux 0 → 0.12 Wb in 0–1 s; flat 1–2 s; 0.12 → 0 Wb in 2–2.5 s
+    :::find $e_{rs}$ in each part
+    :::step 0 to 1 s: slope of the flux.
+    $0.12 \div 1 = 0.12\ \text{Wb/s}$
+    $e = 200 \times 0.12 = 24\ \text{V}$
+    :::step 1 to 2 s: flux constant.
+    $e = 0$
+    :::step 2 to 2.5 s: slope of the flux.
+    $-0.12 \div 0.5 = -0.24\ \text{Wb/s}$
+    $e = 200 \times (-0.24) = -48\ \text{V}$
+    :::answer $\ans{+24\ \text{V},\ 0,\ -48\ \text{V}}$
+    ```
+
+    **Sign:** the dotted end r has the same polarity as the dotted primary end p; a rising flux makes the dotted ends positive, so $e_{rs}$ is positive while the flux rises. Only (A) has +24 V and then −48 V. (C) forgets that a falling flux reverses the EMF.
+
+    **Answer: (A).** *(Our solution.)*
+
+- key: gate-1997-half-frequency
+  topic: em1-emf-equation
+  sources: [{code: GATE-1997, q: "~half-frequency", marks: 1, url: "https://questions.examside.com/past-years/gate/question/the-low-voltage-winding-of-a-400230v-1-phase-50-1997-marks-1-p3fiz0xujmaibcjo.htm"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The low voltage winding of a 400/230 V, 1-phase, 50 Hz transformer is to be connected to a 25 Hz supply. In order to keep the magnetization current at the same level as that for normal operation at 50 Hz, the supply voltage should be
+  options:
+    - {label: A, md: "230 V"}
+    - {label: B, md: "115 V", correct: true}
+    - {label: C, md: "460 V"}
+    - {label: D, md: "200 V"}
+  solution: |
+    **Idea used:** $B_m \propto V/f$; to keep the flux (and so the magnetising current) the same, keep V/f constant (see *EMF equation of a transformer → The core flux is set by the supply*).
+
+    ```example Working
+    :::given LV winding: 230 V at 50 Hz; new frequency 25 Hz
+    :::find voltage for the same flux
+    :::step V/f at rated condition.
+    $230 \div 50 = 4.6\ \text{V/Hz}$
+    :::step Same V/f at 25 Hz.
+    $V = 4.6 \times 25 = 115\ \text{V}$
+    :::answer $\ans{115\ \text{V}}$
+    ```
+
+    Applying the full 230 V at 25 Hz would double the flux density, push the core deep into saturation and draw a very large magnetising current.
+
+    *The examside page shows this 1997 stem only up to "the supply voltage should be", without its options. The last words of the stem ("In order to keep the magnetization current ...") and the four options are ours, written around the standard answer.*
+
+    **Answer: (B).** *(Our solution.)*
+
+- key: gate-2001-core-flux-load
+  topic: em1-emf-equation
+  sources: [{code: GATE-2001, q: "~core-flux-resistive-load", marks: 1, url: "https://questions.examside.com/past-years/gate/question/the-core-flux-of-a-practical-transformer-with-a-resistive-lo-gate-ee-2001-marks-1-5a9dc686b955d.htm"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The core flux of a practical transformer with a resistive load
+  options:
+    - {label: A, md: "is strictly constant with load changes"}
+    - {label: B, md: "increases linearly with load"}
+    - {label: C, md: "increases as the square root of the load"}
+    - {label: D, md: "decreases with increased load", correct: true}
+  solution: |
+    **Idea used:** the core flux is set by $E_1 \approx V_1$; in a **practical** transformer the load current causes a small drop in the primary winding, so $E_1$ and the flux fall slightly (see *EMF equation of a transformer → The core flux is set by the supply, not by the load*).
+
+    $\Phi_m = \dfrac{E_1}{4.44 f N_1}$ and $E_1 = V_1 - (\text{drop in primary resistance and leakage reactance})$. More load → more primary current → more drop → slightly smaller $E_1$ → slightly smaller flux.
+
+    "Strictly constant" (A) is true only of an **ideal** transformer. The flux never rises with load (B, C).
+
+    **Answer: (D).** *(Our solution.)*
+
+- key: gate-2014-s1-q12
+  topic: em1-emf-equation
+  sources: [{code: GATE-2014, q: "S1-Q12", marks: 1}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 3
+  status: OFFICIAL_KEY
+  stem: |
+    For a specified input voltage and frequency, if the equivalent radius of the core of a transformer is reduced by half, the factor by which the number of turns in the primary should change to maintain the same no load current is
+  options:
+    - {label: A, md: "1/4"}
+    - {label: B, md: "1/2"}
+    - {label: C, md: "2", correct: true}
+    - {label: D, md: "4"}
+  solution: |
+    **Idea used:** flux from the supply, $\Phi_m = \dfrac{V}{4.44 f N}$; magnetising current from the magnetic circuit, $I = \dfrac{\Phi_m S}{N}$, with $S = \dfrac{l}{\mu A}$ (see *EMF equation of a transformer* and *The magnetic circuit and reluctance*).
+
+    ```example Working
+    :::given V and f fixed; core radius halved, so area $A$ becomes $A/4$ (path length unchanged); turns change by a factor $k$
+    :::find $k$ for the same no-load (magnetising) current
+    :::step Write the current in terms of N and A.
+    $\Phi_m = V/(4.44 f N) \propto 1/N$
+    $S = l/(\mu A) \propto 1/A$
+    $I = \Phi_m S / N \propto \dfrac{1}{N} \times \dfrac{1}{A} \times \dfrac{1}{N} = \dfrac{1}{N^2 A}$
+    :::step Keep $N^2 A$ the same.
+    New $A = A/4$, new $N = kN$
+    $(kN)^2 \times A/4 = N^2 A$
+    $k^2 / 4 = 1$, so $k^2 = 4$
+    $k = 2$
+    :::answer $\ans{\text{turns} \times 2}$
+    ```
+
+    **Sense check:** $I \propto 1/(N^2 A)$ is the same as saying the magnetising inductance $L = N^2/S \propto N^2 A$ must stay the same (the same voltage across the same inductance draws the same current).
+
+    **Answer: (C).**
+
+- key: gate-1998-magnetising-harmonic
+  topic: em1-emf-equation
+  sources: [{code: GATE-1998, q: "~magnetising-current-harmonic", marks: 1, url: "https://questions.examside.com/past-years/gate/question/the-magnetizing-current-in-a-transformer-is-rich-in-gate-ee-1998-marks-1-5a9d8de2c4f81.htm"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The magnetizing current in a transformer is rich in
+  options:
+    - {label: A, md: "3rd harmonic", correct: true}
+    - {label: B, md: "5th harmonic"}
+    - {label: C, md: "7th harmonic"}
+    - {label: D, md: "13th harmonic"}
+  solution: |
+    **Idea used:** saturation makes the magnetising current peaky (see *EMF equation of a transformer → Why the magnetising current is not a sine wave*).
+
+    To make a sinusoidal flux in iron that saturates near the peaks, the current must be peaky. A peaky, half-wave-symmetric wave contains odd harmonics, and the biggest of them by far is the third.
+
+    **Answer: (A).** *(Our solution.)*
+
+- key: gate-2002-saturation-waveform
+  topic: em1-emf-equation
+  sources: [{code: GATE-2002, q: "~saturation-not-sinusoidal", marks: 1, url: "https://questions.examside.com/past-years/gate/question/a-1-kva-230v100v-single-phase-50-hz-transformer-having-negli-gate-ee-2002-marks-1-5a9dc70a2aaa0.htm"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    A 1 kVA, 230 V/100 V, single phase, 50 Hz transformer having negligible winding resistance and leakage inductance is operating under saturation, while 250 V, 50 Hz sinusoidal supply is connected to the high voltage winding. A resistive load is connected to the low voltage winding which draws rated current. Which one of the following quantities will not be sinusoidal?
+  options:
+    - {label: A, md: "Voltage induced across the low voltage winding"}
+    - {label: B, md: "Core flux"}
+    - {label: C, md: "Load current"}
+    - {label: D, md: "Current drawn from the source", correct: true}
+  solution: |
+    **Idea used:** a sinusoidal voltage forces a sinusoidal flux; saturation distorts only the magnetising current (see *EMF equation of a transformer → Why the magnetising current is not a sine wave*).
+
+    1. No winding resistance or leakage: the induced voltage equals the sinusoidal supply, so the **flux** (its integral) is sinusoidal. (B) is sinusoidal.
+    2. The LV induced voltage is proportional to the flux's rate of change: sinusoidal. (A) is sinusoidal.
+    3. A resistor on a sinusoidal voltage draws a sinusoidal **load current**. (C) is sinusoidal.
+    4. The source current = (load current referred to the primary) + (magnetising current). Under saturation the magnetising current is peaky, so the **source current** is not sinusoidal.
+
+    **Answer: (D).** *(Our solution.)*
+
+- key: gate-2011-18
+  topic: em1-emf-equation
+  sources: [{code: GATE-2011, q: "18", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A single-phase air core transformer, fed from a rated sinusoidal supply, is operating at no load. The steady state magnetizing current drawn by the transformer from the supply will have the waveform
+  options:
+    - {label: A, md: "![A distorted, unsymmetrical wave](fig:q-gate2011-q18-a)"}
+    - {label: B, md: "![Another distorted wave with flat parts near zero](fig:q-gate2011-q18-b)"}
+    - {label: C, md: "![A pure sine wave](fig:q-gate2011-q18-c)", correct: true}
+    - {label: D, md: "![A peaky wave](fig:q-gate2011-q18-d)"}
+  solution: |
+    **Idea used:** an air core has a straight-line B-H graph: no saturation, no hysteresis (see *EMF equation of a transformer → Why the magnetising current is not a sine wave*).
+
+    With $B \propto H$, the current is simply proportional to the flux. A sinusoidal supply gives a sinusoidal flux, so the magnetising current is a pure sine wave (C). The peaky (D) and tilted (A, B) shapes belong to an iron core that saturates and has hysteresis.
+
+    **Answer: (C).** *(Our solution.)*
+
+- key: ese-2023-150
+  topic: em1-emf-equation
+  sources: [{code: ESE-2023, q: "150", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    **Statement (I):** Transformers take advantage of the high magnetic energy density of ferromagnetic material to allow economical device design, however, the non-linear nature of ferromagnetic material leads to introduction of harmonics in current or voltage.
+
+    **Statement (II):** The non-linear nature of the transformer magnetizing inductance can lead to a transient inrush current significantly greater than the rated value of current upon energizing a transformer.
+  options:
+    - {label: A, md: "Both Statement (I) and Statement (II) are individually true and Statement (II) is the correct explanation of Statement (I)"}
+    - {label: B, md: "Both Statement (I) and Statement (II) are individually true but Statement (II) is not the correct explanation of Statement (I)", correct: true}
+    - {label: C, md: "Statement (I) is true but Statement (II) is false"}
+    - {label: D, md: "Statement (I) is false but Statement (II) is true"}
+  solution: |
+    **Idea used:** saturation causes harmonics (steady state) and inrush (switching on) (see *EMF equation of a transformer → Why the magnetising current is not a sine wave* and *Inrush current when switching on*).
+
+    **Statement (I):** true: iron makes a compact transformer, and its non-linear B-H curve puts harmonics (mainly the third) into the magnetising current.
+
+    **Statement (II):** true: at switching on, the flux can swing to about $2\Phi_m$, the core saturates and a large inrush current flows.
+
+    **Is (II) the reason for (I)?** No. Both come from the same non-linearity, but inrush (a switching transient) does not explain the harmonics of normal running.
+
+    **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+
+- key: gate-2026-31
+  topic: em1-emf-equation
+  sources: [{code: GATE-2026, q: "31", marks: 1}]
+  type: MSQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    A 220V/12V single-phase transformer is designed for use in India and rated 100 VA at 50 Hz. Later, this unit is shipped to the USA where it is used as a 110V/6V transformer at 60 Hz.
+
+    Which of the following statements is/are correct?
+  options:
+    - {label: A, md: "No-load current drawn would be smaller for operation in the USA compared to that in India", correct: true}
+    - {label: B, md: "For the same load current, the losses would be higher in the USA compared to that in India"}
+    - {label: C, md: "The peak magnetic flux density in the core would be higher while operating in the USA compared to that in India"}
+    - {label: D, md: "The eddy current losses in the core would be approximately 44% higher while operating in the USA compared to that in India"}
+  mcq_options:
+    - {label: A, md: "(A) only", correct: true}
+    - {label: B, md: "(A) and (C) only"}
+    - {label: C, md: "(B) and (D) only"}
+    - {label: D, md: "(A) and (D) only"}
+  solution: |
+    **Idea used:** $B_m \propto V/f$; eddy loss $\propto V^2$ (see *EMF equation of a transformer → The core flux is set by the supply* and *Core losses → How the core loss changes with voltage and frequency*).
+
+    ```example Working
+    :::given India: 220 V, 50 Hz. USA: 110 V, 60 Hz. Same transformer.
+    :::find which statements are true
+    :::step Ratio of flux densities. $\fx{B_m \propto V/f}$
+    India: $220 \div 50 = 4.4$
+    USA: $110 \div 60 = 1.83$
+    $B_{USA} \div B_{India} = 1.83 \div 4.4 = 0.42$
+    :::step (C): $B_m$ is lower in the USA, not higher.
+    (C) false
+    :::step (A): lower flux density needs less magnetising current.
+    (A) true
+    :::step (D): eddy loss $\propto V^2$.
+    $(110 \div 220)^2 = 0.25$: the eddy loss falls to a quarter
+    (D) false
+    :::step (B): same load current, so the same copper loss; the core loss is lower.
+    total losses lower, (B) false
+    :::answer $\ans{\text{only (A) is correct}}$
+    ```
+
+    **Trap in (D):** 44 % is $1.2^2 - 1$, the change for the frequency alone (60/50 = 1.2) at **constant** flux density. Here the voltage halves too.
+
+    **Answer: (A) only.** *(Our solution; the official key is not in our dump.)*
+
+- key: gate-2001-hysteresis-loop
+  topic: em1-core-losses
+  sources: [{code: GATE-2001, q: "~hysteresis-loop-5cm2", marks: 2, url: "https://questions.examside.com/past-years/gate/question/the-hysteresis-loop-of-a-magnetic-material-has-an-area-of-5-gate-ee-2001-marks-2-5aa060ec343c1.htm"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The hysteresis loop of a magnetic material has an area of 5 cm² with the scales given as 1 cm = 2 AT and 1 cm = 50 mWb. At 50 Hz, the total hysteresis loss is
+  options:
+    - {label: A, md: "15 W"}
+    - {label: B, md: "20 W"}
+    - {label: C, md: "25 W", correct: true}
+    - {label: D, md: "50 W"}
+  solution: |
+    **Idea used:** loop area on Φ-MMF axes = joule per cycle for the whole core (see *Core losses: hysteresis and eddy current → Worked example 2*).
+
+    ```example Working
+    :::given area $= \given{5\ \text{cm}^2}$; 1 cm = 2 AT; 1 cm = 50 mWb; $f = \given{50\ \text{Hz}}$
+    :::find hysteresis loss
+    :::step Value of 1 cm².
+    $2\ \text{AT} \times 0.05\ \text{Wb} = 0.1\ \text{J}$
+    :::step Energy per cycle.
+    $5 \times 0.1 = 0.5\ \text{J}$
+    :::step Power.
+    $0.5 \times 50 = 25\ \text{W}$
+    :::answer $\ans{25\ \text{W}}$
+    ```
+
+    **Answer: (C).** *(Our solution.)*
+
+- key: ese-2020-16
+  topic: em1-core-losses
+  sources: [{code: ESE-2020, q: "16", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A transformer core is wound with a coil carrying an alternating current at a frequency of 50 Hz. The hysteresis loop has an area of 60,000 units when the axes are drawn in units of $10^{-4}$ Wb m⁻² and $10^{2}$ A m⁻¹. If the magnetization is uniform throughout the core volume of 0.01 m³, the power loss due to hysteresis will be
+  options:
+    - {label: A, md: "300 W", correct: true}
+    - {label: B, md: "350 W"}
+    - {label: C, md: "400 W"}
+    - {label: D, md: "450 W"}
+  solution: |
+    **Idea used:** loop area on B-H axes = J/m³ per cycle (see *Core losses: hysteresis and eddy current → Worked example 1*).
+
+    ```example Working
+    :::given area $= 60\,000$ units; 1 unit $= 10^{-4}\ \text{T} \times 10^{2}\ \text{A/m}$; $V = 0.01\ \text{m}^3$; $f = 50\ \text{Hz}$
+    :::find hysteresis loss
+    :::step Value of one unit.
+    $10^{-4} \times 10^{2} = 10^{-2}\ \text{J/m}^3$
+    :::step Energy per m³ per cycle.
+    $60\,000 \times 0.01 = 600\ \text{J/m}^3$
+    :::step Whole core, per cycle.
+    $600 \times 0.01 = 6\ \text{J}$
+    :::step Power.
+    $6 \times 50 = 300\ \text{W}$
+    :::answer $\ans{300\ \text{W}}$
+    ```
+
+    **Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2026-95
+  topic: em1-core-losses
+  sources: [{code: ESE-2026, q: "95", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A transformer core is wound with a coil carrying an alternating current at a frequency of 50 Hz. The hysteresis loop has an area of 70000 units, when the axes are drawn in units of $10^{-4}$ Wb-m⁻² and $10^{2}$ A-m⁻¹. What is the hysteresis loss by assuming the magnetization to be uniform throughout the core volume of 0.02 m³?
+  options:
+    - {label: A, md: "350 W"}
+    - {label: B, md: "700 W", correct: true}
+    - {label: C, md: "3500 W"}
+    - {label: D, md: "7000 W"}
+  solution: |
+    **Idea used:** the same as ESE 2020 Q16 (see *Core losses: hysteresis and eddy current → Worked example 1*).
+
+    One unit $= 10^{-4} \times 10^{2} = 0.01$ J/m³. Loop $= 70\,000 \times 0.01 = 700$ J/m³ per cycle. Core: $700 \times 0.02 = 14$ J per cycle. Power: $14 \times 50 = 700$ W.
+
+    **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2021-64
+  topic: em1-core-losses
+  sources: [{code: ESE-2021, q: "64", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    What is the loss of energy per hour in a ferromagnetic specimen when it is subjected to 50 Hz magnetisation, if the specimen weighs 50 kg, area of hysteresis loop is 200 joules per m³ and density of iron is 7500 kg/m³?
+  options:
+    - {label: A, md: '$2.4 \times 10^{5}$ J', correct: true}
+    - {label: B, md: '$3.9 \times 10^{4}$ J'}
+    - {label: C, md: '$2.9 \times 10^{4}$ J'}
+    - {label: D, md: '$4.5 \times 10^{5}$ J'}
+  solution: |
+    **Idea used:** volume = mass ÷ density; energy = loop area × volume × cycles (see *Core losses: hysteresis and eddy current → Worked example 3*).
+
+    ```example Working
+    :::given $m = \given{50\ \text{kg}}$, density $= \given{7500\ \text{kg/m}^3}$, loop $= \given{200\ \text{J/m}^3}$, $f = \given{50\ \text{Hz}}$, time 1 h
+    :::find energy lost in one hour
+    :::step Volume.
+    $50 \div 7500 = 1 \div 150\ \text{m}^3$
+    :::step Energy per cycle.
+    $200 \div 150 = 4/3\ \text{J}$
+    :::step Cycles in one hour.
+    $50 \times 3600 = 180\,000$
+    :::step Energy per hour.
+    $(4/3) \times 180\,000 = 240\,000\ \text{J}$
+    :::answer $\ans{2.4 \times 10^{5}\ \text{J}}$
+    ```
+
+    **Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2022-57
+  topic: em1-core-losses
+  sources: [{code: ESE-2022, q: "57", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    What is the energy lost per hour in a specimen of iron subjected to magnetization at 50 c/s, if the specimen weighs 50 kg and the hysteresis loop is equivalent in area to 250 J/m³ and the density of iron is 7500 kg/m³?
+  options:
+    - {label: A, md: '$3 \times 10^{5}$ J', correct: true}
+    - {label: B, md: '$4 \times 10^{5}$ J'}
+    - {label: C, md: '$5 \times 10^{5}$ J'}
+    - {label: D, md: '$6 \times 10^{5}$ J'}
+  solution: |
+    **Idea used:** as in ESE 2021 Q64 (see *Core losses: hysteresis and eddy current → Worked example 3*).
+
+    Volume $= 50/7500 = 1/150$ m³. Energy per cycle $= 250/150 = 5/3$ J. Cycles per hour $= 50 \times 3600 = 180\,000$. Energy per hour $= (5/3) \times 180\,000 = 300\,000$ J.
+
+    **Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2021-69
+  topic: em1-core-losses
+  sources: [{code: ESE-2021, q: "69", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    In a ferromagnetic material, the losses due to hysteresis are
+  options:
+    - {label: A, md: "directly proportional to the supply frequency.", correct: true}
+    - {label: B, md: "inversely proportional to the supply frequency."}
+    - {label: C, md: "inversely proportional to square of the supply frequency."}
+    - {label: D, md: "directly proportional to square of the supply frequency."}
+  solution: |
+    **Idea used:** $P_h = \eta B_m^{1.6} f V$ (see *Core losses: hysteresis and eddy current → Steinmetz's formula*).
+
+    The same loop is traced $f$ times a second, so at a given flux density the hysteresis loss is proportional to $f$. (Proportional to $f^2$ is the **eddy** loss.)
+
+    **Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2017-31
+  topic: em1-core-losses
+  sources: [{code: ESE-2017, q: "31", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Eddy current losses in transformer cores can be reduced by the use of
+
+    1. Solid cores
+    2. Laminated cores
+    3. Ferrites
+
+    Select the correct answer using the codes given below:
+  options:
+    - {label: A, md: "2 and 3 only", correct: true}
+    - {label: B, md: "1 and 2 only"}
+    - {label: C, md: "1 and 3 only"}
+    - {label: D, md: "1, 2 and 3"}
+  solution: |
+    **Idea used:** how to reduce eddy loss (see *Core losses: hysteresis and eddy current → 2. Eddy current loss*).
+
+    Laminations break up the eddy paths; ferrites have very high resistivity. A **solid** core gives the **largest** eddy loss, so statement 1 is out.
+
+    **Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+
+- key: aegcl-2023-13
+  topic: em1-core-losses
+  sources: [{code: AEGCL-2023, q: "13"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A single-phase transformer when supplied from 220 V, 50 Hz has eddy current loss of 50 W. If the transformer is connected to a voltage source of 330 V, 50 Hz, then the eddy current loss will be
+  options:
+    - {label: A, md: "168.75 W"}
+    - {label: B, md: "112.5 W", correct: true}
+    - {label: C, md: "75 W"}
+    - {label: D, md: "50 W"}
+  solution: |
+    **Idea used:** eddy current loss $\propto V^2$ (see *Core losses: hysteresis and eddy current → How the core loss changes with voltage and frequency*, Worked example 4).
+
+    ```example Working
+    :::given $P_e = \given{50\ \text{W}}$ at $\given{220\ \text{V}}$; new voltage $\given{330\ \text{V}}$; same 50 Hz
+    :::find new eddy loss
+    :::step Voltage ratio.
+    $330 \div 220 = 1.5$
+    :::step Square it.
+    $1.5^2 = 2.25$
+    :::step New loss.
+    $50 \times 2.25 = 112.5\ \text{W}$
+    :::answer $\ans{112.5\ \text{W}}$
+    ```
+
+    Option C uses the voltage ratio without squaring; A uses the cube.
+
+    **Asked before:** ISRO (VSSC) Technical Assistant (Electrical) 2017, with the same numbers.
+
+    **Answer: (B).** *(Our solution; APSC key not yet in the dump.)*
+
+- key: apgcl-2023-26
+  topic: em1-core-losses
+  sources: [{code: APGCL-2023, q: "26"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    When load on a transformer is increased, eddy current loss
+  options:
+    - {label: A, md: "is increased"}
+    - {label: B, md: "remains unchanged", correct: true}
+    - {label: C, md: "is decreased"}
+    - {label: D, md: "None of the above"}
+  solution: |
+    **Idea used:** core loss is a constant loss (see *Core losses: hysteresis and eddy current → Where the iron wastes energy*).
+
+    The core flux is set by the supply voltage and frequency, not by the load, so the eddy current loss (and the hysteresis loss) stays the same from no load to full load. It is the copper loss that rises with load.
+
+    **Answer: (B).** *(Our solution; APSC key not yet in the dump.)*
+
+- key: gate-1998-45hz-90pc
+  topic: em1-core-losses
+  sources: [{code: GATE-1998, q: "~core-loss-45hz", marks: 2, url: "https://questions.examside.com/past-years/gate/question/a-50-hz-transformer-having-equal-hysteresis-and-eddy-current-gate-ee-1998-marks-2-5aa26184c156c.htm"}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    A 50 Hz transformer having equal hysteresis and eddy current losses at rated excitation is operated at 45 Hz at 90% of its rated voltage. Compared to rated operating point, the core losses under this condition:
+  options:
+    - {label: A, md: "reduce by 10%"}
+    - {label: B, md: "reduce by 19%"}
+    - {label: C, md: "reduce by 14.5%", correct: true}
+    - {label: D, md: "remain unchanged"}
+  solution: |
+    **Idea used:** V/f unchanged means $B_m$ unchanged; then $P_h \propto f$ and $P_e \propto f^2$ (see *Core losses: hysteresis and eddy current → How the core loss changes*).
+
+    ```example Working
+    :::given $P_h = P_e$ at rated; new $V = 0.9 V_r$, new $f = 45\ \text{Hz} = 0.9 f_r$
+    :::find change in core loss
+    :::step V/f.
+    $0.9 \div 0.9 = 1$: $B_m$ unchanged
+    :::step Take each loss as 1 unit at rated (total 2 units). Hysteresis $\propto f$:
+    $P_h = 1 \times 0.9 = 0.9$
+    :::step Eddy $\propto f^2$:
+    $P_e = 1 \times 0.9^2 = 0.81$
+    :::step New total and change.
+    $0.9 + 0.81 = 1.71$ units (was 2)
+    $1.71 \div 2 = 0.855$: a fall of 14.5 %
+    :::answer $\ans{\text{reduce by } 14.5\,\%}$
+    ```
+
+    Option A is the hysteresis change alone, B the eddy change alone.
+
+    **Answer: (C).** *(Our solution.)*
+
+- key: gate-2014-s1-q36
+  topic: em1-core-losses
+  sources: [{code: GATE-2014, q: "S1-Q36", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: OFFICIAL_KEY
+  stem: |
+    The core loss of a single phase, 230/115 V, 50 Hz power transformer is measured from 230 V side by feeding the primary (230 V side) from a variable voltage variable frequency source while keeping the secondary open circuited. The core loss is measured to be 1050 W for 230 V, 50 Hz input. The core loss is again measured to be 500 W for 138 V, 30 Hz input. The hysteresis and eddy current losses of the transformer for 230 V, 50 Hz input are respectively,
+  options:
+    - {label: A, md: "508 W and 542 W.", correct: true}
+    - {label: B, md: "468 W and 582 W."}
+    - {label: C, md: "498 W and 552 W."}
+    - {label: D, md: "488 W and 562 W."}
+  solution: |
+    **Idea used:** separation of losses at constant V/f: $P_i/f = A + Bf$ (see *Core losses: hysteresis and eddy current → Separating the two losses*, Worked example 6).
+
+    ```example Working
+    :::given 1050 W at 230 V, 50 Hz; 500 W at 138 V, 30 Hz
+    :::find $P_h$ and $P_e$ at 50 Hz
+    :::step Check V/f.
+    $230 \div 50 = 4.6$ and $138 \div 30 = 4.6$: constant, so $B_m$ is the same
+    :::step Divide each loss by its frequency.
+    $1050 \div 50 = 21$, so $21 = A + 50B$
+    $500 \div 30 = 16.667$, so $16.667 = A + 30B$
+    :::step Subtract.
+    $21 - 16.667 = 20B$
+    $4.333 = 20B$, so $B = 0.2167$
+    :::step Find A.
+    $A = 21 - 50 \times 0.2167 = 21 - 10.833 = 10.167$
+    :::step Losses at 50 Hz.
+    $P_h = A f = 10.167 \times 50 = 508\ \text{W}$
+    $P_e = B f^2 = 0.2167 \times 2500 = 542\ \text{W}$
+    :::answer $\ans{P_h = 508\ \text{W},\ P_e = 542\ \text{W}}$
+    ```
+
+    **Without a calculator:** all four options add up to 1050 W, so find only the eddy part: $B = \dfrac{21 - 16\tfrac23}{20} = \dfrac{13}{60}$, and $P_e = \dfrac{13}{60} \times 2500 \approx 542$ W.
+
+    **Answer: (A).**
+
+- key: gate-2014-s2-q39
+  topic: em1-core-losses
+  sources: [{code: GATE-2014, q: "S2-Q39", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: OFFICIAL_KEY
+  stem: |
+    For a single phase, two winding transformer, the supply frequency and voltage are both increased by 10%. The percentage changes in the hysteresis loss and eddy current loss, respectively, are
+  options:
+    - {label: A, md: "10 and 21", correct: true}
+    - {label: B, md: "−10 and 21"}
+    - {label: C, md: "21 and 10"}
+    - {label: D, md: "−21 and 10"}
+  solution: |
+    **Idea used:** V/f constant → $B_m$ constant → $P_h \propto f$, $P_e \propto f^2$ (see *Core losses: hysteresis and eddy current → Worked example 5*).
+
+    $P_h$: × 1.1 → +10 %. $P_e$: × $1.1^2 = 1.21$ → +21 %.
+
+    **Answer: (A).**
+
+- key: gate-2014-s3-q36
+  topic: em1-core-losses
+  sources: [{code: GATE-2014, q: "S3-Q36", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: OFFICIAL_KEY
+  stem: |
+    An open circuit test is performed on 50 Hz transformer, using variable frequency source and keeping V/f ratio constant, to separate its eddy current and hysteresis losses. The variation of core loss/frequency as function of frequency is shown in the figure
+
+    ![Graph of Pc/f (W/Hz) against f (Hz): a straight line from 10 W/Hz at f = 0 to 15 W/Hz at 50 Hz](fig:q-gate2014-s3-q36)
+
+    The hysteresis and eddy current losses of the transformer at 25 Hz respectively are
+  options:
+    - {label: A, md: "250 W and 2.5 W"}
+    - {label: B, md: "250 W and 62.5 W", correct: true}
+    - {label: C, md: "312.5 W and 62.5 W"}
+    - {label: D, md: "312.5 W and 250 W"}
+  solution: |
+    **Idea used:** $P_c/f = A + Bf$: the intercept is $A$, the slope is $B$ (see *Core losses: hysteresis and eddy current → Separating the two losses*).
+
+    ```example Working
+    :::given line: 10 W/Hz at $f = 0$, 15 W/Hz at 50 Hz
+    :::find $P_h$ and $P_e$ at 25 Hz
+    :::step Intercept and slope.
+    $A = 10\ \text{W/Hz}$
+    $B = (15 - 10) \div 50 = 0.1\ \text{W/Hz}^2$
+    :::step Hysteresis at 25 Hz. $\fx{P_h = Af}$
+    $P_h = 10 \times 25 = 250\ \text{W}$
+    :::step Eddy at 25 Hz. $\fx{P_e = Bf^2}$
+    $P_e = 0.1 \times 625 = 62.5\ \text{W}$
+    :::answer $\ans{250\ \text{W and } 62.5\ \text{W}}$
+    ```
+
+    **Check:** $P_c/f$ at 25 Hz $= (250 + 62.5)/25 = 12.5$, which is on the line. Option C puts the whole 312.5 W as hysteresis.
+
+    **Answer: (B).**
+
+- key: gate-2020-21
+  topic: em1-core-losses
+  sources: [{code: GATE-2020, q: "21", marks: 1}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  nat: {min: 162.4, max: 162.6}
+  stem: |
+    A single-phase, 4 kVA, 200 V/100 V, 50 Hz transformer with laminated CRGO steel core has rated no-load loss of 450 W. When the high-voltage winding is excited with 160 V, 40 Hz sinusoidal ac supply, the no-load losses are found to be 320 W. When the high-voltage winding of the same transformer is supplied from a 100 V, 25 Hz sinusoidal ac source, the no-load losses will be ______ W (rounded off to 2 decimal places).
+  options:
+    - {label: A, md: "162.50", correct: true}
+    - {label: B, md: "225.00"}
+    - {label: C, md: "200.00"}
+    - {label: D, md: "112.50"}
+  solution: |
+    **Idea used:** all three tests have V/f = 4, so $P = Af + Bf^2$ (see *Core losses: hysteresis and eddy current → Separating the two losses*).
+
+    ```example Working
+    :::given 450 W at 200 V, 50 Hz; 320 W at 160 V, 40 Hz; find loss at 100 V, 25 Hz
+    :::find no-load loss at 25 Hz
+    :::step Check V/f.
+    $200/50 = 160/40 = 100/25 = 4$: $B_m$ the same in all three
+    :::step Divide by f.
+    $450 \div 50 = 9$, so $9 = A + 50B$
+    $320 \div 40 = 8$, so $8 = A + 40B$
+    :::step Subtract.
+    $1 = 10B$, so $B = 0.1$
+    $A = 9 - 5 = 4$
+    :::step Loss at 25 Hz.
+    $P = 4 \times 25 + 0.1 \times 625$
+    $= 100 + 62.5 = 162.5\ \text{W}$
+    :::answer $\ans{162.50\ \text{W}}$
+    ```
+
+    Option B scales the whole loss in proportion to $f$ ($450 \times 25/50$); D scales it as $f^2$ ($450 \times (25/50)^2$). Neither is right: the two parts change differently.
+
+    **Answer: 162.50 W.** *(Our solution.)*
+
+- key: gate-2021-33
+  topic: em1-core-losses
+  sources: [{code: GATE-2021, q: "33", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    In a single-phase transformer, the total iron loss is 2500 W at nominal voltage of 440 V and frequency 50 Hz. The total iron loss is 850 W at 220 V and 25 Hz. Then, at nominal voltage and frequency, the hysteresis loss and eddy current loss respectively are
+  options:
+    - {label: A, md: "1600 W and 900 W"}
+    - {label: B, md: "900 W and 1600 W", correct: true}
+    - {label: C, md: "250 W and 600 W"}
+    - {label: D, md: "600 W and 250 W"}
+  solution: |
+    **Idea used:** V/f constant (440/50 = 220/25 = 8.8): $P_i/f = A + Bf$ (see *Core losses: hysteresis and eddy current → Separating the two losses*).
+
+    ```example Working
+    :::given 2500 W at 440 V, 50 Hz; 850 W at 220 V, 25 Hz
+    :::find $P_h$ and $P_e$ at 50 Hz
+    :::step Divide by f.
+    $2500 \div 50 = 50$, so $50 = A + 50B$
+    $850 \div 25 = 34$, so $34 = A + 25B$
+    :::step Subtract.
+    $16 = 25B$, so $B = 0.64$
+    $A = 34 - 25 \times 0.64 = 34 - 16 = 18$
+    :::step Losses at 50 Hz.
+    $P_h = 18 \times 50 = 900\ \text{W}$
+    $P_e = 0.64 \times 2500 = 1600\ \text{W}$
+    :::answer $\ans{900\ \text{W and } 1600\ \text{W}}$
+    ```
+
+    Options C and D are the 25 Hz values (or mixed up); A swaps the two.
+
+    **Answer: (B).** *(Our solution.)*
+
+- key: ese-2025-15
+  topic: em1-core-losses
+  sources: [{code: ESE-2025, q: "15", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The total core loss of a specimen of silicon steel is found to be 1500 W at 50 Hz. Keeping the flux density constant, the loss becomes 3000 W, when the frequency is raised to 75 Hz. The eddy current loss at 75 Hz will be
+  options:
+    - {label: A, md: "1.25 kW"}
+    - {label: B, md: "1.50 kW"}
+    - {label: C, md: "1.75 kW"}
+    - {label: D, md: "2.25 kW", correct: true}
+  solution: |
+    **Idea used:** constant flux density → $P = Af + Bf^2$ (see *Core losses: hysteresis and eddy current → Separating the two losses*).
+
+    ```example Working
+    :::given 1500 W at 50 Hz; 3000 W at 75 Hz; $B_m$ constant
+    :::find eddy loss at 75 Hz
+    :::step Divide by f.
+    $1500 \div 50 = 30$, so $30 = A + 50B$
+    $3000 \div 75 = 40$, so $40 = A + 75B$
+    :::step Subtract.
+    $10 = 25B$, so $B = 0.4$
+    :::step Eddy loss at 75 Hz. $\fx{P_e = Bf^2}$
+    $0.4 \times 75^2 = 0.4 \times 5625 = 2250\ \text{W}$
+    :::answer $\ans{2.25\ \text{kW}}$
+    ```
+
+    **Check:** $A = 30 - 20 = 10$; hysteresis at 75 Hz $= 750$ W; $750 + 2250 = 3000$ W ✓.
+
+    **Answer: (D).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2024-88
+  topic: em1-core-losses
+  sources: [{code: ESE-2024, q: "88", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    If a 50 Hz, 220/400 V, 50 kVA, single-phase transformer operates on 220 V, 40 Hz supply with secondary winding, then what about the core losses of the transformer?
+  options:
+    - {label: A, md: "The hysteresis losses and the eddy current losses of the transformer increase"}
+    - {label: B, md: "The hysteresis losses and the eddy current losses of the transformer decrease"}
+    - {label: C, md: "The hysteresis losses remain same whereas the eddy current losses decrease"}
+    - {label: D, md: "The hysteresis losses increase whereas the eddy current losses remain same", correct: true}
+  solution: |
+    **Idea used:** voltage fixed, frequency lowered: $B_m \propto V/f$ rises; $P_h \propto B_m^{1.6} f$; $P_e \propto V^2$ (see *Core losses: hysteresis and eddy current → How the core loss changes with voltage and frequency*).
+
+    1. $B_m$ rises by $50/40 = 1.25$.
+    2. Hysteresis: $1.25^{1.6} \times 0.8 \approx 1.43 \times 0.8 \approx 1.14$: it **increases** (about 14 %).
+    3. Eddy: depends only on the voltage, which is unchanged: it **stays the same**.
+
+    **Asked before:** GATE EE 1993 (2 marks) asked about the same transformer on 220 V, 40 Hz.
+
+    **Answer: (D).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2018-86
+  topic: em1-ideal-transformer
+  sources: [{code: ESE-2018, q: "86", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    An ideal transformer is having 150 turns primary and 750 turns secondary. The primary coil is connected to a 240 V, 50 Hz source. The secondary winding supplies a load of 4 A at lagging power factor of 0.8. What is the power supplied by the transformer to the load?
+  options:
+    - {label: A, md: "4200 W"}
+    - {label: B, md: "3840 W", correct: true}
+    - {label: C, md: "2100 W"}
+    - {label: D, md: "1920 W"}
+  solution: |
+    **Idea used:** $V_2 = V_1 N_2/N_1$; $P = V_2 I_2 \cos\phi$ (see *The ideal transformer*, Worked example 1).
+
+    ```example Working
+    :::given $N_1 = 150$, $N_2 = 750$, $V_1 = 240\ \text{V}$, $I_2 = 4\ \text{A}$, pf $= 0.8$
+    :::find power to the load
+    :::step Secondary voltage.
+    $750 \div 150 = 5$
+    $V_2 = 240 \times 5 = 1200\ \text{V}$
+    :::step Power. $\fx{P = V_2 I_2 \cos\phi}$
+    $1200 \times 4 = 4800\ \text{VA}$
+    $4800 \times 0.8 = 3840\ \text{W}$
+    :::answer $\ans{3840\ \text{W}}$
+    ```
+
+    Option D is half the answer (a slip of using a turns ratio of 2.5 instead of 5).
+
+    **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2018-89
+  topic: em1-ideal-transformer
+  sources: [{code: ESE-2018, q: "89", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Which of the following would refer to an ideal transformer?
+
+    1. Winding-resistances are negligible
+    2. Leakage-fluxes are included
+    3. Core-losses are negligible
+    4. Magnetization characteristic is linear
+  options:
+    - {label: A, md: "1, 2 and 3 only"}
+    - {label: B, md: "1, 3 and 4 only", correct: true}
+    - {label: C, md: "1, 2 and 4 only"}
+    - {label: D, md: "2, 3 and 4 only"}
+  solution: |
+    **Idea used:** the assumptions of an ideal transformer (see *The ideal transformer → Why study an "ideal" transformer*).
+
+    An ideal transformer has no winding resistance (1 ✓), **no** leakage flux (2 ✗), no core loss (3 ✓) and a linear magnetisation characteristic with infinite permeability (4 ✓).
+
+    **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2024-100
+  topic: em1-ideal-transformer
+  sources: [{code: ESE-2024, q: "100", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    Consider the following statements regarding ideal transformer:
+
+    1. The winding resistances of the primary and secondary of the transformer are zero.
+    2. The eddy current loss of the transformer is zero.
+    3. The core of the transformer is having a finite permeability.
+
+    Which of the above statements is/are not correct?
+  options:
+    - {label: A, md: "1 and 3"}
+    - {label: B, md: "2 only"}
+    - {label: C, md: "3 only", correct: true}
+    - {label: D, md: "1 and 2"}
+  solution: |
+    **Idea used:** the ideal transformer (see *The ideal transformer*).
+
+    1 is correct (zero resistance). 2 is correct (no core loss at all). 3 is **not** correct: an ideal core has **infinite** permeability (zero reluctance, zero magnetising current).
+
+    Read the question carefully: it asks for the statement that is **not** correct.
+
+    **Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2020-110
+  topic: em1-ideal-transformer
+  sources: [{code: ESE-2020, q: "110", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A transformer with a 10 : 1 ratio and rated at 50 kVA, 2400/240 V, 50 Hz is used to step down the voltage of a distribution system. The low tension voltage is to be kept constant at 240 V. If the transformer is fully loaded at 0.8 power factor (lag), the load impedance connected to low-tension side will be nearly
+  options:
+    - {label: A, md: "3.15 Ω"}
+    - {label: B, md: "2.60 Ω"}
+    - {label: C, md: "1.15 Ω", correct: true}
+    - {label: D, md: "0.60 Ω"}
+  solution: |
+    **Idea used:** rated-load impedance $= V^2/S$ on that side, whatever the power factor (see *The ideal transformer → Load impedance from the rating*).
+
+    ```example Working
+    :::given $S = \given{50\ \text{kVA}}$, $V_2 = \given{240\ \text{V}}$
+    :::find load impedance on the LT side
+    :::step Rated LT current.
+    $I_2 = 50\,000 \div 240 = 208.3\ \text{A}$
+    :::step Impedance.
+    $Z = 240 \div 208.3 = 1.152\ \Omega$
+    :::answer $\ans{Z \approx 1.15\ \Omega}$
+    ```
+
+    **Without a calculator:** $240^2 = 57\,600$; $57\,600 \div 50\,000 = 1.152$. The 0.8 pf is not needed for the **size** of the impedance.
+
+    **Answer: (C).** *(Our solution; check with the UPSC key when available.)*
+
+- key: gate-2013-43
+  topic: em1-ideal-transformer
+  sources: [{code: GATE-2013, q: "43", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    The following arrangement consists of an ideal transformer and an attenuator which attenuates by a factor of 0.8. An ac voltage $V_{WX1} = 100$ V is applied across WX to get an open circuit voltage $V_{YZ1}$ across YZ. Next, an ac voltage $V_{YZ2} = 100$ V is applied across YZ to get an open circuit voltage $V_{WX2}$ across WX. Then, $V_{YZ1}/V_{WX1}$, $V_{WX2}/V_{YZ2}$ are respectively,
+
+    ![W-X is the primary of an ideal 1:1.25 transformer; its secondary is across a potentiometer; Y is the wiper and Z the bottom end](fig:q-gate2013-q43)
+  options:
+    - {label: A, md: "125/100 and 80/100"}
+    - {label: B, md: "100/100 and 80/100", correct: true}
+    - {label: C, md: "100/100 and 100/100"}
+    - {label: D, md: "80/100 and 80/100"}
+  solution: |
+    **Idea used:** an ideal transformer works the same both ways; a potentiometer divides only when the source is across the **whole** of it (see *The ideal transformer → Voltage ratio*).
+
+    ```example Working
+    :::given ratio $N_1 : N_2 = 1 : 1.25$; attenuator ratio 0.8
+    :::find $V_{YZ1}/V_{WX1}$ and $V_{WX2}/V_{YZ2}$
+    :::step Forward: 100 V on W-X.
+    secondary $= 100 \times 1.25 = 125\ \text{V}$ across the whole pot
+    wiper takes 0.8 of it: $V_{YZ1} = 125 \times 0.8 = 100\ \text{V}$
+    ratio $= 100/100$
+    :::step Reverse: 100 V on Y-Z (wiper and bottom).
+    W-X is open, so the ideal transformer draws no current; no current flows in the top part of the pot either
+    no drop in the top part: the whole secondary is at 100 V
+    $V_{WX2} = 100 \div 1.25 = 80\ \text{V}$
+    ratio $= 80/100$
+    :::answer $\ans{100/100\ \text{and}\ 80/100}$
+    ```
+
+    **Trap:** the pot does not "attenuate" in the reverse direction (no current, no divider action), so the answer is not 80/100 × 80/100.
+
+    **Answer: (B).** *(Our solution.)*
+
+- key: gate-2014-s2-q11
+  topic: em1-ideal-transformer
+  sources: [{code: GATE-2014, q: "S2-Q11", marks: 1}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: OFFICIAL_KEY
+  stem: |
+    Assuming an ideal transformer, the Thevenin's equivalent voltage and impedance as seen from the terminals x and y for the circuit in figure are
+
+    ![A source sin(ωt) with 1 ohm in series on the primary of an ideal 1:2 transformer; terminals x and y on the secondary](fig:q-gate2014-s2-q11)
+  options:
+    - {label: A, md: '$2\sin(\omega t)$, 4 Ω', correct: true}
+    - {label: B, md: '$1\sin(\omega t)$, 1 Ω'}
+    - {label: C, md: '$1\sin(\omega t)$, 2 Ω'}
+    - {label: D, md: '$2\sin(\omega t)$, 0.5 Ω'}
+  solution: |
+    **Idea used:** voltage moves across with the turns ratio, impedance with its square (see *The ideal transformer*, Worked example 3).
+
+    1. Open-circuit voltage: $1 \times 2 = 2\sin(\omega t)$.
+    2. Impedance seen from the secondary: $1\ \Omega \times 2^2 = 4\ \Omega$.
+
+    Option D divides by the square instead of multiplying.
+
+    **Answer: (A).**
+
+- key: gate-2024-18
+  topic: em1-ideal-transformer
+  sources: [{code: GATE-2024, q: "18", marks: 1}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    Which one of the following options represents possible voltage polarities in a single phase two winding transformer? Here, $V_p$ is the applied primary voltage, $E_p$ is the induced primary voltage, $V_s$ is the open circuit secondary voltage, and $E_s$ is the induced secondary voltage.
+
+    In every option the primary is on the left with its **dot at the bottom terminal**, and the secondary is on the right with its **dot at the top terminal**. The options differ only in the polarity marks (the original paper shows them as four figures):
+
+    | Option | $V_p$ | $E_p$ | $E_s$ | $V_s$ |
+    |---|---|---|---|---|
+    | (A) | + top, − bottom | + top, − bottom | + top, − bottom | + top, − bottom |
+    | (B) | − top, + bottom | − top, + bottom | + top, − bottom | + top, − bottom |
+    | (C) | + top, − bottom | − top, + bottom | − top, + bottom | + top, − bottom |
+    | (D) | + top, − bottom | − top, + bottom | − top, + bottom | − top, + bottom |
+  options:
+    - {label: A, md: "(A)"}
+    - {label: B, md: "(B)", correct: true}
+    - {label: C, md: "(C)"}
+    - {label: D, md: "(D)"}
+  solution: |
+    **Idea used:** dotted ends have the same polarity at the same instant; the induced EMF of the primary has the same terminal polarity as the applied voltage (it is a back EMF equal to it); on open circuit $V_s = E_s$ (see *The ideal transformer → Polarity and the dot convention*).
+
+    Check each option against three rules:
+
+    1. $E_p$ marked the same way as $V_p$: (A) ✓, (B) ✓, (C) ✗, (D) ✗.
+    2. $V_s$ marked the same way as $E_s$: (A) ✓, (B) ✓.
+    3. Dots: the primary's **dotted (bottom)** end and the secondary's **dotted (top)** end must be positive together.
+       - (A): primary bottom is − but secondary top is + ✗.
+       - (B): primary bottom is + and secondary top is + ✓.
+
+    **Answer: (B).** *(Our solution; the official key is not in our dump.)*
+
+- key: gate2016-s1-q25
+  topic: em1-ideal-transformer
+  sources: [{code: GATE-2016, q: "S1-Q25", marks: 1}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: OFFICIAL_KEY
+  stem: |
+    If an ideal transformer has an inductive load element at port 2 as shown in the figure below, the equivalent inductance at port 1 is
+
+    ![Ideal transformer with turns ratio n:1; port 1 on the n side, an inductor L across port 2](fig:q-gate2016-s1-q25)
+  options:
+    - {label: A, md: "$nL$"}
+    - {label: B, md: "$n^2L$", correct: true}
+    - {label: C, md: "$\\dfrac{n}{L}$"}
+    - {label: D, md: "$\\dfrac{n^2}{L}$"}
+  solution: |
+    **Idea used:** an ideal transformer with ratio $n : 1$ makes any impedance on the "1" side look $n^2$ times larger from the "$n$" side.
+
+    1. On port 2 the impedance is $Z_2 = j\omega L$.
+    2. Seen from port 1: $Z_1 = n^2 Z_2 = j\omega (n^2 L)$.
+    3. That is an inductor of value $n^2 L$.
+
+    **Why $n^2$:** voltage goes up $n$ times and current goes down $n$ times, so $V/I$ goes up $n \times n$.
+
+    **Without a calculator:** (C) and (D) are not even inductances (wrong units). Between (A) and (B), impedance always scales with
+    the **square** of the turns ratio.
+
+    **Answer: (B) $n^2L$.**
+
+- key: gate2016-s2-q3
+  topic: em1-ideal-transformer
+  sources: [{code: GATE-2016, q: "S2-Q3", marks: 1}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: OFFICIAL_KEY
+  nat: {min: 9.5, max: 10.5}
+  stem: |
+    The following figure shows the connection of an ideal transformer with primary to secondary turns ratio of 1:100. The applied
+    primary voltage is 100 V (rms), 50 Hz, AC. The rms value of the current $I$, in ampere, is __________.
+
+    ![100 V source and XL = 10 ohm (current I) on the primary of an ideal 1:100 transformer; secondary load R = 80 kilo-ohm in series with XC = 40 kilo-ohm](fig:q-gate2016-s2-q3)
+  options:
+    - {label: A, md: "10", correct: true}
+    - {label: B, md: "12.5"}
+    - {label: C, md: "7.8"}
+    - {label: D, md: "0.1"}
+  solution: |
+    **Idea used:** move the secondary load to the primary side by dividing by (turns ratio)$^2$, then solve one series circuit.
+
+    1. Secondary load: $Z_2 = 80 - j40$ kΩ.
+    2. Referred to the primary: $\dfrac{Z_2}{100^2} = \dfrac{80\,000 - j40\,000}{10\,000} = 8 - j4\ \Omega$.
+    3. Total: $j10 + 8 - j4 = 8 + j6\ \Omega$, so $|Z| = \sqrt{64 + 36} = 10\ \Omega$.
+    4. $I = 100 \div 10 = 10$ A.
+
+    **Without a calculator:** 6-8-10 is the 3-4-5 triangle. Slips: ignoring the capacitor ($|8 + j10| \approx 12.8$, about 7.8 A), or
+    referring by 100 instead of $100^2$, or mixing up the side the current is on (0.1 A is the secondary current).
+
+    **Answer: 10 A.**
+
+- key: gate2016-s1-q46
+  topic: em1-core-losses
+  sources: [{code: GATE-2016, q: "S1-Q46", marks: 2}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: OFFICIAL_KEY
+  nat: {min: 1.4, max: 1.5}
+  stem: |
+    A single-phase 400 V, 50 Hz transformer has an iron loss of 5000 W at the rated condition. When operated at 200 V, 25 Hz, the iron
+    loss is 2000 W. When operated at 416 V, 52 Hz, the value of the hysteresis loss divided by the eddy current loss is ______.
+  options:
+    - {label: A, md: "1.44", correct: true}
+    - {label: B, md: "1.5"}
+    - {label: C, md: "0.69"}
+    - {label: D, md: "2.31"}
+  solution: |
+    **Idea used:** at constant $V/f$ the flux density is constant, so hysteresis loss $P_h = Af$ and eddy current loss $P_e = Bf^2$
+    (A and B are constants). All three conditions have $V/f = 8$, so this holds for all of them.
+
+    1. At 50 Hz: $50A + 2500B = 5000$.
+    2. At 25 Hz: $25A + 625B = 2000$. Double it: $50A + 1250B = 4000$.
+    3. Subtract: $1250B = 1000$, so $B = 0.8$. Then $50A = 5000 - 2000 = 3000$, so $A = 60$.
+    4. At 52 Hz: $P_h = 60 \times 52 = 3120$ W; $P_e = 0.8 \times 52^2 = 0.8 \times 2704 = 2163$ W.
+    5. Ratio $= 3120 \div 2163 \approx 1.44$.
+
+    **Check:** at 50 Hz, $P_h = 3000$ and $P_e = 2000$, total 5000 W. ✔
+
+    **Without a calculator:** the ratio $P_h/P_e = \dfrac{A}{Bf} = \dfrac{60}{0.8 f} = \dfrac{75}{f}$. At 52 Hz: $75/52 \approx 1.44$.
+    Option B is the ratio at 50 Hz; option C is the inverse.
+
+    **Answer: about 1.44.**

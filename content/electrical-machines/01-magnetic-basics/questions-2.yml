@@ -1,0 +1,486 @@
+# Electrical Machines Chapter 1 PYQs, part 2: induced EMF and inductance; force, torque and stored energy.
+# Exam questions keep their original wording. "status": OFFICIAL_KEY | TWO_SOURCES | UNVERIFIED (solved by us).
+
+- key: gate-1998-faraday-lenz
+  topic: em1-induced-emf
+  sources: [{code: GATE-1998, q: "~faraday-lenz", marks: 1, url: "https://questions.examside.com/past-years/gate/question/the-laws-of-electromagnetic-induction-faradays-and-lenzs-law-gate-ee-1998-marks-1-5a9d8c26726a4.htm"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The laws of electromagnetic induction (Faraday's and Lenz's law) are summarized in the following equation:
+  options:
+    - {label: A, md: '$e = -\dfrac{d\lambda}{dt}$', correct: true}
+    - {label: B, md: '$e = \lambda\,\dfrac{di}{dt}$'}
+    - {label: C, md: '$e = -\dfrac{d\phi}{d\lambda}$'}
+    - {label: D, md: '$e = \dfrac{1}{\lambda}\,\dfrac{d\phi}{dt}$'}
+  solution: |
+    **Idea used:** Faraday's second law with Lenz's minus sign (see *Induced EMF and inductance → Faraday's laws and Lenz's law*).
+
+    The EMF equals the rate of change of flux linkage $\lambda = N\phi$ (Faraday); the minus sign says it opposes the change (Lenz): $e = -\dfrac{d\lambda}{dt} = -N\dfrac{d\phi}{dt}$.
+
+    *The examside page shows only the stem of this 1998 question, without its options. The four options here are ours, written around the standard answer.*
+
+    **Answer: (A).** *(Our solution.)*
+
+- key: gate-2008-25
+  topic: em1-induced-emf
+  sources: [{code: GATE-2008, q: "25", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    A coil of 300 turns is wound on a non-magnetic core having a mean circumference of 300 mm and a cross-sectional area of 300 mm². The inductance of the coil corresponding to a magnetizing current of 3 A will be (Given that $\mu_0 = 4\pi \times 10^{-7}$ H/m)
+  options:
+    - {label: A, md: "37.68 μH"}
+    - {label: B, md: "113.04 μH", correct: true}
+    - {label: C, md: "37.68 mH"}
+    - {label: D, md: "113.04 mH"}
+  solution: |
+    **Idea used:** $L = \dfrac{\mu_0 N^2 A}{l}$ for a non-magnetic core; it does not depend on the current (see *Induced EMF and inductance → Inductance from the magnetic circuit*, Worked example 5).
+
+    ```example Working
+    :::given $N = \given{300}$, $l = \given{300\ \text{mm}}$, $A = \given{300\ \text{mm}^2}$, $\mu_r = 1$
+    :::find inductance $L$
+    :::step SI units.
+    $l = 0.3\ \text{m}$, $A = 300 \times 10^{-6} = 3 \times 10^{-4}\ \text{m}^2$
+    :::step $N^2$.
+    $300^2 = 90\,000 = 9 \times 10^{4}$
+    :::step $\fx{L = \mu_0 N^2 A / l}$
+    $N^2 A / l = 9 \times 10^{4} \times 3 \times 10^{-4} \div 0.3$
+    $= 27 \div 0.3 = 90$
+    $L = 4\pi \times 10^{-7} \times 90 = 360\pi \times 10^{-7}$
+    $360 \times 3.14 = 1130.4$
+    $L = 1130.4 \times 10^{-7} = 113.04 \times 10^{-6}\ \text{H}$
+    :::answer $\ans{L = 113.04\ \mu\text{H}}$
+    ```
+
+    The 3 A is not needed: with a non-magnetic core, $L$ is the same at every current. (The options use $\pi = 3.14$.) Option A forgets one factor of 3; C and D are a thousand times too big.
+
+    **Answer: (B).** *(Our solution.)*
+
+- key: apgcl-2023-100
+  topic: em1-induced-emf
+  sources: [{code: APGCL-2023, q: "100", primary: true}, {code: GATE-2004, q: "~long-solenoid", marks: 1, primary: false}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The inductance of a long solenoid of length 1000 mm wound uniformly with 3000 turns on a cylindrical paper tube of 60 mm diameter is
+  options:
+    - {label: A, md: "3.2 μH"}
+    - {label: B, md: "3.2 mH"}
+    - {label: C, md: "32.0 mH", correct: true}
+    - {label: D, md: "3.2 H"}
+  solution: |
+    **Idea used:** long solenoid in air: $L = \dfrac{\mu_0 N^2 A}{l}$, $A = \dfrac{\pi d^2}{4}$ (a paper tube is non-magnetic) (see *Induced EMF and inductance → Inductance from the magnetic circuit*).
+
+    ```example Working
+    :::given $l = \given{1000\ \text{mm}}$, $N = \given{3000}$, $d = \given{60\ \text{mm}}$
+    :::find inductance $L$
+    :::step SI units and area.
+    $l = 1\ \text{m}$, $d = 0.06\ \text{m}$, radius $r = 0.03\ \text{m}$
+    $A = \pi r^2 = \pi \times 0.0009 = 9\pi \times 10^{-4}\ \text{m}^2$
+    :::step $N^2$.
+    $3000^2 = 9 \times 10^{6}$
+    :::step $\fx{L = \mu_0 N^2 A / l}$
+    $L = 4\pi \times 10^{-7} \times 9 \times 10^{6} \times 9\pi \times 10^{-4} \div 1$
+    $4 \times 9 \times 9 = 324$, and $\pi \times \pi = 9.87$
+    $10^{-7} \times 10^{6} \times 10^{-4} = 10^{-5}$
+    $L = 324 \times 9.87 \times 10^{-5} = 3198 \times 10^{-5}$
+    $= 0.032\ \text{H} = 32\ \text{mH}$
+    :::answer $\ans{L \approx 32\ \text{mH}}$
+    ```
+
+    **Without a calculator:** $L = 324\pi^2 \times 10^{-5} \approx 324 \times 10 \times 10^{-5} \approx 0.032$ H. The options differ by factors of 10, so a rough value is enough.
+
+    **Asked before:** GATE EE 2004 (1 mark), the same question.
+
+    **Answer: (C).** *(Our solution; APSC key not yet in the dump.)*
+
+- key: gate-2015-s2-q20
+  topic: em1-induced-emf
+  sources: [{code: GATE-2015, q: "S2-Q20", marks: 1}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: OFFICIAL_KEY
+  nat: {min: 246, max: 250}
+  stem: |
+    A circular turn of radius 1 m revolves at 60 rpm about its diameter aligned with the x-axis as shown in the figure. The value of $\mu_0$ is $4\pi \times 10^{-7}$ in SI unit. If a uniform magnetic field intensity $\vec{H} = 10^{7}\,\hat{z}$ A/m is applied, then the peak value of the induced voltage, $V_{turn}$ (in Volts), is ______.
+
+    ![A circular turn of radius 1 m turning about the x-axis (its diameter); uniform field H along z; output V_turn at the ends of the turn](fig:q-gate2015-s2-q20)
+  options:
+    - {label: A, md: "248", correct: true}
+    - {label: B, md: "39.5"}
+    - {label: C, md: "24.8"}
+    - {label: D, md: "496"}
+  solution: |
+    **Idea used:** a coil turning in a uniform field: $E_m = NBA\omega$ (see *Induced EMF and inductance → A coil turning in a uniform field gives a sine wave*, Worked example 4).
+
+    ```example Working
+    :::given $N = 1$, $r = \given{1\ \text{m}}$, speed $= \given{60\ \text{rpm}}$, $H = \given{10^{7}\ \text{A/m}}$
+    :::find peak voltage $V_{turn}$
+    :::step Field is given as H, in air: change to B. $\fx{B = \mu_0 H}$
+    $B = 4\pi \times 10^{-7} \times 10^{7} = 4\pi\ \text{T}$
+    :::step Area of the turn. $\fx{A = \pi r^2}$
+    $A = \pi \times 1^2 = \pi\ \text{m}^2$
+    :::step Angular speed.
+    $60\ \text{rpm} = 1\ \text{rev/s}$, so $\omega = 2\pi\ \text{rad/s}$
+    :::step Peak EMF. $\fx{E_m = NBA\omega}$
+    $E_m = 1 \times 4\pi \times \pi \times 2\pi = 8\pi^3$
+    $\pi^3 = 31.0$
+    $E_m = 8 \times 31.0 = 248\ \text{V}$
+    :::answer $\ans{V_{turn} \approx 248\ \text{V}}$
+    ```
+
+    Option B forgets $\omega$ (divides by $2\pi$); D uses the diameter-swept area twice.
+
+    **Answer: 248 V.**
+
+- key: gate-2018-26
+  topic: em1-induced-emf
+  sources: [{code: GATE-2018, q: "26", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 3
+  status: OFFICIAL_KEY
+  stem: |
+    A transformer with toroidal core of permeability $\mu$ is shown in the figure. Assuming uniform flux density across the circular core cross-section of radius $r \ll R$, and neglecting any leakage flux, the best estimate for the mean radius $R$ is
+
+    ![Toroidal core of mean radius R and cross-section radius r; primary of N_P turns fed by v_P = V cos ωt draws i_P = I sin ωt; secondary of N_S turns is open (i_S = 0)](fig:q-gate2018-q26)
+  options:
+    - {label: A, md: '$\dfrac{\mu V r^2 N_P^2\,\omega}{I}$'}
+    - {label: B, md: '$\dfrac{\mu I r^2 N_P N_S\,\omega}{V}$'}
+    - {label: C, md: '$\dfrac{\mu V r^2 N_P^2\,\omega}{2I}$'}
+    - {label: D, md: '$\dfrac{\mu I r^2 N_P^2\,\omega}{2V}$', correct: true}
+  solution: |
+    **Idea used:** with the secondary open, the primary is just an inductor: $L = \dfrac{\mu N_P^2 A}{l}$, and the current amplitude is $I = V/(\omega L)$ (see *Induced EMF and inductance → Inductance from the magnetic circuit*).
+
+    ```example Working
+    :::given toroid: mean path $l = 2\pi R$, area $A = \pi r^2$; $v_P = V\cos\omega t$, $i_P = I\sin\omega t$
+    :::find mean radius $R$
+    :::step Inductance of the primary. $\fx{L = \mu N_P^2 A / l}$
+    $L = \mu N_P^2 \pi r^2 \div (2\pi R) = \dfrac{\mu N_P^2 r^2}{2R}$
+    :::step For an inductor, $v = L\,di/dt$. With $i = I\sin\omega t$:
+    $v = L I \omega \cos\omega t$, so $V = \omega L I$
+    $L = \dfrac{V}{\omega I}$
+    :::step Equate the two expressions for $L$.
+    $\dfrac{\mu N_P^2 r^2}{2R} = \dfrac{V}{\omega I}$
+    :::step Solve for $R$.
+    $R = \dfrac{\mu N_P^2 r^2 \omega I}{2V}$
+    :::answer $\ans{R = \dfrac{\mu I r^2 N_P^2 \omega}{2V}}$
+    ```
+
+    **Check by units / limits:** a bigger current for the same voltage means a smaller inductance, i.e. a longer path (bigger $R$): $R \propto I/V$. Only B and D have $I$ on top, and B has $N_S$, which cannot matter with the secondary open.
+
+    **Answer: (D).**
+
+- key: gate-2023-53
+  topic: em1-induced-emf
+  sources: [{code: GATE-2023, q: "53", marks: 2}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 3
+  status: UNVERIFIED
+  nat: {min: 2195, max: 2205}
+  stem: |
+    When the winding c-d of the single-phase, 50 Hz, two winding transformer is supplied from an AC current source of frequency 50 Hz, the rated voltage of 200 V (rms), 50 Hz is obtained at the open-circuited terminals a-b. The cross sectional area of the core is 5000 mm² and the average core length traversed by the mutual flux is 500 mm. The maximum allowable flux density in the core is $B_{max} = 1$ Wb/m² and the relative permeability of the core material is 5000. The leakage impedance of the winding a-b and winding c-d at 50 Hz are $(5 + j100\pi \times 0.16)\ \Omega$ and $(11.25 + j100\pi \times 0.36)\ \Omega$, respectively. Considering the magnetizing characteristics to be linear and neglecting core loss, the self-inductance of the winding a-b in millihenry is ______ (Round off to 1 decimal place).
+
+    ![Two-winding transformer: winding a-b on the left limb, open, giving 200 V at 50 Hz; winding c-d on the right limb fed by a 50 Hz AC current source](fig:q-gate2023-q53)
+  options:
+    - {label: A, md: "2199.8", correct: true}
+    - {label: B, md: "2039.8"}
+    - {label: C, md: "2359.8"}
+    - {label: D, md: "160.0"}
+  solution: |
+    **Idea used:** self-inductance of a winding = its share of the mutual (core) flux, $N^2/S$, **plus** its own leakage inductance (see *Induced EMF and inductance → Inductance from the magnetic circuit* and *EMF equation of a transformer*).
+
+    ```example Working
+    :::given $V_{ab} = \given{200\ \text{V}}$ at $\given{50\ \text{Hz}}$, $A = \given{5000\ \text{mm}^2}$, $l = \given{500\ \text{mm}}$, $B_{max} = \given{1\ \text{T}}$, $\mu_r = \given{5000}$, leakage of a-b $= 0.16$ H
+    :::find self-inductance of winding a-b
+    :::step Rated voltage at the rated (maximum) flux density gives the turns. $\fx{E = 4.44 f N B_m A}$
+    $A = 5000 \times 10^{-6} = 5 \times 10^{-3}\ \text{m}^2$
+    $\Phi_m = 1 \times 5 \times 10^{-3} = 5 \times 10^{-3}\ \text{Wb}$
+    $4.44 \times 50 \times 5 \times 10^{-3} = 1.11\ \text{V per turn}$
+    $N_{ab} = 200 \div 1.11 = 180.2$
+    :::step Reluctance of the core. $\fx{S = l / (\mu_0 \mu_r A)}$
+    $\mu_0 \mu_r A = 4\pi \times 10^{-7} \times 5000 \times 5 \times 10^{-3} = \pi \times 10^{-5} = 3.1416 \times 10^{-5}$
+    $S = 0.5 \div (3.1416 \times 10^{-5}) = 15\,915\ \text{AT/Wb}$
+    :::step Magnetising (mutual-flux) inductance seen from a-b. $\fx{L_m = N^2 / S}$
+    $N_{ab}^2 = 180.2^2 = 32\,465$
+    $L_m = 32\,465 \div 15\,915 = 2.0399\ \text{H}$
+    :::step Add the leakage inductance of a-b ($j100\pi \times 0.16$ means $\omega L_{leak}$ with $L_{leak} = 0.16$ H).
+    $L_{ab} = 2.0399 + 0.16 = 2.1999\ \text{H}$
+    :::answer $\ans{L_{ab} \approx 2199.9\ \text{mH}}$ (about 2200 mH)
+    ```
+
+    Option B leaves out the leakage inductance; C adds the leakage of the **other** winding; D is the leakage alone. The current source on c-d and its leakage do not change the self-inductance of a-b.
+
+    **Answer: about 2200 mH.** *(Our solution; the official range is not in our dump.)*
+
+- key: gate-2009-53
+  topic: em1-induced-emf
+  sources: [{code: GATE-2009, q: "53", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    **Common Data for Questions 53 and 54:** The circuit diagram shows a two-winding, lossless transformer with no leakage flux, excited from a current source, $i(t)$, whose waveform is also shown. The transformer has a magnetizing inductance of $400/\pi$ mH.
+
+    ![Current source i(t) on the primary of a 1:1 lossless transformer; the secondary goes to terminal A, a switch S and a 30 ohm resistor, and back to terminal B](fig:q-gate2009-q53a)
+
+    ![i(t): a triangular wave rising from 0 at t = 0 to +10 A at 5 ms, falling to −10 A at 15 ms, rising to +10 A at 25 ms](fig:q-gate2009-q53b)
+
+    The peak voltage across A and B, with S open is
+  options:
+    - {label: A, md: '$400/\pi$ V'}
+    - {label: B, md: "800 V"}
+    - {label: C, md: '$4000/\pi$ V'}
+    - {label: D, md: '$800/\pi$ V', correct: true}
+  solution: |
+    **Idea used:** with S open the secondary carries no current, so all of $i(t)$ flows in the magnetising inductance: $v = L_m\,\dfrac{di}{dt}$; a 1:1 ratio puts the same voltage across A-B (see *Induced EMF and inductance → Self-inductance*).
+
+    ```example Working
+    :::given $L_m = \given{400/\pi\ \text{mH}}$; $i$ changes by 10 A every 5 ms; ratio 1 : 1
+    :::find peak voltage across A-B
+    :::step Slope of the current (it is a straight line, so $di/dt$ is constant on each side).
+    $di/dt = 10\ \text{A} \div 5\ \text{ms} = 10 \div 0.005 = 2000\ \text{A/s}$
+    :::step Voltage across the magnetising inductance. $\fx{v = L\,di/dt}$
+    $L_m = 400/\pi \times 10^{-3} = 0.4/\pi\ \text{H}$
+    $v = (0.4/\pi) \times 2000 = 800/\pi\ \text{V}$
+    :::step 1 : 1 transformer: same voltage on the secondary.
+    $v_{AB} = 800/\pi\ \text{V}$ (a square wave of $\pm 800/\pi$ V)
+    :::answer $\ans{v_{AB,peak} = 800/\pi\ \text{V}}$
+    ```
+
+    **Trap:** the peak of the **current** (10 A) does not decide the voltage; the **slope** does.
+
+    **Answer: (D).** *(Our solution.)*
+
+- key: aegcl-2023-90
+  topic: em1-force-energy
+  sources: [{code: AEGCL-2023, q: "90"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The force experienced by a conductor of length $L$ carrying a current of $i$ amp which is lying parallel to a magnetic field $B$ is
+  options:
+    - {label: A, md: "zero", correct: true}
+    - {label: B, md: '$BiL$'}
+    - {label: C, md: '$BiL\sin\theta$'}
+    - {label: D, md: '$BiL\cos\theta$'}
+  solution: |
+    **Idea used:** $F = BiL\sin\theta$, where θ is the angle between the conductor and the field (see *Force, torque and stored energy → Force on a current-carrying conductor*).
+
+    Lying **parallel** to the field means $\theta = 0$, and $\sin 0 = 0$, so $F = 0$.
+
+    **Answer: (A).** *(Our solution; APSC key not yet in the dump.)*
+
+- key: aegcl-2023-8
+  topic: em1-force-energy
+  sources: [{code: AEGCL-2023, q: "8"}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    In an electromechanical energy conversion device, the developed torque depends upon
+  options:
+    - {label: A, md: "stator field strength and torque angle"}
+    - {label: B, md: "stator field strength and rotor field strength"}
+    - {label: C, md: "stator field strength, rotor field strength and torque angle", correct: true}
+    - {label: D, md: "stator field strength only"}
+  solution: |
+    **Idea used:** $T \propto F_s F_r \sin\delta$ (see *Force, torque and stored energy → Electromechanical energy conversion*).
+
+    The torque needs both fields and the angle between them. Take away any one (no stator field, no rotor field, or δ = 0) and the torque is zero. Only (C) names all three.
+
+    **Asked before:** UPRVUNL JE (Electrical) 2014, with the same four options.
+
+    **Answer: (C).** *(Our solution; APSC key not yet in the dump.)*
+
+- key: gate-2007-77
+  topic: em1-force-energy
+  sources: [{code: GATE-2007, q: "77", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 3
+  status: UNVERIFIED
+  stem: |
+    **Statement for Linked Answer Questions 76 & 77:** An inductor designed with 400 turns coil wound on an iron core of 16 cm² cross sectional area and with a cut of an air gap length of 1 mm. The coil is connected to a 230 V, 50 Hz ac supply. Neglect coil resistance, core loss, iron reluctance and leakage inductance. ($\mu_0 = 4\pi \times 10^{-7}$ H/m)
+
+    The average force on the core to reduce the air gap will be
+  options:
+    - {label: A, md: "832.29 N", correct: true}
+    - {label: B, md: "1666.22 N"}
+    - {label: C, md: "3332.47 N"}
+    - {label: D, md: "6664.84 N"}
+  solution: |
+    **Idea used:** pull across an air gap $F = \dfrac{B^2 A}{2\mu_0}$; with AC the **average** force is half the peak: $\dfrac{B_m^2 A}{4\mu_0}$ (see *Force, torque and stored energy → The pull of an electromagnet*). $B_m$ comes from the EMF equation.
+
+    ```example Working
+    :::given $N = \given{400}$, $A = \given{16\ \text{cm}^2}$, $V = \given{230\ \text{V}}$, $f = \given{50\ \text{Hz}}$
+    :::find average force $F$
+    :::step Peak flux from the supply. $\fx{\Phi_m = V / (4.44 f N)}$
+    $4.44 \times 50 \times 400 = 88\,800$
+    $\Phi_m = 230 \div 88\,800 = 2.59 \times 10^{-3}\ \text{Wb}$
+    :::step Peak flux density. $\fx{B_m = \Phi_m / A}$
+    $B_m = 2.59 \times 10^{-3} \div (16 \times 10^{-4}) = 1.619\ \text{T}$
+    :::step Average force. $\fx{F = B_m^2 A / (4\mu_0)}$
+    $B_m^2 = 1.619^2 = 2.621$
+    $B_m^2 A = 2.621 \times 16 \times 10^{-4} = 4.194 \times 10^{-3}$
+    $4\mu_0 = 4 \times 12.566 \times 10^{-7} = 5.027 \times 10^{-6}$
+    $F = 4.194 \times 10^{-3} \div (5.027 \times 10^{-6}) = 834\ \text{N}$
+    :::answer $\ans{F \approx 832\ \text{N}}$ (834 with these roundings)
+    ```
+
+    **Second way (co-energy):** $F = \tfrac12 I_{rms}^2 \dfrac{L}{l_g}$ with $L = 0.3217$ H and $I = 2.28$ A from Q.76: $0.5 \times 5.18 \times 321.7 \approx 833$ N.
+
+    **Trap:** using the peak $B_m^2/(2\mu_0)$ without halving gives 1666 N (option B).
+
+    **Answer: (A).** *(Our solution.)*
+
+- key: ese-2022-98
+  topic: em1-force-energy
+  sources: [{code: ESE-2022, q: "98", marks: 2}]
+  type: MCQ
+  nature: THEORY
+  difficulty: 2
+  status: UNVERIFIED
+  stem: |
+    If the magnetic core has a constant permeability by making air as media for a coil current and the resultant flux linkage, then
+  options:
+    - {label: A, md: "the energy and coenergy are equal", correct: true}
+    - {label: B, md: "the energy is greater than the coenergy"}
+    - {label: C, md: "the energy is less than the coenergy"}
+    - {label: D, md: "the coenergy is not developed"}
+  solution: |
+    **Idea used:** constant permeability means a straight-line λ-i graph (see *Force, torque and stored energy → Energy and co-energy*).
+
+    For a straight line through the origin, the area to the λ-axis (energy) and the area to the i-axis (co-energy) are two equal triangles: both are $\tfrac12 \lambda i = \tfrac12 L i^2$.
+
+    **Answer: (A).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2025-18
+  topic: em1-force-energy
+  sources: [{code: ESE-2025, q: "18", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The magnetic flux density on the surface of an iron face is 1.6 T, which is a typical saturation level value for ferromagnetic material. If the value of $\mu_0$ is $4\pi \times 10^{-7}$ H/m, the force density on the iron face will be nearly
+  options:
+    - {label: A, md: '$0.25 \times 10^{6}$ N/m²'}
+    - {label: B, md: '$1.0 \times 10^{6}$ N/m²', correct: true}
+    - {label: C, md: '$2.0 \times 10^{6}$ N/m²'}
+    - {label: D, md: '$4.0 \times 10^{6}$ N/m²'}
+  solution: |
+    **Idea used:** force per m² on an iron face $= \dfrac{B^2}{2\mu_0}$ (see *Force, torque and stored energy → The pull of an electromagnet*, Worked example 2).
+
+    ```example Working
+    :::given $B = \given{1.6\ \text{T}}$
+    :::find force density
+    :::step Square B.
+    $1.6^2 = 2.56$
+    :::step $\fx{2\mu_0}$
+    $2 \times 4\pi \times 10^{-7} = 8\pi \times 10^{-7} = 25.13 \times 10^{-7}$
+    :::step Divide.
+    $2.56 \div (25.13 \times 10^{-7}) = (2.56 \div 25.13) \times 10^{7}$
+    $2.56 \div 25.13 = 0.102$
+    $= 0.102 \times 10^{7} = 1.02 \times 10^{6}\ \text{N/m}^2$
+    :::answer $\ans{\approx 1.0 \times 10^{6}\ \text{N/m}^2}$
+    ```
+
+    **Without a calculator:** $25.13 \approx 10 \times 2.56$, so the answer is almost exactly $10^{-1} \times 10^{7} = 10^{6}$. Option C forgets the 2 in $2\mu_0$.
+
+    **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+
+- key: ese-2026-43
+  topic: em1-force-energy
+  sources: [{code: ESE-2026, q: "43", marks: 2}]
+  type: MCQ
+  nature: NUMERICAL
+  difficulty: 1
+  status: UNVERIFIED
+  stem: |
+    The magnetic flux density on the surface of an iron face is 1.6 T, which is a typical saturation level value for ferromagnetic material. What is the force density on the iron face?
+  options:
+    - {label: A, md: '$1.6 \times 10^{6}$ N/m²'}
+    - {label: B, md: '$1.02 \times 10^{6}$ N/m²', correct: true}
+    - {label: C, md: '$1.02 \times 10^{7}$ N/m²'}
+    - {label: D, md: '$1.6 \times 10^{7}$ N/m²'}
+  solution: |
+    **Idea used:** force density $= \dfrac{B^2}{2\mu_0}$ (see *Force, torque and stored energy → The pull of an electromagnet*). The same numbers as ESE 2025 Q18.
+
+    $\dfrac{1.6^2}{2 \times 4\pi \times 10^{-7}} = \dfrac{2.56}{25.13 \times 10^{-7}} \approx 1.02 \times 10^{6}$ N/m².
+
+    **Answer: (B).** *(Our solution; check with the UPSC key when available.)*
+
+- key: gate2016-s2-q42
+  topic: em1-force-energy
+  sources: [{code: GATE-2016, q: "S2-Q42", marks: 2}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 3
+  status: OFFICIAL_KEY
+  nat: {min: 186, max: 190}
+  stem: |
+    The flux linkage ($\lambda$) and current ($i$) relation for an electromagnetic system is $\lambda = (\sqrt{i})/g$. When $i = 2$ A and
+    $g$ (air-gap length) $= 10$ cm, the magnitude of mechanical force on the moving part, in N, is ________.
+  options:
+    - {label: A, md: "188.6", correct: true}
+    - {label: B, md: "282.8"}
+    - {label: C, md: "94.3"}
+    - {label: D, md: "0.019"}
+  solution: |
+    **Idea used:** for a **non-linear** $\lambda$-$i$ relation, use co-energy $W' = \displaystyle\int_0^i \lambda\,di$ and
+    $F = \dfrac{\partial W'}{\partial g}$ at constant current. (Do not use $\tfrac12 Li^2$; that is only for linear systems.)
+
+    1. $W' = \displaystyle\int_0^i \frac{\sqrt{i}}{g}\,di = \frac{2}{3}\,\frac{i^{3/2}}{g}$.
+    2. $F = \dfrac{\partial W'}{\partial g} = -\dfrac{2}{3}\,\dfrac{i^{3/2}}{g^2}$ (the minus sign means it pulls to close the gap).
+    3. $i^{3/2} = 2\sqrt 2 \approx 2.828$; $g = 0.1$ m, $g^2 = 0.01$.
+    4. $|F| = \dfrac{2}{3} \times \dfrac{2.828}{0.01} \approx 188.6$ N.
+
+    **Without a calculator:** $\dfrac{2}{3} \times 282.8 \approx 188.6$. Slips: 282.8 N forgets the $2/3$; 94.3 N uses a linear-style
+    factor $1/2$ on top; 0.019 N keeps $g = 10$ (cm) instead of 0.1 m.
+
+    **Answer: about 188.6 N.**
+
+- key: gate2016-s2-q55
+  topic: em1-induced-emf
+  sources: [{code: GATE-2016, q: "S2-Q55", marks: 2}]
+  type: NAT
+  nature: NUMERICAL
+  difficulty: 2
+  status: OFFICIAL_KEY
+  nat: {min: 9.4, max: 9.7}
+  stem: |
+    A rotating conductor of 1 m length is placed in a radially outward (about the z-axis) magnetic flux density (B) of 1 Tesla as shown in
+    figure below. Conductor is parallel to and at 1 m distance from the z-axis. The speed of the conductor in r.p.m. required to induce a
+    voltage of 1 V across it, should be __________.
+
+    ![A radial magnetic field of 1 T pointing outward from the z-axis, and a 1 m long conductor parallel to the z-axis at 1 m from it](fig:q-gate2016-s2-q55)
+  options:
+    - {label: A, md: "9.55", correct: true}
+    - {label: B, md: "1"}
+    - {label: C, md: "60"}
+    - {label: D, md: "0.159"}
+  solution: |
+    **Idea used:** $e = Blv$. The conductor moves round the z-axis, so its speed is $v = \omega r$, which is at right angles to both
+    the radial $B$ and the vertical conductor.
+
+    1. $e = B l \omega r$: $1 = 1 \times 1 \times \omega \times 1$, so $\omega = 1$ rad/s.
+    2. rpm $= \dfrac{60\omega}{2\pi} = \dfrac{60}{2\pi} \approx 9.55$.
+
+    **Without a calculator:** $60/6.28 \approx 9.55$. Slips: 1 is the answer in rad/s, not rpm; 0.159 is revolutions per second;
+    60 forgets the $2\pi$.
+
+    **Answer: about 9.55 rpm.**

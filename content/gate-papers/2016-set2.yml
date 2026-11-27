@@ -1,5 +1,6 @@
 # GATE EE 2016, Set 2 (2nd stage). Source: EE2016.pdf in the dump (pages 24-35), with the official answer key at its end.
 # Q23 is written in Circuits Ch1 (questions-3.yml), so it is not here.
+# Q3, Q42 and Q55 are written in Electrical Machines Ch1 (questions-*.yml), so they are not here.
 paper: {source: GATE-2016, q_prefix: "S2-Q", key_prefix: gate2016-s2, title: "GATE EE 2016, Set 2"}
 questions:
   - n: 1
@@ -55,33 +56,6 @@ questions:
          lossy integrator.
 
       **Answer: (A).**
-  - n: 3
-    marks: 1
-    type: NAT
-    nat: {min: 9.5, max: 10.5}
-    difficulty: 2
-    stem: |
-      The following figure shows the connection of an ideal transformer with primary to secondary turns ratio of 1:100. The applied
-      primary voltage is 100 V (rms), 50 Hz, AC. The rms value of the current $I$, in ampere, is __________.
-
-      ![100 V source and XL = 10 ohm (current I) on the primary of an ideal 1:100 transformer; secondary load R = 80 kilo-ohm in series with XC = 40 kilo-ohm](fig:q-gate2016-s2-q3)
-    options:
-      - {label: A, md: "10", correct: true}
-      - {label: B, md: "12.5"}
-      - {label: C, md: "7.8"}
-      - {label: D, md: "0.1"}
-    solution: |
-      **Idea used:** move the secondary load to the primary side by dividing by (turns ratio)$^2$, then solve one series circuit.
-
-      1. Secondary load: $Z_2 = 80 - j40$ kΩ.
-      2. Referred to the primary: $\dfrac{Z_2}{100^2} = \dfrac{80\,000 - j40\,000}{10\,000} = 8 - j4\ \Omega$.
-      3. Total: $j10 + 8 - j4 = 8 + j6\ \Omega$, so $|Z| = \sqrt{64 + 36} = 10\ \Omega$.
-      4. $I = 100 \div 10 = 10$ A.
-
-      **Without a calculator:** 6-8-10 is the 3-4-5 triangle. Slips: ignoring the capacitor ($|8 + j10| \approx 12.8$, about 7.8 A), or
-      referring by 100 instead of $100^2$, or mixing up the side the current is on (0.1 A is the secondary current).
-
-      **Answer: 10 A.**
   - n: 4
     marks: 1
     type: MCQ
@@ -1064,32 +1038,6 @@ questions:
       comes from taking $Q = 200$ kVAr.
 
       **Answer: 0.316 (leading).**
-  - n: 42
-    marks: 2
-    type: NAT
-    nat: {min: 186, max: 190}
-    difficulty: 3
-    stem: |
-      The flux linkage ($\lambda$) and current ($i$) relation for an electromagnetic system is $\lambda = (\sqrt{i})/g$. When $i = 2$ A and
-      $g$ (air-gap length) $= 10$ cm, the magnitude of mechanical force on the moving part, in N, is ________.
-    options:
-      - {label: A, md: "188.6", correct: true}
-      - {label: B, md: "282.8"}
-      - {label: C, md: "94.3"}
-      - {label: D, md: "0.019"}
-    solution: |
-      **Idea used:** for a **non-linear** $\lambda$-$i$ relation, use co-energy $W' = \displaystyle\int_0^i \lambda\,di$ and
-      $F = \dfrac{\partial W'}{\partial g}$ at constant current. (Do not use $\tfrac12 Li^2$; that is only for linear systems.)
-
-      1. $W' = \displaystyle\int_0^i \frac{\sqrt{i}}{g}\,di = \frac{2}{3}\,\frac{i^{3/2}}{g}$.
-      2. $F = \dfrac{\partial W'}{\partial g} = -\dfrac{2}{3}\,\dfrac{i^{3/2}}{g^2}$ (the minus sign means it pulls to close the gap).
-      3. $i^{3/2} = 2\sqrt 2 \approx 2.828$; $g = 0.1$ m, $g^2 = 0.01$.
-      4. $|F| = \dfrac{2}{3} \times \dfrac{2.828}{0.01} \approx 188.6$ N.
-
-      **Without a calculator:** $\dfrac{2}{3} \times 282.8 \approx 188.6$. Slips: 282.8 N forgets the $2/3$; 94.3 N uses a linear-style
-      factor $1/2$ on top; 0.019 N keeps $g = 10$ (cm) instead of 0.1 m.
-
-      **Answer: about 188.6 N.**
   - n: 43
     marks: 2
     type: NAT
@@ -1414,30 +1362,3 @@ questions:
       **Without a calculator:** two steps of easy division. Slip: 1 kW takes 30 s as 1/60 h.
 
       **Answer: 2 kW.**
-  - n: 55
-    marks: 2
-    type: NAT
-    nat: {min: 9.4, max: 9.7}
-    difficulty: 2
-    stem: |
-      A rotating conductor of 1 m length is placed in a radially outward (about the z-axis) magnetic flux density (B) of 1 Tesla as shown in
-      figure below. Conductor is parallel to and at 1 m distance from the z-axis. The speed of the conductor in r.p.m. required to induce a
-      voltage of 1 V across it, should be __________.
-
-      ![A radial magnetic field of 1 T pointing outward from the z-axis, and a 1 m long conductor parallel to the z-axis at 1 m from it](fig:q-gate2016-s2-q55)
-    options:
-      - {label: A, md: "9.55", correct: true}
-      - {label: B, md: "1"}
-      - {label: C, md: "60"}
-      - {label: D, md: "0.159"}
-    solution: |
-      **Idea used:** $e = Blv$. The conductor moves round the z-axis, so its speed is $v = \omega r$, which is at right angles to both
-      the radial $B$ and the vertical conductor.
-
-      1. $e = B l \omega r$: $1 = 1 \times 1 \times \omega \times 1$, so $\omega = 1$ rad/s.
-      2. rpm $= \dfrac{60\omega}{2\pi} = \dfrac{60}{2\pi} \approx 9.55$.
-
-      **Without a calculator:** $60/6.28 \approx 9.55$. Slips: 1 is the answer in rad/s, not rpm; 0.159 is revolutions per second;
-      60 forgets the $2\pi$.
-
-      **Answer: about 9.55 rpm.**

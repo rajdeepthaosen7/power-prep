@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" viewBox="0 0 380 170">
+<line x1="46.0" y1="81.0" x2="333.0" y2="81.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="335.0,81.0 329.0,78.0 329.0,84.0" fill="currentColor"/>
+<line x1="46.0" y1="148.0" x2="46.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="46.0,6.0 43.0,12.0 49.0,12.0" fill="currentColor"/>
+<text x="341.0" y="81.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t (ms)</text>
+<text x="52.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">i(t) (A)</text>
+<text x="39.0" y="92.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="87.4" y1="78.0" x2="87.4" y2="84.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="87.4" y="94.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">5</text>
+<line x1="128.7" y1="78.0" x2="128.7" y2="84.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="128.7" y="94.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">10</text>
+<line x1="170.1" y1="78.0" x2="170.1" y2="84.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="170.1" y="94.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">15</text>
+<line x1="211.5" y1="78.0" x2="211.5" y2="84.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="211.5" y="94.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">20</text>
+<line x1="252.8" y1="78.0" x2="252.8" y2="84.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="252.8" y="94.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">25</text>
+<line x1="294.2" y1="78.0" x2="294.2" y2="84.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="294.2" y="94.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">30</text>
+<line x1="43.0" y1="28.5" x2="49.0" y2="28.5" stroke="currentColor" stroke-width="1.2"/>
+<text x="40.0" y="28.5" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">10</text>
+<line x1="43.0" y1="133.5" x2="49.0" y2="133.5" stroke="currentColor" stroke-width="1.2"/>
+<text x="40.0" y="133.5" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">−10</text>
+<line x1="87.4" y1="81.0" x2="87.4" y2="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="170.1" y1="81.0" x2="170.1" y2="133.5" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<line x1="252.8" y1="81.0" x2="252.8" y2="28.5" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.7"/>
+<polyline points="46.0,81.0 87.4,28.5 170.1,133.5 252.8,28.5 310.7,102.0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="330" viewBox="0 0 330 220">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<line x1="160" y1="210" x2="160" y2="18" stroke="currentColor" fill="none" stroke-width="1.4"/>
+<polygon points="160.0,14.0 157.0,20.0 163.0,20.0" fill="currentColor"/>
+<text x="172.0" y="20.0" font-size="14" text-anchor="start" dominant-baseline="middle" fill="currentColor">z</text>
+<ellipse cx="160" cy="75" rx="110" ry="28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3"/>
+<line x1="201.6" y1="79.2" x2="238.5" y2="83.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="177.2" y1="85.2" x2="192.5" y2="94.4" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="142.8" y1="85.2" x2="127.5" y2="94.4" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="118.4" y1="79.2" x2="81.5" y2="83.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="118.4" y1="70.8" x2="81.5" y2="67.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="142.8" y1="64.8" x2="127.5" y2="55.6" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="177.2" y1="64.8" x2="192.5" y2="55.6" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="201.6" y1="70.8" x2="238.5" y2="67.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<ellipse cx="160" cy="160" rx="110" ry="28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3"/>
+<line x1="201.6" y1="164.2" x2="238.5" y2="168.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="177.2" y1="170.2" x2="192.5" y2="179.4" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="142.8" y1="170.2" x2="127.5" y2="179.4" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="118.4" y1="164.2" x2="81.5" y2="168.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="118.4" y1="155.8" x2="81.5" y2="152.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="142.8" y1="149.8" x2="127.5" y2="140.6" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="177.2" y1="149.8" x2="192.5" y2="140.6" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<line x1="201.6" y1="155.8" x2="238.5" y2="152.0" stroke="currentColor" fill="none" stroke-width="1.4" marker-end="url(#ar)"/>
+<text x="175.0" y="72.0" font-size="15" text-anchor="start" dominant-baseline="middle" fill="currentColor">B</text>
+<line x1="262" y1="88" x2="262" y2="170" stroke="currentColor" stroke-width="5"/>
+<line x1="160" y1="170" x2="258" y2="170" stroke="currentColor" fill="none" stroke-width="1.4"/>
+<text x="210.0" y="188.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">1 m</text>
+<line x1="285" y1="88" x2="285" y2="170" stroke="currentColor" fill="none" stroke-width="1.4"/>
+<polygon points="285.0,88.0 282.0,94.0 288.0,94.0" fill="currentColor"/>
+<polygon points="285.0,170.0 282.0,164.0 288.0,164.0" fill="currentColor"/>
+<text x="292.0" y="134.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor">1 m</text>
+</svg>

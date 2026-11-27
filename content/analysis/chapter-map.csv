@@ -103,7 +103,7 @@ Electrical Machines: DC machines - motor starting,no,APGCL,22,DC machines - moto
 Electrical Machines: DC machines - motor torque/speed,no,APGCL,24,DC machines - motor torque/speed,GATE-EE 1998,Same question,2,
 Electrical Machines: DC machines - speed / direction control,no,AEGCL,10,DC machines - speed / direction control,In a bank (exam tag not read),Same idea,,
 Electrical Machines: DC machines - speed / direction control,no,APGCL,29,DC machines - speed / direction control,DSSSB JE EE 2015,Same question,,
-Electrical Machines: Electromechanical energy conversion,no,AEGCL,8,Electromechanical energy conversion,UPRVUNL JE EE 2014,Same question,,
+Electrical Machines Ch1: Magnetic circuits and transformer basics,yes,AEGCL,8,Electromechanical energy conversion,UPRVUNL JE EE 2014,Same question,,aegcl-2023-8
 Electrical Machines: Induction motor - V/f speed control,no,APGCL,34,Induction motor - V/f speed control,GATE-EE 2002,Same question,2,
 Electrical Machines: Induction motor - air gap / no-load pf,no,AEGCL,21,Induction motor - air gap / no-load pf,GATE-EE 1996,Same idea,1,
 Electrical Machines: Induction motor - crawling / cogging,no,AEGCL,20,Induction motor - crawling / cogging,In a bank (exam tag not read),Found in a question bank (exam not named),,
@@ -122,10 +122,10 @@ Electrical Machines: Transformers - 3-phase connections / vector groups,no,AEGCL
 Electrical Machines: Transformers - OC/SC tests,no,AEGCL,14,Transformers - OC/SC tests,"SSC JE EE 2017 (3 Mar, morning)",Same question,,
 Electrical Machines: Transformers - OC/SC tests,no,APDCL,73,Transformers - OC/SC tests,In a bank (exam tag not read),Same idea,,
 Electrical Machines: Transformers - autotransformer,no,AEGCL,18,Transformers - autotransformer,Question bank (byjus; exam not named),Found in a question bank (exam not named),,
-Electrical Machines: Transformers - losses / efficiency,no,AEGCL,13,Transformers - losses / efficiency,ISRO (VSSC) Technical Assistant Electrical 2017,Same question,,
+Electrical Machines Ch1: Magnetic circuits and transformer basics,yes,AEGCL,13,Transformers - losses / efficiency,ISRO (VSSC) Technical Assistant Electrical 2017,Same question,,aegcl-2023-13
 Electrical Machines: Transformers - losses / efficiency,no,AEGCL,15,Transformers - losses / efficiency,GATE-EE 2004,"Same question, numbers changed",2,
 Electrical Machines: Transformers - losses / efficiency,no,AEGCL,16,Transformers - losses / efficiency,,Not traced,,
-Electrical Machines: Transformers - losses / efficiency,no,APGCL,26,Transformers - losses / efficiency,Question bank (testbook),Same idea,,
+Electrical Machines Ch1: Magnetic circuits and transformer basics,yes,APGCL,26,Transformers - losses / efficiency,Question bank (testbook),Same idea,,apgcl-2023-26
 Electrical Machines: Transformers - no-load / phasor diagram,no,APDCL,72,Transformers - no-load / phasor diagram,,Not traced,,
 Electrical Machines: Transformers - no-load / phasor diagram,no,APGCL,27,Transformers - no-load / phasor diagram,,Not traced,,
 Electrical Machines: Transformers - parallel operation,no,AEGCL,17,Transformers - parallel operation,,Not traced,,
@@ -141,12 +141,12 @@ Electromagnetic Fields: Curl / Ampere's law (current density),no,AEGCL,96,Curl /
 Electromagnetic Fields: Divergence of B (solenoidal field),no,AEGCL,94,Divergence of B (solenoidal field),,Not traced,,
 Electromagnetic Fields: Divergence of B (solenoidal field),no,APGCL,97,Divergence of B (solenoidal field),GATE-EE 2013 Q10,Same question,1,
 Electromagnetic Fields: Electric field and potential,no,AEGCL,89,Electric field and potential,Classic textbook fact (E = V/d),Same idea,,
-Electromagnetic Fields: Force on current-carrying conductor,no,AEGCL,90,Force on current-carrying conductor,"Classic textbook fact (F = BIL sin theta, zero when parallel)",Same idea,,
+Electrical Machines Ch1: Magnetic circuits and transformer basics,yes,AEGCL,90,Force on current-carrying conductor,"Classic textbook fact (F = BIL sin theta, zero when parallel)",Same idea,,aegcl-2023-90
 Electromagnetic Fields: Gauss's law and applications,no,AEGCL,91,Gauss's law and applications,GATE-EE 2007 Q25,Same question,2,
 Electromagnetic Fields: Gauss's law and applications,no,APDCL,52,Gauss's law and applications,,Not traced,,
 Electromagnetic Fields: Gauss's law and applications,no,APDCL,56,Gauss's law and applications,In a bank (exam tag not read),Same idea,,
-Electromagnetic Fields: Inductance (solenoid),no,APGCL,100,Inductance (solenoid),GATE-EE 2004,Same question,1,
-Electromagnetic Fields: Magnetic circuits - reluctance,no,AEGCL,97,Magnetic circuits - reluctance,UPRVUNL JE EE 2014,Same question,,
+Electrical Machines Ch1: Magnetic circuits and transformer basics,yes,APGCL,100,Inductance (solenoid),GATE-EE 2004,Same question,1,apgcl-2023-100
+Electrical Machines Ch1: Magnetic circuits and transformer basics,yes,AEGCL,97,Magnetic circuits - reluctance,UPRVUNL JE EE 2014,Same question,,aegcl-2023-97
 Electromagnetic Fields: Magnetic vector potential,no,APDCL,48,Magnetic vector potential,GATE-EE 1993,Same idea,1,
 Electromagnetic Fields: Maxwell's equations / displacement current,no,APDCL,47,Maxwell's equations / displacement current,GATE-EE 1992,Same idea,1,
 Electromagnetic Fields: Maxwell's equations / displacement current,no,APDCL,50,Maxwell's equations / displacement current,UPPSC Polytechnic Lecturer (Electronics) 2022 Paper II,Same question,,
