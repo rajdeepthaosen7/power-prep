@@ -66,8 +66,9 @@ by writing the questions in chapter YAML with their GATE `sources`.
 
 ## Portal features (Nov 2026)
 - Today (`/today`, home): next chapter per track, revisions due, open mistakes, mixed mocks below 85 %. API `/api/today`.
-- Mistake log (`/mistakes`): built from the attempt table (a question is open while its latest attempt is wrong); one-tap reason in
-  `mistake_note`. Re-attempts use mode REVISION; our practice questions can be re-attempted once the user has seen them in a mock.
+- Mistake log (`/mistakes`, shown as the retest list): built from the attempt table. A question is on it after a wrong answer, or a
+  right one marked GUESSED / DONT_KNOW, until it is right and sure on two different days (RetestRule, view `retest_state`); one-tap reason in
+  `mistake_note` (asked only for wrong answers). Re-attempts use mode REVISION; our practice questions can be re-attempted once the user has seen them in a mock.
 - Spaced revision: `chapter_progress` (studied, then revisions after 1, 7, 21 days). A chapter is marked studied automatically when all
   its written PYQs are attempted, or by the "I have finished this chapter" button.
 - Syllabus tab: `content/syllabus/apgcl-am-2026.yml` -> `python3 content/tools/build_syllabus.py` -> `R__syllabus.sql`.

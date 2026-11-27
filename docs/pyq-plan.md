@@ -63,7 +63,7 @@ Tick each paper when it is complete in the portal.
 | Phase | Status |
 |---|---|
 | 1. Backend | done 27 Nov 2026 (API below) |
-| 2. UI mockup, then UI | mockup ready 27 Nov 2026 (https://claude.ai/artifact/7bh3YuzxmTZjv1cnewn1dN), waiting for the owner's OK |
+| 2. UI mockup, then UI | done 27 Nov 2026: mockup https://claude.ai/artifact/7bh3YuzxmTZjv1cnewn1dN approved; built on the frontend `preview` branch |
 | 3. GATE EE papers | 0 of about 45 papers (counting sets) |
 | 4. GATE EC (4 subjects) | not started |
 | 5. JE/AE Machines set | not started |
@@ -80,8 +80,8 @@ Tick each paper when it is complete in the portal.
   selfMark, timeMs}`; returns the solution, the right answer as asked, sources and the topic link at once.
 - `POST /api/test-attempts/{id}/submit`: TEST mode grades the answers sent; PREPARE mode adds up the saved ones.
 - `selfMark` (KNEW / GUESSED / DONT_KNOW) is also taken by `POST /api/questions/{id}/attempts` (Study).
-- Mistakes log rows carry `lastSelfMark` and `retest` (RetestRule). The Mistakes screen still uses `lastCorrect`
-  until the phase 2 UI switches it to `retest`.
+- Mistakes log rows carry `lastSelfMark`, `sureDays` and `retest` (RetestRule); the Mistakes screen and Today use them
+  (view `retest_state`, V10).
 - Marking: APSC +1 / -0.25, 1.2 min per question. GATE: own marks, wrong MCQ -1/3 of its marks, no negative for MSQ / NAT,
   1.8 min per mark. Old GATE years had other negative rules; the portal uses the current one for all years.
 - Content: an MSQ can have `mcq_options` (4, one right, A-D) in its YAML for APSC style (`question_mcq_option`).
