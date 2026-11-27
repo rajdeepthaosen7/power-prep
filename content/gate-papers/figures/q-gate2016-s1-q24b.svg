@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="230" viewBox="0 0 230 120">
+<line x1="48.0" y1="94.0" x2="215.5" y2="94.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="217.5,94.0 211.5,91.0 211.5,97.0" fill="currentColor"/>
+<line x1="48.0" y1="98.0" x2="48.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="48.0,6.0 45.0,12.0 51.0,12.0" fill="currentColor"/>
+<text x="223.5" y="94.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">t</text>
+<text x="54.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">I</text>
+<text x="41.0" y="105.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="45.0" y1="27.9" x2="51.0" y2="27.9" stroke="currentColor" stroke-width="1.2"/>
+<text x="42.0" y="27.9" font-size="12" text-anchor="end" dominant-baseline="middle" fill="currentColor">40 A</text>
+<polyline points="48.0,27.9 190.8,27.9" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+</svg>

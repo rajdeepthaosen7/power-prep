@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" viewBox="0 0 500 185">
+<line x1="40.0" y1="134.0" x2="183.0" y2="134.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="185.0,134.0 179.0,131.0 179.0,137.0" fill="currentColor"/>
+<line x1="40.0" y1="138.0" x2="40.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="40.0,6.0 37.0,12.0 43.0,12.0" fill="currentColor"/>
+<text x="191.0" y="134.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">Vs (V)</text>
+<text x="46.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">Is (A)</text>
+<text x="33.0" y="145.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="83.0" y1="131.0" x2="83.0" y2="137.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="83.0" y="147.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">1 V</text>
+<polyline points="40.0,134.0 83.0,134.0 151.8,30.9" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+<text x="126.0" y="82.4" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">slope dV/dI = 0.02 Ω</text>
+<line x1="290.0" y1="134.0" x2="433.0" y2="134.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="435.0,134.0 429.0,131.0 429.0,137.0" fill="currentColor"/>
+<line x1="290.0" y1="138.0" x2="290.0" y2="8.0" stroke="currentColor" stroke-width="1.2"/>
+<polygon points="290.0,6.0 287.0,12.0 293.0,12.0" fill="currentColor"/>
+<text x="441.0" y="134.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">VD (V)</text>
+<text x="296.0" y="8.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor" font-style="italic">ID (A)</text>
+<text x="283.0" y="145.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0</text>
+<line x1="335.1" y1="131.0" x2="335.1" y2="137.0" stroke="currentColor" stroke-width="1.2"/>
+<text x="335.1" y="147.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">0.7 V</text>
+<polyline points="290.0,134.0 335.1,134.0 393.2,30.9" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linejoin="round"/>
+<text x="370.6" y="82.4" font-size="12" text-anchor="start" dominant-baseline="middle" fill="currentColor">slope dV/dI = 0.01 Ω</text>
+<text x="115.0" y="178.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">IGBT (S)</text>
+<text x="365.0" y="178.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">Diode (D)</text>
+</svg>

@@ -464,3 +464,249 @@ questions:
       Option D is the drop itself; option A forgets that the fault current is different.
 
       **Answer: 0.84 pu.**
+  - n: 21
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    stem: |
+      Consider a system consisting of a synchronous generator working at a lagging power factor, a synchronous motor working at an
+      overexcited condition and a directly grid-connected induction generator. Consider capacitive VAr to be a source and inductive VAr
+      to be a sink of reactive power. Which one of the following statements is TRUE?
+    options:
+      - {label: A, md: "Synchronous motor and synchronous generator are sources and induction generator is a sink of reactive power.", correct: true}
+      - {label: B, md: "Synchronous motor and induction generator are sources and synchronous generator is a sink of reactive power."}
+      - {label: C, md: "Synchronous motor is a source and induction generator and synchronous generator are sinks of reactive power."}
+      - {label: D, md: "All are sources of reactive power."}
+    solution: |
+      **Idea used:** a machine that *gives* lagging VAr to the grid behaves like a capacitor (a source); a machine that *takes* lagging
+      VAr from the grid behaves like an inductor (a sink).
+
+      1. **Synchronous generator at lagging power factor:** it delivers lagging current, i.e. it delivers reactive power to the grid.
+         **Source.**
+      2. **Over-excited synchronous motor:** it draws leading current, which is the same as giving lagging VAr to the grid (this is
+         the "synchronous condenser"). **Source.**
+      3. **Induction generator on the grid:** it has no field winding of its own; its magnetising current (lagging) must come from the
+         grid. **Sink.**
+
+      **Without a calculator:** remember two facts: over-excited synchronous machines always supply VAr, and induction machines
+      (motor or generator) always absorb VAr.
+
+      **Answer: (A).**
+  - n: 22
+    marks: 1
+    type: NAT
+    nat: {min: 0.39, max: 0.41}
+    difficulty: 1
+    stem: |
+      A buck converter, as shown in Figure (a) below, is working in steady state. The output voltage and the inductor current can be
+      assumed to be ripple free. Figure (b) shows the inductor voltage $v_L$ during a complete switching interval. Assuming all devices
+      are ideal, the duty cycle of the buck converter is ________.
+
+      ![Figure (a): buck converter with supply Vg, switch M, freewheeling diode D, inductor with voltage vL, capacitor C and load R with output Vo](fig:q-gate2016-s1-q22a)
+
+      ![Figure (b): vL is +30 V while the switch is on and -20 V while it is off](fig:q-gate2016-s1-q22b)
+    options:
+      - {label: A, md: "0.4", correct: true}
+      - {label: B, md: "0.6"}
+      - {label: C, md: "0.67"}
+      - {label: D, md: "0.33"}
+    solution: |
+      **Idea used (volt-second balance):** in steady state the inductor's average voltage over one period is zero, so
+      (ON voltage × ON time) = (OFF voltage × OFF time).
+
+      1. Let the duty cycle be $D$ (fraction of the period the switch is ON).
+      2. $30 \times D = 20 \times (1 - D)$.
+      3. $30D + 20D = 20$, so $50D = 20$ and $D = 0.4$.
+
+      **Check with the circuit:** OFF: $v_L = -V_o = -20$ V, so $V_o = 20$ V. ON: $v_L = V_g - V_o = 30$ V, so $V_g = 50$ V.
+      Buck: $V_o = D V_g$ gives $D = 20/50 = 0.4$. ✔
+
+      **Without a calculator:** $D = \dfrac{\text{OFF voltage}}{\text{ON voltage} + \text{OFF voltage}} = \dfrac{20}{30 + 20}$.
+      Option B is $1 - D$ (the OFF fraction).
+
+      **Answer: 0.4.**
+  - n: 23
+    marks: 1
+    type: NAT
+    nat: {min: 169, max: 171}
+    difficulty: 2
+    stem: |
+      A steady dc current of 100 A is flowing through a power module (S, D) as shown in Figure (a). The V-I characteristics of the IGBT
+      (S) and the diode (D) are shown in Figures (b) and (c), respectively. The conduction power loss in the power module (S, D), in
+      watts, is ________.
+
+      ![Figure (a): IGBT S with a diode D in anti-parallel; the 100 A enters at the emitter (bottom) terminal and leaves at the collector](fig:q-gate2016-s1-q23a)
+
+      ![Figures (b) and (c): IGBT turns on at 1 V with slope 0.02 ohm; diode turns on at 0.7 V with slope 0.01 ohm](fig:q-gate2016-s1-q23b)
+    options:
+      - {label: A, md: "70"}
+      - {label: B, md: "170", correct: true}
+      - {label: C, md: "300"}
+      - {label: D, md: "470"}
+    solution: |
+      **Idea used:** first find **which device carries the current**, then use its model: a fixed drop $V_o$ plus a resistance $r$,
+      so the loss is $P = V_o I + I^2 r$.
+
+      1. The 100 A flows **upward**, from the emitter end to the collector end. An IGBT cannot conduct in that direction, but the
+         anti-parallel diode can (its arrow points up). So **only the diode conducts**.
+      2. Diode: $V_o = 0.7$ V, $r = 0.01\ \Omega$.
+      3. $V_o I = 0.7 \times 100 = 70$ W.
+      4. $I^2 r = 100 \times 100 \times 0.01 = 100$ W.
+      5. Total $= 70 + 100 = 170$ W.
+
+      **Without a calculator:** numbers are round. The trap is using the IGBT: $1 \times 100 + 100^2 \times 0.02 = 300$ W (option C),
+      or adding both devices (470 W). Option A forgets the resistive part.
+
+      **Answer: 170 W.**
+  - n: 24
+    marks: 1
+    type: MCQ
+    difficulty: 2
+    stem: |
+      A 4-pole, lap-connected, separately excited dc motor is drawing a steady current of 40 A while running at 600 rpm. A good
+      approximation for the waveshape of the current in an armature conductor of the motor is given by
+    options:
+      - {label: A, md: "![constant 10 A](fig:q-gate2016-s1-q24a)"}
+      - {label: B, md: "![constant 40 A](fig:q-gate2016-s1-q24b)"}
+      - {label: C, md: "![trapezoidal wave between +10 A and -10 A, reversing every 25 ms](fig:q-gate2016-s1-q24c)", correct: true}
+      - {label: D, md: "![sine wave of 10 A peak, reversing every 25 ms](fig:q-gate2016-s1-q24d)"}
+    solution: |
+      **Idea used:** in a lap winding the number of parallel paths equals the number of poles, and a conductor's current reverses every
+      time it passes from under one pole to the next (commutation).
+
+      1. Parallel paths: $A = P = 4$. Current per conductor $= 40 \div 4 = 10$ A. So (B) is out.
+      2. The conductor carries $+10$ A under a N pole and $-10$ A under a S pole: it is **alternating**, so (A) is out.
+      3. Speed $= 600$ rpm $= 10$ rev/s, so one revolution takes $100$ ms. It passes 4 poles in a revolution, so it spends
+         $100 \div 4 = 25$ ms under each pole.
+      4. The reversal happens quickly, during commutation, while the coil is shorted by the brush; the rest of the time the current is
+         steady. That gives a **flat-topped (trapezoidal)** wave, not a sine.
+
+      **Without a calculator:** two facts decide it: 40/4 = 10 A per path, and the current in a dc armature conductor is ac with a
+      nearly rectangular shape.
+
+      **Answer: (C).**
+  - n: 25
+    marks: 1
+    type: MCQ
+    difficulty: 1
+    stem: |
+      If an ideal transformer has an inductive load element at port 2 as shown in the figure below, the equivalent inductance at port 1 is
+
+      ![Ideal transformer with turns ratio n:1; port 1 on the n side, an inductor L across port 2](fig:q-gate2016-s1-q25)
+    options:
+      - {label: A, md: "$nL$"}
+      - {label: B, md: "$n^2L$", correct: true}
+      - {label: C, md: "$\\dfrac{n}{L}$"}
+      - {label: D, md: "$\\dfrac{n^2}{L}$"}
+    solution: |
+      **Idea used:** an ideal transformer with ratio $n : 1$ makes any impedance on the "1" side look $n^2$ times larger from the "$n$" side.
+
+      1. On port 2 the impedance is $Z_2 = j\omega L$.
+      2. Seen from port 1: $Z_1 = n^2 Z_2 = j\omega (n^2 L)$.
+      3. That is an inductor of value $n^2 L$.
+
+      **Why $n^2$:** voltage goes up $n$ times and current goes down $n$ times, so $V/I$ goes up $n \times n$.
+
+      **Without a calculator:** (C) and (D) are not even inductances (wrong units). Between (A) and (B), impedance always scales with
+      the **square** of the turns ratio.
+
+      **Answer: (B) $n^2L$.**
+  - n: 26
+    marks: 2
+    type: NAT
+    nat: {min: 0.2, max: 0.2}
+    difficulty: 2
+    stem: |
+      Candidates were asked to come to an interview with 3 pens each. Black, blue, green and red were the permitted pen colours that the
+      candidate could bring. The probability that a candidate comes with all 3 pens having the same colour is _____.
+    options:
+      - {label: A, md: "0.0625"}
+      - {label: B, md: "0.2", correct: true}
+      - {label: C, md: "0.25"}
+      - {label: D, md: "0.1"}
+    solution: |
+      **Idea used (the way the official key counts):** what matters is the *set of colours* a candidate brings, and every possible set is
+      taken as equally likely. The order of the pens does not matter and a colour may repeat.
+
+      1. Count the possible colour sets of 3 pens from 4 colours (repetition allowed, order not important).
+         - All three the same: 4 ways (BBB, LLL, GGG, RRR).
+         - Two the same and one different: choose the repeated colour (4) and the other colour (3): $4 \times 3 = 12$ ways.
+         - All three different: choose 3 of the 4 colours: 4 ways.
+         - Total $= 4 + 12 + 4 = 20$. (Formula: $\binom{4 + 3 - 1}{3} = \binom{6}{3} = 20$.)
+      2. Favourable (all the same colour) $= 4$.
+      3. Probability $= 4 \div 20 = 0.2$.
+
+      **Note:** if each pen's colour were chosen independently (64 ordered outcomes), the answer would be $4/64 = 0.0625$ (option A).
+      GATE's key used the colour-set count, 0.2.
+
+      **Answer: 0.2.**
+  - n: 27
+    marks: 2
+    type: NAT
+    nat: {min: 0.28, max: 0.31}
+    difficulty: 3
+    stem: |
+      Let $S = \displaystyle\sum_{n=0}^{\infty} n\alpha^n$ where $|\alpha| < 1$. The value of $\alpha$ in the range $0 < \alpha < 1$, such that
+      $S = 2\alpha$ is _______.
+    options:
+      - {label: A, md: "0.29", correct: true}
+      - {label: B, md: "0.50"}
+      - {label: C, md: "0.71"}
+      - {label: D, md: "0.41"}
+    solution: |
+      **Idea used:** the standard sum $\displaystyle\sum_{n=0}^{\infty} n\alpha^n = \frac{\alpha}{(1 - \alpha)^2}$ for $|\alpha| < 1$.
+
+      **Where it comes from:** $\sum \alpha^n = \dfrac{1}{1 - \alpha}$. Differentiate with respect to $\alpha$: $\sum n\alpha^{n-1} = \dfrac{1}{(1 - \alpha)^2}$.
+      Multiply by $\alpha$.
+
+      1. Set $\dfrac{\alpha}{(1 - \alpha)^2} = 2\alpha$. Since $\alpha \ne 0$, divide by $\alpha$: $(1 - \alpha)^2 = \dfrac12$.
+      2. $1 - \alpha = \dfrac{1}{\sqrt2} \approx 0.707$ (take the positive root, because $0 < \alpha < 1$).
+      3. $\alpha = 1 - 0.707 = 0.293$.
+
+      **Without a calculator:** $1/\sqrt2 \approx 0.707$ is worth knowing by heart. Option C (0.71) is $1 - \alpha$, not $\alpha$.
+
+      **Answer: about 0.29** (GATE accepted 0.28 to 0.31).
+  - n: 28
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      Let the eigenvalues of a 2 x 2 matrix $A$ be 1, $-2$ with eigenvectors $x_1$ and $x_2$ respectively. Then the eigenvalues and
+      eigenvectors of the matrix $A^2 - 3A + 4I$ would, respectively, be
+    options:
+      - {label: A, md: "2, 14; $x_1$, $x_2$", correct: true}
+      - {label: B, md: "2, 14; $x_1 + x_2$, $x_1 - x_2$"}
+      - {label: C, md: "2, 0; $x_1$, $x_2$"}
+      - {label: D, md: "2, 0; $x_1 + x_2$, $x_1 - x_2$"}
+    solution: |
+      **Idea used:** if $Ax = \lambda x$, then for any polynomial $p$, $p(A)\,x = p(\lambda)\,x$. Same eigenvector, eigenvalue $p(\lambda)$.
+
+      1. $p(\lambda) = \lambda^2 - 3\lambda + 4$.
+      2. For $\lambda = 1$: $1 - 3 + 4 = 2$, eigenvector $x_1$.
+      3. For $\lambda = -2$: $4 + 6 + 4 = 14$, eigenvector $x_2$.
+
+      **Without a calculator:** eigenvectors never change under a polynomial of the same matrix, so (B) and (D) are out at once.
+      Then one substitution, $(-2)^2 - 3(-2) + 4 = 14$, rules out (C).
+
+      **Answer: (A).**
+  - n: 29
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      Let $A$ be a $4 \times 3$ real matrix with rank 2. Which one of the following statement is TRUE?
+    options:
+      - {label: A, md: "Rank of $A^TA$ is less than 2."}
+      - {label: B, md: "Rank of $A^TA$ is equal to 2.", correct: true}
+      - {label: C, md: "Rank of $A^TA$ is greater than 2."}
+      - {label: D, md: "Rank of $A^TA$ can be any number between 1 and 3."}
+    solution: |
+      **Idea used:** for a real matrix, $A^TA$ has the same rank as $A$.
+
+      **Why:** if $A^TAx = 0$, then $x^TA^TAx = \lVert Ax \rVert^2 = 0$, so $Ax = 0$. So $A^TA$ and $A$ have exactly the same null space,
+      and (both having 3 columns) the same rank.
+
+      1. rank($A$) = 2.
+      2. So rank($A^TA$) = 2. ($A^TA$ is $3 \times 3$, but only rank 2.)
+
+      **Answer: (B).**
