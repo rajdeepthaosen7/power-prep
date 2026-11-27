@@ -624,3 +624,327 @@ questions:
       **Without a calculator:** "sharpest point, facing away from the twin." Same idea as corona at sharp points of a conductor.
 
       **Answer: (A).**
+  - n: 26
+    marks: 2
+    type: MCQ
+    difficulty: 1
+    stem: |
+      The Boolean expression $\overline{(a + \bar b + c + \bar d) + (b + \bar c)}$ simplifies to
+    options:
+      - {label: A, md: "1"}
+      - {label: B, md: "$\\overline{a \\cdot b}$"}
+      - {label: C, md: "$a \\cdot b$"}
+      - {label: D, md: "0", correct: true}
+    solution: |
+      **Idea used:** $x + \bar x = 1$, and $1 + \text{anything} = 1$. Look for a variable and its complement inside the OR.
+
+      1. Remove the brackets: the OR inside the bar is $a + \bar b + c + \bar d + b + \bar c$.
+      2. It has $\bar b + b = 1$ (and also $c + \bar c = 1$).
+      3. So the whole OR $= 1$.
+      4. The bar on top: $\bar 1 = 0$.
+
+      **Without a calculator:** spot $b$ and $\bar b$ in the same OR; done. Option A forgets the bar on top.
+
+      **Answer: (D).**
+  - n: 27
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      For the circuit shown below, taking the opamp as ideal, the output voltage $V_{out}$ in terms of the input voltages $V_1$, $V_2$
+      and $V_3$ is
+
+      ![Op-amp: V3 through 1 ohm to the inverting input, 9 ohm from output back to the inverting input; V1 through 1 ohm and V2 through 4 ohm both to the non-inverting input](fig:q-gate2016-s2-q27)
+    options:
+      - {label: A, md: "$1.8V_1 + 7.2V_2 - V_3$"}
+      - {label: B, md: "$2V_1 + 8V_2 - 9V_3$"}
+      - {label: C, md: "$7.2V_1 + 1.8V_2 - V_3$"}
+      - {label: D, md: "$8V_1 + 2V_2 - 9V_3$", correct: true}
+    solution: |
+      **Idea used (superposition):** the $V_3$ side is an inverting amplifier; the $V_1, V_2$ side is a non-inverting amplifier fed
+      from a resistor mixer.
+
+      1. Inverting part ($V_1 = V_2 = 0$): gain $= -\dfrac{9}{1} = -9$, giving $-9V_3$.
+      2. Voltage at the (+) input (no current flows into it, so use Millman):
+         $V_+ = \dfrac{V_1/1 + V_2/4}{1/1 + 1/4} = \dfrac{4V_1 + V_2}{5} = 0.8V_1 + 0.2V_2$.
+      3. Non-inverting gain $= 1 + \dfrac{9}{1} = 10$, giving $8V_1 + 2V_2$.
+      4. Add: $V_{out} = 8V_1 + 2V_2 - 9V_3$.
+
+      **Without a calculator:** each input reaches (+) in inverse ratio to its own resistor: $V_1$ gets $4/5$, $V_2$ gets $1/5$.
+      Times 10 gives 8 and 2. Option B swaps the 4/5 and 1/5.
+
+      **Answer: (D).**
+  - n: 28
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      Let $x_1(t) \leftrightarrow X_1(\omega)$ and $x_2(t) \leftrightarrow X_2(\omega)$ be two signals whose Fourier Transforms are as
+      shown in the figure below. In the figure, $h(t) = e^{-2|t|}$ denotes the impulse response.
+
+      ![X1 of omega is a two-step staircase from -B1 to B1 (higher between -B1/2 and B1/2); X2 of omega is a triangle from -B2 to B2. Below: x1(t) and x2(t) go into a multiplier, whose output goes through h(t) = e^(-2|t|) to give y(t)](fig:q-gate2016-s2-q28)
+
+      For the system shown above, the minimum sampling rate required to sample $y(t)$, so that $y(t)$ can be uniquely reconstructed from
+      its samples, is
+    options:
+      - {label: A, md: "$2B_1$"}
+      - {label: B, md: "$2(B_1 + B_2)$", correct: true}
+      - {label: C, md: "$4(B_1 + B_2)$"}
+      - {label: D, md: "$\\infty$"}
+    solution: |
+      **Idea used:** multiplying in time = convolving in frequency, and convolution **adds** the bandwidths. A filter can only
+      **multiply** the spectrum, so it can never make it wider.
+
+      1. $x_1(t)\,x_2(t)$ has spectrum $X_1 * X_2$, spread over $-(B_1 + B_2)$ to $+(B_1 + B_2)$.
+      2. $h(t) = e^{-2|t|}$ has $H(\omega) = \dfrac{4}{4 + \omega^2}$. This is non-zero everywhere, but $Y = H \times (X_1 * X_2)$ is still
+         zero wherever $X_1 * X_2$ is zero.
+      3. So $y(t)$ is band-limited to $B_1 + B_2$.
+      4. Nyquist rate $= 2(B_1 + B_2)$.
+
+      **Without a calculator:** "multiply signals, add bandwidths; filter never widens." Option D is the trap: $H(\omega)$ is not
+      band-limited, but that does not matter after multiplying.
+
+      **Answer: (B).**
+  - n: 29
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      The value of the integral $2\displaystyle\int_{-\infty}^{\infty} \left(\frac{\sin 2\pi t}{\pi t}\right) dt$ is equal to
+    options:
+      - {label: A, md: "0"}
+      - {label: B, md: "0.5"}
+      - {label: C, md: "1"}
+      - {label: D, md: "2", correct: true}
+    solution: |
+      **Idea used:** the standard result $\displaystyle\int_{-\infty}^{\infty} \frac{\sin at}{t}\,dt = \pi$ for any $a > 0$.
+
+      1. $\displaystyle\int_{-\infty}^{\infty} \frac{\sin 2\pi t}{\pi t}\,dt = \frac{1}{\pi}\int_{-\infty}^{\infty} \frac{\sin 2\pi t}{t}\,dt
+         = \frac{1}{\pi} \times \pi = 1$.
+      2. Times 2: the value is $2$.
+
+      **Another way (Fourier):** $\dfrac{\sin Wt}{\pi t}$ is the inverse transform of a box of height 1 from $-W$ to $W$. The area under a
+      signal equals its transform at $\omega = 0$, which is 1. So the integral is 1, and $2 \times 1 = 2$.
+
+      **Without a calculator:** the $2\pi$ inside the sine does not change the area; only the $\pi$ outside does. Option C forgets
+      the factor 2 in front.
+
+      **Answer: (D).**
+  - n: 30
+    marks: 2
+    type: NAT
+    nat: {min: 7.0, max: 7.5}
+    difficulty: 2
+    stem: |
+      Let $y(x)$ be the solution of the differential equation $\dfrac{d^2y}{dx^2} - 4\dfrac{dy}{dx} + 4y = 0$ with initial conditions
+      $y(0) = 0$ and $\left.\dfrac{dy}{dx}\right|_{x=0} = 1$. Then the value of $y(1)$ is _________.
+    options:
+      - {label: A, md: "7.39", correct: true}
+      - {label: B, md: "3.69"}
+      - {label: C, md: "2.72"}
+      - {label: D, md: "0"}
+    solution: |
+      **Idea used:** repeated root $m$ gives $y = (A + Bx)e^{mx}$.
+
+      1. Auxiliary equation: $m^2 - 4m + 4 = 0$, so $(m - 2)^2 = 0$, $m = 2, 2$.
+      2. $y = (A + Bx)e^{2x}$.
+      3. $y(0) = A = 0$, so $y = Bx\,e^{2x}$.
+      4. $y' = B e^{2x}(1 + 2x)$; at $x = 0$: $y'(0) = B = 1$.
+      5. $y = x\,e^{2x}$, so $y(1) = e^2 \approx 7.39$.
+
+      **Without a calculator:** $e \approx 2.718$ and $e^2 \approx 7.39$ (worth remembering). Slips: 3.69 ($e^2/2$)
+      comes from writing $y'(0) = 2B$; 2.72 uses $e^{x}$; 0 forgets the $Bx$ term of a repeated root.
+
+      **Answer: 7.39.**
+  - n: 31
+    marks: 2
+    type: NAT
+    nat: {min: 4.40, max: 4.45}
+    difficulty: 2
+    stem: |
+      The line integral of the vector field $F = 5xz\,\hat\imath + (3x^2 + 2y)\,\hat\jmath + x^2 z\,\hat k$ along a path from $(0,0,0)$ to
+      $(1,1,1)$ parametrized by $(t, t^2, t)$ is ______.
+    options:
+      - {label: A, md: "4.42", correct: true}
+      - {label: B, md: "3.58"}
+      - {label: C, md: "1.67"}
+      - {label: D, md: "2.75"}
+    solution: |
+      **Idea used:** put the path into $F$ and into $d\mathbf r$, then integrate $F \cdot d\mathbf r$ in $t$ from 0 to 1.
+
+      1. On the path: $x = t$, $y = t^2$, $z = t$. So $dx = dt$, $dy = 2t\,dt$, $dz = dt$.
+      2. $F_x = 5xz = 5t^2$; $F_y = 3t^2 + 2t^2 = 5t^2$; $F_z = x^2 z = t^3$.
+      3. $F \cdot d\mathbf r = 5t^2\,dt + 5t^2(2t\,dt) + t^3\,dt = (5t^2 + 11t^3)\,dt$.
+      4. $\displaystyle\int_0^1 (5t^2 + 11t^3)\,dt = \frac{5}{3} + \frac{11}{4} = \frac{20 + 33}{12} = \frac{53}{12} \approx 4.42$.
+
+      **Without a calculator:** $53/12 = 4 + 5/12 \approx 4.42$. Slips: 3.58 takes $dy = dt$ (forgets the $2t$); 1.67 keeps only the
+      $x$ term; 2.75 keeps only the $t^3$ part.
+
+      **Answer: 4.42.**
+  - n: 32
+    marks: 2
+    type: MCQ
+    difficulty: 3
+    stem: |
+      Let $P = \begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix}$. Consider the set $S$ of all vectors $\begin{pmatrix} x \\ y \end{pmatrix}$
+      such that $a^2 + b^2 = 1$ where $\begin{pmatrix} a \\ b \end{pmatrix} = P\begin{pmatrix} x \\ y \end{pmatrix}$. Then $S$ is
+    options:
+      - {label: A, md: "a circle of radius $\\sqrt{10}$"}
+      - {label: B, md: "a circle of radius $\\dfrac{1}{\\sqrt{10}}$"}
+      - {label: C, md: "an ellipse with major axis along $(1, 1)$"}
+      - {label: D, md: "an ellipse with minor axis along $(1, 1)$", correct: true}
+    solution: |
+      **Idea used:** $P$ is symmetric. Along an eigenvector, $P$ just stretches by its eigenvalue $\lambda$. So the unit circle in
+      $(a, b)$ comes from a radius of $1/\lambda$ in $(x, y)$ along that eigenvector.
+
+      1. Eigenvalues of $P$: $(3 - \lambda)^2 = 1$, so $\lambda = 4$ and $\lambda = 2$.
+      2. $\lambda = 4$: eigenvector $(1, 1)$. $\lambda = 2$: eigenvector $(1, -1)$.
+      3. Along $(1, 1)$ the stretch is 4, so the point on $S$ is only $1/4$ from the origin.
+      4. Along $(1, -1)$ the stretch is 2, so the point on $S$ is $1/2$ from the origin.
+      5. Different radii, so an ellipse. The **shorter** semi-axis ($1/4$) is along $(1, 1)$: that is the **minor** axis.
+
+      **Check:** directly, $a^2 + b^2 = (3x + y)^2 + (x + 3y)^2 = 10x^2 + 12xy + 10y^2 = 1$. Along $x = y$: $32x^2 = 1$, so the
+      distance is $\sqrt{2x^2} = 1/4$.
+
+      **Without a calculator:** big stretch, short axis. Option C is the trap of thinking "bigger eigenvalue, bigger axis".
+
+      **Answer: (D).**
+  - n: 33
+    marks: 2
+    type: MCQ
+    difficulty: 2
+    stem: |
+      Let the probability density function of a random variable, $X$, be given as:
+
+      $$f_X(x) = \frac{3}{2}e^{-3x}u(x) + a\,e^{4x}u(-x)$$
+
+      where $u(x)$ is the unit step function. Then the value of $a$ and $\text{Prob}\{X \le 0\}$, respectively, are
+    options:
+      - {label: A, md: "$2,\\ \\dfrac{1}{2}$", correct: true}
+      - {label: B, md: "$4,\\ \\dfrac{1}{2}$"}
+      - {label: C, md: "$2,\\ \\dfrac{1}{4}$"}
+      - {label: D, md: "$4,\\ \\dfrac{1}{4}$"}
+    solution: |
+      **Idea used:** total area under a pdf is 1. Use $\displaystyle\int_0^\infty k e^{-cx}dx = \frac{k}{c}$.
+
+      1. Area for $x > 0$: $\dfrac{3/2}{3} = \dfrac{1}{2}$.
+      2. Area for $x < 0$: $\displaystyle\int_{-\infty}^{0} a e^{4x}dx = \dfrac{a}{4}$.
+      3. Total $= \dfrac{1}{2} + \dfrac{a}{4} = 1$, so $a = 2$.
+      4. $\text{Prob}\{X \le 0\}$ = area for $x < 0$ $= \dfrac{2}{4} = \dfrac{1}{2}$.
+
+      **Without a calculator:** the right half already has area 1/2, so the left half must have 1/2 too; that is both answers at once.
+      Option B sets $a/4 = 1$, forgetting the right half.
+
+      **Answer: (A).**
+  - n: 34
+    marks: 2
+    type: NAT
+    nat: {min: 19.5, max: 20.5}
+    difficulty: 2
+    stem: |
+      The driving point input impedance seen from the source $V_S$ of the circuit shown below, in Ω, is ______.
+
+      ![Vs, a series 2 ohm resistor (V1 across it, + on the source side, current Is) to a node; from that node to ground: 3 ohm, a dependent current source 4V1 pointing up into the node, and a 2 ohm in series with 4 ohm](fig:q-gate2016-s2-q34)
+    options:
+      - {label: A, md: "20", correct: true}
+      - {label: B, md: "4"}
+      - {label: C, md: "-12"}
+      - {label: D, md: "2"}
+    solution: |
+      **Idea used:** with a dependent source, find $V_S$ and $I_S$ in terms of one unknown ($V_1$) and divide.
+
+      1. $I_S = V_1 / 2$. Call the node voltage $V_N$; then $V_S = V_1 + V_N$.
+      2. To the right of the node: 3 Ω in parallel with $(2 + 4) = 6$ Ω, which is 2 Ω.
+      3. KCL at the node: current in $= I_S + 4V_1$; current out $= V_N / 2$.
+         $\dfrac{V_1}{2} + 4V_1 = \dfrac{V_N}{2}$, so $V_N = 9V_1$.
+      4. $V_S = V_1 + 9V_1 = 10V_1$.
+      5. $Z_{in} = \dfrac{V_S}{I_S} = \dfrac{10V_1}{V_1/2} = 20$ Ω.
+
+      **Without a calculator:** $3 \parallel 6 = 2$. The source pushes 8 times $I_S$ extra into that 2 Ω, so $V_N = 9 I_S \times 2$.
+      Slips: 4 Ω ignores the dependent source ($2 + 2$); $-12$ takes the arrow the wrong way (out of the node), giving $V_N = -7V_1$.
+
+      **Answer: 20 Ω.**
+  - n: 35
+    marks: 2
+    type: NAT
+    nat: {min: 34.0, max: 36.0}
+    difficulty: 2
+    stem: |
+      The $z$-parameters of the two port network shown in the figure are $z_{11} = 40\ \Omega$, $z_{12} = 60\ \Omega$, $z_{21} = 80\ \Omega$
+      and $z_{22} = 100\ \Omega$. The average power delivered to $R_L = 20\ \Omega$, in watts, is _______.
+
+      ![A 20 V source with a 10 ohm series resistor feeds port 1 (V1, current I1 flowing in) of a two-port network Z; port 2 (V2, current I2 flowing in) is loaded by RL](fig:q-gate2016-s2-q35)
+    options:
+      - {label: A, md: "35.6", correct: true}
+      - {label: B, md: "80"}
+      - {label: C, md: "17.8"}
+      - {label: D, md: "20"}
+    solution: |
+      **Idea used:** write the two z-equations, then add one equation for each side's outside circuit. Both currents are taken as
+      flowing **into** the box.
+
+      1. $V_1 = 40I_1 + 60I_2$ and $V_2 = 80I_1 + 100I_2$.
+      2. Source side: $V_1 = 20 - 10I_1$. Load side: $I_2$ flows into the box, so it flows **up** through $R_L$: $V_2 = -20I_2$.
+      3. Port 2: $-20I_2 = 80I_1 + 100I_2$, so $80I_1 = -120I_2$, $I_1 = -1.5I_2$.
+      4. Port 1: $20 - 10I_1 = 40I_1 + 60I_2$, so $20 = 50I_1 + 60I_2 = -75I_2 + 60I_2 = -15I_2$.
+      5. $I_2 = -\dfrac{4}{3}$ A. Power $= I_2^2 R_L = \dfrac{16}{9} \times 20 = \dfrac{320}{9} \approx 35.6$ W.
+
+      **Without a calculator:** $320/9 = 35.5\ldots$. Slips: 80 W comes from writing $V_2 = +20I_2$ (wrong sign for the load);
+      17.8 W halves the answer as if it were an ac peak value (the source here is dc).
+
+      **Answer: 35.6 W.**
+  - n: 36
+    marks: 2
+    type: NAT
+    nat: {min: 2.9, max: 3.1}
+    difficulty: 2
+    stem: |
+      In the balanced 3-phase, 50 Hz, circuit shown below, the value of inductance (L) is 10 mH. The value of the capacitance (C) for
+      which all the line currents are zero, in millifarads, is ___________.
+
+      ![Three supply lines go to the corners of a delta of three inductors L; inside the delta, a star of three capacitors C joins the centre to the three corners](fig:q-gate2016-s2-q36)
+    options:
+      - {label: A, md: "3.04", correct: true}
+      - {label: B, md: "1.01"}
+      - {label: C, md: "0.34"}
+      - {label: D, md: "30.4"}
+    solution: |
+      **Idea used:** line currents are zero when the inductive load and the capacitive load are in **parallel resonance**. To compare
+      them, turn the star of C into an equivalent delta. For a balanced load, $Z_\Delta = 3Z_Y$, so each delta capacitor is $C/3$.
+
+      1. Star C to delta: $\dfrac{1}{\omega C_\Delta} = 3 \times \dfrac{1}{\omega C}$, so $C_\Delta = \dfrac{C}{3}$.
+      2. Each delta branch is now $L$ in parallel with $C/3$. Resonance: $\omega L = \dfrac{1}{\omega C/3}$.
+      3. $C = \dfrac{3}{\omega^2 L} = \dfrac{3}{(100\pi)^2 \times 0.01}$.
+      4. $(100\pi)^2 \approx 98\,700$, so $\omega^2 L \approx 987$. $C \approx \dfrac{3}{987} \approx 3.04 \times 10^{-3}$ F $= 3.04$ mF.
+
+      **Without a calculator:** $\pi^2 \approx 9.87$, so $(100\pi)^2 \times 0.01 \approx 987$, and $3/987 \approx 3/1000$. Slips: 1.01 mF
+      forgets the star-delta change; 0.34 mF uses $3C$ instead of $C/3$.
+
+      **Answer: 3.04 mF.**
+  - n: 37
+    marks: 2
+    type: NAT
+    nat: {min: 6.8, max: 7.2}
+    difficulty: 2
+    stem: |
+      In the circuit shown below, the initial capacitor voltage is 4 V. Switch S$_1$ is closed at $t = 0$. The charge (in µC) lost by the
+      capacitor from $t = 25$ µs to $t = 100$ µs is ____________.
+
+      ![A 5 microfarad capacitor charged to 4 V, switch S1 and a 5 ohm resistor in one loop](fig:q-gate2016-s2-q37)
+    options:
+      - {label: A, md: "7.0", correct: true}
+      - {label: B, md: "20"}
+      - {label: C, md: "7.4"}
+      - {label: D, md: "12.6"}
+    solution: |
+      **Idea used:** a capacitor discharging through R: $v(t) = V_0 e^{-t/\tau}$ with $\tau = RC$. Charge $q = Cv$.
+
+      1. $\tau = 5 \times 5 \times 10^{-6} = 25$ µs. Initial charge $Q_0 = CV_0 = 5 \times 4 = 20$ µC.
+      2. At 25 µs ($t = \tau$): $q = 20e^{-1} \approx 20 \times 0.368 = 7.36$ µC.
+      3. At 100 µs ($t = 4\tau$): $q = 20e^{-4} \approx 20 \times 0.018 = 0.37$ µC.
+      4. Charge lost $= 7.36 - 0.37 \approx 7.0$ µC.
+
+      **Without a calculator:** remember $e^{-1} \approx 0.368$ and $e^{-4} \approx 0.018$. Slips: 20 µC is all the charge; 7.4 µC
+      forgets the bit still left at 100 µs; 12.6 µC is the charge lost in the **first** 25 µs.
+
+      **Answer: about 7.0 µC.**

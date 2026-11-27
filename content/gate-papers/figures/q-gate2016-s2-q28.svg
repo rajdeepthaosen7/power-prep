@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" viewBox="0 0 440 235">
+<line x1="10" y1="90" x2="210" y2="90" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="210.0,90.0 204.0,87.0 204.0,93.0" fill="currentColor"/>
+<line x1="110" y1="95" x2="110" y2="15" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="110.0,15.0 107.0,21.0 113.0,21.0" fill="currentColor"/>
+<path d="M40,90 V65 H75 V45 H145 V65 H180 V90" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<text x="110.0" y="10.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">X1(ω)</text>
+<text x="214.0" y="94.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor">ω</text>
+<text x="40.0" y="106.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">−B1</text>
+<text x="75.0" y="106.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">−B1/2</text>
+<text x="145.0" y="106.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">B1/2</text>
+<text x="180.0" y="106.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">B1</text>
+<line x1="250" y1="90" x2="420" y2="90" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="420.0,90.0 414.0,87.0 414.0,93.0" fill="currentColor"/>
+<line x1="335" y1="95" x2="335" y2="15" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="335.0,15.0 332.0,21.0 338.0,21.0" fill="currentColor"/>
+<path d="M290,90 L335,35 L380,90" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<text x="335.0" y="10.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">X2(ω)</text>
+<text x="424.0" y="94.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor">ω</text>
+<text x="290.0" y="106.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">−B2</text>
+<text x="380.0" y="106.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">B2</text>
+<text x="20.0" y="140.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor">x1(t)</text>
+<path d="M58,136 H150 V159" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="150.0,159.0 147.0,153.0 153.0,153.0" fill="currentColor"/>
+<text x="20.0" y="222.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor">x2(t)</text>
+<path d="M58,218 H150 V191" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="150.0,191.0 147.0,197.0 153.0,197.0" fill="currentColor"/>
+<circle cx="150" cy="175" r="16" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<path d="M139,164 L161,186 M161,164 L139,186" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<line x1="166" y1="175" x2="228" y2="175" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="228.0,175.0 222.0,172.0 222.0,178.0" fill="currentColor"/>
+<rect x="230" y="150" width="120" height="50" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<text x="290.0" y="180.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">h(t) = e^(−2|t|)</text>
+<line x1="350" y1="175" x2="415" y2="175" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="415.0,175.0 409.0,172.0 409.0,178.0" fill="currentColor"/>
+<text x="382.0" y="167.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">y(t)</text>
+</svg>

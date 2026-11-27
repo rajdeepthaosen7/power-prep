@@ -178,7 +178,144 @@ def q25():
     write("q-gate2016-s2-q25", _svg(390, 130, *out))
 
 
+def q27():
+    """Non-inverting summer: V3 via 1 ohm to the (-) input, 9 ohm feedback; V1 via 1 ohm and V2 via 4 ohm to the (+) input."""
+    d = D()
+    op = elm.Opamp(leads=True).right()
+    d += op
+    d += elm.Line().left().at(op.in1).length(0.6)
+    d += (nm := elm.Dot())
+    d += elm.Resistor().left().label("1 Ω", loc="top")
+    d += elm.Line().left().length(0.3).label("V3", loc="left")
+    d += elm.Line().up().at(nm.center).length(1.4)
+    d += elm.Resistor().right().tox(op.out[0] + 0.6).label("9 Ω", loc="top")
+    d += elm.Line().down().toy(op.out)
+    d += elm.Line().left().tox(op.out)
+    d += elm.Dot().at((op.out[0] + 0.6, op.out[1]))
+    d += elm.Line().right().at((op.out[0] + 0.6, op.out[1])).length(0.6).label("Vout", loc="right")
+    d += elm.Line().left().at(op.in2).length(1.2)
+    d += (np_ := elm.Dot())
+    d += elm.Resistor().left().label("1 Ω", loc="top")
+    d += elm.Line().left().length(0.3).label("V1", loc="left")
+    d += elm.Line().down().at(np_.center).length(1.3)
+    d += elm.Resistor().left().label("4 Ω", loc="bottom")
+    d += elm.Line().left().length(0.3).label("V2", loc="left")
+    save("q-gate2016-s2-q27", d)
+
+
+def q28():
+    """Spectra X1 (two-step staircase: low level from -B1 to B1, higher level from -B1/2 to B1/2) and X2 (triangle from -B2 to B2);
+    then x1(t) and x2(t) into a multiplier, then a block h(t) = e^(-2|t|), output y(t)."""
+    from svgkit import arrow_head as ah
+    L = 'stroke="currentColor" fill="none" stroke-width="1.5"'
+    o = []
+    # X1
+    o += [f'<line x1="10" y1="90" x2="210" y2="90" {L}/>', ah(210, 90, "right"), f'<line x1="110" y1="95" x2="110" y2="15" {L}/>',
+          ah(110, 15, "up"), f'<path d="M40,90 V65 H75 V45 H145 V65 H180 V90" {L}/>',
+          text(110, 10, "X1(ω)", size=13), text(214, 94, "ω", size=13, anchor="start"),
+          text(40, 106, "−B1", size=12), text(75, 106, "−B1/2", size=12), text(145, 106, "B1/2", size=12), text(180, 106, "B1", size=12)]
+    # X2
+    o += [f'<line x1="250" y1="90" x2="420" y2="90" {L}/>', ah(420, 90, "right"), f'<line x1="335" y1="95" x2="335" y2="15" {L}/>',
+          ah(335, 15, "up"), f'<path d="M290,90 L335,35 L380,90" {L}/>', text(335, 10, "X2(ω)", size=13),
+          text(424, 94, "ω", size=13, anchor="start"), text(290, 106, "−B2", size=12), text(380, 106, "B2", size=12)]
+    # block diagram
+    y = 175
+    o += [text(20, 140, "x1(t)", size=13, anchor="start"), f'<path d="M58,136 H150 V{y-16}" {L}/>', ah(150, y - 16, "down"),
+          text(20, 222, "x2(t)", size=13, anchor="start"), f'<path d="M58,218 H150 V{y+16}" {L}/>', ah(150, y + 16, "up"),
+          f'<circle cx="150" cy="{y}" r="16" {L}/>', f'<path d="M139,{y-11} L161,{y+11} M161,{y-11} L139,{y+11}" {L}/>',
+          f'<line x1="166" y1="{y}" x2="228" y2="{y}" {L}/>', ah(228, y, "right"),
+          f'<rect x="230" y="{y-25}" width="120" height="50" {L}/>', text(290, y + 5, "h(t) = e^(−2|t|)", size=13),
+          f'<line x1="350" y1="{y}" x2="415" y2="{y}" {L}/>', ah(415, y, "right"), text(382, y - 8, "y(t)", size=13)]
+    write("q-gate2016-s2-q28", svg(440, 235, *o))
+
+
+def q34():
+    """Vs, series 2 ohm (V1 across it, + on the source side, current Is), node N; from N to ground: 3 ohm, a dependent current
+    source 4V1 pointing up (into N), and 2 ohm in series with 4 ohm."""
+    d = D()
+    d += (vs := elm.SourceV().up().label("Vs", loc="bottom"))
+    d += (lw := elm.Line().right().length(1.0))
+    d += elm.CurrentLabelInline(direction="in", ofst=-0.5).at(lw).label("Is")
+    d += elm.Resistor().right().label(("+", "V1", "−"), loc="top").label("2 Ω", loc="bottom")
+    d += (n := elm.Dot())
+    d += elm.Line().right().length(1.4)
+    d += (n2 := elm.Dot())
+    d += elm.Resistor().right().label("2 Ω", loc="top")
+    d += elm.Resistor().down().toy(vs.start).label("4 Ω", loc="bottom")
+    d += elm.Line().left().tox(vs.start)
+    d += elm.Resistor().down().at(n.center).toy(vs.start).label("3 Ω", loc="top")
+    d += elm.SourceControlledI().up().at((n2.center[0], vs.start[1])).toy(n2.center).label("4V1", loc="bottom")
+    d += elm.Dot().at((n.center[0], vs.start[1]))
+    d += elm.Dot().at((n2.center[0], vs.start[1]))
+    save("q-gate2016-s2-q34", d)
+
+
+def q35():
+    """20 V source with 10 ohm in series feeding port 1 (V1, I1 in) of a two-port [Z]; port 2 (V2, I2 in) loaded by RL."""
+    d = D()
+    d += (src := elm.SourceV().up().label("20 V", loc="bottom"))
+    d += elm.Resistor().right().label("10 Ω", loc="top")
+    d += (w1 := elm.Line().right().length(1.0))
+    d += elm.CurrentLabelInline(direction="in", ofst=-0.3).at(w1).label("I1")
+    x0, x1 = w1.end[0], w1.end[0] + 2.6
+    yt, yb = src.end[1], src.start[1]
+    d += elm.Line().at((x0, yt + 0.3)).to((x1, yt + 0.3))
+    d += elm.Line().at((x1, yt + 0.3)).to((x1, yb - 0.3))
+    d += elm.Line().at((x1, yb - 0.3)).to((x0, yb - 0.3))
+    d += elm.Line().at((x0, yb - 0.3)).to((x0, yt + 0.3))
+    d += elm.Label().at(((x0 + x1) / 2, (yt + yb) / 2)).label("[Z]", fontsize=18)
+    d += elm.Line().left().at((x0, yb)).tox(src.start)
+    ym = (yt + yb) / 2
+    for x, nm in ((x0 + 0.4, "V1"), (x1 - 0.4, "V2")):
+        d += elm.Label().at((x, yt - 0.35)).label("+")
+        d += elm.Label().at((x, ym)).label(nm)
+        d += elm.Label().at((x, yb + 0.35)).label("−")
+    d += (w2 := elm.Line().at((x1 + 1.2, yt)).to((x1, yt)))
+    d += elm.CurrentLabelInline(direction="in", ofst=-0.4).at(w2).label("I2")
+    d += elm.Line().right().at((x1 + 1.2, yt)).length(0.4)
+    d += elm.Resistor().down().toy(yb).label("RL", loc="bottom")
+    d += elm.Line().left().tox(x1)
+    save("q-gate2016-s2-q35", d)
+
+
+def q36():
+    """Delta of three inductors L; inside it a star of three capacitors C from the centre to the three corners; three supply lines."""
+    import math
+    d = D()
+    top, bl, br = (0.0, 4.2), (-2.4, 0.0), (2.4, 0.0)
+    cen = (0.0, 1.4)
+    d += elm.Inductor2(loops=3).endpoints(bl, top).label("L", loc="top")
+    d += elm.Inductor2(loops=3).endpoints(top, br).label("L", loc="top")
+    d += elm.Inductor2(loops=3).endpoints(br, bl).label("L", loc="top")
+    for p_, lab in ((top, "C"), (bl, "C"), (br, "C")):
+        d += elm.Capacitor().endpoints(cen, p_).label(lab, loc="bottom")
+    d += elm.Dot().at(cen)
+    for p_ in (top, bl, br):
+        d += elm.Dot().at(p_)
+    d += elm.Line().at(top).to((-5.0, top[1]))
+    d += elm.Line().at(bl).to((-5.0, bl[1]))
+    d += elm.Line().at(br).to((br[0], -0.9))
+    d += elm.Line().at((br[0], -0.9)).to((-5.0, -0.9))
+    save("q-gate2016-s2-q36", d)
+
+
+def q37():
+    """5 uF capacitor charged to 4 V, switch S1 (closes at t = 0) and 5 ohm resistor in a single loop."""
+    d = D()
+    d += (c := elm.Capacitor().up().label("5 μF", loc="bottom").label("4 V", loc="top"))
+    d += elm.Switch(action="close").right().label("S1", loc="top")
+    d += elm.Resistor().down().toy(c.start).label("5 Ω", loc="bottom")
+    d += elm.Line().left().tox(c.start)
+    save("q-gate2016-s2-q37", d)
+
+
 if __name__ == "__main__":
+    q35()
+    q36()
+    q37()
+    q34()
+    q27()
+    q28()
     q21()
     q25()
     q16()

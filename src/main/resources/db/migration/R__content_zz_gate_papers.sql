@@ -4686,3 +4686,723 @@ potential difference, so the field near C is pushed down.
 </svg>
 ', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
 END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q26';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q26')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q26: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'The Boolean expression $\overline{(a + \bar b + c + \bar d) + (b + \bar c)}$ simplifies to', 'The Boolean expression $\overline{(a + \bar b + c + \bar d) + (b + \bar c)}$ simplifies to
+', '**Idea used:** $x + \bar x = 1$, and $1 + \text{anything} = 1$. Look for a variable and its complement inside the OR.
+
+1. Remove the brackets: the OR inside the bar is $a + \bar b + c + \bar d + b + \bar c$.
+2. It has $\bar b + b = 1$ (and also $c + \bar c = 1$).
+3. So the whole OR $= 1$.
+4. The bar on top: $\bar 1 = 0$.
+
+**Without a calculator:** spot $b$ and $\bar b$ in the same OR; done. Option A forgets the bar on top.
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 1, 'OFFICIAL_KEY', 'gate2016-s2-q26', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'The Boolean expression $\overline{(a + \bar b + c + \bar d) + (b + \bar c)}$ simplifies to'), stem_md = 'The Boolean expression $\overline{(a + \bar b + c + \bar d) + (b + \bar c)}$ simplifies to
+', solution_md = '**Idea used:** $x + \bar x = 1$, and $1 + \text{anything} = 1$. Look for a variable and its complement inside the OR.
+
+1. Remove the brackets: the OR inside the bar is $a + \bar b + c + \bar d + b + \bar c$.
+2. It has $\bar b + b = 1$ (and also $c + \bar c = 1$).
+3. So the whole OR $= 1$.
+4. The bar on top: $\bar 1 = 0$.
+
+**Without a calculator:** spot $b$ and $\bar b$ in the same OR; done. Option A forgets the bar on top.
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 1, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q26', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q26', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$\overline{a \cdot b}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$a \cdot b$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q27';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q27')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q27: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'For the circuit shown below, taking the opamp as ideal, the output voltage $V{out}$ in terms of the input voltages $V1$, $V2$ and $V3$ is', 'For the circuit shown below, taking the opamp as ideal, the output voltage $V_{out}$ in terms of the input voltages $V_1$, $V_2$
+and $V_3$ is
+
+![Op-amp: V3 through 1 ohm to the inverting input, 9 ohm from output back to the inverting input; V1 through 1 ohm and V2 through 4 ohm both to the non-inverting input](fig:q-gate2016-s2-q27)
+', '**Idea used (superposition):** the $V_3$ side is an inverting amplifier; the $V_1, V_2$ side is a non-inverting amplifier fed
+from a resistor mixer.
+
+1. Inverting part ($V_1 = V_2 = 0$): gain $= -\dfrac{9}{1} = -9$, giving $-9V_3$.
+2. Voltage at the (+) input (no current flows into it, so use Millman):
+   $V_+ = \dfrac{V_1/1 + V_2/4}{1/1 + 1/4} = \dfrac{4V_1 + V_2}{5} = 0.8V_1 + 0.2V_2$.
+3. Non-inverting gain $= 1 + \dfrac{9}{1} = 10$, giving $8V_1 + 2V_2$.
+4. Add: $V_{out} = 8V_1 + 2V_2 - 9V_3$.
+
+**Without a calculator:** each input reaches (+) in inverse ratio to its own resistor: $V_1$ gets $4/5$, $V_2$ gets $1/5$.
+Times 10 gives 8 and 2. Option B swaps the 4/5 and 1/5.
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate2016-s2-q27', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'For the circuit shown below, taking the opamp as ideal, the output voltage $V{out}$ in terms of the input voltages $V1$, $V2$ and $V3$ is'), stem_md = 'For the circuit shown below, taking the opamp as ideal, the output voltage $V_{out}$ in terms of the input voltages $V_1$, $V_2$
+and $V_3$ is
+
+![Op-amp: V3 through 1 ohm to the inverting input, 9 ohm from output back to the inverting input; V1 through 1 ohm and V2 through 4 ohm both to the non-inverting input](fig:q-gate2016-s2-q27)
+', solution_md = '**Idea used (superposition):** the $V_3$ side is an inverting amplifier; the $V_1, V_2$ side is a non-inverting amplifier fed
+from a resistor mixer.
+
+1. Inverting part ($V_1 = V_2 = 0$): gain $= -\dfrac{9}{1} = -9$, giving $-9V_3$.
+2. Voltage at the (+) input (no current flows into it, so use Millman):
+   $V_+ = \dfrac{V_1/1 + V_2/4}{1/1 + 1/4} = \dfrac{4V_1 + V_2}{5} = 0.8V_1 + 0.2V_2$.
+3. Non-inverting gain $= 1 + \dfrac{9}{1} = 10$, giving $8V_1 + 2V_2$.
+4. Add: $V_{out} = 8V_1 + 2V_2 - 9V_3$.
+
+**Without a calculator:** each input reaches (+) in inverse ratio to its own resistor: $V_1$ gets $4/5$, $V_2$ gets $1/5$.
+Times 10 gives 8 and 2. Option B swaps the 4/5 and 1/5.
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q27', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q27', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$1.8V_1 + 7.2V_2 - V_3$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$2V_1 + 8V_2 - 9V_3$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$7.2V_1 + 1.8V_2 - V_3$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$8V_1 + 2V_2 - 9V_3$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q27', '<svg width="430" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-171.94600000000003 -103.1 373.7442863405995 202.6"><path d="M 22.5,-0.0 L 22.5,-45 L 100.442,-0 L 22.5,45 L 22.5,-0 M 100.442,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 28.642785792574934,-22.5 L 35.843,-22.5" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 28.642785792574934,22.5 L 35.843,22.5" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 32.242785792574935,26.099999999999998 L 32.243,18.9" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-22.5 L 22.5,-22.5" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,22.5 L 22.5,22.5" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 100.44228634059947,-0.0 L 122.942,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-22.5 L -10.8,-22.5 L -21.6,-22.5" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -21.599999999999998,-22.500000000000004 L -50.4,-22.5 L -53.4,-13.5 L -59.4,-31.5 L -65.4,-13.5 L -71.4,-31.5 L -77.4,-13.5 L -83.4,-31.5 L -86.4,-22.5 L -115.2,-22.5" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -115.2,-22.500000000000014 L -120.6,-22.5 L -126,-22.5" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -21.599999999999998,-22.500000000000004 L -21.6,-47.7 L -21.6,-72.9" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -21.599999999999994,-72.89999999999999 L 43.471,-72.9 L 46.471,-81.9 L 52.471,-63.9 L 58.471,-81.9 L 64.471,-63.9 L 70.471,-81.9 L 76.471,-63.9 L 79.471,-72.9 L 144.542,-72.9" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 144.54228634059945,-72.89999999999999 L 144.542,-36.45 L 144.542,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 144.54228634059945,-0.0 L 133.742,-0 L 122.942,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 144.54228634059945,-0.0 L 155.342,-0 L 166.142,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,22.5 L -21.6,22.5 L -43.2,22.5" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -43.199999999999996,22.499999999999996 L -72,22.5 L -75,31.5 L -81,13.5 L -87,31.5 L -93,13.5 L -99,31.5 L -105,13.5 L -108,22.5 L -136.8,22.5" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -136.79999999999998,22.499999999999986 L -142.2,22.5 L -147.6,22.5" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -43.199999999999996,22.499999999999996 L -43.2,45.9 L -43.2,69.3" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -43.2,69.3 L -72,69.3 L -75,78.3 L -81,60.3 L -87,78.3 L -93,60.3 L -99,78.3 L -105,60.3 L -108,69.3 L -136.8,69.3" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -136.8,69.29999999999998 L -142.2,69.3 L -147.6,69.3" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="-68.39999999999999" y="-48.10000000000001" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-68.39999999999999" dy="13">1 Ω</tspan></text><text x="-129.6" y="-35.500000000000014" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-129.6" dy="13">V3</tspan></text><text x="61.471143170299726" y="-98.5" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="61.471143170299726" dy="13">9 Ω</tspan></text><text x="169.74228634059946" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="169.74228634059946" dy="13">Vout</tspan></text><text x="-90.0" y="-3.1000000000000085" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-90.0" dy="13">1 Ω</tspan></text><text x="-151.20000000000002" y="9.499999999999986" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-151.20000000000002" dy="13">V1</tspan></text><text x="-90.0" y="68.89999999999998" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-90.0" dy="13">4 Ω</tspan></text><text x="-151.20000000000002" y="56.29999999999998" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-151.20000000000002" dy="13">V2</tspan></text><circle cx="-21.6" cy="-22.5" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="144.542" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="-43.2" cy="22.5" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q28';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q28')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q28: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'Let $x1(t) \leftrightarrow X1(\omega)$ and $x2(t) \leftrightarrow X2(\omega)$ be two signals whose Fourier Transforms are as shown in the figure below. In...', 'Let $x_1(t) \leftrightarrow X_1(\omega)$ and $x_2(t) \leftrightarrow X_2(\omega)$ be two signals whose Fourier Transforms are as
+shown in the figure below. In the figure, $h(t) = e^{-2|t|}$ denotes the impulse response.
+
+![X1 of omega is a two-step staircase from -B1 to B1 (higher between -B1/2 and B1/2); X2 of omega is a triangle from -B2 to B2. Below: x1(t) and x2(t) go into a multiplier, whose output goes through h(t) = e^(-2|t|) to give y(t)](fig:q-gate2016-s2-q28)
+
+For the system shown above, the minimum sampling rate required to sample $y(t)$, so that $y(t)$ can be uniquely reconstructed from
+its samples, is
+', '**Idea used:** multiplying in time = convolving in frequency, and convolution **adds** the bandwidths. A filter can only
+**multiply** the spectrum, so it can never make it wider.
+
+1. $x_1(t)\,x_2(t)$ has spectrum $X_1 * X_2$, spread over $-(B_1 + B_2)$ to $+(B_1 + B_2)$.
+2. $h(t) = e^{-2|t|}$ has $H(\omega) = \dfrac{4}{4 + \omega^2}$. This is non-zero everywhere, but $Y = H \times (X_1 * X_2)$ is still
+   zero wherever $X_1 * X_2$ is zero.
+3. So $y(t)$ is band-limited to $B_1 + B_2$.
+4. Nyquist rate $= 2(B_1 + B_2)$.
+
+**Without a calculator:** "multiply signals, add bandwidths; filter never widens." Option D is the trap: $H(\omega)$ is not
+band-limited, but that does not matter after multiplying.
+
+**Answer: (B).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate2016-s2-q28', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'Let $x1(t) \leftrightarrow X1(\omega)$ and $x2(t) \leftrightarrow X2(\omega)$ be two signals whose Fourier Transforms are as shown in the figure below. In...'), stem_md = 'Let $x_1(t) \leftrightarrow X_1(\omega)$ and $x_2(t) \leftrightarrow X_2(\omega)$ be two signals whose Fourier Transforms are as
+shown in the figure below. In the figure, $h(t) = e^{-2|t|}$ denotes the impulse response.
+
+![X1 of omega is a two-step staircase from -B1 to B1 (higher between -B1/2 and B1/2); X2 of omega is a triangle from -B2 to B2. Below: x1(t) and x2(t) go into a multiplier, whose output goes through h(t) = e^(-2|t|) to give y(t)](fig:q-gate2016-s2-q28)
+
+For the system shown above, the minimum sampling rate required to sample $y(t)$, so that $y(t)$ can be uniquely reconstructed from
+its samples, is
+', solution_md = '**Idea used:** multiplying in time = convolving in frequency, and convolution **adds** the bandwidths. A filter can only
+**multiply** the spectrum, so it can never make it wider.
+
+1. $x_1(t)\,x_2(t)$ has spectrum $X_1 * X_2$, spread over $-(B_1 + B_2)$ to $+(B_1 + B_2)$.
+2. $h(t) = e^{-2|t|}$ has $H(\omega) = \dfrac{4}{4 + \omega^2}$. This is non-zero everywhere, but $Y = H \times (X_1 * X_2)$ is still
+   zero wherever $X_1 * X_2$ is zero.
+3. So $y(t)$ is band-limited to $B_1 + B_2$.
+4. Nyquist rate $= 2(B_1 + B_2)$.
+
+**Without a calculator:** "multiply signals, add bandwidths; filter never widens." Option D is the trap: $H(\omega)$ is not
+band-limited, but that does not matter after multiplying.
+
+**Answer: (B).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q28', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q28', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$2B_1$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$2(B_1 + B_2)$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$4(B_1 + B_2)$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$\infty$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q28', '<svg xmlns="http://www.w3.org/2000/svg" width="440" viewBox="0 0 440 235">
+<line x1="10" y1="90" x2="210" y2="90" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="210.0,90.0 204.0,87.0 204.0,93.0" fill="currentColor"/>
+<line x1="110" y1="95" x2="110" y2="15" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="110.0,15.0 107.0,21.0 113.0,21.0" fill="currentColor"/>
+<path d="M40,90 V65 H75 V45 H145 V65 H180 V90" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<text x="110.0" y="10.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">X1(ω)</text>
+<text x="214.0" y="94.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor">ω</text>
+<text x="40.0" y="106.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">−B1</text>
+<text x="75.0" y="106.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">−B1/2</text>
+<text x="145.0" y="106.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">B1/2</text>
+<text x="180.0" y="106.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">B1</text>
+<line x1="250" y1="90" x2="420" y2="90" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="420.0,90.0 414.0,87.0 414.0,93.0" fill="currentColor"/>
+<line x1="335" y1="95" x2="335" y2="15" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="335.0,15.0 332.0,21.0 338.0,21.0" fill="currentColor"/>
+<path d="M290,90 L335,35 L380,90" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<text x="335.0" y="10.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">X2(ω)</text>
+<text x="424.0" y="94.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor">ω</text>
+<text x="290.0" y="106.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">−B2</text>
+<text x="380.0" y="106.0" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="currentColor">B2</text>
+<text x="20.0" y="140.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor">x1(t)</text>
+<path d="M58,136 H150 V159" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="150.0,159.0 147.0,153.0 153.0,153.0" fill="currentColor"/>
+<text x="20.0" y="222.0" font-size="13" text-anchor="start" dominant-baseline="middle" fill="currentColor">x2(t)</text>
+<path d="M58,218 H150 V191" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="150.0,191.0 147.0,197.0 153.0,197.0" fill="currentColor"/>
+<circle cx="150" cy="175" r="16" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<path d="M139,164 L161,186 M161,164 L139,186" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<line x1="166" y1="175" x2="228" y2="175" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="228.0,175.0 222.0,172.0 222.0,178.0" fill="currentColor"/>
+<rect x="230" y="150" width="120" height="50" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<text x="290.0" y="180.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">h(t) = e^(−2|t|)</text>
+<line x1="350" y1="175" x2="415" y2="175" stroke="currentColor" fill="none" stroke-width="1.5"/>
+<polygon points="415.0,175.0 409.0,172.0 409.0,178.0" fill="currentColor"/>
+<text x="382.0" y="167.0" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="currentColor">y(t)</text>
+</svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q29';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q29')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q29: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'The value of the integral $2\displaystyle\int{-\infty}^{\infty} \left(\frac{\sin 2\pi t}{\pi t}\right) dt$ is equal to', 'The value of the integral $2\displaystyle\int_{-\infty}^{\infty} \left(\frac{\sin 2\pi t}{\pi t}\right) dt$ is equal to
+', '**Idea used:** the standard result $\displaystyle\int_{-\infty}^{\infty} \frac{\sin at}{t}\,dt = \pi$ for any $a > 0$.
+
+1. $\displaystyle\int_{-\infty}^{\infty} \frac{\sin 2\pi t}{\pi t}\,dt = \frac{1}{\pi}\int_{-\infty}^{\infty} \frac{\sin 2\pi t}{t}\,dt
+   = \frac{1}{\pi} \times \pi = 1$.
+2. Times 2: the value is $2$.
+
+**Another way (Fourier):** $\dfrac{\sin Wt}{\pi t}$ is the inverse transform of a box of height 1 from $-W$ to $W$. The area under a
+signal equals its transform at $\omega = 0$, which is 1. So the integral is 1, and $2 \times 1 = 2$.
+
+**Without a calculator:** the $2\pi$ inside the sine does not change the area; only the $\pi$ outside does. Option C forgets
+the factor 2 in front.
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate2016-s2-q29', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'The value of the integral $2\displaystyle\int{-\infty}^{\infty} \left(\frac{\sin 2\pi t}{\pi t}\right) dt$ is equal to'), stem_md = 'The value of the integral $2\displaystyle\int_{-\infty}^{\infty} \left(\frac{\sin 2\pi t}{\pi t}\right) dt$ is equal to
+', solution_md = '**Idea used:** the standard result $\displaystyle\int_{-\infty}^{\infty} \frac{\sin at}{t}\,dt = \pi$ for any $a > 0$.
+
+1. $\displaystyle\int_{-\infty}^{\infty} \frac{\sin 2\pi t}{\pi t}\,dt = \frac{1}{\pi}\int_{-\infty}^{\infty} \frac{\sin 2\pi t}{t}\,dt
+   = \frac{1}{\pi} \times \pi = 1$.
+2. Times 2: the value is $2$.
+
+**Another way (Fourier):** $\dfrac{\sin Wt}{\pi t}$ is the inverse transform of a box of height 1 from $-W$ to $W$. The area under a
+signal equals its transform at $\omega = 0$, which is 1. So the integral is 1, and $2 \times 1 = 2$.
+
+**Without a calculator:** the $2\pi$ inside the sine does not change the area; only the $\pi$ outside does. Option C forgets
+the factor 2 in front.
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q29', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q29', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q30';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q30')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q30: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'Let $y(x)$ be the solution of the differential equation $\dfrac{d^2y}{dx^2} - 4\dfrac{dy}{dx} + 4y = 0$ with initial conditions $y(0) = 0$ and...', 'Let $y(x)$ be the solution of the differential equation $\dfrac{d^2y}{dx^2} - 4\dfrac{dy}{dx} + 4y = 0$ with initial conditions
+$y(0) = 0$ and $\left.\dfrac{dy}{dx}\right|_{x=0} = 1$. Then the value of $y(1)$ is _________.
+', '**Idea used:** repeated root $m$ gives $y = (A + Bx)e^{mx}$.
+
+1. Auxiliary equation: $m^2 - 4m + 4 = 0$, so $(m - 2)^2 = 0$, $m = 2, 2$.
+2. $y = (A + Bx)e^{2x}$.
+3. $y(0) = A = 0$, so $y = Bx\,e^{2x}$.
+4. $y'' = B e^{2x}(1 + 2x)$; at $x = 0$: $y''(0) = B = 1$.
+5. $y = x\,e^{2x}$, so $y(1) = e^2 \approx 7.39$.
+
+**Without a calculator:** $e \approx 2.718$ and $e^2 \approx 7.39$ (worth remembering). Slips: 3.69 ($e^2/2$)
+comes from writing $y''(0) = 2B$; 2.72 uses $e^{x}$; 0 forgets the $Bx$ term of a repeated root.
+
+**Answer: 7.39.**
+', 'READY', 'NAT', 7.0, 7.5, 2, 'OFFICIAL_KEY', 'gate2016-s2-q30', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'Let $y(x)$ be the solution of the differential equation $\dfrac{d^2y}{dx^2} - 4\dfrac{dy}{dx} + 4y = 0$ with initial conditions $y(0) = 0$ and...'), stem_md = 'Let $y(x)$ be the solution of the differential equation $\dfrac{d^2y}{dx^2} - 4\dfrac{dy}{dx} + 4y = 0$ with initial conditions
+$y(0) = 0$ and $\left.\dfrac{dy}{dx}\right|_{x=0} = 1$. Then the value of $y(1)$ is _________.
+', solution_md = '**Idea used:** repeated root $m$ gives $y = (A + Bx)e^{mx}$.
+
+1. Auxiliary equation: $m^2 - 4m + 4 = 0$, so $(m - 2)^2 = 0$, $m = 2, 2$.
+2. $y = (A + Bx)e^{2x}$.
+3. $y(0) = A = 0$, so $y = Bx\,e^{2x}$.
+4. $y'' = B e^{2x}(1 + 2x)$; at $x = 0$: $y''(0) = B = 1$.
+5. $y = x\,e^{2x}$, so $y(1) = e^2 \approx 7.39$.
+
+**Without a calculator:** $e \approx 2.718$ and $e^2 \approx 7.39$ (worth remembering). Slips: 3.69 ($e^2/2$)
+comes from writing $y''(0) = 2B$; 2.72 uses $e^{x}$; 0 forgets the $Bx$ term of a repeated root.
+
+**Answer: 7.39.**
+', status = 'READY', answer_type = 'NAT', nat_min = 7.0, nat_max = 7.5, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q30', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q30', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '7.39', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3.69', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2.72', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q31';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q31')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q31: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'The line integral of the vector field $F = 5xz\,\hat\imath + (3x^2 + 2y)\,\hat\jmath + x^2 z\,\hat k$ along a path from $(0,0,0)$ to $(1,1,1)$ parametrized...', 'The line integral of the vector field $F = 5xz\,\hat\imath + (3x^2 + 2y)\,\hat\jmath + x^2 z\,\hat k$ along a path from $(0,0,0)$ to
+$(1,1,1)$ parametrized by $(t, t^2, t)$ is ______.
+', '**Idea used:** put the path into $F$ and into $d\mathbf r$, then integrate $F \cdot d\mathbf r$ in $t$ from 0 to 1.
+
+1. On the path: $x = t$, $y = t^2$, $z = t$. So $dx = dt$, $dy = 2t\,dt$, $dz = dt$.
+2. $F_x = 5xz = 5t^2$; $F_y = 3t^2 + 2t^2 = 5t^2$; $F_z = x^2 z = t^3$.
+3. $F \cdot d\mathbf r = 5t^2\,dt + 5t^2(2t\,dt) + t^3\,dt = (5t^2 + 11t^3)\,dt$.
+4. $\displaystyle\int_0^1 (5t^2 + 11t^3)\,dt = \frac{5}{3} + \frac{11}{4} = \frac{20 + 33}{12} = \frac{53}{12} \approx 4.42$.
+
+**Without a calculator:** $53/12 = 4 + 5/12 \approx 4.42$. Slips: 3.58 takes $dy = dt$ (forgets the $2t$); 1.67 keeps only the
+$x$ term; 2.75 keeps only the $t^3$ part.
+
+**Answer: 4.42.**
+', 'READY', 'NAT', 4.4, 4.45, 2, 'OFFICIAL_KEY', 'gate2016-s2-q31', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'The line integral of the vector field $F = 5xz\,\hat\imath + (3x^2 + 2y)\,\hat\jmath + x^2 z\,\hat k$ along a path from $(0,0,0)$ to $(1,1,1)$ parametrized...'), stem_md = 'The line integral of the vector field $F = 5xz\,\hat\imath + (3x^2 + 2y)\,\hat\jmath + x^2 z\,\hat k$ along a path from $(0,0,0)$ to
+$(1,1,1)$ parametrized by $(t, t^2, t)$ is ______.
+', solution_md = '**Idea used:** put the path into $F$ and into $d\mathbf r$, then integrate $F \cdot d\mathbf r$ in $t$ from 0 to 1.
+
+1. On the path: $x = t$, $y = t^2$, $z = t$. So $dx = dt$, $dy = 2t\,dt$, $dz = dt$.
+2. $F_x = 5xz = 5t^2$; $F_y = 3t^2 + 2t^2 = 5t^2$; $F_z = x^2 z = t^3$.
+3. $F \cdot d\mathbf r = 5t^2\,dt + 5t^2(2t\,dt) + t^3\,dt = (5t^2 + 11t^3)\,dt$.
+4. $\displaystyle\int_0^1 (5t^2 + 11t^3)\,dt = \frac{5}{3} + \frac{11}{4} = \frac{20 + 33}{12} = \frac{53}{12} \approx 4.42$.
+
+**Without a calculator:** $53/12 = 4 + 5/12 \approx 4.42$. Slips: 3.58 takes $dy = dt$ (forgets the $2t$); 1.67 keeps only the
+$x$ term; 2.75 keeps only the $t^3$ part.
+
+**Answer: 4.42.**
+', status = 'READY', answer_type = 'NAT', nat_min = 4.4, nat_max = 4.45, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q31', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q31', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '4.42', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3.58', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1.67', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.75', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q32';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q32')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q32: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'Let $P = \begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix}$. Consider the set $S$ of all vectors $\begin{pmatrix} x \\ y \end{pmatrix}$ such that $a^2 + b^2 = 1$...', 'Let $P = \begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix}$. Consider the set $S$ of all vectors $\begin{pmatrix} x \\ y \end{pmatrix}$
+such that $a^2 + b^2 = 1$ where $\begin{pmatrix} a \\ b \end{pmatrix} = P\begin{pmatrix} x \\ y \end{pmatrix}$. Then $S$ is
+', '**Idea used:** $P$ is symmetric. Along an eigenvector, $P$ just stretches by its eigenvalue $\lambda$. So the unit circle in
+$(a, b)$ comes from a radius of $1/\lambda$ in $(x, y)$ along that eigenvector.
+
+1. Eigenvalues of $P$: $(3 - \lambda)^2 = 1$, so $\lambda = 4$ and $\lambda = 2$.
+2. $\lambda = 4$: eigenvector $(1, 1)$. $\lambda = 2$: eigenvector $(1, -1)$.
+3. Along $(1, 1)$ the stretch is 4, so the point on $S$ is only $1/4$ from the origin.
+4. Along $(1, -1)$ the stretch is 2, so the point on $S$ is $1/2$ from the origin.
+5. Different radii, so an ellipse. The **shorter** semi-axis ($1/4$) is along $(1, 1)$: that is the **minor** axis.
+
+**Check:** directly, $a^2 + b^2 = (3x + y)^2 + (x + 3y)^2 = 10x^2 + 12xy + 10y^2 = 1$. Along $x = y$: $32x^2 = 1$, so the
+distance is $\sqrt{2x^2} = 1/4$.
+
+**Without a calculator:** big stretch, short axis. Option C is the trap of thinking "bigger eigenvalue, bigger axis".
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 3, 'OFFICIAL_KEY', 'gate2016-s2-q32', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'Let $P = \begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix}$. Consider the set $S$ of all vectors $\begin{pmatrix} x \\ y \end{pmatrix}$ such that $a^2 + b^2 = 1$...'), stem_md = 'Let $P = \begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix}$. Consider the set $S$ of all vectors $\begin{pmatrix} x \\ y \end{pmatrix}$
+such that $a^2 + b^2 = 1$ where $\begin{pmatrix} a \\ b \end{pmatrix} = P\begin{pmatrix} x \\ y \end{pmatrix}$. Then $S$ is
+', solution_md = '**Idea used:** $P$ is symmetric. Along an eigenvector, $P$ just stretches by its eigenvalue $\lambda$. So the unit circle in
+$(a, b)$ comes from a radius of $1/\lambda$ in $(x, y)$ along that eigenvector.
+
+1. Eigenvalues of $P$: $(3 - \lambda)^2 = 1$, so $\lambda = 4$ and $\lambda = 2$.
+2. $\lambda = 4$: eigenvector $(1, 1)$. $\lambda = 2$: eigenvector $(1, -1)$.
+3. Along $(1, 1)$ the stretch is 4, so the point on $S$ is only $1/4$ from the origin.
+4. Along $(1, -1)$ the stretch is 2, so the point on $S$ is $1/2$ from the origin.
+5. Different radii, so an ellipse. The **shorter** semi-axis ($1/4$) is along $(1, 1)$: that is the **minor** axis.
+
+**Check:** directly, $a^2 + b^2 = (3x + y)^2 + (x + 3y)^2 = 10x^2 + 12xy + 10y^2 = 1$. Along $x = y$: $32x^2 = 1$, so the
+distance is $\sqrt{2x^2} = 1/4$.
+
+**Without a calculator:** big stretch, short axis. Option C is the trap of thinking "bigger eigenvalue, bigger axis".
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q32', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q32', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', 'a circle of radius $\sqrt{10}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'a circle of radius $\dfrac{1}{\sqrt{10}}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'an ellipse with major axis along $(1, 1)$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'an ellipse with minor axis along $(1, 1)$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q33';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q33')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q33: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'Let the probability density function of a random variable, $X$, be given as: $$fX(x) = \frac{3}{2}e^{-3x}u(x) + a\,e^{4x}u(-x)$$ where $u(x)$ is the unit...', 'Let the probability density function of a random variable, $X$, be given as:
+
+$$f_X(x) = \frac{3}{2}e^{-3x}u(x) + a\,e^{4x}u(-x)$$
+
+where $u(x)$ is the unit step function. Then the value of $a$ and $\text{Prob}\{X \le 0\}$, respectively, are
+', '**Idea used:** total area under a pdf is 1. Use $\displaystyle\int_0^\infty k e^{-cx}dx = \frac{k}{c}$.
+
+1. Area for $x > 0$: $\dfrac{3/2}{3} = \dfrac{1}{2}$.
+2. Area for $x < 0$: $\displaystyle\int_{-\infty}^{0} a e^{4x}dx = \dfrac{a}{4}$.
+3. Total $= \dfrac{1}{2} + \dfrac{a}{4} = 1$, so $a = 2$.
+4. $\text{Prob}\{X \le 0\}$ = area for $x < 0$ $= \dfrac{2}{4} = \dfrac{1}{2}$.
+
+**Without a calculator:** the right half already has area 1/2, so the left half must have 1/2 too; that is both answers at once.
+Option B sets $a/4 = 1$, forgetting the right half.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate2016-s2-q33', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'Let the probability density function of a random variable, $X$, be given as: $$fX(x) = \frac{3}{2}e^{-3x}u(x) + a\,e^{4x}u(-x)$$ where $u(x)$ is the unit...'), stem_md = 'Let the probability density function of a random variable, $X$, be given as:
+
+$$f_X(x) = \frac{3}{2}e^{-3x}u(x) + a\,e^{4x}u(-x)$$
+
+where $u(x)$ is the unit step function. Then the value of $a$ and $\text{Prob}\{X \le 0\}$, respectively, are
+', solution_md = '**Idea used:** total area under a pdf is 1. Use $\displaystyle\int_0^\infty k e^{-cx}dx = \frac{k}{c}$.
+
+1. Area for $x > 0$: $\dfrac{3/2}{3} = \dfrac{1}{2}$.
+2. Area for $x < 0$: $\displaystyle\int_{-\infty}^{0} a e^{4x}dx = \dfrac{a}{4}$.
+3. Total $= \dfrac{1}{2} + \dfrac{a}{4} = 1$, so $a = 2$.
+4. $\text{Prob}\{X \le 0\}$ = area for $x < 0$ $= \dfrac{2}{4} = \dfrac{1}{2}$.
+
+**Without a calculator:** the right half already has area 1/2, so the left half must have 1/2 too; that is both answers at once.
+Option B sets $a/4 = 1$, forgetting the right half.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q33', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q33', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$2,\ \dfrac{1}{2}$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$4,\ \dfrac{1}{2}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$2,\ \dfrac{1}{4}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$4,\ \dfrac{1}{4}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q34';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q34')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q34: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'The driving point input impedance seen from the source $VS$ of the circuit shown below, in Ω, is .', 'The driving point input impedance seen from the source $V_S$ of the circuit shown below, in Ω, is ______.
+
+![Vs, a series 2 ohm resistor (V1 across it, + on the source side, current Is) to a node; from that node to ground: 3 ohm, a dependent current source 4V1 pointing up into the node, and a 2 ohm in series with 4 ohm](fig:q-gate2016-s2-q34)
+', '**Idea used:** with a dependent source, find $V_S$ and $I_S$ in terms of one unknown ($V_1$) and divide.
+
+1. $I_S = V_1 / 2$. Call the node voltage $V_N$; then $V_S = V_1 + V_N$.
+2. To the right of the node: 3 Ω in parallel with $(2 + 4) = 6$ Ω, which is 2 Ω.
+3. KCL at the node: current in $= I_S + 4V_1$; current out $= V_N / 2$.
+   $\dfrac{V_1}{2} + 4V_1 = \dfrac{V_N}{2}$, so $V_N = 9V_1$.
+4. $V_S = V_1 + 9V_1 = 10V_1$.
+5. $Z_{in} = \dfrac{V_S}{I_S} = \dfrac{10V_1}{V_1/2} = 20$ Ω.
+
+**Without a calculator:** $3 \parallel 6 = 2$. The source pushes 8 times $I_S$ extra into that 2 Ω, so $V_N = 9 I_S \times 2$.
+Slips: 4 Ω ignores the dependent source ($2 + 2$); $-12$ takes the arrow the wrong way (out of the node), giving $V_N = -7V_1$.
+
+**Answer: 20 Ω.**
+', 'READY', 'NAT', 19.5, 20.5, 2, 'OFFICIAL_KEY', 'gate2016-s2-q34', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'The driving point input impedance seen from the source $VS$ of the circuit shown below, in Ω, is .'), stem_md = 'The driving point input impedance seen from the source $V_S$ of the circuit shown below, in Ω, is ______.
+
+![Vs, a series 2 ohm resistor (V1 across it, + on the source side, current Is) to a node; from that node to ground: 3 ohm, a dependent current source 4V1 pointing up into the node, and a 2 ohm in series with 4 ohm](fig:q-gate2016-s2-q34)
+', solution_md = '**Idea used:** with a dependent source, find $V_S$ and $I_S$ in terms of one unknown ($V_1$) and divide.
+
+1. $I_S = V_1 / 2$. Call the node voltage $V_N$; then $V_S = V_1 + V_N$.
+2. To the right of the node: 3 Ω in parallel with $(2 + 4) = 6$ Ω, which is 2 Ω.
+3. KCL at the node: current in $= I_S + 4V_1$; current out $= V_N / 2$.
+   $\dfrac{V_1}{2} + 4V_1 = \dfrac{V_N}{2}$, so $V_N = 9V_1$.
+4. $V_S = V_1 + 9V_1 = 10V_1$.
+5. $Z_{in} = \dfrac{V_S}{I_S} = \dfrac{10V_1}{V_1/2} = 20$ Ω.
+
+**Without a calculator:** $3 \parallel 6 = 2$. The source pushes 8 times $I_S$ extra into that 2 Ω, so $V_N = 9 I_S \times 2$.
+Slips: 4 Ω ignores the dependent source ($2 + 2$); $-12$ takes the arrow the wrong way (out of the node), giving $V_N = -7V_1$.
+
+**Answer: 20 Ω.**
+', status = 'READY', answer_type = 'NAT', nat_min = 19.5, nat_max = 20.5, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q34', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q34', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '20', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '-12', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q34', '<svg width="385" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -123.80000000000001 334.616 131.10000000000002"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 18,-93.6 L 36,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 36.00000000000001,-93.60000000000001 L 64.8,-93.6 L 67.8,-102.6 L 73.8,-84.6 L 79.8,-102.6 L 85.8,-84.6 L 91.8,-102.6 L 97.8,-84.6 L 100.8,-93.6 L 129.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.60000000000002,-93.60000000000001 L 154.8,-93.6 L 180,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 180.0,-93.60000000000001 L 208.8,-93.6 L 211.8,-102.6 L 217.8,-84.6 L 223.8,-102.6 L 229.8,-84.6 L 235.8,-102.6 L 241.8,-84.6 L 244.8,-93.6 L 273.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 273.59999999999997,-93.60000000000001 L 273.6,-64.8 L 282.6,-61.8 L 264.6,-55.8 L 282.6,-49.8 L 264.6,-43.8 L 282.6,-37.8 L 264.6,-31.8 L 273.6,-28.8 L 273.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 273.59999999999997,-0.0 L 136.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.60000000000002,-93.60000000000001 L 129.6,-64.8 L 138.6,-61.8 L 120.6,-55.8 L 138.6,-49.8 L 120.6,-43.8 L 138.6,-37.8 L 120.6,-31.8 L 129.6,-28.8 L 129.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 180.0,-0.0 L 180,-28.8 L 162,-46.8 L 180,-64.8 L 198,-46.8 L 180,-28.8 M 180,-64.8 L 180,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 180.0,-37.800000000000004 L 180,-46.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 180 -53.8 L 182.7 -46.8 L 177.3 -46.8 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">Vs</tspan></text><text x="59.40000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="59.40000000000001" dy="13">+</tspan></text><text x="82.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="82.80000000000001" dy="13">V1</tspan></text><text x="106.2" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="106.2" dy="13">−</tspan></text><text x="82.80000000000001" y="-94.0" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="82.80000000000001" dy="13">2 Ω</tspan></text><text x="226.79999999999998" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="226.79999999999998" dy="13">2 Ω</tspan></text><text x="286.2" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="286.2" dy="13">4 Ω</tspan></text><text x="117.00000000000001" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="117.00000000000001" dy="13">3 Ω</tspan></text><text x="201.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="201.6" dy="13">4V1</tspan></text><path d="M 25.200000000000006,-93.60000000000001 L 25.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 34 -93.6 L 25.2 -88.2 L 25.2 -99 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><text x="30.6" y="-117.39999999999999" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="30.6" dy="13">Is</tspan></text><circle cx="129.6" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="180" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="129.6" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="180" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q35';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q35')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q35: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'The $z$-parameters of the two port network shown in the figure are $z{11} = 40\ \Omega$, $z{12} = 60\ \Omega$, $z{21} = 80\ \Omega$ and $z{22} = 100\...', 'The $z$-parameters of the two port network shown in the figure are $z_{11} = 40\ \Omega$, $z_{12} = 60\ \Omega$, $z_{21} = 80\ \Omega$
+and $z_{22} = 100\ \Omega$. The average power delivered to $R_L = 20\ \Omega$, in watts, is _______.
+
+![A 20 V source with a 10 ohm series resistor feeds port 1 (V1, current I1 flowing in) of a two-port network Z; port 2 (V2, current I2 flowing in) is loaded by RL](fig:q-gate2016-s2-q35)
+', '**Idea used:** write the two z-equations, then add one equation for each side''s outside circuit. Both currents are taken as
+flowing **into** the box.
+
+1. $V_1 = 40I_1 + 60I_2$ and $V_2 = 80I_1 + 100I_2$.
+2. Source side: $V_1 = 20 - 10I_1$. Load side: $I_2$ flows into the box, so it flows **up** through $R_L$: $V_2 = -20I_2$.
+3. Port 2: $-20I_2 = 80I_1 + 100I_2$, so $80I_1 = -120I_2$, $I_1 = -1.5I_2$.
+4. Port 1: $20 - 10I_1 = 40I_1 + 60I_2$, so $20 = 50I_1 + 60I_2 = -75I_2 + 60I_2 = -15I_2$.
+5. $I_2 = -\dfrac{4}{3}$ A. Power $= I_2^2 R_L = \dfrac{16}{9} \times 20 = \dfrac{320}{9} \approx 35.6$ W.
+
+**Without a calculator:** $320/9 = 35.5\ldots$. Slips: 80 W comes from writing $V_2 = +20I_2$ (wrong sign for the load);
+17.8 W halves the answer as if it were an ac peak value (the source here is dc).
+
+**Answer: 35.6 W.**
+', 'READY', 'NAT', 34.0, 36.0, 2, 'OFFICIAL_KEY', 'gate2016-s2-q35', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'The $z$-parameters of the two port network shown in the figure are $z{11} = 40\ \Omega$, $z{12} = 60\ \Omega$, $z{21} = 80\ \Omega$ and $z{22} = 100\...'), stem_md = 'The $z$-parameters of the two port network shown in the figure are $z_{11} = 40\ \Omega$, $z_{12} = 60\ \Omega$, $z_{21} = 80\ \Omega$
+and $z_{22} = 100\ \Omega$. The average power delivered to $R_L = 20\ \Omega$, in watts, is _______.
+
+![A 20 V source with a 10 ohm series resistor feeds port 1 (V1, current I1 flowing in) of a two-port network Z; port 2 (V2, current I2 flowing in) is loaded by RL](fig:q-gate2016-s2-q35)
+', solution_md = '**Idea used:** write the two z-equations, then add one equation for each side''s outside circuit. Both currents are taken as
+flowing **into** the box.
+
+1. $V_1 = 40I_1 + 60I_2$ and $V_2 = 80I_1 + 100I_2$.
+2. Source side: $V_1 = 20 - 10I_1$. Load side: $I_2$ flows into the box, so it flows **up** through $R_L$: $V_2 = -20I_2$.
+3. Port 2: $-20I_2 = 80I_1 + 100I_2$, so $80I_1 = -120I_2$, $I_1 = -1.5I_2$.
+4. Port 1: $20 - 10I_1 = 40I_1 + 60I_2$, so $20 = 50I_1 + 60I_2 = -75I_2 + 60I_2 = -15I_2$.
+5. $I_2 = -\dfrac{4}{3}$ A. Power $= I_2^2 R_L = \dfrac{16}{9} \times 20 = \dfrac{320}{9} \approx 35.6$ W.
+
+**Without a calculator:** $320/9 = 35.5\ldots$. Slips: 80 W comes from writing $V_2 = +20I_2$ (wrong sign for the load);
+17.8 W halves the answer as if it were an ac peak value (the source here is dc).
+
+**Answer: 35.6 W.**
+', status = 'READY', answer_type = 'NAT', nat_min = 34.0, nat_max = 36.0, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q35', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q35', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '35.6', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '80', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '17.8', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '20', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q35', '<svg width="387" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -123.80000000000001 336.74600000000004 139.2"><circle cx="0" cy="-46.8" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 0.0,-0.0 L 0,-28.8 L 0,-28.8 M 0,-64.8 L 0,-64.8 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000028,-37.800000000000004 L -3.6,-37.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.1963281457745923e-15,-52.2 L 0,-59.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 3.6000000000000036,-55.800000000000004 L -3.6,-55.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 L 31.8,-102.6 L 37.8,-84.6 L 43.8,-102.6 L 49.8,-84.6 L 55.8,-102.6 L 61.8,-84.6 L 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 111.6,-93.6 L 129.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.6,-104.39999999999999 L 176.4,-104.4 L 223.2,-104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,-104.39999999999999 L 223.2,-46.8 L 223.2,10.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 223.20000000000002,10.799999999999999 L 176.4,10.8 L 129.6,10.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.6,10.799999999999999 L 129.6,-46.8 L 129.6,-104.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 129.6,-0.0 L 64.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 266.40000000000003,-93.60000000000001 L 244.8,-93.6 L 223.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 266.40000000000003,-93.60000000000001 L 273.6,-93.6 L 280.8,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 280.8,-93.60000000000001 L 280.8,-64.8 L 289.8,-61.8 L 271.8,-55.8 L 289.8,-49.8 L 271.8,-43.8 L 289.8,-37.8 L 271.8,-31.8 L 280.8,-28.8 L 280.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 280.8,-0.0 L 252,-0 L 223.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">20 V</tspan></text><text x="46.80000000000001" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">10 Ω</tspan></text><text x="172.8" y="-68.4" dominant-baseline="central" fill="currentColor" font-size="18" font-family="sans" text-anchor="middle"><tspan x="172.8" dy="18">[Z]</tspan></text><text x="140.4" y="-90.39999999999999" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="140.4" dy="13">+</tspan></text><text x="140.4" y="-56.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="140.4" dy="13">V1</tspan></text><text x="140.4" y="-22.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="140.4" dy="13">−</tspan></text><text x="205.20000000000002" y="-90.39999999999999" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="205.20000000000002" dy="13">+</tspan></text><text x="205.20000000000002" y="-56.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="205.20000000000002" dy="13">V2</tspan></text><text x="205.20000000000002" y="-22.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="205.20000000000002" dy="13">−</tspan></text><text x="293.40000000000003" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="293.40000000000003" dy="13">RL</tspan></text><path d="M 111.60000000000001,-93.60000000000001 L 111.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 120.4 -93.6 L 111.6 -88.2 L 111.6 -99 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><text x="117.0" y="-117.39999999999999" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="117.0" dy="13">I1</tspan></text><path d="M 241.20000000000005,-93.60000000000001 L 241.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 232.4 -93.6 L 241.2 -99 L 241.2 -88.2 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><text x="235.8" y="-117.4" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="235.8" dy="13">I2</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q36';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q36')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q36: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'In the balanced 3-phase, 50 Hz, circuit shown below, the value of inductance (L) is 10 mH. The value of the capacitance (C) for which all the line currents...', 'In the balanced 3-phase, 50 Hz, circuit shown below, the value of inductance (L) is 10 mH. The value of the capacitance (C) for
+which all the line currents are zero, in millifarads, is ___________.
+
+![Three supply lines go to the corners of a delta of three inductors L; inside the delta, a star of three capacitors C joins the centre to the three corners](fig:q-gate2016-s2-q36)
+', '**Idea used:** line currents are zero when the inductive load and the capacitive load are in **parallel resonance**. To compare
+them, turn the star of C into an equivalent delta. For a balanced load, $Z_\Delta = 3Z_Y$, so each delta capacitor is $C/3$.
+
+1. Star C to delta: $\dfrac{1}{\omega C_\Delta} = 3 \times \dfrac{1}{\omega C}$, so $C_\Delta = \dfrac{C}{3}$.
+2. Each delta branch is now $L$ in parallel with $C/3$. Resonance: $\omega L = \dfrac{1}{\omega C/3}$.
+3. $C = \dfrac{3}{\omega^2 L} = \dfrac{3}{(100\pi)^2 \times 0.01}$.
+4. $(100\pi)^2 \approx 98\,700$, so $\omega^2 L \approx 987$. $C \approx \dfrac{3}{987} \approx 3.04 \times 10^{-3}$ F $= 3.04$ mF.
+
+**Without a calculator:** $\pi^2 \approx 9.87$, so $(100\pi)^2 \times 0.01 \approx 987$, and $3/987 \approx 3/1000$. Slips: 1.01 mF
+forgets the star-delta change; 0.34 mF uses $3C$ instead of $C/3$.
+
+**Answer: 3.04 mF.**
+', 'READY', 'NAT', 2.9, 3.1, 2, 'OFFICIAL_KEY', 'gate2016-s2-q36', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'In the balanced 3-phase, 50 Hz, circuit shown below, the value of inductance (L) is 10 mH. The value of the capacitance (C) for which all the line currents...'), stem_md = 'In the balanced 3-phase, 50 Hz, circuit shown below, the value of inductance (L) is 10 mH. The value of the capacitance (C) for
+which all the line currents are zero, in millifarads, is ___________.
+
+![Three supply lines go to the corners of a delta of three inductors L; inside the delta, a star of three capacitors C joins the centre to the three corners](fig:q-gate2016-s2-q36)
+', solution_md = '**Idea used:** line currents are zero when the inductive load and the capacitive load are in **parallel resonance**. To compare
+them, turn the star of C into an equivalent delta. For a balanced load, $Z_\Delta = 3Z_Y$, so each delta capacitor is $C/3$.
+
+1. Star C to delta: $\dfrac{1}{\omega C_\Delta} = 3 \times \dfrac{1}{\omega C}$, so $C_\Delta = \dfrac{C}{3}$.
+2. Each delta branch is now $L$ in parallel with $C/3$. Resonance: $\omega L = \dfrac{1}{\omega C/3}$.
+3. $C = \dfrac{3}{\omega^2 L} = \dfrac{3}{(100\pi)^2 \times 0.01}$.
+4. $(100\pi)^2 \approx 98\,700$, so $\omega^2 L \approx 987$. $C \approx \dfrac{3}{987} \approx 3.04 \times 10^{-3}$ F $= 3.04$ mF.
+
+**Without a calculator:** $\pi^2 \approx 9.87$, so $(100\pi)^2 \times 0.01 \approx 987$, and $3/987 \approx 3/1000$. Slips: 1.01 mF
+forgets the star-delta change; 0.34 mF uses $3C$ instead of $C/3$.
+
+**Answer: 3.04 mF.**
+', status = 'READY', answer_type = 'NAT', nat_min = 2.9, nat_max = 3.1, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q36', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q36', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '3.04', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.01', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.34', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '30.4', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q36', '<svg width="320" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-184.60000000000002 -158.50000000000003 278.3 195.50000000000003"><path d="M -86.39999999999999,-0.0 L -52.131,-59.972 L -53.437,-60.769 L -54.734,-61.665 L -55.989,-62.643 L -57.171,-63.683 L -58.25,-64.767 L -59.201,-65.872 L -59.998,-66.977 L -60.621,-68.061 L -61.053,-69.101 L -61.283,-70.079 L -61.302,-70.975 L -61.109,-71.773 L -60.706,-72.458 L -60.099,-73.018 L -59.3,-73.444 L -58.326,-73.73 L -57.197,-73.873 L -55.937,-73.874 L -54.572,-73.737 L -53.132,-73.468 L -51.648,-73.078 L -50.152,-72.578 L -48.675,-71.986 L -47.251,-71.318 L -45.909,-70.593 L -44.678,-69.832 L -43.585,-69.056 L -42.652,-68.287 L -41.899,-67.546 L -41.34,-66.855 L -40.988,-66.233 L -40.846,-65.697 L -40.917,-65.266 L -41.197,-64.951 L -41.677,-64.764 L -42.344,-64.714 L -43.18,-64.805 L -44.165,-65.039 L -45.272,-65.414 L -46.474,-65.926 L -47.742,-66.566 L -49.044,-67.324 L -50.348,-68.186 L -51.622,-69.136 L -52.834,-70.156 L -53.954,-71.227 L -54.954,-72.326 L -55.81,-73.434 L -56.498,-74.528 L -57.001,-75.586 L -57.305,-76.589 L -57.402,-77.517 L -57.286,-78.353 L -56.958,-79.08 L -56.424,-79.687 L -55.693,-80.162 L -54.781,-80.499 L -53.705,-80.695 L -52.49,-80.747 L -51.16,-80.659 L -49.743,-80.437 L -48.272,-80.089 L -46.776,-79.628 L -45.289,-79.067 L -43.842,-78.424 L -42.466,-77.718 L -41.192,-76.967 L -40.046,-76.194 L -39.053,-75.42 L -38.232,-74.667 L -37.602,-73.955 L -37.173,-73.306 L -36.955,-72.737 L -36.949,-72.266 L -37.154,-71.907 L -37.563,-71.673 L -38.164,-71.573 L -38.941,-71.612 L -39.874,-71.794 L -40.939,-72.118 L -42.111,-72.581 L -43.359,-73.176 L -44.652,-73.893 L -45.959,-74.719 L -47.248,-75.639 L -48.486,-76.636 L -49.642,-77.69 L -50.689,-78.782 L -51.6,-79.889 L -52.351,-80.99 L -52.923,-82.064 L -53.3,-83.09 L -53.473,-84.047 L -53.434,-84.918 L -53.183,-85.686 L -52.723,-86.338 L -52.062,-86.862 L -51.214,-87.25 L -50.195,-87.497 L -49.027,-87.601 L -47.736,-87.563 L -46.347,-87.389 L -44.892,-87.086 L -43.401,-86.664 L -41.907,-86.138 L -40.442,-85.523 L -39.037,-84.837 L -37.723,-84.1 L -36.528,-83.333 L -35.476,-82.556 L -34.591,-81.793 L -33.89,-81.064 L -33.387,-80.39 L -33.091,-79.789 L -33.009,-79.281 L -33.138,-78.88 L -33.473,-78.6 L -34.006,-78.45 L -34.722,-78.438 L -35.601,-78.568 L -36.621,-78.841 L -37.757,-79.254 L -38.981,-79.802 L -40.261,-80.476 L -41.567,-81.264 L -42.866,-82.152 L -44.126,-83.123 L -45.316,-84.159 L -46.406,-85.239 L -47.368,-86.343 L -48.18,-87.449 L -48.819,-88.536 L -49.269,-89.581 L -49.517,-90.565 L -49.555,-91.47 L -49.381,-92.277 L -48.996,-92.972 L -48.406,-93.544 L -47.624,-93.982 L -46.665,-94.28 L -45.549,-94.436 L -44.299,-94.45 L -42.942,-94.324 L -41.508,-94.066 L -40.026,-93.686 L -38.53,-93.196 L -37.05,-92.611 L -35.62,-91.949 L -34.269,-91.228 L -0,-151.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-151.20000000000002 L 34.269,-91.228 L 35.62,-91.949 L 37.05,-92.611 L 38.53,-93.196 L 40.026,-93.686 L 41.508,-94.066 L 42.942,-94.324 L 44.299,-94.45 L 45.549,-94.436 L 46.665,-94.28 L 47.624,-93.982 L 48.406,-93.544 L 48.996,-92.972 L 49.381,-92.277 L 49.555,-91.47 L 49.517,-90.565 L 49.269,-89.581 L 48.819,-88.536 L 48.18,-87.449 L 47.368,-86.343 L 46.406,-85.239 L 45.316,-84.159 L 44.126,-83.123 L 42.866,-82.152 L 41.567,-81.264 L 40.261,-80.476 L 38.981,-79.802 L 37.757,-79.254 L 36.621,-78.841 L 35.601,-78.568 L 34.722,-78.438 L 34.006,-78.45 L 33.473,-78.6 L 33.138,-78.88 L 33.009,-79.281 L 33.091,-79.789 L 33.387,-80.39 L 33.89,-81.064 L 34.591,-81.793 L 35.476,-82.556 L 36.528,-83.333 L 37.723,-84.1 L 39.037,-84.837 L 40.442,-85.523 L 41.907,-86.138 L 43.401,-86.664 L 44.892,-87.086 L 46.347,-87.389 L 47.736,-87.563 L 49.027,-87.601 L 50.195,-87.497 L 51.214,-87.25 L 52.062,-86.862 L 52.723,-86.338 L 53.183,-85.686 L 53.434,-84.918 L 53.473,-84.047 L 53.3,-83.09 L 52.923,-82.064 L 52.351,-80.99 L 51.6,-79.889 L 50.689,-78.782 L 49.642,-77.69 L 48.486,-76.636 L 47.248,-75.639 L 45.959,-74.719 L 44.652,-73.893 L 43.359,-73.176 L 42.111,-72.581 L 40.939,-72.118 L 39.874,-71.794 L 38.941,-71.612 L 38.164,-71.573 L 37.563,-71.673 L 37.154,-71.907 L 36.949,-72.266 L 36.955,-72.737 L 37.173,-73.306 L 37.602,-73.955 L 38.232,-74.667 L 39.053,-75.42 L 40.046,-76.194 L 41.192,-76.967 L 42.466,-77.718 L 43.842,-78.424 L 45.289,-79.067 L 46.776,-79.628 L 48.272,-80.089 L 49.743,-80.437 L 51.16,-80.659 L 52.49,-80.747 L 53.705,-80.695 L 54.781,-80.499 L 55.693,-80.162 L 56.424,-79.687 L 56.958,-79.08 L 57.286,-78.353 L 57.402,-77.517 L 57.305,-76.589 L 57.001,-75.586 L 56.498,-74.528 L 55.81,-73.434 L 54.954,-72.326 L 53.954,-71.227 L 52.834,-70.156 L 51.622,-69.136 L 50.348,-68.186 L 49.044,-67.324 L 47.742,-66.566 L 46.474,-65.926 L 45.272,-65.414 L 44.165,-65.039 L 43.18,-64.805 L 42.344,-64.714 L 41.677,-64.764 L 41.197,-64.951 L 40.917,-65.266 L 40.846,-65.697 L 40.988,-66.233 L 41.34,-66.855 L 41.899,-67.546 L 42.652,-68.287 L 43.585,-69.056 L 44.678,-69.832 L 45.909,-70.593 L 47.251,-71.318 L 48.675,-71.986 L 50.152,-72.578 L 51.648,-73.078 L 53.132,-73.468 L 54.572,-73.737 L 55.937,-73.874 L 57.197,-73.873 L 58.326,-73.73 L 59.3,-73.444 L 60.099,-73.018 L 60.706,-72.458 L 61.109,-71.773 L 61.302,-70.975 L 61.283,-70.079 L 61.053,-69.101 L 60.621,-68.061 L 59.998,-66.977 L 59.201,-65.872 L 58.25,-64.767 L 57.171,-63.683 L 55.989,-62.643 L 54.734,-61.665 L 53.437,-60.769 L 52.131,-59.972 L 86.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 86.39999999999999,-0.0 L 18,-0 L 17.956,1.53 L 17.821,3.101 L 17.595,4.675 L 17.278,6.218 L 16.873,7.693 L 16.385,9.066 L 15.821,10.306 L 15.189,11.385 L 14.5,12.276 L 13.765,12.961 L 12.996,13.423 L 12.208,13.651 L 11.413,13.64 L 10.626,13.391 L 9.86,12.909 L 9.128,12.206 L 8.444,11.296 L 7.818,10.203 L 7.26,8.95 L 6.779,7.566 L 6.382,6.084 L 6.072,4.537 L 5.854,2.961 L 5.728,1.393 L 5.691,-0.132 L 5.742,-1.578 L 5.873,-2.913 L 6.078,-4.104 L 6.347,-5.126 L 6.67,-5.953 L 7.036,-6.569 L 7.43,-6.957 L 7.84,-7.109 L 8.252,-7.022 L 8.653,-6.698 L 9.027,-6.144 L 9.363,-5.373 L 9.648,-4.402 L 9.872,-3.255 L 10.024,-1.957 L 10.097,-0.538 L 10.085,0.968 L 9.984,2.528 L 9.791,4.106 L 9.506,5.664 L 9.133,7.168 L 8.674,8.582 L 8.137,9.874 L 7.528,11.014 L 6.859,11.976 L 6.139,12.738 L 5.381,13.282 L 4.598,13.596 L 3.804,13.672 L 3.013,13.509 L 2.237,13.11 L 1.492,12.486 L 0.789,11.649 L 0.14,10.619 L -0.443,9.421 L -0.953,8.081 L -1.381,6.631 L -1.723,5.103 L -1.974,3.534 L -2.134,1.958 L -2.203,0.414 L -2.183,-1.065 L -2.081,-2.443 L -1.902,-3.69 L -1.655,-4.776 L -1.35,-5.677 L -0.998,-6.371 L -0.613,-6.843 L -0.207,-7.082 L 0.207,-7.082 L 0.613,-6.843 L 0.998,-6.371 L 1.35,-5.677 L 1.655,-4.776 L 1.902,-3.69 L 2.081,-2.443 L 2.183,-1.065 L 2.203,0.414 L 2.134,1.958 L 1.974,3.534 L 1.723,5.103 L 1.381,6.631 L 0.953,8.081 L 0.443,9.421 L -0.14,10.619 L -0.789,11.649 L -1.492,12.486 L -2.237,13.11 L -3.013,13.509 L -3.804,13.672 L -4.598,13.596 L -5.381,13.282 L -6.139,12.738 L -6.859,11.976 L -7.528,11.014 L -8.137,9.874 L -8.674,8.582 L -9.133,7.168 L -9.506,5.664 L -9.791,4.106 L -9.984,2.528 L -10.085,0.968 L -10.097,-0.538 L -10.024,-1.957 L -9.872,-3.255 L -9.648,-4.402 L -9.363,-5.373 L -9.027,-6.144 L -8.653,-6.698 L -8.252,-7.022 L -7.84,-7.109 L -7.43,-6.957 L -7.036,-6.569 L -6.67,-5.953 L -6.347,-5.126 L -6.078,-4.104 L -5.873,-2.913 L -5.742,-1.578 L -5.691,-0.132 L -5.728,1.393 L -5.854,2.961 L -6.072,4.537 L -6.382,6.084 L -6.779,7.566 L -7.26,8.95 L -7.818,10.203 L -8.444,11.296 L -9.128,12.206 L -9.86,12.909 L -10.626,13.391 L -11.413,13.64 L -12.208,13.651 L -12.996,13.423 L -13.765,12.961 L -14.5,12.276 L -15.189,11.385 L -15.821,10.306 L -16.385,9.066 L -16.873,7.693 L -17.278,6.218 L -17.595,4.675 L -17.821,3.101 L -17.956,1.53 L -18,0 L -86.4,0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-50.4 L 0,-97.56 M -9,-97.56 L 9,-97.56 M -9,-104.04 L 9,-104.04 M 0,-104.04 L 0,-151.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-50.4 L -40.401,-26.833 M -35.867,-19.059 L -44.936,-34.607 M -41.464,-15.793 L -50.533,-31.341 M -45.999,-23.567 L -86.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-50.4 L 40.401,-26.833 M 44.936,-34.607 L 35.867,-19.059 M 50.533,-31.341 L 41.464,-15.793 M 45.999,-23.567 L 86.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-151.20000000000002 L -90,-151.2 L -180,-151.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -86.39999999999999,-0.0 L -133.2,-0 L -180,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 86.39999999999999,-0.0 L 86.4,16.2 L 86.4,32.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 86.39999999999999,32.4 L -46.8,32.4 L -180,32.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="-58.19627120807565" y="-97.16929783318608" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-58.19627120807565" dy="13">L</tspan></text><text x="58.196271208075636" y="-97.1692978331861" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="58.196271208075636" dy="13">L</tspan></text><text x="0.0" y="-23.70922064906557" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="0.0" dy="13">L</tspan></text><text x="12.600000000000003" y="-113.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="12.600000000000003" dy="13">C</tspan></text><text x="-36.85122507839652" y="-27.31638584867975" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="-36.85122507839652" dy="13">C</tspan></text><text x="36.85122507839652" y="-27.31638584867974" dominant-baseline="hanging" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="36.85122507839652" dy="13">C</tspan></text><circle cx="0" cy="-50.4" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="0" cy="-151.2" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="-86.4" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="86.4" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s2-q37';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S2-Q37')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s2-q37: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'In the circuit shown below, the initial capacitor voltage is 4 V. Switch S$1$ is closed at $t = 0$. The charge (in µC) lost by the capacitor from $t = 25$...', 'In the circuit shown below, the initial capacitor voltage is 4 V. Switch S$_1$ is closed at $t = 0$. The charge (in µC) lost by the
+capacitor from $t = 25$ µs to $t = 100$ µs is ____________.
+
+![A 5 microfarad capacitor charged to 4 V, switch S1 and a 5 ohm resistor in one loop](fig:q-gate2016-s2-q37)
+', '**Idea used:** a capacitor discharging through R: $v(t) = V_0 e^{-t/\tau}$ with $\tau = RC$. Charge $q = Cv$.
+
+1. $\tau = 5 \times 5 \times 10^{-6} = 25$ µs. Initial charge $Q_0 = CV_0 = 5 \times 4 = 20$ µC.
+2. At 25 µs ($t = \tau$): $q = 20e^{-1} \approx 20 \times 0.368 = 7.36$ µC.
+3. At 100 µs ($t = 4\tau$): $q = 20e^{-4} \approx 20 \times 0.018 = 0.37$ µC.
+4. Charge lost $= 7.36 - 0.37 \approx 7.0$ µC.
+
+**Without a calculator:** remember $e^{-1} \approx 0.368$ and $e^{-4} \approx 0.018$. Slips: 20 µC is all the charge; 7.4 µC
+forgets the bit still left at 100 µs; 12.6 µC is the charge lost in the **first** 25 µs.
+
+**Answer: about 7.0 µC.**
+', 'READY', 'NAT', 6.8, 7.2, 2, 'OFFICIAL_KEY', 'gate2016-s2-q37', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'In the circuit shown below, the initial capacitor voltage is 4 V. Switch S$1$ is closed at $t = 0$. The charge (in µC) lost by the capacitor from $t = 25$...'), stem_md = 'In the circuit shown below, the initial capacitor voltage is 4 V. Switch S$_1$ is closed at $t = 0$. The charge (in µC) lost by the
+capacitor from $t = 25$ µs to $t = 100$ µs is ____________.
+
+![A 5 microfarad capacitor charged to 4 V, switch S1 and a 5 ohm resistor in one loop](fig:q-gate2016-s2-q37)
+', solution_md = '**Idea used:** a capacitor discharging through R: $v(t) = V_0 e^{-t/\tau}$ with $\tau = RC$. Charge $q = Cv$.
+
+1. $\tau = 5 \times 5 \times 10^{-6} = 25$ µs. Initial charge $Q_0 = CV_0 = 5 \times 4 = 20$ µC.
+2. At 25 µs ($t = \tau$): $q = 20e^{-1} \approx 20 \times 0.368 = 7.36$ µC.
+3. At 100 µs ($t = 4\tau$): $q = 20e^{-4} \approx 20 \times 0.018 = 0.37$ µC.
+4. Charge lost $= 7.36 - 0.37 \approx 7.0$ µC.
+
+**Without a calculator:** remember $e^{-1} \approx 0.368$ and $e^{-4} \approx 0.018$. Slips: 20 µC is all the charge; 7.4 µC
+forgets the bit still left at 100 µs; 12.6 µC is the charge lost in the **first** 25 µs.
+
+**Answer: about 7.0 µC.**
+', status = 'READY', answer_type = 'NAT', nat_min = 6.8, nat_max = 7.2, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s2-q37', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S2-Q37', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '7.0', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '20', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '7.4', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '12.6', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s2-q37', '<svg width="193" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-36.23199999999999 -135.6490947633379 168.24799999999996 140.2490947633379"><path d="M 47.51 -114.45 a 9 13.5 0 0 1 4.63 13.43" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 51.321 -94.072 L 49.457 -101.339 L 54.82 -100.709 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 0.0,-0.0 L 0,-43.56 M -9,-43.56 L 9,-43.56 M -9,-50.04 L 9,-50.04 M 0,-50.04 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.7313470200096116e-15,-93.6 L 28.8,-93.6 M 37.44,-97.2 L 57.6,-109.8 M 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.6 L 93.6,-64.8 L 102.6,-61.8 L 84.6,-55.8 L 102.6,-49.8 L 84.6,-43.8 L 102.6,-37.8 L 84.6,-31.8 L 93.6,-28.8 L 93.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.6,-0.0 L 46.8,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="12.600000000000001" y="-59.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="12.600000000000001" dy="13">5 μF</tspan></text><text x="-12.599999999999998" y="-59.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-12.599999999999998" dy="13">4 V</tspan></text><circle cx="33.12" cy="-93.6" r="4.32" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="60.48" cy="-93.6" r="4.32" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="46.80000000000001" y="-131.0490947633379" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">S1</tspan></text><text x="106.19999999999999" y="-59.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="106.19999999999999" dy="13">5 Ω</tspan></text></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
