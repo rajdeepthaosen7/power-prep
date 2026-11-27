@@ -1,6 +1,8 @@
 # Power Systems (subject slug: power-systems) - chapter plan.
-# Order follows the prep strategy (CLAUDE.md): first the chapters that need no AC theory, then the AC-heavy ones
-# (those are built after Circuits phasors and three-phase).
+# Order follows the prep strategy (CLAUDE.md): first the chapters that need no AC theory (1-4), then the AC-heavy ones
+# (5-17, built after Circuits phasors and three-phase). Reordered 27 Nov 2026: distribution moved up; protection and
+# circuit breakers after faults (relay settings need fault currents); HVDC and FACTS last (FACTS = compensation by power
+# electronics); neutral grounding moved to the unsymmetrical faults chapter (zero sequence). Slugs did not change.
 # `topics` are new topics written for this portal (notes + questions).
 # `legacy_topics` are the earlier tagging topics (slugs in the DB) that belong to the chapter until it is rewritten.
 
@@ -32,50 +34,26 @@ chapters:
     legacy_topics: [overhead-insulators-117]
 
   - slug: cables-grounding
-    name: Underground cables and neutral grounding
+    name: Underground cables
     sort: 3
-    description: Cable construction, insulation resistance, capacitance and charging current, grading; earthing of the neutral.
-    legacy_topics: [underground-cables-68, neutral-grounding-73]
-
-  - slug: line-parameters
-    name: Line parameters (R, L and C)
-    sort: 4
-    description: Resistance, inductance and capacitance of lines; GMD and GMR; transposition and bundled conductors.
-    legacy_topics: [transmission-line-inductance-134, transmission-line-capacitance-256, transmission-line-bundled-conductor-field-172]
-
-  - slug: protection
-    name: Protection and relays
-    sort: 5
-    description: Zones of protection, relay types, overcurrent, distance and differential protection, CTs and PTs.
-    legacy_topics: [protection-relays-and-zones-69, protection-transformer-differential-ct-currents-282]
-
-  - slug: circuit-breakers
-    name: Circuit breakers
-    sort: 6
-    description: Arc interruption, restriking and recovery voltage, breaker types (oil, air blast, SF6, vacuum), ratings.
-    legacy_topics: [circuit-breakers-ratings-sf6-115]
-
-  - slug: hvdc-facts
-    name: HVDC and FACTS
-    sort: 7
-    description: HVDC links and their converters, advantages over AC; FACTS devices.
-    legacy_topics: [hvdc-transmission-155, facts-voltage-source-converter-control-182]
+    description: Cable construction, insulation resistance, capacitance and charging current, grading.
+    legacy_topics: [underground-cables-68]
 
   - slug: distribution
     name: Distribution systems
-    sort: 8
+    sort: 4
     description: Radial and ring mains, distributors fed at one or both ends, losses in distribution.
     legacy_topics: [distribution-radial-system-losses-214, distribution-fed-from-both-ends-253, distribution-loss-minimization-reconfiguration-356]
 
-  - slug: per-unit
-    name: Per-unit system
-    sort: 9
-    description: Base values, change of base, per-unit impedance of transformers and machines.
-    legacy_topics: [per-unit-system-153]
+  - slug: line-parameters
+    name: Line parameters (R, L and C)
+    sort: 5
+    description: Resistance, inductance and capacitance of lines; GMD and GMR; transposition and bundled conductors.
+    legacy_topics: [transmission-line-inductance-134, transmission-line-capacitance-256, transmission-line-bundled-conductor-field-172]
 
   - slug: line-performance
     name: Performance of transmission lines
-    sort: 10
+    sort: 6
     description: Short, medium and long lines, ABCD constants, regulation and efficiency, Ferranti effect, SIL, travelling waves.
     legacy_topics: [transmission-line-voltage-regulation-149, transmission-line-losses-efficiency-154, transmission-line-ferranti-effect-150,
                     transmission-line-sil-surge-impedance-148, transmission-line-propagation-wavelength-108,
@@ -83,46 +61,71 @@ chapters:
                     transmission-line-transmission-configuration-228]
 
   - slug: power-flow-compensation
-    name: Power flow and reactive power compensation
-    sort: 11
-    description: Power transfer between two buses, maximum power, voltage control, series and shunt compensation.
+    name: Power flow, compensation and power factor correction
+    sort: 7
+    description: Power transfer between two buses, maximum power, voltage control, series and shunt compensation, power factor correction.
     legacy_topics: [power-flow-between-two-buses-116, power-transfer-capability-113, reactive-power-compensation-109, voltage-control-shunt-reactor-110]
+
+  - slug: per-unit
+    name: Per-unit system
+    sort: 8
+    description: Base values, change of base, per-unit impedance of transformers and machines.
+    legacy_topics: [per-unit-system-153]
 
   - slug: load-flow
     name: Bus matrices and load flow
-    sort: 12
+    sort: 9
     description: Ybus and Zbus, bus types, Gauss-Seidel, Newton-Raphson, fast decoupled and DC load flow.
     legacy_topics: [bus-admittance-matrix-ybus-151, bus-impedance-matrix-zbus-244, load-flow-newton-raphson-74, load-flow-bus-classification-76,
                     load-flow-dc-load-flow-248, load-flow-bus-angles-183, load-flow-fast-decoupled-273]
 
   - slug: economic-dispatch
     name: Economic load dispatch
-    sort: 13
+    sort: 10
     description: Incremental cost, equal incremental cost rule, generator limits, transmission losses and penalty factors.
     legacy_topics: [economic-load-dispatch-114]
 
   - slug: load-frequency-control
     name: Load frequency control
-    sort: 14
+    sort: 11
     description: Governor droop, load sharing between generators, single and two area systems.
     legacy_topics: [load-frequency-control-70]
 
   - slug: stability
     name: Power system stability
-    sort: 15
+    sort: 12
     description: Inertia constant, swing equation, steady-state and transient stability, equal area criterion.
     legacy_topics: [stability-equal-area-criterion-71, stability-inertia-constant-h-75, stability-transient-stability-111, stability-swing-equation-242]
 
   - slug: symmetrical-faults
     name: Symmetrical faults
-    sort: 16
+    sort: 13
     description: Three-phase faults, fault MVA, current-limiting reactors, Zbus method.
     legacy_topics: [fault-analysis-symmetrical-sc-mva-318, symmetrical-fault-fault-mva-235, fault-analysis-symmetrical-faults-289,
                     fault-analysis-symmetrical-fault-215, fault-analysis-zbus-symmetrical-fault-364]
 
   - slug: unsymmetrical-faults
-    name: Symmetrical components and unsymmetrical faults
-    sort: 17
-    description: Sequence components and impedances, LG, LL and LLG faults.
-    legacy_topics: [symmetrical-components-sequence-impedance-107, fault-analysis-unsymmetrical-faults-311,
+    name: Symmetrical components, unsymmetrical faults and neutral grounding
+    sort: 14
+    description: Sequence components and impedances, LG, LL and LLG faults; earthing of the neutral.
+    legacy_topics: [neutral-grounding-73, symmetrical-components-sequence-impedance-107, fault-analysis-unsymmetrical-faults-311,
                     fault-analysis-unsymmetrical-slg-216, fault-analysis-fault-location-from-phasors-274]
+
+  - slug: protection
+    name: Protection and relays
+    sort: 15
+    description: Zones of protection, relay types, overcurrent, distance and differential protection, CTs and PTs.
+    legacy_topics: [protection-relays-and-zones-69, protection-transformer-differential-ct-currents-282]
+
+  - slug: circuit-breakers
+    name: Circuit breakers
+    sort: 16
+    description: Arc interruption, restriking and recovery voltage, breaker types (oil, air blast, SF6, vacuum), ratings.
+    legacy_topics: [circuit-breakers-ratings-sf6-115]
+
+  - slug: hvdc-facts
+    name: HVDC and FACTS
+    sort: 17
+    description: HVDC links and their converters, advantages over AC; FACTS devices.
+    legacy_topics: [hvdc-transmission-155, facts-voltage-source-converter-control-182]
+

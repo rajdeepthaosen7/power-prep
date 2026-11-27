@@ -77,6 +77,12 @@ by writing the questions in chapter YAML with their GATE `sources`.
   APGCL also has Paper II (General Studies & General English, 100 MCQ, APSC No.25PSC/CON/Exam-13/2026-2027): not covered yet.
 - One-page summary: `/study/<subject>/c/<chapter>/print` prints the `*-chapter-summary` topic.
 
+## Writing order (owner, 27 Nov 2026: holistic learning)
+- Chapter 1 of every subject first: Electrical Machines, Signals, Control, Measurements, Power Electronics, Analog & Digital,
+  EMF (in that order; Circuits and Power Systems Ch1 already done). Then Circuits Ch3-6 (prerequisites for the AC chapters).
+- A Chapter 1 must need no other subject (no phasors). Year-by-year GATE paper work is paused; chapters fill the papers.
+- Power Systems chapters were reordered on 27 Nov 2026 (content/power-systems/chapters.yml has the reasons). Slugs unchanged.
+
 ## Writing concept notes (Study tab)
 - Write like the best teacher. Style: Lakhmir Singh (S. Chand) - very clear, detailed, conceptual, simple English.
 - Teaching must be **integral, gradual and complete**:
@@ -88,6 +94,9 @@ by writing the questions in chapter YAML with their GATE `sources`.
   happens, then the formula. Every example is numbered steps, one operation per step, every multiplication/division shown
   (no "⇒" jumps), followed by a quick sense check. Prefer the physical route (e.g. "ohms per °C first") over pure algebra;
   show the textbook algebra afterwards as a second way.
+- Owner, 27 Nov 2026: "no jump steps in example numericals"; "not just GATE questions, we have other sources as well";
+  "use various colour, it helps"; "calculations in canvas or on a different layer". So: colour-coded note blocks and a
+  separate rough-work panel for every worked numerical (format: see "Note blocks" once the mockup is approved).
 - Never use a symbol before defining it (name, meaning in plain words, unit, one small number example). Owner, 26 Nov 2026:
   "you use J but never mention J as current density".
 - Goal: the reader can solve every probable question from the source pools: GATE EE 1-mark (+ easy 2-mark), GATE EC (Signals/Digital/Analog), ESE EE prelims, J.B. Gupta-type objective banks, and APSC 2023 PYQs.
