@@ -1232,6 +1232,7 @@ Energy is produced in generating stations, carried in bulk by the transmission s
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1 and 3 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 and 3 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1, 2 and 3', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -1284,6 +1285,7 @@ A power system converts energy to electrical form and delivers (transmits) it to
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'generate energy with minimum efficiency.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'store energy with maximum efficiency.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'convert energy with minimum efficiency.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -1344,6 +1346,7 @@ Which of the above statements are correct?
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1 and 2 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 and 3 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1, 2 and 3', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -1384,6 +1387,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Power system reliability', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Computers and microprocessors', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Reserve generating capacity', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -1428,6 +1432,7 @@ $$\text{Demand factor} = \frac{\text{maximum demand}}{\text{connected load}} = \
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2·5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0·5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0·2', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -1484,6 +1489,7 @@ The power factors (0.8 lag and UPF) do not enter the load factor; they are distr
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.75', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.6', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.0', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -1530,6 +1536,7 @@ Both lower the cost per unit.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'The load factor should be low but diversity factor should be high', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'The load factor should be high but diversity factor should be low', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'The load factor and diversity factor should be high', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-economics-tariffs', 'ps1-load-curves-factors');
 END $ppimport$;
@@ -1570,6 +1577,7 @@ Fixed costs (interest, depreciation, taxes) and semi-fixed costs (depending on t
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'operating costs', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'running costs', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'standing costs', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-economics-tariffs');
 END $ppimport$;
@@ -1624,6 +1632,7 @@ the base load power plants are
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '(ii) and (iii)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '(i), (ii) and (iv)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '(i), (iii) and (iv)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-base-peak-plants');
 END $ppimport$;
@@ -1678,6 +1687,7 @@ S: diesel power plants
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'P, R and S only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'P, Q and R only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Q and R only', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-base-peak-plants');
 END $ppimport$;
@@ -1726,6 +1736,7 @@ A peak load plant must start in minutes and have a low capital cost; a high fuel
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Steam power plant', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Hydropower plant', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Gas turbine power plant', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-base-peak-plants', 'ps1-nuclear-gas-diesel');
 END $ppimport$;
@@ -1772,6 +1783,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Super heater', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Feed water pump', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Turbine', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -1816,6 +1828,7 @@ The economiser is placed in the path of the hot **flue gases** after the boiler 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'L.P steam', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Direct heat in the furnace', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Flue gases.', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -1856,6 +1869,7 @@ The flue gases of a coal plant carry fine ash (fly ash). The ESP charges these p
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'To condense steam by electrostatic means', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'To keep the air heaters clean', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'To collect the dust particles from the flue gases', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -1908,6 +1922,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1 and 3 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 and 3 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1, 2 and 3', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -1952,6 +1967,7 @@ Heat given to water in a boiler goes into three jobs: warming the water, boiling
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'In modern utility high-pressure boilers, less than 40% of the total heat absorbed in the generation of steam takes place in the superheaters.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'In modern utility high-pressure boilers, less than 20% of the total heat absorbed in the generation of steam takes place in the superheaters.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'In modern utility high-pressure boilers, less than 30% of the total heat absorbed in the generation of steam takes place in the superheaters.', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -2006,6 +2022,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '48·7 tonnes', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '54·7 tonnes', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '64·3 tonnes', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -2060,6 +2077,7 @@ Which of the above advantages are correct?
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1 and 3 only', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2 and 3 only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1, 2 and 3', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -2104,6 +2122,7 @@ The formula has exactly three variables: the **head** $H$, the **discharge** $Q$
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'type of catchment area, dam and discharge', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'type of draft tube, turbine and efficiency of the system', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'head, discharge and efficiency of the system', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -2152,6 +2171,7 @@ The lake area (6400 km²) is extra data; hydraulic power needs only flow and hea
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4350 MW', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '435 MW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '435 kW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -2192,6 +2212,7 @@ Without pondage, the plant can give only what the river brings at that moment, s
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'operating head is controlled', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'pressure inside the turbine casing remains constant', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'kinetic energy of the running water is fully utilized', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -2237,6 +2258,7 @@ Every clue points to Kaplan: **low head**, head that **varies**, **high degree o
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Francis', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Pelton', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Impeller', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -2283,6 +2305,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Both Statement (I) and Statement (II) are individually true but Statement (II) is NOT the correct explanation of Statement (I)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Statement (I) is true but Statement (II) is false', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Statement (I) is false but Statement (II) is true', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -2323,6 +2346,7 @@ A reaction turbine''s runner is completely filled with water in a closed casing 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Reaction turbine only', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Squirrel cage turbine only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Both impulse turbine and reaction turbine', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -2371,6 +2395,7 @@ The speed $N$ appears directly (not under a root), the power under a square root
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$\dfrac{P_t\sqrt{N}}{H^{1.25}}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$\dfrac{N\sqrt{P_t}}{H^{1.25}}$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$\dfrac{P_t\sqrt{N}}{H^{2.25}}$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -2419,6 +2444,7 @@ The chain reaction is controlled by **control rods** that absorb neutrons. They 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Heavy water', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Boron', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Beryllium', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-nuclear-gas-diesel');
 END $ppimport$;
@@ -2459,6 +2485,7 @@ Nuclear fuel (uranium) is a limited mineral stock; it is low-carbon but **not re
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Wind', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Geothermal', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Nuclear', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -2505,6 +2532,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Solar', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Wind', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Geothermal', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -2545,6 +2573,7 @@ The reverse saturation current $I_0$ of the cell''s p-n junction is produced by 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Diode current', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Leakage current', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Dark current', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -2599,6 +2628,7 @@ $$I_{mp} = \frac{FF\,V_{oc}I_{sc}}{V_{mp}} = \frac{0.8\times28.8\times8}{25.92} 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '7·11 A', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '6·32 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '5·45 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -2655,6 +2685,7 @@ An ideal cell has $R_s = 0$ and $R_{sh} = \infty$.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$I_L$ should be minimum, $R_s$ should be small, $R_{sh}$ should be large', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$I_L$ should be maximum, $R_s$ should be small, $R_{sh}$ should be large', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$I_L$ should be minimum, $R_s$ should be large, $R_{sh}$ should be small', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-ese2021-104', '<svg width="384" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-22.6 -116.6 334.1600000000001 127.70000000000002"><circle cx="0" cy="-43.2" r="18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><polygon points="81,-49.5 72,-36.9 63,-49.5 " style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-0.0 L 0,-25.2 L 0,-25.2 M 0,-61.2 L 0,-61.2 L 0,-86.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 2.0941460265419736e-15,-34.199999999999996 L 0,-43.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0 -50.2 L 2.7 -43.2 L -2.7 -43.2 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 5.290474172316566e-15,-86.39999999999999 L 36,-86.4 L 72,-86.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 72.0,-86.39999999999999 L 72,-49.5 M 81,-36.9 L 63,-36.9 M 72,-36.9 L 72,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 71.99999999999999,-0.0 L 36,-0 L -0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 72.0,-86.39999999999999 L 108,-86.4 L 144,-86.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 144.0,-86.39999999999999 L 144,-61.2 L 153,-58.2 L 135,-52.2 L 153,-46.2 L 135,-40.2 L 153,-34.2 L 135,-28.2 L 144,-25.2 L 144,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 143.99999999999997,-0.0 L 108,-0 L 72,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 144.0,-86.39999999999999 L 169.2,-86.4 L 172.2,-95.4 L 178.2,-77.4 L 184.2,-95.4 L 190.2,-77.4 L 196.2,-95.4 L 202.2,-77.4 L 205.2,-86.4 L 230.4,-86.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 143.99999999999997,-0.0 L 187.2,-0 L 230.4,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="21.6" y="-56.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="21.6" dy="13">IL</tspan></text><text x="84.6" y="-56.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="84.6" dy="13">ID</tspan></text><text x="156.6" y="-56.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="156.6" dy="13">Rsh</tspan></text><text x="187.20000000000002" y="-112.0" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="187.20000000000002" dy="13">Rs</tspan></text><text x="266.40000000000003" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="266.40000000000003" dy="13">V (cell output)</tspan></text><circle cx="72" cy="-86.4" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="144" cy="-86.4" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="144" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="230.4" cy="-86.4" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="236.70000000000002" y="-99.39999999999999" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="236.70000000000002" dy="13">+</tspan></text><circle cx="230.4" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="236.7" y="-13.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="236.7" dy="13">−</tspan></text></svg>
 ', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
   DELETE FROM question_concept WHERE question_id = qid;
@@ -2705,6 +2736,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Both Statement (I) and Statement (II) are individually true but Statement (II) is NOT the correct explanation of Statement (I)', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Statement (I) is true but Statement (II) is false', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Statement (I) is false but Statement (II) is true', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -2749,6 +2781,7 @@ In wind-turbine design, the **tip speed** (the tip speed ratio $\lambda = \omega
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Peripheral speed', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Tip speed', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Blade speed', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -2788,6 +2821,7 @@ Double $V$ → half the current → $(1/2)^2 = 1/4$ of the loss.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Half', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'One quarter', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Unchanged', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -2827,6 +2861,7 @@ Voltage ×2 → volume × $1/4$.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Half', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'One quarter', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Four times', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -2866,6 +2901,7 @@ Three-phase secondary distribution is 415 V line to line (230 V line to neutral 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '415 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '11 kV', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '440 V DC', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -2905,6 +2941,7 @@ Alternators cannot be insulated economically for transmission voltages; a step-u
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '220 kV', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '21 kV', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '415 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -2944,6 +2981,7 @@ Stations in a grid share their spare capacity, so the total reserve needed is sm
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Reduce the total reserve capacity needed', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Increase the fault level only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'None of the above', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -2983,6 +3021,7 @@ Every generator in the grid feeds current into a fault, so fault currents (fault
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'More reserve capacity is needed', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'The fault levels (short-circuit currents) increase', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Hydro and thermal plants cannot be co-ordinated', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -3022,6 +3061,7 @@ Quality is about the shape and steadiness of the supply at each instant (voltage
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Quality', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Stability only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Economy', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -3061,6 +3101,7 @@ $8\times50 + 4\times75 + 2000 = 400 + 300 + 2000 = 2700$ W = 2.7 kW.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2.7 kW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3.0 kW', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.075 kW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -3100,6 +3141,7 @@ $9/12 = 0.75$. (1.33 is the upside-down ratio; a demand factor cannot exceed 1.)
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.33', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.25', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '9', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -3143,6 +3185,7 @@ Energy $= 400\times6 + 100\times18 = 2400 + 1800 = 4200$ kWh. $LF = \dfrac{4200}
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.25', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.625', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.75', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -3182,6 +3225,7 @@ $(20+15+10+5)/25 = 50/25 = 2$.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1.25', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -3221,6 +3265,7 @@ The group''s maximum demand is never more than the sum of the individual maximum
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Equal to 0', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Greater than (or equal to) 1', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Equal to the load factor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -3260,6 +3305,7 @@ Average load $= 219\,000/8760 = 25$ MW (because $25\times8760 = 219\,000$). $LF 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.4', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.5', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.6', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -3299,6 +3345,7 @@ $40/100 = 0.4$. The maximum demand is not needed.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.6', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Cannot be found without the maximum demand', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -3338,6 +3385,7 @@ $0.6\times0.75 = 0.45$.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.45', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1.35', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.15', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -3377,6 +3425,7 @@ $80 - 65 = 15$ MW.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '15 MW', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '145 MW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.81', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -3416,6 +3465,7 @@ It is the same data as the load curve, only rearranged in decreasing order, so t
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'The number of consumers', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'The energy consumed in the period', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'The load factor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -3455,6 +3505,7 @@ $60\,000/(20\times4000) = 60\,000/80\,000 = 0.75$.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.75', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.85', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -3494,6 +3545,7 @@ $(12+10+8)/1.2 = 30/1.2 = 25$ MW.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '30 MW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '25 MW', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '24 MW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -3533,6 +3585,7 @@ It makes the steam dry and hotter (superheated) at the same pressure. More work 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Raise the temperature of steam above its saturation temperature', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Heat the feed water', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Remove ash from the flue gases', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -3572,6 +3625,7 @@ A vacuum at the exhaust lets the steam expand further, so the turbine gives more
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Maintain a low back pressure (vacuum) at the turbine exhaust', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Superheat the steam', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Preheat the combustion air', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -3611,6 +3665,7 @@ After the economiser, the flue gases still have heat; the air preheater passes i
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Electric heaters', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Flue gases leaving the economiser', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Cooling water from the condenser', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -3650,6 +3705,7 @@ $3600/4.186 \approx 860$ kcal. (3600 is the value in kJ, not kcal.)
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4186 kcal', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3600 kcal', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '746 kcal', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -3693,6 +3749,7 @@ $\dfrac{20\,000\times860}{0.2\times4300} = \dfrac{17\,200\,000}{860} = 20\,000$ 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '17.2 tonnes', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '20 tonnes', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '86 tonnes', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -3732,6 +3789,7 @@ $0.35\times0.9 = 0.315$ = 31.5 %.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '38.9 %', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '55 %', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '125 %', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -3771,6 +3829,7 @@ Above it water turns to steam without boiling, so a once-through boiler with no 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '100 bar', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '221 bar', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '500 bar', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -3810,6 +3869,7 @@ The forced draught (FD) fan pushes air in; the induced draught (ID) fan pulls th
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Draws the flue gases out of the furnace and sends them to the chimney', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Cools the condenser', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Supplies pulverised coal', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -3849,6 +3909,7 @@ Joints exposed to flames get overheated and weaken. A good boiler has **no** joi
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Joints placed in the direct flame for easy welding', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Maximum steam with minimum fuel', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Easy access for inspection', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -3892,6 +3953,7 @@ $9.81\times20\times100\times0.9 = 17\,658$ kW ≈ 17.7 MW.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '17.7 MW', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '19.6 MW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '177 MW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -3931,6 +3993,7 @@ When the turbine gates close suddenly, the rising water goes up the surge tank i
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Protect the penstock from water hammer', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Increase the head', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Remove silt from the water', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -3970,6 +4033,7 @@ The draft tube connects the outlet of a reaction turbine (Francis, Kaplan) to th
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Reaction turbines', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Impulse turbines only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Gas turbines', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -4009,6 +4073,7 @@ High head (above about 300 m), small flow → Pelton (impulse) wheel.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Propeller', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Francis', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Pelton', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -4048,6 +4113,7 @@ Francis is a mixed-flow reaction turbine for medium heads (about 30–300 m).
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Medium heads', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Very low heads only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Tidal plants only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -4087,6 +4153,7 @@ Low head ↔ high specific speed. Kaplan (about 300–1000) > Francis > Pelton.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Pelton (multi jet)', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Francis', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Kaplan', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -4126,6 +4193,7 @@ It pumps water up with cheap off-peak power and generates during peak hours.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Peak load plant', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Standby plant for nuclear stations only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'None of the above', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -4165,6 +4233,7 @@ Penstock: reservoir → turbine. Draft tube: turbine → tail race. Spillway: pa
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Tail race', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Penstock', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Spillway', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -4204,6 +4273,7 @@ All the head is turned into velocity in the nozzle; the jet strikes the buckets 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'As a free jet at atmospheric pressure', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Only through a draft tube', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'By the pressure drop across the runner', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -4243,6 +4313,7 @@ Firm capacity is the power available at all times, so it is set by the driest (m
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'The minimum flow of the river', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'The area of the catchment only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'The turbine type', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -4282,6 +4353,7 @@ Moderator slows neutrons (heavy water, graphite, water). Control rods absorb, co
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Slow down fast neutrons', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Carry heat out of the core', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Stop radiation from reaching people', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-nuclear-gas-diesel');
 END $ppimport$;
@@ -4321,6 +4393,7 @@ Pressurised heavy water reactor: natural uranium fuel, heavy water as moderator 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Natural uranium with heavy water as moderator and coolant', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Plutonium with liquid sodium', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Thorium with graphite', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-nuclear-gas-diesel');
 END $ppimport$;
@@ -4360,6 +4433,7 @@ It works with fast neutrons, so no moderator; liquid sodium removes the heat.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Uses graphite as moderator', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Has no moderator and uses liquid sodium as coolant', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Uses boron as fuel', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-nuclear-gas-diesel');
 END $ppimport$;
@@ -4399,6 +4473,7 @@ Compressor → combustion chamber → turbine: the Brayton cycle. Steam plants u
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Brayton (Joule) cycle', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Otto cycle', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Carnot cycle', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-nuclear-gas-diesel');
 END $ppimport$;
@@ -4438,6 +4513,7 @@ The gas turbine''s hot exhaust makes steam for a second turbine, lifting the eff
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '25–30 %', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '50–60 %', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '85–90 %', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-nuclear-gas-diesel');
 END $ppimport$;
@@ -4477,6 +4553,7 @@ Quick start but costly fuel and small size: standby/emergency supply, small peak
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Standby and emergency supply', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Nuclear back-up only', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Pumped storage', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-nuclear-gas-diesel');
 END $ppimport$;
@@ -4516,6 +4593,7 @@ Thorium-232 absorbs a neutron and becomes U-233, which is fissile. That is the b
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Control rod material', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Fertile material that is converted into fissile U-233', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Coolant', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-nuclear-gas-diesel');
 END $ppimport$;
@@ -4555,6 +4633,7 @@ It runs only a few hours, so its capital cost must be low and it must start fast
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Low capital cost and quick starting', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Very slow starting', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Very high load factor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-base-peak-plants');
 END $ppimport$;
@@ -4594,6 +4673,7 @@ Spinning reserve = running, synchronised, partly loaded units.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Hot reserve', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Spinning reserve', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Firm capacity', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-base-peak-plants');
 END $ppimport$;
@@ -4633,6 +4713,7 @@ It produces energy all day at a high load factor, so its fuel cost per unit must
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Quick starting', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Low capital cost', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Small size', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-base-peak-plants');
 END $ppimport$;
@@ -4672,6 +4753,7 @@ $2^3 = 8$.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4 times', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '8 times', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '16 times', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -4711,6 +4793,7 @@ $2^2 = 4$.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '4 times', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '8 times', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Unchanged', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -4746,6 +4829,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '50 %', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '59.3 %', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '100 %', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -4785,6 +4869,7 @@ $0.5\times1.2\times50\times10^3 = 0.6\times50\times1000 = 30\,000$ W = 30 kW.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '30 kW', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '60 kW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '300 kW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -4824,6 +4909,7 @@ About 0.5–0.6 V per silicon cell; that is why modules put 36–72 cells in ser
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.6 V', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1.5 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '12 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -4863,6 +4949,7 @@ $V_{oc} = 60\times0.5 = 30$ V; $I_{sc} = 8$ A.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.5 V and 480 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '30 V and 480 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '60 V and 8 A', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -4902,6 +4989,7 @@ $80/(20\times5) = 80/100 = 0.8$. (A fill factor can never exceed 1.)
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.75', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.8', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1.25', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -4941,6 +5029,7 @@ The MPPT controller adjusts the operating voltage so that $V\times I$ stays at i
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Keep the panel working at its maximum power point', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Protect the panel from lightning', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Store energy in batteries', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -4980,6 +5069,7 @@ Tides follow the moon''s motion, so tide tables can be made years ahead. Wind an
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Solar', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Tidal', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'None of the above', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -5019,6 +5109,7 @@ $(60 - 6)/30 = 54/30 = 1.8$ crore per year.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '₹1.8 crore', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '₹2.2 crore', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '₹0.2 crore', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-economics-tariffs');
 END $ppimport$;
@@ -5058,6 +5149,7 @@ $300\times20 + 4\times3000 = 6000 + 12\,000 = ₹18\,000$.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '₹18 000', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '₹6 000', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '₹13 200', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-economics-tariffs');
 END $ppimport$;
@@ -5097,6 +5189,7 @@ $90/0.75 = 120$ kVA; $90/0.9 = 100$ kVA.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '90 kVA to 81 kVA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '120 kVA to 90 kVA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '100 kVA to 90 kVA', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-economics-tariffs');
 END $ppimport$;
@@ -5136,6 +5229,7 @@ $1.50\times\dfrac{0.4}{0.6} = 1.50\times\dfrac23 = ₹1.00$.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '₹1.50', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '₹1.00', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '₹0.60', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-economics-tariffs');
 END $ppimport$;
@@ -5175,6 +5269,7 @@ Fuel cost depends on the energy generated. Interest, depreciation and insurance 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Depreciation', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Cost of fuel', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Insurance', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-economics-tariffs');
 END $ppimport$;
@@ -5214,6 +5309,7 @@ Higher rates in peak hours and lower rates off-peak move flexible loads to off-p
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Shift consumption away from peak hours and improve the load factor', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Improve the power factor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Charge only for the maximum demand', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-economics-tariffs');
 END $ppimport$;
@@ -5249,6 +5345,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Block-rate tariff', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Two-part tariff', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Power factor tariff', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-economics-tariffs');
 END $ppimport$;
@@ -5288,6 +5385,7 @@ The power is the same, so the fraction lost also falls in the ratio $(200/400)^2
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Becomes one half', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Is unchanged', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Doubles', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -5327,6 +5425,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '11 kV', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '400 kV', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '415 V', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -5366,6 +5465,7 @@ The huge rotating mass of the grid and the governors of many machines share the 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Only a small frequency change, because many generators share the correction', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'No change at all in frequency', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'A blackout of the whole grid', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-power-system-structure');
 END $ppimport$;
@@ -5405,6 +5505,7 @@ $(6+10+4)/16 = 20/16 = 1.25$.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.25', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '1.6', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '2.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -5444,6 +5545,7 @@ Average load $= 0.5\times40 = 20$ MW. Energy $= 20\times8760 = 175\,200$ MWh. Ca
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '219 000 MWh and 0.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '175 200 MWh and 0.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '438 000 MWh and 0.4', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -5483,6 +5585,7 @@ $90/120 = 0.75$. (30 MW is the reserve capacity.)
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.33', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.25', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '30 MW', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -5518,6 +5621,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Arranging the loads in descending order of magnitude', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Taking the time integral of the load', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Dividing the loads by the maximum demand', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-load-curves-factors');
 END $ppimport$;
@@ -5557,6 +5661,7 @@ Steam leaving the high-pressure turbine goes back to the boiler to be heated aga
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Heat the steam again after it has partly expanded in the turbine', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Heat the combustion air', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Heat the coal before pulverising', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -5596,6 +5701,7 @@ $860/0.25 = 3440$ kcal/kWh.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '2150 kcal/kWh', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3440 kcal/kWh', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '4000 kcal/kWh', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -5635,6 +5741,7 @@ There is no water–steam mixture to separate, so the boiler is once-through.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Above the critical pressure water turns into steam without a separate boiling stage', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'It uses no feed pump', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'It burns gas instead of coal', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -5670,6 +5777,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Cool the water that has taken heat from the condenser', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Cool the alternator windings', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Cool the coal mills', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-thermal-plants');
 END $ppimport$;
@@ -5709,6 +5817,7 @@ $Q = \dfrac{10\,000\ \text{kW}}{10\times50\times0.8} = \dfrac{10\,000}{400} = 25
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '25 m³/s', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '250 m³/s', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '12.5 m³/s', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -5748,6 +5857,7 @@ Suddenly stopping a long column of moving water creates a pressure wave; the sur
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'The reservoir level rises slowly', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'The draft tube is too long', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'The plant runs at constant load', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -5783,6 +5893,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'A radial-flow reaction turbine for medium heads', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'An axial-flow reaction turbine with adjustable runner blades for low heads', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'A gas turbine', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -5822,6 +5933,7 @@ Pondage is short-term storage behind a weir: water saved during low load is used
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Store water for a few hours or days and help meet the daily peak', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Pump water up during off-peak hours', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Work without any water flow', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-hydro-plants');
 END $ppimport$;
@@ -5861,6 +5973,7 @@ Graphite slows neutrons (moderator). Cadmium, boron and hafnium absorb neutrons 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Boron', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Graphite', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Hafnium', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-nuclear-gas-diesel');
 END $ppimport$;
@@ -5896,6 +6009,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'High capital cost and low fuel cost, and cannot change output quickly', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Quick starting ability', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Very small unit size', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-nuclear-gas-diesel');
 END $ppimport$;
@@ -5935,6 +6049,7 @@ Its fuel is costly and its efficiency low, but it starts in minutes and is cheap
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Starts quickly and has a low capital cost', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Uses the cheapest fuel', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Needs a large cooling water supply', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-nuclear-gas-diesel');
 END $ppimport$;
@@ -5974,6 +6089,7 @@ Run-of-river and nuclear are base load; gas turbine and pumped storage are peak 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Gas turbine — base load', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Pumped storage — peak load', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Nuclear — peak load', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-base-peak-plants');
 END $ppimport$;
@@ -6013,6 +6129,7 @@ $1.1^3 = 1.331$: about 33 % more.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '21 %', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '33 %', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '50 %', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -6048,6 +6165,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Speed of the blade tip to the wind speed', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Rated speed to cut-in speed', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Blade length to tower height', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -6087,6 +6205,7 @@ $V_{oc} = 36\times0.6 = 21.6$ V; $P_{max} = 0.75\times21.6\times4 = 0.75\times86
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '86.4 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '43.2 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '1.8 W', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -6122,6 +6241,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Output current', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Fill factor', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Efficiency of each cell', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-renewables');
 END $ppimport$;
@@ -6161,6 +6281,7 @@ Energy $= 50\,000\times0.5\times8760 = 25\,000\times8760 = 21.9\times10^7$ kWh. 
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '₹1.00', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '₹2.00', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '₹4.00', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-economics-tariffs');
 END $ppimport$;
@@ -6200,6 +6321,7 @@ For the same kW, a higher power factor means fewer kVA, so a smaller bill.
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'Improve their power factor', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'Increase their connected load', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'Use more energy in peak hours', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-economics-tariffs');
 END $ppimport$;
@@ -6235,6 +6357,7 @@ BEGIN
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', 'A smaller yearly amount, because the fund earns compound interest', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', 'The same yearly amount', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
   INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', 'No yearly amount', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
   DELETE FROM question_concept WHERE question_id = qid;
   INSERT INTO question_concept(question_id, concept_section_id) SELECT qid, cs.id FROM concept_section cs JOIN topic t ON t.id = cs.topic_id WHERE t.subject_id = subj AND cs.slug = 'main' AND t.slug IN ('ps1-economics-tariffs');
 END $ppimport$;

@@ -3,6 +3,7 @@ package com.rajdeep.powerprep.study;
 import com.rajdeep.powerprep.attempt.AttemptMode;
 import com.rajdeep.powerprep.attempt.AttemptRecorder;
 import com.rajdeep.powerprep.attempt.NewAttempt;
+import com.rajdeep.powerprep.attempt.SelfMark;
 import com.rajdeep.powerprep.common.error.NotFoundException;
 import com.rajdeep.powerprep.question.QuestionBank;
 import com.rajdeep.powerprep.question.grading.AnswerGrading;
@@ -28,7 +29,7 @@ public class QuestionAttemptService {
 
     @Transactional
     public AttemptResult attempt(long userId, int questionId, List<String> chosen, BigDecimal natValue,
-                                 Integer timeMs, AttemptMode mode) {
+                                 Integer timeMs, AttemptMode mode, SelfMark selfMark) {
         AnswerKey key = bank.answerKeyForAttempt(questionId, userId)
             .orElseThrow(() -> new NotFoundException("question not found"));
         GivenAnswer answer = GivenAnswer.of(chosen, natValue);
@@ -37,7 +38,7 @@ public class QuestionAttemptService {
             case NAT -> null;
             case MCQ, MSQ -> answer.chosenLabels();
         };
-        long attemptId = recorder.record(new NewAttempt(userId, questionId, labels, natValue, correct, timeMs, mode, null));
+        long attemptId = recorder.record(new NewAttempt(userId, questionId, labels, natValue, correct, timeMs, mode, null, selfMark));
         return new AttemptResult(attemptId, correct, bank.review(questionId));
     }
 }

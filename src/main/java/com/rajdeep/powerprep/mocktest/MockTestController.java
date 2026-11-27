@@ -22,9 +22,17 @@ public class MockTestController {
         return tests.list(subject, user);
     }
 
+    /** mode: TEST (default) or PREPARE; style: APSC (default) or GATE. */
     @PostMapping("/tests/{id}/start")
-    public StartedTest start(@PathVariable int id, CurrentUser user) {
-        return tests.start(user.requireId(), id);
+    public StartedTest start(@PathVariable int id, @RequestParam(required = false) String mode,
+                             @RequestParam(required = false) String style, CurrentUser user) {
+        return tests.start(user.requireId(), id, TestMode.parseOrTest(mode), TestStyle.parseOrApsc(style));
+    }
+
+    /** PREPARE mode: one answer, its solution comes back at once. */
+    @PostMapping("/test-attempts/{id}/answers")
+    public PreparedAnswer answer(@PathVariable long id, @RequestBody MockTestService.Answer answer, CurrentUser user) {
+        return tests.answer(user.requireId(), id, answer);
     }
 
     public record SubmitRequest(List<MockTestService.Answer> answers, Long timeMs) {}

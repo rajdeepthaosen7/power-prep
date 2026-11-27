@@ -17,6 +17,7 @@ public record TestList(List<Chapter> chapters, List<Test> subjectTests) {
         }
     }
 
+    /** mode: TEST or PREPARE; style: APSC or GATE. */
     public record Attempt(long id, int testId, String status, Instant startedAt, Instant submittedAt, BigDecimal score,
-                          BigDecimal maxScore, Integer nCorrect, Integer nWrong, Integer nSkipped) {}
+                          BigDecimal maxScore, Integer nCorrect, Integer nWrong, Integer nSkipped, String mode, String style) {}
 }

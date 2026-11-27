@@ -18,11 +18,12 @@ class JdbcAttemptRepository implements AttemptRepository {
     @Override
     public long insert(NewAttempt a) {
         return jdbc.sql("""
-                INSERT INTO attempt(user_id, question_id, chosen_labels, nat_value, is_correct, time_ms, mode, test_attempt_id)
-                VALUES (:uid, :qid, :chosen, :nat, :correct, :timeMs, :mode, :testAttemptId) RETURNING id""")
+                INSERT INTO attempt(user_id, question_id, chosen_labels, nat_value, is_correct, time_ms, mode, test_attempt_id, self_mark)
+                VALUES (:uid, :qid, :chosen, :nat, :correct, :timeMs, :mode, :testAttemptId, :selfMark) RETURNING id""")
             .param("uid", a.userId()).param("qid", a.questionId()).param("chosen", a.chosenLabels())
             .param("nat", a.natValue()).param("correct", a.correct()).param("timeMs", a.timeMs())
             .param("mode", a.mode().name()).param("testAttemptId", a.testAttemptId())
+            .param("selfMark", a.selfMark() == null ? null : a.selfMark().name())
             .query(Long.class).single();
     }
 

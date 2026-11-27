@@ -49,35 +49,38 @@ class JdbcMockTestRepository implements MockTestRepository {
     public List<TestList.Attempt> attempts(long userId, String subjectSlug) {
         return jdbc.sql("""
                 SELECT ta.id, ta.test_id, ta.status, ta.started_at, ta.submitted_at, ta.score, ta.max_score,
-                       ta.n_correct, ta.n_wrong, ta.n_unattempted AS n_skipped
+                       ta.n_correct, ta.n_wrong, ta.n_unattempted AS n_skipped, ta.mode, ta.style
                 FROM test_attempt ta JOIN test t ON t.id = ta.test_id JOIN subject s ON s.id = t.subject_id
                 WHERE ta.user_id = :uid AND s.slug = :slug ORDER BY ta.started_at DESC""")
             .param("uid", userId).param("slug", subjectSlug).query(Rows.of(TestList.Attempt.class)).list();
     }
 
     @Override
-    public Optional<TestMeta> publishedTest(int testId) {
+    public Optional<TestMeta> publishedTest(int testId, long userId) {
         return jdbc.sql("""
-                SELECT t.id, t.code, t.title, t.variant, t.description, t.duration_min, t.marks_correct, t.marks_wrong,
+                SELECT t.id, t.code, t.title, t.kind, t.variant, t.description, t.duration_min, t.marks_correct, t.marks_wrong,
                        c.slug AS chapter_slug, c.name AS chapter_name, s.slug AS subject_slug, s.name AS subject_name,
                        (SELECT count(*) FROM test_question tq WHERE tq.test_id = t.id) AS questions
                 FROM test t LEFT JOIN chapter c ON c.id = t.chapter_id LEFT JOIN subject s ON s.id = t.subject_id
-                WHERE t.id = :id AND t.status = 'PUBLISHED'""")
-            .param("id", testId).query(Rows.of(TestMeta.class)).optional();
+                WHERE t.id = :id AND t.status = 'PUBLISHED' AND (t.owner_user_id IS NULL OR t.owner_user_id = :uid)""")
+            .param("id", testId).param("uid", userId).query(Rows.of(TestMeta.class)).optional();
     }
 
     @Override
-    public Optional<Long> openAttempt(long userId, int testId) {
+    public Optional<Long> openAttempt(long userId, int testId, TestMode mode, TestStyle style) {
         return jdbc.sql("""
                 SELECT id FROM test_attempt WHERE user_id = :uid AND test_id = :tid AND status = 'IN_PROGRESS'
+                  AND mode = :mode AND style = :style
                 ORDER BY started_at DESC LIMIT 1""")
-            .param("uid", userId).param("tid", testId).query(Long.class).optional();
+            .param("uid", userId).param("tid", testId).param("mode", mode.name()).param("style", style.name())
+            .query(Long.class).optional();
     }
 
     @Override
-    public long createAttempt(long userId, int testId) {
-        return jdbc.sql("INSERT INTO test_attempt(user_id, test_id) VALUES (:uid, :tid) RETURNING id")
-            .param("uid", userId).param("tid", testId).query(Long.class).single();
+    public long createAttempt(long userId, int testId, TestMode mode, TestStyle style) {
+        return jdbc.sql("INSERT INTO test_attempt(user_id, test_id, mode, style) VALUES (:uid, :tid, :mode, :style) RETURNING id")
+            .param("uid", userId).param("tid", testId).param("mode", mode.name()).param("style", style.name())
+            .query(Long.class).single();
     }
 
     @Override
@@ -89,7 +92,7 @@ class JdbcMockTestRepository implements MockTestRepository {
     @Override
     public List<StartedTest.QuestionRow> questionsOf(int testId) {
         return jdbc.sql("""
-                SELECT q.id, tq.position, q.stem_md
+                SELECT q.id, tq.position, q.stem_md, q.answer_type, q.nat_min, q.nat_max, tq.marks
                 FROM test_question tq JOIN question q ON q.id = tq.question_id
                 WHERE tq.test_id = :id ORDER BY tq.position""")
             .param("id", testId).query(Rows.of(StartedTest.QuestionRow.class)).list();
@@ -108,6 +111,23 @@ class JdbcMockTestRepository implements MockTestRepository {
                 JOIN test_question tq ON tq.question_id = o.question_id WHERE tq.test_id = :id ORDER BY o.label""")
             .param("id", testId).query(Rows.of(OptionRow.class)).list().stream()
             .collect(Collectors.groupingBy(OptionRow::questionId, LinkedHashMap::new, Collectors.toList()));
+    }
+
+    @Override
+    public Map<Integer, List<OptionRow>> mcqOptionsOf(int testId) {
+        return jdbc.sql("""
+                SELECT o.question_id, o.label, o.body_md, o.is_correct AS correct FROM question_mcq_option o
+                JOIN test_question tq ON tq.question_id = o.question_id WHERE tq.test_id = :id ORDER BY o.label""")
+            .param("id", testId).query(Rows.of(OptionRow.class)).list().stream()
+            .collect(Collectors.groupingBy(OptionRow::questionId, LinkedHashMap::new, Collectors.toList()));
+    }
+
+    @Override
+    public List<AnsweredRow> answeredIn(long attemptId) {
+        return jdbc.sql("""
+                SELECT question_id, chosen_labels, nat_value, is_correct AS correct, self_mark FROM attempt
+                WHERE test_attempt_id = :aid ORDER BY attempted_at, id""")
+            .param("aid", attemptId).query(Rows.of(AnsweredRow.class)).list();
     }
 
     @Override
@@ -134,7 +154,8 @@ class JdbcMockTestRepository implements MockTestRepository {
         return jdbc.sql("""
                 SELECT q.id, tq.position, q.stem_md, q.solution_md, q.answer_status, q.origin, q.difficulty,
                        t.name AS topic, t.slug AS topic_slug, t.sort_order AS topic_sort,
-                       a.chosen_labels AS chosen, a.is_correct AS correct, a.time_ms
+                       a.chosen_labels AS chosen, a.is_correct AS correct, a.time_ms,
+                       q.answer_type, q.nat_min, q.nat_max, a.nat_value, a.self_mark, tq.marks
                 FROM test_question tq JOIN question q ON q.id = tq.question_id JOIN topic t ON t.id = q.topic_id
                 LEFT JOIN attempt a ON a.test_attempt_id = :aid AND a.question_id = q.id
                 WHERE tq.test_id = :tid ORDER BY tq.position""")

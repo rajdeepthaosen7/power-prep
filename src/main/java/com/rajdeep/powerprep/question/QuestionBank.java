@@ -15,6 +15,12 @@ public interface QuestionBank {
     /** Options of the given questions, by question id, in label order. */
     Map<Integer, List<OptionRow>> options(Collection<Integer> questionIds);
 
+    /** Single-answer MCQ versions of MSQ questions ("1 and 3 only"), by question id, in label order. */
+    Map<Integer, List<OptionRow>> mcqOptions(Collection<Integer> questionIds);
+
+    /** Where each question is taught (subject, chapter, topic), by question id. */
+    Map<Integer, TopicLink> topicLinks(Collection<Integer> questionIds);
+
     /** Sources of the given questions, by question id, primary first. */
     Map<Integer, List<SourceView>> sources(Collection<Integer> questionIds);
 

@@ -59,6 +59,10 @@ Plan and progress: `docs/pyq-plan.md`. Every GATE EE question 1992-2026 goes in 
 under its topic (Study) and in year / subject / chapter tests (Tests). Prepare and test mode; APSC style turns NAT and MSQ into
 single-answer MCQ. Self-mark (knew / guessed / didn't know) feeds the retest list (Mistakes). Papers are loaded one at a time,
 most APSC 2023 copies first. Second source: GATE EC (Signals, Control, Analog & Digital, Maths only).
+Backend (phase 1) is in: package `pyq` (papers, sets, start), `mocktest` modes/styles (`TestMode`, `TestStyle`, `AskedQuestion`,
+`TestScore.gate`), `attempt.SelfMark`, `mistakes.RetestRule`; API list in `docs/pyq-plan.md`. A paper is "ready" only as far as
+its questions are written (status READY with a stem); the GATE 2007-2026 skeleton rows (topic + marks, no text) are filled
+by writing the questions in chapter YAML with their GATE `sources`.
 
 ## Portal features (Nov 2026)
 - Today (`/today`, home): next chapter per track, revisions due, open mistakes, mixed mocks below 85 %. API `/api/today`.

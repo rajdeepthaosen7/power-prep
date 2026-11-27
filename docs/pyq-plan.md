@@ -62,8 +62,27 @@ Tick each paper when it is complete in the portal.
 
 | Phase | Status |
 |---|---|
-| 1. Backend | not started |
+| 1. Backend | done 27 Nov 2026 (API below) |
 | 2. UI mockup, then UI | not started |
 | 3. GATE EE papers | 0 of about 45 papers (counting sets) |
 | 4. GATE EC (4 subjects) | not started |
 | 5. JE/AE Machines set | not started |
+
+## API (phase 1, 27 Nov 2026)
+
+- `GET /api/pyq/papers?exam=GATE`: every paper (2014-2016 split by set, 2017 by source), questions known vs written
+  (`ready`), and the user's attempts.
+- `GET /api/pyq/sets?exam=GATE`: written / known PYQs per subject and chapter, with the user's set attempts.
+- `POST /api/pyq/start` `{paper}` or `{subject, chapter?, yearFrom?, yearTo?}`, plus `mode` (TEST / PREPARE) and
+  `style` (APSC / GATE): makes the user's own test (kind PYQ_SET, a snapshot of the written questions) and starts it.
+- `POST /api/tests/{id}/start?mode=&style=`: the same for chapter mocks (default TEST + APSC, as before).
+- `POST /api/test-attempts/{id}/answers` (PREPARE only): one answer `{questionId, chosen | chosenLabels | natValue,
+  selfMark, timeMs}`; returns the solution, the right answer as asked, sources and the topic link at once.
+- `POST /api/test-attempts/{id}/submit`: TEST mode grades the answers sent; PREPARE mode adds up the saved ones.
+- `selfMark` (KNEW / GUESSED / DONT_KNOW) is also taken by `POST /api/questions/{id}/attempts` (Study).
+- Mistakes log rows carry `lastSelfMark` and `retest` (RetestRule). The Mistakes screen still uses `lastCorrect`
+  until the phase 2 UI switches it to `retest`.
+- Marking: APSC +1 / -0.25, 1.2 min per question. GATE: own marks, wrong MCQ -1/3 of its marks, no negative for MSQ / NAT,
+  1.8 min per mark. Old GATE years had other negative rules; the portal uses the current one for all years.
+- Content: an MSQ can have `mcq_options` (4, one right, A-D) in its YAML for APSC style (`question_mcq_option`).
+

@@ -1,6 +1,7 @@
 package com.rajdeep.powerprep.study;
 
 import com.rajdeep.powerprep.attempt.AttemptMode;
+import com.rajdeep.powerprep.attempt.SelfMark;
 import com.rajdeep.powerprep.common.web.CurrentUser;
 import java.math.BigDecimal;
 import java.util.List;
@@ -32,11 +33,11 @@ public class StudyController {
         return study.chapter(slug, chapter, user);
     }
 
-    public record AttemptRequest(List<String> chosen, BigDecimal natValue, Integer timeMs, String mode) {}
+    public record AttemptRequest(List<String> chosen, BigDecimal natValue, Integer timeMs, String mode, String selfMark) {}
 
     @PostMapping("/questions/{id}/attempts")
     public AttemptResult attempt(@PathVariable int id, @RequestBody AttemptRequest req, CurrentUser user) {
         return attempts.attempt(user.requireId(), id, req.chosen(), req.natValue(), req.timeMs(),
-            AttemptMode.parseOrStudy(req.mode()));
+            AttemptMode.parseOrStudy(req.mode()), SelfMark.parseOrNull(req.selfMark()));
     }
 }

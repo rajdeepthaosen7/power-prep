@@ -52,6 +52,34 @@ class JdbcQuestionBank implements QuestionBank {
     }
 
     @Override
+    public Map<Integer, List<OptionRow>> mcqOptions(Collection<Integer> ids) {
+        if (ids.isEmpty()) return Map.of();
+        return jdbc.sql("""
+                SELECT question_id, label, body_md, is_correct AS correct FROM question_mcq_option
+                WHERE question_id IN (:ids) ORDER BY label""")
+            .param("ids", ids).query(Rows.of(OptionRow.class)).list().stream()
+            .collect(Collectors.groupingBy(OptionRow::questionId, LinkedHashMap::new, Collectors.toList()));
+    }
+
+    @Override
+    public Map<Integer, TopicLink> topicLinks(Collection<Integer> ids) {
+        record Row(int questionId, String subjectSlug, String chapterSlug, String chapterName, String topicSlug,
+                   String topicName, boolean hasNotes) {}
+        Map<Integer, TopicLink> out = new LinkedHashMap<>();
+        if (ids.isEmpty()) return out;
+        jdbc.sql("""
+                SELECT q.id AS question_id, s.slug AS subject_slug, c.slug AS chapter_slug, c.name AS chapter_name,
+                       t.slug AS topic_slug, t.name AS topic_name,
+                       EXISTS (SELECT 1 FROM concept_section cs WHERE cs.topic_id = t.id AND cs.status = 'PUBLISHED') AS has_notes
+                FROM question q JOIN topic t ON t.id = q.topic_id JOIN subject s ON s.id = q.subject_id
+                LEFT JOIN chapter c ON c.id = t.chapter_id WHERE q.id IN (:ids)""")
+            .param("ids", ids).query(Rows.of(Row.class)).list()
+            .forEach(r -> out.put(r.questionId(), new TopicLink(r.subjectSlug(), r.chapterSlug(), r.chapterName(),
+                r.topicSlug(), r.topicName(), r.hasNotes() && r.chapterSlug() != null)));
+        return out;
+    }
+
+    @Override
     public Map<Integer, List<SourceView>> sources(Collection<Integer> ids) {
         if (ids.isEmpty()) return Map.of();
         return jdbc.sql("""

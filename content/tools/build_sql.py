@@ -150,6 +150,12 @@ def main(subject):
             assert typ == "MCQ" and len(opts) == 4, "practice questions are 4-option MCQs (APSC format): " + key
         if typ == "NAT" and opts:
             assert len(opts) == 4 and sum(bool(o.get("correct")) for o in opts) == 1, "NAT test options need 4 with one correct: " + key
+        # MSQ in APSC style: a single-answer MCQ version with combination options ("1 and 3 only"), table question_mcq_option
+        mcq_opts = it.get("mcq_options") or []
+        if mcq_opts:
+            assert typ == "MSQ", "mcq_options are only for MSQ questions: " + key
+            assert len(mcq_opts) == 4 and sum(bool(o.get("correct")) for o in mcq_opts) == 1, "MSQ mcq_options need 4 with one correct: " + key
+            assert [o["label"] for o in mcq_opts] == ["A", "B", "C", "D"], "MSQ mcq_options are labelled A-D: " + key
         stem, sol = it["stem"].strip() + "\n", it["solution"].strip() + "\n"
         pairs = ", ".join(f"({q(s['code'])}, {q(str(s['q']))})" for s in it["sources"]) or "(NULL, NULL)"
         blk = [f"DO {TAG}", "DECLARE qid int; subj int; tid int;", "BEGIN",
@@ -186,8 +192,12 @@ def main(subject):
         for o in opts:
             blk.append(f"  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, {q(o['label'])}, {q(str(o['md']))}, "
                        f"{q(bool(o.get('correct')))}) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;")
+        blk.append("  DELETE FROM question_mcq_option WHERE question_id = qid;")
+        for o in mcq_opts:
+            blk.append(f"  INSERT INTO question_mcq_option(question_id, label, body_md, is_correct) VALUES (qid, {q(o['label'])}, "
+                       f"{q(str(o['md']))}, {q(bool(o.get('correct')))});")
         fkeys = []
-        for md in [stem, sol] + [str(o["md"]) for o in opts]:
+        for md in [stem, sol] + [str(o["md"]) for o in opts] + [str(o["md"]) for o in mcq_opts]:
             for fk in figure_keys(md):
                 if fk not in fkeys:
                     fkeys.append(fk)
