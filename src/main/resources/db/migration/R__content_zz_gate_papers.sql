@@ -2088,3 +2088,466 @@ rule that out.
   INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s1-q36', '<svg width="583" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-130.282 -140.0 507.33799999999997 176.3"><path d="M 0.0,-0.0 L 72,-0 L 72,-108 L 0,-108 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-90.0 L -18,-90" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-54.0 L -18,-54" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-60.300000000000004 L 12.6,-54 L 0,-47.7" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 0.0,-18.0 L -18,-18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 72.0,-90.0 L 90,-90" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 72.0,-18.0 L 90,-18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 237.6,-0.0 L 309.6,-0 L 309.6,-108 L 237.6,-108 L 237.6,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 237.6,-90.0 L 219.6,-90" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 237.6,-54.0 L 219.6,-54" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 237.6,-60.300000000000004 L 250.2,-54 L 237.6,-47.7" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 237.6,-18.0 L 219.6,-18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 309.59999999999997,-90.0 L 327.6,-90" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 309.59999999999997,-18.0 L 327.6,-18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 90.0,-90.0 L 99,-90 L 108,-90" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 327.59999999999997,-90.0 L 338.4,-90 L 349.2,-90" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -18.0,-90.0 L -32.4,-90 L -46.8,-90" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -46.800000000000004,-90.0 L -46.8,-104.4 L -46.8,-118.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -46.800000000000004,-90.0 L -46.8,-54 L -46.8,-18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -46.80000000000002,-18.0 L -32.4,-18 L -18,-18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 90.0,-18.0 L 120.6,-18 L 151.2,-18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 151.20000000000002,-18.0 L 151.2,-54 L 151.2,-90" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 151.20000000000002,-90.0 L 185.4,-90 L 219.6,-90" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 151.20000000000002,-90.0 L 151.2,-54 L 151.2,-18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 151.20000000000002,-18.0 L 185.4,-18 L 219.6,-18" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -18.0,-54.0 L -43.2,-54 L -68.4,-54" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -68.39999999999999,-54.00000000000001 L -68.4,-14.4 L -68.4,25.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -68.4,25.2 L -82.8,25.2 L -97.2,25.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -68.4,25.2 L 57.6,25.2 L 183.6,25.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 183.6,25.2 L 183.6,-14.4 L 183.6,-54" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 183.6,-54.00000000000001 L 201.6,-54 L 219.6,-54" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="5.3999999999999995" y="-104.0" dominant-baseline="central" fill="currentColor" font-size="14" font-family="sans" text-anchor="start"><tspan x="5.3999999999999995" dy="14">J</tspan></text><text x="5.3999999999999995" y="-32.0" dominant-baseline="central" fill="currentColor" font-size="14" font-family="sans" text-anchor="start"><tspan x="5.3999999999999995" dy="14">K</tspan></text><text x="66.60000000000001" y="-104.0" dominant-baseline="central" fill="currentColor" font-size="14" font-family="sans" text-anchor="end"><tspan x="66.60000000000001" dy="14">Q</tspan></text><text x="66.60000000000001" y="-32.0" dominant-baseline="central" fill="currentColor" font-size="14" font-family="sans" text-anchor="end"><tspan x="66.60000000000001" dy="14">Q''</tspan></text><text x="39.6" y="-70.6" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="39.6" dy="13">A</tspan></text><text x="243.0" y="-104.0" dominant-baseline="central" fill="currentColor" font-size="14" font-family="sans" text-anchor="start"><tspan x="243.0" dy="14">J</tspan></text><text x="243.0" y="-32.0" dominant-baseline="central" fill="currentColor" font-size="14" font-family="sans" text-anchor="start"><tspan x="243.0" dy="14">K</tspan></text><text x="304.2" y="-104.0" dominant-baseline="central" fill="currentColor" font-size="14" font-family="sans" text-anchor="end"><tspan x="304.2" dy="14">Q</tspan></text><text x="304.2" y="-32.0" dominant-baseline="central" fill="currentColor" font-size="14" font-family="sans" text-anchor="end"><tspan x="304.2" dy="14">Q''</tspan></text><text x="277.2" y="-70.6" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="277.2" dy="13">B</tspan></text><text x="99.0" y="-106.60000000000001" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="99.0" dy="13">QA</tspan></text><text x="352.79999999999995" y="-103.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="352.79999999999995" dy="13">QB</tspan></text><text x="-46.800000000000004" y="-135.39999999999998" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-46.800000000000004" dy="13">5 V</tspan></text><text x="-100.80000000000001" y="12.199999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-100.80000000000001" dy="13">CLK</tspan></text><circle cx="-46.8" cy="-90" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="151.2" cy="-90" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="-68.4" cy="25.2" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
 ', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
 END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q37';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q37')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q37: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A 2-bit flash Analog to Digital Converter (ADC) is given below. The input is $0 \le V{IN} \le 3$ Volts. The expression for the LSB of the output $B0$ as a...', 'A 2-bit flash Analog to Digital Converter (ADC) is given below. The input is $0 \le V_{IN} \le 3$ Volts. The expression for the LSB of
+the output $B_0$ as a Boolean function of $X_2$, $X_1$, and $X_0$ is
+
+![Flash ADC: 3 V across 100, 200, 200, 100 ohm in series; the three taps go to three comparators whose other inputs are VIN; outputs X2, X1, X0 feed a digital circuit giving B1 B0](fig:q-gate2016-s1-q37)
+', '**Idea used:** a flash ADC''s comparators give a "thermometer code": each output is 1 when $V_{IN}$ is above that comparator''s tap
+voltage. The digital circuit turns the thermometer code into binary.
+
+1. Tap voltages (total resistance $= 100 + 200 + 200 + 100 = 600\ \Omega$, current $= 3/600 = 5$ mA):
+   - $X_0$ tap: $5 \text{ mA} \times 100\ \Omega = 0.5$ V
+   - $X_1$ tap: $5 \text{ mA} \times 300\ \Omega = 1.5$ V
+   - $X_2$ tap: $5 \text{ mA} \times 500\ \Omega = 2.5$ V
+2. Possible outputs and the binary code they mean:
+
+   | $V_{IN}$ | $X_2X_1X_0$ | $B_1B_0$ |
+   |---|---|---|
+   | below 0.5 V | 000 | 00 |
+   | 0.5 to 1.5 V | 001 | 01 |
+   | 1.5 to 2.5 V | 011 | 10 |
+   | above 2.5 V | 111 | 11 |
+3. $B_0 = 1$ for 001 and 111. In both, $X_0 = 1$ and $X_2 = X_1$ (both 0 or both 1). "$X_2$ equals $X_1$" is XNOR:
+   $\overline{X_2 \oplus X_1}$. So $B_0 = X_0\,\overline{X_2 \oplus X_1}$.
+
+**Check:** 011 gives $X_0 = 1$ but $X_2 \ne X_1$, so $B_0 = 0$. ✔
+
+**Without a calculator:** $B_0$ must be 0 when $V_{IN}$ is lowest (000), so the expression needs $X_0$, not $\overline{X_0}$:
+out go (B) and (D). At full scale (111) $B_0 = 1$, but $X_2 \oplus X_1 = 0$ there, so (C) fails.
+
+**Answer: (A).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate2016-s1-q37', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A 2-bit flash Analog to Digital Converter (ADC) is given below. The input is $0 \le V{IN} \le 3$ Volts. The expression for the LSB of the output $B0$ as a...'), stem_md = 'A 2-bit flash Analog to Digital Converter (ADC) is given below. The input is $0 \le V_{IN} \le 3$ Volts. The expression for the LSB of
+the output $B_0$ as a Boolean function of $X_2$, $X_1$, and $X_0$ is
+
+![Flash ADC: 3 V across 100, 200, 200, 100 ohm in series; the three taps go to three comparators whose other inputs are VIN; outputs X2, X1, X0 feed a digital circuit giving B1 B0](fig:q-gate2016-s1-q37)
+', solution_md = '**Idea used:** a flash ADC''s comparators give a "thermometer code": each output is 1 when $V_{IN}$ is above that comparator''s tap
+voltage. The digital circuit turns the thermometer code into binary.
+
+1. Tap voltages (total resistance $= 100 + 200 + 200 + 100 = 600\ \Omega$, current $= 3/600 = 5$ mA):
+   - $X_0$ tap: $5 \text{ mA} \times 100\ \Omega = 0.5$ V
+   - $X_1$ tap: $5 \text{ mA} \times 300\ \Omega = 1.5$ V
+   - $X_2$ tap: $5 \text{ mA} \times 500\ \Omega = 2.5$ V
+2. Possible outputs and the binary code they mean:
+
+   | $V_{IN}$ | $X_2X_1X_0$ | $B_1B_0$ |
+   |---|---|---|
+   | below 0.5 V | 000 | 00 |
+   | 0.5 to 1.5 V | 001 | 01 |
+   | 1.5 to 2.5 V | 011 | 10 |
+   | above 2.5 V | 111 | 11 |
+3. $B_0 = 1$ for 001 and 111. In both, $X_0 = 1$ and $X_2 = X_1$ (both 0 or both 1). "$X_2$ equals $X_1$" is XNOR:
+   $\overline{X_2 \oplus X_1}$. So $B_0 = X_0\,\overline{X_2 \oplus X_1}$.
+
+**Check:** 011 gives $X_0 = 1$ but $X_2 \ne X_1$, so $B_0 = 0$. ✔
+
+**Without a calculator:** $B_0$ must be 0 when $V_{IN}$ is lowest (000), so the expression needs $X_0$, not $\overline{X_0}$:
+out go (B) and (D). At full scale (111) $B_0 = 1$, but $X_2 \oplus X_1 = 0$ there, so (C) fails.
+
+**Answer: (A).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q37', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q37', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$X_0\left[\overline{X_2 \oplus X_1}\right]$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$\overline{X_0}\left[\overline{X_2 \oplus X_1}\right]$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$X_0\left[X_2 \oplus X_1\right]$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$\overline{X_0}\left[X_2 \oplus X_1\right]$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s1-q37', '<svg width="545" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-53.236000000000054 -23.9 474.1242863405995 425.94000000000005"><path d="M 0.0,-0.0 L -0,28.8 L 9,31.8 L -9,37.8 L 9,43.8 L -9,49.8 L 9,55.8 L -9,61.8 L -0,64.8 L -0,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -1.719404106002884e-14,93.60000000000001 L -0,122.4 L 9,125.4 L -9,131.4 L 9,137.4 L -9,143.4 L 9,149.4 L -9,155.4 L -0,158.4 L -0,187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -3.438808212005768e-14,187.20000000000002 L -0,216 L 9,219 L -9,225 L 9,231 L -9,237 L 9,243 L -9,249 L -0,252 L -0,280.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -5.1582123180086515e-14,280.8 L -0,309.6 L 9,312.6 L -9,318.6 L 9,324.6 L -9,330.6 L 9,336.6 L -9,342.6 L -0,345.6 L -0,374.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -6.877616424011536e-14,374.40000000000003 L -0,388.8 L -9,388.8 L 9,388.8 M -6.3,393.12 L 6.3,393.12 M -1.8,397.44 L 1.8,397.44" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 137.7,116.10000000000001 L 137.7,71.1 L 215.642,116.1 L 137.7,161.1 L 137.7,116.1 M 215.642,116.1" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 143.84278579257494,93.60000000000001 L 151.043,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 143.84278579257494,138.6 L 151.043,138.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 147.4427857925749,142.20000000000002 L 147.443,135" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 115.19999999999999,93.60000000000001 L 137.7,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 115.19999999999999,138.6 L 137.7,138.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 215.64228634059947,116.10000000000001 L 238.142,116.1" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -1.719404106002884e-14,93.60000000000001 L 57.6,93.6 L 115.2,93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 115.19999999999999,138.6 L 97.2,138.6 L 79.2,138.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 137.7,209.70000000000002 L 137.7,164.7 L 215.642,209.7 L 137.7,254.7 L 137.7,209.7 M 215.642,209.7" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 143.84278579257494,187.20000000000002 L 151.043,187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 143.84278579257494,232.20000000000002 L 151.043,232.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 147.4427857925749,235.8 L 147.443,228.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 115.19999999999999,187.20000000000002 L 137.7,187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 115.19999999999999,232.20000000000002 L 137.7,232.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 215.64228634059947,209.70000000000002 L 238.142,209.7" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -3.438808212005768e-14,187.20000000000002 L 57.6,187.2 L 115.2,187.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 115.19999999999999,232.20000000000002 L 97.2,232.2 L 79.2,232.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 137.7,303.3 L 137.7,258.3 L 215.642,303.3 L 137.7,348.3 L 137.7,303.3 M 215.642,303.3" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 143.84278579257494,280.8 L 151.043,280.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 143.84278579257494,325.8 L 151.043,325.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 147.4427857925749,329.40000000000003 L 147.443,322.2" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 115.19999999999999,280.8 L 137.7,280.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 115.19999999999999,325.8 L 137.7,325.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 215.64228634059947,303.3 L 238.142,303.3" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -5.1582123180086515e-14,280.8 L 57.6,280.8 L 115.2,280.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 115.19999999999999,325.8 L 97.2,325.8 L 79.2,325.8" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 79.19999999999999,138.6 L 79.2,238.5 L 79.2,338.4" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 238.14228634059947,116.10000000000001 L 263.342,116.1 L 288.542,116.1" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 238.14228634059947,209.70000000000002 L 263.342,209.7 L 288.542,209.7" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 238.14228634059947,303.3 L 263.342,303.3 L 288.542,303.3" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 288.5422863405995,87.3 L 328.142,87.3 L 367.742,87.3" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 367.74228634059943,87.3 L 367.742,209.7 L 367.742,332.1" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 367.74228634059943,332.1 L 328.142,332.1 L 288.542,332.1" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 288.5422863405995,332.1 L 288.542,209.7 L 288.542,87.3" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 367.74228634059943,191.70000000000005 L 382.142,191.7 L 396.542,191.7" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 367.74228634059943,227.70000000000005 L 382.142,227.7 L 396.542,227.7" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="-12.600000000000007" y="33.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-12.600000000000007" dy="13">100 Ω</tspan></text><text x="-12.600000000000025" y="127.4" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-12.600000000000025" dy="13">200 Ω</tspan></text><text x="-12.60000000000004" y="221.0" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-12.60000000000004" dy="13">200 Ω</tspan></text><text x="-12.600000000000058" y="314.6" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="end"><tspan x="-12.600000000000058" dy="13">100 Ω</tspan></text><text x="82.8" y="339.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="82.8" dy="13">VIN</tspan></text><text x="263.34228634059946" y="99.5" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="263.34228634059946" dy="13">X2</tspan></text><text x="263.34228634059946" y="193.10000000000002" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="263.34228634059946" dy="13">X1</tspan></text><text x="263.34228634059946" y="286.70000000000005" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="263.34228634059946" dy="13">X0</tspan></text><text x="324.5422863405995" y="182.30000000000007" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="324.5422863405995" dy="13">Digital</tspan></text><text x="324.5422863405995" y="203.90000000000003" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="324.5422863405995" dy="13">circuit</tspan></text><text x="400.14228634059947" y="178.70000000000005" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="400.14228634059947" dy="13">B1</tspan></text><text x="400.14228634059947" y="214.70000000000005" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="400.14228634059947" dy="13">B0</tspan></text><circle cx="0" cy="-0" r="2.7" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="0.0" y="-19.3" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="0.0" dy="13">3 V</tspan></text><circle cx="-0" cy="93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="-0" cy="187.2" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="-0" cy="280.8" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="79.2" cy="138.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="79.2" cy="232.2" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="79.2" cy="325.8" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q38';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q38')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q38: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'Two electric charges $q$ and $-2q$ are placed at (0,0) and (6,0) on the $x$-$y$ plane. The equation of the zero equipotential curve in the $x$-$y$ plane is', 'Two electric charges $q$ and $-2q$ are placed at (0,0) and (6,0) on the $x$-$y$ plane. The equation of the zero equipotential curve
+in the $x$-$y$ plane is
+', '**Idea used:** potential of a point charge is $\dfrac{kq}{r}$. Zero total potential needs the two terms to cancel.
+
+1. At a point $(x, y)$: $r_1$ = distance from $(0, 0)$, $r_2$ = distance from $(6, 0)$.
+2. $\dfrac{kq}{r_1} - \dfrac{2kq}{r_2} = 0$, so $r_2 = 2r_1$, i.e. $r_2^2 = 4r_1^2$.
+3. $(x - 6)^2 + y^2 = 4(x^2 + y^2)$.
+4. $x^2 - 12x + 36 + y^2 = 4x^2 + 4y^2$, so $3x^2 + 3y^2 + 12x - 36 = 0$.
+5. Divide by 3: $x^2 + y^2 + 4x - 12 = 0$. Complete the square: $(x + 2)^2 + y^2 = 16$.
+
+A circle of radius 4 centred at $(-2, 0)$, around the smaller charge.
+
+**Without a calculator:** test points. On the x-axis between the charges the zero point is where $r_2 = 2r_1$: $x = 2$
+($r_1 = 2$, $r_2 = 4$). Only (D) passes through $(2, 0)$: $(2 + 2)^2 + 0 = 16$. ✔
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate2016-s1-q38', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'Two electric charges $q$ and $-2q$ are placed at (0,0) and (6,0) on the $x$-$y$ plane. The equation of the zero equipotential curve in the $x$-$y$ plane is'), stem_md = 'Two electric charges $q$ and $-2q$ are placed at (0,0) and (6,0) on the $x$-$y$ plane. The equation of the zero equipotential curve
+in the $x$-$y$ plane is
+', solution_md = '**Idea used:** potential of a point charge is $\dfrac{kq}{r}$. Zero total potential needs the two terms to cancel.
+
+1. At a point $(x, y)$: $r_1$ = distance from $(0, 0)$, $r_2$ = distance from $(6, 0)$.
+2. $\dfrac{kq}{r_1} - \dfrac{2kq}{r_2} = 0$, so $r_2 = 2r_1$, i.e. $r_2^2 = 4r_1^2$.
+3. $(x - 6)^2 + y^2 = 4(x^2 + y^2)$.
+4. $x^2 - 12x + 36 + y^2 = 4x^2 + 4y^2$, so $3x^2 + 3y^2 + 12x - 36 = 0$.
+5. Divide by 3: $x^2 + y^2 + 4x - 12 = 0$. Complete the square: $(x + 2)^2 + y^2 = 16$.
+
+A circle of radius 4 centred at $(-2, 0)$, around the smaller charge.
+
+**Without a calculator:** test points. On the x-axis between the charges the zero point is where $r_2 = 2r_1$: $x = 2$
+($r_1 = 2$, $r_2 = 4$). Only (D) passes through $(2, 0)$: $(2 + 2)^2 + 0 = 16$. ✔
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q38', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q38', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$x = -2$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$y = 2$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$x^2 + y^2 = 2$', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$(x + 2)^2 + y^2 = 16$', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q39';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q39')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q39: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'In the circuit shown, switch $S2$ has been closed for a long time. At time $t = 0$ switch $S1$ is closed. At $t = 0^+$, the rate of change of current...', 'In the circuit shown, switch $S_2$ has been closed for a long time. At time $t = 0$ switch $S_1$ is closed. At $t = 0^+$, the rate of
+change of current through the inductor, in amperes per second, is _____.
+
+![Left: 3 V source, switch S1 (closes at t = 0) and 1 ohm to the top node. Middle: 1 H inductor from the top node to the bottom. Right: switch S2 (closed for a long time), 2 ohm and a 3 V source (+ at top) to the bottom](fig:q-gate2016-s1-q39)
+', '**Idea used:** the inductor current cannot jump. Find it just before $t = 0$ (steady state, inductor = short), keep it at $0^+$,
+then find the inductor voltage $v_L$ at $0^+$. Then $\dfrac{di_L}{dt} = \dfrac{v_L}{L}$.
+
+1. **Before $t = 0$** ($S_1$ open, $S_2$ closed, long time): the inductor is a short. The right source pushes
+   $i_L = 3 \text{ V} \div 2\ \Omega = 1.5$ A down through the inductor.
+2. **At $t = 0^+$:** $i_L = 1.5$ A still. Call the top node voltage $v$ (this is $v_L$).
+3. KCL at the top node (currents in = current out through $L$):
+   $\dfrac{3 - v}{1} + \dfrac{3 - v}{2} = 1.5$.
+4. $(3 - v)\left(1 + \tfrac12\right) = 1.5$, so $(3 - v) \times 1.5 = 1.5$ and $3 - v = 1$, $v = 2$ V.
+5. $\dfrac{di_L}{dt} = \dfrac{v}{L} = \dfrac{2}{1} = 2$ A/s.
+
+**Without a calculator:** two 3 V sources behind 1 Ω and 2 Ω act like one 3 V source behind $\tfrac23\ \Omega$ (Millman).
+Pushing 1.5 A through $\tfrac23\ \Omega$ drops 1 V, leaving 2 V across the 1 H inductor.
+
+**Answer: 2 A/s.**
+', 'READY', 'NAT', 1.9, 2.1, 2, 'OFFICIAL_KEY', 'gate2016-s1-q39', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'In the circuit shown, switch $S2$ has been closed for a long time. At time $t = 0$ switch $S1$ is closed. At $t = 0^+$, the rate of change of current...'), stem_md = 'In the circuit shown, switch $S_2$ has been closed for a long time. At time $t = 0$ switch $S_1$ is closed. At $t = 0^+$, the rate of
+change of current through the inductor, in amperes per second, is _____.
+
+![Left: 3 V source, switch S1 (closes at t = 0) and 1 ohm to the top node. Middle: 1 H inductor from the top node to the bottom. Right: switch S2 (closed for a long time), 2 ohm and a 3 V source (+ at top) to the bottom](fig:q-gate2016-s1-q39)
+', solution_md = '**Idea used:** the inductor current cannot jump. Find it just before $t = 0$ (steady state, inductor = short), keep it at $0^+$,
+then find the inductor voltage $v_L$ at $0^+$. Then $\dfrac{di_L}{dt} = \dfrac{v_L}{L}$.
+
+1. **Before $t = 0$** ($S_1$ open, $S_2$ closed, long time): the inductor is a short. The right source pushes
+   $i_L = 3 \text{ V} \div 2\ \Omega = 1.5$ A down through the inductor.
+2. **At $t = 0^+$:** $i_L = 1.5$ A still. Call the top node voltage $v$ (this is $v_L$).
+3. KCL at the top node (currents in = current out through $L$):
+   $\dfrac{3 - v}{1} + \dfrac{3 - v}{2} = 1.5$.
+4. $(3 - v)\left(1 + \tfrac12\right) = 1.5$, so $(3 - v) \times 1.5 = 1.5$ and $3 - v = 1$, $v = 2$ V.
+5. $\dfrac{di_L}{dt} = \dfrac{v}{L} = \dfrac{2}{1} = 2$ A/s.
+
+**Without a calculator:** two 3 V sources behind 1 Ω and 2 Ω act like one 3 V source behind $\tfrac23\ \Omega$ (Millman).
+Pushing 1.5 A through $\tfrac23\ \Omega$ drops 1 V, leaving 2 V across the 1 H inductor.
+
+**Answer: 2 A/s.**
+', status = 'READY', answer_type = 'NAT', nat_min = 1.9, nat_max = 2.1, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q39', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q39', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '1.5', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '2', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '3', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s1-q39', '<svg width="370" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-18.1 -135.6490947633379 321.872 142.9490947633379"><path d="M 47.51 -114.45 a 9 13.5 0 0 1 4.63 13.43" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;" /><path d="M 51.321 -94.072 L 49.457 -101.339 L 54.82 -100.709 Z" style="stroke:currentColor;fill:currentColor;stroke-linecap:butt;stroke-linejoin:miter;" /><path d="M 0.0,-0.0 L 0,-36.675 M 0,-56.925 L 0,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 13.500000000000004,-56.925000000000004 L -13.5,-56.925" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 6.750000000000003,-50.175000000000004 L -6.75,-50.175" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 13.500000000000002,-43.425000000000004 L -13.5,-43.425" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 6.750000000000002,-36.675000000000004 L -6.75,-36.675" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 5.731347020009614e-15,-93.60000000000001 L 28.8,-93.6 M 37.44,-97.2 L 57.6,-109.8 M 64.8,-93.6 L 93.6,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 93.60000000000001,-93.60000000000001 L 122.4,-93.6 L 125.4,-102.6 L 131.4,-84.6 L 137.4,-102.6 L 143.4,-84.6 L 149.4,-102.6 L 155.4,-84.6 L 158.4,-93.6 L 187.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-93.60000000000001 L 223.2,-93.6 L 259.2,-93.6" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 259.2,-93.60000000000001 L 259.2,-82.8 L 268.2,-79.8 L 250.2,-73.8 L 268.2,-67.8 L 250.2,-61.8 L 268.2,-55.8 L 250.2,-49.8 L 259.2,-46.8 L 259.2,-36" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 259.2,-36.0 L 259.2,-28.125 M 259.2,-7.875 L 259.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 272.7,-28.125 L 245.7,-28.125" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 265.95,-21.375 L 252.45,-21.375" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 272.7,-14.624999999999996 L 245.7,-14.625" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 265.95,-7.875 L 252.45,-7.875" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 259.2,-0.0 L 129.6,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 187.20000000000002,-93.60000000000001 L 187.2,-64.8 L 188.663,-64.767 L 190.164,-64.666 L 191.672,-64.496 L 193.155,-64.258 L 194.582,-63.954 L 195.922,-63.586 L 197.147,-63.16 L 198.233,-62.68 L 199.154,-62.155 L 199.893,-61.592 L 200.434,-61 L 200.765,-60.388 L 200.879,-59.766 L 200.774,-59.143 L 200.452,-58.531 L 199.92,-57.937 L 199.189,-57.373 L 198.275,-56.846 L 197.196,-56.365 L 195.976,-55.936 L 194.64,-55.566 L 193.216,-55.259 L 191.735,-55.018 L 190.227,-54.845 L 188.725,-54.741 L 187.26,-54.706 L 185.863,-54.735 L 184.563,-54.826 L 183.388,-54.974 L 182.362,-55.172 L 181.508,-55.412 L 180.843,-55.688 L 180.381,-55.989 L 180.132,-56.307 L 180.101,-56.631 L 180.289,-56.951 L 180.692,-57.258 L 181.301,-57.542 L 182.104,-57.794 L 183.083,-58.005 L 184.219,-58.167 L 185.486,-58.275 L 186.859,-58.322 L 188.308,-58.305 L 189.803,-58.22 L 191.312,-58.067 L 192.804,-57.845 L 194.247,-57.556 L 195.61,-57.203 L 196.866,-56.79 L 197.987,-56.323 L 198.949,-55.809 L 199.734,-55.254 L 200.323,-54.668 L 200.705,-54.06 L 200.871,-53.439 L 200.819,-52.816 L 200.549,-52.2 L 200.066,-51.601 L 199.381,-51.029 L 198.509,-50.492 L 197.468,-49.999 L 196.28,-49.557 L 194.969,-49.173 L 193.564,-48.85 L 192.093,-48.593 L 190.589,-48.404 L 189.083,-48.284 L 187.606,-48.232 L 186.19,-48.246 L 184.864,-48.323 L 183.657,-48.457 L 182.593,-48.644 L 181.696,-48.875 L 180.984,-49.143 L 180.473,-49.439 L 180.172,-49.754 L 180.089,-50.077 L 180.224,-50.399 L 180.576,-50.71 L 181.137,-51 L 181.895,-51.26 L 182.834,-51.482 L 183.934,-51.656 L 185.172,-51.778 L 186.522,-51.84 L 187.955,-51.838 L 189.442,-51.77 L 190.951,-51.633 L 192.45,-51.428 L 193.907,-51.155 L 195.292,-50.817 L 196.576,-50.418 L 197.732,-49.963 L 198.734,-49.459 L 199.563,-48.914 L 200.2,-48.334 L 200.633,-47.73 L 200.852,-47.112 L 200.852,-46.488 L 200.633,-45.87 L 200.2,-45.266 L 199.563,-44.686 L 198.734,-44.141 L 197.732,-43.637 L 196.576,-43.182 L 195.292,-42.783 L 193.907,-42.445 L 192.45,-42.172 L 190.951,-41.967 L 189.442,-41.83 L 187.955,-41.762 L 186.522,-41.76 L 185.172,-41.822 L 183.934,-41.944 L 182.834,-42.118 L 181.895,-42.34 L 181.137,-42.6 L 180.576,-42.89 L 180.224,-43.201 L 180.089,-43.523 L 180.172,-43.846 L 180.473,-44.161 L 180.984,-44.457 L 181.696,-44.725 L 182.593,-44.956 L 183.657,-45.143 L 184.864,-45.277 L 186.19,-45.354 L 187.606,-45.368 L 189.083,-45.316 L 190.589,-45.196 L 192.093,-45.007 L 193.564,-44.75 L 194.969,-44.427 L 196.28,-44.043 L 197.468,-43.601 L 198.509,-43.108 L 199.381,-42.571 L 200.066,-41.999 L 200.549,-41.4 L 200.819,-40.784 L 200.871,-40.161 L 200.705,-39.54 L 200.323,-38.932 L 199.734,-38.346 L 198.949,-37.791 L 197.987,-37.277 L 196.866,-36.81 L 195.61,-36.397 L 194.247,-36.044 L 192.804,-35.755 L 191.312,-35.533 L 189.803,-35.38 L 188.308,-35.295 L 186.859,-35.278 L 185.486,-35.325 L 184.219,-35.433 L 183.083,-35.595 L 182.104,-35.806 L 181.301,-36.058 L 180.692,-36.342 L 180.289,-36.649 L 180.101,-36.969 L 180.132,-37.293 L 180.381,-37.611 L 180.843,-37.912 L 181.508,-38.188 L 182.362,-38.428 L 183.388,-38.626 L 184.563,-38.774 L 185.863,-38.865 L 187.26,-38.894 L 188.725,-38.859 L 190.227,-38.755 L 191.735,-38.582 L 193.216,-38.341 L 194.64,-38.034 L 195.976,-37.664 L 197.196,-37.235 L 198.275,-36.754 L 199.189,-36.227 L 199.92,-35.663 L 200.452,-35.069 L 200.774,-34.457 L 200.879,-33.834 L 200.765,-33.212 L 200.434,-32.6 L 199.893,-32.008 L 199.154,-31.445 L 198.233,-30.92 L 197.147,-30.44 L 195.922,-30.014 L 194.582,-29.646 L 193.155,-29.342 L 191.672,-29.104 L 190.164,-28.934 L 188.663,-28.833 L 187.2,-28.8 L 187.2,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="17.1" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="17.1" dy="13">3 V</tspan></text><circle cx="33.12" cy="-93.6" r="4.32" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="60.48" cy="-93.6" r="4.32" style="stroke:currentColor;fill:white;stroke-width:1.5;stroke-dasharray:-;" /><text x="46.80000000000001" y="-131.0490947633379" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="46.80000000000001" dy="13">S1</tspan></text><text x="140.4" y="-119.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="140.4" dy="13">1 Ω</tspan></text><text x="223.20000000000002" y="-110.2" dominant-baseline="ideographic" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="223.20000000000002" dy="13">S2 (closed for a long time)</tspan></text><text x="271.8" y="-77.8" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="271.8" dy="13">2 Ω</tspan></text><text x="276.3" y="-30.999999999999996" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="276.3" dy="13">3 V</tspan></text><text x="204.47888446931108" y="-59.800000000000004" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="204.47888446931108" dy="13">1 H</tspan></text><circle cx="187.2" cy="-93.6" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="187.2" cy="-0" r="2.7" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q40';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q40')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q40: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A three-phase cable is supplying 800 kW and 600 kVAr to an inductive load. It is intended to supply an additional resistive load of 100 kW through the same...', 'A three-phase cable is supplying 800 kW and 600 kVAr to an inductive load. It is intended to supply an additional resistive load of
+100 kW through the same cable without increasing the heat dissipation in the cable, by providing a three-phase bank of capacitors
+connected in star across the load. Given the line voltage is 3.3 kV, 50 Hz, the capacitance per phase of the bank, expressed in
+microfarads, is ________.
+', '**Idea used:** cable heating is $3I^2R$. Same heating means the same current, and at a fixed voltage that means the same kVA.
+The capacitors must cut the kVAr enough to make room for the extra kW.
+
+1. Now: $S = \sqrt{800^2 + 600^2} = 1000$ kVA.
+2. After: $P = 800 + 100 = 900$ kW, and $S$ must stay 1000 kVA.
+3. Allowed $Q = \sqrt{1000^2 - 900^2} = \sqrt{190\,000} \approx 436$ kVAr.
+4. Capacitor bank must supply $600 - 436 = 164$ kVAr (total, three phases).
+5. Per phase: $164 \div 3 \approx 54.7$ kVAr. Star: phase voltage $= 3300 \div \sqrt3 \approx 1905$ V.
+6. $Q_{ph} = \omega C V_{ph}^2$, so $C = \dfrac{54\,700}{314 \times 1905^2}$.
+7. $1905^2 \approx 3.63 \times 10^6$; $314 \times 3.63 \times 10^6 \approx 1.14 \times 10^9$.
+8. $C \approx 54\,700 \div (1.14 \times 10^9) \approx 4.8 \times 10^{-5}$ F $= 48\ \mu$F.
+
+**Shorter way (three phases together):** $Q_{total} = \omega C V_L^2$ for a star bank, so
+$C = \dfrac{164\,000}{314 \times 3300^2} = \dfrac{164\,000}{3.42 \times 10^9} \approx 48\ \mu$F.
+
+**Without a calculator:** $436^2 = 190\,096$, so $\sqrt{190\,000} \approx 436$. $3300^2 = 10.89 \times 10^6$, and
+$10.89 \times 314 \approx 3420$, so $C \approx \dfrac{164}{3420} \times 10^{-3} \approx 0.048 \times 10^{-3}$ F.
+Slips: using line voltage with per-phase kVAr gives 16 μF (A); using phase voltage with the total kVAr gives 144 μF (C);
+cancelling all 600 kVAr gives 175 μF (D).
+
+**Answer: about 48 μF** (GATE accepted 47 to 49).
+', 'READY', 'NAT', 47, 49, 3, 'OFFICIAL_KEY', 'gate2016-s1-q40', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A three-phase cable is supplying 800 kW and 600 kVAr to an inductive load. It is intended to supply an additional resistive load of 100 kW through the same...'), stem_md = 'A three-phase cable is supplying 800 kW and 600 kVAr to an inductive load. It is intended to supply an additional resistive load of
+100 kW through the same cable without increasing the heat dissipation in the cable, by providing a three-phase bank of capacitors
+connected in star across the load. Given the line voltage is 3.3 kV, 50 Hz, the capacitance per phase of the bank, expressed in
+microfarads, is ________.
+', solution_md = '**Idea used:** cable heating is $3I^2R$. Same heating means the same current, and at a fixed voltage that means the same kVA.
+The capacitors must cut the kVAr enough to make room for the extra kW.
+
+1. Now: $S = \sqrt{800^2 + 600^2} = 1000$ kVA.
+2. After: $P = 800 + 100 = 900$ kW, and $S$ must stay 1000 kVA.
+3. Allowed $Q = \sqrt{1000^2 - 900^2} = \sqrt{190\,000} \approx 436$ kVAr.
+4. Capacitor bank must supply $600 - 436 = 164$ kVAr (total, three phases).
+5. Per phase: $164 \div 3 \approx 54.7$ kVAr. Star: phase voltage $= 3300 \div \sqrt3 \approx 1905$ V.
+6. $Q_{ph} = \omega C V_{ph}^2$, so $C = \dfrac{54\,700}{314 \times 1905^2}$.
+7. $1905^2 \approx 3.63 \times 10^6$; $314 \times 3.63 \times 10^6 \approx 1.14 \times 10^9$.
+8. $C \approx 54\,700 \div (1.14 \times 10^9) \approx 4.8 \times 10^{-5}$ F $= 48\ \mu$F.
+
+**Shorter way (three phases together):** $Q_{total} = \omega C V_L^2$ for a star bank, so
+$C = \dfrac{164\,000}{314 \times 3300^2} = \dfrac{164\,000}{3.42 \times 10^9} \approx 48\ \mu$F.
+
+**Without a calculator:** $436^2 = 190\,096$, so $\sqrt{190\,000} \approx 436$. $3300^2 = 10.89 \times 10^6$, and
+$10.89 \times 314 \approx 3420$, so $C \approx \dfrac{164}{3420} \times 10^{-3} \approx 0.048 \times 10^{-3}$ F.
+Slips: using line voltage with per-phase kVAr gives 16 μF (A); using phase voltage with the total kVAr gives 144 μF (C);
+cancelling all 600 kVAr gives 175 μF (D).
+
+**Answer: about 48 μF** (GATE accepted 47 to 49).
+', status = 'READY', answer_type = 'NAT', nat_min = 47, nat_max = 49, difficulty = 3, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q40', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q40', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '16', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '48', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '144', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '175', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q41';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q41')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q41: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A 30 MVA, 3-phase, 50 Hz, 13.8 kV, star-connected synchronous generator has positive, negative and zero sequence reactances, 15%, 15% and 5% respectively. A...', 'A 30 MVA, 3-phase, 50 Hz, 13.8 kV, star-connected synchronous generator has positive, negative and zero sequence reactances, 15%,
+15% and 5% respectively. A reactance ($X_n$) is connected between the neutral of the generator and ground. A double line to ground
+fault takes place involving phases ''b'' and ''c'', with a fault impedance of $j0.1$ p.u. The value of $X_n$ (in p.u.) that will limit the
+positive sequence generator current to 4270 A is _________.
+', '**Idea used:** for a double line to ground (LLG) fault, the three sequence networks connect as: positive network in series with
+(negative network in parallel with the zero network). Any impedance in the ground path (fault impedance $Z_f$, neutral reactance
+$X_n$) appears **three times** in the zero network, because all three zero-sequence currents flow through it.
+
+$$I_1 = \frac{E}{Z_1 + \dfrac{Z_2\,Z_0''}{Z_2 + Z_0''}},\qquad Z_0'' = Z_0 + 3Z_f + 3X_n$$
+
+1. Base current $= \dfrac{30 \times 10^6}{\sqrt3 \times 13.8 \times 10^3} \approx 1255$ A.
+2. $I_1 = 4270 \div 1255 \approx 3.402$ p.u. With $E = 1$: $Z_1 + Z_2 \parallel Z_0'' = 1 / 3.402 \approx 0.2939$.
+3. $Z_2 \parallel Z_0'' = 0.2939 - 0.15 = 0.1439$.
+4. $\dfrac{0.15\,Z_0''}{0.15 + Z_0''} = 0.1439$ gives $Z_0'' = \dfrac{0.15 \times 0.1439}{0.15 - 0.1439} \approx 3.56$.
+5. $3X_n = Z_0'' - Z_0 - 3Z_f = 3.56 - 0.05 - 0.3 = 3.21$, so $X_n \approx 1.07$ p.u.
+
+**Check:** with $X_n = 1.07$, $Z_0'' = 3.56$, $Z_2 \parallel Z_0'' = 0.144$, $I_1 = 1/0.294 = 3.40$ p.u. $= 4270$ A. ✔
+
+**Careful:** step 4 divides by a small difference ($0.15 - 0.144$), so keep 3 to 4 digits until the end; rounding early can move
+the answer a lot. Option B forgets to divide $3X_n$ by 3; option C leaves out the factor 3 on both $Z_f$ and $X_n$.
+
+**Answer: about 1.07 p.u.** (GATE accepted 1.05 to 1.15).
+', 'READY', 'NAT', 1.05, 1.15, 3, 'OFFICIAL_KEY', 'gate2016-s1-q41', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A 30 MVA, 3-phase, 50 Hz, 13.8 kV, star-connected synchronous generator has positive, negative and zero sequence reactances, 15%, 15% and 5% respectively. A...'), stem_md = 'A 30 MVA, 3-phase, 50 Hz, 13.8 kV, star-connected synchronous generator has positive, negative and zero sequence reactances, 15%,
+15% and 5% respectively. A reactance ($X_n$) is connected between the neutral of the generator and ground. A double line to ground
+fault takes place involving phases ''b'' and ''c'', with a fault impedance of $j0.1$ p.u. The value of $X_n$ (in p.u.) that will limit the
+positive sequence generator current to 4270 A is _________.
+', solution_md = '**Idea used:** for a double line to ground (LLG) fault, the three sequence networks connect as: positive network in series with
+(negative network in parallel with the zero network). Any impedance in the ground path (fault impedance $Z_f$, neutral reactance
+$X_n$) appears **three times** in the zero network, because all three zero-sequence currents flow through it.
+
+$$I_1 = \frac{E}{Z_1 + \dfrac{Z_2\,Z_0''}{Z_2 + Z_0''}},\qquad Z_0'' = Z_0 + 3Z_f + 3X_n$$
+
+1. Base current $= \dfrac{30 \times 10^6}{\sqrt3 \times 13.8 \times 10^3} \approx 1255$ A.
+2. $I_1 = 4270 \div 1255 \approx 3.402$ p.u. With $E = 1$: $Z_1 + Z_2 \parallel Z_0'' = 1 / 3.402 \approx 0.2939$.
+3. $Z_2 \parallel Z_0'' = 0.2939 - 0.15 = 0.1439$.
+4. $\dfrac{0.15\,Z_0''}{0.15 + Z_0''} = 0.1439$ gives $Z_0'' = \dfrac{0.15 \times 0.1439}{0.15 - 0.1439} \approx 3.56$.
+5. $3X_n = Z_0'' - Z_0 - 3Z_f = 3.56 - 0.05 - 0.3 = 3.21$, so $X_n \approx 1.07$ p.u.
+
+**Check:** with $X_n = 1.07$, $Z_0'' = 3.56$, $Z_2 \parallel Z_0'' = 0.144$, $I_1 = 1/0.294 = 3.40$ p.u. $= 4270$ A. ✔
+
+**Careful:** step 4 divides by a small difference ($0.15 - 0.144$), so keep 3 to 4 digits until the end; rounding early can move
+the answer a lot. Option B forgets to divide $3X_n$ by 3; option C leaves out the factor 3 on both $Z_f$ and $X_n$.
+
+**Answer: about 1.07 p.u.** (GATE accepted 1.05 to 1.15).
+', status = 'READY', answer_type = 'NAT', nat_min = 1.05, nat_max = 1.15, difficulty = 3, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q41', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q41', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '1.07', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '3.21', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '3.41', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.36', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q42';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q42')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q42: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'If the star side of the star-delta transformer shown in the figure is excited by a negative sequence voltage, then', 'If the star side of the star-delta transformer shown in the figure is excited by a negative sequence voltage, then
+
+![Star-delta transformer. Star windings A-N, B-N, C-N with dots at the A, B, C ends. Delta windings: a-b parallel to the A winding with its dot at the a end, b-c parallel to the B winding with its dot at the b end, c-a parallel to the C winding with its dot at the c end](fig:q-gate2016-s1-q42)
+', '**Idea used:** windings drawn parallel are on the same limb, and the dots say which ends are in phase. Then compare a line
+voltage of the star side with the matching delta-side voltage.
+
+1. **Read the dots:** the delta winding between a and b lies parallel to the A winding, with dots at the A end and the a end.
+   So $V_{ab}$ is in phase with the star **phase** voltage $V_{AN}$.
+2. **Star side:** $V_{AB} = V_{AN} - V_{BN}$.
+   - For **positive** sequence ($V_{BN}$ lags $V_{AN}$ by 120°), $V_{AB} = \sqrt3\,V_{AN}\angle{+30^\circ}$: it leads $V_{AN}$ by 30°.
+   - For **negative** sequence ($V_{BN}$ leads $V_{AN}$ by 120°), $V_{AB} = \sqrt3\,V_{AN}\angle{-30^\circ}$: it **lags** $V_{AN}$ by 30°.
+3. Since $V_{ab}$ is in phase with $V_{AN}$, under negative sequence $V_{AB}$ **lags** $V_{ab}$ by 30°.
+
+**Rule worth remembering:** a star-delta transformer shifts positive-sequence voltages by $+30^\circ$ one way and
+negative-sequence voltages by the same 30° the **other** way. It can never be 60° (A and B are out at once).
+
+**Answer: (D).**
+', 'READY', 'MCQ', NULL, NULL, 3, 'OFFICIAL_KEY', 'gate2016-s1-q42', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'If the star side of the star-delta transformer shown in the figure is excited by a negative sequence voltage, then'), stem_md = 'If the star side of the star-delta transformer shown in the figure is excited by a negative sequence voltage, then
+
+![Star-delta transformer. Star windings A-N, B-N, C-N with dots at the A, B, C ends. Delta windings: a-b parallel to the A winding with its dot at the a end, b-c parallel to the B winding with its dot at the b end, c-a parallel to the C winding with its dot at the c end](fig:q-gate2016-s1-q42)
+', solution_md = '**Idea used:** windings drawn parallel are on the same limb, and the dots say which ends are in phase. Then compare a line
+voltage of the star side with the matching delta-side voltage.
+
+1. **Read the dots:** the delta winding between a and b lies parallel to the A winding, with dots at the A end and the a end.
+   So $V_{ab}$ is in phase with the star **phase** voltage $V_{AN}$.
+2. **Star side:** $V_{AB} = V_{AN} - V_{BN}$.
+   - For **positive** sequence ($V_{BN}$ lags $V_{AN}$ by 120°), $V_{AB} = \sqrt3\,V_{AN}\angle{+30^\circ}$: it leads $V_{AN}$ by 30°.
+   - For **negative** sequence ($V_{BN}$ leads $V_{AN}$ by 120°), $V_{AB} = \sqrt3\,V_{AN}\angle{-30^\circ}$: it **lags** $V_{AN}$ by 30°.
+3. Since $V_{ab}$ is in phase with $V_{AN}$, under negative sequence $V_{AB}$ **lags** $V_{ab}$ by 30°.
+
+**Rule worth remembering:** a star-delta transformer shifts positive-sequence voltages by $+30^\circ$ one way and
+negative-sequence voltages by the same 30° the **other** way. It can never be 60° (A and B are out at once).
+
+**Answer: (D).**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 3, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q42', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q42', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '$V_{AB}$ leads $V_{ab}$ by 60°', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '$V_{AB}$ lags $V_{ab}$ by 60°', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '$V_{AB}$ leads $V_{ab}$ by 30°', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '$V_{AB}$ lags $V_{ab}$ by 30°', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+  INSERT INTO figure(question_id, storage_key, svg, sort_order) VALUES (qid, 'q-gate2016-s1-q42', '<svg width="391" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" viewBox="-122.368 -64.10075471160765 339.578 131.8015094232153"><path d="M 30.60000000000001,-53.00075471160764 L 24.3,-42.089 L 25.603,-41.285 L 26.896,-40.384 L 28.146,-39.4 L 29.324,-38.355 L 30.399,-37.266 L 31.344,-36.157 L 32.136,-35.049 L 32.754,-33.962 L 33.182,-32.92 L 33.407,-31.941 L 33.423,-31.044 L 33.226,-30.247 L 32.819,-29.564 L 32.21,-29.007 L 31.41,-28.584 L 30.434,-28.303 L 29.305,-28.165 L 28.045,-28.169 L 26.68,-28.313 L 25.242,-28.588 L 23.759,-28.985 L 22.265,-29.491 L 20.791,-30.09 L 19.37,-30.765 L 18.031,-31.495 L 16.804,-32.262 L 15.714,-33.043 L 14.785,-33.816 L 14.035,-34.56 L 13.479,-35.254 L 13.129,-35.878 L 12.99,-36.413 L 13.063,-36.845 L 13.345,-37.158 L 13.826,-37.343 L 14.493,-37.39 L 15.329,-37.296 L 16.312,-37.057 L 17.417,-36.677 L 18.617,-36.16 L 19.882,-35.514 L 21.181,-34.75 L 22.481,-33.882 L 23.751,-32.926 L 24.958,-31.901 L 26.074,-30.826 L 27.069,-29.722 L 27.919,-28.61 L 28.602,-27.513 L 29.101,-26.452 L 29.401,-25.448 L 29.493,-24.52 L 29.373,-23.685 L 29.042,-22.959 L 28.505,-22.355 L 27.773,-21.883 L 26.859,-21.549 L 25.783,-21.359 L 24.567,-21.312 L 23.237,-21.406 L 21.822,-21.635 L 20.352,-21.989 L 18.858,-22.457 L 17.373,-23.024 L 15.929,-23.673 L 14.557,-24.386 L 13.286,-25.142 L 12.144,-25.92 L 11.153,-26.699 L 10.336,-27.456 L 9.709,-28.17 L 9.284,-28.821 L 9.068,-29.391 L 9.064,-29.862 L 9.271,-30.22 L 9.68,-30.452 L 10.282,-30.55 L 11.059,-30.507 L 11.991,-30.321 L 13.055,-29.992 L 14.224,-29.524 L 15.469,-28.924 L 16.76,-28.201 L 18.063,-27.369 L 19.347,-26.443 L 20.581,-25.441 L 21.733,-24.381 L 22.775,-23.285 L 23.68,-22.174 L 24.426,-21.069 L 24.994,-19.993 L 25.367,-18.966 L 25.535,-18.008 L 25.493,-17.137 L 25.238,-16.37 L 24.775,-15.72 L 24.112,-15.199 L 23.262,-14.815 L 22.242,-14.572 L 21.074,-14.474 L 19.782,-14.517 L 18.395,-14.698 L 16.941,-15.007 L 15.452,-15.436 L 13.96,-15.969 L 12.498,-16.59 L 11.096,-17.282 L 9.785,-18.025 L 8.593,-18.798 L 7.545,-19.579 L 6.663,-20.346 L 5.965,-21.078 L 5.465,-21.755 L 5.173,-22.356 L 5.092,-22.865 L 5.223,-23.265 L 5.56,-23.544 L 6.094,-23.692 L 6.809,-23.7 L 7.688,-23.566 L 8.707,-23.289 L 9.841,-22.871 L 11.062,-22.317 L 12.34,-21.638 L 13.642,-20.844 L 14.937,-19.95 L 16.193,-18.973 L 17.378,-17.932 L 18.463,-16.847 L 19.421,-15.738 L 20.227,-14.629 L 20.861,-13.54 L 21.306,-12.492 L 21.55,-11.507 L 21.584,-10.603 L 21.406,-9.796 L 21.018,-9.103 L 20.426,-8.534 L 19.642,-8.099 L 18.682,-7.805 L 17.565,-7.654 L 16.315,-7.646 L 14.959,-7.778 L 13.526,-8.042 L 12.046,-8.428 L 10.551,-8.925 L 9.075,-9.516 L 7.647,-10.185 L 6.3,-10.912 L 0,0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -61.199999999999996,-0.0 L -48.6,-0 L -48.556,-1.53 L -48.421,-3.101 L -48.195,-4.675 L -47.878,-6.218 L -47.473,-7.693 L -46.985,-9.066 L -46.421,-10.306 L -45.789,-11.385 L -45.1,-12.276 L -44.365,-12.961 L -43.596,-13.423 L -42.808,-13.651 L -42.013,-13.64 L -41.226,-13.391 L -40.46,-12.909 L -39.728,-12.206 L -39.044,-11.296 L -38.418,-10.203 L -37.86,-8.95 L -37.379,-7.566 L -36.982,-6.084 L -36.672,-4.537 L -36.454,-2.961 L -36.328,-1.393 L -36.291,0.132 L -36.342,1.578 L -36.473,2.913 L -36.678,4.104 L -36.947,5.126 L -37.27,5.953 L -37.636,6.569 L -38.03,6.957 L -38.44,7.109 L -38.852,7.022 L -39.253,6.698 L -39.627,6.144 L -39.963,5.373 L -40.248,4.402 L -40.472,3.255 L -40.624,1.957 L -40.697,0.538 L -40.685,-0.968 L -40.584,-2.528 L -40.391,-4.106 L -40.106,-5.664 L -39.733,-7.168 L -39.274,-8.582 L -38.737,-9.874 L -38.128,-11.014 L -37.459,-11.976 L -36.739,-12.738 L -35.981,-13.282 L -35.198,-13.596 L -34.404,-13.672 L -33.613,-13.509 L -32.837,-13.11 L -32.092,-12.486 L -31.389,-11.649 L -30.74,-10.619 L -30.157,-9.421 L -29.647,-8.081 L -29.219,-6.631 L -28.877,-5.103 L -28.626,-3.534 L -28.466,-1.958 L -28.397,-0.414 L -28.417,1.065 L -28.519,2.443 L -28.698,3.69 L -28.945,4.776 L -29.25,5.677 L -29.602,6.371 L -29.987,6.843 L -30.393,7.082 L -30.807,7.082 L -31.213,6.843 L -31.598,6.371 L -31.95,5.677 L -32.255,4.776 L -32.502,3.69 L -32.681,2.443 L -32.783,1.065 L -32.803,-0.414 L -32.734,-1.958 L -32.574,-3.534 L -32.323,-5.103 L -31.981,-6.631 L -31.553,-8.081 L -31.043,-9.421 L -30.46,-10.619 L -29.811,-11.649 L -29.108,-12.486 L -28.363,-13.11 L -27.587,-13.509 L -26.796,-13.672 L -26.002,-13.596 L -25.219,-13.282 L -24.461,-12.738 L -23.741,-11.976 L -23.072,-11.014 L -22.463,-9.874 L -21.926,-8.582 L -21.467,-7.168 L -21.094,-5.664 L -20.809,-4.106 L -20.616,-2.528 L -20.515,-0.968 L -20.503,0.538 L -20.576,1.957 L -20.728,3.255 L -20.952,4.402 L -21.237,5.373 L -21.573,6.144 L -21.947,6.698 L -22.348,7.022 L -22.76,7.109 L -23.17,6.957 L -23.564,6.569 L -23.93,5.953 L -24.253,5.126 L -24.522,4.104 L -24.727,2.913 L -24.858,1.578 L -24.909,0.132 L -24.872,-1.393 L -24.746,-2.961 L -24.528,-4.537 L -24.218,-6.084 L -23.821,-7.566 L -23.34,-8.95 L -22.782,-10.203 L -22.156,-11.296 L -21.472,-12.206 L -20.74,-12.909 L -19.974,-13.391 L -19.187,-13.64 L -18.392,-13.651 L -17.604,-13.423 L -16.835,-12.961 L -16.1,-12.276 L -15.411,-11.385 L -14.779,-10.306 L -14.215,-9.066 L -13.727,-7.693 L -13.322,-6.218 L -13.005,-4.675 L -12.779,-3.101 L -12.644,-1.53 L -12.6,-0 L 0,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 30.60000000000001,53.00075471160764 L 24.3,42.089 L 22.953,42.816 L 21.525,43.484 L 20.049,44.076 L 18.554,44.572 L 17.074,44.959 L 15.641,45.223 L 14.285,45.355 L 13.035,45.347 L 11.918,45.196 L 10.958,44.902 L 10.174,44.467 L 9.582,43.898 L 9.194,43.205 L 9.016,42.398 L 9.05,41.494 L 9.294,40.508 L 9.739,39.461 L 10.373,38.372 L 11.179,37.262 L 12.137,36.154 L 13.222,35.069 L 14.407,34.028 L 15.663,33.051 L 16.958,32.157 L 18.26,31.363 L 19.538,30.684 L 20.759,30.13 L 21.893,29.712 L 22.912,29.434 L 23.791,29.3 L 24.506,29.309 L 25.04,29.457 L 25.377,29.736 L 25.508,30.136 L 25.427,30.645 L 25.135,31.246 L 24.635,31.923 L 23.937,32.655 L 23.055,33.422 L 22.007,34.203 L 20.815,34.976 L 19.504,35.719 L 18.102,36.411 L 16.64,37.032 L 15.148,37.565 L 13.659,37.993 L 12.205,38.303 L 10.818,38.484 L 9.526,38.527 L 8.358,38.428 L 7.338,38.186 L 6.488,37.802 L 5.825,37.281 L 5.362,36.631 L 5.107,35.864 L 5.065,34.993 L 5.233,34.035 L 5.606,33.008 L 6.174,31.931 L 6.92,30.827 L 7.825,29.716 L 8.867,28.619 L 10.019,27.56 L 11.253,26.558 L 12.537,25.632 L 13.84,24.8 L 15.131,24.077 L 16.376,23.477 L 17.545,23.008 L 18.609,22.679 L 19.541,22.493 L 20.318,22.451 L 20.92,22.548 L 21.329,22.781 L 21.536,23.138 L 21.532,23.61 L 21.316,24.179 L 20.891,24.831 L 20.264,25.545 L 19.447,26.302 L 18.456,27.081 L 17.314,27.859 L 16.043,28.615 L 14.671,29.328 L 13.227,29.977 L 11.742,30.544 L 10.248,31.012 L 8.778,31.366 L 7.363,31.595 L 6.033,31.689 L 4.817,31.642 L 3.741,31.451 L 2.827,31.118 L 2.095,30.646 L 1.558,30.042 L 1.227,29.316 L 1.107,28.481 L 1.199,27.553 L 1.499,26.548 L 1.998,25.487 L 2.681,24.391 L 3.531,23.279 L 4.526,22.175 L 5.642,21.1 L 6.849,20.074 L 8.119,19.119 L 9.419,18.251 L 10.718,17.487 L 11.983,16.841 L 13.183,16.324 L 14.288,15.943 L 15.271,15.705 L 16.107,15.611 L 16.774,15.658 L 17.255,15.842 L 17.537,16.156 L 17.61,16.587 L 17.471,17.123 L 17.121,17.747 L 16.565,18.441 L 15.815,19.185 L 14.886,19.958 L 13.796,20.739 L 12.569,21.505 L 11.23,22.236 L 9.809,22.911 L 8.335,23.51 L 6.841,24.016 L 5.358,24.413 L 3.92,24.688 L 2.555,24.832 L 1.295,24.836 L 0.166,24.698 L -0.81,24.416 L -1.61,23.994 L -2.219,23.437 L -2.626,22.754 L -2.823,21.957 L -2.807,21.06 L -2.582,20.081 L -2.154,19.039 L -1.536,17.952 L -0.744,16.844 L 0.201,15.734 L 1.276,14.646 L 2.454,13.6 L 3.704,12.617 L 4.997,11.715 L 6.3,10.912 L -0,0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 30.60000000000001,-53.00075471160764 L -35.1,-53.001 L -100.8,-53.001" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 30.60000000000001,53.00075471160764 L -35.1,53.001 L -100.8,53.001" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M -61.199999999999996,-0.0 L -81,-0 L -100.8,-0" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.39999999999999,-53.00075471160764 L 111.462,-27.357 L 112.852,-26.716 L 114.244,-25.976 L 115.603,-25.15 L 116.898,-24.253 L 118.096,-23.302 L 119.168,-22.314 L 120.087,-21.309 L 120.831,-20.305 L 121.381,-19.321 L 121.722,-18.376 L 121.846,-17.488 L 121.746,-16.673 L 121.424,-15.946 L 120.886,-15.32 L 120.143,-14.804 L 119.208,-14.408 L 118.103,-14.135 L 116.852,-13.988 L 115.48,-13.967 L 114.019,-14.067 L 112.499,-14.283 L 110.955,-14.606 L 109.42,-15.023 L 107.928,-15.522 L 106.511,-16.087 L 105.201,-16.701 L 104.025,-17.345 L 103.009,-18.001 L 102.176,-18.649 L 101.541,-19.271 L 101.118,-19.849 L 100.916,-20.364 L 100.937,-20.801 L 101.178,-21.146 L 101.634,-21.387 L 102.29,-21.514 L 103.131,-21.52 L 104.136,-21.402 L 105.279,-21.157 L 106.533,-20.788 L 107.866,-20.299 L 109.247,-19.697 L 110.643,-18.991 L 112.018,-18.195 L 113.34,-17.322 L 114.576,-16.388 L 115.697,-15.412 L 116.674,-14.411 L 117.484,-13.404 L 118.107,-12.41 L 118.525,-11.449 L 118.728,-10.539 L 118.71,-9.696 L 118.468,-8.935 L 118.008,-8.271 L 117.337,-7.714 L 116.47,-7.274 L 115.424,-6.955 L 114.223,-6.763 L 112.892,-6.696 L 111.459,-6.753 L 109.957,-6.928 L 108.418,-7.213 L 106.876,-7.598 L 105.364,-8.069 L 103.916,-8.612 L 102.564,-9.21 L 101.336,-9.845 L 100.26,-10.499 L 99.358,-11.152 L 98.649,-11.786 L 98.148,-12.381 L 97.865,-12.921 L 97.805,-13.388 L 97.967,-13.768 L 98.346,-14.048 L 98.931,-14.218 L 99.708,-14.269 L 100.656,-14.196 L 101.752,-13.997 L 102.969,-13.673 L 104.277,-13.226 L 105.645,-12.664 L 107.039,-11.994 L 108.425,-11.23 L 109.77,-10.383 L 111.041,-9.469 L 112.207,-8.506 L 113.239,-7.512 L 114.113,-6.505 L 114.805,-5.504 L 115.299,-4.529 L 115.582,-3.598 L 115.644,-2.729 L 115.483,-1.937 L 115.101,-1.236 L 114.506,-0.639 L 113.708,-0.156 L 112.725,0.208 L 111.577,0.446 L 110.29,0.558 L 108.89,0.546 L 107.41,0.413 L 105.88,0.166 L 104.335,-0.184 L 102.809,-0.625 L 101.334,-1.144 L 99.943,-1.723 L 98.667,-2.347 L 97.533,-2.997 L 96.565,-3.652 L 95.784,-4.295 L 95.207,-4.907 L 94.844,-5.469 L 94.703,-5.964 L 94.785,-6.378 L 95.086,-6.695 L 95.598,-6.906 L 96.307,-7 L 97.195,-6.973 L 98.24,-6.82 L 99.417,-6.541 L 100.696,-6.138 L 102.045,-5.617 L 103.434,-4.985 L 104.827,-4.253 L 106.191,-3.435 L 107.492,-2.543 L 108.7,-1.596 L 109.784,-0.611 L 110.718,0.394 L 111.478,1.399 L 112.046,2.385 L 112.406,3.334 L 112.549,4.228 L 112.469,5.05 L 112.167,5.785 L 111.648,6.421 L 110.921,6.946 L 110.003,7.354 L 108.913,7.638 L 107.673,7.796 L 106.311,7.828 L 104.856,7.738 L 103.34,7.532 L 101.797,7.219 L 100.26,6.809 L 98.763,6.316 L 97.338,5.757 L 86.4,31.401" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.39999999999999,-53.00075471160764 L 133.338,-27.357 L 134.763,-27.916 L 136.26,-28.409 L 137.797,-28.819 L 139.34,-29.132 L 140.856,-29.338 L 142.311,-29.428 L 143.673,-29.396 L 144.913,-29.238 L 146.003,-28.954 L 146.921,-28.546 L 147.648,-28.021 L 148.167,-27.385 L 148.469,-26.65 L 148.549,-25.828 L 148.406,-24.934 L 148.046,-23.985 L 147.478,-22.999 L 146.718,-21.994 L 145.784,-20.989 L 144.7,-20.004 L 143.492,-19.057 L 142.191,-18.165 L 140.827,-17.347 L 139.434,-16.615 L 138.045,-15.983 L 136.696,-15.462 L 135.417,-15.059 L 134.24,-14.78 L 133.195,-14.627 L 132.307,-14.6 L 131.598,-14.694 L 131.086,-14.905 L 130.785,-15.222 L 130.703,-15.636 L 130.844,-16.131 L 131.207,-16.693 L 131.784,-17.305 L 132.565,-17.948 L 133.533,-18.603 L 134.667,-19.253 L 135.943,-19.877 L 137.334,-20.456 L 138.809,-20.975 L 140.335,-21.416 L 141.88,-21.766 L 143.41,-22.013 L 144.89,-22.146 L 146.29,-22.158 L 147.577,-22.046 L 148.725,-21.808 L 149.708,-21.444 L 150.506,-20.961 L 151.101,-20.364 L 151.483,-19.663 L 151.644,-18.871 L 151.582,-18.002 L 151.299,-17.071 L 150.805,-16.096 L 150.113,-15.095 L 149.239,-14.088 L 148.207,-13.094 L 147.041,-12.131 L 145.77,-11.217 L 144.425,-10.37 L 143.039,-9.606 L 141.645,-8.936 L 140.277,-8.374 L 138.969,-7.927 L 137.752,-7.603 L 136.656,-7.404 L 135.708,-7.331 L 134.931,-7.382 L 134.346,-7.552 L 133.967,-7.832 L 133.805,-8.212 L 133.865,-8.679 L 134.148,-9.219 L 134.649,-9.814 L 135.358,-10.448 L 136.26,-11.101 L 137.336,-11.755 L 138.564,-12.39 L 139.916,-12.988 L 141.364,-13.531 L 142.876,-14.002 L 144.418,-14.387 L 145.957,-14.672 L 147.459,-14.847 L 148.892,-14.904 L 150.223,-14.837 L 151.424,-14.645 L 152.47,-14.326 L 153.337,-13.886 L 154.008,-13.329 L 154.468,-12.665 L 154.71,-11.904 L 154.728,-11.061 L 154.525,-10.151 L 154.107,-9.19 L 153.484,-8.196 L 152.674,-7.189 L 151.697,-6.188 L 150.576,-5.212 L 149.34,-4.278 L 148.018,-3.405 L 146.643,-2.609 L 145.247,-1.903 L 143.866,-1.301 L 142.533,-0.812 L 141.279,-0.443 L 140.136,-0.198 L 139.131,-0.08 L 138.29,-0.086 L 137.634,-0.213 L 137.178,-0.454 L 136.937,-0.799 L 136.916,-1.236 L 137.118,-1.751 L 137.541,-2.329 L 138.176,-2.951 L 139.009,-3.599 L 140.025,-4.255 L 141.201,-4.899 L 142.511,-5.513 L 143.928,-6.078 L 145.42,-6.577 L 146.955,-6.994 L 148.499,-7.317 L 150.019,-7.533 L 151.48,-7.633 L 152.852,-7.612 L 154.103,-7.465 L 155.208,-7.192 L 156.143,-6.796 L 156.886,-6.28 L 157.424,-5.654 L 157.746,-4.927 L 157.846,-4.112 L 157.722,-3.224 L 157.381,-2.279 L 156.831,-1.295 L 156.087,-0.291 L 155.168,0.714 L 154.096,1.702 L 152.898,2.653 L 151.603,3.55 L 150.244,4.376 L 148.852,5.116 L 147.462,5.757 L 158.4,31.401" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 86.39999999999999,31.400754711607647 L 104.4,31.401 L 104.444,29.871 L 104.579,28.3 L 104.805,26.726 L 105.122,25.183 L 105.527,23.708 L 106.015,22.335 L 106.579,21.095 L 107.211,20.016 L 107.9,19.124 L 108.635,18.44 L 109.404,17.978 L 110.192,17.75 L 110.987,17.76 L 111.774,18.009 L 112.54,18.491 L 113.272,19.195 L 113.956,20.104 L 114.582,21.198 L 115.14,22.451 L 115.621,23.835 L 116.018,25.317 L 116.328,26.864 L 116.546,28.44 L 116.672,30.008 L 116.709,31.533 L 116.658,32.979 L 116.527,34.313 L 116.322,35.505 L 116.053,36.526 L 115.73,37.354 L 115.364,37.969 L 114.97,38.358 L 114.56,38.51 L 114.148,38.423 L 113.747,38.099 L 113.373,37.545 L 113.037,36.774 L 112.752,35.803 L 112.528,34.656 L 112.376,33.358 L 112.303,31.939 L 112.315,30.432 L 112.416,28.872 L 112.609,27.295 L 112.894,25.737 L 113.267,24.233 L 113.726,22.819 L 114.263,21.527 L 114.872,20.387 L 115.541,19.425 L 116.261,18.663 L 117.019,18.119 L 117.802,17.805 L 118.596,17.729 L 119.387,17.892 L 120.163,18.29 L 120.908,18.915 L 121.611,19.752 L 122.26,20.781 L 122.843,21.98 L 123.353,23.32 L 123.781,24.77 L 124.123,26.298 L 124.374,27.867 L 124.534,29.442 L 124.603,30.987 L 124.583,32.466 L 124.481,33.844 L 124.302,35.091 L 124.055,36.177 L 123.75,37.078 L 123.398,37.772 L 123.013,38.244 L 122.607,38.482 L 122.193,38.482 L 121.787,38.244 L 121.402,37.772 L 121.05,37.078 L 120.745,36.177 L 120.498,35.091 L 120.319,33.844 L 120.217,32.466 L 120.197,30.987 L 120.266,29.442 L 120.426,27.867 L 120.677,26.298 L 121.019,24.77 L 121.447,23.32 L 121.957,21.98 L 122.54,20.781 L 123.189,19.752 L 123.892,18.915 L 124.637,18.29 L 125.413,17.892 L 126.204,17.729 L 126.998,17.805 L 127.781,18.119 L 128.539,18.663 L 129.259,19.425 L 129.928,20.387 L 130.537,21.527 L 131.074,22.819 L 131.533,24.233 L 131.906,25.737 L 132.191,27.295 L 132.384,28.872 L 132.485,30.432 L 132.497,31.939 L 132.424,33.358 L 132.272,34.656 L 132.048,35.803 L 131.763,36.774 L 131.427,37.545 L 131.053,38.099 L 130.652,38.423 L 130.24,38.51 L 129.83,38.358 L 129.436,37.969 L 129.07,37.354 L 128.747,36.526 L 128.478,35.505 L 128.273,34.313 L 128.142,32.979 L 128.091,31.533 L 128.128,30.008 L 128.254,28.44 L 128.472,26.864 L 128.782,25.317 L 129.179,23.835 L 129.66,22.451 L 130.218,21.198 L 130.844,20.104 L 131.528,19.195 L 132.26,18.491 L 133.026,18.009 L 133.813,17.76 L 134.608,17.75 L 135.396,17.978 L 136.165,18.44 L 136.9,19.124 L 137.589,20.016 L 138.221,21.095 L 138.785,22.335 L 139.273,23.708 L 139.678,25.183 L 139.995,26.726 L 140.221,28.3 L 140.356,29.871 L 140.4,31.401 L 158.4,31.401" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 122.39999999999999,-53.00075471160764 L 162,-53.001 L 201.6,-53.001" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 158.4,31.400754711607647 L 180,31.401 L 201.6,31.401" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 86.39999999999999,31.400754711607647 L 86.4,42.201 L 86.4,53.001" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><path d="M 86.39999999999999,53.00075471160764 L 144,53.001 L 201.6,53.001" style="stroke:currentColor;fill:none;stroke-width:1.5;stroke-dasharray:-;stroke-linecap:round;stroke-linejoin:round;" /><text x="13.08230854637602" y="-16.117691453623976" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="13.08230854637602" dy="13">N</tspan></text><text x="-113.39999999999999" y="-62.40075471160764" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-113.39999999999999" dy="13">A</tspan></text><text x="-113.39999999999999" y="43.60075471160765" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-113.39999999999999" dy="13">C</tspan></text><text x="-113.39999999999999" y="-9.4" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="middle"><tspan x="-113.39999999999999" dy="13">B</tspan></text><text x="205.2" y="-66.00075471160764" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="205.2" dy="13">a</tspan></text><text x="205.2" y="18.400754711607647" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="205.2" dy="13">c</tspan></text><text x="205.2" y="40.00075471160764" dominant-baseline="central" fill="currentColor" font-size="13" font-family="sans" text-anchor="start"><tspan x="205.2" dy="13">b</tspan></text><circle cx="14.4" cy="-47.601" r="2.52" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="-52.2" cy="-9" r="2.52" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="14.4" cy="47.601" r="2.52" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="106.2" cy="-44.001" r="2.52" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="160.2" cy="15.201" r="2.52" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /><circle cx="102.6" cy="22.401" r="2.52" style="stroke:currentColor;fill:currentColor;stroke-width:1.5;stroke-dasharray:-;" /></svg>
+', 1) ON CONFLICT (storage_key) DO UPDATE SET question_id = EXCLUDED.question_id, concept_section_id = NULL, svg = EXCLUDED.svg, sort_order = EXCLUDED.sort_order;
+END $ppimport$;
+DO $ppimport$
+DECLARE qid int; tid int; subj int;
+BEGIN
+  SELECT id INTO qid FROM question WHERE content_key = 'gate2016-s1-q43';
+  IF qid IS NULL THEN
+    SELECT qs.question_id INTO qid FROM question_source qs JOIN source s ON s.id = qs.source_id
+      JOIN question x ON x.id = qs.question_id
+      WHERE (s.code, qs.q_no) IN (('GATE-2016', 'S1-Q43')) AND x.content_key IS NULL ORDER BY qs.question_id LIMIT 1;
+  END IF;
+  IF qid IS NULL THEN
+    IF tid IS NULL THEN RAISE EXCEPTION 'paper question gate2016-s1-q43: no skeleton row, give a topic'; END IF;
+    INSERT INTO question(subject_id, topic_id, summary, stem_md, solution_md, status, answer_type, nat_min, nat_max,
+                         difficulty, answer_status, content_key, origin)
+    VALUES (subj, tid, 'A single-phase thyristor-bridge rectifier is fed from a 230 V, 50 Hz, single-phase AC mains. If it is delivering a constant DC current of 10 A, at firing...', 'A single-phase thyristor-bridge rectifier is fed from a 230 V, 50 Hz, single-phase AC mains. If it is delivering a constant DC current
+of 10 A, at firing angle of 30°, then value of the power factor at AC mains is
+', '**Idea used:** with a constant dc current, the ac line current of a full bridge is a square wave of height $I_d$, shifted by the
+firing angle $\alpha$. Power factor = (distortion factor) × (displacement factor).
+
+1. **Distortion factor** $= \dfrac{I_{1,rms}}{I_{rms}}$. For a square wave: $I_{rms} = I_d$ and $I_{1,rms} = \dfrac{2\sqrt2}{\pi}I_d \approx 0.9\,I_d$.
+   So the distortion factor is $0.9$.
+2. **Displacement factor** $= \cos\alpha = \cos 30^\circ \approx 0.866$.
+3. Power factor $= 0.9 \times 0.866 \approx 0.78$.
+
+**Without a calculator:** $0.9 \times 0.87 \approx 0.78$. Option A is only $\cos\alpha$ and option B only the distortion factor;
+the 230 V and the 10 A are not needed.
+
+**Answer: (C) 0.78.**
+', 'READY', 'MCQ', NULL, NULL, 2, 'OFFICIAL_KEY', 'gate2016-s1-q43', 'PYQ') RETURNING id INTO qid;
+  ELSE
+    UPDATE question SET topic_id = COALESCE(tid, topic_id), subject_id = COALESCE(subj, subject_id), summary = COALESCE(NULLIF(summary, ''), 'A single-phase thyristor-bridge rectifier is fed from a 230 V, 50 Hz, single-phase AC mains. If it is delivering a constant DC current of 10 A, at firing...'), stem_md = 'A single-phase thyristor-bridge rectifier is fed from a 230 V, 50 Hz, single-phase AC mains. If it is delivering a constant DC current
+of 10 A, at firing angle of 30°, then value of the power factor at AC mains is
+', solution_md = '**Idea used:** with a constant dc current, the ac line current of a full bridge is a square wave of height $I_d$, shifted by the
+firing angle $\alpha$. Power factor = (distortion factor) × (displacement factor).
+
+1. **Distortion factor** $= \dfrac{I_{1,rms}}{I_{rms}}$. For a square wave: $I_{rms} = I_d$ and $I_{1,rms} = \dfrac{2\sqrt2}{\pi}I_d \approx 0.9\,I_d$.
+   So the distortion factor is $0.9$.
+2. **Displacement factor** $= \cos\alpha = \cos 30^\circ \approx 0.866$.
+3. Power factor $= 0.9 \times 0.866 \approx 0.78$.
+
+**Without a calculator:** $0.9 \times 0.87 \approx 0.78$. Option A is only $\cos\alpha$ and option B only the distortion factor;
+the 230 V and the 10 A are not needed.
+
+**Answer: (C) 0.78.**
+', status = 'READY', answer_type = 'MCQ', nat_min = NULL, nat_max = NULL, difficulty = 2, answer_status = 'OFFICIAL_KEY', content_key = 'gate2016-s1-q43', origin = 'PYQ', updated_at = now() WHERE id = qid;
+  END IF;
+  INSERT INTO question_source(source_id, q_no, question_id, marks, is_primary) VALUES ((SELECT id FROM source WHERE code = 'GATE-2016'), 'S1-Q43', qid, 2, TRUE) ON CONFLICT (source_id, q_no) DO UPDATE SET question_id = EXCLUDED.question_id, marks = EXCLUDED.marks, is_primary = EXCLUDED.is_primary;
+  DELETE FROM question_option WHERE question_id = qid AND label NOT IN ('A', 'B', 'C', 'D');
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'A', '0.87', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'B', '0.9', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'C', '0.78', TRUE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  INSERT INTO question_option(question_id, label, body_md, is_correct) VALUES (qid, 'D', '0.45', FALSE) ON CONFLICT (question_id, label) DO UPDATE SET body_md = EXCLUDED.body_md, is_correct = EXCLUDED.is_correct;
+  DELETE FROM question_mcq_option WHERE question_id = qid;
+END $ppimport$;

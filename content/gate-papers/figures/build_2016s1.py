@@ -222,7 +222,108 @@ def q36():
     save("q-gate2016-s1-q36", d)
 
 
+def q37():
+    """2-bit flash ADC: 3 V across 100-200-200-100 ohm; taps at 2.5, 1.5, 0.5 V to the (-) inputs of three comparators;
+    VIN to all (+) inputs; outputs X2, X1, X0 to a digital circuit giving B1, B0."""
+    d = D()
+    d += elm.Dot(open=True).label("3 V", loc="top")
+    d += elm.Resistor().down().label("100 Ω", loc="top")
+    d += (t2 := elm.Dot())
+    d += elm.Resistor().down().label("200 Ω", loc="top")
+    d += (t1 := elm.Dot())
+    d += elm.Resistor().down().label("200 Ω", loc="top")
+    d += (t0 := elm.Dot())
+    d += elm.Resistor().down().label("100 Ω", loc="top")
+    d += elm.Ground()
+    xin = t2.center[0] + 2.2
+    outs = []
+    for tap, name in [(t2, "X2"), (t1, "X1"), (t0, "X0")]:
+        op = elm.Opamp(leads=True).right().anchor("in1").at((xin + 1.0, tap.center[1]))
+        d += op
+        d += elm.Line().at(tap.center).to(op.in1)
+        d += elm.Line().at(op.in2).to((xin, op.in2[1]))
+        d += elm.Dot().at((xin, op.in2[1]))
+        outs.append((op, name))
+    top_in = outs[0][0].in2[1]
+    d += elm.Line().at((xin, top_in)).to((xin, t0.center[1] - 1.6))
+    d += elm.Label().at((xin, t0.center[1] - 1.9)).label("VIN")
+    box_x = outs[0][0].out[0] + 1.4
+    for op, name in outs:
+        d += elm.Line().at(op.out).to((box_x, op.out[1])).label(name, loc="top")
+    ytop, ybot = outs[0][0].out[1] + 0.8, outs[2][0].out[1] - 0.8
+    d += elm.Line().at((box_x, ytop)).to((box_x + 2.2, ytop))
+    d += elm.Line().at((box_x + 2.2, ytop)).to((box_x + 2.2, ybot))
+    d += elm.Line().at((box_x + 2.2, ybot)).to((box_x, ybot))
+    d += elm.Line().at((box_x, ybot)).to((box_x, ytop))
+    ym = (ytop + ybot) / 2
+    d += elm.Label().at((box_x + 1.1, ym + 0.3)).label("Digital")
+    d += elm.Label().at((box_x + 1.1, ym - 0.3)).label("circuit")
+    d += elm.Line().at((box_x + 2.2, ym + 0.5)).to((box_x + 3.0, ym + 0.5)).label("B1", loc="right")
+    d += elm.Line().at((box_x + 2.2, ym - 0.5)).to((box_x + 3.0, ym - 0.5)).label("B0", loc="right")
+    save("q-gate2016-s1-q37", d)
+
+
+def q39():
+    """3 V source, switch S1, 1 ohm to the top node; 1 H inductor from the top node to the bottom; switch S2 (closed long) to
+    a 2 ohm in series with another 3 V source (+ at top)."""
+    d = D()
+    d += (v1 := elm.Battery().up().reverse().label("3 V", loc="bottom"))
+    d += (s1 := elm.Switch(action="close").right().label("S1", loc="top"))
+    d += elm.Resistor().right().label("1 Ω", loc="top")
+    d += (n := elm.Dot())
+    d += elm.Line().right().length(2.0).label("S2 (closed for a long time)", loc="top")
+    d += elm.Resistor().down().length(1.6).label("2 Ω", loc="bottom")
+    d += elm.Battery().down().length(1.4).toy(v1.start).label("3 V", loc="bottom")
+    d += elm.Line().left().tox(v1.start)
+    d += elm.Inductor2().down().at(n.center).toy(v1.start).label("1 H", loc="bottom")
+    d += elm.Dot().at((n.center[0], v1.start[1]))
+    save("q-gate2016-s1-q39", d)
+
+
+def q42():
+    """Star-delta transformer with dots: star windings A-N (dot at A end), B-N (dot at B end), C-N (dot at C end);
+    delta windings a-b (dot at a end, parallel to A), b-c (dot at b end, parallel to B), c-a (dot at c end, parallel to C)."""
+    import math
+    d = D()
+    L = 1.7
+    n = (0, 0)
+    a_end = (L * math.cos(math.radians(60)), L * math.sin(math.radians(60)))
+    c_end = (L * math.cos(math.radians(-60)), L * math.sin(math.radians(-60)))
+    b_end = (-L, 0)
+    d += elm.Inductor2(loops=3).at(a_end).to(n)
+    d += elm.Inductor2(loops=3).at(b_end).to(n)
+    d += elm.Inductor2(loops=3).at(c_end).to(n)
+    d += elm.Label().at((0.5, 0.05)).label("N")
+    for end, name in [(a_end, "A"), (c_end, "C")]:
+        d += elm.Line().at(end).to((-2.8, end[1]))
+        d += elm.Label().at((-3.05, end[1])).label(name)
+    d += elm.Line().at(b_end).to((-2.8, 0))
+    d += elm.Label().at((-3.05, 0)).label("B")
+    d += elm.Dot(radius=0.07).at((a_end[0] - 0.45, a_end[1] - 0.15))
+    d += elm.Dot(radius=0.07).at((b_end[0] + 0.25, 0.25))
+    d += elm.Dot(radius=0.07).at((c_end[0] - 0.45, c_end[1] + 0.15))
+    # delta
+    x0 = 2.4
+    T = (x0 + 1.0, a_end[1])
+    Lv = (x0, c_end[1] + 0.6)
+    Rv = (x0 + 2.0, c_end[1] + 0.6)
+    d += elm.Inductor2(loops=3).at(T).to(Lv)
+    d += elm.Inductor2(loops=3).at(T).to(Rv)
+    d += elm.Inductor2(loops=3).at(Lv).to(Rv)
+    d += elm.Line().at(T).to((x0 + 3.2, T[1])).label("a", loc="right")
+    d += elm.Line().at(Rv).to((x0 + 3.2, Rv[1])).label("c", loc="right")
+    d += elm.Line().at(Lv).to((x0, c_end[1]))
+    d += elm.Line().to((x0 + 3.2, c_end[1])).label("b", loc="right")
+    d += elm.Dot(radius=0.07).at((T[0] - 0.45, T[1] - 0.25))
+    d += elm.Dot(radius=0.07).at((Rv[0] + 0.05, Rv[1] + 0.45))
+    d += elm.Dot(radius=0.07).at((Lv[0] + 0.45, Lv[1] + 0.25))
+    save("q-gate2016-s1-q42", d)
+
+
 if __name__ == "__main__":
+    q42()
+    q37()
+    q39()
     q34()
     q36()
     q30()
