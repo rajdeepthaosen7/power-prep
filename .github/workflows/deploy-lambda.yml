@@ -1,4 +1,4 @@
-# Builds the Lambda zip and deploys it to AWS on every push to main (Render keeps deploying too, until it is retired).
+# Builds the Lambda zip and deploys it to AWS on every push to main. Lambda is the only backend (Render was deleted on 27 Nov 2026).
 name: Deploy API to AWS Lambda
 on:
   push:

@@ -116,14 +116,14 @@ by writing the questions in chapter YAML with their GATE `sources`.
   Keep a list of what is dumped and what is still to be processed: `DUMP.md`. The owner's open items live in `TODO.md`.
 
 ## Infra
-- Backend: Spring Boot 4.2 (Java 21, Flyway 12) on Render (free, Docker), Postgres on Neon (Singapore), API at https://power-api.rajdeepthaosen.com
-- Since 26 Nov 2026 the live API is AWS Lambda in Sydney (SnapStart, Function URL https://bxi3fbizgkqn4ab5l7cexysxzi0kgihd.lambda-url.ap-southeast-2.on.aws, cost kill switch): see deploy/aws/README.md. Render still runs as a fallback until the owner deletes it. Render also runs Flyway on the same Neon DB on every push, so a Lambda deploy can fail with "Number of retries exceeded while attempting to acquire PostgreSQL advisory lock" (seen 27 Nov 2026). The live API is not changed when that happens; re-run the deploy (`gh run rerun <id>`) after a few minutes. Secrets are changed only in CloudShell (Parameter Store, then `bash setup.sh`), never in GitHub. Lambda-only code lives in src/lambda/java (Maven profile `lambda`); never put the Lambda adapter in the main build, it replaces Tomcat and breaks the Render jar.
-- Frontend: repo power-prep-web on Cloudflare, site at https://power.rajdeepthaosen.com. Its Worker (worker/index.js) passes /api/* to the Lambda Function URL, so the API is https://power.rajdeepthaosen.com/api/... (same origin, no CORS preflight). power-api.rajdeepthaosen.com (Render) is unused.
+- Backend: Spring Boot 4.2 (Java 21, Flyway 12), Postgres on Neon (Singapore). It ran on Render (free, Docker) until the owner deleted the Render service on 27 Nov 2026; power-api.rajdeepthaosen.com is gone with it.
+- Since 26 Nov 2026 the live API is AWS Lambda in Sydney (SnapStart, Function URL https://bxi3fbizgkqn4ab5l7cexysxzi0kgihd.lambda-url.ap-southeast-2.on.aws, cost kill switch): see deploy/aws/README.md. Lambda is now the only backend. (While Render still ran, it migrated the same Neon DB on every push and a Lambda deploy could fail with "Number of retries exceeded while attempting to acquire PostgreSQL advisory lock"; if that message ever shows again, something else is migrating the DB: re-run the deploy with `gh run rerun <id>` after a few minutes.) Secrets are changed only in CloudShell (Parameter Store, then `bash setup.sh`), never in GitHub. Lambda-only code lives in src/lambda/java (Maven profile `lambda`); keep the Lambda adapter out of the main build (it replaces Tomcat; the plain jar is what the golden test and local runs use).
+- Frontend: repo power-prep-web on Cloudflare, site at https://power.rajdeepthaosen.com. Its Worker (worker/index.js) passes /api/* to the Lambda Function URL, so the API is https://power.rajdeepthaosen.com/api/... (same origin, no CORS preflight).
 - Health check must not touch the DB (keeps Neon able to sleep).
 
 ## Users
 - Sign-in with Google only. The ADMIN_EMAIL account is ADMIN + APPROVED automatically.
 - Everyone else starts as USER + PENDING; the owner approves, rejects or disables them in the admin section. No email notifications.
 - The API issues its own 30-day token; roles and status are read from the DB on every request.
-- Render env: DATABASE_URL, DB_USER, DB_PASSWORD, GOOGLE_CLIENT_ID, ADMIN_EMAIL, JWT_SECRET, CONTENT_REQUIRES_APPROVAL (true once the new UI has login).
+- API env (Lambda, from SSM `/power-prep/*` via deploy/aws/setup.sh): DATABASE_URL, DB_USER, DB_PASSWORD, GOOGLE_CLIENT_ID, ADMIN_EMAIL, JWT_SECRET, CONTENT_REQUIRES_APPROVAL.
 - Progress is tracked per account.

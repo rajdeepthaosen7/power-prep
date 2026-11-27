@@ -4,7 +4,7 @@ The same Spring Boot app runs on Lambda in Sydney (`ap-southeast-2`). The AWS Fr
 
 | Piece | What |
 |---|---|
-| Build | `mvn -Plambda package` → `target/power-prep-lambda.zip`. The profile adds the Lambda adapter and `src/lambda/java`. The normal build (Render jar) is unchanged. |
+| Build | `mvn -Plambda package` → `target/power-prep-lambda.zip`. The profile adds the Lambda adapter and `src/lambda/java`. The normal build (plain jar, used for local runs and the golden test) is unchanged. Render, which ran that jar, was deleted on 27 Nov 2026. |
 | Entry point | `com.rajdeep.powerprep.lambda.StreamLambdaHandler` (Function URL, payload 2.0), Spring profile `lambda` |
 | Start-up | SnapStart on published versions: Spring + Flyway run once at deploy; cold starts restore the snapshot (~1–1.5 s). `DbSnapshotHook` closes DB connections before the snapshot. |
 | Gzip | `GzipFilter` (no Tomcat on Lambda, so `server.compression` does nothing) |

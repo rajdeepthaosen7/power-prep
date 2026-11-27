@@ -33,7 +33,7 @@ if have DATABASE_URL && [ "${RESET_SECRETS:-}" != "1" ]; then
   echo "Secrets already saved (run with RESET_SECRETS=1 to type them again)."
   ALERT_EMAIL=$(aws ssm get-parameter --region $SSM_REGION --name "$P/ALERT_EMAIL" --query Parameter.Value --output text)
 else
-  echo "Open Render -> your power-prep service -> Environment, and copy the values from there."
+  echo "Copy the database values from the Neon console (Connection details). Render was deleted on 27 Nov 2026."
   ALERT_EMAIL=$(ask "Your email for cost alerts")
   ADMIN_EMAIL=$(ask "ADMIN_EMAIL (your Google sign-in email)")
   DATABASE_URL=$(ask "DATABASE_URL (starts with jdbc:postgresql://)")
